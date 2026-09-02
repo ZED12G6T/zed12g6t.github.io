@@ -27,7 +27,9 @@
             padding: 0;
         }
 
-        body {
+        body    
+        
+        {
             font-family: 'Tajawal', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
@@ -277,7 +279,14 @@
     </style>
 </head>
 <body>
-
+    
+<select id="lecture-select" onchange="if (this.value) window.location.href = this.value;">
+  <option value="index.html" selected>ملخص المحاضرة 1</option> <!-- هنا سلكتد لأننا في الأولى -->
+  <option value="lecture2.html">ملخص المحاضرة 2</option>
+  <option value="lecture3.html">ملخص المحاضرة 3</option>
+  <option value="lecture4.html">ملخص المحاضرة 4</option>
+</select>
+    
 <div class="main-wrapper">
 
     <!-- Source File 1 -->
