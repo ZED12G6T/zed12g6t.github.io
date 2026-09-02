@@ -280,12 +280,18 @@
 </head>
 <body>
     
-<select id="lecture-select" onchange="if (this.value) window.location.href = this.value;">
-  <option value="index.html" selected>ملخص المحاضرة 1</option> <!-- هنا سلكتد لأننا في الأولى -->
-  <option value="lecture2.html">ملخص المحاضرة 2</option>
-  <option value="lecture3.html">ملخص المحاضرة 3</option>
-  <option value="lecture4.html">ملخص المحاضرة 4</option>
-</select>
+<!-- بداية كود قائمة الملخصات المتناسق -->
+<div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 20px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
+  <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
+    📚 الانتقال السريع للمحاضرات:
+  </label>
+  <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
+    <option value="index.html" selected>ملخص المحاضرة 1</option>
+    <option value="lecture2.html">ملخص المحاضرة 2</option>
+    <option value="lecture3.html">ملخص المحاضرة 3</option>
+  </select>
+</div>
+<!-- نهاية كود قائمة الملخصات -->
     
 <div class="main-wrapper">
 
