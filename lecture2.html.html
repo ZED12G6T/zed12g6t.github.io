@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المحاضرة الشاملة: طول المنحنى، طول القوس، والانحناء</title>
+  
+  <!-- MathJax لتنسيق المعادلات الرياضية بدقة عالية -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+    :root {
+      --bg-primary: #0f172a;
+      --card-bg: rgba(22, 30, 46, 0.85);
+      --accent-cyan: #38bdf8;
+      --accent-green: #22c55e;
+      --text-primary: #f3f4f6;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --math-bg: #030712;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Tajawal', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      direction: rtl;
+    }
+
+    .main-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      color: var(--accent-cyan);
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 12px;
+      margin-top: 0;
+    }
+
+    h1.green-title {
+      color: var(--accent-green);
+      text-align: center;
+      font-size: 2rem;
+    }
+
+    h2 {
+      color: var(--accent-cyan);
+      font-size: 1.4rem;
+      margin-top: 25px;
+    }
+
+    h2.green-header {
+      color: var(--accent-green);
+      border-right: 4px solid var(--accent-green);
+      padding-right: 10px;
+    }
+
+    p, li {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    ol, ul {
+      padding-right: 25px;
+    }
+
+    ul {
+      list-style-type: square;
+    }
+
+    .math-block {
+      background-color: rgba(15, 23, 42, 0.6);
+      border-right: 4px solid var(--accent-cyan);
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 8px;
+      direction: ltr;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .math-block.green-border {
+      border-right-color: var(--accent-green);
+    }
+
+    .highlight-green {
+      color: var(--accent-green);
+      font-weight: bold;
+    }
+
+    .svg-container {
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    svg {
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper">
+    
+    <!-- بداية كود قائمة الملخصات المتناسق -->
+    <div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 0 auto 10px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
+      <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
+        📚 الانتقال السريع للمحاضرات:
+      </label>
+      <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
+        <option value="index.html">ملخص المحاضرة 1</option>
+        <option value="lecture2.html" selected>ملخص المحاضرة 2</option>
+        <option value="lecture3.html">ملخص المحاضرة 3</option>
+      </select>
+    </div>
+    <!-- نهاية كود قائمة الملخصات -->
+
+    <!-- ==================== PART 1 ==================== -->
+    <div class="card">
+      <h1>طول المنحنى وطول القوس (Length of a Curve & Arc Length)</h1>
+      <p>يندرج الموضوع تحت حساب المتجهات (Vector Calculus) لتحديد طول المنحنيات في الفضاء وتعبيرها بدلالة طول القوس.</p>
+
+      <h2>1. طول المنحنى (Length of a Curve - \(L\))</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> حساب الطول الكلي لمنحنى \(C\) محدد بنقطتين من \(a\) إلى \(b\).</li>
+        <li><strong>متجه الموضع (Position Vector):</strong></li>
+      </ul>
+      
+      <div class="math-block">
+        \[r(t) = [x(t), y(t), z(t)]\]
+      </div>
+
+      <ul>
+        <li><strong>متجه السرعة / المشتقة (Derivative Vector):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = \frac{dr}{dt} = [x'(t), y'(t), z'(t)]\]
+      </div>
+
+      <ul>
+        <li><strong>مربع المقدار (Dot Product of \(r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = (x'(t))^2 + (y'(t))^2 + (z'(t))^2\]
+      </div>
+
+      <ul>
+        <li><strong>القانون العام للطول:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[L = \int_{a}^{b} \sqrt{r' \cdot r'} \, dt = \int_{a}^{b} \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \, dt\]
+      </div>
+
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320">
+          <path d="M 250 160 L 250 40" stroke="#f3f4f6" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 250 160 L 380 220" stroke="#f3f4f6" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 250 160 L 120 220" stroke="#f3f4f6" stroke-width="2" marker-end="url(#arrow)" />
+          
+          <text x="250" y="30" fill="#f3f4f6" font-size="14" text-anchor="middle">z</text>
+          <text x="390" y="230" fill="#f3f4f6" font-size="14" text-anchor="middle">y</text>
+          <text x="110" y="230" fill="#f3f4f6" font-size="14" text-anchor="middle">x</text>
+
+          <path d="M 370 180 Q 280 40 310 80 T 370 180" fill="none" stroke="#38bdf8" stroke-width="3" />
+          
+          <circle cx="370" cy="180" r="4" fill="#38bdf8" />
+          <text x="385" y="185" fill="#38bdf8" font-size="14" font-weight="bold">a</text>
+          
+          <circle cx="310" cy="80" r="4" fill="#38bdf8" />
+          <text x="325" y="80" fill="#38bdf8" font-size="14" font-weight="bold">b</text>
+          
+          <line x1="250" y1="160" x2="320" y2="125" stroke="#f3f4f6" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="275" y="135" fill="#f3f4f6" font-size="14" font-style="italic">r(t)</text>
+
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#f3f4f6"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+
+      <h2>2. دالة طول القوس (Arc Length Function - \(s\))</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> تحويل النقطة النهائية المحددة \(b\) إلى متغير \(t\) لتصبح دالة تعطي الطول من نقطة بداية (\(t=0\)) إلى أي نقطة متغيرة \(t\).</li>
+        <li><strong>القانون:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s(t) = \int_{0}^{t} \sqrt{r' \cdot r'} \, dt\]
+      </div>
+
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 180">
+          <path d="M 80 130 Q 180 30 420 70" fill="none" stroke="#38bdf8" stroke-width="3" />
+          <polyline points="80,130 140,100 220,60 310,50 420,70" fill="none" stroke="#f3f4f6" stroke-width="1.5" stroke-dasharray="4" />
+          
+          <circle cx="80" cy="130" r="4" fill="#38bdf8" />
+          <circle cx="140" cy="100" r="4" fill="#38bdf8" />
+          <circle cx="220" cy="60" r="4" fill="#38bdf8" />
+          <circle cx="310" cy="50" r="4" fill="#38bdf8" />
+          <circle cx="420" cy="70" r="4" fill="#38bdf8" />
+          
+          <text x="60" y="150" fill="#38bdf8" font-size="13" font-weight="bold">s = 0 (t = 0)</text>
+          <text x="430" y="75" fill="#38bdf8" font-size="15" font-weight="bold">C</text>
+        </svg>
+      </div>
+
+      <h2>3. إعادة التمثيل بدلالة طول القوس (\(r(s)\) - Parametrization by Arc Length)</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> إيجاد المتجه بدلالة طول القوس \(s\) بدلاً من المتغير الزمني \(t\).</li>
+        <li><strong>الصيغة النهائية:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = r(t(s))\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 2 ==================== -->
+    <div class="card">
+      <h1>العنوان الرئيسي: طول المنحنى وطول القوس (Length of a Curve & Arc Length)</h1>
+      <p>الموضوع يندرج تحت <strong>حسبان المتجهات (Vector Calculus)</strong> لتحديد طول المنحنيات في الفضاء وتثبيتها بدلالة طول القوس.</p>
+
+      <h2>1. طول المنحنى (\(L\) - Length of a Curve)</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> حساب الطول الكلي لمنحنى \(C\) محدد بين نقطتين من \(a\) إلى \(b\).</li>
+        <li><strong>متجه الموضع (Position Vector):</strong></li>
+      </ul>
+      
+      <div class="math-block">
+        \[r(t) = [x(t), y(t), z(t)]\]
+      </div>
+
+      <ul>
+        <li><strong>متجه المشتقة (Derivative Vector):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = \frac{dr}{dt} = [x'(t), y'(t), z'(t)]\]
+      </div>
+
+      <ul>
+        <li><strong>مربع المقدار (Dot Product):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = (x'(t))^2 + (y'(t))^2 + (z'(t))^2\]
+      </div>
+
+      <ul>
+        <li><strong>القانون العام للطول الكلي:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[L = \int_{a}^{b} \sqrt{r' \cdot r'} \, dt = \int_{a}^{b} \sqrt{(x'(t))^2 + (y'(t))^2 + (z'(t))^2} \, dt\]
+      </div>
+
+      <h2>2. دالة طول القوس (\(s\) - Arc Length Function)</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> حساب طول القوس المتغير من نقطة البداية \(t = 0\) إلى أي نقطة متغيرة \(t\) باستخدام التكامل المحدد (بدون ثابت تكامل).</li>
+        <li><strong>القانون:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s(t) = \int_{0}^{t} \sqrt{r' \cdot r'} \, d\tilde{t}\]
+      </div>
+
+      <h2>3. إعادة التمثيل بدلالة طول القوس (\(r(s)\) - Parametrization by Arc Length)</h2>
+      <ul>
+        <li><strong>المفهوم:</strong> إيجاد المتجه بدلالة طول القوس \(s\) بدلاً من المعلمة الزمانية \(t\).</li>
+        <li><strong>الصيغة العامة:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = r(t(s))\]
+      </div>
+
+      <h2>4. مثال تطبيقي: المنحنى اللولبي (Helix Example)</h2>
+      <ul>
+        <li><strong>المعطيات:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(t) = [a \cos t, a \sin t, ct]\]
+      </div>
+
+      <ul>
+        <li><strong>المشتقة (\(r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = [-a \sin t, a \cos t, c]\]
+      </div>
+
+      <ul>
+        <li><strong>مربع المقدار (\(r' \cdot r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = (-a \sin t)^2 + (a \cos t)^2 + c^2 = a^2(\sin^2 t + \cos^2 t) + c^2 = a^2 + c^2\]
+      </div>
+
+      <ul>
+        <li><strong>حساب دالة طول القوس (\(s\)) بالتكامل المحدد من 0 إلى \(t\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s = \int_{0}^{t} \sqrt{a^2 + c^2} \, d\tilde{t} = \left[ \sqrt{a^2 + c^2} \, \tilde{t} \right]_{0}^{t} = \sqrt{a^2 + c^2} \, t\]
+      </div>
+
+      <ul>
+        <li><strong>استخراج \(t\) بدلالة \(s\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[t = \frac{s}{\sqrt{a^2 + c^2}}\]
+      </div>
+
+      <ul>
+        <li><strong>التمثيل النهائي بدلالة طول القوس \(r(s)\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = \left[ a \cos \left( \frac{s}{\sqrt{a^2 + c^2}} \right), a \sin \left( \frac{s}{\sqrt{a^2 + c^2}} \right), c \left( \frac{s}{\sqrt{a^2 + c^2}} \right) \right]\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 3 ==================== -->
+    <div class="card">
+      <h1>2. تلخيص المثال الرقمي / Summary of Numerical Example</h1>
+
+      <ul>
+        <li><strong>المعطيات / Given:</strong></li>
+      </ul>
+      
+      <div class="math-block">
+        \[r(t) = [2 \cos(3t), 2 \sin(3t), \sqrt{13}t]\]
+      </div>
+
+      <ul>
+        <li><strong>المشتقة / Derivative (\(r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = [-6 \sin(3t), 6 \cos(3t), \sqrt{13}]\]
+      </div>
+
+      <ul>
+        <li><strong>مربع المقدار / Magnitude Squared (\(r' \cdot r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = 36 \sin^2(3t) + 36 \cos^2(3t) + 13 = 36(1) + 13 = 49\]
+      </div>
+
+      <ul>
+        <li><strong>حساب طول القوس / Arc Length Calculation (\(s\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s = \int_{0}^{t} \sqrt{49} \, d\tilde{t} = 7t \implies s = 7t\]
+      </div>
+
+      <ul>
+        <li><strong>إيجاد الزمن / Solve for \(t\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[t = \frac{s}{7}\]
+      </div>
+
+      <ul>
+        <li><strong>النتيجة النهائية / Final Parametrization (\(r(s)\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = \left[ 2 \cos\left(\frac{3s}{7}\right), 2 \sin\left(\frac{3s}{7}\right), \frac{\sqrt{13}s}{7} \right]\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 4 ==================== -->
+    <div class="card">
+      <h1>العنوان الرئيسي / Main Title: طول القوس وإعادة التمثيل بدلالة s (Arc Length & Parametrization by s)</h1>
+      <p>المفهوم الأساسي هو حساب <strong>طول القوس \(s\)</strong> لمتجه موضع ثم إيجاد المتجه بدلالة \(s\) بدلاً من \(t\).</p>
+
+      <h2>1. السؤال والمثال الثالث من السبورة / Question & Example 3</h2>
+      <ul>
+        <li><strong>نص السؤال / Question:</strong></li>
+        <p dir="ltr" style="text-align: right; margin-right: 25px;">"Find the arc length and parametrized \(r\) by \(s\) for"</p>
+        <p>(أوجد طول القوس \(s\) وأعد تمثيل المتجه \(r\) بدلالة \(s\) للدالة التالية):</p>
+        
+        <li><strong>المعطيات / Given:</strong></li>
+      </ul>
+      
+      <div class="math-block">
+        \[r(t) = [\cos(4t), -\sin(4t), 3t]\]
+      </div>
+
+      <h2>2. خطوات الحل التفصيلية / Step-by-Step Solution</h2>
+      
+      <ul>
+        <li><strong>المشتقة / Derivative (\(r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = [-4 \sin(4t), -4 \cos(4t), 3]\]
+      </div>
+
+      <ul>
+        <li><strong>مربع المقدار / Magnitude Squared (\(r' \cdot r'\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = (-4 \sin(4t))^2 + (-4 \cos(4t))^2 + (3)^2\]
+      </div>
+
+      <div class="math-block">
+        \[r' \cdot r' = 16 \sin^2(4t) + 16 \cos^2(4t) + 9\]
+      </div>
+
+      <div class="math-block">
+        \[r' \cdot r' = 16(\sin^2(4t) + \cos^2(4t)) + 9\]
+      </div>
+
+      <div class="math-block">
+        \[r' \cdot r' = 16(1) + 9 = 25\]
+      </div>
+
+      <ul>
+        <li><strong>حساب طول القوس / Arc Length (\(s\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s = \int_{0}^{t} \sqrt{25} \, d\tilde{t} = 5[\tilde{t}]_{0}^{t} = 5t\]
+      </div>
+
+      <div class="math-block">
+        \[s = 5t\]
+      </div>
+
+      <ul>
+        <li><strong>التعبير عن \(t\) بدلالة \(s\) / Express \(t\) in terms of \(s\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[t = \frac{s}{5}\]
+      </div>
+
+      <ul>
+        <li><strong>النتيجة النهائية / Final Parametrization (\(r(s)\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = \left[ \cos\left(\frac{4s}{5}\right), -\sin\left(\frac{4s}{5}\right), \frac{3s}{5} \right]\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 5 ==================== -->
+    <div class="card">
+      <h1>العنوان الرئيسي / Main Title: الانحناء (\(\kappa(s)\) Curvature)</h1>
+      <p>الموضوع يندرج تحت <strong>حسبان المتجهات (Vector Calculus)</strong> ويختص بفياس مدى انحناء أو انحراف المنحنى عن الخط المستقيم عند نقطة معينة.</p>
+
+      <h2>1. التعريف والقوانين الأساسية / Definition & Formulas</h2>
+      <ul>
+        <li><strong>مفهوم الانحناء / Definition of Curvature (\(\kappa(s)\)):</strong></li>
+        <p>يُرمز للانحناء بالرمز اليوناني <strong>كابا (Kappa / \(\kappa\))</strong>، وهو مقياس لمعدل تغير مقدار متجه المماس الوحيد (\(u(s)\) Unit Tangent Vector) بالنسبة لطول القوس \(s\).</p>
+        
+        <li><strong>متجه المماس الوحيد / Unit Tangent Vector (\(u(s)\)):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[u(s) = \frac{r'(t)}{|r'(t)|}\]
+      </div>
+
+      <ul>
+        <li><strong>القانون الأساسي للانحناء / Primary Curvature Formula:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[\kappa(s) = |u'(s)| = |r''(s)|\]
+      </div>
+
+      <p style="text-align: center;">(أي أن الانحناء يساوي مقدار المشتقة الثانية لمتجه الموضع بعد إعادة تمثيله بدلالة \(s\)).</p>
+
+      <h2>2. نص السؤال المطلوب في الصور / Question</h2>
+      <ul>
+        <li><strong>نص السؤال / Question:</strong></li>
+        <p dir="ltr" style="text-align: right; margin-right: 25px;">"Find the arc length \(s\) and the curvature \(\kappa(s)\) of a circle"</p>
+        <p>(أوجد طول القوس \(s\) والانحناء \(\kappa(s)\) لدائرة معطاة بالمعادلة التالية):</p>
+        
+        <li><strong>المعطيات / Given:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(t) = [a \cos t, a \sin t]\]
+      </div>
+
+      <h2>3. خطوات الحل التفصيلية / Step-by-Step Solution</h2>
+
+      <ul>
+        <li><strong>الخطوة الأولى: إيجاد المشتقة الأولى (\(r'\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = [-a \sin t, a \cos t]\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الثانية: حساب مربع المقدار (\(r' \cdot r'\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r' \cdot r' = (-a \sin t)^2 + (a \cos t)^2\]
+      </div>
+
+      <div class="math-block">
+        \[r' \cdot r' = a^2 \sin^2 t + a^2 \cos^2 t = a^2(\sin^2 t + \cos^2 t) = a^2\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الثالثة: حساب دالة طول القوس (\(s\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s = \int_{0}^{t} \sqrt{a^2} \, d\tilde{t} = \int_{0}^{t} a \, d\tilde{t} = at \implies s = at\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الرابعة: التعبير عن \(t\) بدلالة \(s\) وإيجاد \(r(s)\)</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[t = \frac{s}{a}\]
+      </div>
+
+      <div class="math-block">
+        \[r(s) = \left[ a \cos\left(\frac{s}{a}\right), a \sin\left(\frac{s}{a}\right) \right]\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الخامسة: حساب الانحناء (\(\kappa(s) = |r''(s)|\))</strong></li>
+        <li><strong>المشتقة الأولى بالنسبة لـ \(s\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(s) = \left[ -\sin\left(\frac{s}{a}\right), \cos\left(\frac{s}{a}\right) \right]\]
+      </div>
+
+      <ul>
+        <li><strong>المشتقة الثانية بالنسبة لـ \(s\):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r''(s) = \left[ -\frac{1}{a} \cos\left(\frac{s}{a}\right), -\frac{1}{a} \sin\left(\frac{s}{a}\right) \right]\]
+      </div>
+
+      <ul>
+        <li><strong>حساب مقدار المشتقة الثانية (الانحناء):</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[\kappa(s) = |r''(s)| = \sqrt{\left(-\frac{1}{a} \cos\left(\frac{s}{a}\right)\right)^2 + \left(-\frac{1}{a} \sin\left(\frac{s}{a}\right)\right)^2} = \sqrt{\frac{1}{a^2}(1)} = \frac{1}{a}\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 6 ==================== -->
+    <div class="card">
+      <h1>العنوان الرئيسي / Main Title: حساب الانحناء للمنحنى اللولبي (\(\kappa(s)\) Curvature of a Helix)</h1>
+      <p>تكملة لدرس <strong>حسبان المتجهات (Vector Calculus)</strong> لقياس الانحناء \(\kappa(s)\) عبر إيجاد مشتقة متجه الموضع مرتين بعد تحويله ليكون بدلالة طول القوس \(s\).</p>
+
+      <h2>1. تكملة المثال السابق (تكملة الدائرة) / Circle Completion</h2>
+      <ul>
+        <li><strong>المشتقات والتعويض / Derivatives & Evaluation:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = \left[ a \cos \frac{s}{a}, a \sin \frac{s}{a} \right]\]
+      </div>
+
+      <div class="math-block">
+        \[r'(s) = \left[ -a \cdot \frac{1}{a} \sin \frac{s}{a}, a \cdot \frac{1}{a} \cos \frac{s}{a} \right] = \left[ -\sin \frac{s}{a}, \cos \frac{s}{a} \right]\]
+      </div>
+
+      <div class="math-block">
+        \[r''(s) = \left[ -\frac{1}{a} \cos \frac{s}{a}, -\frac{1}{a} \sin \frac{s}{a} \right]\]
+      </div>
+
+      <ul>
+        <li><strong>حساب الانحناء / Curvature Calculation:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[\kappa(s) = |r''(s)| = \sqrt{\frac{1}{a^2} \cos^2 \frac{s}{a} + \frac{1}{a^2} \sin^2 \frac{s}{a}} = \sqrt{\frac{1}{a^2}(1)} = \frac{1}{a}\]
+      </div>
+
+      <h2>2. المثال الثاني في الصور (المنحنى اللولبي) / Helix Example</h2>
+      <ul>
+        <li><strong>نص السؤال / Question:</strong></li>
+        <p dir="ltr" style="text-align: right; margin-right: 25px;">"Find the arc length \(s\) and the curvature \(\kappa(s)\) for:"</p>
+        <p>(أوجد طول القوس \(s\) والانحناء \(\kappa(s)\) للدالة التالية):</p>
+
+        <li><strong>المعطيات / Given:</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(t) = [2 \cos t, 2 \sin t, \sqrt{5}t]\]
+      </div>
+
+      <h2>3. خطوات الحل التفصيلية / Step-by-Step Solution</h2>
+
+      <ul>
+        <li><strong>الخطوة الأولى: إيجاد المشتقة الأولى (\(r'\)) ومربع مقدارها (\(r' \cdot r'\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(t) = [-2 \sin t, 2 \cos t, \sqrt{5}]\]
+      </div>
+
+      <div class="math-block">
+        \[r' \cdot r' = (-2 \sin t)^2 + (2 \cos t)^2 + (\sqrt{5})^2 = 4(\sin^2 t + \cos^2 t) + 5 = 4(1) + 5 = 9\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الثانية: حساب طول القوس (\(s\)) والتعبير عن \(t\)</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[s = \int_{0}^{t} \sqrt{9} \, d\tilde{t} = 3\tilde{t} \Big|_{0}^{t} = 3t \implies s = 3t\]
+      </div>
+
+      <div class="math-block">
+        \[t = \frac{s}{3}\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الثالثة: التعويض لإيجاد \(r(s)\)</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r(s) = \left[ 2 \cos \frac{s}{3}, 2 \sin \frac{s}{3}, \sqrt{5}\frac{s}{3} \right]\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الرابعة: المشتقة الأولى والثانية بدلالة \(s\) (\(r'\) & \(r''\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[r'(s) = \left[ -\frac{2}{3} \sin \frac{s}{3}, \frac{2}{3} \cos \frac{s}{3}, \frac{\sqrt{5}}{3} \right]\]
+      </div>
+
+      <div class="math-block">
+        \[r''(s) = \left[ -\frac{2}{9} \cos \frac{s}{3}, -\frac{2}{9} \sin \frac{s}{3}, 0 \right]\]
+      </div>
+
+      <ul>
+        <li><strong>الخطوة الخامسة: حساب الانحناء (\(\kappa(s) = |r''(s)|\))</strong></li>
+      </ul>
+
+      <div class="math-block">
+        \[\kappa(s) = |r''(s)| = \sqrt{\left(-\frac{2}{9} \cos \frac{s}{3}\right)^2 + \left(-\frac{2}{9} \sin \frac{s}{3}\right)^2 + 0^2}\]
+      </div>
+
+      <div class="math-block">
+        \[\kappa(s) = \sqrt{\frac{4}{81} \left(\cos^2 \frac{s}{3} + \sin^2 \frac{s}{3}\right)} = \sqrt{\frac{4}{81}(1)} = \frac{2}{9}\]
+      </div>
+    </div>
+
+    <!-- ==================== PART 7 (SUMMARY / ALGORITHMS) ==================== -->
+    <div class="card">
+      <h1 class="green-title">الزبدة</h1>
+
+      <!-- المطلب الأول -->
+      <h2 class="green-header">1. المطلب الأول: طول المنحنى الكلي (\(L\) / Find the Length of a Curve)</h2>
+      <p><strong>متى يطلبه؟</strong> إذا أعطاك فترة محددة للزمن مثل \(t \in [a, b]\).</p>
+      
+      <p class="highlight-green">خطوات الحل (Algorithm):</p>
+      <ol>
+        <li>اشتق المتجه الأصلي \(r(t)\) لتأخذ المشتقة الأولى \(r'(t)\).</li>
+        <li>احسب مربع مقدار المشتقة \(r' \cdot r'\).</li>
+        <li>خذ الجذر التربيعي وكامل تكاملاً محدداً من \(a\) إلى \(b\):</li>
+      </ol>
+
+      <div class="math-block green-border">
+        \[L = \int_{a}^{b} \sqrt{r' \cdot r'} \, dt\]
+      </div>
+
+      <p class="highlight-green">مثال تطبيقي:</p>
+      <ul>
+        <li><strong>المعطى:</strong> \(r(t) = [\cos t, \sin t, t]\) على الفترة \(t \in [0, 2\pi]\)</li>
+        <li><strong>المشتقة:</strong> \(r'(t) = [-\sin t, \cos t, 1]\)</li>
+        <li><strong>المربع:</strong> \(r' \cdot r' = \sin^2 t + \cos^2 t + 1^2 = 1 + 1 = 2\)</li>
+        <li><strong>الطول:</strong></li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[L = \int_{0}^{2\pi} \sqrt{2} \, dt = \sqrt{2}(2\pi - 0) = 2\sqrt{2}\pi\]
+      </div>
+
+      <!-- المطلب الثاني -->
+      <h2 class="green-header">2. المطلب الثاني: دالة طول القوس (\(s\) / Find the Arc Length)</h2>
+      <p><strong>متى يطلبه؟</strong> إذا طلب إيجاد دالة طول القوس \(s\) أو \(s(t)\) بدون إعطاء قيمة نهائية لـ \(t\).</p>
+
+      <p class="highlight-green">خطوات الحل (Algorithm):</p>
+      <ol>
+        <li>اشتق المتجه الأصلي لتجد \(r'(t)\).</li>
+        <li>احسب مربع المقدار \(r' \cdot r'\).</li>
+        <li>سوّ تكاملاً محدداً من \(0\) إلى \(t\) (بدون ثابت تكامل):</li>
+      </ol>
+
+      <div class="math-block green-border">
+        \[s = \int_{0}^{t} \sqrt{r' \cdot r'} \, d\tilde{t}\]
+      </div>
+
+      <p class="highlight-green">مثال تطبيقي:</p>
+      <ul>
+        <li><strong>المعطى:</strong> \(r(t) = [3 \cos t, 3 \sin t, 4t]\)</li>
+        <li><strong>المشتقة:</strong> \(r'(t) = [-3 \sin t, 3 \cos t, 4]\)</li>
+        <li><strong>المربع:</strong> \(r' \cdot r' = 9 \sin^2 t + 9 \cos^2 t + 16 = 9(1) + 16 = 25\)</li>
+        <li><strong>طول القوس:</strong></li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[s = \int_{0}^{t} \sqrt{25} \, d\tilde{t} = 5t\]
+      </div>
+
+      <!-- المطلب الثالث -->
+      <h2 class="green-header">3. المطلب الثالث: إعادة التمثيل بدلالة طول القوس (\(s\) Parametrize \(r\) by)</h2>
+      <p><strong>متى يطلبه؟</strong> عندما يقول "Parametrize \(r\) by arc length \(s\)" أو يريد \(r(s)\).</p>
+
+      <p class="highlight-green">خطوات الحل (Algorithm):</p>
+      <ol>
+        <li>احسب \(s\) من الخطوة السابقة لتصل إلى معادلة شكلها \(s = f(t)\).</li>
+        <li>اعكس المعادلة واجعل \(t\) في طرف لحالها بدلالة \(s\) (أي \(t = g(s)\)).</li>
+        <li>قبل كل \(t\) في المتجه الأصلي \(r(t)\) وعوّض مكانها قيمتها الجديدة بدلالة \(s\).</li>
+      </ol>
+
+      <p class="highlight-green">مثال تطبيقي:</p>
+      <ul>
+        <li>من المثال السابق، كانت \(s = 5t\).</li>
+        <li>اجعل \(t\) في طرف: \(t = \frac{s}{5}\).</li>
+        <li>نعوض في المتجه الأصلي:</li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[r(s) = \left[ 3 \cos\left(\frac{s}{5}\right), 3 \sin\left(\frac{s}{5}\right), 4\left(\frac{s}{5}\right) \right]\]
+      </div>
+
+      <!-- المطلب الرابع -->
+      <h2 class="green-header">4. المطلب الرابع: حساب الانحناء (\(\kappa(s)\) / Find the Curvature)</h2>
+      <p><strong>متى يطلبه؟</strong> عندما يطلب "Find the curvature \(\kappa(s)\)".</p>
+
+      <p class="highlight-green">خطوات الحل (Algorithm):</p>
+      <ol>
+        <li>جهّز المتجه بدلالة \(s\) وهو \(r(s)\) (من الخطوة رقم 3).</li>
+        <li>اشتق \(r(s)\) بالنسبة لـ \(s\) للحصول على المشتقة الأولى \(r'(s)\).</li>
+        <li>اشتق مرة ثانية للحصول على المشتقة الثانية \(r''(s)\).</li>
+        <li>احسب طول/مقدار المشتقة الثانية وهو قيمة الانحناء:</li>
+      </ol>
+
+      <div class="math-block green-border">
+        \[\kappa(s) = |r''(s)| = \sqrt{(x'')^2 + (y'')^2 + (z'')^2}\]
+      </div>
+
+      <p class="highlight-green">مثال تطبيقي:</p>
+      <ul>
+        <li><strong>المعطى:</strong> \(r(s) = \left[ 3 \cos \frac{s}{5}, 3 \sin \frac{s}{5}, \frac{4s}{5} \right]\)</li>
+        <li><strong>المشتقة الأولى \(r'(s)\):</strong></li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[r'(s) = \left[ -\frac{3}{5} \sin \frac{s}{5}, \frac{3}{5} \cos \frac{s}{5}, \frac{4}{5} \right]\]
+      </div>
+
+      <ul>
+        <li><strong>المشتقة الثانية \(r''(s)\):</strong></li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[r''(s) = \left[ -\frac{3}{25} \cos \frac{s}{5}, -\frac{3}{25} \sin \frac{s}{5}, 0 \right]\]
+      </div>
+
+      <ul>
+        <li><strong>الانحناء \(|r''(s)|\):</strong></li>
+      </ul>
+
+      <div class="math-block green-border">
+        \[\kappa(s) = \sqrt{\left(-\frac{3}{25} \cos \frac{s}{5}\right)^2 + \left(-\frac{3}{25} \sin \frac{s}{5}\right)^2 + 0^2} = \sqrt{\frac{9}{625}(1)} = \frac{3}{25}\]
+      </div>
+
+      <!-- ملخص التسلسل الذهبي -->
+      <h2 class="green-header">💡 ملخص التسلسل الذهبي (كل خطوة تسلم للتي بعدها):</h2>
+
+      <div class="math-block green-border">
+        \[r(t) \xrightarrow{\text{اشتقاق وتكامل}} s = f(t) \xrightarrow{\text{عكس الدالة}} t = g(s) \xrightarrow{\text{تعويض}} r(s) \xrightarrow{\text{اشتقاقين ومقدار}} \kappa(s) = |r''(s)|\]
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
