@@ -1,0 +1,63 @@
+name: Auto Update Lecture Navigation
+
+on:
+  push:
+    paths:
+      - '*.html'
+
+jobs:
+  update-menu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Update Navigation Menus
+        run: |
+          python -c "
+          import os, re
+
+          # 1. جلب كافة ملفات المحاضرات مرتبة
+          files = [f for f in os.listdir('.') if f.endswith('.html')]
+          
+          # ترتيب الملفات (index.html أولاً ثم باقي المحاضرات)
+          def sort_key(filename):
+              if filename == 'index.html': return 1
+              num = re.findall(r'\d+', filename)
+              return int(num[0]) if num else 999
+          
+          files.sort(key=sort_key)
+
+          # 2. تحديث القائمة المنسدلة في كل ملف
+          for current_file in files:
+              options = []
+              # بناء خيارات القائمة بترتيب معكوس (الأحدث في الأعلى)
+              for f in reversed(files):
+                  lecture_num = '1' if f == 'index.html' else re.findall(r'\d+', f)[0]
+                  selected = ' selected' if f == current_file else ''
+                  options.append(f'    <option value=\"{f}\"{selected}>ملخص المحاضرة {lecture_num}</option>')
+              
+              select_block = '<select id=\"lecture-select\" onchange=\"if (this.value) window.location.href = this.value;\">\n' + '\n'.join(options) + '\n  </select>'
+              
+              with open(current_file, 'r', encoding='utf-8') as file:
+                  content = file.read()
+              
+              # استبدال القائمة القديمة بالجديدة تلقائياً
+              updated_content = re.sub(r'<select id=\"lecture-select\".*?</select>', select_block, content, flags=re.DOTALL)
+              
+              with open(current_file, 'w', encoding='utf-8') as file:
+                  file.write(updated_content)
+          "
+
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
+          git add *.html
+          git commit -m "Auto-updated lecture navigation menus" || exit 0
+          git push
