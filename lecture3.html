@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص المحاضرة 3 - انحدار الدالة القياسية والمشتقة الاتجاهية</title>
+    
+    <!-- MathJax 3 Integration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #0f172a;        /* خلفية الصفحة الداكنة */
+            --card-bg: rgba(22, 30, 46, 0.85); /* خلفية البطاقات والبطاقة الرئيسية */
+            --accent-cyan: #38bdf8;       /* اللون السماوي للعناوين والرموز والعناصر البارزة */
+            --accent-green: #22c55e;      /* اللون الأخضر المضيء */
+            --text-primary: #f3f4f6;      /* لون النصوص الأساسي */
+            --border-color: rgba(255, 255, 255, 0.08); /* لون الحدود الضعيفة */
+            --math-bg: #030712;           /* خلفية الرياضيات والقوائم */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* --- 1. خلفية النقاط الدقيقة (Dot Matrix Background) --- */
+        .bg-dots {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- 2. لوحة الرموز الرياضية المتحركة والتفاعلية --- */
+        #math-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- الحاوية الرئيسية والبطاقات --- */
+        .main-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        h1 {
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-top: 10px;
+            margin-bottom: 18px;
+        }
+
+        .question-box {
+            background-color: rgba(56, 189, 248, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .question-box h3 {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: #d1d5db;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-right: 25px;
+            margin-bottom: 20px;
+        }
+
+        ol {
+            list-style-type: decimal;
+            padding-right: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .math-block {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-right: 4px solid var(--accent-cyan);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            direction: ltr; /* اتجاه المعادلات من اليسار لليمين دائماً */
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .svg-container {
+            background-color: #0f172a;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        .svg-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- حركة خلفية الأضواء المتحركة للستارة --- */
+        @keyframes glowing-bg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .curtain-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .curtain-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, #38bdf8, #22c55e, #a855f7, #38bdf8);
+            background-size: 300% 300%;
+            animation: glowing-bg 4s ease infinite;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .curtain-content {
+            position: relative;
+            z-index: 2;
+            filter: blur(14px);
+            transition: filter 0.4s ease, background-color 0.4s ease;
+            user-select: none;
+            background-color: rgba(15, 23, 42, 0.9);
+            padding: 20px;
+        }
+
+        .curtain-hint {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .curtain-container.revealed .curtain-content {
+            filter: blur(0);
+            user-select: auto;
+            background-color: rgba(15, 23, 42, 0.4);
+        }
+
+        .curtain-container.revealed::before {
+            opacity: 0.08;
+        }
+
+        .curtain-container.revealed .curtain-hint {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية النقاط -->
+    <div class="bg-dots"></div>
+
+    <!-- لوحة التفاعل الرياضي -->
+    <canvas id="math-canvas"></canvas>
+
+    <div class="main-wrapper">
+
+        <!-- بداية كود قائمة الملخصات المتناسق -->
+        <div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 20px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
+          <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
+            📚 الانتقال السريع للمحاضرات:
+          </label>
+          <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
+            <option value="index.html">ملخص المحاضرة 1</option>
+            <option value="lecture2.html">ملخص المحاضرة 2</option>
+            <option value="lecture3.html" selected>ملخص المحاضرة 3</option>
+          </select>
+        </div>
+        <!-- نهاية كود قائمة الملخصات -->
+
+        <!-- SECTION 11 (الرمز، التعريف، والقوانين الأساسية) -->
+        <div class="card">
+            <h1>🏛️ انحدار الدالة القياسية (Gradient of a Scalar Field)</h1>
+            
+            <h2>1. الرمز والتعريف (Symbol & Definition)</h2>
+            <ul>
+                <li><strong>مؤشر الانحدار:</strong> يُرمز له بالرمز \(\nabla\) (ويُسمى <em>Del</em> أو <em>Nabla</em>).</li>
+                <li><strong>تعريف الانحدار:</strong> إذا كانت لدينا دالة قياسية \(f(x, y, z)\) معرفة وقابلة للمفاضلة، فإن انحدار الدالة \(f\) يُرمز له بالرمز \(\text{grad}(f)\) أو \(\nabla f\).</li>
+            </ul>
+
+            <h2>2. القوانين الأساسية (Mathematical Formula)</h2>
+            <p>النتيجة الناتجة من الانحدار تكون <strong>متجهاً (Vector)</strong> دائماً، ويمكن التعبير عنه بصيغتين:</p>
+            
+            <p><strong>1. صيغة الأحداثيات:</strong></p>
+            <div class="math-block">
+                \[ \nabla f = \left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right] \]
+            </div>
+
+            <p><strong>2. صيغة متجهات الوحدة (\(\hat{i}, \hat{j}, \hat{k}\)):</strong></p>
+            <div class="math-block">
+                \[ \text{grad}(f) = \frac{\partial f}{\partial x} \hat{i} + \frac{\partial f}{\partial y} \hat{j} + \frac{\partial f}{\partial z} \hat{k} \]
+            </div>
+
+            <h2>3. مثال محلول (Example 1)</h2>
+            <ul>
+                <li><strong>المسألة:</strong> أوجد \(\nabla f\) عند النقطة \((1, 0, 1)\) إذا كانت \(f(x, y, z) = x^2 + y^2 + z^2\).</li>
+                <li><strong>خطوات الحل:</strong></li>
+            </ul>
+
+            <ol>
+                <li><strong>حساب المشتقات الجزئية:</strong></li>
+            </ol>
+            
+            <ul>
+                <li>بالنسبة لـ \(x\):</li>
+            </ul>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial x} = 2x \]
+            </div>
+
+            <ul>
+                <li>بالنسبة لـ \(y\):</li>
+            </ul>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial y} = 2y \]
+            </div>
+
+            <ul>
+                <li>بالنسبة لـ \(z\):</li>
+            </ul>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial z} = 2z \]
+            </div>
+
+            <ol start="2">
+                <li><strong>التعويض بالنقطة \((1, 0, 1)\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial x} = 2(1) = 2 \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial y} = 2(0) = 0 \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial z} = 2(1) = 2 \]
+            </div>
+
+            <ol start="3">
+                <li><strong>الناتج النهائي:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \nabla f = 2\hat{i} + 2\hat{k} \quad \text{أو} \quad \nabla f = [2, 0, 2] \]
+            </div>
+        </div>
+
+        <!-- SECTION 2 (المثال الثاني والمثال الثالث) -->
+        <div class="card">
+            <h2>المثال الثاني (Example 2)</h2>
+            <ul>
+                <li><strong>الدالة المعطاة:</strong></li>
+            </ul>
+
+            <div class="math-block">
+                \[ f(x, y, z) = 3x^2 y^2 z + 2xy - z^2 + 1 \]
+            </div>
+
+            <ul>
+                <li><strong>المطلوب:</strong> أوجد \(\nabla f\) عند النقطة \((1, 1, 1)\).</li>
+                <li><strong>خطوات الحل:</strong></li>
+            </ul>
+
+            <ol>
+                <li><strong>حساب المشتقات الجزئية:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial x} = 6xy^2 z + 2y \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial y} = 6x^2 yz + 2x \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial z} = 3x^2 y^2 - 2z \]
+            </div>
+
+            <ol start="2">
+                <li><strong>صيغة المتجه العامة:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \nabla f = \left[ 6xy^2 z + 2y, \; 6x^2 yz + 2x, \; 3x^2 y^2 - 2z \right] \]
+            </div>
+
+            <ol start="3">
+                <li><strong>التعويض بالنقطة \((1, 1, 1)\):</strong></li>
+            </ol>
+
+            <ul>
+                <li>المركبة الأولى (\(x\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ 6(1)(1)^2 (1) + 2(1) = 6 + 2 = 8 \]
+            </div>
+
+            <ul>
+                <li>المركبة الثانية (\(y\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ 6(1)^2 (1)(1) + 2(1) = 6 + 2 = 8 \]
+            </div>
+
+            <ul>
+                <li>المركبة الثالثة (\(z\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ 3(1)^2 (1)^2 - 2(1) = 3 - 2 = 1 \]
+            </div>
+
+            <ol start="4">
+                <li><strong>الناتج النهائي:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \left. \nabla f \right|_{(1,1,1)} = [8, 8, 1] \]
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>المثال الثالث (Example 3)</h2>
+            <ul>
+                <li><strong>الدالة المعطاة:</strong></li>
+            </ul>
+
+            <div class="math-block">
+                \[ f(x, y, z) = e^{xy} + \cos(xyz) + 3z \]
+            </div>
+
+            <ul>
+                <li><strong>المطلوب:</strong> أوجد \(\nabla f\) عند النقطة \((0, \pi, 2)\).</li>
+                <li><strong>خطوات الحل:</strong></li>
+            </ul>
+
+            <ol>
+                <li><strong>حساب المشتقات الجزئية:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial x} = y e^{xy} - yz \sin(xyz) \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial y} = x e^{xy} - xz \sin(xyz) \]
+            </div>
+            <div class="math-block">
+                \[ \frac{\partial f}{\partial z} = -xy \sin(xyz) + 3 \]
+            </div>
+
+            <ol start="2">
+                <li><strong>صيغة المتجه العامة:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \nabla f = \left[ y e^{xy} - yz \sin(xyz), \; x e^{xy} - xz \sin(xyz), \; -xy \sin(xyz) + 3 \right] \]
+            </div>
+
+            <ol start="3">
+                <li><strong>التعويض بالنقطة \((0, \pi, 2)\):</strong></li>
+            </ol>
+            <p style="text-align: center; color: var(--accent-cyan);">(ملاحظة: بما أن \(x = 0\) فإن \(xy = 0\) و \(xyz = 0\) و \(\sin(0) = 0\) و \(e^0 = 1\))</p>
+
+            <ul>
+                <li>المركبة الأولى (\(x\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ \pi e^0 - (\pi)(2) \sin(0) = \pi(1) - 0 = \pi \]
+            </div>
+
+            <ul>
+                <li>المركبة الثانية (\(y\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ 0 \cdot e^0 - (0)(2) \sin(0) = 0 \]
+            </div>
+
+            <ul>
+                <li>المركبة الثالثة (\(z\)):</li>
+            </ul>
+            <div class="math-block">
+                \[ -(0)(\pi) \sin(0) + 3 = 0 + 3 = 3 \]
+            </div>
+
+            <ol start="4">
+                <li><strong>الناتج النهائي:</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \left. \nabla f \right|_{(0,\pi,2)} = [\pi, 0, 3] \]
+            </div>
+        </div>
+
+        <!-- SECTION 3 (المشتقة الاتجاهية Directional Derivative) -->
+        <div class="card">
+            <h1>المشتقة الاتجاهية (Directional Derivative)</h1>
+            
+            <h2>1. التعريف والقانون (Definition & Formula)</h2>
+            <ul>
+                <li>إذا كانت \(f(x, y, z)\) دالة قياسية قابلة للمفاضلة، وكان الاتجاه معطى بالمجهد \(\mathbf{a}\) بحيث \(|\mathbf{a}| \neq 0\).</li>
+                <li>يُرمز للمشتقة الاتجاهية بالرمز \(D_{\mathbf{a}} f\) وتُعرف بالقانون التالي:</li>
+            </ul>
+
+            <div class="math-block">
+                \[ D_{\mathbf{a}} f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|} \]
+            </div>
+
+            <ul>
+                <li><strong>ملاحظة:</strong> \(\frac{\mathbf{a}}{|\mathbf{a}|}\) هو متجه الوحدة (Unit Vector) في اتجاه المتجه \(\mathbf{a}\).</li>
+            </ul>
+
+            <h2>2. مثال محلول (Example)</h2>
+            <ul>
+                <li><strong>المسألة:</strong> أوجد المشتقة الاتجاهية للدالة \(f(x, y, z) = 2x^2 + 3y^2 + z^2\) عند النقطة \((2, 1, 3)\) في اتجاه المتجه \(\mathbf{a} = [1, 0, -2]\).</li>
+                <li><strong>خطوات الحل:</strong></li>
+            </ul>
+
+            <ol>
+                <li><strong>حساب الانحدار \(\nabla f\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \nabla f = [4x, 6y, 2z] \]
+            </div>
+
+            <ol start="2">
+                <li><strong>التعويض بالنقطة \((2, 1, 3)\) في \(\nabla f\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \left. \nabla f \right|_{(2,1,3)} = [4(2), 6(1), 2(3)] = [8, 6, 6] \]
+            </div>
+
+            <ol start="3">
+                <li><strong>حساب طول المتجه \(|\mathbf{a}|\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ |\mathbf{a}| = \sqrt{1^2 + 0^2 + (-2)^2} = \sqrt{1 + 0 + 4} = \sqrt{5} \]
+            </div>
+
+            <ol start="4">
+                <li><strong>تطبيق قانون المشتقة الاتجاهية (الضرب القياسي Dot Product):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ D_{\mathbf{a}} f = [8, 6, 6] \cdot \frac{[1, 0, -2]}{\sqrt{5}} \]
+            </div>
+
+            <div class="math-block">
+                \[ D_{\mathbf{a}} f = \frac{(8)(1) + (6)(0) + (6)(-2)}{\sqrt{5}} = \frac{8 + 0 - 12}{\sqrt{5}} = -\frac{4}{\sqrt{5}} \]
+            </div>
+        </div>
+
+        <!-- SECTION 44 (الانحدار كمتجه عمودي على السطح ورسم الـ SVG) -->
+        <div class="card">
+            <h1>الانحدار كمتجه عمودي على السطح (Gradient as Surface Normal Vector)</h1>
+            
+            <h2>1. المفهوم والتعريف (Definition)</h2>
+            <ul>
+                <li>إذا كان لدينا سطح \(S\) ممثل بالمعادلة \(f(x, y, z) = c\) (حيث \(c\) ثابت)، وكانت الدالة \(f\) قابلة للمفاضلة.</li>
+                <li>فإن متجه الانحدار \(\nabla f\) عند أي نقطة \(P\) على السطح يكون متجهاً عمودياً (Normal Vector) على السطح عند تلك النقطة.</li>
+                <li><strong>المتجه العمودي:</strong></li>
+            </ul>
+
+            <div class="math-block">
+                \[ \text{Surface Normal Vector} = \nabla f \]
+            </div>
+
+            <ul>
+                <li><strong>متجه الوحدة العمودي (\(\mathbf{n}\)):</strong></li>
+            </ul>
+
+            <div class="math-block">
+                \[ \mathbf{n} = \frac{\nabla f}{|\nabla f|} \]
+            </div>
+
+            <h2>2. التوضيح الهندسي للعمودي والمستوى المماس (SVG)</h2>
+            <p>الشكل الهندسي الموضّح يبيّن العلاقة بين السطح المنحني \(f = c\)، والمستوى المماس عند نقطة التماس، ومتجه الانحدار العمودي \(\nabla f\):</p>
+            
+            <div class="svg-container">
+                <svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrow-cyan" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Surface Curve (f = c) -->
+                    <path d="M 80 230 Q 250 140 420 230" fill="none" stroke="#ef4444" stroke-width="3"/>
+                    <text x="390" y="210" fill="#ef4444" font-family="Tajawal" font-size="16" font-weight="bold">f = c</text>
+
+                    <!-- Tangent Plane Representation -->
+                    <polygon points="170,180 320,160 350,210 200,230" fill="rgba(255, 255, 255, 0.05)" stroke="#f3f4f6" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="330" y="170" fill="#f3f4f6" font-family="Tajawal" font-size="14">Tangent Plane</text>
+
+                    <!-- Point P -->
+                    <circle cx="250" cy="190" r="5" fill="#f3f4f6"/>
+                    <text x="235" y="210" fill="#f3f4f6" font-family="Tajawal" font-size="14">P</text>
+
+                    <!-- Right Angle Symbol -->
+                    <path d="M 250 165 L 265 165 L 265 190" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+
+                    <!-- Gradient Normal Vector Vector (\nabla f) -->
+                    <line x1="250" y1="190" x2="250" y2="70" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrow-cyan)"/>
+                    <text x="260" y="80" fill="#38bdf8" font-family="Tajawal" font-size="18" font-weight="bold">∇f</text>
+                </svg>
+            </div>
+
+            <h2>3. مثال محلول (Example)</h2>
+            <ul>
+                <li><strong>المسألة:</strong> أوجد متجه الوحدة العمودي \(\mathbf{n}\) لسطح المخروط \(z^2 = 4(x^2 + y^2)\) عند النقطة \(P(1, 0, 2)\).</li>
+                <li><strong>خطوات الحل:</strong></li>
+            </ul>
+
+            <ol>
+                <li><strong>إعادة ترتيب معادلة السطح وجعلها تساوي صفراً (\(f = 0\)):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ f(x, y, z) = 4(x^2 + y^2) - z^2 = 4x^2 + 4y^2 - z^2 = 0 \]
+            </div>
+
+            <ol start="2">
+                <li><strong>حساب متجه العمودي \(\nabla f\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \nabla f = \left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right] = [8x, 8y, -2z] \]
+            </div>
+
+            <ol start="3">
+                <li><strong>التعويض بالنقطة \(P(1, 0, 2)\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \left. \nabla f \right|_{(1,0,2)} = [8(1), 8(0), -2(2)] = [8, 0, -4] \]
+            </div>
+
+            <ol start="4">
+                <li><strong>حساب مقدار (طول) المتجه \(|\nabla f|\):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ |\nabla f| = \sqrt{8^2 + 0^2 + (-4)^2} = \sqrt{64 + 0 + 16} = \sqrt{80} \]
+            </div>
+
+            <ol start="5">
+                <li><strong>إيجاد متجه الوحدة العمودي (\(\mathbf{n}\)):</strong></li>
+            </ol>
+
+            <div class="math-block">
+                \[ \mathbf{n} = \frac{\nabla f}{|\nabla f|} = \frac{[8, 0, -4]}{\sqrt{80}} \]
+            </div>
+        </div>
+
+        <!-- SECTION 5 (حل الواجب مع خاصية الستارة المضيئة المتحركة والبلور) -->
+        <div class="card">
+            <h1>حل الواجب (Class Work Solution)</h1>
+
+            <!-- قسم المسألة والسؤال بلون بارز -->
+            <div class="question-box">
+                <h3>المسألة:</h3>
+                <p>أوجد متجه الوحدة العمودي \(\mathbf{n}\) للسطح:</p>
+                <div class="math-block">
+                    \[ f(x, y, z) = \frac{x^2}{8} + \frac{y^2}{9} - \frac{z^2}{2} = 1 \]
+                </div>
+                <p>عند النقطة \(P(4, 3, 2)\).</p>
+            </div>
+
+            <!-- حاوية الستارة مع البلور والأضواء المتحركة للحل -->
+            <div class="curtain-container" onclick="this.classList.toggle('revealed')">
+                <div class="curtain-hint">اضغط هنا لإظهار خطوات الحل والناتج</div>
+                
+                <div class="curtain-content">
+                    <h2>خطوات الحل:</h2>
+
+                    <ol>
+                        <li><strong>إيجاد المشتقات الجزئية لحساب المتجه العمودي \(\nabla f\):</strong></li>
+                    </ol>
+
+                    <div class="math-block">
+                        \[ \frac{\partial f}{\partial x} = \frac{2x}{8} = \frac{x}{4} \]
+                    </div>
+                    <div class="math-block">
+                        \[ \frac{\partial f}{\partial y} = \frac{2y}{9} \]
+                    </div>
+                    <div class="math-block">
+                        \[ \frac{\partial f}{\partial z} = -\frac{2z}{2} = -z \]
+                    </div>
+
+                    <p>فيكون صيغة الانحدار العام:</p>
+                    <div class="math-block">
+                        \[ \nabla f = \left[ \frac{x}{4}, \; \frac{2y}{9}, \; -z \right] \]
+                    </div>
+
+                    <ol start="2">
+                        <li><strong>التعويض بالنقطة \(P(4, 3, 2)\) في \(\nabla f\):</strong></li>
+                    </ol>
+
+                    <ul>
+                        <li>بالنسبة لـ \(x\): \(\frac{4}{4} = 1\)</li>
+                        <li>بالنسبة لـ \(y\): \(\frac{2(3)}{9} = \frac{6}{9} = \frac{2}{3}\)</li>
+                        <li>بالنسبة لـ \(z\): \(-(2) = -2\)</li>
+                    </ul>
+
+                    <p>المتجه العمودي عند النقطة هو:</p>
+                    <div class="math-block">
+                        \[ \nabla f = \left[ 1, \; \frac{2}{3}, \; -2 \right] \]
+                    </div>
+
+                    <ol start="3">
+                        <li><strong>حساب مقدار (طول) المتجه \(|\nabla f|\):</strong></li>
+                    </ol>
+
+                    <div class="math-block">
+                        \[ |\nabla f| = \sqrt{(1)^2 + \left(\frac{2}{3}\right)^2 + (-2)^2} \]
+                    </div>
+                    <div class="math-block">
+                        \[ |\nabla f| = \sqrt{1 + \frac{4}{9} + 4} = \sqrt{5 + \frac{4}{9}} = \sqrt{\frac{49}{9}} = \frac{7}{3} \]
+                    </div>
+
+                    <ol start="4">
+                        <li><strong>إيجاد متجه الوحدة العمودي \(\left(\mathbf{n} = \frac{\nabla f}{|\nabla f|}\right)\):</strong></li>
+                    </ol>
+
+                    <div class="math-block">
+                        \[ \mathbf{n} = \frac{\left[ 1, \; \frac{2}{3}, \; -2 \right]}{\frac{7}{3}} \]
+                    </div>
+
+                    <p>بضرب كل مركبة في القيمة العكسية \(\frac{3}{7}\):</p>
+                    <ul>
+                        <li>المركبة الأولى: \(1 \times \frac{3}{7} = \frac{3}{7}\)</li>
+                        <li>المركبة الثانية: \(\frac{2}{3} \times \frac{3}{7} = \frac{2}{7}\)</li>
+                        <li>المركبة الثالثة: \(-2 \times \frac{3}{7} = -\frac{6}{7}\)</li>
+                    </ul>
+
+                    <p><strong>الناتج النهائي:</strong></p>
+                    <div class="math-block">
+                        \[ \mathbf{n} = \left[ \frac{3}{7}, \; \frac{2}{7}, \; -\frac{6}{7} \right] = \frac{3}{7}\hat{i} + \frac{2}{7}\hat{j} - \frac{6}{7}\hat{k} \]
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- كود المحاكاة والتفاعل بالرياضيات (Canvas Interaction) -->
+    <script>
+        const canvas = document.getElementById('math-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const mathSymbols = [
+            '∇f', 'Dₐf', '∂f/∂x', '∂f/∂y', '∂f/∂z', 
+            '∫∫∫ dV', 'n = ∇f/|∇f|', 'lim(h→0)', 
+            '∑ xᵢ', '∮ E·dl', 'f(x,y,z)', '∇·V', '∇×F'
+        ];
+
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        class MathParticle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.symbol = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
+                this.size = Math.random() * 6 + 12;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.color = Math.random() > 0.5 ? '#38bdf8' : '#22c55e';
+                this.alpha = Math.random() * 0.25 + 0.15;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.alpha;
+                ctx.font = `${this.size}px monospace`;
+                ctx.fillText(this.symbol, this.x, this.y);
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    let angle = Math.atan2(dy, dx);
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    this.x -= Math.cos(angle) * force * 3;
+                    this.y -= Math.sin(angle) * force * 3;
+                }
+            }
+        }
+
+        const particleArray = [];
+        const numberOfParticles = 35;
+
+        for (let i = 0; i < numberOfParticles; i++) {
+            particleArray.push(new MathParticle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particleArray.length; i++) {
+                particleArray[i].draw();
+                particleArray[i].update();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+
+</body>
+</html>
