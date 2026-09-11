@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص المحاضرة 3 - الكهرومغناطيسية (2)</title>
+    <!-- MathJax 3 Integration -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+        :root {
+            --bg-primary: #0f172a;        /* خلفية الصفحة الداكنة الأساسية */
+            --card-bg: rgba(22, 30, 46, 0.85); /* خلفية البطاقات الزجاجية */
+            --accent-cyan: #38bdf8;       /* اللون السماوي للعناوين والرموز البارزة */
+            --accent-green: #22c55e;      /* اللون الأخضر المضيء للنتائج والتنبيهات */
+            --text-primary: #f3f4f6;      /* لون النصوص الأساسي */
+            --border-color: rgba(255, 255, 255, 0.08); /* لون الحدود الناعمة */
+            --math-bg: #030712;           /* خلفية الرياضيات والقوائم المنسدلة */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية النقاط الدقيقة */
+        .bg-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* لوحة الرموز التفاعلية */
+        #math-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* الحاوية الرئيسية */
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* البطاقات */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* العناوين */
+        h1 {
+            color: var(--accent-cyan);
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-cyan);
+            border-radius: 2px;
+        }
+
+        h2 {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent-cyan);
+            padding-right: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        /* القوائم */
+        ul {
+            list-style-type: square;
+            padding-right: 25px;
+            margin-bottom: 15px;
+        }
+
+        ol {
+            list-style-type: decimal;
+            padding-right: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* صناديق المعادلات */
+        .math-block {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-right: 4px solid var(--accent-cyan);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            direction: ltr;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        /* خاصية الستارة التفاعلية للحلول والواجبات */
+        .question-box {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .curtain-container {
+            position: relative;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px dashed var(--accent-cyan);
+            padding: 15px;
+            background: var(--math-bg);
+        }
+
+        .curtain-content {
+            filter: blur(14px);
+            transition: filter 0.4s ease, opacity 0.4s ease;
+            opacity: 0.2;
+            user-select: none;
+        }
+
+        .curtain-hint {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-align: center;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            animation: glowing-bg 2s infinite alternate;
+        }
+
+        @keyframes glowing-bg {
+            0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.2); }
+            100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
+        }
+
+        .curtain-container.revealed .curtain-content {
+            filter: blur(0);
+            opacity: 1;
+            user-select: text;
+        }
+
+        .curtain-container.revealed .curtain-hint {
+            opacity: 0;
+        }
+
+        /* الجداول */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(3, 7, 18, 0.4);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .highlight-green {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* الاستجابة للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .card {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية النقاط الدقيقة -->
+    <div class="bg-dots"></div>
+
+    <!-- لوحة الرموز التفاعلية -->
+    <canvas id="math-canvas"></canvas>
+
+    <!-- الحاوية الرئيسية -->
+    <div class="main-wrapper">
+
+        <!-- قائمة التنقل السريع بين المحاضرات -->
+        <div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 20px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
+          <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
+            📚 الانتقال السريع للمحاضرات:
+          </label>
+          <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
+            <option value="index.html">ملخص المحاضرة 1</option>
+            <option value="lecture2.html">ملخص المحاضرة 2</option>
+            <option value="lecture3.html" selected>ملخص المحاضرة 3</option>
+          </select>
+        </div>
+
+        <!-- بطاقة الكلمات المحورية والوحدات -->
+        <div class="card">
+            <h2>الكلمات المحورية والوحدات (مرجع سريع)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الكلمة الفيزيائية</th>
+                        <th>المعنى المحوري</th>
+                        <th>الأهمية والسبب</th>
+                        <th>الوحدة الأساسية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Stationary Charge</strong></td>
+                        <td>شحنة ساكنة</td>
+                        <td>لا تتأثر بالمجال المغناطيسي أبداً (\(\mathbf{u} = 0\)).</td>
+                        <td>Coulomb (C)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Moving Charge</strong></td>
+                        <td>شحنة متحركة</td>
+                        <td>هي الشحنة الوحيدة التي يتدخل المجال المغناطيسي ليدفعها.</td>
+                        <td>Coulomb (C)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Perpendicular</strong></td>
+                        <td>عمودي</td>
+                        <td>اتجاه القوة المغناطيسية يصنع دائماً زاوية \(90^\circ\) مع السرعة والمجال.</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Current Element</strong></td>
+                        <td>عنصر تيار</td>
+                        <td>يعبر عن التيار المار في جزء صغير من السلك (\(I\,d\mathbf{l}\)).</td>
+                        <td>\(\text{Ampere} \cdot \text{Meter}\)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Magnetic Flux Density (\(\mathbf{B}\))</strong></td>
+                        <td>كثافة الفيض المغناطيسي</td>
+                        <td>تعبر عن شدة المجال المغناطيسي المحيط بالأقسام أو الشحنات.</td>
+                        <td><strong>Tesla (T)</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Permeability (\(\mu\))</strong></td>
+                        <td>النفاذية المغناطيسية</td>
+                        <td>مدى تقبل أو سماحية المادة لمرور خطوط المجال المغناطيسي من خلالها.</td>
+                        <td>Henry/meter (\(\text{H/m}\))</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Magnetization (\(\mathbf{M}\))</strong></td>
+                        <td>التمغنط</td>
+                        <td>مقياس لمدى محاذاة عزو الذرات الداخلية عند تأثير مجال خارجي.</td>
+                        <td>A/m</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- بطاقة التلخيص الشامل للأجزاء A, B, C -->
+        <div class="card">
+            <h1>التلخيص الشامل للأجزاء (A, B, C)</h1>
+            
+            <h2>Part A: Force on a Charged Particle (القوة على جسيم مشحون)</h2>
+            <ul>
+                <li><strong>القوة الكهربائية:</strong> تؤثر على الشحنة الساكنة والمتحركة:</li>
+            </ul>
+            <div class="math-block">
+                $$\mathbf{F}_e = Q\mathbf{E}$$
+            </div>
+            <ul>
+                <li><strong>القوة المغناطيسية:</strong> تؤثر <strong>فقط</strong> إذا تحرك الجسيم بسرعة (\(\mathbf{u}\)):</li>
+            </ul>
+            <div class="math-block">
+                $$\mathbf{F}_m = Q(\mathbf{u} \times \mathbf{B})$$
+            </div>
+            <ul>
+                <li><strong>قوة لورنتز الكلية:</strong> محصلة القوتين معاً في حال وجود المجالين:</li>
+            </ul>
+            <div class="math-block">
+                $$\mathbf{F} = Q(\mathbf{E} + \mathbf{u} \times \mathbf{B})$$
+            </div>
+            <ul>
+                <li><strong>ملاحظة ذهبية:</strong> القوة المغناطيسية \(\mathbf{F}_m\) عمودية دائماً على اتجاه الحركة، ولذلك <strong>لا تبذل شغلاً</strong> وطاقة الجسيم الحركية تظل ثابتة.</li>
+            </ul>
+
+            <h2>Part B: Force on a Current Element (القوة على عنصر تيار)</h2>
+            <ul>
+                <li>بما أن التيار شحنات متحركة، تم استبدال الشحنة والسرعة بعنصر التيار في الأسلاك (\(dQ\,\mathbf{u} = I\,d\mathbf{l}\)).</li>
+                <li>القوة التفاضلية على جزء صغير من السلك:</li>
+            </ul>
+            <div class="math-block">
+                $$d\mathbf{F} = I\,d\mathbf{l} \times \mathbf{B}$$
+            </div>
+            <ul>
+                <li>القوة الكلية على سلك مغلق كامل:</li>
+            </ul>
+            <div class="math-block">
+                $$\mathbf{F} = \oint_L I\,d\mathbf{l} \times \mathbf{B}$$
+            </div>
+
+            <h2>Part C: Force between Two Current Elements (القوة بين عنصري تيار)</h2>
+            <ul>
+                <li>عند وجود سلكين متجاورين، يؤثر كل منهما على الآخر بقوة متبادلة، حيث ينتج السلك الثاني مجالاً (\(d\mathbf{B}_2\)) يحسب بقانون (بيو-سافار) ليؤثر على السلك الأول:</li>
+            </ul>
+            <div class="math-block">
+                $$d(d\mathbf{F}_1) = I_1 d\mathbf{l}_1 \times d\mathbf{B}_2$$
+            </div>
+            <ul>
+                <li>القانون العام والشامل للحساب بين حلقتبن:</li>
+            </ul>
+            <div class="math-block">
+                $$\mathbf{F}_1 = \frac{\mu_0 I_1 I_2}{4\pi} \oint_{L_1} \oint_{L_2} \frac{d\mathbf{l}_1 \times (d\mathbf{l}_2 \times \mathbf{a}_{R21})}{R_{21}^2}$$
+            </div>
+            <ul>
+                <li>تحقق القوة قانون نيوتن الثالث: \(\mathbf{F}_2 = -\mathbf{F}_1\).</li>
+            </ul>
+        </div>
+
+        <!-- بطاقة المفردات الفيزيائية المحورية في السؤال -->
+        <div class="card">
+            <h2>المفردات الفيزيائية المحورية في السؤال</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الكلمة في السؤال</th>
+                        <th>المعنى والسبب الفيزيائي</th>
+                        <th>الوحدة الأساسية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Uniform velocity</strong></td>
+                        <td>سرعة منتظمة (ثابتة المقدار والاتجاه)، وتعني ميكانيكياً أن المحصلة الكلية لجميع القوى المؤثرة تساوي صفر (\(\mathbf{F} = 0\)).</td>
+                        <td>m/s</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Charged particle</strong></td>
+                        <td>جسيم مشحون؛ هو الجسيم الذي يتأثر بالمجال الكهربائي دائماً، ويتأثر بالمغناطيسي فقط أثناء حركة.</td>
+                        <td>Coulomb (C)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Electric field</strong></td>
+                        <td>المجال الكهربائي (\(\mathbf{E}\)).</td>
+                        <td>V/m</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Magnetic field</strong></td>
+                        <td>المجال المغناطيسي (\(\mathbf{B}\)).</td>
+                        <td>Tesla (T)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- بطاقة المثال الأخير الحل التفيصلي والتنفيذي -->
+        <div class="card">
+            <h2>مثال المحاضرة الأخير (Example - Solution)</h2>
+            
+            <div class="question-box">
+                <p><strong>نص السؤال الأصلي:</strong></p>
+                <p dir="ltr" style="text-align: left; font-family: monospace;">A charged particle moves with a uniform velocity \(4\mathbf{a}_x \text{ m/s}\) in a region where \(\mathbf{E} = 20\mathbf{a}_y \text{ V/m}\) and \(\mathbf{B} = B_0\mathbf{a}_z \text{ Tesla (T)}\). Determine \(B_0\) such that the velocity of the particle remains constant.</p>
+                
+                <p style="margin-top: 15px;"><strong>ترجمة السؤال:</strong></p>
+                <p>"يتحرك جسيم مشحون بسرعة منتظمة قيمتها \(4\mathbf{a}_x \text{ m/s}\) في منطقة يتواجد بها مجال كهربائي \(\mathbf{E} = 20\mathbf{a}_y \text{ V/m}\) ومجال مغناطيسي \(\mathbf{B} = B_0\mathbf{a}_z \text{ Tesla (T)}\). حدد قيمة \(B_0\) التي تجعل سرعة الجسيم تظل ثابتة."</p>
+
+                <div class="curtain-container" onclick="this.classList.toggle('revealed')">
+                    <div class="curtain-hint">اضغط هنا لإظهار الحل الرياضي المباشر والتنفيذي</div>
+                    <div class="curtain-content">
+                        <p><strong>الحل الرياضي المباشر والتنفيذي (Solution):</strong></p>
+                        
+                        <p><strong>1. الشرط الفيزيائي (سرعة ثابتة):</strong></p>
+                        <p>بما أن السرعة ثابتة، فإن القوة الكهربائية تُلغي القوة المغناطيسية تماماً (متساويتان في المقدار ومتعاكستان في الاتجاه):</p>
+                        <div class="math-block">
+                            $$\mathbf{F}_e = -\mathbf{F}_m$$
+                        </div>
+                        <div class="math-block">
+                            $$Q\mathbf{E} = -Q(\mathbf{u} \times \mathbf{B})$$
+                        </div>
+
+                        <p><strong>2. تبسيط المعادلة بميكانيكية المقادير:</strong></p>
+                        <p>ببحذف الشحنة \(Q\) من الطرفين (لأن قيمتها لا تؤثر على شرط التوازن)، وأخذ المقادير مباشرة نظراً للتعامد:</p>
+                        <div class="math-block">
+                            $$E = u \cdot B_0$$
+                        </div>
+
+                        <p><strong>3. التعويض بالأرقام المعطاة:</strong></p>
+                        <ul>
+                            <li>شدة المجال الكهربائي \(E = 20\)</li>
+                            <li>مقدار السرعة \(u = 4\)</li>
+                        </ul>
+                        <div class="math-block">
+                            $$20 = 4 \times B_0$$
+                        </div>
+
+                        <p><strong>4. إيجاد الناتج النهائي:</strong></p>
+                        <div class="math-block">
+                            $$B_0 = \frac{20}{4} = 5 \text{ Tesla (T)}$$
+                        </div>
+                        
+                        <p class="highlight-green" style="text-align: center; margin-top: 15px;">النتيجة النهائية: قيمة كثافة الفيض المغناطيسي \(B_0 = 5 \text{ Tesla (T)}\).</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- كود لوحة الرموز التفاعلية (Math Canvas interaction) -->
+    <script>
+        const canvas = document.getElementById('math-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const symbols = ['∇f', 'Dₐf', '∂f/∂x', '∫∫∫ dV', 'n=∇f/|∇f|', 'F=Qu×B', 'Fe=QE', 'dF=Idl×B', 'F2=-F1', 'B₀=5T'];
+        const particles = [];
+        const numParticles = 35;
+
+        let mouse = {
+            x: null,
+            y: null,
+            radius: 150
+        };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.text = symbols[Math.floor(Math.random() * symbols.length)];
+                this.fontSize = Math.floor(Math.random() * 8) + 14;
+                this.opacity = Math.random() * 0.10 + 0.15;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
+                ctx.font = `${this.fontSize}px Tajawal, sans-serif`;
+                ctx.fillText(this.text, this.x, this.y);
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouse.radius) {
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let maxDistance = mouse.radius;
+                        let force = (maxDistance - distance) / maxDistance;
+                        let directionX = forceDirectionX * force * 5;
+                        let directionY = forceDirectionY * force * 5;
+
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    }
+                }
+            }
+        }
+
+        for (let i = 0; i < numParticles; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
