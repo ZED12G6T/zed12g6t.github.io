@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص المحاضرة 4 - تباعد وتلافي المجال الاتجاهي (Divergence & Curl)</title>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+        :root {
+            --bg-void:      #05090a;
+            --bg-panel:     #0b1210;
+            --grid-minor:   rgba(124, 255, 178, 0.045);
+            --grid-major:   rgba(124, 255, 178, 0.11);
+            --ink-primary:  #e9f5ef;
+            --ink-secondary:#7f9d92;
+
+            --trace-cos:    #7cffb2;  /* التعريفات الأساسية (div، curl) */
+            --trace-sin:    #ffb454;  /* التطبيقات والصيغ المرتبطة */
+            --trace-alert:  #ff6f6f;  /* الحالة الاستثنائية (تدفق دوراني) */
+            --accent-practice: #b98cff; /* الأمثلة المحلولة والتمارين */
+            --accent-assess:   #7cc4ff; /* التوضيح الهندسي */
+            --accent-identity: #ffd166; /* المتطابقات والقوانين العامة */
+
+            --border-soft:  rgba(124, 255, 178, 0.16);
+            --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
+            --font-mono:    'IBM Plex Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-arabic);
+            background-color: var(--bg-void);
+            color: var(--ink-primary);
+            line-height: 1.85;
+            padding: 22px 14px 60px;
+            min-height: 100vh;
+        }
+
+        .bg-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg,  var(--grid-minor) 0 1px, transparent 1px 40px),
+                repeating-linear-gradient(90deg, var(--grid-minor) 0 1px, transparent 1px 40px),
+                repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
+                repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
+            background-color: var(--bg-void);
+        }
+        .bg-grid::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%);
+        }
+
+        a:focus-visible, select:focus-visible, .trigger:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
+
+        .main-wrapper { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
+
+        /* ---------------- bezel nav (restyled quick-jump) ---------------- */
+        .bezel {
+            background: linear-gradient(180deg, #0d1614, #0a100e);
+            border: 1px solid var(--border-soft); border-radius: 10px;
+            padding: 14px 18px; display: flex; flex-wrap: wrap;
+            align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
+        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; }
+        .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
+        .channel-select {
+            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
+            padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
+            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 240px;
+        }
+        .channel-select:hover { border-color: var(--trace-cos); }
+
+        /* ---------------- quick-jump pills ---------------- */
+        .pill-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
+        .pill-row::-webkit-scrollbar { display: none; }
+        .pill-row a {
+            flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px;
+            border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary);
+            transition: color .2s, border-color .2s; white-space: nowrap;
+        }
+        .pill-row a:hover { color: var(--ink-primary); border-color: var(--accent-assess); }
+
+        /* ---------------- hero: div vs curl ---------------- */
+        .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
+        .hero h1 { font-size: 1.42rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
+        .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 540px; margin: 0 auto 18px; }
+        .scope-screen { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; }
+        .scope-screen svg { display: block; width: 100%; height: auto; }
+        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; }
+        .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
+        .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
+
+        /* ---------------- panels ---------------- */
+        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; }
+        .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
+        .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
+        .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
+
+        .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .panel-index { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--bg-void); background: var(--panel-accent, var(--trace-cos)); border-radius: 5px; padding: 3px 8px; flex-shrink: 0; }
+        .symbol-badge {
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem;
+            color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos));
+            background: rgba(124,255,178,0.06);
+        }
+        .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
+        .panel h2 { font-size: 1.1rem; font-weight: 700; color: var(--ink-primary); }
+        .panel h2 .bi-caption { font-size: 0.82rem; font-weight: 500; color: var(--ink-secondary); display: block; margin-top: 4px; }
+        .panel h3 { font-size: 0.96rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 14px 0 8px; }
+        .panel h3 .bi-caption { font-size: 0.8rem; font-weight: 400; color: var(--ink-secondary); display: block; margin-top: 3px; }
+
+        .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
+        .panel p:last-child { margin-bottom: 0; }
+        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 14px; }
+        .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 9px; }
+        .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
+
+        .math-block { background: #030605; border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; }
+        .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
+
+        .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
+        .result-box strong { color: var(--trace-cos); }
+
+        .question-box {
+            background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25);
+            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
+        }
+        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
+
+        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
+        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
+        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .trigger-body { display: none; padding: 4px 16px 18px; }
+        .trigger.open .trigger-hint { display: none; }
+        .trigger.open .trigger-body { display: block; }
+        .trigger.open { border-style: solid; }
+
+        .diagram-frame { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
+        .diagram-frame svg { max-width: 100%; height: auto; }
+
+        footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
+
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.15rem; }
+            .panel { padding: 18px 15px; }
+            .panel h2 { font-size: 1rem; }
+            .channel-select { min-width: 0; width: 100%; }
+            .bezel { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <div class="main-wrapper">
+
+        <!-- شريط الانتقال السريع — نفس القيم، شكل جديد فقط -->
+        <div class="bezel">
+            <div class="bezel-id">
+                <span class="lamp"></span>
+                <span>ملخصات المحاضرات — <strong>التباعد والتلافي</strong></span>
+            </div>
+            <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+                <option value="index.html">ملخص المحاضرة 1</option>
+                <option value="lecture2.html">ملخص المحاضرة 2</option>
+                <option value="lecture3.html">ملخص المحاضرة 3</option>
+                <option value="lecture4.html" selected>ملخص المحاضرة 4 - التباعد والتلافي</option>
+            </select>
+        </div>
+
+        <div class="pill-row">
+            <a href="#div-def">تعريف التباعد</a>
+            <a href="#div-apps">تطبيقات وتباعد التدرج</a>
+            <a href="#curl-def">تعريف التلافي</a>
+            <a href="#identities">المتطابقات</a>
+            <a href="#irrotational">المجال غير الدوراني</a>
+            <a href="#ex-curl1">أمثلة التلافي</a>
+            <a href="#classwork">تمرين صفي شامل</a>
+        </div>
+
+        <!-- hero: div (expansion) vs curl (rotation) -->
+        <div class="hero">
+            <h1>تباعد وتلافي المجال الاتجاهي</h1>
+            <p class="sub">التباعد $(\nabla \cdot \mathbf{V})$ يقيس مدى "تمدد" المجال من نقطة، والتلافي $(\nabla \times \mathbf{V})$ يقيس مدى "دورانه" حولها</p>
+
+            <div class="scope-screen">
+                <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arr-div" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0 0L10 5 0 10z" fill="#7cffb2"/>
+                        </marker>
+                    </defs>
+                    <line x1="350" y1="25" x2="350" y2="165" stroke="rgba(255,255,255,0.12)" stroke-dasharray="3 4"/>
+
+                    <circle cx="175" cy="95" r="3" fill="#7cffb2"/>
+                    <line x1="175" y1="95" x2="217" y2="95"  stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <line x1="175" y1="95" x2="196" y2="58"  stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <line x1="175" y1="95" x2="154" y2="58"  stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <line x1="175" y1="95" x2="133" y2="95"  stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <line x1="175" y1="95" x2="154" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <line x1="175" y1="95" x2="196" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
+                    <text x="132" y="165" fill="#7cffb2" font-family="IBM Plex Mono" font-size="13" font-weight="600">div(V) ≠ 0</text>
+
+                    <circle cx="525" cy="95" r="42" fill="none" stroke="#7cc4ff" stroke-width="1.6" stroke-dasharray="4 4"/>
+                    <circle id="curlDot" cx="567" cy="95" r="5" fill="#7cc4ff"/>
+                    <text x="490" y="165" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">curl(V) ≠ 0</text>
+                </svg>
+            </div>
+            <div class="scope-legend">
+                <span><i class="swatch" style="background:#7cffb2"></i> div — مصدر أو مصرف (تمدد)</span>
+                <span><i class="swatch" style="background:#7cc4ff"></i> curl — محور دوران</span>
+            </div>
+        </div>
+
+        <!-- panel 01 — تعريف التباعد -->
+        <div class="panel" id="div-def" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head">
+                <span class="panel-index">01</span>
+                <span class="symbol-badge">∇·</span>
+                <h2>تباعد المجال الاتجاهي (Divergence of a Vector Field)</h2>
+            </div>
+            <p>يتناول هذا الجزء مفهوم تباعد المجال الاتجاهي وكيفية حسابه رياضياً.</p>
+
+            <h3>التعريف والقانون الرياضي</h3>
+            <p>إذا كان المجال الاتجاهي القابل للمفاضلة معرفاً كـ $\mathbf{V} = [v_1, v_2, v_3]$، فإن التباعد يُرمز له بالرمز $\text{div}(\mathbf{V})$ أو $\nabla \cdot \mathbf{V}$:</p>
+
+            <div class="math-block small">\[ \nabla \cdot \mathbf{V} = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right) \cdot [v_1, v_2, v_3] \]</div>
+            <div class="math-block">\[ \text{div}(\mathbf{V}) = \nabla \cdot \mathbf{V} = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z} \]</div>
+
+            <div class="result-box"><strong>ملاحظة رئيسية:</strong> ناتج عملية التباعد $\text{div}(\mathbf{V})$ هو دائماً <strong>كمية قياسية (Scalar)</strong>.</div>
+
+            <h3>مثال محلول</h3>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                احسب التباعد $\text{div}(\mathbf{V})$ للمجال $\mathbf{V} = 3xz\,\mathbf{i} + 2xy\,\mathbf{j} - yz^2\,\mathbf{k}$ عند النقطة $(1, 1, 1)$.
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol><li>كتابة المتجه في صورة مركبات: $\mathbf{V} = [3xz, 2xy, -yz^2]$</li></ol>
+                    <ol start="2"><li>المشتقات الجزئية:</li></ol>
+                    <div class="math-block small">
+                        \[ \frac{\partial v_1}{\partial x} = 3z, \quad \frac{\partial v_2}{\partial y} = 2x, \quad \frac{\partial v_3}{\partial z} = -2yz \]
+                    </div>
+                    <ol start="3"><li>دالة التباعد العامة:</li></ol>
+                    <div class="math-block small">\[ \nabla \cdot \mathbf{V} = 3z + 2x - 2yz \]</div>
+                    <ol start="4"><li>التعويض بالنقطة $(1,1,1)$:</li></ol>
+                    <div class="result-box"><strong>الناتج:</strong> \[ \left. \nabla \cdot \mathbf{V} \right|_{(1,1,1)} = 3 + 2 - 2 = 3 \]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 02 — التطبيقات والابلاسيان -->
+        <div class="panel" id="div-apps" style="--panel-accent: var(--trace-sin);">
+            <div class="panel-head">
+                <span class="panel-index">02</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11z"/>
+                </svg>
+                <h2>التطبيقات الفيزيائية للتباعد وتباعد التدرج</h2>
+            </div>
+
+            <ul>
+                <li><strong>انضغاطية الموائع:</strong> إذا كان $\nabla \cdot \mathbf{V} = 0$، فالمائع غير قابل للانضغاط (Incompressible) وتكون الكثافة ثابتة.</li>
+                <li><strong>المجالات الكهرومغناطيسية:</strong> إذا تحقق $\nabla \cdot \mathbf{V} = 0$، يُقال عن المجال أنه <strong>أنبوبي / لا تباعدي (Solenoidal)</strong>.</li>
+            </ul>
+
+            <h3>تباعد التدرج $\text{div}(\nabla f)$ (مؤشر لابلاس)</h3>
+            <p>إذا كانت $f(x, y, z)$ دالة قياسية قابلة للمفاضلة:</p>
+            <div class="math-block small">\[ \nabla f = \left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right] \]</div>
+            <div class="math-block">\[ \text{div}(\nabla f) = \nabla \cdot \nabla f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} \]</div>
+        </div>
+
+        <!-- panel 03 — تمرين السبورة -->
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">03</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>حل تمرين السبورة: التدرج وتباعد التدرج</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                $f(x, y, z) = x^2 z + x y^2 + y z^2$ عند النقطة $(0, 1, 1)$ — أوجد $\nabla f$ و $\text{div}(\nabla f)$.
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol><li>إيجاد التدرج $\nabla f$:</li></ol>
+                    <div class="math-block small">\[ \frac{\partial f}{\partial x} = 2xz + y^2, \quad \frac{\partial f}{\partial y} = 2xy + z^2, \quad \frac{\partial f}{\partial z} = x^2 + 2yz \]</div>
+                    <div class="math-block small">\[ \left. \nabla f \right|_{(0,1,1)} = [1, 1, 2] \]</div>
+                    <ol start="2"><li>إيجاد تباعد التدرج $\text{div}(\nabla f)$:</li></ol>
+                    <div class="math-block small">\[ \frac{\partial^2 f}{\partial x^2} = 2z, \quad \frac{\partial^2 f}{\partial y^2} = 2x, \quad \frac{\partial^2 f}{\partial z^2} = 2y \]</div>
+                    <div class="result-box"><strong>الناتج:</strong> \[ \left. \text{div}(\nabla f) \right|_{(0,1,1)} = 2(1) + 2(0) + 2(1) = 4 \]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 04 — تعريف التلافي -->
+        <div class="panel" id="curl-def" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head">
+                <span class="panel-index">04</span>
+                <span class="symbol-badge">∇×</span>
+                <h2>تلافي المجال الاتجاهي (Curl of a Vector Field)</h2>
+            </div>
+            <p>تعريف وقانون تلافي المجال الاتجاهي وكيفية حسابه باستخدام المحددات المتجهية.</p>
+
+            <h3>التعريف والصيغة الرياضية</h3>
+            <p>إذا كانت $\mathbf{V} = [v_1, v_2, v_3]$ دالة متجهية قابلة للمفاضلة، يُرمز لتلافيها بـ $\text{curl}(\mathbf{V})$ أو $\nabla \times \mathbf{V}$:</p>
+            <div class="math-block">\[ \text{curl}(\mathbf{V}) = \nabla \times \mathbf{V} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ v_1 & v_2 & v_3 \end{vmatrix} \]</div>
+
+            <h3>فك المحدد (الصيغة الممتدة)</h3>
+            <div class="math-block small">\[ \text{curl}(\mathbf{V}) = \left( \frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z} \right) \mathbf{i} - \left( \frac{\partial v_3}{\partial x} - \frac{\partial v_1}{\partial z} \right) \mathbf{j} + \left( \frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y} \right) \mathbf{k} \]</div>
+
+            <div class="result-box"><strong>ملاحظة جوهرية:</strong> على عكس التباعد الذي ينتج قيمة قياسية، فإن التلافي يُنتج دائماً <strong>متجهاً</strong> يحدد محور الدوران ومعدله.</div>
+        </div>
+
+        <!-- panel 05 — المتطابقات المتجهية -->
+        <div class="panel" id="identities" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">05</span>
+                <span class="symbol-badge">≡0</span>
+                <h2>المتطابقات المتجهية الأساسية</h2>
+            </div>
+            <ul>
+                <li>
+                    <strong>تلافي التدرج لدالة قياسية:</strong> إذا كانت $f$ دالة قياسية، فإن تلافي تدرجها يساوي صفراً دائماً:
+                    <div class="math-block small">\[ \text{curl}(\nabla f) \equiv \nabla \times \nabla f = 0 \]</div>
+                </li>
+                <li>
+                    <strong>تباعد التلافي لدالة متجهية:</strong> إذا كانت $\mathbf{V}$ دالة متجهية، فإن تباعد تلافيها يساوي صفراً دائماً:
+                    <div class="math-block small">\[ \text{div}(\text{curl}(\mathbf{V})) \equiv \nabla \cdot (\nabla \times \mathbf{V}) = 0 \]</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- panel 06 — المجال غير الدوراني + التوضيح الهندسي -->
+        <div class="panel" id="irrotational" style="--panel-accent: var(--accent-assess);">
+            <div class="panel-head">
+                <span class="panel-index">06</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 12v5h5"/>
+                </svg>
+                <h2>المجال الاتجاهي غير الدوراني (Irrotational)</h2>
+            </div>
+            <p>يُقال عن المجال الاتجاهي $\mathbf{V}$ إنه غير دوراني إذا كان حاصل التلافي له يساوي صفراً عند جميع النقاط:</p>
+            <div class="math-block">\[ \text{curl}(\mathbf{V}) = \nabla \times \mathbf{V} = 0 \]</div>
+
+            <h3>التوضيح الهندسي لخطوط التدفق</h3>
+            <div class="diagram-frame">
+                <svg width="850" height="230" viewBox="0 0 850 230" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrow-g" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7cffb2"/></marker>
+                        <marker id="arrow-b" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7cc4ff"/></marker>
+                        <marker id="arrow-r" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#ff6f6f"/></marker>
+                    </defs>
+                    <g transform="translate(10, 15)">
+                        <rect width="240" height="185" rx="10" fill="rgba(124,255,178,0.04)" stroke="var(--border-soft)"/>
+                        <line x1="30" y1="40" x2="210" y2="40" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
+                        <line x1="30" y1="80" x2="210" y2="80" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
+                        <line x1="30" y1="120" x2="210" y2="120" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
+                        <text x="120" y="165" fill="#7cffb2" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Irrotational (Linear)</text>
+                    </g>
+                    <g transform="translate(305, 15)">
+                        <rect width="240" height="185" rx="10" fill="rgba(124,196,255,0.04)" stroke="var(--border-soft)"/>
+                        <circle cx="120" cy="90" r="35" fill="none" stroke="#7cc4ff" stroke-width="1.4" stroke-dasharray="4,4"/>
+                        <path d="M 120 30 A 60 60 0 0 1 180 90" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
+                        <path d="M 180 90 A 60 60 0 0 1 120 150" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
+                        <path d="M 120 150 A 60 60 0 0 1 60 90" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
+                        <path d="M 60 90 A 60 60 0 0 1 120 30" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
+                        <text x="120" y="165" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Irrotational (Vortex)</text>
+                    </g>
+                    <g transform="translate(600, 15)">
+                        <rect width="240" height="185" rx="10" fill="rgba(255,111,111,0.04)" stroke="var(--border-soft)"/>
+                        <path d="M 20 50 Q 60 15 100 50 T 180 50" fill="none" stroke="#ff6f6f" stroke-width="2"/>
+                        <path d="M 70 90 C 60 60, 110 60, 100 90 C 95 105, 75 105, 75 85" fill="none" stroke="#ff6f6f" stroke-width="2.4" marker-end="url(#arrow-r)"/>
+                        <path d="M 140 110 C 130 80, 180 80, 170 110 C 165 125, 145 125, 145 105" fill="none" stroke="#ff6f6f" stroke-width="2.4" marker-end="url(#arrow-r)"/>
+                        <path d="M 20 140 Q 80 160 140 130 T 220 140" fill="none" stroke="#ff6f6f" stroke-width="2" marker-end="url(#arrow-r)"/>
+                        <text x="120" y="165" fill="#ff6f6f" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Rotational</text>
+                    </g>
+                </svg>
+            </div>
+            <ul>
+                <li><strong>خطي منتظم:</strong> خطوط متوازية بدون أي انحناء أو دوران ($\text{curl}(\mathbf{V}) = 0$).</li>
+                <li><strong>دوامة غير دورانية:</strong> الجسيمات تدور حول مركز، لكن كل جسيم لا يدور حول محوره الخاص ($\text{curl}(\mathbf{V}) = 0$).</li>
+                <li><strong>تدفق دوراني:</strong> اضطرابات تجعل الجسيم يدور حول محوره ($\text{curl}(\mathbf{V}) \neq 0$).</li>
+            </ul>
+        </div>
+
+        <!-- panel 07 — مثال 1: إثبات curl(grad f) = 0 -->
+        <div class="panel" id="ex-curl1" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">07</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 1: إثبات أن $\text{curl}(\nabla f) = [0,0,0]$</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                الدالة القياسية $f(x, y, z) = 2x^2 + y$ — أثبت أن $\text{curl}(\nabla f) = [0, 0, 0]$.
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol><li>حساب التدرج: $\nabla f = [4x, 1, 0]$</li></ol>
+                    <div class="math-block small">\[ \text{curl}(\nabla f) = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 4x & 1 & 0 \end{vmatrix} \]</div>
+                    <ol start="2"><li>فك المحدد لكل مركبة: $\mathbf{i}: 0-0=0$، $\mathbf{j}: -(0-0)=0$، $\mathbf{k}: 0-0=0$</li></ol>
+                    <div class="result-box"><strong>النتيجة:</strong> \[ \text{curl}(\nabla f) = [0, 0, 0] \]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 08 — مثال 2: curl(V) عند نقطة -->
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">08</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 2: حساب $\text{curl}(\mathbf{V})$ عند نقطة</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                $\mathbf{V} = yz\,\mathbf{i} + 3zx\,\mathbf{j} + z\,\mathbf{k}$ — احسب $\text{curl}(\mathbf{V})$ عند النقطة $(1, 1, 1)$.
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol><li>المركبة $\mathbf{i}$: $\frac{\partial}{\partial y}(z) - \frac{\partial}{\partial z}(3zx) = 0 - 3x = -3x$</li></ol>
+                    <ol start="2"><li>المركبة $\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(z) - \frac{\partial}{\partial z}(yz)\right) = -(0-y) = y$</li></ol>
+                    <ol start="3"><li>المركبة $\mathbf{k}$: $\frac{\partial}{\partial x}(3zx) - \frac{\partial}{\partial y}(yz) = 3z - z = 2z$</li></ol>
+                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-3x, y, 2z] \]</div>
+                    <div class="result-box"><strong>عند $(1,1,1)$:</strong> \[ \left. \nabla \times \mathbf{V} \right|_{(1,1,1)} = [-3, 1, 2] \]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 09 — التحقق من متطابقة div(curl(V))=0 -->
+        <div class="panel" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">09</span>
+                <span class="symbol-badge">≡0</span>
+                <h2>Verification: $\text{div}(\text{curl}(\mathbf{V})) = 0$
+                    <span class="bi-caption">التحقق العملي من متطابقة تباعد التلافي</span>
+                </h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">Given &amp; Required / المعطيات والمطلوب</span>
+                $\mathbf{V} = x^2 y\,\mathbf{i} + z\,\mathbf{j} - (x + y - z)\,\mathbf{k} = [x^2 y, \; z, \; -x - y + z]$<br>
+                Required: Calculate $\text{div}(\text{curl}(\mathbf{V}))$
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    Click to reveal / اضغط لعرض الحل
+                </div>
+                <div class="trigger-body">
+                    <h3>1. Calculate curl(V) <span class="bi-caption">حساب التلافي</span></h3>
+                    <ul>
+                        <li>$\mathbf{i}$: $\frac{\partial}{\partial y}(-x-y+z) - \frac{\partial}{\partial z}(z) = -1-1=-2$</li>
+                        <li>$\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(-x-y+z) - \frac{\partial}{\partial z}(x^2y)\right) = -(-1-0)=1$</li>
+                        <li>$\mathbf{k}$: $\frac{\partial}{\partial x}(z) - \frac{\partial}{\partial y}(x^2y) = 0-x^2=-x^2$</li>
+                    </ul>
+                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-2, \; 1, \; -x^2] \]</div>
+                    <h3>2. Divergence of the curl <span class="bi-caption">تباعد المتجه الناتج</span></h3>
+                    <div class="math-block small">\[ \text{div}(\text{curl}(\mathbf{V})) = \frac{\partial}{\partial x}(-2) + \frac{\partial}{\partial y}(1) + \frac{\partial}{\partial z}(-x^2) \]</div>
+                    <div class="result-box"><strong>Result:</strong> \[ \text{div}(\text{curl}(\mathbf{V})) = 0 + 0 + 0 = 0 \]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 10 — تمرين صفي شامل: div و curl معًا -->
+        <div class="panel" id="classwork" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">10</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>Classwork: div(V) &amp; curl(V)
+                    <span class="bi-caption">تمرين صفي شامل — التباعد والتلافي لنفس المجال</span>
+                </h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">Given &amp; Required / المعطيات والمطلوب</span>
+                Vector Field: $\mathbf{V} = xy^2\,\mathbf{i} + \cos(xy)\,\mathbf{j} - yz\,\mathbf{k}$ &nbsp;—&nbsp; Point: $(x{=}1, y{=}\pi, z{=}1)$
+            </div>
+
+            <h3>أولاً: حساب التباعد $\text{div}(\mathbf{V})$</h3>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[ \text{div}(\mathbf{V}) = \frac{\partial}{\partial x}(xy^2) + \frac{\partial}{\partial y}(\cos(xy)) + \frac{\partial}{\partial z}(-yz) \]</div>
+                    <div class="math-block small">\[ = y^2 - x\sin(xy) - y \]</div>
+                    <div class="result-box"><strong>عند $(1,\pi,1)$:</strong> \[ \pi^2 - (1)\sin(\pi) - \pi = \pi^2 - \pi \]</div>
+                </div>
+            </div>
+
+            <h3>ثانياً: حساب التلافي $\text{curl}(\mathbf{V})$</h3>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ul>
+                        <li>$\mathbf{i}$: $\frac{\partial}{\partial y}(-yz) - \frac{\partial}{\partial z}(\cos(xy)) = -z - 0 = -z$</li>
+                        <li>$\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(-yz) - \frac{\partial}{\partial z}(xy^2)\right) = -(0-0)=0$</li>
+                        <li>$\mathbf{k}$: $\frac{\partial}{\partial x}(\cos(xy)) - \frac{\partial}{\partial y}(xy^2) = -y\sin(xy) - 2xy$</li>
+                    </ul>
+                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-z, \; 0, \; -y\sin(xy) - 2xy] \]</div>
+                    <div class="result-box"><strong>عند $(1,\pi,1)$:</strong> \[ [-1, \; 0, \; -\pi\sin(\pi) - 2\pi] = [-1, 0, -2\pi] \]</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="note">SIGNAL REFERENCE · VECTOR CALCULUS — DIV &amp; CURL</footer>
+    </div>
+
+    <script>
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const dot = document.getElementById('curlDot');
+        function animateDot(ts) {
+            const t = ts / 900;
+            dot.setAttribute('cx', 525 + 42 * Math.cos(t));
+            dot.setAttribute('cy', 95 + 42 * Math.sin(t));
+            requestAnimationFrame(animateDot);
+        }
+        if (!reduceMotion) requestAnimationFrame(animateDot);
+
+        function toggleTrigger(el) { el.classList.toggle('open'); }
+    </script>
+</body>
+</html>
