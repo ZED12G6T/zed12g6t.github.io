@@ -110,6 +110,17 @@
         .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
 
         .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
+
+        .question-box { background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25); border-radius: 9px; padding: 14px 16px; margin-bottom: 10px; }
+        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
+
+        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
+        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
+        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .trigger-body { display: none; padding: 4px 16px 18px; }
+        .trigger.open .trigger-hint { display: none; }
+        .trigger.open .trigger-body { display: block; }
+        .trigger.open { border-style: solid; }
         .result-box strong { color: var(--panel-accent, var(--trace-cos)); }
 
         .step-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.06); border-radius: 6px; padding: 2px 9px; margin-bottom: 6px; }
@@ -222,39 +233,47 @@
                 <h2>خطوات الحل <span class="en">(Solution Steps)</span></h2>
             </div>
 
-            <h3>(a) إيجاد متجه المماس $\mathbf{r}'(0)$</h3>
-            <span class="step-tag">خطوة 1</span>
-            <p>إيجاد المشتقة الأولى العامة $\mathbf{r}'(t)$:</p>
-            <div class="math-block small">\[ \mathbf{r}'(t) = \langle -4\sin t, 4\cos t, 0 \rangle \]</div>
-            <span class="step-tag">خطوة 2</span>
-            <p>التعويض بـ $t=0$:</p>
-            <div class="math-block small">\[ \mathbf{r}'(0) = \langle -4\sin(0), 4\cos(0), 0 \rangle = \langle 0, 4, 0 \rangle \]</div>
-            <div class="result-box"><strong>الناتج (a):</strong> $\mathbf{r}'(0) = \langle 0, 4, 0 \rangle$</div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل الكاملة (a, b, c)
+                </div>
+                <div class="trigger-body">
+                    <h3>(a) إيجاد متجه المماس $\mathbf{r}'(0)$</h3>
+                    <span class="step-tag">خطوة 1</span>
+                    <p>إيجاد المشتقة الأولى العامة $\mathbf{r}'(t)$:</p>
+                    <div class="math-block small">\[ \mathbf{r}'(t) = \langle -4\sin t, 4\cos t, 0 \rangle \]</div>
+                    <span class="step-tag">خطوة 2</span>
+                    <p>التعويض بـ $t=0$:</p>
+                    <div class="math-block small">\[ \mathbf{r}'(0) = \langle -4\sin(0), 4\cos(0), 0 \rangle = \langle 0, 4, 0 \rangle \]</div>
+                    <div class="result-box"><strong>الناتج (a):</strong> $\mathbf{r}'(0) = \langle 0, 4, 0 \rangle$</div>
 
-            <hr class="divider">
+                    <hr class="divider">
 
-            <h3>(b) إيجاد متجه المماس الموحد $\mathbf{u}(0)$</h3>
-            <span class="step-tag">خطوة 1</span>
-            <p>حساب طول المتجه $|\mathbf{r}'(0)|$:</p>
-            <div class="math-block small">\[ |\mathbf{r}'(0)| = \sqrt{0^2+4^2+0^2} = 4 \]</div>
-            <span class="step-tag">خطوة 2</span>
-            <p>تطبيق قانون متجه المماس الموحد:</p>
-            <div class="math-block small">\[ \mathbf{u}(0) = \frac{\langle 0,4,0\rangle}{4} = \langle 0, 1, 0 \rangle \]</div>
-            <div class="result-box"><strong>الناتج (b):</strong> $\mathbf{u}(0) = \langle 0, 1, 0 \rangle$</div>
+                    <h3>(b) إيجاد متجه المماس الموحد $\mathbf{u}(0)$</h3>
+                    <span class="step-tag">خطوة 1</span>
+                    <p>حساب طول المتجه $|\mathbf{r}'(0)|$:</p>
+                    <div class="math-block small">\[ |\mathbf{r}'(0)| = \sqrt{0^2+4^2+0^2} = 4 \]</div>
+                    <span class="step-tag">خطوة 2</span>
+                    <p>تطبيق قانون متجه المماس الموحد:</p>
+                    <div class="math-block small">\[ \mathbf{u}(0) = \frac{\langle 0,4,0\rangle}{4} = \langle 0, 1, 0 \rangle \]</div>
+                    <div class="result-box"><strong>الناتج (b):</strong> $\mathbf{u}(0) = \langle 0, 1, 0 \rangle$</div>
 
-            <hr class="divider">
+                    <hr class="divider">
 
-            <h3>(c) إيجاد معادلة خط المماس $\mathbf{q}(w)$</h3>
-            <span class="step-tag">خطوة 1</span>
-            <p>حساب متجه الموضع عند $t=0$:</p>
-            <div class="math-block small">\[ \mathbf{r}(0) = \langle 4\cos(0), 4\sin(0), 0 \rangle = \langle 4, 0, 0 \rangle \]</div>
-            <span class="step-tag">خطوة 2</span>
-            <p>التعويض في الصيغة العامة:</p>
-            <div class="math-block small">\[ \mathbf{q}(w) = \mathbf{r}(0) + w\,\mathbf{r}'(0) = \langle 4,0,0\rangle + w\langle 0,4,0\rangle \]</div>
-            <span class="step-tag">خطوة 3</span>
-            <p>تبسيط الناتج:</p>
-            <div class="math-block small">\[ \mathbf{q}(w) = \langle 4, 4w, 0 \rangle \]</div>
-            <div class="result-box"><strong>الناتج (c):</strong> $\mathbf{q}(w) = \langle 4, 4w, 0 \rangle$</div>
+                    <h3>(c) إيجاد معادلة خط المماس $\mathbf{q}(w)$</h3>
+                    <span class="step-tag">خطوة 1</span>
+                    <p>حساب متجه الموضع عند $t=0$:</p>
+                    <div class="math-block small">\[ \mathbf{r}(0) = \langle 4\cos(0), 4\sin(0), 0 \rangle = \langle 4, 0, 0 \rangle \]</div>
+                    <span class="step-tag">خطوة 2</span>
+                    <p>التعويض في الصيغة العامة:</p>
+                    <div class="math-block small">\[ \mathbf{q}(w) = \mathbf{r}(0) + w\,\mathbf{r}'(0) = \langle 4,0,0\rangle + w\langle 0,4,0\rangle \]</div>
+                    <span class="step-tag">خطوة 3</span>
+                    <p>تبسيط الناتج:</p>
+                    <div class="math-block small">\[ \mathbf{q}(w) = \langle 4, 4w, 0 \rangle \]</div>
+                    <div class="result-box"><strong>الناتج (c):</strong> $\mathbf{q}(w) = \langle 4, 4w, 0 \rangle$</div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== الفصل 2 ==================== -->
@@ -376,13 +395,24 @@
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                 <h2>مثال تطبيقي <span class="en">(Example)</span></h2>
             </div>
-            <p><strong>المسألة:</strong> أوجد الدالة المتجهة $\mathbf{r}(t)$ للقطع الناقص:</p>
-            <div class="math-block small">\[ \frac{x^2}{9} + \frac{y^2}{4} = 1 \]</div>
-            <ol>
-                <li>إيجاد أنصاف المحاور: $a^2=9 \Rightarrow a=3$، $b^2=4 \Rightarrow b=2$</li>
-                <li>التعويض في الصيغة العامة:</li>
-            </ol>
-            <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 3\cos t, 2\sin t, 0 \rangle$</div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                أوجد الدالة المتجهة $\mathbf{r}(t)$ للقطع الناقص:
+                <div class="math-block small" style="margin-top:8px;">\[ \frac{x^2}{9} + \frac{y^2}{4} = 1 \]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol>
+                        <li>إيجاد أنصاف المحاور: $a^2=9 \Rightarrow a=3$، $b^2=4 \Rightarrow b=2$</li>
+                        <li>التعويض في الصيغة العامة:</li>
+                    </ol>
+                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 3\cos t, 2\sin t, 0 \rangle$</div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== الفصل 4 ==================== -->
@@ -426,8 +456,19 @@
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                 <h2>مثال تطبيقي <span class="en">(Example)</span></h2>
             </div>
-            <p><strong>المسألة:</strong> أوجد الدالة المتجهة للولب دائري عندما $a=1$ و $c=1$.</p>
-            <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle \cos t, \sin t, t \rangle$</div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                أوجد الدالة المتجهة للولب دائري عندما $a=1$ و $c=1$.
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض الحل
+                </div>
+                <div class="trigger-body">
+                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle \cos t, \sin t, t \rangle$</div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== الفصل 5 ==================== -->
@@ -457,12 +498,23 @@
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                 <h2>المثال التطبيقي <span class="en">(Example)</span></h2>
             </div>
-            <p><strong>المعطيات:</strong> $x^2+y^2=4, \; z=0$</p>
-            <ol>
-                <li>معادلة الدائرة $x^2+y^2=a^2$، وبما أن $a^2=4$، إذن $a=2$.</li>
-                <li>التعويض في الصيغة العامة:</li>
-            </ol>
-            <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 2\cos t, 2\sin t, 0 \rangle$</div>
+            <div class="question-box">
+                <span class="ex-tag">المعطيات</span>
+                $x^2+y^2=4, \; z=0$
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <ol>
+                        <li>معادلة الدائرة $x^2+y^2=a^2$، وبما أن $a^2=4$، إذن $a=2$.</li>
+                        <li>التعويض في الصيغة العامة:</li>
+                    </ol>
+                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 2\cos t, 2\sin t, 0 \rangle$</div>
+                </div>
+            </div>
         </div>
 
         <div class="panel" style="--panel-accent: var(--accent-practice);">
@@ -473,17 +525,25 @@
             </div>
             <p>نعوض بقيم زوايا شهيرة لـ $t$ للوصول لإحداثيات النقاط على محيط الدائرة:</p>
 
-            <p><strong>عند $t = 0$:</strong></p>
-            <div class="math-block small">\[ \mathbf{r}(0) = \langle 2(1), 2(0), 0 \rangle = \langle 2, 0, 0 \rangle \]</div>
-            <div class="location-tag">(موقع النقطة على المحور الموجب لـ $x$)</div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض النقاط الثلاث
+                </div>
+                <div class="trigger-body">
+                    <p><strong>عند $t = 0$:</strong></p>
+                    <div class="math-block small">\[ \mathbf{r}(0) = \langle 2(1), 2(0), 0 \rangle = \langle 2, 0, 0 \rangle \]</div>
+                    <div class="location-tag">(موقع النقطة على المحور الموجب لـ $x$)</div>
 
-            <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{4}$ (زاوية $45^\circ$):</strong></p>
-            <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{4}\right) = \left\langle \sqrt{2}, \sqrt{2}, 0 \right\rangle \]</div>
-            <div class="location-tag">(موقع النقطة في منتصف الربع الأول)</div>
+                    <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{4}$ (زاوية $45^\circ$):</strong></p>
+                    <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{4}\right) = \left\langle \sqrt{2}, \sqrt{2}, 0 \right\rangle \]</div>
+                    <div class="location-tag">(موقع النقطة في منتصف الربع الأول)</div>
 
-            <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{2}$ (زاوية $90^\circ$):</strong></p>
-            <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{2}\right) = \langle 0, 2, 0 \rangle \]</div>
-            <div class="location-tag">(موقع النقطة على المحور الموجب لـ $y$)</div>
+                    <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{2}$ (زاوية $90^\circ$):</strong></p>
+                    <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{2}\right) = \langle 0, 2, 0 \rangle \]</div>
+                    <div class="location-tag">(موقع النقطة على المحور الموجب لـ $y$)</div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== الفصل 6 ==================== -->
@@ -548,6 +608,8 @@
             el.style.transition = 'stroke-dashoffset 1s ease 0.3s';
             requestAnimationFrame(() => requestAnimationFrame(() => { el.style.strokeDashoffset = 0; }));
         })();
+
+        function toggleTrigger(el) { el.classList.toggle('open'); }
     </script>
 </body>
 </html>
