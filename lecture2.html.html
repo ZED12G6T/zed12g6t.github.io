@@ -141,9 +141,7 @@
                 <span>ملخصات المحاضرات — <strong>طول القوس والانحناء</strong></span>
             </div>
             <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                <option value="index.html">ملخص المحاضرة 1</option>
-                <option value="lecture2.html" selected>ملخص المحاضرة 2</option>
-                <option value="lecture3.html">ملخص المحاضرة 3</option>
+          
             </select>
         </div>
 
@@ -515,5 +513,6 @@
             requestAnimationFrame(() => requestAnimationFrame(() => { el.style.strokeDashoffset = 0; }));
         })();
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
