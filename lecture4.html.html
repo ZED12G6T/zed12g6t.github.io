@@ -23,6 +23,7 @@
         :root {
             --bg-void:      #05090a;
             --bg-panel:     #0b1210;
+            --bg-inset:     #030605;
             --grid-minor:   rgba(124, 255, 178, 0.045);
             --grid-major:   rgba(124, 255, 178, 0.11);
             --ink-primary:  #e9f5ef;
@@ -43,6 +44,29 @@
             --danger:  #f87171;
         }
 
+        /* ============ الوضع النهاري ============ */
+        body.light {
+            --bg-void:      #eef3f0;
+            --bg-panel:     #ffffff;
+            --bg-inset:     #f2f7f4;
+            --grid-minor:   rgba(15, 80, 55, 0.06);
+            --grid-major:   rgba(15, 80, 55, 0.11);
+            --ink-primary:  #12241c;
+            --ink-secondary:#5c7268;
+            --border-soft:  rgba(15, 80, 55, 0.22);
+            --success: #16a34a;
+            --danger:  #dc2626;
+        }
+        body.light .bg-grid::after {
+            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(20,120,80,0.08), transparent 65%);
+        }
+        body.light .panel p   { color:#33473e; }
+        body.light .panel li  { color:#24382f; }
+        body.light .quiz-opt  { color: var(--ink-primary); }
+        body.light .flash-front { background:#fff; }
+        body.light .flash-back  { background: linear-gradient(135deg,#e6f5ec,#ffffff); }
+        body.light .copy-tex    { color:#0d7a4a; border-color: rgba(15,120,70,.35); background: rgba(15,120,70,.08); }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
 
@@ -53,6 +77,7 @@
             line-height: 1.85;
             padding: 22px 14px 60px;
             min-height: 100vh;
+            transition: background-color .35s ease, color .35s ease;
         }
 
         .bg-grid {
@@ -63,6 +88,7 @@
                 repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
                 repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
             background-color: var(--bg-void);
+            transition: background-color .35s ease;
         }
         .bg-grid::after {
             content: ''; position: absolute; inset: 0;
@@ -86,6 +112,10 @@
 
         .main-wrapper { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
 
+        /* ---------------- ظهور تدريجي ---------------- */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
         /* ---------------- bezel nav ---------------- */
         .bezel {
             background: linear-gradient(180deg, #0d1614, #0a100e);
@@ -93,10 +123,20 @@
             padding: 14px 18px; display: flex; flex-wrap: wrap;
             align-items: center; justify-content: space-between; gap: 12px;
         }
+        body.light .bezel { background: linear-gradient(180deg, #ffffff, #eef4f1); }
         .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
         .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
         .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
+        .bezel-actions { display: flex; align-items: center; gap: 8px; }
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
+            border: 1px solid var(--border-soft); background: transparent;
+            color: var(--ink-primary); font-size: 1.05rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all .2s;
+        }
+        .icon-btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.07); }
         .channel-select {
             font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
             padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
@@ -118,8 +158,17 @@
         .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
         .hero h1 { font-size: 1.42rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
         .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 540px; margin: 0 auto 18px; }
+        .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+        .chip {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+            padding: 5px 13px; border-radius: 999px;
+            border: 1px solid var(--border-soft); color: var(--ink-secondary);
+        }
+        .chip.g { color: var(--trace-cos); border-color: rgba(124,255,178,.35); background: rgba(124,255,178,.06); }
+        .chip.b { color: var(--accent-assess); border-color: rgba(124,196,255,.35); background: rgba(124,196,255,.06); }
+        .chip.y { color: var(--accent-identity); border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.06); }
         .scope-screen {
-            background: #030605; border: 1px solid var(--border-soft);
+            background: var(--bg-inset); border: 1px solid var(--border-soft);
             border-radius: 8px; padding: 6px 4px; overflow: hidden;
             position: relative;
         }
@@ -131,20 +180,15 @@
                         radial-gradient(circle at 75% 50%, rgba(124,196,255,0.06), transparent 40%);
             pointer-events: none;
         }
-        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; }
+        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; color: var(--ink-secondary); }
         .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
         .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
 
-        /* توهج الأسهم عند hover */
-        #hero-scope .div-arrow line {
-            transition: filter .3s;
-        }
-        #hero-scope:hover .div-arrow line {
-            filter: drop-shadow(0 0 4px #7cffb2);
-        }
+        #hero-scope .div-arrow line { transition: filter .3s; }
+        #hero-scope:hover .div-arrow line { filter: drop-shadow(0 0 4px #7cffb2); }
 
         /* ---------------- panels ---------------- */
-        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; }
+        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; transition: background-color .35s ease; }
         .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
         .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
         .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
@@ -170,10 +214,9 @@
         .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 9px; }
         .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
 
-        .math-block { background: #030605; border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; position: relative; }
+        .math-block { background: var(--bg-inset); border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; position: relative; }
         .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
 
-        /* زر نسخ Latex */
         .copy-tex {
             position: absolute; top: 6px; left: 8px;
             font-family: var(--font-mono); font-size: 0.68rem;
@@ -201,37 +244,78 @@
         .trigger-body { display: none; padding: 4px 16px 18px; }
         .trigger.open .trigger-hint { display: none; }
         .trigger.open .trigger-body { display: block; }
-        .trigger.open { border-style: solid; }
+        .trigger.open { border-style: solid; cursor: default; }
 
-        .diagram-frame { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
+        .diagram-frame { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
         .diagram-frame svg { max-width: 100%; height: auto; }
 
-        /* ---------------- الحاسبة التفاعلية ---------------- */
-        .calc-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 10px; margin-bottom: 14px;
+        /* ---------------- جدول المقارنة ---------------- */
+        .cmp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
+        .cmp-table th, .cmp-table td { border: 1px solid var(--border-soft); padding: 10px 12px; text-align: right; }
+        .cmp-table th { font-family: var(--font-mono); font-size: 0.78rem; color: var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.05); }
+        .cmp-table td { color: #dcece5; }
+        body.light .cmp-table td { color: #24382f; }
+        .cmp-table .mono { font-family: var(--font-mono); direction: ltr; display: inline-block; }
+
+        .mistake-list li { margin-bottom: 12px; }
+        .mistake-list .mk {
+            display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+            padding: 2px 8px; border-radius: 5px; margin-left: 8px;
+            background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3);
         }
-        .calc-field {
-            display: flex; flex-direction: column; gap: 4px;
-        }
-        .calc-field label {
-            font-family: var(--font-mono); font-size: 0.75rem;
-            color: var(--ink-secondary); font-weight: 600;
-        }
-        .calc-field input {
-            font-family: var(--font-mono); font-size: 0.9rem;
+
+        /* ---------------- مختبر المجال ---------------- */
+        .vf-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 12px; }
+        .vf-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px; }
+        .vf-field label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); font-weight: 600; }
+        .vf-field select, .vf-field input {
+            font-family: var(--font-arabic); font-size: 0.86rem;
             padding: 9px 11px; border-radius: 7px;
             border: 1px solid var(--border-soft);
-            background: #030605; color: var(--ink-primary);
+            background: var(--bg-inset); color: var(--ink-primary);
+        }
+        .vf-field input { font-family: var(--font-mono); direction: ltr; }
+        .vf-field select:focus, .vf-field input:focus { border-color: var(--trace-cos); outline: none; }
+        .vf-custom { display: none; flex: 1 1 100%; gap: 10px; }
+        .vf-custom.show { display: flex; flex-wrap: wrap; }
+        .vf-modes { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-secondary); margin: 4px 0 12px; }
+        .vf-modes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .vf-modes input { accent-color: var(--trace-cos); cursor: pointer; }
+        .vf-stage { position: relative; border-radius: 9px; overflow: hidden; border: 1px solid var(--border-soft); background: var(--bg-inset); }
+        #vf-canvas { display: block; width: 100%; height: 340px; cursor: crosshair; }
+        .vf-readout {
+            position: absolute; top: 10px; right: 10px;
+            font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.7;
+            background: rgba(3,6,5,0.78); border: 1px solid var(--border-soft);
+            border-radius: 8px; padding: 8px 12px; direction: ltr; text-align: left;
+            color: var(--ink-primary); pointer-events: none; backdrop-filter: blur(4px);
+            min-width: 170px;
+        }
+        body.light .vf-readout { background: rgba(255,255,255,0.85); }
+        .vf-readout .rv { color: var(--accent-identity); font-weight: 600; }
+        .vf-readout .rg { color: var(--trace-cos); font-weight: 600; }
+        .vf-readout .rb { color: var(--accent-assess); font-weight: 600; }
+        .vf-legend { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); }
+        .vf-legend span { display: flex; align-items: center; gap: 6px; }
+        .vf-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .vf-note { font-size: 0.8rem; color: var(--ink-secondary); margin-top: 8px; text-align: center; }
+
+        /* ---------------- الحاسبة التفاعلية ---------------- */
+        .calc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+        .calc-field { display: flex; flex-direction: column; gap: 4px; }
+        .calc-field label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-secondary); font-weight: 600; }
+        .calc-field input {
+            font-family: var(--font-mono); font-size: 0.9rem; direction: ltr; text-align: left;
+            padding: 9px 11px; border-radius: 7px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-inset); color: var(--ink-primary);
             transition: border-color .2s;
         }
-        .calc-field input:focus {
-            border-color: var(--trace-cos);
-            outline: none;
-        }
-        .calc-field input.err {
-            border-color: var(--danger);
-        }
+        .calc-field input:focus { border-color: var(--trace-cos); outline: none; }
+        .calc-field input.err { border-color: var(--danger); }
+        .point-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 4px; }
+        .point-row .pt-label { font-size: 0.82rem; color: var(--ink-secondary); font-weight: 600; }
+        .point-row .calc-field { flex: 0 0 90px; }
 
         .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
         .btn {
@@ -245,25 +329,14 @@
         .btn.primary:hover { background: rgba(124,255,178,0.2); }
 
         .calc-output {
-            background: #030605; border: 1px solid var(--border-soft);
+            background: var(--bg-inset); border: 1px solid var(--border-soft);
             border-radius: 9px; padding: 16px; margin-top: 12px;
             font-family: var(--font-mono); font-size: 0.9rem;
-            min-height: 60px; direction: ltr;
+            min-height: 60px; direction: ltr; text-align: left;
         }
-        .calc-output .step {
-            color: var(--ink-secondary); margin-bottom: 8px;
-            padding-right: 12px; border-right: 2px solid var(--border-soft);
-            padding-left: 0;
-        }
-        .calc-output .step .lbl {
-            color: var(--trace-cos); font-weight: 600;
-            display: inline-block; min-width: 60px;
-        }
-        .calc-output .final {
-            color: var(--accent-identity); font-weight: 700;
-            margin-top: 12px; padding-top: 12px;
-            border-top: 1px dashed var(--border-soft);
-        }
+        .calc-output .step { color: var(--ink-secondary); margin-bottom: 8px; padding-left: 12px; border-left: 2px solid var(--border-soft); }
+        .calc-output .step .lbl { color: var(--trace-cos); font-weight: 600; display: inline-block; min-width: 60px; }
+        .calc-output .final { color: var(--accent-identity); font-weight: 700; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-soft); }
         .calc-output .error { color: var(--danger); }
 
         /* ---------------- Quiz ---------------- */
@@ -285,11 +358,7 @@
         .quiz-opt.correct { background: rgba(74,222,128,0.15); border-color: var(--success); color: var(--success); }
         .quiz-opt.wrong { background: rgba(248,113,113,0.15); border-color: var(--danger); color: var(--danger); }
         .quiz-opt:disabled { cursor: default; }
-        .quiz-feedback {
-            margin-top: 10px; padding: 10px 14px;
-            border-radius: 7px; font-size: 0.88rem;
-            display: none;
-        }
+        .quiz-feedback { margin-top: 10px; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; display: none; }
         .quiz-feedback.show { display: block; }
         .quiz-feedback.ok { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.3); }
         .quiz-feedback.no { background: rgba(248,113,113,0.1); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
@@ -303,17 +372,10 @@
         .quiz-score .val { color: var(--accent-identity); font-weight: 700; font-size: 1.1rem; }
 
         /* ---------------- Flashcards ---------------- */
-        .flash-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 12px; margin-top: 12px;
-        }
-        .flash {
-            perspective: 1000px; height: 150px; cursor: pointer;
-        }
-        .flash-inner {
-            position: relative; width: 100%; height: 100%;
-            transition: transform .6s; transform-style: preserve-3d;
-        }
+        .flash-toolbar { display: flex; gap: 10px; margin-top: 4px; }
+        .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+        .flash { perspective: 1000px; height: 150px; cursor: pointer; }
+        .flash-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
         .flash.flipped .flash-inner { transform: rotateY(180deg); }
         .flash-face {
             position: absolute; inset: 0;
@@ -323,20 +385,10 @@
             text-align: center; font-size: 0.88rem;
             border: 1px solid var(--border-soft);
         }
-        .flash-front {
-            background: #0b1210;
-            color: var(--ink-primary);
-        }
-        .flash-front .hint {
-            position: absolute; bottom: 8px; left: 12px;
-            font-size: 0.68rem; color: var(--ink-secondary);
-            font-family: var(--font-mono);
-        }
-        .flash-back {
-            background: linear-gradient(135deg, #0d1f18, #0b1210);
-            color: var(--trace-cos); transform: rotateY(180deg);
-            border-color: rgba(124,255,178,0.3);
-        }
+        .flash-front { background: #0b1210; color: var(--ink-primary); }
+        body.light .flash-front { background: #fff; }
+        .flash-front .hint { position: absolute; bottom: 8px; left: 12px; font-size: 0.68rem; color: var(--ink-secondary); font-family: var(--font-mono); }
+        .flash-back { background: linear-gradient(135deg, #0d1f18, #0b1210); color: var(--trace-cos); transform: rotateY(180deg); border-color: rgba(124,255,178,0.3); }
 
         /* ---------------- القائمة الجانبية العائمة ---------------- */
         #fab-toc {
@@ -358,32 +410,35 @@
             overflow-y: auto;
         }
         #toc-drawer.open { transform: translateX(0); }
-        #toc-drawer h3 {
-            font-family: var(--font-mono); font-size: 0.8rem;
-            color: var(--ink-secondary); margin-bottom: 14px;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
-        #toc-drawer a {
-            display: block; padding: 8px 12px; color: var(--ink-primary);
-            text-decoration: none; font-size: 0.86rem;
-            border-radius: 6px; margin-bottom: 4px;
-            transition: all .15s;
-        }
+        #toc-drawer h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-secondary); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        #toc-drawer a { display: block; padding: 8px 12px; color: var(--ink-primary); text-decoration: none; font-size: 0.86rem; border-radius: 6px; margin-bottom: 4px; transition: all .15s; }
         #toc-drawer a:hover { background: rgba(124,255,178,0.06); color: var(--trace-cos); }
         #toc-drawer a.active { background: rgba(124,255,178,0.12); color: var(--trace-cos); border-right: 3px solid var(--trace-cos); }
 
-        #toc-backdrop {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-            z-index: 94; opacity: 0; pointer-events: none;
-            transition: opacity .3s;
-        }
+        #toc-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 94; opacity: 0; pointer-events: none; transition: opacity .3s; }
         #toc-backdrop.open { opacity: 1; pointer-events: auto; }
 
         footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
 
+        /* ---------------- طباعة ---------------- */
+        @media print {
+            .bg-grid, #fab-toc, #toc-drawer, #toc-backdrop, #read-progress,
+            .pill-row, .channel-select, .bezel-actions, .btn-row, .trigger-hint,
+            .flash-toolbar, .vf-controls, .vf-modes { display: none !important; }
+            body { background: #fff; color: #000; padding: 0; }
+            .panel, .hero { border-color: #bbb; background: #fff; break-inside: avoid; opacity: 1 !important; transform: none !important; }
+            .panel p, .panel li, .panel h2, .cmp-table td { color: #111 !important; }
+            .trigger .trigger-body { display: block !important; }
+            .trigger { border-style: solid; }
+            .math-block { background: #f6f6f6; border-color: #999; }
+            .vf-stage { display: none; }
+            .quiz-opt { border-color: #999; color: #111 !important; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .bezel-id .lamp { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.15rem; }
@@ -393,21 +448,23 @@
             .bezel { flex-direction: column; align-items: stretch; }
             .calc-grid { grid-template-columns: 1fr; }
             #fab-toc { bottom: 16px; left: 16px; }
+            #vf-canvas { height: 260px; }
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
     <div class="bg-grid"></div>
 
-    <!-- شريط تقدم القراءة -->
     <div id="read-progress"><div class="bar"></div></div>
 
-    <!-- زر الفهرس العائم -->
     <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button>
     <div id="toc-backdrop" onclick="toggleToc()"></div>
     <aside id="toc-drawer">
         <h3>فهرس المحاضرة</h3>
+        <a href="#quick-map">✦ الخلاصة الذهنية</a>
+        <a href="#field-lab">🧪 مختبر المجال التفاعلي</a>
         <a href="#div-def">01 · تعريف Divergence</a>
         <a href="#div-apps">02 · تطبيقات Divergence</a>
         <a href="#calc-tool">🧮 الحاسبة التفاعلية</a>
@@ -418,6 +475,7 @@
         <a href="#ex-curl2">08 · مثال curl(V) عند نقطة</a>
         <a href="#verification">09 · إثبات div(curl)=0</a>
         <a href="#classwork">10 · تمرين صفي</a>
+        <a href="#mistakes">⚠️ الأخطاء الشائعة</a>
         <a href="#quiz">📝 اختبر نفسك</a>
         <a href="#flashcards">🃏 بطاقات المراجعة</a>
     </aside>
@@ -429,16 +487,20 @@
                 <span class="lamp"></span>
                 <span>ملخصات المحاضرات — <strong>Divergence &amp; Curl</strong></span>
             </div>
-            <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                <option value="index.html">ملخص المحاضرة 1</option>
-                <option value="lecture2.html">ملخص المحاضرة 2</option>
-                <option value="lecture3.html">ملخص المحاضرة 3</option>
-                <option value="lecture4.html" selected>ملخص المحاضرة 4 - Divergence &amp; Curl</option>
-            </select>
+            <div class="bezel-actions">
+                <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
+                <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+                    <option value="index.html">ملخص المحاضرة 1</option>
+                    <option value="lecture2.html">ملخص المحاضرة 2</option>
+                    <option value="lecture3.html">ملخص المحاضرة 3</option>
+                    <option value="lecture4.html" selected>ملخص المحاضرة 4 - Divergence &amp; Curl</option>
+                </select>
+            </div>
         </div>
 
         <div class="pill-row">
-            <a href="#div-def">تعريف Divergence</a>
+            <a href="#quick-map">الخلاصة الذهنية</a>
+            <a href="#field-lab">🧪 مختبر المجال</a>
             <a href="#calc-tool">حاسبة تفاعلية</a>
             <a href="#curl-def">تعريف Curl</a>
             <a href="#identities">المتطابقات</a>
@@ -447,10 +509,17 @@
             <a href="#flashcards">بطاقات</a>
         </div>
 
-        <!-- ============ hero (مع الحركات) ============ -->
-        <div class="hero">
+        <!-- ============ hero ============ -->
+        <div class="hero reveal">
             <h1>Divergence &amp; Curl للمجال الاتجاهي</h1>
             <p class="sub">الـ Divergence $(\nabla \cdot \mathbf{V})$ يقيس مدى "تمدد" المجال من نقطة، والـ Curl $(\nabla \times \mathbf{V})$ يقيس مدى "دورانه" حولها</p>
+
+            <div class="hero-chips">
+                <span class="chip g">∇·V → قياسي</span>
+                <span class="chip b">∇×V → متجه</span>
+                <span class="chip y">∇·(∇×V) ≡ 0</span>
+                <span class="chip y">∇×(∇f) ≡ 0</span>
+            </div>
 
             <div class="scope-screen">
                 <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
@@ -458,69 +527,36 @@
                         <marker id="arr-div" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                             <path d="M0 0L10 5 0 10z" fill="#7cffb2"/>
                         </marker>
-                        <!-- توهج للأسهم -->
                         <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
+                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                         </filter>
                         <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur stdDeviation="3" result="blur"/>
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
+                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                         </filter>
                     </defs>
 
-                    <!-- فاصل رأسي -->
                     <line x1="350" y1="25" x2="350" y2="165" stroke="rgba(255,255,255,0.12)" stroke-dasharray="3 4"/>
 
-                    <!-- ============ الجانب الأيسر: div (تمدد/نبض) ============ -->
                     <g id="div-group">
-                        <!-- النقطة المركزية -->
                         <circle cx="175" cy="95" r="3" fill="#7cffb2" filter="url(#glow-green)"/>
-
-                        <!-- 6 أسهم تنبض -->
-                        <g class="div-arrow" data-angle="0">
-                            <line x1="175" y1="95" x2="217" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
-                        <g class="div-arrow" data-angle="60">
-                            <line x1="175" y1="95" x2="196" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
-                        <g class="div-arrow" data-angle="120">
-                            <line x1="175" y1="95" x2="154" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
-                        <g class="div-arrow" data-angle="180">
-                            <line x1="175" y1="95" x2="133" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
-                        <g class="div-arrow" data-angle="240">
-                            <line x1="175" y1="95" x2="154" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
-                        <g class="div-arrow" data-angle="300">
-                            <line x1="175" y1="95" x2="196" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/>
-                        </g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="217" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="196" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="154" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="133" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="154" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
+                        <g class="div-arrow"><line x1="175" y1="95" x2="196" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
                     </g>
 
-                    <!-- ============ الجانب الأيمن: curl (دوران) ============ -->
                     <g id="curl-group">
-                        <!-- دائرة متقطعة تدور -->
                         <circle id="curlRing" cx="525" cy="95" r="42" fill="none"
                                 stroke="#7cc4ff" stroke-width="1.6" stroke-dasharray="4 4"
                                 style="transform-origin: 525px 95px;"/>
-
-                        <!-- ذيل الحركة -->
-                        <path id="curlTrail" d="" fill="none" stroke="#7cc4ff" stroke-width="1.5"
-                              opacity="0.5" stroke-linecap="round"/>
-
-                        <!-- النقطة الدوارة -->
-                        <circle id="curlDot" cx="567" cy="95" r="5" fill="#7cc4ff"
-                                filter="url(#glow-blue)"/>
+                        <path id="curlTrail" d="" fill="none" stroke="#7cc4ff" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
+                        <circle id="curlDot" cx="567" cy="95" r="5" fill="#7cc4ff" filter="url(#glow-blue)"/>
                     </g>
 
-                    <!-- النصوص -->
                     <text x="132" y="165" fill="#7cffb2" font-family="IBM Plex Mono" font-size="13" font-weight="600">div(V) ≠ 0</text>
                     <text x="490" y="165" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">curl(V) ≠ 0</text>
                 </svg>
@@ -532,8 +568,103 @@
             </div>
         </div>
 
+        <!-- ============ الخلاصة الذهنية ============ -->
+        <div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">✦</span>
+                <span class="symbol-badge">∇</span>
+                <h2>الخلاصة الذهنية: الثلاثي ∇ / ∇· / ∇×</h2>
+            </div>
+            <table class="cmp-table">
+                <thead>
+                    <tr>
+                        <th>المؤثر</th>
+                        <th>الرمز</th>
+                        <th>المدخل</th>
+                        <th>المخرج</th>
+                        <th>المعنى الفيزيائي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gradient</strong></td>
+                        <td><span class="mono">∇f</span></td>
+                        <td>قياسي</td>
+                        <td>متجه</td>
+                        <td>اتجاه وأقصى معدل تغيّر للدالة</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Divergence</strong></td>
+                        <td><span class="mono">∇·V</span></td>
+                        <td>متجه</td>
+                        <td>قياسي</td>
+                        <td>تمدد (source) أو انكماش (sink) عند النقطة</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Curl</strong></td>
+                        <td><span class="mono">∇×V</span></td>
+                        <td>متجه</td>
+                        <td>متجه</td>
+                        <td>محور ومعدل دوران المجال حول النقطة</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="result-box">
+                <strong>قاعدة الإبهام:</strong> $\nabla$ وحده <strong>يرفع</strong> القياسي إلى متجه (Gradient)،
+                و$\nabla \cdot$ <strong>يخفض</strong> المتجه إلى قياسي (Divergence)،
+                و$\nabla \times$ <strong>يبقيه</strong> متجهاً لكن يكشف دورانه (Curl).
+            </div>
+        </div>
+
+        <!-- ============ مختبر المجال التفاعلي ============ -->
+        <div class="panel reveal" id="field-lab" style="--panel-accent: var(--accent-assess);">
+            <div class="panel-head">
+                <span class="panel-index">🧪</span>
+                <span class="symbol-badge">∿</span>
+                <h2>مختبر المجال الاتجاهي — شاهد div و curl بالعين
+                    <span class="bi-caption">جسيمات تتدفق مع المجال — حرّك الفأرة فوق الشاشة لقراءة ∇·F و ∇×F عند أي نقطة</span>
+                </h2>
+            </div>
+
+            <div class="vf-controls">
+                <div class="vf-field" style="flex:2 1 260px;">
+                    <label>اختر المجال الجاهز</label>
+                    <select id="vf-preset"></select>
+                </div>
+                <button class="btn primary" onclick="FieldLab.applyPreset()">تطبيق</button>
+            </div>
+            <div class="vf-custom" id="vf-custom">
+                <div class="vf-field" style="flex:1 1 180px;">
+                    <label>P(x, y)</label>
+                    <input id="vf-p" type="text" value="x - y" />
+                </div>
+                <div class="vf-field" style="flex:1 1 180px;">
+                    <label>Q(x, y)</label>
+                    <input id="vf-q" type="text" value="x + y" />
+                </div>
+                <button class="btn primary" onclick="FieldLab.applyCustom()">ارسم المجال المخصص</button>
+            </div>
+
+            <div class="vf-modes">
+                <span style="font-weight:600;">تلوين الجسيمات حسب:</span>
+                <label><input type="radio" name="vf-mode" value="curl" checked> الدوران ∇×F</label>
+                <label><input type="radio" name="vf-mode" value="div"> التمدد ∇·F</label>
+                <label><input type="radio" name="vf-mode" value="speed"> السرعة |F|</label>
+            </div>
+
+            <div class="vf-stage">
+                <canvas id="vf-canvas"></canvas>
+                <div class="vf-readout" id="vf-readout">
+                    <div>move mouse over field…</div>
+                </div>
+            </div>
+
+            <div class="vf-legend" id="vf-legend"></div>
+            <p class="vf-note">💡 جرّب "دوامة — Vortex" ولاحظ أن الجسيمات تدور لكن قيمة ∇·F = 0 (لا تمدد)، ثم جرّب "مصدر" وسترى ∇·F = 2 في كل مكان.</p>
+        </div>
+
         <!-- panel 01 -->
-        <div class="panel" id="div-def" style="--panel-accent: var(--trace-cos);">
+        <div class="panel reveal" id="div-def" style="--panel-accent: var(--trace-cos);">
             <div class="panel-head">
                 <span class="panel-index">01</span>
                 <span class="symbol-badge">∇·</span>
@@ -574,7 +705,7 @@
         </div>
 
         <!-- panel 02 -->
-        <div class="panel" id="div-apps" style="--panel-accent: var(--trace-sin);">
+        <div class="panel reveal" id="div-apps" style="--panel-accent: var(--trace-sin);">
             <div class="panel-head">
                 <span class="panel-index">02</span>
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -595,12 +726,12 @@
         </div>
 
         <!-- ====== الحاسبة التفاعلية ====== -->
-        <div class="panel" id="calc-tool" style="--panel-accent: var(--trace-sin);">
+        <div class="panel reveal" id="calc-tool" style="--panel-accent: var(--trace-sin);">
             <div class="panel-head">
                 <span class="panel-index">03</span>
                 <span class="symbol-badge">🧮</span>
                 <h2>حاسبة Divergence و Curl التفاعلية
-                    <span class="bi-caption">أدخل مركبات المجال V = [P, Q, R] وسيتم الحساب خطوة بخطوة</span>
+                    <span class="bi-caption">أدخل مركبات المجال V = [P, Q, R] ونقطة التعويض — سيتم الحساب خطوة بخطوة</span>
                 </h2>
             </div>
 
@@ -626,6 +757,13 @@
                 </div>
             </div>
 
+            <div class="point-row">
+                <span class="pt-label">نقطة التعويض (x, y, z):</span>
+                <div class="calc-field"><input id="calc-px" type="number" step="any" value="1" /></div>
+                <div class="calc-field"><input id="calc-py" type="number" step="any" value="1" /></div>
+                <div class="calc-field"><input id="calc-pz" type="number" step="any" value="1" /></div>
+            </div>
+
             <div class="btn-row">
                 <button class="btn primary" onclick="runCalc()">احسب div و curl</button>
                 <button class="btn" onclick="loadExample('div')">مثال Divergence</button>
@@ -639,7 +777,7 @@
         </div>
 
         <!-- panel 04 -->
-        <div class="panel" id="curl-def" style="--panel-accent: var(--trace-cos);">
+        <div class="panel reveal" id="curl-def" style="--panel-accent: var(--trace-cos);">
             <div class="panel-head">
                 <span class="panel-index">04</span>
                 <span class="symbol-badge">∇×</span>
@@ -658,7 +796,7 @@
         </div>
 
         <!-- panel 05 -->
-        <div class="panel" id="identities" style="--panel-accent: var(--accent-identity);">
+        <div class="panel reveal" id="identities" style="--panel-accent: var(--accent-identity);">
             <div class="panel-head">
                 <span class="panel-index">05</span>
                 <span class="symbol-badge">≡0</span>
@@ -677,7 +815,7 @@
         </div>
 
         <!-- panel 06 -->
-        <div class="panel" id="irrotational" style="--panel-accent: var(--accent-assess);">
+        <div class="panel reveal" id="irrotational" style="--panel-accent: var(--accent-assess);">
             <div class="panel-head">
                 <span class="panel-index">06</span>
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -730,7 +868,7 @@
         </div>
 
         <!-- panel 07 -->
-        <div class="panel" id="ex-curl1" style="--panel-accent: var(--accent-practice);">
+        <div class="panel reveal" id="ex-curl1" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
                 <span class="panel-index">07</span>
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -757,7 +895,7 @@
         </div>
 
         <!-- panel 08 -->
-        <div class="panel" id="ex-curl2" style="--panel-accent: var(--accent-practice);">
+        <div class="panel reveal" id="ex-curl2" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
                 <span class="panel-index">08</span>
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -785,7 +923,7 @@
         </div>
 
         <!-- panel 09 -->
-        <div class="panel" id="verification" style="--panel-accent: var(--accent-identity);">
+        <div class="panel reveal" id="verification" style="--panel-accent: var(--accent-identity);">
             <div class="panel-head">
                 <span class="panel-index">09</span>
                 <span class="symbol-badge">≡0</span>
@@ -819,7 +957,7 @@
         </div>
 
         <!-- panel 10 -->
-        <div class="panel" id="classwork" style="--panel-accent: var(--accent-practice);">
+        <div class="panel reveal" id="classwork" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
                 <span class="panel-index">10</span>
                 <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -865,8 +1003,25 @@
             </div>
         </div>
 
+        <!-- ============ الأخطاء الشائعة ============ -->
+        <div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);">
+            <div class="panel-head">
+                <span class="panel-index">⚠️</span>
+                <span class="symbol-badge">!</span>
+                <h2>الأخطاء الشائعة في الامتحان</h2>
+            </div>
+            <ul class="mistake-list">
+                <li><span class="mk">خطأ 1</span> الخلط بين نوع الناتج: $\nabla \cdot \mathbf{V}$ ينتج <strong>قياسياً</strong>، بينما $\nabla \times \mathbf{V}$ ينتج <strong>متجهاً</strong>. كتابة curl كناتج قياسي تُحسب إجابة خاطئة.</li>
+                <li><span class="mk">خطأ 2</span> نسيان الإشارة السالبة في مركبة $\mathbf{j}$ عند فك محدد الـ Curl — هذا أكثر خطأ شائع في المحاضرة.</li>
+                <li><span class="mk">خطأ 3</span> الظن بأن أي حركة دائرية مرئية تعني $\text{curl} \neq 0$ — الدوامة المثالية (Vortex) مجالها غير دوراني! الـ Curl يقيس دوران الجسيم حول <strong>محوره</strong> وليس حول المركز.</li>
+                <li><span class="mk">خطأ 4</span> التعويض بالنقطة <strong>قبل</strong> إتمام الاشتقاق. الترتيب الصحيح: اشتق → بسّط → عوّض.</li>
+                <li><span class="mk">خطأ 5</span> نسيان قاعدة السلسلة عند اشتقاق $\cos(xy)$ أو $\sin(xy)$: المشتقة ليست $-\sin(xy)$ بل $-y\sin(xy)$ بالنسبة لـ $x$.</li>
+                <li><span class="mk">خطأ 6</span> الخلط بين المتطابقتين: $\nabla \cdot (\nabla f) = \nabla^2 f$ (Laplacian — ليس بالضرورة صفراً)، بينما $\nabla \times (\nabla f) = 0$ دائماً.</li>
+            </ul>
+        </div>
+
         <!-- ====== Quiz ====== -->
-        <div class="panel" id="quiz" style="--panel-accent: var(--accent-assess);">
+        <div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);">
             <div class="panel-head">
                 <span class="panel-index">📝</span>
                 <span class="symbol-badge">?</span>
@@ -877,12 +1032,15 @@
             <div id="quiz-container"></div>
             <div class="quiz-score">
                 <span>النتيجة</span>
-                <span><span class="val" id="quiz-score">0</span> / 5</span>
+                <span style="display:flex;align-items:center;gap:14px;">
+                    <button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()">🔄 إعادة الاختبار</button>
+                    <span><span class="val" id="quiz-score">0</span> / 5</span>
+                </span>
             </div>
         </div>
 
         <!-- ====== Flashcards ====== -->
-        <div class="panel" id="flashcards" style="--panel-accent: var(--accent-identity);">
+        <div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);">
             <div class="panel-head">
                 <span class="panel-index">🃏</span>
                 <span class="symbol-badge">↻</span>
@@ -890,10 +1048,16 @@
                     <span class="bi-caption">اضغط على أي بطاقة لقلبها ورؤية الجواب</span>
                 </h2>
             </div>
+            <div class="flash-toolbar">
+                <button class="btn" onclick="shuffleFlashcards()">🔀 خلط البطاقات</button>
+            </div>
             <div class="flash-grid" id="flash-grid"></div>
         </div>
 
-        <footer class="note">SIGNAL REFERENCE · VECTOR CALCULUS — DIVERGENCE &amp; CURL · v2.2</footer>
+        <footer class="note">
+            SIGNAL REFERENCE · VECTOR CALCULUS — DIVERGENCE &amp; CURL · v3.0
+            &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()">🖨️ طباعة الملخص</button>
+        </footer>
     </div>
 
     <script>
@@ -902,7 +1066,24 @@
 
         function toggleTrigger(el) { el.classList.toggle('open'); }
 
-        // شريط التقدم
+        /* ============ الثيم ============ */
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light');
+            const light = body.classList.contains('light');
+            document.getElementById('theme-btn').textContent = light ? '☀️' : '🌙';
+            try { localStorage.setItem('lecture4-theme', light ? 'light' : 'dark'); } catch(e) {}
+        }
+        (function initTheme() {
+            let saved = null;
+            try { saved = localStorage.getItem('lecture4-theme'); } catch(e) {}
+            if (saved === 'light') {
+                document.body.classList.add('light');
+                document.getElementById('theme-btn').textContent = '☀️';
+            }
+        })();
+
+        /* ============ شريط التقدم ============ */
         const progressBar = document.querySelector('#read-progress .bar');
         window.addEventListener('scroll', () => {
             const h = document.documentElement;
@@ -910,22 +1091,32 @@
             progressBar.style.width = pct + '%';
         }, { passive: true });
 
-        // TOC drawer
+        /* ============ ظهور تدريجي ============ */
+        (function initReveal() {
+            const items = document.querySelectorAll('.reveal');
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                items.forEach(el => el.classList.add('visible'));
+                return;
+            }
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+                });
+            }, { threshold: 0.06 });
+            items.forEach(el => obs.observe(el));
+        })();
+
+        /* ============ TOC drawer ============ */
         function toggleToc() {
             document.getElementById('toc-drawer').classList.toggle('open');
             document.getElementById('toc-backdrop').classList.toggle('open');
         }
         document.querySelectorAll('#toc-drawer a').forEach(a => {
-            a.addEventListener('click', () => {
-                if (window.innerWidth < 900) toggleToc();
-            });
+            a.addEventListener('click', () => { if (window.innerWidth < 900) toggleToc(); });
         });
 
-        // Active TOC link on scroll
         const tocLinks = [...document.querySelectorAll('#toc-drawer a')];
-        const tocTargets = tocLinks
-            .map(a => document.querySelector(a.getAttribute('href')))
-            .filter(Boolean);
+        const tocTargets = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
         const tocObs = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -941,7 +1132,6 @@
            Hero Animation — div (نبض) + curl (دوران)
            ============================================================ */
         if (!reduceMotion) {
-            // ---------- 1) الجانب الأيسر: نبض الأسهم ----------
             const divArrows = document.querySelectorAll('#hero-scope .div-arrow line');
             const baseEndpoints = [...divArrows].map(line => ({
                 x2: parseFloat(line.getAttribute('x2')),
@@ -954,51 +1144,35 @@
                 const phase = (ts % period) / period;
                 const pulse = (1 - Math.cos(phase * Math.PI * 2)) / 2;
                 const scale = 1 + pulse * 0.35;
-
                 divArrows.forEach((line, i) => {
                     const base = baseEndpoints[i];
-                    const dx = base.x2 - centerX;
-                    const dy = base.y2 - centerY;
-                    line.setAttribute('x2', centerX + dx * scale);
-                    line.setAttribute('y2', centerY + dy * scale);
+                    line.setAttribute('x2', centerX + (base.x2 - centerX) * scale);
+                    line.setAttribute('y2', centerY + (base.y2 - centerY) * scale);
                 });
                 requestAnimationFrame(animateDiv);
             }
 
-            // ---------- 2) الجانب الأيمن: دوران النقطة + الدائرة ----------
             const curlDot = document.getElementById('curlDot');
             const curlRing = document.getElementById('curlRing');
             const curlTrail = document.getElementById('curlTrail');
             const CX = 525, CY = 95, R = 42;
-
             const trailPoints = [];
             const TRAIL_LEN = 22;
 
             function animateCurl(ts) {
-                const speed = 0.0018;
-                const angle = ts * speed;
-
+                const angle = ts * 0.0018;
                 const x = CX + R * Math.cos(angle);
                 const y = CY + R * Math.sin(angle);
-
                 curlDot.setAttribute('cx', x);
                 curlDot.setAttribute('cy', y);
-
                 trailPoints.push([x, y]);
                 if (trailPoints.length > TRAIL_LEN) trailPoints.shift();
-
                 if (trailPoints.length > 1) {
-                    const d = trailPoints.map((p, i) =>
+                    curlTrail.setAttribute('d', trailPoints.map((p, i) =>
                         (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)
-                    ).join(' ');
-                    curlTrail.setAttribute('d', d);
+                    ).join(' '));
                 }
-
-                // دوران الدائرة المتقطعة
-                const ringAngle = (ts * 0.04) % 360;
-                curlRing.style.transform = `rotate(${ringAngle}deg)`;
-                curlRing.style.transformOrigin = `${CX}px ${CY}px`;
-
+                curlRing.style.transform = `rotate(${(ts * 0.04) % 360}deg)`;
                 requestAnimationFrame(animateCurl);
             }
 
@@ -1017,118 +1191,403 @@
                 if (!allowed.test(s)) throw new Error('رموز غير مسموحة');
                 s = s.replace(/\^/g, '**');
                 const funcs = ['sin','cos','tan','exp','log','sqrt','asin','acos','atan','sinh','cosh','tanh','abs'];
-                funcs.forEach(f => {
-                    s = s.replace(new RegExp('\\b' + f + '\\b', 'g'), 'Math.' + f);
-                });
+                funcs.forEach(f => { s = s.replace(new RegExp('\\b' + f + '\\b', 'g'), 'Math.' + f); });
                 s = s.replace(/\bpi\b/g, 'Math.PI');
                 s = s.replace(/\be\b/g, 'Math.E');
                 try {
                     const fn = new Function('x','y','z', 'return ' + s + ';');
                     const test = fn(1,1,1);
-                    if (typeof test !== 'number' || isNaN(test)) throw new Error('نتيجة غير رقمية');
+                    if (typeof test !== 'number' || isNaN(test) || !isFinite(test)) throw new Error('نتيجة غير رقمية');
                     return fn;
-                } catch (err) {
-                    throw new Error('تعبير غير صالح: ' + expr);
-                }
+                } catch (err) { throw new Error('تعبير غير صالح: ' + expr); }
             }
-
             function d(fn, varIdx, x, y, z, h = 1e-6) {
-                const args1 = [x, y, z];
-                const args2 = [x, y, z];
-                args1[varIdx] += h;
-                args2[varIdx] -= h;
-                return (fn(...args1) - fn(...args2)) / (2 * h);
+                const a1 = [x, y, z], a2 = [x, y, z];
+                a1[varIdx] += h; a2[varIdx] -= h;
+                return (fn(...a1) - fn(...a2)) / (2 * h);
             }
-
             function fmt(v) {
+                if (!isFinite(v)) return '∞';
                 if (Math.abs(v) < 1e-9) return '0';
-                const r = Math.round(v * 1e6) / 1e6;
-                return r.toString();
+                return (Math.round(v * 1e6) / 1e6).toString();
             }
-
             return { compile, d, fmt };
         })();
 
         /* ============================================================
-           تنفيذ الحساب
+           الحاسبة (مع نقطة تعويض حرة)
            ============================================================ */
         function runCalc() {
             const out = document.getElementById('calc-out');
-            const pEl = document.getElementById('calc-p');
-            const qEl = document.getElementById('calc-q');
-            const rEl = document.getElementById('calc-r');
-            [pEl, qEl, rEl].forEach(el => el.classList.remove('err'));
+            const ids = ['calc-p','calc-q','calc-r'];
+            const els = ids.map(i => document.getElementById(i));
+            els.forEach(el => el.classList.remove('err'));
 
-            let P, Q, R;
-            try { P = MathParser.compile(pEl.value); }
-            catch (e) { pEl.classList.add('err'); return showError(out, 'المركبة P: ' + e.message); }
-            try { Q = MathParser.compile(qEl.value); }
-            catch (e) { qEl.classList.add('err'); return showError(out, 'المركبة Q: ' + e.message); }
-            try { R = MathParser.compile(rEl.value); }
-            catch (e) { rEl.classList.add('err'); return showError(out, 'المركبة R: ' + e.message); }
+            const names = ['P', 'Q', 'R'];
+            const fns = [];
+            for (let i = 0; i < 3; i++) {
+                try { fns.push(MathParser.compile(els[i].value)); }
+                catch (e) { els[i].classList.add('err'); return showError(out, 'المركبة ' + names[i] + ': ' + e.message); }
+            }
+            const [P, Q, R] = fns;
 
-            const pt = { x: 1, y: 1, z: 1 };
+            const pv = ['calc-px','calc-py','calc-pz'].map(id => {
+                const v = parseFloat(document.getElementById(id).value);
+                return isNaN(v) ? 0 : v;
+            });
+            const pt = { x: pv[0], y: pv[1], z: pv[2] };
 
-            const dPdx = MathParser.d(P, 0, pt.x, pt.y, pt.z);
-            const dPdy = MathParser.d(P, 1, pt.x, pt.y, pt.z);
-            const dPdz = MathParser.d(P, 2, pt.x, pt.y, pt.z);
-            const dQdx = MathParser.d(Q, 0, pt.x, pt.y, pt.z);
-            const dQdy = MathParser.d(Q, 1, pt.x, pt.y, pt.z);
-            const dQdz = MathParser.d(Q, 2, pt.x, pt.y, pt.z);
-            const dRdx = MathParser.d(R, 0, pt.x, pt.y, pt.z);
-            const dRdy = MathParser.d(R, 1, pt.x, pt.y, pt.z);
-            const dRdz = MathParser.d(R, 2, pt.x, pt.y, pt.z);
+            try {
+                const dPdx = MathParser.d(P, 0, pt.x, pt.y, pt.z);
+                const dPdy = MathParser.d(P, 1, pt.x, pt.y, pt.z);
+                const dPdz = MathParser.d(P, 2, pt.x, pt.y, pt.z);
+                const dQdx = MathParser.d(Q, 0, pt.x, pt.y, pt.z);
+                const dQdy = MathParser.d(Q, 1, pt.x, pt.y, pt.z);
+                const dQdz = MathParser.d(Q, 2, pt.x, pt.y, pt.z);
+                const dRdx = MathParser.d(R, 0, pt.x, pt.y, pt.z);
+                const dRdy = MathParser.d(R, 1, pt.x, pt.y, pt.z);
+                const dRdz = MathParser.d(R, 2, pt.x, pt.y, pt.z);
 
-            const div = dPdx + dQdy + dRdz;
-            const curl_x = dRdy - dQdz;
-            const curl_y = dPdz - dRdx;
-            const curl_z = dQdx - dPdy;
+                const div = dPdx + dQdy + dRdz;
+                const cx = dRdy - dQdz;
+                const cy = dPdz - dRdx;
+                const cz = dQdx - dPdy;
+                const f = MathParser.fmt;
 
-            const f = MathParser.fmt;
-
-            out.innerHTML = `
-                <div class="step"><span class="lbl">V =</span> [ ${escapeHtml(pEl.value)}, ${escapeHtml(qEl.value)}, ${escapeHtml(rEl.value)} ]</div>
-                <div class="step"><span class="lbl">∂P/∂x</span> = ${f(dPdx)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂y</span> = ${f(dQdy)} &nbsp; | &nbsp; <span class="lbl">∂R/∂z</span> = ${f(dRdz)}</div>
-                <div class="step"><span class="lbl">∂R/∂y</span> = ${f(dRdy)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂z</span> = ${f(dQdz)}</div>
-                <div class="step"><span class="lbl">∂P/∂z</span> = ${f(dPdz)} &nbsp; | &nbsp; <span class="lbl">∂R/∂x</span> = ${f(dRdx)}</div>
-                <div class="step"><span class="lbl">∂Q/∂x</span> = ${f(dQdx)} &nbsp; | &nbsp; <span class="lbl">∂P/∂y</span> = ${f(dPdy)}</div>
-                <div class="final">
-                    ∇·V = ${f(div)} &nbsp;&nbsp;&nbsp; (scalar)<br>
-                    ∇×V = [ ${f(curl_x)}, ${f(curl_y)}, ${f(curl_z)} ]
-                </div>
-                <div style="margin-top:10px;color:var(--ink-secondary);font-size:0.78rem;">
-                    * الحساب جرى عند النقطة (x,y,z) = (1,1,1) باستخدام التفاضل العددي
-                </div>
-            `;
+                out.innerHTML = `
+                    <div class="step"><span class="lbl">V =</span> [ ${escapeHtml(els[0].value)}, ${escapeHtml(els[1].value)}, ${escapeHtml(els[2].value)} ]</div>
+                    <div class="step"><span class="lbl">point</span> = (${f(pt.x)}, ${f(pt.y)}, ${f(pt.z)})</div>
+                    <div class="step"><span class="lbl">∂P/∂x</span> = ${f(dPdx)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂y</span> = ${f(dQdy)} &nbsp; | &nbsp; <span class="lbl">∂R/∂z</span> = ${f(dRdz)}</div>
+                    <div class="step"><span class="lbl">∂R/∂y</span> = ${f(dRdy)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂z</span> = ${f(dQdz)}</div>
+                    <div class="step"><span class="lbl">∂P/∂z</span> = ${f(dPdz)} &nbsp; | &nbsp; <span class="lbl">∂R/∂x</span> = ${f(dRdx)}</div>
+                    <div class="step"><span class="lbl">∂Q/∂x</span> = ${f(dQdx)} &nbsp; | &nbsp; <span class="lbl">∂P/∂y</span> = ${f(dPdy)}</div>
+                    <div class="final">
+                        ∇·V = ${f(div)} &nbsp;&nbsp;&nbsp; (scalar)<br>
+                        ∇×V = [ ${f(cx)}, ${f(cy)}, ${f(cz)} ]
+                    </div>
+                    <div style="margin-top:10px;color:var(--ink-secondary);font-size:0.78rem;">
+                        * الحساب جرى عند النقطة التي أدخلتها باستخدام التفاضل العددي (فرق مركزي)
+                    </div>
+                `;
+            } catch (e) {
+                showError(out, 'تعذر الحساب عند هذه النقطة: ' + e.message);
+            }
         }
 
-        function showError(out, msg) {
-            out.innerHTML = `<div class="error">⚠ ${escapeHtml(msg)}</div>`;
-        }
-
+        function showError(out, msg) { out.innerHTML = `<div class="error">⚠ ${escapeHtml(msg)}</div>`; }
         function escapeHtml(s) {
-            return String(s).replace(/[&<>"']/g, c => ({
-                '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-            })[c]);
+            return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         }
 
         function loadExample(type) {
             const p = document.getElementById('calc-p');
             const q = document.getElementById('calc-q');
             const r = document.getElementById('calc-r');
-            if (type === 'div') {
-                p.value = '3*x*z'; q.value = '2*x*y'; r.value = '-y*z^2';
-            } else if (type === 'curl') {
-                p.value = 'y*z'; q.value = '3*z*x'; r.value = 'z';
-            } else {
-                p.value = 'x^2*y'; q.value = 'z'; r.value = '-x-y+z';
-            }
+            if (type === 'div')      { p.value = '3*x*z'; q.value = '2*x*y'; r.value = '-y*z^2'; }
+            else if (type === 'curl'){ p.value = 'y*z';   q.value = '3*z*x'; r.value = 'z'; }
+            else                     { p.value = 'x^2*y'; q.value = 'z';     r.value = '-x-y+z'; }
             runCalc();
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(runCalc, 200);
-        });
+        window.addEventListener('DOMContentLoaded', () => { setTimeout(runCalc, 200); });
+
+        /* ============================================================
+           مختبر المجال الاتجاهي (FieldLab)
+           ============================================================ */
+        const FieldLab = (() => {
+            const canvas = document.getElementById('vf-canvas');
+            if (!canvas) return { applyPreset(){}, applyCustom(){} };
+            const ctx = canvas.getContext('2d');
+            const readout = document.getElementById('vf-readout');
+            const presetSel = document.getElementById('vf-preset');
+            const customBox = document.getElementById('vf-custom');
+            const legend = document.getElementById('vf-legend');
+
+            const PRESETS = [
+                { id:'vortex', name:'🌀 دوامة — Vortex (∇×F = 2)',        p:'-y',    q:'x'    },
+                { id:'source', name:'💨 مصدر — Source (∇·F = 2)',          p:'x',     q:'y'    },
+                { id:'sink',   name:'🕳️ مصب — Sink (∇·F = −2)',            p:'-x',    q:'-y'   },
+                { id:'saddle', name:'🫳 سرج — Saddle (∇·F = 0)',           p:'x',     q:'-y'   },
+                { id:'shear',  name:'✂️ قص — Shear (∇×F = −1)',            p:'y',     q:'0'    },
+                { id:'spiral', name:'🌪️ حلزون — Spiral (كلاهما ≠ 0)',      p:'x - y', q:'x + y'},
+                { id:'custom', name:'✏️ مجال مخصص…',                       p:'',      q:''     },
+            ];
+
+            let F = null;               // (x,y) => [fx, fy]
+            let particles = [];
+            let mouse = null;           // {wx, wy}
+            let running = false;
+            let rafId = null;
+            let W = 0, H = 0, dpr = 1;
+            const S = 3.2;              // نصف عرض العالم
+            const NP = 260;
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = canvas.getBoundingClientRect();
+                W = rect.width; H = rect.height;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            window.addEventListener('resize', resize);
+
+            const toPX = (wx, wy) => {
+                const k = Math.min(W, H) / 2 / S;
+                return [W / 2 + wx * k, H / 2 - wy * k];
+            };
+            const toWorld = (px, py) => {
+                const k = Math.min(W, H) / 2 / S;
+                return [(px - W / 2) / k, (H / 2 - py) / k];
+            };
+
+            function numD(fn, varIdx, x, y) {
+                const h = 1e-4;
+                const a = [x, y], b = [x, y];
+                a[varIdx] += h; b[varIdx] -= h;
+                return (fn(...a) - fn(...b)) / (2 * h);
+            }
+
+            function setField(pExpr, qExpr) {
+                try {
+                    const pFn = MathParser.compile(pExpr);
+                    const qFn = MathParser.compile(qExpr);
+                    F = (x, y) => [pFn(x, y, 0), qFn(x, y, 0)];
+                    resetParticles();
+                    return null;
+                } catch (e) { return e.message; }
+            }
+
+            function resetParticles() {
+                particles = [];
+                for (let i = 0; i < NP; i++) {
+                    particles.push({
+                        x: (Math.random() * 2 - 1) * S,
+                        y: (Math.random() * 2 - 1) * S,
+                        life: Math.random()
+                    });
+                }
+            }
+
+            /* تدرج لوني */
+            function lerp(a, b, t) { return a + (b - a) * t; }
+            function mixRGB(c1, c2, t) {
+                return `rgb(${Math.round(lerp(c1[0],c2[0],t))},${Math.round(lerp(c1[1],c2[1],t))},${Math.round(lerp(c1[2],c2[2],t))}`;
+            }
+            function colorFor(mode, val, speed) {
+                if (mode === 'div') {
+                    const t = Math.min(1, Math.abs(val) / 3);
+                    return val >= 0 ? mixRGB([70,90,80],[124,255,178],t) : mixRGB([70,90,80],[255,111,111],t);
+                }
+                if (mode === 'curl') {
+                    const t = Math.min(1, Math.abs(val) / 3);
+                    return val >= 0 ? mixRGB([70,90,95],[124,196,255],t) : mixRGB([70,90,95],[255,180,84],t);
+                }
+                const t = Math.min(1, speed / 5);
+                return mixRGB([90,110,100],[255,209,102],t);
+            }
+
+            function currentMode() {
+                const r = document.querySelector('input[name="vf-mode"]:checked');
+                return r ? r.value : 'curl';
+            }
+
+            function fieldStats(x, y) {
+                if (!F) return { div: 0, curl: 0, speed: 0 };
+                const [fx, fy] = F(x, y);
+                const h = 1e-4;
+                const dPx = numD((a,b)=>F(a,b)[0], 0, x, y);
+                const dPy = numD((a,b)=>F(a,b)[0], 1, x, y);
+                const dQx = numD((a,b)=>F(a,b)[1], 0, x, y);
+                const dQy = numD((a,b)=>F(a,b)[1], 1, x, y);
+                void h;
+                return {
+                    div: dPx + dQy,
+                    curl: dQx - dPy,
+                    speed: Math.hypot(fx, fy)
+                };
+            }
+
+            function drawArrow(px, py, fx, fy, color) {
+                const mag = Math.hypot(fx, fy);
+                if (mag < 1e-6) return;
+                const len = Math.min(Math.max(mag * 14, 7), 24);
+                const ux = fx / mag, uy = fy / mag;
+                const ex = px + ux * len, ey = py - uy * len;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 1.2;
+                ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(ex, ey); ctx.stroke();
+                const a = 4.5;
+                ctx.beginPath();
+                ctx.moveTo(ex, ey);
+                ctx.lineTo(ex - ux * a - uy * a * 0.55, ey + uy * a - ux * a * 0.55);
+                ctx.moveTo(ex, ey);
+                ctx.lineTo(ex - ux * a + uy * a * 0.55, ey + uy * a + ux * a * 0.55);
+                ctx.stroke();
+            }
+
+            function step(ts) {
+                if (!running) return;
+                const mode = currentMode();
+
+                ctx.clearRect(0, 0, W, H);
+
+                /* شبكة خفيفة */
+                ctx.strokeStyle = document.body.classList.contains('light') ? 'rgba(15,80,55,0.07)' : 'rgba(124,255,178,0.045)';
+                ctx.lineWidth = 1;
+                const gs = 34;
+                ctx.beginPath();
+                for (let x = gs; x < W; x += gs) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+                for (let y = gs; y < H; y += gs) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+                ctx.stroke();
+
+                /* محاور */
+                ctx.strokeStyle = 'rgba(140,160,150,0.25)';
+                ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
+
+                if (F) {
+                    /* أسهم المجال */
+                    const as = 46;
+                    for (let py = as/2; py < H; py += as) {
+                        for (let px = as/2; px < W; px += as) {
+                            const [wx, wy] = toWorld(px, py);
+                            const [fx, fy] = F(wx, wy);
+                            const st = fieldStats(wx, wy);
+                            const val = mode === 'div' ? st.div : mode === 'curl' ? st.curl : 0;
+                            drawArrow(px, py, fx, fy, colorFor(mode, val, st.speed));
+                        }
+                    }
+
+                    /* جسيمات متدفقة */
+                    const dt = 0.012;
+                    for (const pt of particles) {
+                        const [fx, fy] = F(pt.x, pt.y);
+                        const nx = pt.x + fx * dt;
+                        const ny = pt.y + fy * dt;
+                        const [x1, y1] = toPX(pt.x, pt.y);
+                        const [x2, y2] = toPX(nx, ny);
+                        const st = fieldStats(pt.x, pt.y);
+                        const val = mode === 'div' ? st.div : mode === 'curl' ? st.curl : 0;
+                        ctx.strokeStyle = colorFor(mode, val, st.speed);
+                        ctx.globalAlpha = 0.25 + pt.life * 0.65;
+                        ctx.lineWidth = 1.6;
+                        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+                        ctx.globalAlpha = 1;
+                        pt.x = nx; pt.y = ny; pt.life -= 0.006;
+                        if (pt.life <= 0 || Math.abs(pt.x) > S * 1.15 || Math.abs(pt.y) > S * 1.15) {
+                            pt.x = (Math.random() * 2 - 1) * S;
+                            pt.y = (Math.random() * 2 - 1) * S;
+                            pt.life = 0.6 + Math.random() * 0.4;
+                        }
+                    }
+
+                    /* مؤشر الفأرة */
+                    if (mouse) {
+                        const st = fieldStats(mouse.wx, mouse.wy);
+                        const [mx, my] = toPX(mouse.wx, mouse.wy);
+                        ctx.strokeStyle = '#ffd166';
+                        ctx.lineWidth = 1.2;
+                        ctx.beginPath();
+                        ctx.moveTo(mx - 9, my); ctx.lineTo(mx + 9, my);
+                        ctx.moveTo(mx, my - 9); ctx.lineTo(mx, my + 9);
+                        ctx.stroke();
+                        ctx.beginPath(); ctx.arc(mx, my, 5, 0, Math.PI * 2); ctx.stroke();
+                        readout.innerHTML =
+                            `<div>x = <span class="rv">${mouse.wx.toFixed(2)}</span>, y = <span class="rv">${mouse.wy.toFixed(2)}</span></div>` +
+                            `<div>∇·F = <span class="rg">${st.div.toFixed(3)}</span></div>` +
+                            `<div>(∇×F)z = <span class="rb">${st.curl.toFixed(3)}</span></div>` +
+                            `<div>|F| = <span class="rv">${st.speed.toFixed(3)}</span></div>`;
+                    }
+                }
+
+                rafId = requestAnimationFrame(step);
+            }
+
+            function start() {
+                if (running || reduceMotion) { if (!running && reduceMotion) { running = true; step(0); running = false; cancelAnimationFrame(rafId); drawStatic(); } return; }
+                running = true;
+                resize();
+                rafId = requestAnimationFrame(step);
+            }
+            function stop() { running = false; cancelAnimationFrame(rafId); }
+
+            function drawStatic() {
+                resize();
+                const keep = running; running = true;
+                step(0); stop(); running = keep;
+            }
+
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                const [wx, wy] = toWorld(e.clientX - rect.left, e.clientY - rect.top);
+                mouse = { wx, wy };
+            });
+            canvas.addEventListener('mouseleave', () => {
+                mouse = null;
+                readout.innerHTML = '<div>move mouse over field…</div>';
+            });
+
+            function updateLegend() {
+                const mode = currentMode();
+                if (mode === 'div') {
+                    legend.innerHTML = '<span><i class="vf-dot" style="background:#7cffb2"></i> ∇·F &gt; 0 تمدد (source)</span>' +
+                        '<span><i class="vf-dot" style="background:#ff6f6f"></i> ∇·F &lt; 0 انكماش (sink)</span>' +
+                        '<span><i class="vf-dot" style="background:#3a5a4c"></i> ∇·F ≈ 0</span>';
+                } else if (mode === 'curl') {
+                    legend.innerHTML = '<span><i class="vf-dot" style="background:#7cc4ff"></i> (∇×F)z &gt; 0 دوران عكس عقارب الساعة</span>' +
+                        '<span><i class="vf-dot" style="background:#ffb454"></i> (∇×F)z &lt; 0 دوران مع عقارب الساعة</span>' +
+                        '<span><i class="vf-dot" style="background:#3a5a5e"></i> ≈ 0</span>';
+                } else {
+                    legend.innerHTML = '<span><i class="vf-dot" style="background:#ffd166"></i> سرعة عالية</span>' +
+                        '<span><i class="vf-dot" style="background:#5a6e64"></i> سرعة منخفضة</span>';
+                }
+            }
+            document.querySelectorAll('input[name="vf-mode"]').forEach(r => r.addEventListener('change', updateLegend));
+
+            function applyPreset() {
+                const sel = PRESETS.find(p => p.id === presetSel.value);
+                if (!sel) return;
+                if (sel.id === 'custom') {
+                    customBox.classList.add('show');
+                    return;
+                }
+                customBox.classList.remove('show');
+                const err = setField(sel.p, sel.q);
+                if (err) readout.innerHTML = `<div style="color:#f87171;">⚠ ${escapeHtml(err)}</div>`;
+                if (!running && !reduceMotion) start();
+            }
+
+            function applyCustom() {
+                const p = document.getElementById('vf-p').value;
+                const q = document.getElementById('vf-q').value;
+                const err = setField(p, q);
+                if (err) readout.innerHTML = `<div style="color:#f87171;">⚠ ${escapeHtml(err)}</div>`;
+                else if (!running && !reduceMotion) start();
+            }
+
+            /* تهيئة */
+            PRESETS.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id; opt.textContent = p.name;
+                presetSel.appendChild(opt);
+            });
+            presetSel.value = 'vortex';
+            updateLegend();
+            setField('-y', 'x');
+            resize();
+
+            /* تشغيل فقط عندما يكون المرئي */
+            const stage = document.getElementById('field-lab');
+            if ('IntersectionObserver' in window && !reduceMotion) {
+                const io = new IntersectionObserver(entries => {
+                    entries.forEach(e => { e.isIntersecting ? start() : stop(); });
+                }, { threshold: 0.1 });
+                io.observe(stage);
+            } else {
+                drawStatic();
+            }
+
+            return { applyPreset, applyCustom };
+        })();
 
         /* ============================================================
            Quiz
@@ -1187,27 +1646,21 @@
                     <div class="quiz-feedback" id="fb-${i}"></div>
                 </div>
             `).join('');
-
-            if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise([container]).catch(()=>{});
-            }
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([container]).catch(()=>{});
         }
 
         function answerQuiz(qIdx, optIdx, btn) {
             if (answered.has(qIdx)) return;
             answered.add(qIdx);
-
             const item = quizData[qIdx];
             const parent = btn.closest('.quiz-q');
             const allOpts = parent.querySelectorAll('.quiz-opt');
             const fb = document.getElementById('fb-' + qIdx);
-
             allOpts.forEach((b, j) => {
                 b.disabled = true;
                 if (j === item.correct) b.classList.add('correct');
                 else if (j === optIdx) b.classList.add('wrong');
             });
-
             if (optIdx === item.correct) {
                 quizScore++;
                 fb.className = 'quiz-feedback show ok';
@@ -1216,25 +1669,25 @@
                 fb.className = 'quiz-feedback show no';
                 fb.innerHTML = '✗ خطأ. ' + item.feedback;
             }
-
             document.getElementById('quiz-score').textContent = quizScore;
-
-            if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise([fb]).catch(()=>{});
-            }
-
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]).catch(()=>{});
             try {
-                localStorage.setItem('lecture4-quiz', JSON.stringify({
-                    score: quizScore,
-                    answered: [...answered]
-                }));
+                localStorage.setItem('lecture4-quiz', JSON.stringify({ score: quizScore, answered: [...answered] }));
             } catch (e) {}
+        }
+
+        function resetQuiz() {
+            quizScore = 0;
+            answered = new Set();
+            document.getElementById('quiz-score').textContent = '0';
+            try { localStorage.removeItem('lecture4-quiz'); } catch(e) {}
+            renderQuiz();
         }
 
         /* ============================================================
            Flashcards
            ============================================================ */
-        const flashData = [
+        let flashData = [
             { f: 'تعريف Divergence', b: '$\\nabla \\cdot \\mathbf{V} = \\partial_x v_1 + \\partial_y v_2 + \\partial_z v_3$' },
             { f: 'نوع ناتج Divergence', b: 'كمية قياسية (Scalar)' },
             { f: 'تعريف Curl', b: '$\\nabla \\times \\mathbf{V}$ (محدد 3×3)' },
@@ -1248,7 +1701,7 @@
 
         function renderFlashcards() {
             const grid = document.getElementById('flash-grid');
-            grid.innerHTML = flashData.map((c, i) => `
+            grid.innerHTML = flashData.map(c => `
                 <div class="flash" onclick="this.classList.toggle('flipped')">
                     <div class="flash-inner">
                         <div class="flash-face flash-front">
@@ -1260,10 +1713,15 @@
                     </div>
                 </div>
             `).join('');
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([grid]).catch(()=>{});
+        }
 
-            if (window.MathJax && MathJax.typesetPromise) {
-                MathJax.typesetPromise([grid]).catch(()=>{});
+        function shuffleFlashcards() {
+            for (let i = flashData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flashData[i], flashData[j]] = [flashData[j], flashData[i]];
             }
+            renderFlashcards();
         }
 
         /* ============================================================
@@ -1272,12 +1730,8 @@
         function addCopyButtons() {
             document.querySelectorAll('.math-block').forEach(block => {
                 const container = block.querySelector('mjx-container');
-                let tex = '';
-                if (container) {
-                    tex = container.getAttribute('aria-label') || '';
-                }
+                let tex = container ? (container.getAttribute('aria-label') || '') : '';
                 if (!tex) return;
-
                 const btn = document.createElement('button');
                 btn.className = 'copy-tex';
                 btn.textContent = 'copy TeX';
@@ -1286,13 +1740,8 @@
                     navigator.clipboard.writeText(tex).then(() => {
                         btn.textContent = '✓ copied';
                         btn.classList.add('copied');
-                        setTimeout(() => {
-                            btn.textContent = 'copy TeX';
-                            btn.classList.remove('copied');
-                        }, 1500);
-                    }).catch(() => {
-                        btn.textContent = '✗ فشل';
-                    });
+                        setTimeout(() => { btn.textContent = 'copy TeX'; btn.classList.remove('copied'); }, 1500);
+                    }).catch(() => { btn.textContent = '✗ فشل'; });
                 };
                 block.appendChild(btn);
             });
