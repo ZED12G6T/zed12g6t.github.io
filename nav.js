@@ -1,9 +1,12 @@
 // قائمة المحاضرات - عند إضافة محاضرة جديدة تضيف سطر هنا فقط
+// قائمة المحاضرات - عند إضافة محاضرة جديدة تُضيف سطر هنا فقط
 const lectures = [
   { name: "ملخص المحاضرة 1", url: "index.html" },
   { name: "ملخص المحاضرة 2", url: "lecture2.html" },
   { name: "ملخص المحاضرة 3", url: "lecture3.html" },
-  { name: "ملخص المحاضرة 4", url: "lecture4.html" }
+  { name: "ملخص المحاضرة 4", url: "lecture4.html" },
+  { name: "ملخص المحاضرة 5", url: "lecture5.html" },
+  { name: "ملخص المحاضرة 6", url: "lecture6.html" }
 ];
 
 function renderNavigation() {
