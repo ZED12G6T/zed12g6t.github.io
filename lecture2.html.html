@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص المحاضرة 6 - Double Integrals</title>
+    <title>المحاضرة الشاملة: طول المنحنى، طول القوس، والانحناء</title>
 
     <script>
         window.MathJax = {
@@ -23,15 +23,12 @@
         :root {
             --bg-void:      #05090a;
             --bg-panel:     #0b1210;
-            --bg-inset:     #030605;
             --grid-minor:   rgba(124, 255, 178, 0.045);
             --grid-major:   rgba(124, 255, 178, 0.11);
             --ink-primary:  #e9f5ef;
             --ink-secondary:#7f9d92;
 
             --trace-cos:    #7cffb2;
-            --trace-sin:    #ffb454;
-            --trace-alert:  #ff6f6f;
             --accent-practice: #b98cff;
             --accent-assess:   #7cc4ff;
             --accent-identity: #ffd166;
@@ -39,44 +36,11 @@
             --border-soft:  rgba(124, 255, 178, 0.16);
             --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
             --font-mono:    'IBM Plex Mono', monospace;
-
-            --success: #4ade80;
-            --danger:  #f87171;
         }
-
-        /* ============ الوضع النهاري ============ */
-        body.light {
-            --bg-void:      #eef3f0;
-            --bg-panel:     #ffffff;
-            --bg-inset:     #f2f7f4;
-            --grid-minor:   rgba(15, 80, 55, 0.06);
-            --grid-major:   rgba(15, 80, 55, 0.11);
-            --ink-primary:  #12241c;
-            --ink-secondary:#5c7268;
-            --border-soft:  rgba(15, 80, 55, 0.22);
-            --success: #16a34a;
-            --danger:  #dc2626;
-        }
-        body.light .bg-grid::after { background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(20,120,80,0.08), transparent 65%); }
-        body.light .panel p   { color:#33473e; }
-        body.light .panel li  { color:#24382f; }
-        body.light .quiz-opt  { color: var(--ink-primary); }
-        body.light .flash-front { background:#fff; }
-        body.light .flash-back  { background: linear-gradient(135deg,#e6f5ec,#ffffff); }
-        body.light .copy-tex    { color:#0d7a4a; border-color: rgba(15,120,70,.35); background: rgba(15,120,70,.08); }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-arabic);
-            background-color: var(--bg-void);
-            color: var(--ink-primary);
-            line-height: 1.85;
-            padding: 22px 14px 60px;
-            min-height: 100vh;
-            transition: background-color .35s ease, color .35s ease;
-        }
+        body { font-family: var(--font-arabic); background-color: var(--bg-void); color: var(--ink-primary); line-height: 1.85; padding: 22px 14px 60px; min-height: 100vh; }
 
         .bg-grid {
             position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -86,1585 +50,470 @@
                 repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
                 repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
             background-color: var(--bg-void);
-            transition: background-color .35s ease;
         }
-        .bg-grid::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%);
-        }
+        .bg-grid::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%); }
 
-        a:focus-visible, select:focus-visible, .trigger:focus-visible,
-        button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
+        a:focus-visible, select:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
 
-        #read-progress { position: fixed; top: 0; right: 0; left: 0; height: 3px; background: transparent; z-index: 100; }
-        #read-progress .bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--trace-cos), var(--accent-assess));
-            transition: width .15s ease-out;
-            box-shadow: 0 0 10px rgba(124,255,178,0.5);
-        }
+        .main-wrapper { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
 
-        .main-wrapper { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
-
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-        .reveal.visible { opacity: 1; transform: none; }
-
-        /* ---------------- bezel ---------------- */
-        .bezel {
-            background: linear-gradient(180deg, #0d1614, #0a100e);
-            border: 1px solid var(--border-soft); border-radius: 10px;
-            padding: 14px 18px; display: flex; flex-wrap: wrap;
-            align-items: center; justify-content: space-between; gap: 12px;
-        }
-        body.light .bezel { background: linear-gradient(180deg, #ffffff, #eef4f1); }
+        .bezel { background: linear-gradient(180deg, #0d1614, #0a100e); border: 1px solid var(--border-soft); border-radius: 10px; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
         .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
-        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--accent-identity); box-shadow: 0 0 6px var(--accent-identity); flex-shrink: 0; }
         .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
-        .bezel-actions { display: flex; align-items: center; gap: 8px; }
-        .icon-btn {
-            width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); font-size: 1.05rem;
-            display: flex; align-items: center; justify-content: center; transition: all .2s;
-        }
-        .icon-btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.07); }
-        .channel-select {
-            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
-            padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
-            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 240px;
-        }
+        .channel-select { font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500; padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft); background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 220px; }
         .channel-select:hover { border-color: var(--trace-cos); }
 
         .pill-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
         .pill-row::-webkit-scrollbar { display: none; }
-        .pill-row a {
-            flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px;
-            border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary);
-            transition: color .2s, border-color .2s; white-space: nowrap;
-        }
+        .pill-row a { flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary); transition: color .2s, border-color .2s; white-space: nowrap; }
         .pill-row a:hover { color: var(--ink-primary); border-color: var(--accent-assess); }
 
-        /* ---------------- hero ---------------- */
         .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
-        .hero h1 { font-size: 1.42rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
+        .hero h1 { font-size: 1.4rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
         .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 560px; margin: 0 auto 18px; }
-        .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-        .chip {
-            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
-            padding: 5px 13px; border-radius: 999px;
-            border: 1px solid var(--border-soft); color: var(--ink-secondary);
-        }
-        .chip.g { color: var(--trace-cos); border-color: rgba(124,255,178,.35); background: rgba(124,255,178,.06); }
-        .chip.b { color: var(--accent-assess); border-color: rgba(124,196,255,.35); background: rgba(124,196,255,.06); }
-        .chip.y { color: var(--accent-identity); border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.06); }
-        .scope-screen { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; position: relative; }
-        .scope-screen svg { display: block; width: 100%; height: auto; direction: ltr; }
-        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; color: var(--ink-secondary); }
+        .scope-screen { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; }
+        .scope-screen svg { display: block; width: 100%; height: auto; }
+        .scope-legend { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.78rem; flex-wrap: wrap; }
         .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
         .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
 
-        /* ---------------- panels ---------------- */
-        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; transition: background-color .35s ease; }
+        .chapter-head { padding: 6px 4px 14px; border-bottom: 1px dashed var(--border-soft); margin-bottom: 4px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+        .chapter-tag { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-secondary); border: 1px solid var(--border-soft); border-radius: 999px; padding: 3px 11px; flex-shrink: 0; }
+        .chapter-head h1 { font-size: 1.22rem; font-weight: 700; color: var(--ink-primary); }
+
+        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; }
         .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
         .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
         .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
 
         .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
         .panel-index { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--bg-void); background: var(--panel-accent, var(--trace-cos)); border-radius: 5px; padding: 3px 8px; flex-shrink: 0; }
-        .symbol-badge {
-            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem;
-            color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos));
-            background: rgba(124,255,178,0.06);
-        }
+        .symbol-badge { width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; font-size: 0.9rem; color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.06); }
         .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
-        .panel h2 { font-size: 1.1rem; font-weight: 700; color: var(--ink-primary); }
-        .panel h2 .bi-caption { font-size: 0.82rem; font-weight: 500; color: var(--ink-secondary); display: block; margin-top: 4px; }
-        .panel h3 { font-size: 0.96rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 14px 0 8px; }
-        .panel h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink-primary); margin: 12px 0 6px; }
-
+        .panel h2 { font-size: 1.04rem; font-weight: 700; color: var(--ink-primary); }
         .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
         .panel p:last-child { margin-bottom: 0; }
-        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 14px; }
-        .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 9px; }
-        .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
+        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 12px; }
+        .panel li { color: #dcece5; font-size: 0.94rem; margin-bottom: 8px; }
+        .en { direction: ltr; display: inline-block; font-weight: 600; color: #cfe3da; }
+        .quote-line { color: var(--ink-secondary); font-size: 0.9rem; font-style: italic; direction: ltr; text-align: right; margin: 6px 0; }
 
-        .math-block { background: var(--bg-inset); border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; position: relative; }
+        .math-block { background: #030605; border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; }
         .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
 
-        .copy-tex {
-            position: absolute; top: 6px; left: 8px;
-            font-family: var(--font-mono); font-size: 0.68rem;
-            padding: 3px 8px; border-radius: 5px;
-            background: rgba(124,255,178,0.1); color: var(--trace-cos);
-            border: 1px solid rgba(124,255,178,0.3); cursor: pointer;
-            opacity: 0; transition: opacity .2s;
-        }
-        .math-block:hover .copy-tex { opacity: 1; }
-        .copy-tex:hover { background: rgba(124,255,178,0.2); }
-        .copy-tex.copied { background: var(--success); color: #000; }
-
         .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
-        .result-box strong { color: var(--trace-cos); }
+        .result-box strong { color: var(--panel-accent, var(--trace-cos)); }
 
-        .question-box {
-            background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25);
-            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
-        }
-        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
+        .when-box { background: rgba(255,209,102,0.06); border: 1px solid rgba(255,209,102,0.28); border-radius: 8px; padding: 11px 15px; margin-bottom: 12px; font-size: 0.9rem; }
+        .when-box strong { color: var(--accent-identity); }
 
-        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
-        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
-        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
-        .trigger-body { display: none; padding: 4px 16px 18px; }
-        .trigger.open .trigger-hint { display: none; }
-        .trigger.open .trigger-body { display: block; }
-        .trigger.open { border-style: solid; cursor: default; }
+        .step-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.06); border-radius: 6px; padding: 2px 9px; margin-bottom: 6px; }
 
-        .diagram-frame { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
-        .diagram-frame svg { max-width: 100%; height: auto; direction: ltr; }
+        .diagram-frame { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
+        .diagram-frame svg { max-width: 100%; height: auto; }
 
-        /* ---------------- جدول المقارنة ---------------- */
-        .cmp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
-        .cmp-table th, .cmp-table td { border: 1px solid var(--border-soft); padding: 10px 12px; text-align: right; }
-        .cmp-table th { font-family: var(--font-mono); font-size: 0.78rem; color: var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.05); }
-        .cmp-table td { color: #dcece5; }
-        body.light .cmp-table td { color: #24382f; }
-        .cmp-table .mono { font-family: var(--font-mono); direction: ltr; display: inline-block; }
-
-        .mistake-list li { margin-bottom: 12px; }
-        .mistake-list .mk {
-            display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
-            padding: 2px 8px; border-radius: 5px; margin-left: 8px;
-            background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3);
-        }
-
-        /* ---------------- أزرار عامة (btn) ---------------- */
-        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
-        .btn {
-            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 600;
-            padding: 10px 18px; border-radius: 8px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); transition: all .2s;
-        }
-        .btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.06); }
-        .btn.primary { background: rgba(124,255,178,0.1); border-color: var(--trace-cos); color: var(--trace-cos); }
-        .btn.primary:hover { background: rgba(124,255,178,0.2); }
-
-        /* ---------------- مختبر الشريحة ---------------- */
-        .sl-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
-        .sl-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 190px; }
-        .sl-field label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); font-weight: 600; }
-        .sl-field select, .sl-field input {
-            font-family: var(--font-arabic); font-size: 0.86rem;
-            padding: 9px 11px; border-radius: 7px;
-            border: 1px solid var(--border-soft);
-            background: var(--bg-inset); color: var(--ink-primary);
-        }
-        .sl-field input { font-family: var(--font-mono); direction: ltr; }
-        .sl-field select:focus, .sl-field input:focus { border-color: var(--trace-cos); outline: none; }
-        .sl-modes { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: 0.82rem; color: var(--ink-secondary); margin: 4px 0 12px; }
-        .sl-modes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-        .sl-modes input[type="radio"] { accent-color: var(--trace-cos); cursor: pointer; }
-        .sl-modes input[type="range"] { accent-color: var(--trace-sin); width: 150px; cursor: pointer; }
-        .sl-stage { position: relative; border-radius: 9px; overflow: hidden; border: 1px solid var(--border-soft); background: var(--bg-inset); }
-        #sl-canvas { display: block; width: 100%; height: 390px; }
-        .sl-readout {
-            position: absolute; top: 10px; left: 10px;
-            font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.75;
-            background: rgba(3,6,5,0.8); border: 1px solid var(--border-soft);
-            border-radius: 8px; padding: 8px 12px; direction: ltr; text-align: left;
-            color: var(--ink-primary); pointer-events: none; backdrop-filter: blur(4px); min-width: 190px;
-        }
-        body.light .sl-readout { background: rgba(255,255,255,0.88); }
-        .sl-readout .rv { color: var(--accent-identity); font-weight: 600; }
-        .sl-readout .rg { color: var(--trace-cos); font-weight: 600; }
-        .sl-readout .rb { color: var(--trace-sin); font-weight: 600; }
-        .sl-legend { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); }
-        .sl-legend span { display: flex; align-items: center; gap: 6px; }
-        .sl-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
-        .sl-note { font-size: 0.82rem; color: var(--ink-secondary); margin-top: 8px; text-align: center; }
-
-        /* ---------------- Quiz ---------------- */
-        .quiz-q { background: rgba(124,196,255,0.04); border: 1px solid rgba(124,196,255,0.2); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
-        .quiz-q .q-text { font-size: 0.95rem; margin-bottom: 12px; color: var(--ink-primary); }
-        .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
-        .quiz-opt {
-            font-family: var(--font-arabic); font-size: 0.9rem;
-            padding: 10px 14px; border-radius: 7px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); text-align: right; transition: all .2s;
-        }
-        .quiz-opt:hover:not(:disabled) { border-color: var(--accent-assess); background: rgba(124,196,255,0.06); }
-        .quiz-opt.correct { background: rgba(74,222,128,0.15); border-color: var(--success); color: var(--success); }
-        .quiz-opt.wrong { background: rgba(248,113,113,0.15); border-color: var(--danger); color: var(--danger); }
-        .quiz-opt:disabled { cursor: default; }
-        .quiz-feedback { margin-top: 10px; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; display: none; }
-        .quiz-feedback.show { display: block; }
-        .quiz-feedback.ok { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.3); }
-        .quiz-feedback.no { background: rgba(248,113,113,0.1); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
-        .quiz-score {
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,209,102,0.06); border: 1px solid rgba(255,209,102,0.25);
-            border-radius: 9px; padding: 12px 16px; margin-top: 14px; font-family: var(--font-mono); font-size: 0.9rem;
-        }
-        .quiz-score .val { color: var(--accent-identity); font-weight: 700; font-size: 1.1rem; }
-
-        /* ---------------- Flashcards ---------------- */
-        .flash-toolbar { display: flex; gap: 10px; margin-top: 4px; }
-        .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
-        .flash { perspective: 1000px; height: 150px; cursor: pointer; }
-        .flash-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
-        .flash.flipped .flash-inner { transform: rotateY(180deg); }
-        .flash-face {
-            position: absolute; inset: 0; backface-visibility: hidden;
-            border-radius: 10px; padding: 16px;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; font-size: 0.88rem; border: 1px solid var(--border-soft);
-        }
-        .flash-front { background: #0b1210; color: var(--ink-primary); }
-        body.light .flash-front { background: #fff; }
-        .flash-front .hint { position: absolute; bottom: 8px; left: 12px; font-size: 0.68rem; color: var(--ink-secondary); font-family: var(--font-mono); }
-        .flash-back { background: linear-gradient(135deg, #0d1f18, #0b1210); color: var(--trace-cos); transform: rotateY(180deg); border-color: rgba(124,255,178,0.3); }
-
-        /* ---------------- TOC ---------------- */
-        #fab-toc {
-            position: fixed; bottom: 24px; left: 24px;
-            width: 48px; height: 48px; border-radius: 50%;
-            background: var(--bg-panel); border: 1px solid var(--border-soft);
-            color: var(--trace-cos); font-size: 1.3rem; cursor: pointer;
-            z-index: 90; display: flex; align-items: center; justify-content: center;
-            transition: all .2s; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        #fab-toc:hover { border-color: var(--trace-cos); transform: scale(1.08); }
-        #toc-drawer {
-            position: fixed; top: 0; bottom: 0; left: 0; width: 280px;
-            background: var(--bg-panel); border-left: 1px solid var(--border-soft);
-            z-index: 95; padding: 20px 16px;
-            transform: translateX(-100%); transition: transform .3s ease; overflow-y: auto;
-        }
-        #toc-drawer.open { transform: translateX(0); }
-        #toc-drawer h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-secondary); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
-        #toc-drawer a { display: block; padding: 8px 12px; color: var(--ink-primary); text-decoration: none; font-size: 0.86rem; border-radius: 6px; margin-bottom: 4px; transition: all .15s; }
-        #toc-drawer a:hover { background: rgba(124,255,178,0.06); color: var(--trace-cos); }
-        #toc-drawer a.active { background: rgba(124,255,178,0.12); color: var(--trace-cos); border-right: 3px solid var(--trace-cos); }
-        #toc-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 94; opacity: 0; pointer-events: none; transition: opacity .3s; }
-        #toc-backdrop.open { opacity: 1; pointer-events: auto; }
+        .golden-chain { background: rgba(255,209,102,0.05); border: 1px solid rgba(255,209,102,0.3); border-radius: 12px; padding: 20px; margin-bottom: 4px; }
+        .golden-chain .tag { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-identity); display: block; margin-bottom: 10px; }
+        .golden-chain .math-block { border-right-color: var(--accent-identity); }
 
         footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
 
-        /* ---------------- طباعة ---------------- */
-        @media print {
-            .bg-grid, #fab-toc, #toc-drawer, #toc-backdrop, #read-progress,
-            .pill-row, .channel-select, .bezel-actions, .btn-row, .trigger-hint,
-            .flash-toolbar, .sl-controls, .sl-modes { display: none !important; }
-            body { background: #fff; color: #000; padding: 0; }
-            .panel, .hero { border-color: #bbb; background: #fff; break-inside: avoid; opacity: 1 !important; transform: none !important; }
-            .panel p, .panel li, .panel h2, .cmp-table td { color: #111 !important; }
-            .trigger .trigger-body { display: block !important; }
-            .trigger { border-style: solid; }
-            .math-block { background: #f6f6f6; border-color: #999; }
-            .sl-stage { display: none; }
-            .quiz-opt { border-color: #999; color: #111 !important; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .bezel-id .lamp { animation: none; }
-            .reveal { opacity: 1; transform: none; transition: none; }
-        }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
         @media (max-width: 480px) {
             .hero h1 { font-size: 1.15rem; }
             .panel { padding: 18px 15px; }
             .panel h2 { font-size: 1rem; }
             .channel-select { min-width: 0; width: 100%; }
             .bezel { flex-direction: column; align-items: stretch; }
-            #fab-toc { bottom: 16px; left: 16px; }
-            #sl-canvas { height: 300px; }
         }
     </style>
 </head>
 <body>
 
     <div class="bg-grid"></div>
-    <div id="read-progress"><div class="bar"></div></div>
-
-    <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button>
-    <div id="toc-backdrop" onclick="toggleToc()"></div>
-    <aside id="toc-drawer">
-        <h3>فهرس المحاضرة</h3>
-        <a href="#quick-map">✨ الخلاصة الذهنية</a>
-        <a href="#slice-lab">🧪 مختبر الشريحة التفاعلي</a>
-        <a href="#type1">01 - Type I - الشريحة الرأسية</a>
-        <a href="#type2">02 - Type II - الشريحة الأفقية</a>
-        <a href="#ex-plane">03 - مثال: الحجم تحت مستوى</a>
-        <a href="#ex1">04 - Example 1</a>
-        <a href="#ex2">05 - Example 2</a>
-        <a href="#tetra">06 - مجسم المستويات (Tetrahedron)</a>
-        <a href="#mistakes">⚠️ الأخطاء الشائعة</a>
-        <a href="#quiz">📝 اختبر نفسك</a>
-        <a href="#flashcards">🃏 بطاقات المراجعة</a>
-    </aside>
 
     <div class="main-wrapper">
 
         <div class="bezel">
             <div class="bezel-id">
                 <span class="lamp"></span>
-                <span>ملخصات المحاضرات - <strong>Double Integrals</strong></span>
+                <span>ملخصات المحاضرات — <strong>طول القوس والانحناء</strong></span>
             </div>
-            <div class="bezel-actions">
-                <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
-                <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                    <!-- يتم توليد قائمة المحاضرات تلقائيا بواسطة nav.js -->
-                </select>
-            </div>
+            <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+                <option value="index.html">ملخص المحاضرة 1</option>
+                <option value="lecture2.html" selected>ملخص المحاضرة 2</option>
+                <option value="lecture3.html">ملخص المحاضرة 3</option>
+            </select>
         </div>
 
         <div class="pill-row">
-            <a href="#quick-map">الخلاصة الذهنية</a>
-            <a href="#slice-lab">🧪 مختبر الشريحة</a>
-            <a href="#type1">Type I</a>
-            <a href="#type2">Type II</a>
-            <a href="#tetra">مجسم المستويات</a>
-            <a href="#quiz">اختبر نفسك</a>
-            <a href="#flashcards">بطاقات</a>
+            <a href="#p1">1. طول المنحنى</a>
+            <a href="#p2">2. تكرار + مثال اللولب</a>
+            <a href="#p3">3. مثال رقمي</a>
+            <a href="#p4">4. سؤال السبورة</a>
+            <a href="#p5">5. الانحناء</a>
+            <a href="#p6">6. انحناء اللولب</a>
+            <a href="#p7">7. الزبدة</a>
         </div>
 
-        <!-- ============ hero ============ -->
-        <div class="hero reveal">
-            <h1>Double Integrals over Non-Rectangular Regions</h1>
-            <p class="sub">التكامل الثنائي يحسب الحجم تحت سطح $z = f(x,y)$ فوق منطقة $R$ — إما بشرائح رأسية ($dy\,dx$) أو أفقية ($dx\,dy$)</p>
-
-            <div class="hero-chips">
-                <span class="chip g">Type I → dy dx</span>
-                <span class="chip b">Type II → dx dy</span>
-                <span class="chip y">الحد الخارجي دائماً ثابت</span>
-                <span class="chip y">V = ∬_R f dA</span>
-            </div>
-
+        <div class="hero">
+            <h1>طول القوس والانحناء</h1>
+            <p class="sub">$s$ يقيس المسافة المقطوعة على المنحنى، و$\kappa$ يقيس مدى انحناءه — مقلوب نصف قطر أفضل دائرة تلامسه عند تلك النقطة</p>
             <div class="scope-screen">
-                <svg id="hero-scope" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arr-h" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M0 0L10 5 0 10z" fill="#7cffb2"/>
-                        </marker>
-                    </defs>
-
-                    <line x1="350" y1="20" x2="350" y2="180" stroke="rgba(255,255,255,0.12)" stroke-dasharray="3 4"/>
-
-                    <!-- ===== يسار: Type I — شريحة رأسية ===== -->
-                    <g id="hero-type1">
-                        <line x1="40" y1="172" x2="322" y2="172" stroke="#7f9d92" stroke-width="1.6"/>
-                        <line x1="48" y1="180" x2="48" y2="22" stroke="#7f9d92" stroke-width="1.6"/>
-                        <text x="328" y="177" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">x</text>
-                        <text x="42" y="16" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">y</text>
-                        <path id="t1-region" fill="rgba(124,255,178,0.12)" stroke="#7cffb2" stroke-width="2"/>
-                        <rect id="t1-strip" x="0" y="0" width="11" height="0" fill="rgba(124,255,178,0.4)" stroke="#7cffb2" stroke-width="1.4"/>
-                        <text id="t1-label" x="0" y="0" fill="#7cffb2" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">dy</text>
-                        <text x="48" y="196" fill="#7cffb2" font-family="IBM Plex Mono" font-size="12.5" font-weight="600">Type I — Vertical Slice (dy dx)</text>
-                    </g>
-
-                    <!-- ===== يمين: Type II — شريحة أفقية ===== -->
-                    <g id="hero-type2">
-                        <line x1="392" y1="172" x2="674" y2="172" stroke="#7f9d92" stroke-width="1.6"/>
-                        <line x1="400" y1="180" x2="400" y2="22" stroke="#7f9d92" stroke-width="1.6"/>
-                        <text x="680" y="177" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">x</text>
-                        <text x="394" y="16" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">y</text>
-                        <path id="t2-region" fill="rgba(124,196,255,0.12)" stroke="#7cc4ff" stroke-width="2"/>
-                        <rect id="t2-strip" x="0" y="0" width="0" height="10" fill="rgba(124,196,255,0.4)" stroke="#7cc4ff" stroke-width="1.4"/>
-                        <text id="t2-label" x="0" y="0" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">dx</text>
-                        <text x="400" y="196" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="12.5" font-weight="600">Type II — Horizontal Slice (dx dy)</text>
-                    </g>
+                <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 350 90 S 550 10, 660 60" fill="none" stroke="#7cffb2" stroke-width="2" opacity="0.55"/>
+                    <path id="arcLen" d="M 40 150 C 150 20, 250 170, 350 90" fill="none" stroke="#7cc4ff" stroke-width="3"/>
+                    <circle cx="350" cy="90" r="4.5" fill="#e9f5ef"/>
+                    <text x="358" y="82" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="12">P</text>
+                    <text x="150" y="185" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">s</text>
+                    <circle cx="330" cy="50" r="45" fill="none" stroke="#ffd166" stroke-width="1.6" stroke-dasharray="4 4"/>
+                    <circle cx="330" cy="50" r="2.5" fill="#ffd166"/>
+                    <text x="285" y="35" fill="#ffd166" font-family="IBM Plex Mono" font-size="12">1/κ</text>
                 </svg>
             </div>
-
             <div class="scope-legend">
-                <span><i class="swatch" style="background:#7cffb2"></i> Type I — ي ثم اكس</span>
-                <span><i class="swatch" style="background:#7cc4ff"></i> Type II — اكس ثم ي</span>
+                <span><i class="swatch" style="background:#7cc4ff"></i> s — طول القوس المقطوع</span>
+                <span><i class="swatch" style="background:#ffd166"></i> دائرة التقويس — نصف قطرها 1/κ</span>
             </div>
         </div>
 
-        <!-- ============ الخلاصة الذهنية ============ -->
-        <div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);">
-            <div class="panel-head">
-                <span class="panel-index">✦</span>
-                <span class="symbol-badge">∬</span>
-                <h2>الخلاصة الذهنية: Type I ضد Type II</h2>
-            </div>
-            <table class="cmp-table">
-                <thead>
-                    <tr><th></th><th>Type I (رأسي)</th><th>Type II (أفقي)</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>عنصر المساحة dA</strong></td><td><span class="mono">dy dx</span></td><td><span class="mono">dx dy</span></td></tr>
-                    <tr><td><strong>الشريحة</strong></td><td>رأسية ثابتة x</td><td>أفقية ثابتة y</td></tr>
-                    <tr><td><strong>الحدود الداخلية</strong></td><td><span class="mono">g₁(x) ≤ y ≤ g₂(x)</span></td><td><span class="mono">h₁(y) ≤ x ≤ h₂(y)</span></td></tr>
-                    <tr><td><strong>الحدود الخارجية</strong></td><td><span class="mono">a ≤ x ≤ b</span> (ثابتة)</td><td><span class="mono">c ≤ y ≤ d</span> (ثابتة)</td></tr>
-                    <tr><td><strong>نستخدمه عندما</strong></td><td>الحدود العلوي/السفلي دوال في x</td><td>الحدود الأيمن/الأيسر دوال في y</td></tr>
-                </tbody>
-            </table>
-            <div class="result-box">
-                <strong>القاعدة الذهبية:</strong> الحدود الخارجية <strong>أرقام ثابتة دائماً</strong>، والحدود الداخلية قد تعتمد على متغير التكامل الخارجي فقط — إذا ظهر x داخل حدود التكامل بالنسبة لـ x فقد رتّبتها بالعكس!
-            </div>
+        <!-- ==================== PART 1 ==================== -->
+        <div class="chapter-head" id="p1">
+            <span class="chapter-tag">01</span>
+            <h1>طول المنحنى وطول القوس <span class="en" style="font-size:0.82rem;">(Length of a Curve &amp; Arc Length)</span></h1>
         </div>
 
-        <!-- ============ مختبر الشريحة ============ -->
-        <div class="panel reveal" id="slice-lab" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">🧪</span>
-                <span class="symbol-badge">∫∫</span>
-                <h2>مختبر الشريحة — شاهد التكامل يتراكم
-                    <span class="bi-caption">شغّل مسح الشريحة وشاهد كيف يبني التكامل الخارجي الناتج شريحةً شريحة — وقارن تقريب ريمان (n عمود) بالقيمة الدقيقة</span>
-                </h2>
-            </div>
-
-            <div class="sl-controls">
-                <div class="sl-field" style="flex:2 1 240px;">
-                    <label>منطقة التكامل R</label>
-                    <select id="sl-preset"></select>
-                </div>
-                <div class="sl-field" style="flex:2 1 220px;">
-                    <label>الدالة f(x, y)</label>
-                    <select id="sl-func"></select>
-                </div>
-            </div>
-            <div class="sl-controls" id="sl-custom-row" style="display:none;">
-                <div class="sl-field" style="flex:1 1 200px;">
-                    <label>الحد العلوي y = g(x)</label>
-                    <input id="sl-g" type="text" value="x^2" />
-                </div>
-                <button class="btn primary" onclick="SliceLab.applyCustom()">ارسم المنطقة</button>
-            </div>
-
-            <div class="sl-modes">
-                <span style="font-weight:600;">اتجاه الشريحة:</span>
-                <label><input type="radio" name="sl-dir" value="v" checked> رأسية — dy dx (Type I)</label>
-                <label><input type="radio" name="sl-dir" value="h"> أفقية — dx dy (Type II)</label>
-                <span style="flex:1;"></span>
-                <button class="btn primary" id="sl-play" onclick="SliceLab.togglePlay()">▶ تشغيل المسح</button>
-                <button class="btn" onclick="SliceLab.reset()">↺ إعادة</button>
-            </div>
-            <div class="sl-modes">
-                <span style="font-weight:600;">أعمدة ريمان:</span>
-                <input type="range" id="sl-n" min="4" max="100" value="20">
-                <span class="mono" id="sl-n-val" style="font-family:var(--font-mono);">n = 20</span>
-            </div>
-
-            <div class="sl-stage">
-                <canvas id="sl-canvas"></canvas>
-                <div class="sl-readout" id="sl-readout"><div>اضغط تشغيل ▶</div></div>
-            </div>
-
-            <div class="sl-legend">
-                <span><i class="sl-dot" style="background:#7cffb2;opacity:.7"></i> منطقة R / منحنى A(s)</span>
-                <span><i class="sl-dot" style="background:#ffb454;opacity:.8"></i> أعمدة تقريب ريمان</span>
-                <span><i class="sl-dot" style="background:#ffd166;opacity:.9"></i> موضع الشريحة الحالية</span>
-            </div>
-            <p class="sl-note">💡 الرسم الأيمن يمثل دالة "قيمة الشريحة" A(s) = التكامل الداخلي — والمساحة تحتها هي ناتج التكامل الخارجي. جرّب n=4 ثم n=100 ولاحظ تقليل الخطأ.</p>
-        </div>
-
-        <!-- panel 01: Type I -->
-        <div class="panel reveal" id="type1" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">01</span>
-                <span class="symbol-badge">dy</span>
-                <h2>Type I Region (Vertical Slice)
-                    <span class="bi-caption">الشريحة الرأسية</span>
-                </h2>
-            </div>
-            <p>تُستخدم التكاملات الثنائية لحساب الحجم $(V)$ تحت سطح الدالة $z = f(x,y)$ فوق منطقة $R$ غير مستطيلة. يتم تقسيم المنطقة إلى شريحة إما رأسية أو أفقية.</p>
-
-            <ul>
-                <li>
-                    <strong>عنصر المساحة (Area Element):</strong>
-                    <div class="math-block small">\[dA = dy \, dx\]</div>
-                </li>
-                <li>
-                    <strong>حدود التكامل:</strong>
-                    <ul>
-                        <li>بالنسبة لـ $y$: تتغير بين دالتين في $x$ هما $g_1(x)$ (الحد السفلي) و $g_2(x)$ (الحد العلوي).</li>
-                        <li>بالنسبة لـ $x$: تتغير بين قيمتين ثابتتين $a$ و $b$.</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>صيغة الحجم (Volume Formula):</strong>
-                    <div class="math-block">
-                        \[V = \iint_R f(x,y) \, dA = \int_{a}^{b} \int_{g_1(x)}^{g_2(x)} f(x,y) \, dy \, dx\]
-                    </div>
-                </li>
-            </ul>
-
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">1.1</span><span class="symbol-badge">L</span><h2>طول المنحنى (Length of a Curve)</h2></div>
+            <p>حساب الطول الكلي لمنحنى $C$ محدد بنقطتين من $a$ إلى $b$.</p>
+            <p><strong>متجه الموضع:</strong></p>
+            <div class="math-block small">\[ r(t) = [x(t), y(t), z(t)] \]</div>
+            <p><strong>متجه السرعة / المشتقة:</strong></p>
+            <div class="math-block small">\[ r'(t) = \frac{dr}{dt} = [x'(t), y'(t), z'(t)] \]</div>
+            <p><strong>مربع المقدار:</strong></p>
+            <div class="math-block small">\[ r' \cdot r' = (x'(t))^2 + (y'(t))^2 + (z'(t))^2 \]</div>
+            <p><strong>القانون العام للطول:</strong></p>
+            <div class="math-block">\[ L = \int_{a}^{b} \sqrt{r' \cdot r'} \, dt \]</div>
             <div class="diagram-frame">
-                <svg width="400" height="220" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="40" y1="180" x2="360" y2="180" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="50" y1="200" x2="50" y2="20" stroke="#7f9d92" stroke-width="2" />
-                    <text x="370" y="185" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">x</text>
-                    <text x="45" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">y</text>
-                    <path d="M 100 140 Q 200 160 300 100 L 300 40 Q 200 80 100 70 Z" fill="rgba(124,255,178,0.13)" stroke="#7cffb2" stroke-width="2"/>
-                    <text x="180" y="165" fill="#7cffb2" font-size="13" font-family="IBM Plex Mono">y = g₁(x)</text>
-                    <text x="180" y="55" fill="#7cffb2" font-size="13" font-family="IBM Plex Mono">y = g₂(x)</text>
-                    <rect x="195" y="72" width="10" height="78" fill="rgba(255,209,102,0.4)" stroke="#ffd166" stroke-width="1.5" />
-                    <line x1="200" y1="72" x2="200" y2="150" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="3,3"/>
-                    <text x="212" y="115" fill="#ffd166" font-size="12" font-family="IBM Plex Mono">dy</text>
-                    <line x1="100" y1="180" x2="100" y2="70" stroke="#7f9d92" stroke-dasharray="4,4"/>
-                    <line x1="300" y1="180" x2="300" y2="40" stroke="#7f9d92" stroke-dasharray="4,4"/>
-                    <text x="96" y="200" fill="#e9f5ef" font-size="14" font-family="IBM Plex Mono">x = a</text>
-                    <text x="296" y="200" fill="#e9f5ef" font-size="14" font-family="IBM Plex Mono">x = b</text>
+                <svg viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" style="max-width:300px;">
+                    <defs><marker id="arrw1" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#e9f5ef"/></marker></defs>
+                    <path d="M 250 160 L 250 40" stroke="#7f9d92" stroke-width="2" marker-end="url(#arrw1)"/>
+                    <path d="M 250 160 L 380 220" stroke="#7f9d92" stroke-width="2" marker-end="url(#arrw1)"/>
+                    <path d="M 250 160 L 120 220" stroke="#7f9d92" stroke-width="2" marker-end="url(#arrw1)"/>
+                    <text x="250" y="30" fill="#7f9d92" font-size="14" text-anchor="middle">z</text>
+                    <text x="390" y="230" fill="#7f9d92" font-size="14" text-anchor="middle">y</text>
+                    <text x="110" y="230" fill="#7f9d92" font-size="14" text-anchor="middle">x</text>
+                    <path d="M 370 180 Q 280 40 310 80 T 370 180" fill="none" stroke="#7cffb2" stroke-width="3"/>
+                    <circle cx="370" cy="180" r="4" fill="#7cffb2"/><text x="385" y="185" fill="#7cffb2" font-size="14" font-weight="bold">a</text>
+                    <circle cx="310" cy="80" r="4" fill="#7cffb2"/><text x="325" y="80" fill="#7cffb2" font-size="14" font-weight="bold">b</text>
+                    <line x1="250" y1="160" x2="320" y2="125" stroke="#7cc4ff" stroke-width="2" marker-end="url(#arrw1)"/>
+                    <text x="270" y="140" fill="#7cc4ff" font-size="14" font-style="italic">r(t)</text>
                 </svg>
             </div>
         </div>
 
-        <!-- panel 02: Type II -->
-        <div class="panel reveal" id="type2" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">02</span>
-                <span class="symbol-badge">dx</span>
-                <h2>Type II Region (Horizontal Slice)
-                    <span class="bi-caption">الشريحة الأفقية</span>
-                </h2>
-            </div>
-
-            <ul>
-                <li>
-                    <strong>عنصر المساحة (Area Element):</strong>
-                    <div class="math-block small">\[dA = dx \, dy\]</div>
-                </li>
-                <li>
-                    <strong>حدود التكامل:</strong>
-                    <ul>
-                        <li>بالنسبة لـ $x$: تتغير بين دالتين في $y$ هما $h_1(y)$ (الحد الأيسر) و $h_2(y)$ (الحد الأيمن).</li>
-                        <li>بالنسبة لـ $y$: تتغير بين قيمتين ثابتتين $c$ و $d$.</li>
-                    </ul>
-                </li>
-                <li>
-                    <strong>صيغة الحجم (Volume Formula):</strong>
-                    <div class="math-block">
-                        \[V = \iint_R f(x,y) \, dA = \int_{c}^{d} \int_{h_1(y)}^{h_2(y)} f(x,y) \, dx \, dy\]
-                    </div>
-                </li>
-            </ul>
-
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">1.2</span><span class="symbol-badge">s</span><h2>دالة طول القوس (Arc Length Function)</h2></div>
+            <p>تحويل النقطة النهائية $b$ إلى متغير $t$ لتصبح دالة تعطي الطول من نقطة البداية ($t=0$) إلى أي نقطة متغيرة $t$.</p>
+            <div class="math-block">\[ s(t) = \int_{0}^{t} \sqrt{r' \cdot r'} \, dt \]</div>
             <div class="diagram-frame">
-                <svg width="400" height="220" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="40" y1="180" x2="360" y2="180" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="50" y1="200" x2="50" y2="20" stroke="#7f9d92" stroke-width="2" />
-                    <text x="370" y="185" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">x</text>
-                    <text x="45" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">y</text>
-                    <path d="M 110 140 Q 150 90 120 40 L 290 40 Q 250 90 280 140 Z" fill="rgba(124,196,255,0.13)" stroke="#7cc4ff" stroke-width="2"/>
-                    <text x="58" y="95" fill="#7cc4ff" font-size="13" font-family="IBM Plex Mono">x = h₁(y)</text>
-                    <text x="285" y="95" fill="#7cc4ff" font-size="13" font-family="IBM Plex Mono">x = h₂(y)</text>
-                    <rect x="132" y="85" width="133" height="10" fill="rgba(255,209,102,0.4)" stroke="#ffd166" stroke-width="1.5" />
-                    <text x="190" y="78" fill="#ffd166" font-size="12" font-family="IBM Plex Mono">dx</text>
-                    <line x1="50" y1="140" x2="280" y2="140" stroke="#7f9d92" stroke-dasharray="4,4"/>
-                    <line x1="50" y1="40" x2="290" y2="40" stroke="#7f9d92" stroke-dasharray="4,4"/>
-                    <text x="15" y="145" fill="#e9f5ef" font-size="14" font-family="IBM Plex Mono">y = c</text>
-                    <text x="15" y="45" fill="#e9f5ef" font-size="14" font-family="IBM Plex Mono">y = d</text>
+                <svg viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg" style="max-width:300px;">
+                    <path d="M 80 130 Q 180 30 420 70" fill="none" stroke="#7cffb2" stroke-width="3"/>
+                    <polyline points="80,130 140,100 220,60 310,50 420,70" fill="none" stroke="#7f9d92" stroke-width="1.5" stroke-dasharray="4"/>
+                    <circle cx="80" cy="130" r="4" fill="#7cc4ff"/><circle cx="140" cy="100" r="4" fill="#7cc4ff"/>
+                    <circle cx="220" cy="60" r="4" fill="#7cc4ff"/><circle cx="310" cy="50" r="4" fill="#7cc4ff"/><circle cx="420" cy="70" r="4" fill="#7cc4ff"/>
+                    <text x="60" y="150" fill="#7cc4ff" font-size="13" font-weight="bold">s = 0 (t = 0)</text>
+                    <text x="430" y="75" fill="#7cffb2" font-size="15" font-weight="bold">C</text>
                 </svg>
             </div>
         </div>
 
-        <!-- panel 03: مثال المستوى -->
-        <div class="panel reveal" id="ex-plane" style="--panel-accent: var(--accent-practice);">
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">1.3</span><span class="symbol-badge">r(s)</span><h2>إعادة التمثيل بدلالة طول القوس</h2></div>
+            <p>إيجاد المتجه بدلالة طول القوس $s$ بدلاً من المتغير الزمني $t$.</p>
+            <div class="math-block">\[ r(s) = r(t(s)) \]</div>
+        </div>
+
+        <!-- ==================== PART 2 ==================== -->
+        <div class="chapter-head" id="p2">
+            <span class="chapter-tag">02</span>
+            <h1>طول المنحنى وطول القوس (تكرار) + مثال اللولب العام</h1>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">2.1</span><span class="symbol-badge">L</span><h2>طول المنحنى (L)</h2></div>
+            <p>حساب الطول الكلي لمنحنى $C$ محدد بين نقطتين من $a$ إلى $b$.</p>
+            <div class="math-block small">\[ r(t) = [x(t), y(t), z(t)] \]</div>
+            <div class="math-block small">\[ r'(t) = \frac{dr}{dt} = [x'(t), y'(t), z'(t)] \]</div>
+            <div class="math-block small">\[ r' \cdot r' = (x'(t))^2 + (y'(t))^2 + (z'(t))^2 \]</div>
+            <div class="math-block">\[ L = \int_{a}^{b} \sqrt{r' \cdot r'} \, dt \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">2.2</span><span class="symbol-badge">s</span><h2>دالة طول القوس (s)</h2></div>
+            <p>حساب طول القوس المتغير من نقطة البداية $t=0$ إلى أي نقطة متغيرة $t$ باستخدام التكامل المحدد (بدون ثابت تكامل).</p>
+            <div class="math-block">\[ s(t) = \int_{0}^{t} \sqrt{r' \cdot r'} \, d\tilde{t} \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">2.3</span><span class="symbol-badge">r(s)</span><h2>إعادة التمثيل بدلالة طول القوس</h2></div>
+            <div class="math-block">\[ r(s) = r(t(s)) \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">03</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>مثال محلول: الحجم تحت مستوٍ</h2>
+                <span class="panel-index">2.4</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/><path d="M13 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/></svg>
+                <h2>مثال تطبيقي: المنحنى اللولبي</h2>
             </div>
-
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                Find the volume $V$ under the plane $z = 8x + 6y$ over the region:
-                <div class="math-block small">
-                    \[R = \left\{ (x,y) : 0 \le x \le 1, \; 0 \le y \le 2x^2 \right\}\]
-                </div>
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل التفصيلية
-                </div>
-                <div class="trigger-body">
-                    <h3>1. إعداد التكامل الثنائي (استخدام شريحة رأسية):</h3>
-                    <p>بما أن حدود $y$ تعتمد على $x$ ($0 \le y \le 2x^2$) وحدود $x$ أرقام ثابتة ($0 \le x \le 1$)، فإننا نستخدم ترتيب الشريحة الرأسية $dy \, dx$:</p>
-                    <div class="math-block small">
-                        \[V = \int_{0}^{1} \int_{0}^{2x^2} (8x + 6y) \, dy \, dx\]
-                    </div>
-                    <h3>2. حساب التكامل الداخلي بالنسبة لـ $y$:</h3>
-                    <div class="math-block small">
-                        \[\int (8x + 6y) \, dy = 8xy + 3y^2\]
-                    </div>
-                    <p>تطبيق الحدود من $y = 0$ إلى $y = 2x^2$:</p>
-                    <div class="math-block small">
-                        \[\left[ 8xy + 3y^2 \right]_{0}^{2x^2} = 8x(2x^2) + 3(2x^2)^2 - 0 = 16x^3 + 12x^4\]
-                    </div>
-                    <h3>3. حساب التكامل الخارجي بالنسبة لـ $x$:</h3>
-                    <div class="math-block small">
-                        \[V = \int_{0}^{1} (16x^3 + 12x^4) \, dx = \left[ 4x^4 + \frac{12}{5} x^5 \right]_{0}^{1} = 4 + \frac{12}{5} = \frac{32}{5}\]
-                    </div>
-                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[V = \frac{32}{5} = 6.4\]</div>
-                </div>
-            </div>
+            <p><strong>المعطيات:</strong></p>
+            <div class="math-block small">\[ r(t) = [a \cos t, a \sin t, ct] \]</div>
+            <p><strong>المشتقة:</strong></p>
+            <div class="math-block small">\[ r'(t) = [-a \sin t, a \cos t, c] \]</div>
+            <p><strong>مربع المقدار:</strong></p>
+            <div class="math-block small">\[ r' \cdot r' = a^2(\sin^2 t + \cos^2 t) + c^2 = a^2 + c^2 \]</div>
+            <p><strong>حساب طول القوس:</strong></p>
+            <div class="math-block small">\[ s = \int_{0}^{t} \sqrt{a^2+c^2}\, d\tilde{t} = \sqrt{a^2+c^2}\;t \]</div>
+            <p><strong>استخراج $t$ بدلالة $s$:</strong></p>
+            <div class="math-block small">\[ t = \frac{s}{\sqrt{a^2+c^2}} \]</div>
+            <div class="result-box"><strong>التمثيل النهائي:</strong> \[ r(s) = \left[ a\cos\!\left(\tfrac{s}{\sqrt{a^2+c^2}}\right), a\sin\!\left(\tfrac{s}{\sqrt{a^2+c^2}}\right), c\left(\tfrac{s}{\sqrt{a^2+c^2}}\right) \right] \]</div>
         </div>
 
-        <!-- panel 04: Example 1 -->
-        <div class="panel reveal" id="ex1" style="--panel-accent: var(--accent-practice);">
+        <!-- ==================== PART 3 ==================== -->
+        <div class="chapter-head" id="p3">
+            <span class="chapter-tag">03</span>
+            <h1>تلخيص المثال الرقمي <span class="en" style="font-size:0.82rem;">(Summary of Numerical Example)</span></h1>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">04</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>Example 1
-                    <span class="bi-caption">تكامل على مثلث — شريحة رأسية</span>
-                </h2>
+                <span class="panel-index">3.1</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <h2>مثال رقمي على اللولب</h2>
             </div>
-
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                Evaluate the following integral:
-                <div class="math-block small">
-                    \[\int_{0}^{1} \int_{0}^{x} (xy + 4) \, dy \, dx\]
-                </div>
-            </div>
-
-            <div class="diagram-frame">
-                <svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="40" y1="160" x2="320" y2="160" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="50" y1="180" x2="50" y2="20" stroke="#7f9d92" stroke-width="2" />
-                    <text x="330" y="165" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">x</text>
-                    <text x="45" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">y</text>
-                    <line x1="50" y1="160" x2="250" y2="40" stroke="#7cffb2" stroke-width="2" />
-                    <text x="210" y="35" fill="#7cffb2" font-size="13" font-family="IBM Plex Mono">y = x</text>
-                    <polygon points="50,160 250,160 250,40" fill="rgba(124,255,178,0.15)" stroke="none"/>
-                    <line x1="250" y1="160" x2="250" y2="40" stroke="#ff6f6f" stroke-dasharray="4,4" stroke-width="1.5"/>
-                    <text x="243" y="180" fill="#e9f5ef" font-size="13" font-family="IBM Plex Mono">x = 1</text>
-                    <text x="40" y="180" fill="#e9f5ef" font-size="13" font-family="IBM Plex Mono">0</text>
-                </svg>
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <h3>خطوات الحل:</h3>
-                    <ol>
-                        <li>
-                            <strong>التكامل الداخلي بالنسبة لـ $y$</strong> (نعتبر $x$ ثابتاً):
-                            <div class="math-block small">
-                                \[\int (xy + 4) \, dy = \frac{xy^2}{2} + 4y\]
-                            </div>
-                            <p>تعويض الحدود من $0$ إلى $x$:</p>
-                            <div class="math-block small">
-                                \[\left[ \frac{xy^2}{2} + 4y \right]_{0}^{x} = \frac{x^3}{2} + 4x\]
-                            </div>
-                        </li>
-                        <li>
-                            <strong>التكامل الخارجي بالنسبة لـ $x$:</strong>
-                            <div class="math-block small">
-                                \[\int_{0}^{1} \left( \frac{x^3}{2} + 4x \right) dx = \left[ \frac{x^4}{8} + 2x^2 \right]_{0}^{1} = \frac{1}{8} + 2 = \frac{17}{8}\]
-                            </div>
-                        </li>
-                    </ol>
-                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[\frac{17}{8}\]</div>
-                </div>
-            </div>
+            <p><strong>المعطيات:</strong></p>
+            <div class="math-block small">\[ r(t) = [2 \cos(3t), 2 \sin(3t), \sqrt{13}t] \]</div>
+            <p><strong>المشتقة:</strong></p>
+            <div class="math-block small">\[ r'(t) = [-6 \sin(3t), 6 \cos(3t), \sqrt{13}] \]</div>
+            <p><strong>مربع المقدار:</strong></p>
+            <div class="math-block small">\[ r' \cdot r' = 36(1) + 13 = 49 \]</div>
+            <p><strong>حساب طول القوس:</strong></p>
+            <div class="math-block small">\[ s = \int_{0}^{t} \sqrt{49} \, d\tilde{t} = 7t \]</div>
+            <p><strong>إيجاد $t$:</strong></p>
+            <div class="math-block small">\[ t = \frac{s}{7} \]</div>
+            <div class="result-box"><strong>النتيجة النهائية:</strong> \[ r(s) = \left[ 2 \cos\!\left(\tfrac{3s}{7}\right), 2 \sin\!\left(\tfrac{3s}{7}\right), \tfrac{\sqrt{13}s}{7} \right] \]</div>
         </div>
 
-        <!-- panel 05: Example 2 -->
-        <div class="panel reveal" id="ex2" style="--panel-accent: var(--accent-practice);">
+        <!-- ==================== PART 4 ==================== -->
+        <div class="chapter-head" id="p4">
+            <span class="chapter-tag">04</span>
+            <h1>طول القوس وإعادة التمثيل بدلالة s <span class="en" style="font-size:0.82rem;">(Arc Length &amp; Parametrization by s)</span></h1>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">05</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>Example 2
-                    <span class="bi-caption">تكامل على مثلث — شريحة أفقية</span>
-                </h2>
+                <span class="panel-index">4.1</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+                <h2>السؤال والمثال الثالث من السبورة</h2>
             </div>
-
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                Evaluate the following integral:
-                <div class="math-block small">
-                    \[\int_{0}^{2} \int_{0}^{y} 2xy^2 \, dx \, dy\]
-                </div>
-            </div>
-
-            <div class="diagram-frame">
-                <svg width="360" height="200" viewBox="0 0 360 200" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="40" y1="160" x2="320" y2="160" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="50" y1="180" x2="50" y2="20" stroke="#7f9d92" stroke-width="2" />
-                    <text x="330" y="165" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">x</text>
-                    <text x="45" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">y</text>
-                    <line x1="50" y1="160" x2="250" y2="40" stroke="#7cc4ff" stroke-width="2" />
-                    <text x="180" y="110" fill="#7cc4ff" font-size="13" font-family="IBM Plex Mono">x = y</text>
-                    <polygon points="50,160 50,40 250,40" fill="rgba(124,196,255,0.15)" stroke="none"/>
-                    <line x1="50" y1="40" x2="250" y2="40" stroke="#ff6f6f" stroke-dasharray="4,4" stroke-width="1.5"/>
-                    <text x="20" y="45" fill="#e9f5ef" font-size="13" font-family="IBM Plex Mono">y = 2</text>
-                    <text x="40" y="180" fill="#e9f5ef" font-size="13" font-family="IBM Plex Mono">0</text>
-                </svg>
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <h3>خطوات الحل:</h3>
-                    <ol>
-                        <li>
-                            <strong>التكامل الداخلي بالنسبة لـ $x$</strong> (نعتبر $y$ ثابتاً):
-                            <div class="math-block small">
-                                \[\int 2xy^2 \, dx = x^2 y^2\]
-                            </div>
-                            <p>تعويض الحدود من $0$ إلى $y$:</p>
-                            <div class="math-block small">
-                                \[\left[ x^2 y^2 \right]_{0}^{y} = y^4\]
-                            </div>
-                        </li>
-                        <li>
-                            <strong>التكامل الخارجي بالنسبة لـ $y$:</strong>
-                            <div class="math-block small">
-                                \[\int_{0}^{2} y^4 \, dy = \left[ \frac{y^5}{5} \right]_{0}^{2} = \frac{32}{5}\]
-                            </div>
-                        </li>
-                    </ol>
-                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[\frac{32}{5}\]</div>
-                </div>
-            </div>
+            <p class="quote-line">"Find the arc length and parametrized r by s for"</p>
+            <p>(أوجد طول القوس $s$ وأعد تمثيل المتجه $r$ بدلالة $s$ للدالة التالية):</p>
+            <p><strong>المعطيات:</strong></p>
+            <div class="math-block small">\[ r(t) = [\cos(4t), -\sin(4t), 3t] \]</div>
         </div>
 
-        <!-- panel 06: Tetrahedron -->
-        <div class="panel reveal" id="tetra" style="--panel-accent: var(--trace-cos);">
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">06</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2 L21 20 H3 Z"/>
-                </svg>
-                <h2>Volume of a Solid Bounded by Planes
-                    <span class="bi-caption">مثال: مجسم محصور بالمستويات الثلاثة والمستوى المائل (Tetrahedron)</span>
-                </h2>
+                <span class="panel-index">4.2</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <h2>خطوات الحل التفصيلية</h2>
             </div>
-            <p>حساب حجم مجسم ثلاثي الأبعاد محصور بين مستويات الإحداثيات الثلاثة والمستوى المائل $2x + y + 4z = 4$ باستخدام التكامل الثنائي.</p>
-
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                Find the volume $V$ of the solid bounded by the three coordinate planes and the plane $2x + y + 4z = 4$.<br>
-                <span style="color:var(--ink-secondary);font-size:0.85rem;">(أوجد حجم المجسم المحصور بين مستويات الإحداثيات الثلاثة والمستوى $2x + y + 4z = 4$)</span>
-            </div>
-
-            <div class="diagram-frame">
-                <svg width="380" height="240" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="80" y1="180" x2="340" y2="180" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="80" y1="180" x2="20" y2="230" stroke="#7f9d92" stroke-width="2" />
-                    <line x1="80" y1="180" x2="80" y2="20" stroke="#7f9d92" stroke-width="2" />
-                    <text x="345" y="185" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">y</text>
-                    <text x="10" y="235" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">x</text>
-                    <text x="75" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="14">z</text>
-                    <polygon points="80,80 40,210 280,180" fill="rgba(124,255,178,0.22)" stroke="#7cffb2" stroke-width="2"/>
-                    <polygon points="80,180 40,210 280,180" fill="rgba(255,180,84,0.15)" stroke="#ffb454" stroke-width="1.5" stroke-dasharray="3,3"/>
-                    <text x="285" y="200" fill="#7cffb2" font-family="IBM Plex Mono" font-size="12">(0, 4, 0)</text>
-                    <text x="15" y="215" fill="#7cffb2" font-family="IBM Plex Mono" font-size="12">(2, 0, 0)</text>
-                    <text x="88" y="75" fill="#7cffb2" font-family="IBM Plex Mono" font-size="12">(0, 0, 1)</text>
-                    <text x="150" y="120" fill="#e9f5ef" font-size="13" font-weight="bold" font-family="IBM Plex Mono">2x + y + 4z = 4</text>
-                </svg>
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل الكاملة
-                </div>
-                <div class="trigger-body">
-                    <h3>1. تحديد الدالة ومنطقة التكامل $R$:</h3>
-                    <ul>
-                        <li>
-                            <strong>الدالة $f(x,y)$ (ارتفاع المجسم $z$):</strong> من معادلة المستوى:
-                            <div class="math-block small">
-                                \[4z = 4 - 2x - y \implies z = \frac{1}{4}(4 - 2x - y)\]
-                            </div>
-                        </li>
-                        <li>
-                            <strong>حدود المنطقة $R$ في المستوى $xy$ (عندما $z = 0$):</strong>
-                            <div class="math-block small">
-                                \[2x + y = 4 \implies y = 4 - 2x\]
-                            </div>
-                            <ul>
-                                <li>تقاطع الخط مع محور $x$ (عند $y = 0$): $x = 2$</li>
-                                <li>تقاطع الخط مع محور $y$ (عند $x = 0$): $y = 4$</li>
-                                <li>$y$ من $0$ إلى $4 - 2x$، و $x$ من $0$ إلى $2$</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <h3>2. إعداد التكامل الثنائي:</h3>
-                    <div class="math-block small">
-                        \[V = \iint_R f(x,y) \, dA = \frac{1}{4} \int_{0}^{2} \int_{0}^{4-2x} (4 - 2x - y) \, dy \, dx\]
-                    </div>
-                    <h3>3. التكامل الداخلي بالنسبة لـ $y$:</h3>
-                    <div class="math-block small">
-                        \[\int (4 - 2x - y) \, dy = 4y - 2xy - \frac{y^2}{2}\]
-                    </div>
-                    <p>بتعويض الحدود من $0$ إلى $(4 - 2x)$:</p>
-                    <h4>التبسيط الجبري:</h4>
-                    <ol>
-                        <li>فك الأقواس:
-                            <div class="math-block small">
-                                \[4(4 - 2x) = 16 - 8x, \quad -2x(4 - 2x) = -8x + 4x^2\]
-                                \[\frac{(4 - 2x)^2}{2} = \frac{16 - 16x + 4x^2}{2} = 8 - 8x + 2x^2\]
-                            </div>
-                        </li>
-                        <li>تجميع الحدود:
-                            <div class="math-block small">
-                                \[(16 - 16x + 4x^2) - (8 - 8x + 2x^2) = 8 - 8x + 2x^2\]
-                            </div>
-                        </li>
-                    </ol>
-                    <h3>4. التكامل الخارجي بالنسبة لـ $x$:</h3>
-                    <div class="math-block small">
-                        \[V = \frac{1}{4} \int_{0}^{2} (8 - 8x + 2x^2) \, dx = \frac{1}{4} \left[ 8x - 4x^2 + \frac{2x^3}{3} \right]_{0}^{2}\]
-                    </div>
-                    <div class="math-block small">
-                        \[= \frac{1}{4} \left[ 16 - 16 + \frac{16}{3} \right] = \frac{1}{4} \times \frac{16}{3} = \frac{4}{3}\]
-                    </div>
-                    <div class="result-box"><strong>الناتج النهائي (Final Answer):</strong> \[V = \frac{4}{3}\]</div>
-                </div>
-            </div>
+            <p><strong>المشتقة:</strong></p>
+            <div class="math-block small">\[ r'(t) = [-4 \sin(4t), -4 \cos(4t), 3] \]</div>
+            <p><strong>مربع المقدار:</strong></p>
+            <div class="math-block small">\[ r' \cdot r' = 16 \sin^2(4t) + 16 \cos^2(4t) + 9 = 16(1) + 9 = 25 \]</div>
+            <p><strong>حساب طول القوس:</strong></p>
+            <div class="math-block small">\[ s = \int_{0}^{t} \sqrt{25} \, d\tilde{t} = 5[\tilde{t}]_{0}^{t} = 5t \]</div>
+            <p><strong>التعبير عن $t$ بدلالة $s$:</strong></p>
+            <div class="math-block small">\[ t = \frac{s}{5} \]</div>
+            <div class="result-box"><strong>النتيجة النهائية:</strong> \[ r(s) = \left[ \cos\!\left(\tfrac{4s}{5}\right), -\sin\!\left(\tfrac{4s}{5}\right), \tfrac{3s}{5} \right] \]</div>
         </div>
 
-        <!-- ============ الأخطاء الشائعة ============ -->
-        <div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);">
+        <!-- ==================== PART 5 ==================== -->
+        <div class="chapter-head" id="p5">
+            <span class="chapter-tag">05</span>
+            <h1>الانحناء <span class="en" style="font-size:0.82rem;">(κ(s) — Curvature)</span></h1>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">5.1</span><span class="symbol-badge">κ</span><h2>التعريف والقوانين الأساسية</h2></div>
+            <p>الانحناء $\kappa(s)$ مقياس لمعدل تغير مقدار متجه المماس الوحيد $u(s)$ بالنسبة لطول القوس $s$.</p>
+            <p><strong>متجه المماس الوحيد:</strong></p>
+            <div class="math-block small">\[ u(s) = \frac{r'(t)}{|r'(t)|} \]</div>
+            <p><strong>القانون الأساسي للانحناء:</strong></p>
+            <div class="math-block">\[ \kappa(s) = |u'(s)| = |r''(s)| \]</div>
+            <p style="text-align:center; color:var(--ink-secondary); font-size:0.88rem;">(الانحناء يساوي مقدار المشتقة الثانية لمتجه الموضع بعد تمثيله بدلالة $s$)</p>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">⚠️</span>
-                <span class="symbol-badge">!</span>
-                <h2>الأخطاء الشائعة في التكاملات الثنائية</h2>
+                <span class="panel-index">5.2</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
+                <h2>نص السؤال المطلوب في الصور</h2>
             </div>
-            <ul class="mistake-list">
-                <li><span class="mk">خطأ 1</span> <strong>قلب الترتيب:</strong> كتابة $dx\,dy$ مع حدود مكتوبة لترتيب $dy\,dx$. الحدود الداخلية يجب أن تخص المتغير المكامل أولاً.</li>
-                <li><span class="mk">خطأ 2</span> <strong>حدود خارجية متغيرة:</strong> جعل حدود التكامل الخارجي تعتمد على المتغير — الحدود الخارجية يجب أن تكون أرقاماً ثابتة دائماً.</li>
-                <li><span class="mk">خطأ 3</span> <strong>التعويض في المتغير الخطأ:</strong> بعد التكامل الداخلي بالنسبة لـ $y$، يجب التعويض بالحدود في $y$ (أي $g_1(x), g_2(x)$) وليس في $x$.</li>
-                <li><span class="mk">خطأ 4</span> <strong>خطأ فك القوس المربع:</strong> $(4 - 2x)^2 = 16 - 16x + 4x^2$ وليست $16 - 4x^2$ — الحد الأوسط مرتين ab لا يُهمل.</li>
-                <li><span class="mk">خطأ 5</span> <strong>نسيان عزل z:</strong> في مسائل الحجم، يجب أولاً إخراج $z$ من معادلة المستوى (القسمة على 4 في مثال الهرم) قبل بناء التكامل.</li>
-                <li><span class="mk">خطأ 6</span> <strong>اختيار الاتجاه الخاطئ:</strong> إذا كان الحد العلوي دالة في $x$ فالشريحة الرأسية أسهل؛ أحياناً تكون المنطقة Type II فقط (مثل مثال x = y) وتحتاج دوالاً معكوسة.</li>
-            </ul>
+            <p class="quote-line">"Find the arc length s and the curvature κ(s) of a circle"</p>
+            <p>(أوجد طول القوس $s$ والانحناء $\kappa(s)$ لدائرة معطاة بالمعادلة التالية):</p>
+            <p><strong>المعطيات:</strong></p>
+            <div class="math-block small">\[ r(t) = [a \cos t, a \sin t] \]</div>
         </div>
 
-        <!-- ====== Quiz ====== -->
-        <div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);">
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">📝</span>
-                <span class="symbol-badge">?</span>
-                <h2>اختبر نفسك
-                    <span class="bi-caption">5 أسئلة — اضغط على الإجابة لترى التصحيح فوراً</span>
-                </h2>
+                <span class="panel-index">5.3</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <h2>خطوات الحل التفصيلية</h2>
             </div>
-            <div id="quiz-container"></div>
-            <div class="quiz-score">
-                <span>النتيجة</span>
-                <span style="display:flex;align-items:center;gap:14px;">
-                    <button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()">🔄 إعادة الاختبار</button>
-                    <span><span class="val" id="quiz-score">0</span> / 5</span>
-                </span>
-            </div>
+            <span class="step-tag">خطوة 1</span>
+            <div class="math-block small">\[ r'(t) = [-a \sin t, a \cos t] \]</div>
+            <span class="step-tag">خطوة 2</span>
+            <div class="math-block small">\[ r' \cdot r' = a^2 \sin^2 t + a^2 \cos^2 t = a^2 \]</div>
+            <span class="step-tag">خطوة 3</span>
+            <div class="math-block small">\[ s = \int_{0}^{t} a \, d\tilde{t} = at \]</div>
+            <span class="step-tag">خطوة 4</span>
+            <div class="math-block small">\[ t = \frac{s}{a}, \qquad r(s) = \left[ a \cos\!\left(\tfrac{s}{a}\right), a \sin\!\left(\tfrac{s}{a}\right) \right] \]</div>
+            <p><strong>المشتقة الأولى بالنسبة لـ $s$:</strong></p>
+            <div class="math-block small">\[ r'(s) = \left[ -\sin\!\left(\tfrac{s}{a}\right), \cos\!\left(\tfrac{s}{a}\right) \right] \]</div>
+            <p><strong>المشتقة الثانية بالنسبة لـ $s$:</strong></p>
+            <div class="math-block small">\[ r''(s) = \left[ -\tfrac{1}{a} \cos\!\left(\tfrac{s}{a}\right), -\tfrac{1}{a} \sin\!\left(\tfrac{s}{a}\right) \right] \]</div>
+            <span class="step-tag">خطوة 5</span>
+            <div class="result-box"><strong>الانحناء:</strong> \[ \kappa(s) = |r''(s)| = \sqrt{\tfrac{1}{a^2}(1)} = \frac{1}{a} \]</div>
         </div>
 
-        <!-- ====== Flashcards ====== -->
-        <div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);">
+        <!-- ==================== PART 6 ==================== -->
+        <div class="chapter-head" id="p6">
+            <span class="chapter-tag">06</span>
+            <h1>حساب الانحناء للمنحنى اللولبي <span class="en" style="font-size:0.82rem;">(Curvature of a Helix)</span></h1>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head"><span class="panel-index">6.1</span><span class="symbol-badge">κ</span><h2>تكملة المثال السابق (تكملة الدائرة)</h2></div>
+            <div class="math-block small">\[ r(s) = \left[ a \cos \tfrac{s}{a}, a \sin \tfrac{s}{a} \right] \]</div>
+            <div class="math-block small">\[ r'(s) = \left[ -\sin \tfrac{s}{a}, \cos \tfrac{s}{a} \right] \]</div>
+            <div class="math-block small">\[ r''(s) = \left[ -\tfrac{1}{a} \cos \tfrac{s}{a}, -\tfrac{1}{a} \sin \tfrac{s}{a} \right] \]</div>
+            <div class="result-box"><strong>الانحناء:</strong> \[ \kappa(s) = \sqrt{\tfrac{1}{a^2}(1)} = \frac{1}{a} \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
             <div class="panel-head">
-                <span class="panel-index">🃏</span>
-                <span class="symbol-badge">↻</span>
-                <h2>بطاقات المراجعة السريعة
-                    <span class="bi-caption">اضغط على أي بطاقة لقلبها ورؤية الجواب</span>
-                </h2>
+                <span class="panel-index">6.2</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/><path d="M13 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/></svg>
+                <h2>المثال الثاني في الصور (المنحنى اللولبي)</h2>
             </div>
-            <div class="flash-toolbar">
-                <button class="btn" onclick="shuffleFlashcards()">🔀 خلط البطاقات</button>
-            </div>
-            <div class="flash-grid" id="flash-grid"></div>
+            <p class="quote-line">"Find the arc length s and the curvature κ(s) for:"</p>
+            <p>(أوجد طول القوس $s$ والانحناء $\kappa(s)$ للدالة التالية):</p>
+            <p><strong>المعطيات:</strong></p>
+            <div class="math-block small">\[ r(t) = [2 \cos t, 2 \sin t, \sqrt{5}t] \]</div>
         </div>
 
-        <footer class="note">
-            SIGNAL REFERENCE · VECTOR CALCULUS — DOUBLE INTEGRALS · v3.0
-            &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()">🖨️ طباعة الملخص</button>
-        </footer>
+        <div class="panel" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">6.3</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <h2>خطوات الحل التفصيلية</h2>
+            </div>
+            <p><strong>المشتقة ومربع المقدار:</strong></p>
+            <div class="math-block small">\[ r'(t) = [-2 \sin t, 2 \cos t, \sqrt{5}] \]</div>
+            <div class="math-block small">\[ r' \cdot r' = 4(1) + 5 = 9 \]</div>
+            <p><strong>طول القوس والتعبير عن $t$:</strong></p>
+            <div class="math-block small">\[ s = \int_{0}^{t} \sqrt{9} \, d\tilde{t} = 3t \quad\Rightarrow\quad t = \frac{s}{3} \]</div>
+            <p><strong>التعويض لإيجاد $r(s)$:</strong></p>
+            <div class="math-block small">\[ r(s) = \left[ 2 \cos \tfrac{s}{3}, 2 \sin \tfrac{s}{3}, \sqrt{5}\tfrac{s}{3} \right] \]</div>
+            <p><strong>المشتقة الأولى والثانية بدلالة $s$:</strong></p>
+            <div class="math-block small">\[ r'(s) = \left[ -\tfrac{2}{3} \sin \tfrac{s}{3}, \tfrac{2}{3} \cos \tfrac{s}{3}, \tfrac{\sqrt{5}}{3} \right] \]</div>
+            <div class="math-block small">\[ r''(s) = \left[ -\tfrac{2}{9} \cos \tfrac{s}{3}, -\tfrac{2}{9} \sin \tfrac{s}{3}, 0 \right] \]</div>
+            <div class="result-box"><strong>الانحناء:</strong> \[ \kappa(s) = \sqrt{\tfrac{4}{81}(1)} = \frac{2}{9} \]</div>
+        </div>
+
+        <!-- ==================== PART 7 ==================== -->
+        <div class="chapter-head" id="p7">
+            <span class="chapter-tag">07</span>
+            <h1>الزبدة</h1>
+        </div>
+
+        <div class="golden-chain">
+            <span class="tag">ملخص التسلسل الذهبي — كل خطوة تُسلّم للتي بعدها</span>
+            <div class="math-block">\[ r(t) \xrightarrow{\text{اشتقاق وتكامل}} s = f(t) \xrightarrow{\text{عكس الدالة}} t = g(s) \xrightarrow{\text{تعويض}} r(s) \xrightarrow{\text{اشتقاقين ومقدار}} \kappa(s) = |r''(s)| \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head"><span class="panel-index">7.1</span><span class="symbol-badge">L</span><h2>المطلب الأول: طول المنحنى الكلي</h2></div>
+            <div class="when-box"><strong>متى يُطلب؟</strong> إذا أعطاك فترة محددة للزمن مثل $t \in [a,b]$.</div>
+            <ol>
+                <li>اشتق المتجه الأصلي $r(t)$ لتأخذ $r'(t)$.</li>
+                <li>احسب مربع مقدار المشتقة $r' \cdot r'$.</li>
+                <li>خذ الجذر التربيعي وكامل من $a$ إلى $b$:</li>
+            </ol>
+            <div class="math-block">\[ L = \int_{a}^{b} \sqrt{r' \cdot r'}\, dt \]</div>
+            <p><strong>مثال:</strong> $r(t)=[\cos t, \sin t, t]$ على $t\in[0,2\pi]$؛ $r'\cdot r' = 1+1=2$</p>
+            <div class="result-box"><strong>الطول:</strong> \[ L = \int_{0}^{2\pi}\sqrt2\,dt = 2\sqrt2\,\pi \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head"><span class="panel-index">7.2</span><span class="symbol-badge">s</span><h2>المطلب الثاني: دالة طول القوس</h2></div>
+            <div class="when-box"><strong>متى يُطلب؟</strong> إذا طلب إيجاد دالة $s$ أو $s(t)$ بدون قيمة نهائية لـ $t$.</div>
+            <ol>
+                <li>اشتق المتجه الأصلي لتجد $r'(t)$.</li>
+                <li>احسب مربع المقدار $r' \cdot r'$.</li>
+                <li>كامل من $0$ إلى $t$ (بدون ثابت تكامل):</li>
+            </ol>
+            <div class="math-block">\[ s = \int_{0}^{t} \sqrt{r' \cdot r'}\, d\tilde t \]</div>
+            <p><strong>مثال:</strong> $r(t)=[3\cos t, 3\sin t, 4t]$؛ $r'\cdot r' = 9+16=25$</p>
+            <div class="result-box"><strong>طول القوس:</strong> \[ s = \int_{0}^{t}\sqrt{25}\,d\tilde t = 5t \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head"><span class="panel-index">7.3</span><span class="symbol-badge">r(s)</span><h2>المطلب الثالث: إعادة التمثيل بدلالة s</h2></div>
+            <div class="when-box"><strong>متى يُطلب؟</strong> عندما يقول "Parametrize r by arc length s" أو يريد $r(s)$.</div>
+            <ol>
+                <li>احسب $s$ من الخطوة السابقة لتصل لمعادلة $s = f(t)$.</li>
+                <li>اعكس المعادلة لتحصل على $t = g(s)$.</li>
+                <li>عوّض كل $t$ في المتجه الأصلي $r(t)$ بقيمتها الجديدة بدلالة $s$.</li>
+            </ol>
+            <p><strong>مثال (تكملة السابق):</strong> $s = 5t \Rightarrow t = \frac{s}{5}$</p>
+            <div class="result-box"><strong>الناتج:</strong> \[ r(s) = \left[3\cos\!\left(\tfrac{s}{5}\right), 3\sin\!\left(\tfrac{s}{5}\right), 4\left(\tfrac{s}{5}\right)\right] \]</div>
+        </div>
+
+        <div class="panel" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head"><span class="panel-index">7.4</span><span class="symbol-badge">κ</span><h2>المطلب الرابع: حساب الانحناء</h2></div>
+            <div class="when-box"><strong>متى يُطلب؟</strong> عندما يطلب "Find the curvature κ(s)".</div>
+            <ol>
+                <li>جهّز المتجه بدلالة $s$ وهو $r(s)$ (من المطلب السابق).</li>
+                <li>اشتق $r(s)$ بالنسبة لـ $s$ لتحصل على $r'(s)$.</li>
+                <li>اشتق مرة ثانية لتحصل على $r''(s)$.</li>
+                <li>احسب مقدار المشتقة الثانية:</li>
+            </ol>
+            <div class="math-block">\[ \kappa(s) = |r''(s)| = \sqrt{(x'')^2+(y'')^2+(z'')^2} \]</div>
+            <p><strong>مثال (تكملة السابق):</strong> $r(s) = \left[3\cos\frac{s}{5}, 3\sin\frac{s}{5}, \frac{4s}{5}\right]$</p>
+            <div class="math-block small">\[ r'(s) = \left[-\tfrac35\sin\tfrac{s}{5}, \tfrac35\cos\tfrac{s}{5}, \tfrac45\right] \]</div>
+            <div class="math-block small">\[ r''(s) = \left[-\tfrac{3}{25}\cos\tfrac{s}{5}, -\tfrac{3}{25}\sin\tfrac{s}{5}, 0\right] \]</div>
+            <div class="result-box"><strong>الانحناء:</strong> \[ \kappa(s) = \sqrt{\tfrac{9}{625}(1)} = \frac{3}{25} \]</div>
+        </div>
+
+        <footer class="note">SIGNAL REFERENCE · ARC LENGTH &amp; CURVATURE</footer>
     </div>
 
     <script>
-        /* ============ Utils ============ */
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function toggleTrigger(el) { el.classList.toggle('open'); }
-        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-        /* ============ الثيم ============ */
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('light');
-            const light = body.classList.contains('light');
-            document.getElementById('theme-btn').textContent = light ? '☀️' : '🌙';
-            try { localStorage.setItem('lecture6-theme', light ? 'light' : 'dark'); } catch(e) {}
-        }
-        (function initTheme() {
-            let saved = null;
-            try { saved = localStorage.getItem('lecture6-theme'); } catch(e) {}
-            if (saved === 'light') {
-                document.body.classList.add('light');
-                document.getElementById('theme-btn').textContent = '☀️';
-            }
+        (function () {
+            const el = document.getElementById('arcLen');
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion || !el) return;
+            const len = el.getTotalLength ? el.getTotalLength() : 200;
+            el.style.strokeDasharray = len;
+            el.style.strokeDashoffset = len;
+            el.style.transition = 'stroke-dashoffset 1.1s ease 0.3s';
+            requestAnimationFrame(() => requestAnimationFrame(() => { el.style.strokeDashoffset = 0; }));
         })();
-
-        /* ============ تقدم القراءة ============ */
-        const progressBar = document.querySelector('#read-progress .bar');
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement;
-            progressBar.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
-        }, { passive: true });
-
-        /* ============ ظهور تدريجي ============ */
-        (function initReveal() {
-            const items = document.querySelectorAll('.reveal');
-            if (reduceMotion || !('IntersectionObserver' in window)) {
-                items.forEach(el => el.classList.add('visible')); return;
-            }
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-            }, { threshold: 0.06 });
-            items.forEach(el => obs.observe(el));
-        })();
-
-        /* ============ TOC ============ */
-        function toggleToc() {
-            document.getElementById('toc-drawer').classList.toggle('open');
-            document.getElementById('toc-backdrop').classList.toggle('open');
-        }
-        document.querySelectorAll('#toc-drawer a').forEach(a => {
-            a.addEventListener('click', () => { if (window.innerWidth < 900) toggleToc(); });
-        });
-        const tocLinks = [...document.querySelectorAll('#toc-drawer a')];
-        const tocTargets = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        const tocObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('active'));
-                    const link = tocLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
-                    if (link) link.classList.add('active');
-                }
-            });
-        }, { rootMargin: '-30% 0px -60% 0px' });
-        tocTargets.forEach(t => tocObs.observe(t));
-
-        /* ============================================================
-           Hero Animation — شريحة رأسية + أفقية
-           ============================================================ */
-        if (!reduceMotion) {
-            // Type I: منطقة تحت القطع y = 2x² مماثلة (x∈[0,1], y∈[0,2])
-            const t1 = { x0: 48, yBase: 172, w: 272, h: 142 }; // y max عند x=1
-            const t1Region = document.getElementById('t1-region');
-            let d1 = `M ${t1.x0} ${t1.yBase}`;
-            for (let i = 0; i <= 50; i++) {
-                const x = i / 50;
-                d1 += ` L ${(t1.x0 + x * t1.w).toFixed(1)} ${(t1.yBase - 2 * x * x * (t1.h / 2)).toFixed(1)}`;
-            }
-            d1 += ` L ${t1.x0 + t1.w} ${t1.yBase} Z`;
-            t1Region.setAttribute('d', d1);
-
-            const t1Strip = document.getElementById('t1-strip');
-            const t1Label = document.getElementById('t1-label');
-
-            // Type II: منطقة بين x = y/2 و x = 1 (y∈[0,2])
-            const t2 = { x0: 400, yBase: 172, w: 274, h: 146 };
-            const t2Region = document.getElementById('t2-region');
-            let d2 = '';
-            for (let i = 0; i <= 50; i++) {
-                const y = i / 50;
-                d2 += (i === 0 ? 'M' : 'L') + ` ${(t2.x0 + (y / 2) * t2.w).toFixed(1)} ${(t2.yBase - y * (t2.h / 2)).toFixed(1)} `;
-            }
-            for (let i = 50; i >= 0; i--) {
-                const y = i / 50;
-                d2 += `L ${(t2.x0 + t2.w).toFixed(1)} ${(t2.yBase - y * (t2.h / 2)).toFixed(1)} `;
-            }
-            d2 += 'Z';
-            t2Region.setAttribute('d', d2);
-
-            const t2Strip = document.getElementById('t2-strip');
-            const t2Label = document.getElementById('t2-label');
-
-            function animateHero(ts) {
-                const period = 3600;
-                const ph = (ts % period) / period;
-                const t = ph < 0.5 ? ph * 2 : 2 - ph * 2; // ذهاب وإياب
-
-                // الشريحة الرأسية
-                const sx = t1.x0 + 12 + t * (t1.w - 26);
-                const sxw = (sx - t1.x0) / t1.w;
-                const topY = t1.yBase - 2 * sxw * sxw * (t1.h / 2);
-                t1Strip.setAttribute('x', sx);
-                t1Strip.setAttribute('y', topY);
-                t1Strip.setAttribute('height', t1.yBase - topY);
-                t1Label.setAttribute('x', sx + 5);
-                t1Label.setAttribute('y', topY - 6);
-
-                // الشريحة الأفقية
-                const syw = 0.06 + t * 0.88;
-                const sy = t2.yBase - syw * (t2.h / 2);
-                const leftX = t2.x0 + (syw / 2) * t2.w;
-                t2Strip.setAttribute('x', leftX);
-                t2Strip.setAttribute('y', sy - 5);
-                t2Strip.setAttribute('width', t2.x0 + t2.w - leftX);
-                t2Label.setAttribute('x', (leftX + t2.x0 + t2.w) / 2);
-                t2Label.setAttribute('y', sy - 10);
-
-                requestAnimationFrame(animateHero);
-            }
-            requestAnimationFrame(animateHero);
-        }
-
-        /* ============================================================
-           مختبر الشريحة (SliceLab)
-           ============================================================ */
-        const SliceLab = (() => {
-            const canvas = document.getElementById('sl-canvas');
-            if (!canvas) return { togglePlay(){}, reset(){}, applyCustom(){} };
-            const ctx = canvas.getContext('2d');
-            const readout = document.getElementById('sl-readout');
-            const presetSel = document.getElementById('sl-preset');
-            const funcSel = document.getElementById('sl-func');
-            const customRow = document.getElementById('sl-custom-row');
-            const nSlider = document.getElementById('sl-n');
-            const nVal = document.getElementById('sl-n-val');
-            const playBtn = document.getElementById('sl-play');
-
-            let W = 0, H = 0, dpr = 1;
-            let F = () => 1;                 // f(x,y)
-            let preset = null;
-            let customG = null;
-            let dir = 'v';
-            let t = 0;                       // تقدم المسح 0..1
-            let playing = false;
-            let rafId = null;
-            let samples = [], cum = [], exactNumeric = 0, vMax = 1;
-
-            const NS = 400; // عينات لحساب المنحنى
-
-            function resize() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                const rect = canvas.getBoundingClientRect();
-                W = rect.width; H = rect.height;
-                canvas.width = W * dpr; canvas.height = H * dpr;
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                draw();
-            }
-            window.addEventListener('resize', resize);
-
-            function trap(f, lo, hi, n) {
-                if (hi <= lo) return 0;
-                const dx = (hi - lo) / n;
-                let s = 0.5 * (f(lo) + f(hi));
-                for (let i = 1; i < n; i++) s += f(lo + i * dx);
-                return s * dx;
-            }
-
-            /* حدود المنطقة حسب الاتجاه */
-            function gLow(x) { return 0; }
-            function gUp(x) {
-                if (customG) return Math.max(customG(x), 0);
-                return preset.g(x);
-            }
-            function hLeft(y)  { return preset.inv(y); }
-            function hRight(y) { return preset.b; }
-
-            /* قيمة الشريحة A(s): التكامل الداخلي */
-            function innerV(s) {
-                if (dir === 'v') {
-                    const x = s;
-                    return trap(yy => F(x, yy), gLow(x), gUp(x), 160);
-                } else {
-                    const y = s;
-                    return trap(xx => F(xx, y), hLeft(y), hRight(y), 160);
-                }
-            }
-
-            function outerRange() {
-                if (!preset) return [0, 1];
-                return dir === 'v' ? [preset.a, preset.b] : [0, preset.ymax];
-            }
-
-            function recompute() {
-                const [a, b] = outerRange();
-                samples = []; cum = [];
-                let acc = 0, prev = innerV(a);
-                samples.push(prev); cum.push(0);
-                const du = (b - a) / NS;
-                vMax = Math.abs(prev);
-                for (let i = 1; i <= NS; i++) {
-                    const u = a + i * du;
-                    const v = innerV(u);
-                    acc += (prev + v) / 2 * du;
-                    samples.push(v); cum.push(acc);
-                    vMax = Math.max(vMax, Math.abs(v));
-                    prev = v;
-                }
-                exactNumeric = acc;
-                vMax *= 1.15;
-                draw();
-            }
-
-            function exactDisplay() {
-                const fid = funcSel.value;
-                if (preset && preset.exacts && preset.exacts[fid]) return preset.exacts[fid];
-                return exactNumeric;
-            }
-
-            /* ----- رسم ----- */
-            function draw() {
-                ctx.clearRect(0, 0, W, H);
-                const light = document.body.classList.contains('light');
-                const colGrid = light ? 'rgba(15,80,55,0.08)' : 'rgba(124,255,178,0.05)';
-                const colAxis = 'rgba(150,170,160,0.4)';
-
-                /* شبكة */
-                ctx.strokeStyle = colGrid; ctx.lineWidth = 1;
-                ctx.beginPath();
-                for (let x = 30; x < W; x += 30) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
-                for (let y = 30; y < H; y += 30) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
-                ctx.stroke();
-
-                const split = W * 0.54;
-
-                /* ===== الرسم الأيسر: منطقة R ===== */
-                const L = { x: 48, y: H - 42, w: split - 80, h: H - 90 };
-                const yMax = (preset ? preset.ymax : 2) * 1.06;
-                const xMin = preset ? preset.a : 0, xMax = preset ? preset.b : 1;
-                const X = wx => L.x + (wx - xMin) / (xMax - xMin) * L.w;
-                const Y = wy => L.y - wy / yMax * L.h;
-
-                // محاور
-                ctx.strokeStyle = colAxis; ctx.lineWidth = 1.4;
-                ctx.beginPath();
-                ctx.moveTo(L.x, 24); ctx.lineTo(L.x, L.y); ctx.lineTo(L.x + L.w + 10, L.y);
-                ctx.stroke();
-
-                if (preset || customG) {
-                    // المنطقة
-                    ctx.beginPath();
-                    ctx.moveTo(X(xMin), Y(0));
-                    const steps = 80;
-                    for (let i = 0; i <= steps; i++) {
-                        const x = xMin + (xMax - xMin) * i / steps;
-                        ctx.lineTo(X(x), Y(gUp(x)));
-                    }
-                    ctx.lineTo(X(xMax), Y(0));
-                    ctx.closePath();
-                    ctx.fillStyle = 'rgba(124,255,178,0.10)';
-                    ctx.fill();
-                    ctx.strokeStyle = '#7cffb2'; ctx.lineWidth = 2; ctx.stroke();
-
-                    // أعمدة ريمان (تقسيم على المحور الخارجي)
-                    const n = parseInt(nSlider.value);
-                    const [a, b] = outerRange();
-                    const du = (b - a) / n;
-                    ctx.strokeStyle = 'rgba(255,180,84,0.35)';
-                    ctx.lineWidth = 1;
-                    for (let i = 1; i < n; i++) {
-                        const u = a + i * du;
-                        if (dir === 'v') {
-                            ctx.beginPath(); ctx.moveTo(X(u), Y(0)); ctx.lineTo(X(u), Y(gUp(u))); ctx.stroke();
-                        } else {
-                            const y = u;
-                            ctx.beginPath(); ctx.moveTo(X(hLeft(y)), Y(y)); ctx.lineTo(X(hRight(y)), Y(y)); ctx.stroke();
-                        }
-                    }
-
-                    // الشريحة الممسوحة عند t
-                    const sNow = a + t * (b - a);
-                    ctx.fillStyle = 'rgba(255,209,102,0.35)';
-                    ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 1.5;
-                    if (dir === 'v') {
-                        const sw = L.w / 90;
-                        const yTop = gUp(sNow);
-                        ctx.fillRect(X(sNow) - sw / 2, Y(yTop), sw, Y(0) - Y(yTop));
-                        ctx.strokeRect(X(sNow) - sw / 2, Y(yTop), sw, Y(0) - Y(yTop));
-                    } else {
-                        const sh = L.h / 55;
-                        ctx.fillRect(X(hLeft(sNow)), Y(sNow) - sh / 2, X(hRight(sNow)) - X(hLeft(sNow)), sh);
-                        ctx.strokeRect(X(hLeft(sNow)), Y(sNow) - sh / 2, X(hRight(sNow)) - X(hLeft(sNow)), sh);
-                    }
-
-                    ctx.fillStyle = '#7f9d92';
-                    ctx.font = '11px "IBM Plex Mono"';
-                    ctx.fillText(dir === 'v' ? 'R in xy-plane (vertical slices)' : 'R in xy-plane (horizontal slices)', L.x, 16);
-                }
-
-                /* ===== الرسم الأيمن: منحنى A(s) + ريمان ===== */
-                const Rp = { x: split + 26, y: H - 42, w: W - split - 48, h: H - 90 };
-                const [a, b] = outerRange();
-                const RX = u => Rp.x + (u - a) / (b - a) * Rp.w;
-                const RY = v => Rp.y - v / vMax * Rp.h;
-
-                ctx.strokeStyle = colAxis; ctx.lineWidth = 1.4;
-                ctx.beginPath();
-                ctx.moveTo(Rp.x, 24); ctx.lineTo(Rp.x, Rp.y); ctx.lineTo(Rp.x + Rp.w + 8, Rp.y);
-                ctx.stroke();
-
-                if (samples.length > 1) {
-                    // أعمدة ريمان
-                    const n = parseInt(nSlider.value);
-                    const du = (b - a) / n;
-                    ctx.fillStyle = 'rgba(255,180,84,0.35)';
-                    ctx.strokeStyle = 'rgba(255,180,84,0.7)';
-                    ctx.lineWidth = 1;
-                    let riemann = 0;
-                    for (let i = 0; i < n; i++) {
-                        const u = a + i * du;
-                        const v = innerV(u);
-                        riemann += v * du;
-                        const bx = RX(u), bw2 = Rp.w / n;
-                        ctx.fillRect(bx, RY(v), bw2, Rp.y - RY(v));
-                        ctx.strokeRect(bx, RY(v), bw2, Rp.y - RY(v));
-                    }
-
-                    // المنحنى الكامل (خافت)
-                    ctx.strokeStyle = 'rgba(124,255,178,0.45)';
-                    ctx.lineWidth = 1.6;
-                    ctx.beginPath();
-                    for (let i = 0; i <= NS; i++) {
-                        const u = a + (b - a) * i / NS;
-                        i === 0 ? ctx.moveTo(RX(u), RY(samples[i])) : ctx.lineTo(RX(u), RY(samples[i]));
-                    }
-                    ctx.stroke();
-
-                    // التراكم حتى t (معبأ)
-                    const idx = Math.max(1, Math.round(t * NS));
-                    ctx.fillStyle = 'rgba(124,255,178,0.22)';
-                    ctx.beginPath();
-                    ctx.moveTo(RX(a), Rp.y);
-                    for (let i = 0; i <= idx; i++) {
-                        const u = a + (b - a) * i / NS;
-                        ctx.lineTo(RX(u), RY(samples[i]));
-                    }
-                    ctx.lineTo(RX(a + (b - a) * idx / NS), Rp.y);
-                    ctx.closePath(); ctx.fill();
-
-                    // خط موضع الشريحة
-                    const sNow = a + t * (b - a);
-                    ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 1.4;
-                    ctx.setLineDash([4, 4]);
-                    ctx.beginPath(); ctx.moveTo(RX(sNow), 28); ctx.lineTo(RX(sNow), Rp.y); ctx.stroke();
-                    ctx.setLineDash([]);
-
-                    ctx.fillStyle = '#7f9d92';
-                    ctx.font = '11px "IBM Plex Mono"';
-                    ctx.fillText(dir === 'v' ? 'A(x) = ∫ f dy' : 'A(y) = ∫ f dx', Rp.x, 16);
-
-                    /* القراءات */
-                    const ex = exactDisplay();
-                    const err = Math.abs(riemann - ex) / (Math.abs(ex) > 1e-9 ? Math.abs(ex) : 1) * 100;
-                    const vNow = samples[idx];
-                    const accNow = cum[idx];
-                    readout.innerHTML =
-                        `<div>slice @ ${dir === 'v' ? 'x' : 'y'} = <span class="rv">${sNow.toFixed(3)}</span></div>` +
-                        `<div>A(s) = <span class="rg">${vNow.toFixed(4)}</span></div>` +
-                        `<div>accum = <span class="rg">${accNow.toFixed(4)}</span></div>` +
-                        `<div>Riemann(n=${n}) = <span class="rb">${riemann.toFixed(4)}</span></div>` +
-                        `<div>exact = <span class="rv">${ex.toFixed(4)}</span> |err| = <span class="rb">${err.toFixed(2)}%</span></div>`;
-                }
-            }
-
-            function frame() {
-                if (!playing) return;
-                t += 0.0035;
-                if (t >= 1) { t = 1; playing = false; playBtn.textContent = '▶ تشغيل المسح'; }
-                draw();
-                if (playing) rafId = requestAnimationFrame(frame);
-            }
-
-            function togglePlay() {
-                if (playing) { playing = false; playBtn.textContent = '▶ تشغيل المسح'; cancelAnimationFrame(rafId); return; }
-                if (t >= 1) t = 0;
-                playing = true;
-                playBtn.textContent = '⏸ إيقاف';
-                rafId = requestAnimationFrame(frame);
-            }
-            function reset() { playing = false; playBtn.textContent = '▶ تشغيل المسح'; cancelAnimationFrame(rafId); t = 0; draw(); }
-
-            /* الإعدادات الجاهزة */
-            const PRESETS = {
-                ex1: {
-                    name: 'مثال المحاضرة: 0 ≤ x ≤ 1, 0 ≤ y ≤ 2x²',
-                    a: 0, b: 1, ymax: 2,
-                    g: x => 2 * x * x, inv: y => Math.sqrt(y / 2),
-                    funcs: [
-                        { id: 'area', label: 'f = 1 (مساحة R)', f: () => 1 },
-                        { id: 'vol',  label: 'f = 8x + 6y (حجم المثال)', f: (x, y) => 8 * x + 6 * y }
-                    ],
-                    exacts: { area: 2 / 3, vol: 32 / 5 }
-                },
-                tri: {
-                    name: 'مثلث: 0 ≤ x ≤ 1, 0 ≤ y ≤ x',
-                    a: 0, b: 1, ymax: 1,
-                    g: x => x, inv: y => y,
-                    funcs: [{ id: 'area', label: 'f = 1 (مساحة R)', f: () => 1 }],
-                    exacts: { area: 1 / 2 }
-                },
-                tetra: {
-                    name: 'مجسم المستويات: 0 ≤ x ≤ 2, 0 ≤ y ≤ 4 − 2x',
-                    a: 0, b: 2, ymax: 4,
-                    g: x => 4 - 2 * x, inv: y => (4 - y) / 2,
-                    funcs: [
-                        { id: 'area', label: 'f = 1 (مساحة القاعدة)', f: () => 1 },
-                        { id: 'vol',  label: 'f = (4 − 2x − y)/4 (حجم المجسم)', f: (x, y) => (4 - 2 * x - y) / 4 }
-                    ],
-                    exacts: { area: 4, vol: 4 / 3 }
-                },
-                custom: { name: '✏️ منطقة مخصصة…', custom: true }
-            };
-
-            function fillFuncs() {
-                const id = presetSel.value;
-                funcSel.innerHTML = '';
-                if (id === 'custom') {
-                    const opt = document.createElement('option');
-                    opt.value = 'area'; opt.textContent = 'f = 1 (مساحة R)';
-                    funcSel.appendChild(opt);
-                    return;
-                }
-                PRESETS[id].funcs.forEach(fdef => {
-                    const opt = document.createElement('option');
-                    opt.value = fdef.id; opt.textContent = fdef.label;
-                    funcSel.appendChild(opt);
-                });
-            }
-
-            function compileExpr(expr) {
-                let s = expr.trim().replace(/\^/g, '**');
-                s = s.replace(/\bsin\b/g, 'Math.sin').replace(/\bcos\b/g, 'Math.cos')
-                     .replace(/\btan\b/g, 'Math.tan').replace(/\bexp\b/g, 'Math.exp')
-                     .replace(/\bsqrt\b/g, 'Math.sqrt').replace(/\bpi\b/g, 'Math.PI');
-                const fn = new Function('x', 'return ' + s + ';');
-                const v = fn(0.5);
-                if (typeof v !== 'number' || isNaN(v) || !isFinite(v)) throw new Error('bad');
-                return fn;
-            }
-
-            function applyConfig() {
-                const id = presetSel.value;
-                customRow.style.display = id === 'custom' ? 'flex' : 'none';
-                customG = null;
-                if (id === 'custom') {
-                    preset = { a: 0, b: 1, ymax: 2, inv: null };
-                    try { customG = compileExpr(document.getElementById('sl-g').value); }
-                    catch (e) { readout.innerHTML = '<div style="color:#f87171;">⚠ تعبير غير صالح</div>'; return; }
-                    preset.ymax = Math.max(0.5, customG(1), customG(0.5), customG(0.8)) * 1.1;
-                    F = () => 1;
-                    document.querySelector('input[name="sl-dir"][value="v"]').checked = true;
-                    document.querySelector('input[name="sl-dir"][value="h"]').disabled = true;
-                } else {
-                    preset = PRESETS[id];
-                    const fdef = preset.funcs.find(f => f.id === funcSel.value) || preset.funcs[0];
-                    F = fdef.f;
-                    document.querySelector('input[name="sl-dir"][value="h"]').disabled = false;
-                }
-                dir = document.querySelector('input[name="sl-dir"]:checked').value;
-                if (dir === 'h' && !preset.inv) dir = 'v';
-                reset();
-                recompute();
-            }
-
-            function applyCustom() { if (presetSel.value === 'custom') applyConfig(); }
-
-            presetSel.addEventListener('change', () => { fillFuncs(); applyConfig(); });
-            funcSel.addEventListener('change', applyConfig);
-            document.querySelectorAll('input[name="sl-dir"]').forEach(r => r.addEventListener('change', applyConfig));
-            nSlider.addEventListener('input', () => { nVal.textContent = 'n = ' + nSlider.value; draw(); });
-
-            /* تهيئة */
-            Object.entries(PRESETS).forEach(([id, p]) => {
-                const opt = document.createElement('option');
-                opt.value = id; opt.textContent = p.name;
-                presetSel.appendChild(opt);
-            });
-            presetSel.value = 'ex1';
-            fillFuncs();
-            funcSel.value = 'vol';
-            applyConfig();
-            resize();
-
-            return { togglePlay, reset, applyCustom };
-        })();
-
-        /* ============================================================
-           Quiz
-           ============================================================ */
-        const quizData = [
-            {
-                q: 'ما عنصر المساحة $dA$ الصحيح لمنطقة Type I (شريحة رأسية)؟',
-                opts: ['$dx\\,dy$', '$dy\\,dx$', '$dx\\,dx$', '$dy\\,dy$'],
-                correct: 1,
-                feedback: 'في Type I نكامل بالنسبة لـ y أولاً (بين دالتين في x) ثم x بين رقمين ثابتين، لذا dA = dy dx.'
-            },
-            {
-                q: 'متى نستخدم الترتيب $dx\\,dy$ (Type II)؟',
-                opts: [
-                    'عندما تكون حدود $x$ دالتين في $y$',
-                    'عندما تكون حدود $y$ دالتين في $x$',
-                    'عندما تكون المنطقة مستطيلة فقط',
-                    'عندما تكون f(x,y) ثابتة'
-                ],
-                correct: 0,
-                feedback: 'Type II تُستخدم عندما يكون الحد الأيسر والأيمن للمنطقة دالتين في y: ∫∫ f dx dy.'
-            },
-            {
-                q: 'ما ناتج $\\int_{0}^{1} \\int_{0}^{x} (xy + 4) \\, dy \\, dx$؟',
-                opts: ['$\\frac{15}{8}$', '$\\frac{17}{8}$', '$\\frac{32}{5}$', '$2$'],
-                correct: 1,
-                feedback: 'التكامل الداخلي يعطي x³/2 + 4x، ثم ∫₀¹ = 1/8 + 2 = 17/8.'
-            },
-            {
-                q: 'ما حجم المجسم المحصور بين مستويات الإحداثيات والمستوى $2x + y + 4z = 4$؟',
-                opts: ['$\\frac{16}{3}$', '$\\frac{32}{5}$', '$\\frac{4}{3}$', '$4$'],
-                correct: 2,
-                feedback: 'V = (1/4)∫₀²∫₀^{4−2x} (4 − 2x − y) dy dx = 4/3.'
-            },
-            {
-                q: 'في التكامل $\\int_{a}^{b} \\int_{g_1(x)}^{g_2(x)} f \\, dy \\, dx$، ماذا يجب أن تكون عليه $a$ و $b$؟',
-                opts: [
-                    'دالتين في $y$',
-                    'دالتين في $x$',
-                    'أرقاماً ثابتة',
-                    'يمكن أن تعتمد على $y$'
-                ],
-                correct: 2,
-                feedback: 'الحدود الخارجية يجب أن تكون ثوابت — أي ظهور متغير فيها يعني خطأ في ترتيب التكامل.'
-            }
-        ];
-
-        let quizScore = 0;
-        let answered = new Set();
-
-        function renderQuiz() {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = quizData.map((item, i) => `
-                <div class="quiz-q" data-i="${i}">
-                    <div class="q-text"><strong>${i+1}.</strong> ${item.q}</div>
-                    <div class="quiz-opts">
-                        ${item.opts.map((opt, j) => `
-                            <button class="quiz-opt" onclick="answerQuiz(${i}, ${j}, this)">${opt}</button>
-                        `).join('')}
-                    </div>
-                    <div class="quiz-feedback" id="fb-${i}"></div>
-                </div>
-            `).join('');
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([container]).catch(()=>{});
-        }
-
-        function answerQuiz(qIdx, optIdx, btn) {
-            if (answered.has(qIdx)) return;
-            answered.add(qIdx);
-            const item = quizData[qIdx];
-            const parent = btn.closest('.quiz-q');
-            const allOpts = parent.querySelectorAll('.quiz-opt');
-            const fb = document.getElementById('fb-' + qIdx);
-            allOpts.forEach((b, j) => {
-                b.disabled = true;
-                if (j === item.correct) b.classList.add('correct');
-                else if (j === optIdx) b.classList.add('wrong');
-            });
-            if (optIdx === item.correct) {
-                quizScore++;
-                fb.className = 'quiz-feedback show ok';
-                fb.innerHTML = '✓ صحيح! ' + item.feedback;
-            } else {
-                fb.className = 'quiz-feedback show no';
-                fb.innerHTML = '✗ خطأ. ' + item.feedback;
-            }
-            document.getElementById('quiz-score').textContent = quizScore;
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]).catch(()=>{});
-            try { localStorage.setItem('lecture6-quiz', JSON.stringify({ score: quizScore, answered: [...answered] })); } catch (e) {}
-        }
-
-        function resetQuiz() {
-            quizScore = 0; answered = new Set();
-            document.getElementById('quiz-score').textContent = '0';
-            try { localStorage.removeItem('lecture6-quiz'); } catch(e) {}
-            renderQuiz();
-        }
-
-        /* ============================================================
-           Flashcards
-           ============================================================ */
-        let flashData = [
-            { f: 'Type I — عنصر المساحة', b: '$dA = dy\\,dx$ — شريحة رأسية' },
-            { f: 'Type II — عنصر المساحة', b: '$dA = dx\\,dy$ — شريحة أفقية' },
-            { f: 'قاعدة الحدود الخارجية', b: 'أرقام ثابتة دائماً' },
-            { f: 'حدود Type I الداخلية', b: '$g_1(x) \\le y \\le g_2(x)$' },
-            { f: 'حدود Type II الداخلية', b: '$h_1(y) \\le x \\le h_2(y)$' },
-            { f: 'حجم المثال تحت المستوى z = 8x + 6y', b: '$V = \\dfrac{32}{5} = 6.4$' },
-            { f: 'ناتج Example 1', b: '$\\dfrac{17}{8}$' },
-            { f: 'ناتج Example 2', b: '$\\dfrac{32}{5}$' },
-            { f: 'حجم مجسم المستويات (Tetrahedron)', b: '$V = \\dfrac{4}{3}$' },
-            { f: 'فك القوس المربع في مثال الهرم', b: '$(4-2x)^2 = 16 - 16x + 4x^2$' },
-        ];
-
-        function renderFlashcards() {
-            const grid = document.getElementById('flash-grid');
-            grid.innerHTML = flashData.map(c => `
-                <div class="flash" onclick="this.classList.toggle('flipped')">
-                    <div class="flash-inner">
-                        <div class="flash-face flash-front">
-                            <div>${c.f}<span class="hint">اضغط للقلب ↻</span></div>
-                        </div>
-                        <div class="flash-face flash-back">
-                            <div>${c.b}</div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([grid]).catch(()=>{});
-        }
-
-        function shuffleFlashcards() {
-            for (let i = flashData.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [flashData[i], flashData[j]] = [flashData[j], flashData[i]];
-            }
-            renderFlashcards();
-        }
-
-        /* ============================================================
-           أزرار نسخ LaTeX
-           ============================================================ */
-        function addCopyButtons() {
-            document.querySelectorAll('.math-block').forEach(block => {
-                const container = block.querySelector('mjx-container');
-                let tex = container ? (container.getAttribute('aria-label') || '') : '';
-                if (!tex) return;
-                const btn = document.createElement('button');
-                btn.className = 'copy-tex';
-                btn.textContent = 'copy TeX';
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(tex).then(() => {
-                        btn.textContent = '✓ copied';
-                        btn.classList.add('copied');
-                        setTimeout(() => { btn.textContent = 'copy TeX'; btn.classList.remove('copied'); }, 1500);
-                    }).catch(() => { btn.textContent = '✗ فشل'; });
-                };
-                block.appendChild(btn);
-            });
-        }
-
-        /* ============ Init ============ */
-        window.addEventListener('load', () => {
-            renderQuiz();
-            renderFlashcards();
-            setTimeout(addCopyButtons, 1200);
-        });
     </script>
 </body>
 </html>
