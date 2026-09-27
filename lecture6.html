@@ -376,18 +376,18 @@
 </head>
 <body>
 
-    <div class="bg-grid"></div>
+  <div class="bg-grid"></div>
     <div id="read-progress"><div class="bar"></div></div>
 
     <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button>
     <div id="toc-backdrop" onclick="toggleToc()"></div>
     <aside id="toc-drawer">
         <h3>فهرس المحاضرة</h3>
-        <a href="#quick-map">✦ الخلاصة الذهنية</a>
+        <a href="#quick-map">✨ الخلاصة الذهنية</a>
         <a href="#slice-lab">🧪 مختبر الشريحة التفاعلي</a>
-        <a href="#type1">01 · Type I — الشريحة الرأسية</a>
-        <a href="#type2">02 · Type II — الشريحة الأفقية</a>
-        <a href="#ex-plane">03 · مثال: الحجم تحت مستوٍ</a>
+        <a href="#type1">01 · Type I – الشريحة الرأسية</a>
+        <a href="#type2">02 · Type II – الشريحة الأفقية</a>
+        <a href="#ex-plane">03 · مثال: الحجم تحت مستوى</a>
         <a href="#ex1">04 · Example 1</a>
         <a href="#ex2">05 · Example 2</a>
         <a href="#tetra">06 · مجسم المستويات (Tetrahedron)</a>
@@ -406,11 +406,7 @@
             <div class="bezel-actions">
                 <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
                 <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                    <option value="index.html">ملخص المحاضرة 1</option>
-                    <option value="lecture2.html">ملخص المحاضرة 2</option>
-                    <option value="lecture3.html">ملخص المحاضرة 3</option>
-                    <option value="lecture4.html">ملخص المحاضرة 4</option>
-                    <option value="lecture6.html" selected>ملخص المحاضرة 6 - Double Integrals</option>
+                    <!-- يتم توليد قائمة المحاضرات تلقائياً بواسطة nav.js -->
                 </select>
             </div>
         </div>
