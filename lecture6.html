@@ -159,7 +159,7 @@
         .chip.b { color: var(--accent-assess); border-color: rgba(124,196,255,.35); background: rgba(124,196,255,.06); }
         .chip.y { color: var(--accent-identity); border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.06); }
         .scope-screen { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; position: relative; }
-        .scope-screen svg { display: block; width: 100%; height: auto; }
+        .scope-screen svg { display: block; width: 100%; height: auto; direction: ltr; }
         .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; color: var(--ink-secondary); }
         .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
         .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
@@ -224,7 +224,7 @@
         .trigger.open { border-style: solid; cursor: default; }
 
         .diagram-frame { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
-        .diagram-frame svg { max-width: 100%; height: auto; }
+        .diagram-frame svg { max-width: 100%; height: auto; direction: ltr; }
 
         /* ---------------- جدول المقارنة ---------------- */
         .cmp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
@@ -240,6 +240,18 @@
             padding: 2px 8px; border-radius: 5px; margin-left: 8px;
             background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3);
         }
+
+        /* ---------------- أزرار عامة (btn) ---------------- */
+        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+        .btn {
+            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 600;
+            padding: 10px 18px; border-radius: 8px; cursor: pointer;
+            border: 1px solid var(--border-soft); background: transparent;
+            color: var(--ink-primary); transition: all .2s;
+        }
+        .btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.06); }
+        .btn.primary { background: rgba(124,255,178,0.1); border-color: var(--trace-cos); color: var(--trace-cos); }
+        .btn.primary:hover { background: rgba(124,255,178,0.2); }
 
         /* ---------------- مختبر الشريحة ---------------- */
         .sl-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
@@ -383,14 +395,14 @@
     <div id="toc-backdrop" onclick="toggleToc()"></div>
     <aside id="toc-drawer">
         <h3>فهرس المحاضرة</h3>
-        <a href="#quick-map">✨ الخلاصة الذهنية</a>
+        <a href="#quick-map">✦ الخلاصة الذهنية</a>
         <a href="#slice-lab">🧪 مختبر الشريحة التفاعلي</a>
-        <a href="#type1">01 - Type I - الشريحة الرأسية</a>
-        <a href="#type2">02 - Type II - الشريحة الأفقية</a>
-        <a href="#ex-plane">03 - مثال: الحجم تحت مستوى</a>
-        <a href="#ex1">04 - Example 1</a>
-        <a href="#ex2">05 - Example 2</a>
-        <a href="#tetra">06 - مجسم المستويات (Tetrahedron)</a>
+        <a href="#type1">01 · Type I — الشريحة الرأسية</a>
+        <a href="#type2">02 · Type II — الشريحة الأفقية</a>
+        <a href="#ex-plane">03 · مثال: الحجم تحت مستوٍ</a>
+        <a href="#ex1">04 · Example 1</a>
+        <a href="#ex2">05 · Example 2</a>
+        <a href="#tetra">06 · مجسم المستويات (Tetrahedron)</a>
         <a href="#mistakes">⚠️ الأخطاء الشائعة</a>
         <a href="#quiz">📝 اختبر نفسك</a>
         <a href="#flashcards">🃏 بطاقات المراجعة</a>
@@ -401,12 +413,12 @@
         <div class="bezel">
             <div class="bezel-id">
                 <span class="lamp"></span>
-                <span>ملخصات المحاضرات - <strong>Double Integrals</strong></span>
+                <span>ملخصات المحاضرات — <strong>Double Integrals</strong></span>
             </div>
             <div class="bezel-actions">
                 <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
                 <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                    <!-- يتم توليد قائمة المحاضرات تلقائيا بواسطة nav.js -->
+                    <!-- يتم توليد القائمة تلقائياً عبر nav.js -->
                 </select>
             </div>
         </div>
@@ -420,6 +432,7 @@
             <a href="#quiz">اختبر نفسك</a>
             <a href="#flashcards">بطاقات</a>
         </div>
+
         <!-- ============ hero ============ -->
         <div class="hero reveal">
             <h1>Double Integrals over Non-Rectangular Regions</h1>
@@ -1178,6 +1191,7 @@
             }
 
             function outerRange() {
+                if (!preset) return [0, 1];
                 return dir === 'v' ? [preset.a, preset.b] : [0, preset.ymax];
             }
 
@@ -1478,8 +1492,8 @@
             presetSel.value = 'ex1';
             fillFuncs();
             funcSel.value = 'vol';
-            resize();
             applyConfig();
+            resize();
 
             return { togglePlay, reset, applyCustom };
         })();
@@ -1652,5 +1666,6 @@
             setTimeout(addCopyButtons, 1200);
         });
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
