@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملخص المحاضرة 5 - Double Integrals over Rectangles</title>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+        :root {
+            --bg-void:      #05090a;
+            --bg-panel:     #0b1210;
+            --bg-inset:     #030605;
+            --grid-minor:   rgba(124, 255, 178, 0.045);
+            --grid-major:   rgba(124, 255, 178, 0.11);
+            --ink-primary:  #e9f5ef;
+            --ink-secondary:#7f9d92;
+
+            --trace-cos:    #7cffb2;
+            --trace-sin:    #ffb454;
+            --trace-alert:  #ff6f6f;
+            --accent-practice: #b98cff;
+            --accent-assess:   #7cc4ff;
+            --accent-identity: #ffd166;
+
+            --border-soft:  rgba(124, 255, 178, 0.16);
+            --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
+            --font-mono:    'IBM Plex Mono', monospace;
+
+            --success: #4ade80;
+            --danger:  #f87171;
+        }
+
+        /* ============ الوضع النهاري ============ */
+        body.light {
+            --bg-void:      #eef3f0;
+            --bg-panel:     #ffffff;
+            --bg-inset:     #f2f7f4;
+            --grid-minor:   rgba(15, 80, 55, 0.06);
+            --grid-major:   rgba(15, 80, 55, 0.11);
+            --ink-primary:  #12241c;
+            --ink-secondary:#5c7268;
+            --border-soft:  rgba(15, 80, 55, 0.22);
+            --success: #16a34a;
+            --danger:  #dc2626;
+        }
+        body.light .bg-grid::after { background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(20,120,80,0.08), transparent 65%); }
+        body.light .panel p   { color:#33473e; }
+        body.light .panel li  { color:#24382f; }
+        body.light .quiz-opt  { color: var(--ink-primary); }
+        body.light .flash-front { background:#fff; }
+        body.light .flash-back  { background: linear-gradient(135deg,#e6f5ec,#ffffff); }
+        body.light .copy-tex    { color:#0d7a4a; border-color: rgba(15,120,70,.35); background: rgba(15,120,70,.08); }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-arabic);
+            background-color: var(--bg-void);
+            color: var(--ink-primary);
+            line-height: 1.85;
+            padding: 22px 14px 60px;
+            min-height: 100vh;
+            transition: background-color .35s ease, color .35s ease;
+        }
+
+        .bg-grid {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                repeating-linear-gradient(0deg,  var(--grid-minor) 0 1px, transparent 1px 40px),
+                repeating-linear-gradient(90deg, var(--grid-minor) 0 1px, transparent 1px 40px),
+                repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
+                repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
+            background-color: var(--bg-void);
+            transition: background-color .35s ease;
+        }
+        .bg-grid::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%);
+        }
+
+        a:focus-visible, select:focus-visible, .trigger:focus-visible,
+        button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
+
+        #read-progress { position: fixed; top: 0; right: 0; left: 0; height: 3px; background: transparent; z-index: 100; }
+        #read-progress .bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--trace-cos), var(--accent-assess));
+            transition: width .15s ease-out;
+            box-shadow: 0 0 10px rgba(124,255,178,0.5);
+        }
+
+        .main-wrapper { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ---------------- bezel ---------------- */
+        .bezel {
+            background: linear-gradient(180deg, #0d1614, #0a100e);
+            border: 1px solid var(--border-soft); border-radius: 10px;
+            padding: 14px 18px; display: flex; flex-wrap: wrap;
+            align-items: center; justify-content: space-between; gap: 12px;
+        }
+        body.light .bezel { background: linear-gradient(180deg, #ffffff, #eef4f1); }
+        .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
+        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
+        .bezel-actions { display: flex; align-items: center; gap: 8px; }
+        .icon-btn {
+            width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
+            border: 1px solid var(--border-soft); background: transparent;
+            color: var(--ink-primary); font-size: 1.05rem;
+            display: flex; align-items: center; justify-content: center; transition: all .2s;
+        }
+        .icon-btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.07); }
+        .channel-select {
+            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
+            padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
+            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 240px;
+        }
+        .channel-select:hover { border-color: var(--trace-cos); }
+
+        .pill-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
+        .pill-row::-webkit-scrollbar { display: none; }
+        .pill-row a {
+            flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px;
+            border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary);
+            transition: color .2s, border-color .2s; white-space: nowrap;
+        }
+        .pill-row a:hover { color: var(--ink-primary); border-color: var(--accent-assess); }
+
+        /* ---------------- hero ---------------- */
+        .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
+        .hero h1 { font-size: 1.42rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
+        .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 560px; margin: 0 auto 18px; }
+        .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+        .chip {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+            padding: 5px 13px; border-radius: 999px;
+            border: 1px solid var(--border-soft); color: var(--ink-secondary);
+        }
+        .chip.g { color: var(--trace-cos); border-color: rgba(124,255,178,.35); background: rgba(124,255,178,.06); }
+        .chip.b { color: var(--accent-assess); border-color: rgba(124,196,255,.35); background: rgba(124,196,255,.06); }
+        .chip.y { color: var(--accent-identity); border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.06); }
+        .scope-screen { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; position: relative; }
+        .scope-screen svg { display: block; width: 100%; height: auto; direction: ltr; }
+        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; color: var(--ink-secondary); }
+        .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
+        .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
+
+        /* ---------------- panels ---------------- */
+        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; transition: background-color .35s ease; }
+        .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
+        .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
+        .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
+
+        .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .panel-index { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--bg-void); background: var(--panel-accent, var(--trace-cos)); border-radius: 5px; padding: 3px 8px; flex-shrink: 0; }
+        .symbol-badge {
+            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem;
+            color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos));
+            background: rgba(124,255,178,0.06);
+        }
+        .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
+        .panel h2 { font-size: 1.1rem; font-weight: 700; color: var(--ink-primary); }
+        .panel h2 .bi-caption { font-size: 0.82rem; font-weight: 500; color: var(--ink-secondary); display: block; margin-top: 4px; }
+        .panel h3 { font-size: 0.96rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 14px 0 8px; }
+        .panel h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink-primary); margin: 12px 0 6px; }
+
+        .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
+        .panel p:last-child { margin-bottom: 0; }
+        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 14px; }
+        .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 9px; }
+        .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
+
+        .math-block { background: var(--bg-inset); border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; position: relative; }
+        .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
+
+        .copy-tex {
+            position: absolute; top: 6px; left: 8px;
+            font-family: var(--font-mono); font-size: 0.68rem;
+            padding: 3px 8px; border-radius: 5px;
+            background: rgba(124,255,178,0.1); color: var(--trace-cos);
+            border: 1px solid rgba(124,255,178,0.3); cursor: pointer;
+            opacity: 0; transition: opacity .2s;
+        }
+        .math-block:hover .copy-tex { opacity: 1; }
+        .copy-tex:hover { background: rgba(124,255,178,0.2); }
+        .copy-tex.copied { background: var(--success); color: #000; }
+
+        .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
+        .result-box strong { color: var(--trace-cos); }
+
+        .question-box {
+            background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25);
+            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
+        }
+        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
+
+        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
+        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
+        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .trigger-body { display: none; padding: 4px 16px 18px; }
+        .trigger.open .trigger-hint { display: none; }
+        .trigger.open .trigger-body { display: block; }
+        .trigger.open { border-style: solid; cursor: default; }
+
+        .diagram-frame { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
+        .diagram-frame svg { max-width: 100%; height: auto; direction: ltr; }
+
+        /* ---------------- جدول المقارنة ---------------- */
+        .cmp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
+        .cmp-table th, .cmp-table td { border: 1px solid var(--border-soft); padding: 10px 12px; text-align: right; }
+        .cmp-table th { font-family: var(--font-mono); font-size: 0.78rem; color: var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.05); }
+        .cmp-table td { color: #dcece5; }
+        body.light .cmp-table td { color: #24382f; }
+        .cmp-table .mono { font-family: var(--font-mono); direction: ltr; display: inline-block; }
+
+        .mistake-list li { margin-bottom: 12px; }
+        .mistake-list .mk {
+            display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
+            padding: 2px 8px; border-radius: 5px; margin-left: 8px;
+            background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3);
+        }
+
+        /* ---------------- أزرار عامة (btn) ---------------- */
+        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+        .btn {
+            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 600;
+            padding: 10px 18px; border-radius: 8px; cursor: pointer;
+            border: 1px solid var(--border-soft); background: transparent;
+            color: var(--ink-primary); transition: all .2s;
+        }
+        .btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.06); }
+        .btn.primary { background: rgba(124,255,178,0.1); border-color: var(--trace-cos); color: var(--trace-cos); }
+        .btn.primary:hover { background: rgba(124,255,178,0.2); }
+
+        /* ---------------- مختبر الشريحة ---------------- */
+        .sl-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 10px; }
+        .sl-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 190px; }
+        .sl-field label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); font-weight: 600; }
+        .sl-field select, .sl-field input {
+            font-family: var(--font-arabic); font-size: 0.86rem;
+            padding: 9px 11px; border-radius: 7px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-inset); color: var(--ink-primary);
+        }
+        .sl-field input { font-family: var(--font-mono); direction: ltr; }
+        .sl-field select:focus, .sl-field input:focus { border-color: var(--trace-cos); outline: none; }
+        .sl-modes { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; font-size: 0.82rem; color: var(--ink-secondary); margin: 4px 0 12px; }
+        .sl-modes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+        .sl-modes input[type="radio"] { accent-color: var(--trace-cos); cursor: pointer; }
+        .sl-modes input[type="range"] { accent-color: var(--trace-sin); width: 150px; cursor: pointer; }
+        .sl-stage { position: relative; border-radius: 9px; overflow: hidden; border: 1px solid var(--border-soft); background: var(--bg-inset); }
+        #sl-canvas, #gl-canvas { display: block; width: 100%; height: 390px; }
+        .sl-readout {
+            position: absolute; top: 10px; left: 10px;
+            font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.75;
+            background: rgba(3,6,5,0.8); border: 1px solid var(--border-soft);
+            border-radius: 8px; padding: 8px 12px; direction: ltr; text-align: left;
+            color: var(--ink-primary); pointer-events: none; backdrop-filter: blur(4px); min-width: 190px;
+        }
+        body.light .sl-readout { background: rgba(255,255,255,0.88); }
+        .sl-readout .rv { color: var(--accent-identity); font-weight: 600; }
+        .sl-readout .rg { color: var(--trace-cos); font-weight: 600; }
+        .sl-readout .rb { color: var(--trace-sin); font-weight: 600; }
+        .sl-legend { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); }
+        .sl-legend span { display: flex; align-items: center; gap: 6px; }
+        .sl-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+        .sl-note { font-size: 0.82rem; color: var(--ink-secondary); margin-top: 8px; text-align: center; }
+
+        /* ---------------- Quiz ---------------- */
+        .quiz-q { background: rgba(124,196,255,0.04); border: 1px solid rgba(124,196,255,0.2); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+        .quiz-q .q-text { font-size: 0.95rem; margin-bottom: 12px; color: var(--ink-primary); }
+        .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-opt {
+            font-family: var(--font-arabic); font-size: 0.9rem;
+            padding: 10px 14px; border-radius: 7px; cursor: pointer;
+            border: 1px solid var(--border-soft); background: transparent;
+            color: var(--ink-primary); text-align: right; transition: all .2s;
+        }
+        .quiz-opt:hover:not(:disabled) { border-color: var(--accent-assess); background: rgba(124,196,255,0.06); }
+        .quiz-opt.correct { background: rgba(74,222,128,0.15); border-color: var(--success); color: var(--success); }
+        .quiz-opt.wrong { background: rgba(248,113,113,0.15); border-color: var(--danger); color: var(--danger); }
+        .quiz-opt:disabled { cursor: default; }
+        .quiz-feedback { margin-top: 10px; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; display: none; }
+        .quiz-feedback.show { display: block; }
+        .quiz-feedback.ok { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.3); }
+        .quiz-feedback.no { background: rgba(248,113,113,0.1); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
+        .quiz-score {
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,209,102,0.06); border: 1px solid rgba(255,209,102,0.25);
+            border-radius: 9px; padding: 12px 16px; margin-top: 14px; font-family: var(--font-mono); font-size: 0.9rem;
+        }
+        .quiz-score .val { color: var(--accent-identity); font-weight: 700; font-size: 1.1rem; }
+
+        /* ---------------- Flashcards ---------------- */
+        .flash-toolbar { display: flex; gap: 10px; margin-top: 4px; }
+        .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+        .flash { perspective: 1000px; height: 150px; cursor: pointer; }
+        .flash-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
+        .flash.flipped .flash-inner { transform: rotateY(180deg); }
+        .flash-face {
+            position: absolute; inset: 0; backface-visibility: hidden;
+            border-radius: 10px; padding: 16px;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; font-size: 0.88rem; border: 1px solid var(--border-soft);
+        }
+        .flash-front { background: #0b1210; color: var(--ink-primary); }
+        body.light .flash-front { background: #fff; }
+        .flash-front .hint { position: absolute; bottom: 8px; left: 12px; font-size: 0.68rem; color: var(--ink-secondary); font-family: var(--font-mono); }
+        .flash-back { background: linear-gradient(135deg, #0d1f18, #0b1210); color: var(--trace-cos); transform: rotateY(180deg); border-color: rgba(124,255,178,0.3); }
+
+        /* ---------------- TOC ---------------- */
+        #fab-toc {
+            position: fixed; bottom: 24px; left: 24px;
+            width: 48px; height: 48px; border-radius: 50%;
+            background: var(--bg-panel); border: 1px solid var(--border-soft);
+            color: var(--trace-cos); font-size: 1.3rem; cursor: pointer;
+            z-index: 90; display: flex; align-items: center; justify-content: center;
+            transition: all .2s; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        #fab-toc:hover { border-color: var(--trace-cos); transform: scale(1.08); }
+        #toc-drawer {
+            position: fixed; top: 0; bottom: 0; left: 0; width: 280px;
+            background: var(--bg-panel); border-left: 1px solid var(--border-soft);
+            z-index: 95; padding: 20px 16px;
+            transform: translateX(-100%); transition: transform .3s ease; overflow-y: auto;
+        }
+        #toc-drawer.open { transform: translateX(0); }
+        #toc-drawer h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-secondary); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        #toc-drawer a { display: block; padding: 8px 12px; color: var(--ink-primary); text-decoration: none; font-size: 0.86rem; border-radius: 6px; margin-bottom: 4px; transition: all .15s; }
+        #toc-drawer a:hover { background: rgba(124,255,178,0.06); color: var(--trace-cos); }
+        #toc-drawer a.active { background: rgba(124,255,178,0.12); color: var(--trace-cos); border-right: 3px solid var(--trace-cos); }
+        #toc-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 94; opacity: 0; pointer-events: none; transition: opacity .3s; }
+        #toc-backdrop.open { opacity: 1; pointer-events: auto; }
+
+        footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
+
+        /* ---------------- طباعة ---------------- */
+        @media print {
+            .bg-grid, #fab-toc, #toc-drawer, #toc-backdrop, #read-progress,
+            .pill-row, .channel-select, .bezel-actions, .btn-row, .trigger-hint,
+            .flash-toolbar, .sl-controls, .sl-modes { display: none !important; }
+            body { background: #fff; color: #000; padding: 0; }
+            .panel, .hero { border-color: #bbb; background: #fff; break-inside: avoid; opacity: 1 !important; transform: none !important; }
+            .panel p, .panel li, .panel h2, .cmp-table td { color: #111 !important; }
+            .trigger .trigger-body { display: block !important; }
+            .trigger { border-style: solid; }
+            .math-block { background: #f6f6f6; border-color: #999; }
+            .sl-stage { display: none; }
+            .quiz-opt { border-color: #999; color: #111 !important; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .bezel-id .lamp { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.15rem; }
+            .panel { padding: 18px 15px; }
+            .panel h2 { font-size: 1rem; }
+            .channel-select { min-width: 0; width: 100%; }
+            .bezel { flex-direction: column; align-items: stretch; }
+            #fab-toc { bottom: 16px; left: 16px; }
+            #sl-canvas, #gl-canvas { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div id="read-progress"><div class="bar"></div></div>
+
+    <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button>
+    <div id="toc-backdrop" onclick="toggleToc()"></div>
+    <aside id="toc-drawer">
+        <h3>فهرس المحاضرة</h3>
+        <a href="#quick-map">✦ الخلاصة الذهنية</a>
+        <a href="#grid-lab">🧪 مختبر الشبكة التفاعلي</a>
+        <a href="#fubini">01 · مبرهنة فوبيني للمستطيلات</a>
+        <a href="#ex1">02 · مثال 1 — الحجم تحت مستوٍ</a>
+        <a href="#ex2">03 · مثال 2 — (4+8xy)</a>
+        <a href="#ex3">04 · مثال 3 — 4xy²</a>
+        <a href="#ex4">05 · مثال 4 — الدالة الأسية</a>
+        <a href="#ex5">06 · مثال 5 — الجيب (sin)</a>
+        <a href="#practice">✏️ تمارين للتدريب</a>
+        <a href="#mistakes">⚠️ الأخطاء الشائعة</a>
+        <a href="#quiz">📝 اختبر نفسك</a>
+        <a href="#flashcards">🃏 بطاقات المراجعة</a>
+    </aside>
+
+    <div class="main-wrapper">
+
+        <div class="bezel">
+            <div class="bezel-id">
+                <span class="lamp"></span>
+                <span>ملخصات المحاضرات — <strong>Double Integrals</strong></span>
+            </div>
+            <div class="bezel-actions">
+                <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
+                <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+                    <!-- يتم توليد القائمة تلقائياً عبر nav.js -->
+                </select>
+            </div>
+        </div>
+
+        <div class="pill-row">
+            <a href="#quick-map">الخلاصة الذهنية</a>
+            <a href="#grid-lab">🧪 مختبر الشبكة</a>
+            <a href="#fubini">فوبيني</a>
+            <a href="#ex1">مثال 1</a>
+            <a href="#practice">تمارين</a>
+            <a href="#quiz">اختبر نفسك</a>
+            <a href="#flashcards">بطاقات</a>
+        </div>
+
+        <!-- ============ hero ============ -->
+        <div class="hero reveal">
+            <h1>Double Integrals over Rectangular Regions</h1>
+            <p class="sub">فوق منطقة مستطيلة $R = [a,b] \times [c,d]$، نقسّمها إلى شبكة من الخلايا الصغيرة $dA$، ونجمع $f(x,y)\,dA$ على كل الشبكة — الجمع بأي ترتيب (صفوف أو أعمدة) يعطي نفس الحجم</p>
+
+            <div class="hero-chips">
+                <span class="chip g">R = [a,b] × [c,d]</span>
+                <span class="chip b">dA = dx dy = dy dx</span>
+                <span class="chip y">الترتيب لا يهم بالمستطيل</span>
+                <span class="chip y">V = ∬_R f dA</span>
+            </div>
+
+            <div class="scope-screen">
+                <svg id="hero-scope" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- محاور -->
+                    <line x1="90" y1="172" x2="620" y2="172" stroke="#7f9d92" stroke-width="1.6"/>
+                    <line x1="98" y1="180" x2="98" y2="18" stroke="#7f9d92" stroke-width="1.6"/>
+                    <text x="626" y="177" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">x</text>
+                    <text x="92" y="14" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">y</text>
+
+                    <!-- المستطيل R وشبكته -->
+                    <rect id="grid-R" x="150" y="40" width="420" height="130" fill="rgba(124,255,178,0.06)" stroke="#7cffb2" stroke-width="2"/>
+                    <g id="grid-lines" stroke="rgba(124,255,178,0.28)" stroke-width="1"></g>
+
+                    <!-- الحدود a,b,c,d -->
+                    <text x="150" y="188" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">a</text>
+                    <text x="570" y="188" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="12" text-anchor="middle">b</text>
+                    <text x="80" y="174" fill="#ffd166" font-family="IBM Plex Mono" font-size="12" text-anchor="end">c</text>
+                    <text x="80" y="44" fill="#ffd166" font-family="IBM Plex Mono" font-size="12" text-anchor="end">d</text>
+
+                    <!-- الخلية الممسوحة -->
+                    <rect id="sweep-cell" x="150" y="40" width="70" height="32.5" fill="rgba(255,209,102,0.55)" stroke="#ffd166" stroke-width="1.6"/>
+                    <text id="sweep-label" x="185" y="30" fill="#ffd166" font-family="IBM Plex Mono" font-size="12" text-anchor="middle" direction="ltr">f(x,y) dA</text>
+                </svg>
+            </div>
+
+            <div class="scope-legend">
+                <span><i class="swatch" style="background:#7cffb2"></i> المنطقة R (مستطيل ثابت الحدود)</span>
+                <span><i class="swatch" style="background:#ffd166"></i> خلية واحدة من مجموع ريمان الثنائي</span>
+            </div>
+        </div>
+
+        <!-- ============ الخلاصة الذهنية ============ -->
+        <div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">✦</span>
+                <span class="symbol-badge">∬</span>
+                <h2>من المساحة إلى الحجم</h2>
+            </div>
+            <p>في التكامل الأحادي، $\displaystyle A = \int_a^b f(x)\,dx$ يحسب <strong>المساحة</strong> تحت منحنى $f(x)$. في التكامل الثنائي، نفس الفكرة تُرفع لبُعد إضافي:</p>
+            <div class="math-block">$$\displaystyle V = \iint_R f(x,y)\,dA$$</div>
+            <p>هذا التكامل يحسب <strong>الحجم</strong> المحصور بين سطح $z = f(x,y)$ والمنطقة $R$ في مستوى $xy$. عنصر المساحة الصغير $dA$ في المستطيل يُكتب دائماً:</p>
+            <div class="math-block small">$$dA = dx\,dy = dy\,dx$$</div>
+            <table class="cmp-table">
+                <thead>
+                    <tr><th></th><th>مستطيل (هذي المحاضرة)</th><th>منطقة عامة (المحاضرة 6)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>الشكل</strong></td><td><span class="mono">R = [a,b] × [c,d]</span></td><td>محصورة بين منحنيين</td></tr>
+                    <tr><td><strong>الحدود</strong></td><td>كلها أرقام ثابتة</td><td>بعضها دوال (g(x) أو h(y))</td></tr>
+                    <tr><td><strong>ترتيب dx dy</strong></td><td>حر تماماً — نفس الناتج</td><td>مقيّد بشكل المنطقة (Type I/II)</td></tr>
+                </tbody>
+            </table>
+            <div class="result-box">
+                <strong>القاعدة الذهبية للمستطيل:</strong> إذا كانت الحدود الأربعة كلها أرقام ثابتة ($a,b,c,d$)، فيمكنك تبديل ترتيب $dx$ و $dy$ بحرية تامة — هذا ما تنص عليه <strong>مبرهنة فوبيني</strong>. هذا يختلف عن المناطق غير المستطيلة (Type I/II) اللي تحتاج ترتيب محدد.
+            </div>
+        </div>
+
+        <!-- ============ مختبر الشبكة ============ -->
+        <div class="panel reveal" id="grid-lab" style="--panel-accent: var(--accent-assess);">
+            <div class="panel-head">
+                <span class="panel-index">🧪</span>
+                <span class="symbol-badge">∫∫</span>
+                <h2>مختبر الشبكة — مجموع ريمان الثنائي
+                    <span class="bi-caption">قسّم المستطيل R إلى شبكة n×n، شاهد مجموع ريمان يتراكم خلية بخلية، وقارنه بالقيمة الدقيقة — جرّب الترتيبين (صفوف/أعمدة) ولاحظ نفس الناتج</span>
+                </h2>
+            </div>
+
+            <div class="sl-controls">
+                <div class="sl-field" style="flex:2 1 240px;">
+                    <label>المنطقة R والدالة f(x,y)</label>
+                    <select id="gl-preset"></select>
+                </div>
+            </div>
+            <div class="sl-controls" id="gl-custom-row" style="display:none;">
+                <div class="sl-field" style="flex:1 1 160px;">
+                    <label>f(x, y)</label>
+                    <input id="gl-f" type="text" value="x*y" />
+                </div>
+                <div class="sl-field" style="flex:1 1 80px;"><label>a</label><input id="gl-a" type="text" value="0"></div>
+                <div class="sl-field" style="flex:1 1 80px;"><label>b</label><input id="gl-b" type="text" value="1"></div>
+                <div class="sl-field" style="flex:1 1 80px;"><label>c</label><input id="gl-c" type="text" value="0"></div>
+                <div class="sl-field" style="flex:1 1 80px;"><label>d</label><input id="gl-d" type="text" value="1"></div>
+                <button class="btn primary" onclick="GridLab.applyCustom()">تطبيق</button>
+            </div>
+
+            <div class="sl-modes">
+                <span style="font-weight:600;">ترتيب الجمع:</span>
+                <label><input type="radio" name="gl-order" value="rows" checked> صفوف أولاً — dx dy</label>
+                <label><input type="radio" name="gl-order" value="cols"> أعمدة أولاً — dy dx</label>
+                <span style="flex:1;"></span>
+                <button class="btn primary" id="gl-play" onclick="GridLab.togglePlay()">▶ تشغيل المسح</button>
+                <button class="btn" onclick="GridLab.reset()">↺ إعادة</button>
+            </div>
+            <div class="sl-modes">
+                <span style="font-weight:600;">دقة الشبكة:</span>
+                <input type="range" id="gl-n" min="2" max="40" value="6">
+                <span class="mono" id="gl-n-val" style="font-family:var(--font-mono);">n = 6×6</span>
+            </div>
+
+            <div class="sl-stage">
+                <canvas id="gl-canvas"></canvas>
+                <div class="sl-readout" id="gl-readout"><div>اضغط تشغيل ▶</div></div>
+            </div>
+
+            <div class="sl-legend">
+                <span><i class="sl-dot" style="background:#7cffb2;opacity:.7"></i> خلايا تم جمعها</span>
+                <span><i class="sl-dot" style="background:#ffd166;opacity:.9"></i> الخلية الحالية</span>
+            </div>
+            <p class="sl-note">💡 جرّب تبديل الترتيب من "صفوف أولاً" إلى "أعمدة أولاً" — لاحظ إن المجموع النهائي يطابق تماماً رغم اختلاف مسار الجمع، وهذا جوهر مبرهنة فوبيني للمستطيلات. زد n لتقليل خطأ التقريب.</p>
+        </div>
+
+        <!-- panel 01: Fubini -->
+        <div class="panel reveal" id="fubini" style="--panel-accent: var(--trace-cos);">
+            <div class="panel-head">
+                <span class="panel-index">01</span>
+                <span class="symbol-badge">=</span>
+                <h2>مبرهنة فوبيني للمستطيلات
+                    <span class="bi-caption">Fubini's Theorem for Rectangles</span>
+                </h2>
+            </div>
+            <p>إذا كانت $f(x,y)$ متصلة على المستطيل $R = [a,b] \times [c,d]$، فإن التكامل الثنائي يساوي أي تكامل مكرر بالترتيبين، والنتيجة واحدة:</p>
+            <div class="math-block">
+                \[\iint_R f(x,y)\,dA = \int_{a}^{b}\!\int_{c}^{d} f(x,y)\,dy\,dx = \int_{c}^{d}\!\int_{a}^{b} f(x,y)\,dx\,dy\]
+            </div>
+            <ul>
+                <li><strong>الفرق عن Type I / Type II (المحاضرة 6):</strong> هناك الحدود الداخلية كانت <em>دوالاً</em> ($g_1(x)$، $h_1(y)$...) فيتحكم شكل المنطقة بالترتيب المسموح. هنا الحدود $a,b,c,d$ كلها <strong>أرقام ثابتة</strong> لا تعتمد على المتغير الآخر أبداً.</li>
+                <li><strong>نتيجة عملية:</strong> اختر الترتيب الأسهل جبرياً — إذا كانت $f$ أسهل بالتكامل بالنسبة لـ $x$ أولاً، ابدأ بها.</li>
+            </ul>
+            <div class="diagram-frame">
+                <svg width="380" height="200" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="60" y1="170" x2="340" y2="170" stroke="#7f9d92" stroke-width="2"/>
+                    <line x1="60" y1="170" x2="60" y2="20" stroke="#7f9d92" stroke-width="2"/>
+                    <text x="346" y="175" fill="#7f9d92" font-family="IBM Plex Mono" font-size="13">x</text>
+                    <text x="54" y="15" fill="#7f9d92" font-family="IBM Plex Mono" font-size="13">y</text>
+                    <rect x="100" y="40" width="200" height="110" fill="rgba(124,255,178,0.10)" stroke="#7cffb2" stroke-width="2"/>
+                    <text x="100" y="188" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="13">a</text>
+                    <text x="296" y="188" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="13">b</text>
+                    <text x="38" y="154" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="13">c</text>
+                    <text x="38" y="44" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="13">d</text>
+                    <rect x="160" y="70" width="34" height="34" fill="rgba(255,209,102,0.4)" stroke="#ffd166" stroke-width="1.5"/>
+                    <text x="177" y="120" fill="#ffd166" font-family="IBM Plex Mono" font-size="12" text-anchor="middle" direction="ltr">dA</text>
+                    <text x="150" y="185" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="11" direction="ltr">dy dx</text>
+                    <text x="12" y="90" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="11" direction="ltr">dx dy</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- panel 02: مثال 1 -->
+        <div class="panel reveal" id="ex1" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">02</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 1: الحجم تحت مستوٍ</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                Find the volume $V$ under the plane $z = 8x + 6y$ over the rectangle:
+                <div class="math-block small">\[R = [0,1] \times [0,2]\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[V = \int_{0}^{2}\!\int_{0}^{1} (8x+6y)\,dx\,dy\]</div>
+                    <p>التكامل الداخلي بالنسبة لـ $x$ (نعامل $y$ كثابت):</p>
+                    <div class="math-block small">\[\int_0^1 (8x+6y)\,dx = \left[4x^2+6xy\right]_0^1 = 4+6y\]</div>
+                    <p>التكامل الخارجي بالنسبة لـ $y$:</p>
+                    <div class="math-block small">\[\int_0^2 (4+6y)\,dy = \left[4y+3y^2\right]_0^2 = 8+12 = 20\]</div>
+                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[V = 20\]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 03: مثال 2 -->
+        <div class="panel reveal" id="ex2" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">03</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 2: تكامل بحد متقاطع $xy$</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                <div class="math-block small">\[\int_{0}^{3}\!\int_{0}^{2} (4+8xy)\,dy\,dx\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <p>التكامل الداخلي بالنسبة لـ $y$:</p>
+                    <div class="math-block small">\[\int_0^2 (4+8xy)\,dy = \left[4y+4xy^2\right]_0^2 = 8+16x\]</div>
+                    <p>التكامل الخارجي بالنسبة لـ $x$:</p>
+                    <div class="math-block small">\[\int_0^3 (8+16x)\,dx = \left[8x+8x^2\right]_0^3 = 24+72 = 96\]</div>
+                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[96\]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 04: مثال 3 -->
+        <div class="panel reveal" id="ex3" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">04</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 3: منطقة لا تبدأ من الصفر</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                <div class="math-block small">\[\int_{0}^{1}\!\int_{1}^{2} 4xy^2 \,dx\,dy\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <p>التكامل الداخلي بالنسبة لـ $x$ من $1$ إلى $2$ (لاحظ الحد لا يبدأ من صفر):</p>
+                    <div class="math-block small">\[\int_1^2 4xy^2\,dx = \left[2x^2y^2\right]_1^2 = (8y^2) - (2y^2) = 6y^2\]</div>
+                    <p>التكامل الخارجي بالنسبة لـ $y$:</p>
+                    <div class="math-block small">\[\int_0^1 6y^2\,dy = \left[2y^3\right]_0^1 = 2\]</div>
+                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[2\]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 05: مثال 4 -->
+        <div class="panel reveal" id="ex4" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">05</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 4: دالة أسّية</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                Find the volume under the surface $z = e^{x+y}$ over the rectangle:
+                <div class="math-block small">\[R = [2,7] \times [1,4]\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[V = \int_{1}^{4}\!\int_{2}^{7} e^{x+y}\,dx\,dy\]</div>
+                    <p>التكامل الداخلي بالنسبة لـ $x$ (الأس $e^{x+y}$ يتكامل لنفسه لأن مشتقة $x+y$ بالنسبة لـ $x$ تساوي 1):</p>
+                    <div class="math-block small">\[\int_2^7 e^{x+y}\,dx = \left[e^{x+y}\right]_2^7 = e^{y+7}-e^{y+2}\]</div>
+                    <p>التكامل الخارجي بالنسبة لـ $y$:</p>
+                    <div class="math-block small">\[\int_1^4 \left(e^{y+7}-e^{y+2}\right)dy = \left[e^{y+7}-e^{y+2}\right]_1^4 = \left(e^{11}-e^{8}\right)-\left(e^{6}-e^{3}\right)\]</div>
+                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[V = e^{11}-e^{8}-e^{6}+e^{3}\]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- panel 06: مثال 5 -->
+        <div class="panel reveal" id="ex5" style="--panel-accent: var(--accent-practice);">
+            <div class="panel-head">
+                <span class="panel-index">06</span>
+                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <h2>مثال 5: تكامل جيبي يساوي صفر</h2>
+            </div>
+            <div class="question-box">
+                <span class="ex-tag">المسألة</span>
+                <div class="math-block small">\[\int_{0}^{\pi}\!\int_{0}^{\pi} \sin(x+y)\,dx\,dy\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط لعرض خطوات الحل
+                </div>
+                <div class="trigger-body">
+                    <p>التكامل الداخلي بالنسبة لـ $x$:</p>
+                    <div class="math-block small">\[\int_0^\pi \sin(x+y)\,dx = \left[-\cos(x+y)\right]_0^\pi = -\cos(\pi+y)+\cos(y)\]</div>
+                    <p>التكامل الخارجي بالنسبة لـ $y$:</p>
+                    <div class="math-block small">\[\int_0^\pi \left(-\cos(\pi+y)+\cos(y)\right)dy = \left[-\sin(\pi+y)+\sin(y)\right]_0^\pi\]</div>
+                    <p>بالتعويض، وباستخدام أن $\sin(n\pi)=0$ لكل عدد صحيح $n$:</p>
+                    <div class="math-block small">\[= \big(-\sin(2\pi)+\sin(\pi)\big) - \big(-\sin(\pi)+\sin(0)\big) = 0\]</div>
+                    <div class="result-box"><strong>النتيجة النهائية:</strong> \[0\] — قيمة معقولة تماماً؛ الحجم "الموجب" و"السالب" تحت المحور وفوقه يتلاشيان بالتماثل.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ تمارين للتدريب ============ -->
+        <div class="panel reveal" id="practice" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">✏️</span>
+                <span class="symbol-badge">CW</span>
+                <h2>تمارين للتدريب (Classwork)
+                    <span class="bi-caption">حاول الحل بنفسك أولاً، ثم اضغط لعرض الإجابة</span>
+                </h2>
+            </div>
+
+            <div class="question-box">
+                <span class="ex-tag">تمرين أ</span>
+                <div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{2} (5x+4y)\,dy\,dx\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط للإجابة
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[\int_0^2(5x+4y)\,dy=\left[5xy+2y^2\right]_0^2=10x+8\]</div>
+                    <div class="math-block small">\[\int_0^1(10x+8)\,dx=\left[5x^2+8x\right]_0^1=5+8=13\]</div>
+                    <div class="result-box"><strong>الإجابة:</strong> \[13\]</div>
+                </div>
+            </div>
+
+            <div class="question-box" style="margin-top:14px;">
+                <span class="ex-tag">تمرين ب</span>
+                <div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{2} (2+4xy^2)\,dx\,dy\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط للإجابة
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[\int_0^2(2+4xy^2)\,dx=\left[2x+2x^2y^2\right]_0^2=4+8y^2\]</div>
+                    <div class="math-block small">\[\int_0^1(4+8y^2)\,dy=\left[4y+\tfrac{8}{3}y^3\right]_0^1=4+\tfrac{8}{3}=\tfrac{20}{3}\]</div>
+                    <div class="result-box"><strong>الإجابة:</strong> \[\tfrac{20}{3}\]</div>
+                </div>
+            </div>
+
+            <div class="question-box" style="margin-top:14px;">
+                <span class="ex-tag">تمرين ج</span>
+                <div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{2} (3x^2+2y)\,dx\,dy\]</div>
+            </div>
+            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
+                <div class="trigger-hint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
+                    اضغط للإجابة
+                </div>
+                <div class="trigger-body">
+                    <div class="math-block small">\[\int_0^2(3x^2+2y)\,dx=\left[x^3+2xy\right]_0^2=8+4y\]</div>
+                    <div class="math-block small">\[\int_0^1(8+4y)\,dy=\left[8y+2y^2\right]_0^1=8+2=10\]</div>
+                    <div class="result-box"><strong>الإجابة:</strong> \[10\]</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ الأخطاء الشائعة ============ -->
+        <div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);">
+            <div class="panel-head">
+                <span class="panel-index">⚠️</span>
+                <span class="symbol-badge">!</span>
+                <h2>الأخطاء الشائعة في التكاملات فوق المستطيل</h2>
+            </div>
+            <ul class="mistake-list">
+                <li><span class="mk">خطأ 1</span> <strong>الخلط بين حدود x و y:</strong> بما إن $R=[a,b]\times[c,d]$، فـ $a,b$ دائماً حدود $x$ و $c,d$ دائماً حدود $y$ — بغض النظر عن ترتيب التكامل المكتوب.</li>
+                <li><span class="mk">خطأ 2</span> <strong>نسيان أن $y$ ثابت أثناء التكامل بالنسبة لـ $x$ (والعكس):</strong> أي حد لا يحوي متغير التكامل الحالي يُعامل كثابت تماماً عند إيجاد المشتقة العكسية.</li>
+                <li><span class="mk">خطأ 3</span> <strong>خطأ في تكامل $e^{x+y}$:</strong> $\int e^{x+y}\,dx = e^{x+y}$ وليس $e^{x+y}/(x+y)$ — لأن $\dfrac{d}{dx}(x+y)=1$، فالمعامل يبقى 1.</li>
+                <li><span class="mk">خطأ 4</span> <strong>أخطاء الإشارة في الجيب/جيب التمام:</strong> تذكّر أن $\sin(n\pi)=0$ لكل عدد صحيح $n$، وهذا يُبسّط كثيراً من نواتج التعويض في تكاملات الزوايا.</li>
+                <li><span class="mk">خطأ 5</span> <strong>الاعتقاد أن الترتيب يغيّر الحدود:</strong> في المستطيل فقط، تبديل $dx\,dy$ إلى $dy\,dx$ لا يغيّر أي رقم من $a,b,c,d$ — هذا يختلف تماماً عن مناطق Type I/II في المحاضرة 6.</li>
+                <li><span class="mk">خطأ 6</span> <strong>حد لا يبدأ من صفر:</strong> لا تفترض أن الحد السفلي دائماً 0 — عوّض دائماً بالحد الفعلي المكتوب في المسألة (راجع مثال 3 حيث $x$ يبدأ من 1).</li>
+            </ul>
+        </div>
+
+        <!-- ====== Quiz ====== -->
+        <div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);">
+            <div class="panel-head">
+                <span class="panel-index">📝</span>
+                <span class="symbol-badge">?</span>
+                <h2>اختبر نفسك
+                    <span class="bi-caption">5 أسئلة — اضغط على الإجابة لترى التصحيح فوراً</span>
+                </h2>
+            </div>
+            <div id="quiz-container"></div>
+            <div class="quiz-score">
+                <span>النتيجة</span>
+                <span style="display:flex;align-items:center;gap:14px;">
+                    <button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()">🔄 إعادة الاختبار</button>
+                    <span><span class="val" id="quiz-score">0</span> / 5</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- ====== Flashcards ====== -->
+        <div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);">
+            <div class="panel-head">
+                <span class="panel-index">🃏</span>
+                <span class="symbol-badge">↻</span>
+                <h2>بطاقات المراجعة السريعة
+                    <span class="bi-caption">اضغط على أي بطاقة لقلبها ورؤية الجواب</span>
+                </h2>
+            </div>
+            <div class="flash-toolbar">
+                <button class="btn" onclick="shuffleFlashcards()">🔀 خلط البطاقات</button>
+            </div>
+            <div class="flash-grid" id="flash-grid"></div>
+        </div>
+
+        <footer class="note">
+            SIGNAL REFERENCE · VECTOR CALCULUS — DOUBLE INTEGRALS · v3.0
+            &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()">🖨️ طباعة الملخص</button>
+        </footer>
+    </div>
+
+    <script>
+        /* ============ Utils ============ */
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function toggleTrigger(el) { el.classList.toggle('open'); }
+        function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+        /* ============ الثيم ============ */
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light');
+            const light = body.classList.contains('light');
+            document.getElementById('theme-btn').textContent = light ? '☀️' : '🌙';
+            try { localStorage.setItem('lecture6-theme', light ? 'light' : 'dark'); } catch(e) {}
+        }
+        (function initTheme() {
+            let saved = null;
+            try { saved = localStorage.getItem('lecture6-theme'); } catch(e) {}
+            if (saved === 'light') {
+                document.body.classList.add('light');
+                document.getElementById('theme-btn').textContent = '☀️';
+            }
+        })();
+
+        /* ============ تقدم القراءة ============ */
+        const progressBar = document.querySelector('#read-progress .bar');
+        window.addEventListener('scroll', () => {
+            const h = document.documentElement;
+            progressBar.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+        }, { passive: true });
+
+        /* ============ ظهور تدريجي ============ */
+        (function initReveal() {
+            const items = document.querySelectorAll('.reveal');
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                items.forEach(el => el.classList.add('visible')); return;
+            }
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+            }, { threshold: 0.06 });
+            items.forEach(el => obs.observe(el));
+        })();
+
+        /* ============ TOC ============ */
+        function toggleToc() {
+            document.getElementById('toc-drawer').classList.toggle('open');
+            document.getElementById('toc-backdrop').classList.toggle('open');
+        }
+        document.querySelectorAll('#toc-drawer a').forEach(a => {
+            a.addEventListener('click', () => { if (window.innerWidth < 900) toggleToc(); });
+        });
+        const tocLinks = [...document.querySelectorAll('#toc-drawer a')];
+        const tocTargets = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+        const tocObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    tocLinks.forEach(l => l.classList.remove('active'));
+                    const link = tocLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
+                    if (link) link.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-30% 0px -60% 0px' });
+        tocTargets.forEach(t => tocObs.observe(t));
+
+        /* ============================================================
+           Hero Animation — مسح شبكة مجموع ريمان الثنائي
+           ============================================================ */
+        (function heroGrid() {
+            const R = { x: 150, y: 40, w: 420, h: 130 };
+            const nx = 6, ny = 4;
+            const cw = R.w / nx, ch = R.h / ny;
+            const linesG = document.getElementById('grid-lines');
+            let gd = '';
+            for (let i = 1; i < nx; i++) { const x = R.x + i * cw; gd += `M${x} ${R.y} L${x} ${R.y + R.h} `; }
+            for (let j = 1; j < ny; j++) { const y = R.y + j * ch; gd += `M${R.x} ${y} L${R.x + R.w} ${y} `; }
+            const gp = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            gp.setAttribute('d', gd);
+            linesG.appendChild(gp);
+
+            if (reduceMotion) return;
+            const cell = document.getElementById('sweep-cell');
+            const label = document.getElementById('sweep-label');
+            const total = nx * ny;
+            let idx = 0;
+            function step() {
+                const col = idx % nx, row = Math.floor(idx / nx) % ny;
+                cell.setAttribute('x', R.x + col * cw);
+                cell.setAttribute('y', R.y + row * ch);
+                cell.setAttribute('width', cw);
+                cell.setAttribute('height', ch);
+                label.setAttribute('x', R.x + col * cw + cw / 2);
+                label.setAttribute('y', R.y + row * ch - 6 < 12 ? R.y + row * ch + ch + 14 : R.y + row * ch - 6);
+                idx = (idx + 1) % total;
+                setTimeout(step, 260);
+            }
+            step();
+        })();
+
+        /* ============================================================
+           مختبر الشبكة (GridLab) — مجموع ريمان الثنائي فوق مستطيل
+           ============================================================ */
+        const GridLab = (() => {
+            const canvas = document.getElementById('gl-canvas');
+            if (!canvas) return { togglePlay(){}, reset(){}, applyCustom(){} };
+            const ctx = canvas.getContext('2d');
+            const readout = document.getElementById('gl-readout');
+            const presetSel = document.getElementById('gl-preset');
+            const customRow = document.getElementById('gl-custom-row');
+            const nSlider = document.getElementById('gl-n');
+            const nVal = document.getElementById('gl-n-val');
+            const playBtn = document.getElementById('gl-play');
+
+            let W = 0, H = 0, dpr = 1;
+            let region = { a: 0, b: 1, c: 0, d: 2, f: (x, y) => 8 * x + 6 * y }; // قيمة افتراضية آمنة (لا تكون null أبداً)
+            let exactVal = 0;
+            let playing = false;
+            let timerId = null;
+            let filled = 0;      // عدد الخلايا المضمومة لمجموع ريمان أثناء التشغيل
+            let order = 'rows';  // rows = صفوف أولاً (dx dy) | cols = أعمدة أولاً (dy dx)
+
+            const PRESETS = {
+                ex1:    { name: 'z = 8x + 6y   على [0,1] × [0,2]', a: 0, b: 1, c: 0, d: 2, f: (x, y) => 8 * x + 6 * y },
+                ex2:    { name: '4 + 8xy   على [0,3] × [0,2]',      a: 0, b: 3, c: 0, d: 2, f: (x, y) => 4 + 8 * x * y },
+                ex3:    { name: '4xy²   على [1,2] × [0,1]',         a: 1, b: 2, c: 0, d: 1, f: (x, y) => 4 * x * y * y },
+                custom: { name: '✏️ دالة ومستطيل مخصص…', custom: true }
+            };
+
+            function trap(f, lo, hi, n) {
+                const dx = (hi - lo) / n;
+                let s = 0.5 * (f(lo) + f(hi));
+                for (let i = 1; i < n; i++) s += f(lo + i * dx);
+                return s * dx;
+            }
+            function exactDouble(reg) {
+                return trap(x => trap(y => reg.f(x, y), reg.c, reg.d, 120), reg.a, reg.b, 120);
+            }
+
+            function compileExpr2(expr) {
+                let s = expr.trim().replace(/\^/g, '**');
+                s = s.replace(/\bsin\b/g, 'Math.sin').replace(/\bcos\b/g, 'Math.cos')
+                     .replace(/\btan\b/g, 'Math.tan').replace(/\bexp\b/g, 'Math.exp')
+                     .replace(/\bsqrt\b/g, 'Math.sqrt').replace(/\babs\b/g, 'Math.abs')
+                     .replace(/\bpi\b/g, 'Math.PI');
+                const fn = new Function('x', 'y', 'return ' + s + ';');
+                const v = fn(0.5, 0.5);
+                if (typeof v !== 'number' || isNaN(v) || !isFinite(v)) throw new Error('bad');
+                return fn;
+            }
+
+            function cellList(n, ord) {
+                const list = [];
+                if (ord === 'rows') { for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) list.push([i, j]); }
+                else                { for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) list.push([i, j]); }
+                return list;
+            }
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                const rect = canvas.getBoundingClientRect();
+                W = rect.width; H = rect.height;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                draw();
+            }
+            window.addEventListener('resize', resize);
+
+            function draw() {
+                if (!W || !H) return;
+                ctx.clearRect(0, 0, W, H);
+                const n = parseInt(nSlider.value);
+                const colAxis = 'rgba(150,170,160,0.4)';
+
+                const L = { x: 70, y: H - 46, w: W - 120, h: H - 90 };
+                const X = wx => L.x + (wx - region.a) / (region.b - region.a) * L.w;
+                const Y = wy => L.y - (wy - region.c) / (region.d - region.c) * L.h;
+
+                ctx.strokeStyle = colAxis; ctx.lineWidth = 1.4;
+                ctx.beginPath();
+                ctx.moveTo(L.x, 20); ctx.lineTo(L.x, L.y); ctx.lineTo(L.x + L.w + 10, L.y);
+                ctx.stroke();
+
+                const dx = (region.b - region.a) / n, dy = (region.d - region.c) / n;
+                let vmin = Infinity, vmax = -Infinity;
+                for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+                    const v = region.f(region.a + (i + 0.5) * dx, region.c + (j + 0.5) * dy);
+                    vmin = Math.min(vmin, v); vmax = Math.max(vmax, v);
+                }
+                if (vmax - vmin < 1e-9) { vmin -= 1; vmax += 1; }
+
+                const list = cellList(n, order);
+                const showCount = (playing || filled > 0) ? filled : list.length;
+
+                let sum = 0;
+                for (let k = 0; k < list.length; k++) {
+                    const [i, j] = list[k];
+                    const xm = region.a + (i + 0.5) * dx, ym = region.c + (j + 0.5) * dy;
+                    const v = region.f(xm, ym);
+                    const active = k < showCount;
+                    if (active) sum += v * dx * dy;
+
+                    const x0 = X(region.a + i * dx), x1 = X(region.a + (i + 1) * dx);
+                    const y0 = Y(region.c + j * dy), y1 = Y(region.c + (j + 1) * dy);
+                    const t = (v - vmin) / (vmax - vmin);
+                    const alpha = active ? (0.14 + 0.55 * t) : 0.04;
+                    ctx.fillStyle = `rgba(124,255,178,${alpha})`;
+                    ctx.fillRect(Math.min(x0, x1), Math.min(y0, y1), Math.abs(x1 - x0), Math.abs(y1 - y0));
+                    ctx.strokeStyle = 'rgba(124,255,178,0.25)'; ctx.lineWidth = 1;
+                    ctx.strokeRect(Math.min(x0, x1), Math.min(y0, y1), Math.abs(x1 - x0), Math.abs(y1 - y0));
+                }
+
+                if (playing && filled < list.length) {
+                    const [ci, cj] = list[filled];
+                    const x0 = X(region.a + ci * dx), x1 = X(region.a + (ci + 1) * dx);
+                    const y0 = Y(region.c + cj * dy), y1 = Y(region.c + (cj + 1) * dy);
+                    ctx.fillStyle = 'rgba(255,209,102,0.55)';
+                    ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 1.6;
+                    ctx.fillRect(Math.min(x0, x1), Math.min(y0, y1), Math.abs(x1 - x0), Math.abs(y1 - y0));
+                    ctx.strokeRect(Math.min(x0, x1), Math.min(y0, y1), Math.abs(x1 - x0), Math.abs(y1 - y0));
+                }
+
+                ctx.fillStyle = '#7f9d92'; ctx.font = '11px "IBM Plex Mono"';
+                ctx.fillText(`R = [${region.a}, ${region.b}] × [${region.c}, ${region.d}]`, L.x, 14);
+
+                const exactNearZero = Math.abs(exactVal) < 1e-6;
+                const err = exactNearZero
+                    ? Math.abs(sum - exactVal)
+                    : Math.abs(sum - exactVal) / Math.abs(exactVal) * 100;
+                const errLabel = exactNearZero ? `|خطأ مطلق| = <span class="rb">${err.toFixed(4)}</span>` : `|خطأ| = <span class="rb">${err.toFixed(2)}%</span>`;
+                readout.innerHTML =
+                    `<div>n = <span class="rv">${n}×${n}</span> خلية</div>` +
+                    `<div>مجموع ريمان = <span class="rg">${sum.toFixed(4)}</span></div>` +
+                    `<div>القيمة الدقيقة = <span class="rv">${exactVal.toFixed(4)}</span></div>` +
+                    `<div>${errLabel}</div>`;
+            }
+
+            function frame() {
+                if (!playing) return;
+                const n = parseInt(nSlider.value);
+                filled++;
+                if (filled >= n * n) { filled = n * n; playing = false; playBtn.textContent = '▶ تشغيل المسح'; draw(); return; }
+                draw();
+                timerId = setTimeout(frame, Math.max(12, 260 - n * 5));
+            }
+
+            function togglePlay() {
+                const n = parseInt(nSlider.value);
+                if (playing) { playing = false; playBtn.textContent = '▶ تشغيل المسح'; clearTimeout(timerId); return; }
+                if (filled >= n * n) filled = 0;
+                playing = true; playBtn.textContent = '⏸ إيقاف';
+                frame();
+            }
+            function reset() { playing = false; playBtn.textContent = '▶ تشغيل المسح'; clearTimeout(timerId); filled = 0; draw(); }
+
+            function recompute() { exactVal = exactDouble(region); reset(); }
+
+            function applyConfig() {
+                const id = presetSel.value;
+                customRow.style.display = id === 'custom' ? 'flex' : 'none';
+                if (id === 'custom') {
+                    try {
+                        const f = compileExpr2(document.getElementById('gl-f').value);
+                        const a = parseFloat(document.getElementById('gl-a').value);
+                        const b = parseFloat(document.getElementById('gl-b').value);
+                        const c = parseFloat(document.getElementById('gl-c').value);
+                        const d = parseFloat(document.getElementById('gl-d').value);
+                        if ([a, b, c, d].some(v => isNaN(v)) || b <= a || d <= c) throw new Error('bad bounds');
+                        region = { a, b, c, d, f };
+                    } catch (e) {
+                        readout.innerHTML = '<div style="color:#f87171;">⚠ تعبير أو حدود غير صالحة</div>';
+                        return;
+                    }
+                } else {
+                    const p = PRESETS[id];
+                    region = { a: p.a, b: p.b, c: p.c, d: p.d, f: p.f };
+                }
+                recompute();
+            }
+
+            function applyCustom() { if (presetSel.value === 'custom') applyConfig(); }
+
+            presetSel.addEventListener('change', applyConfig);
+            document.querySelectorAll('input[name="gl-order"]').forEach(r =>
+                r.addEventListener('change', () => {
+                    order = document.querySelector('input[name="gl-order"]:checked').value;
+                    reset();
+                })
+            );
+            nSlider.addEventListener('input', () => {
+                nVal.textContent = 'n = ' + nSlider.value + '×' + nSlider.value;
+                reset();
+            });
+
+            /* تهيئة */
+            Object.entries(PRESETS).forEach(([id, p]) => {
+                const opt = document.createElement('option');
+                opt.value = id; opt.textContent = p.name;
+                presetSel.appendChild(opt);
+            });
+            presetSel.value = 'ex1';
+            applyConfig();   // نضبط region + exactVal أولاً — قبل أي resize()/draw() (نفس الدرس المستفاد من خطأ المحاضرة 6)
+            resize();
+
+            return { togglePlay, reset, applyCustom };
+        })();
+
+
+        /* ============================================================
+           Quiz
+           ============================================================ */
+        const quizData = [
+            {
+                q: 'فوق مستطيل $R = [a,b] \\times [c,d]$، ما الصحيح بخصوص ترتيب $dx\\,dy$ مقابل $dy\\,dx$؟',
+                opts: [
+                    'يمكن تبديل الترتيب بحرية دون تغيير الحدود $a,b,c,d$',
+                    'يجب البدء دائماً بالتكامل بالنسبة لـ x',
+                    'الحدود تتغير حسب ترتيب التكامل',
+                    'لا يمكن حساب الحجم إلا بترتيب واحد فقط'
+                ],
+                correct: 0,
+                feedback: 'هذا نص مبرهنة فوبيني: على المستطيل، الحدود كلها أرقام ثابتة فلا تتأثر بترتيب التكامل.'
+            },
+            {
+                q: 'ما ناتج $\\displaystyle\\int_{0}^{2}\\!\\int_{0}^{1} (8x+6y)\\,dx\\,dy$؟',
+                opts: ['$14$', '$20$', '$\\frac{32}{5}$', '$12$'],
+                correct: 1,
+                feedback: 'التكامل الداخلي يعطي 4+6y، ثم ∫₀² (4+6y) dy = [4y+3y²]₀² = 8+12 = 20.'
+            },
+            {
+                q: 'ما ناتج $\\displaystyle\\int_{0}^{3}\\!\\int_{0}^{2} (4+8xy)\\,dy\\,dx$؟',
+                opts: ['$48$', '$72$', '$96$', '$84$'],
+                correct: 2,
+                feedback: 'التكامل الداخلي يعطي 8+16x، ثم ∫₀³(8+16x)dx = [8x+8x²]₀³ = 24+72 = 96.'
+            },
+            {
+                q: 'ما ناتج $\\displaystyle\\int_{0}^{1}\\!\\int_{1}^{2} 4xy^2\\,dx\\,dy$؟',
+                opts: ['$2$', '$6$', '$8/3$', '$4$'],
+                correct: 0,
+                feedback: 'التكامل الداخلي (x من 1 إلى 2) يعطي 6y²، ثم ∫₀¹6y²dy = [2y³]₀¹ = 2.'
+            },
+            {
+                q: 'ما ناتج $\\displaystyle\\int_{0}^{\\pi}\\!\\int_{0}^{\\pi} \\sin(x+y)\\,dx\\,dy$؟',
+                opts: ['$\\pi$', '$2$', '$0$', '$-2$'],
+                correct: 2,
+                feedback: 'باستخدام أن sin(nπ)=0 لكل عدد صحيح n، تتلاشى كل الحدود بعد التعويض والناتج صفر.'
+            },
+            {
+                q: 'ما المشتقة العكسية لـ $e^{x+y}$ بالنسبة لـ $x$ (مع اعتبار $y$ ثابتاً)؟',
+                opts: ['$e^{x+y}$', '$\\dfrac{e^{x+y}}{x+y}$', '$x\\,e^{x+y}$', '$e^{x}\\cdot y$'],
+                correct: 0,
+                feedback: 'بما أن مشتقة (x+y) بالنسبة لـ x تساوي 1، فتكامل e^(x+y) بالنسبة لـ x يبقى e^(x+y) بدون أي معامل إضافي.'
+            }
+        ];
+
+        let quizScore = 0;
+        let answered = new Set();
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((item, i) => `
+                <div class="quiz-q" data-i="${i}">
+                    <div class="q-text"><strong>${i+1}.</strong> ${item.q}</div>
+                    <div class="quiz-opts">
+                        ${item.opts.map((opt, j) => `
+                            <button class="quiz-opt" onclick="answerQuiz(${i}, ${j}, this)">${opt}</button>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-feedback" id="fb-${i}"></div>
+                </div>
+            `).join('');
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([container]).catch(()=>{});
+        }
+
+        function answerQuiz(qIdx, optIdx, btn) {
+            if (answered.has(qIdx)) return;
+            answered.add(qIdx);
+            const item = quizData[qIdx];
+            const parent = btn.closest('.quiz-q');
+            const allOpts = parent.querySelectorAll('.quiz-opt');
+            const fb = document.getElementById('fb-' + qIdx);
+            allOpts.forEach((b, j) => {
+                b.disabled = true;
+                if (j === item.correct) b.classList.add('correct');
+                else if (j === optIdx) b.classList.add('wrong');
+            });
+            if (optIdx === item.correct) {
+                quizScore++;
+                fb.className = 'quiz-feedback show ok';
+                fb.innerHTML = '✓ صحيح! ' + item.feedback;
+            } else {
+                fb.className = 'quiz-feedback show no';
+                fb.innerHTML = '✗ خطأ. ' + item.feedback;
+            }
+            document.getElementById('quiz-score').textContent = quizScore;
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]).catch(()=>{});
+            try { localStorage.setItem('lecture6-quiz', JSON.stringify({ score: quizScore, answered: [...answered] })); } catch (e) {}
+        }
+
+        function resetQuiz() {
+            quizScore = 0; answered = new Set();
+            document.getElementById('quiz-score').textContent = '0';
+            try { localStorage.removeItem('lecture6-quiz'); } catch(e) {}
+            renderQuiz();
+        }
+
+        /* ============================================================
+           Flashcards
+           ============================================================ */
+        let flashData = [
+            { f: 'عنصر المساحة في المستطيل', b: '$dA = dx\\,dy = dy\\,dx$ — الترتيب حر تماماً' },
+            { f: 'مبرهنة فوبيني (Fubini)', b: 'إذا كانت f متصلة على R=[a,b]×[c,d]، فالتكامل المكرر يعطي نفس القيمة بأي ترتيب' },
+            { f: 'الفرق عن Type I / Type II', b: 'هناك الحدود الداخلية دوال، وهنا كل الحدود a,b,c,d أرقام ثابتة' },
+            { f: 'حجم مثال 1: z=8x+6y على [0,1]×[0,2]', b: '$V = 20$' },
+            { f: 'ناتج ∫₀³∫₀²(4+8xy)dydx', b: '$96$' },
+            { f: 'ناتج ∫₀¹∫₁²4xy²dxdy', b: '$2$' },
+            { f: 'حجم z=e^(x+y) على [2,7]×[1,4]', b: '$V = e^{11}-e^{8}-e^{6}+e^{3}$' },
+            { f: 'ناتج ∫₀^π∫₀^π sin(x+y)dxdy', b: '$0$ — بسبب $\\sin(n\\pi)=0$' },
+            { f: 'تكامل $e^{x+y}$ بالنسبة لـ x', b: '$e^{x+y}$ (المعامل 1 لأن مشتقة x+y بالنسبة لـ x تساوي 1)' },
+            { f: 'قاعدة عملية', b: 'اختر ترتيب التكامل الأسهل جبرياً — النتيجة واحدة دائماً على المستطيل' },
+        ];
+
+        function renderFlashcards() {
+            const grid = document.getElementById('flash-grid');
+            grid.innerHTML = flashData.map(c => `
+                <div class="flash" onclick="this.classList.toggle('flipped')">
+                    <div class="flash-inner">
+                        <div class="flash-face flash-front">
+                            <div>${c.f}<span class="hint">اضغط للقلب ↻</span></div>
+                        </div>
+                        <div class="flash-face flash-back">
+                            <div>${c.b}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([grid]).catch(()=>{});
+        }
+
+        function shuffleFlashcards() {
+            for (let i = flashData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [flashData[i], flashData[j]] = [flashData[j], flashData[i]];
+            }
+            renderFlashcards();
+        }
+
+        /* ============================================================
+           أزرار نسخ LaTeX
+           ============================================================ */
+        function addCopyButtons() {
+            document.querySelectorAll('.math-block').forEach(block => {
+                const container = block.querySelector('mjx-container');
+                let tex = container ? (container.getAttribute('aria-label') || '') : '';
+                if (!tex) return;
+                const btn = document.createElement('button');
+                btn.className = 'copy-tex';
+                btn.textContent = 'copy TeX';
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    navigator.clipboard.writeText(tex).then(() => {
+                        btn.textContent = '✓ copied';
+                        btn.classList.add('copied');
+                        setTimeout(() => { btn.textContent = 'copy TeX'; btn.classList.remove('copied'); }, 1500);
+                    }).catch(() => { btn.textContent = '✗ فشل'; });
+                };
+                block.appendChild(btn);
+            });
+        }
+
+        /* ============ Init ============ */
+        window.addEventListener('load', () => {
+            renderQuiz();
+            renderFlashcards();
+            setTimeout(addCopyButtons, 1200);
+        });
+    </script>
+    <script src="nav.js"></script>
+</body>
+</html>
