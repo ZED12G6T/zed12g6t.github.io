@@ -121,7 +121,7 @@
         .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
         @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
         .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
-        .bezel-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .bezel-actions { display: flex; align-items: center; gap: 8px; }
         .icon-btn {
             width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
             border: 1px solid var(--border-soft); background: transparent;
@@ -129,22 +129,10 @@
             display: flex; align-items: center; justify-content: center; transition: all .2s;
         }
         .icon-btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.07); }
-        
-        /* زر الترجمة الخاص بنفس الثيم */
-        .lang-btn {
-            font-family: var(--font-arabic); font-size: 0.85rem; font-weight: 600;
-            padding: 8px 12px; border-radius: 8px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); display: inline-flex; align-items: center; gap: 6px;
-            transition: all .2s ease; user-select: none;
-        }
-        .lang-btn:hover { border-color: var(--trace-cos); color: var(--trace-cos); background: rgba(124,255,178,0.07); }
-        .lang-btn .lang-icon { width: 16px; height: 16px; fill: currentColor; }
-
         .channel-select {
             font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
             padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
-            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 200px;
+            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 240px;
         }
         .channel-select:hover { border-color: var(--trace-cos); }
 
@@ -223,7 +211,7 @@
 
         .question-box {
             background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25);
-            border-radius: 99px; padding: 14px 16px; margin-bottom: 10px;
+            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
         }
         .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
 
@@ -282,7 +270,7 @@
         .sl-modes input[type="radio"] { accent-color: var(--trace-cos); cursor: pointer; }
         .sl-modes input[type="range"] { accent-color: var(--trace-sin); width: 150px; cursor: pointer; }
         .sl-stage { position: relative; border-radius: 9px; overflow: hidden; border: 1px solid var(--border-soft); background: var(--bg-inset); }
-        #tl-canvas { display: block; width: 100%; height: 390px; }
+        #sl-canvas, #tl-canvas { display: block; width: 100%; height: 390px; }
         .sl-readout {
             position: absolute; top: 10px; left: 10px;
             font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.75;
@@ -394,39 +382,27 @@
             .channel-select { min-width: 0; width: 100%; }
             .bezel { flex-direction: column; align-items: stretch; }
             #fab-toc { bottom: 16px; left: 16px; }
-            #tl-canvas { height: 300px; }
+            #sl-canvas, #tl-canvas { height: 300px; }
         }
-    </style>
+    html[lang="en"] span[lang="ar"],html[lang="ar"] span[lang="en"]{display:none !important;}.lang-btn{width:auto !important;padding:0 12px !important;font:600 .8rem var(--font-mono),monospace !important;}
+html[lang="en"] .math-block{border-right:none;border-left:3px solid var(--panel-accent, var(--trace-cos));}
+html[lang="en"] #toc-drawer a.active{border-right:none;border-left:3px solid var(--trace-cos);}
+</style>
 </head>
 <body>
 <div class="bg-grid"></div><div id="read-progress"><div class="bar"></div></div>
 <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button><div id="toc-backdrop" onclick="toggleToc()"></div>
-<aside id="toc-drawer"><h3>فهرس المحاضرة</h3><a href="#quick-map">✦ الخلاصة الذهنية</a><a href="#tl-lab">🧪 مختبر الشرائح</a><a href="#c-box">01 · الحالة (a): متوازي مستطيلات</a><a href="#c-nest">02 · الحالة (b): جسم بين سطحين</a><a href="#ex1">03 · مثال 1 — (xy+z)</a><a href="#ex2">04 · مثال 2 — 8xyz</a><a href="#ex3">05 · مثال 3 — (x+y+z) بحدود دوال</a><a href="#ex4">06 · مثال 4 — حجم جسم</a><a href="#practice">✏️ تمارين للتدريب</a><a href="#mistakes">⚠️ الأخطاء الشائعة</a><a href="#quiz">📝 اختبر نفسك</a><a href="#flashcards">🃏 بطاقات المراجعة</a></aside>
+<aside id="toc-drawer"><h3><span lang="ar">فهرس المحاضرة</span><span lang="en">Lecture contents</span></h3><a href="#quick-map"><span lang="ar">✦ الخلاصة الذهنية</span><span lang="en">✦ Big picture</span></a><a href="#steps"><span lang="ar">✔ خطوات الحل</span><span lang="en">✔ Solving steps</span></a><a href="#tl-lab"><span lang="ar">🧪 مختبر الشرائح</span><span lang="en">🧪 Slice lab</span></a><a href="#c-box"><span lang="ar">01 · الحالة (a): متوازي مستطيلات</span><span lang="en">01 · Case (a): rectangular box</span></a><a href="#c-nest"><span lang="ar">02 · الحالة (b): جسم بين سطحين</span><span lang="en">02 · Case (b): solid between two surfaces</span></a><a href="#ex1"><span lang="ar">03 · مثال 1 — (xy+z)</span><span lang="en">03 · Example 1 — (xy+z)</span></a><a href="#ex2"><span lang="ar">04 · مثال 2 — 8xyz</span><span lang="en">04 · Example 2 — 8xyz</span></a><a href="#ex3"><span lang="ar">05 · مثال 3 — (x+y+z) بحدود دوال</span><span lang="en">05 · Example 3 — (x+y+z), variable limits</span></a><a href="#ex4"><span lang="ar">06 · مثال 4 — حجم جسم</span><span lang="en">06 · Example 4 — volume of a solid</span></a><a href="#practice"><span lang="ar">✏️ تمارين للتدريب</span><span lang="en">✏️ Practice problems</span></a><a href="#mistakes"><span lang="ar">⚠️ الأخطاء الشائعة</span><span lang="en">⚠️ Common mistakes</span></a><a href="#quiz"><span lang="ar">📝 اختبر نفسك</span><span lang="en">📝 Test yourself</span></a><a href="#flashcards"><span lang="ar">🃏 بطاقات المراجعة</span><span lang="en">🃏 Review flashcards</span></a></aside>
 <div class="main-wrapper">
-<div class="bezel">
-  <div class="bezel-id"><span class="lamp"></span><span>ملخصات المحاضرات — <strong>Triple Integrals</strong></span></div>
-  <div class="bezel-actions">
-    <!-- قائمة التنقل المولدة عبر nav.js -->
-    <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-    </select>
-    
-    <!-- زر تبديل الثيم -->
-    <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
-
-    <!-- زر الترجمة المدمج بنفس ثيم الموقع -->
-    <button id="lang-toggle-btn" class="lang-btn" onclick="toggleLanguage()" aria-label="Translate Page">
-      <svg class="lang-icon" viewBox="0 0 24 24">
-        <path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2.1l1.1-3h4.6l1.1 3H23l-4.5-12zm-2.62 7l1.62-4.41L19.12 17h-3.24z"/>
-      </svg>
-      <span id="lang-btn-text">English</span>
-    </button>
-  </div>
-</div>
-
-<div class="pill-row"><a href="#quick-map">الخلاصة</a><a href="#tl-lab">🧪 المختبر</a><a href="#c-box">الحالة a</a><a href="#c-nest">الحالة b</a><a href="#ex1">مثال 1</a><a href="#practice">تمارين</a><a href="#quiz">اختبر نفسك</a><a href="#flashcards">بطاقات</a></div>
+<div class="bezel"><div class="bezel-id"><span class="lamp"></span><span><span lang="ar">ملخصات المحاضرات —</span><span lang="en">Lecture summaries —</span> <strong>Triple Integrals</strong></span></div>
+<div class="bezel-actions"><button class="icon-btn lang-btn" id="lang-btn" onclick="toggleLang()" aria-label="Language" title="Language / اللغة">EN</button><button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
+<select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+<!-- يتم توليد القائمة تلقائياً عبر nav.js -->
+</select></div></div>
+<div class="pill-row"><a href="#quick-map"><span lang="ar">الخلاصة</span><span lang="en">Summary</span></a><a href="#tl-lab"><span lang="ar">🧪 المختبر</span><span lang="en">🧪 Lab</span></a><a href="#c-box"><span lang="ar">الحالة a</span><span lang="en">Case a</span></a><a href="#c-nest"><span lang="ar">الحالة b</span><span lang="en">Case b</span></a><a href="#ex1"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></a><a href="#practice"><span lang="ar">تمارين</span><span lang="en">Practice</span></a><a href="#quiz"><span lang="ar">اختبر نفسك</span><span lang="en">Quiz</span></a><a href="#flashcards"><span lang="ar">بطاقات</span><span lang="en">Cards</span></a></div>
 <div class="hero reveal"><h1>Triple Integrals</h1>
-<p class="sub">نمدّد الفكرة من المساحة إلى الحجم إلى الحجم الفائق: نقسّم الجسم $S$ إلى صناديق صغيرة $dV$ ونجمع $f(x,y,z)\,dV$ — ونحسبه بثلاث تكاملات أحادية متتالية</p>
-<div class="hero-chips"><span class="chip g">$\iiint_S f\,dV$</span><span class="chip b">dV = dx dy dz</span><span class="chip y">الداخلي أولاً</span><span class="chip y">S ⊂ ℝ³ ، الرسم في ℝ⁴</span></div>
+<p class="sub"><span lang="ar">نمدّد الفكرة من المساحة إلى الحجم إلى الحجم الفائق: نقسّم الجسم $S$ إلى صناديق صغيرة $dV$ ونجمع $f(x,y,z)\,dV$ — ونحسبه بثلاث تكاملات أحادية متتالية</span><span lang="en">We extend the idea from area to volume to hypervolume: split the solid $S$ into tiny boxes $dV$, add up $f(x,y,z)\,dV$, and compute it with three successive single integrals</span></p>
+<div class="hero-chips"><span class="chip g">$\iiint_S f\,dV$</span><span class="chip b">dV = dx dy dz</span><span class="chip y"><span lang="ar">الداخلي أولاً</span><span lang="en">Inner first</span></span><span class="chip y"><span lang="ar">S ⊂ ℝ³ ، الرسم في ℝ⁴</span><span lang="en">S ⊂ ℝ³, graph in ℝ⁴</span></span></div>
 <div class="scope-screen"><svg id="hero-scope" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
 <path id="hb-box" fill="rgba(124,255,178,0.05)" stroke="#7cffb2" stroke-width="1.8" stroke-linejoin="round"/>
 <polygon id="hb-slab" fill="rgba(255,209,102,0.45)" stroke="#ffd166" stroke-width="1.6"/>
@@ -434,53 +410,28 @@
 <text x="668" y="48" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="12" direction="ltr">y</text>
 <text x="128" y="66" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="12" direction="ltr">z</text>
 <text id="hb-label" x="60" y="100" fill="#ffd166" font-family="IBM Plex Mono" font-size="12" direction="ltr">S(z)·dz</text></svg></div>
-<div class="scope-legend"><span><i class="swatch" style="background:#7cffb2"></i> الجسم S (صندوق)</span><span><i class="swatch" style="background:#ffd166"></i> شريحة مقطعها $S(z)$ سماكتها $dz$</span></div></div>
-<div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">✦</span><span class="symbol-badge">∭</span><h2>من الحجم إلى الحجم الفائق</h2></div><p>التكامل الثلاثي لدالة حقيقية $f(x,y,z)$ على جسم $S \subset \mathbb{R}^3$ يُكتب:</p><div class="math-block">\[\iiint_S f(x,y,z)\,dV\]</div><ul><li><strong>الجسم $S$</strong> يمكن احتواؤه في متوازي مستطيلات، أو يكون محدوداً بمنحنيات وأسطح.</li>
- <li><strong>عنصر الحجم:</strong> <div class="math-block small">\[dV = dx\,dy\,dz = dy\,dz\,dx = dz\,dx\,dy\]</div></li>
- <li><strong>التفسير الهندسي:</strong> هو "حجم فائق" (hypervolume) تحت السطح الفائق $w = f(x,y,z)$ الذي يعيش رسمه في $\mathbb{R}^4$ — لا نستطيع رسمه، لكن نحسبه بنفس منطق التكامل المكرر.</li></ul>
- <table class="cmp-table"><thead><tr><th></th><th>(a) متوازي مستطيلات</th><th>(b) جسم بين سطحين</th></tr></thead><tbody>
- <tr><td><strong>الجسم</strong></td><td><span class="mono">[x₁,x₂]×[y₁,y₂]×[z₁,z₂]</span></td><td>$g_1(x,y)\le z\le g_2(x,y)$</td></tr>
- <tr><td><strong>الحدود</strong></td><td>كلها أرقام ثابتة</td><td>الداخلية دوال، والخارجية أرقام</td></tr>
- <tr><td><strong>الترتيب</strong></td><td>حر (6 ترتيبات)</td><td>مقيّد بشكل الجسم</td></tr></tbody></table>
- <div class="result-box"><strong>القاعدة:</strong> نكامل من الداخل للخارج، والحد الداخلي قد يحوي المتغيرات الخارجية، أما الحد الخارجي فأرقام فقط.</div></div><div class="panel reveal" id="tl-lab" style="--panel-accent: var(--accent-assess);"><div class="panel-head"><span class="panel-index">🧪</span><span class="symbol-badge">∫∫∫</span><h2>مختبر الشرائح — التكامل الثلاثي<span class="bi-caption">اقطع الصندوق إلى شرائح عمودية على x أو y أو z، واجمع قيم المقاطع — لاحظ نفس الناتج</span></h2></div><div class="sl-controls"><div class="sl-field" style="flex:2 1 240px;"><label>الدالة والجسم</label><select id="tl-preset"></select></div></div>
- <div class="sl-modes"><span style="font-weight:600;">اتجاه الشرائح (المتغير الخارجي):</span>
- <label><input type="radio" name="tl-axis" value="z" checked> z — dz للخارج</label>
- <label><input type="radio" name="tl-axis" value="y"> y — dy للخارج</label>
- <label><input type="radio" name="tl-axis" value="x"> x — dx للخارج</label>
- <span style="flex:1;"></span><button class="btn primary" id="tl-play" onclick="TL.togglePlay()">▶ تشغيل المسح</button><button class="btn" onclick="TL.reset()">↺ إعادة</button></div>
- <div class="sl-modes"><span style="font-weight:600;">عدد الشرائح:</span><input type="range" id="tl-n" min="2" max="40" value="8"><span class="mono" id="tl-n-val" style="font-family:var(--font-mono);">n = 8</span></div>
- <div class="sl-stage"><canvas id="tl-canvas"></canvas><div class="sl-readout" id="tl-readout"><div>اضغط تشغيل ▶</div></div></div>
- <div class="sl-legend"><span><i class="sl-dot" style="background:#7cffb2;opacity:.7"></i> شرائح تم جمعها</span><span><i class="sl-dot" style="background:#ffd166;opacity:.9"></i> الشريحة الحالية</span><span><i class="sl-dot" style="background:#7cc4ff"></i> منحنى مساحة المقطع $S(t)$</span></div>
- <p class="sl-note">💡 كل شريحة قيمتها $S(t)=\iint f$ على المقطع العمودي على المحور المختار، والمجموع $\sum S(t_k)\Delta t$ يقرّب التكامل الثلاثي. بدّل المحور: تتغير الشرائح والمنحنى لكن المجموع النهائي يطابق نفس الرقم — هذا هو تبديل ترتيب $dV$ في متوازي المستطيلات. زد $n$ لتقليل الخطأ.</p></div><div class="panel reveal" id="c-box" style="--panel-accent: var(--trace-cos);"><div class="panel-head"><span class="panel-index">01</span><span class="symbol-badge">▭</span><h2>الحالة (a): متوازي مستطيلات<span class="bi-caption">S is a rectangular parallelepiped</span></h2></div><p>إذا كان $S$ متوازي مستطيلات:</p><div class="math-block small">\[S=[x_1,x_2]\times[y_1,y_2]\times[z_1,z_2]=\{(x,y,z): x_1\le x\le x_2,\ y_1\le y\le y_2,\ z_1\le z\le z_2\}\]</div><p>فالتكامل يُحسب بثلاث تكاملات أحادية متتالية، والحدود كلها ثوابت:</p><div class="math-block">\[\int_{z_1}^{z_2}\!\int_{y_1}^{y_2}\!\int_{x_1}^{x_2} f(x,y,z)\,dx\,dy\,dz\]</div><ul><li><strong>الربط:</strong> أول رمز $dx$ (الأقرب لـ $f$) يقابل أول زوج حدود $x_1,x_2$ (الأقرب لـ $f$)، ثم $dy$، ثم $dz$.</li><li>بما أن كل الحدود ثوابت، يمكن اختيار أي ترتيب للمتغيرات الثلاثة والنتيجة واحدة.</li></ul></div><div class="panel reveal" id="c-nest" style="--panel-accent: var(--trace-sin);"><div class="panel-head"><span class="panel-index">02</span><span class="symbol-badge">∫</span><h2>الحالة (b): جسم محدود بسطحين<span class="bi-caption">Solid between z=g₁(x,y) and z=g₂(x,y)</span></h2></div><p>إذا كان $S$ جسماً محدوداً من الأسفل بالسطح $z=g_1(x,y)$ ومن الأعلى بـ $z=g_2(x,y)$، ويتغير $y$ بين المنحنيين $h_1(x)$ و $h_2(x)$، ويتغير $x$ بين $a$ و $b$:</p><div class="math-block">\[\int_{a}^{b}\!\int_{h_1(x)}^{h_2(x)}\!\int_{g_1(x,y)}^{g_2(x,y)} f(x,y,z)\,dz\,dy\,dx\]</div><ul><li><strong>الأعمق $dz$:</strong> حدوده دوال بـ $(x,y)$ ← بعد تعويضها يبقى $x,y$ فقط.</li><li><strong>الوسط $dy$:</strong> حدوده دوال بـ $x$ فقط ← بعد تعويضها يبقى $x$ فقط.</li><li><strong>الخارجي $dx$:</strong> حدوده أرقام $a,b$ ← والناتج رقم.</li></ul></div><div class="panel reveal" id="ex1" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">03</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2>مثال 1: $(xy+z)$ متوازي مستطيلات</h2></div><div class="question-box"><span class="ex-tag">المسألة</span><div class="math-block small">\[\int_{0}^{3}\!\int_{0}^{2}\!\int_{0}^{1} (xy+z)\,dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط لعرض خطوات الحل</div><div class="trigger-body"><p>الداخلي بالنسبة لـ $x$:</p><div class="math-block small">\[\int_0^1 (xy+z)\,dx=\left[\tfrac{x^2y}{2}+zx\right]_0^1=\tfrac{y}{2}+z\]</div><p>الأوسط بالنسبة لـ $y$:</p><div class="math-block small">\[\int_0^2\left(\tfrac{y}{2}+z\right)dy=\left[\tfrac{y^2}{4}+zy\right]_0^2=1+2z\]</div><p>الخارجي بالنسبة لـ $z$:</p><div class="math-block small">\[\int_0^3 (1+2z)\,dz=\left[z+z^2\right]_0^3=3+9=12\]</div><div class="result-box"><strong>النتيجة النهائية:</strong> \[12\]</div></div></div></div><div class="panel reveal" id="ex2" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">04</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2>مثال 2: $8xyz$</h2></div><div class="question-box"><span class="ex-tag">المسألة</span><div class="math-block small">\[\int_{0}^{3}\!\int_{0}^{2}\!\int_{0}^{1} 8xyz\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط لعرض خطوات الحل</div><div class="trigger-body"><p>هنا الترتيب $dz\,dy\,dx$ (الأقرب للدالة هو $z$ بحدود 0 إلى 1):</p><div class="math-block small">\[\int_0^1 8xyz\,dz=\left[4xyz^2\right]_0^1=4xy\]</div><div class="math-block small">\[\int_0^2 4xy\,dy=\left[2xy^2\right]_0^2=8x\]</div><div class="math-block small">\[\int_0^3 8x\,dx=\left[4x^2\right]_0^3=36\]</div><div class="result-box"><strong>النتيجة النهائية:</strong> \[36\]</div><p>تحقق سريع: الدالة حاصل ضرب، فالناتج $8\cdot\tfrac{9}{2}\cdot 2\cdot\tfrac12=36$ ✓</p></div></div></div><div class="panel reveal" id="ex3" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">05</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2>مثال 3: حدود دوال (الحالة b)</h2></div><div class="question-box"><span class="ex-tag">المسألة</span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{x}\!\int_{0}^{y} (x+y+z)\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط لعرض خطوات الحل</div><div class="trigger-body"><p>الحد العلوي لـ $z$ هو $y$، ولـ $y$ هو $x$ — نعوّض كل حد فور الوصول إليه:</p><div class="math-block small">\[\int_0^y (x+y+z)\,dz=\left[xz+yz+\tfrac{z^2}{2}\right]_0^y=xy+y^2+\tfrac{y^2}{2}=xy+\tfrac{3y^2}{2}\]</div><div class="math-block small">\[\int_0^x\left(xy+\tfrac{3y^2}{2}\right)dy=\left[\tfrac{xy^2}{2}+\tfrac{y^3}{2}\right]_0^x=\tfrac{x^3}{2}+\tfrac{x^3}{2}=x^3\]</div><div class="math-block small">\[\int_0^1 x^3\,dx=\left[\tfrac{x^4}{4}\right]_0^1=\tfrac14\]</div><div class="result-box"><strong>النتيجة النهائية:</strong> \[\tfrac14\]</div></div></div></div><div class="panel reveal" id="ex4" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">06</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2>مثال 4: التكامل بدون دالة (حجم الجسم)</h2></div><div class="question-box"><span class="ex-tag">المسألة</span><div class="math-block small">\[\int_{0}^{2}\!\int_{0}^{z}\!\int_{0}^{yz} dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط لعرض خطوات الحل</div><div class="trigger-body"><p>الدالة $f=1$ فالتكامل يعطي حجم الجسم. الداخلي بالنسبة لـ $x$:</p><div class="math-block small">\[\int_0^{yz} dx=\left[x\right]_0^{yz}=yz\]</div><div class="math-block small">\[\int_0^{z} yz\,dy=\left[\tfrac{y^2}{2}z\right]_0^z=\tfrac{z^3}{2}\]</div><div class="math-block small">\[\int_0^2 \tfrac{z^3}{2}\,dz=\left[\tfrac{z^4}{8}\right]_0^2=\tfrac{16}{8}=2\]</div><div class="result-box"><strong>حجم الجسم:</strong> \[2\]</div></div></div></div><div class="panel reveal" id="practice" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">✏️</span><span class="symbol-badge">CW</span><h2>تمارين للتدريب (Classwork)<span class="bi-caption">حاول الحل بنفسك أولاً، ثم اضغط لعرض الإجابة</span></h2></div><div class="question-box"><span class="ex-tag">تمرين أ</span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{2}\!\int_{0}^{3} xyz\,dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط للإجابة</div><div class="trigger-body"><div class="math-block small">\[\left(\int_0^3 x\,dx\right)\left(\int_0^2 y\,dy\right)\left(\int_0^1 z\,dz\right)=\tfrac92\cdot 2\cdot\tfrac12\]</div><div class="result-box"><strong>الإجابة:</strong> \[\tfrac92\]</div></div></div><div class="question-box" style="margin-top:14px;"><span class="ex-tag">تمرين ب</span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{x}\!\int_{0}^{y} 6\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط للإجابة</div><div class="trigger-body"><div class="math-block small">\[\int_0^y 6\,dz=6y,\quad \int_0^x 6y\,dy=3x^2,\quad \int_0^1 3x^2\,dx=1\]</div><div class="result-box"><strong>الإجابة:</strong> \[1\]</div><p>ملاحظة: حجم هذا الجسم $=\tfrac16$ وضربناه في 6.</p></div></div><div class="question-box" style="margin-top:14px;"><span class="ex-tag">تمرين ج</span><div class="math-block small">\[\int_{0}^{1}\!\int_{1}^{2}\!\int_{0}^{3} (x+y)\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>اضغط للإجابة</div><div class="trigger-body"><div class="math-block small">\[\int_0^3 (x+y)\,dz=3(x+y),\quad \int_1^2 3(x+y)\,dy=3x+\tfrac92,\quad \int_0^1\left(3x+\tfrac92\right)dx=6\]</div><div class="result-box"><strong>الإجابة:</strong> \[6\]</div></div></div></div><div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);"><div class="panel-head"><span class="panel-index">⚠️</span><span class="symbol-badge">!</span><h2>الأخطاء الشائعة في التكاملات الثلاثية</h2></div><ul class="mistake-list"><li><span class="mk">خطأ 1</span> <strong>عكس ربط الحدود بالرموز:</strong> أقرب حدود للدالة تخص أقرب رمز تفاضل ($dx$ في $dx\,dy\,dz$)، وليس العكس.</li><li><span class="mk">خطأ 2</span> <strong>نسيان أن الحد الخارجي رقم:</strong> أي متغير يظهر في الحد الخارجي يعني أن ترتيب الحدود أو الحدود نفسها خاطئة.</li><li><span class="mk">خطأ 3</span> <strong>عدم تعويض الحد الدالّي:</strong> في مثال 3 عند التعويض $z=y$ يجب استبدال كل $z$ بـ $y$، فيظهر $\tfrac{y^2}{2}$ ويُجمع مع $y^2$ ليصبح $\tfrac{3y^2}{2}$.</li><li><span class="mk">خطأ 4</span> <strong>اعتبار أن الترتيب حر دائماً:</strong> التبديل الحر صحيح فقط للصندوق (الحالة a)؛ مع الحدود الدوال الترتيب مفروض.</li><li><span class="mk">خطأ 5</span> <strong>الخلط بين المتغيرات الثابتة:</strong> أثناء التكامل بالنسبة لـ $z$ يُعامل $x,y$ كثوابت، وهكذا لكل مرحلة.</li><li><span class="mk">خطأ 6</span> <strong>فقدان الحجم عند $f=1$:</strong> التكامل بدون دالة ليس صفراً؛ $\iiint_S dV$ يعطي حجم الجسم $S$ (مثال 4).</li></ul></div><div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);"><div class="panel-head"><span class="panel-index">📝</span><span class="symbol-badge">?</span><h2>اختبر نفسك<span class="bi-caption">6 أسئلة — اضغط على الإجابة لترى التصحيح فوراً</span></h2></div><div id="quiz-container"></div><div class="quiz-score"><span>النتيجة</span><span style="display:flex;align-items:center;gap:14px;"><button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()">🔄 إعادة الاختبار</button><span><span class="val" id="quiz-score">0</span> / 6</span></span></div></div><div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">🃏</span><span class="symbol-badge">↻</span><h2>بطاقات المراجعة السريعة<span class="bi-caption">اضغط على أي بطاقة لقلبها ورؤية الجواب</span></h2></div><div class="flash-toolbar"><button class="btn" onclick="shuffleFlashcards()">🔀 خلط البطاقات</button></div><div class="flash-grid" id="flash-grid"></div></div>
-<footer class="note">SIGNAL REFERENCE · VECTOR CALCULUS — TRIPLE INTEGRALS · v1.0 &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()">🖨️ طباعة الملخص</button></footer>
+<div class="scope-legend"><span><i class="swatch" style="background:#7cffb2"></i> <span lang="ar">الجسم S (صندوق)</span><span lang="en">Solid S (a box)</span></span><span><i class="swatch" style="background:#ffd166"></i> <span lang="ar">شريحة مقطعها $S(z)$ سماكتها $dz$</span><span lang="en">A slice with cross-section $S(z)$ and thickness $dz$</span></span></div></div>
+<div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">✦</span><span class="symbol-badge">∭</span><h2><span lang="ar">من الحجم إلى الحجم الفائق</span><span lang="en">From volume to hypervolume</span></h2></div><p><span lang="ar">التكامل الثلاثي لدالة حقيقية $f(x,y,z)$ على جسم $S \subset \mathbb{R}^3$ يُكتب:</span><span lang="en">The triple integral of a real function $f(x,y,z)$ over a solid $S \subset \mathbb{R}^3$ is written:</span></p><div class="math-block">\[\iiint_S f(x,y,z)\,dV\]</div><ul><li><strong><span lang="ar">الجسم $S$</span><span lang="en">The solid $S$</span></strong> <span lang="ar">يمكن احتواؤه في متوازي مستطيلات، أو يكون محدوداً بمنحنيات وأسطح.</span><span lang="en">can be enclosed in a rectangular box, or be bounded by curves and surfaces.</span></li>
+ <li><strong><span lang="ar">عنصر الحجم:</span><span lang="en">Volume element:</span></strong> <div class="math-block small">\[dV = dx\,dy\,dz = dy\,dz\,dx = dz\,dx\,dy\]</div></li>
+ <li><strong><span lang="ar">التفسير الهندسي:</span><span lang="en">Geometric meaning:</span></strong> <span lang="ar">هو "حجم فائق" (hypervolume) تحت السطح الفائق $w = f(x,y,z)$ الذي يعيش رسمه في $\mathbb{R}^4$ — لا نستطيع رسمه، لكن نحسبه بنفس منطق التكامل المكرر.</span><span lang="en">a "hypervolume" under the hypersurface $w = f(x,y,z)$, whose graph lives in $\mathbb{R}^4$. We cannot draw it, but we compute it with the same iterated-integral logic.</span></li></ul>
+ <table class="cmp-table"><thead><tr><th></th><th><span lang="ar">(a) متوازي مستطيلات</span><span lang="en">(a) Rectangular box</span></th><th><span lang="ar">(b) جسم بين سطحين</span><span lang="en">(b) Solid between two surfaces</span></th></tr></thead><tbody>
+ <tr><td><strong><span lang="ar">الجسم</span><span lang="en">Solid</span></strong></td><td><span class="mono">[x₁,x₂]×[y₁,y₂]×[z₁,z₂]</span></td><td>$g_1(x,y)\le z\le g_2(x,y)$</td></tr>
+ <tr><td><strong><span lang="ar">الحدود</span><span lang="en">Limits</span></strong></td><td><span lang="ar">كلها أرقام ثابتة</span><span lang="en">All constants</span></td><td><span lang="ar">الداخلية دوال، والخارجية أرقام</span><span lang="en">Inner ones are functions, outer ones are numbers</span></td></tr>
+ <tr><td><strong><span lang="ar">الترتيب</span><span lang="en">Order</span></strong></td><td><span lang="ar">حر (6 ترتيبات)</span><span lang="en">Free (6 orders)</span></td><td><span lang="ar">مقيّد بشكل الجسم</span><span lang="en">Fixed by the shape of the solid</span></td></tr></tbody></table>
+ <div class="result-box"><strong><span lang="ar">القاعدة:</span><span lang="en">Rule:</span></strong> <span lang="ar">نكامل من الداخل للخارج، والحد الداخلي قد يحوي المتغيرات الخارجية، أما الحد الخارجي فأرقام فقط.</span><span lang="en">Integrate from the inside out. The inner limits may contain the outer variables, but the outermost limits must be plain numbers.</span></div></div><div class="panel reveal" id="steps" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">✔</span><span class="symbol-badge">1→4</span><h2><span lang="ar">خطوات حل أي تكامل ثلاثي</span><span lang="en">How to solve any triple integral</span></h2></div><ul><li><strong>1.</strong> <span lang="ar">حدّد الجسم: صندوق (كل الحدود ثوابت) أم حدود متداخلة (الحالة b).</span><span lang="en">Identify the solid: a box (all limits constant) or nested limits (case b).</span></li><li><strong>2.</strong> <span lang="ar">ابدأ بالتكامل الأعمق (الأقرب للدالة) وعامل بقية المتغيرات كثوابت.</span><span lang="en">Start with the innermost integral (closest to the function) and treat the other variables as constants.</span></li><li><strong>3.</strong> <span lang="ar">عوّض الحدود فوراً — الحد الدالّي يحوّل الناتج إلى دالة بالمتغيرات الخارجية.</span><span lang="en">Substitute the limits right away — a function limit turns the result into a function of the outer variables.</span></li><li><strong>4.</strong> <span lang="ar">كرّر للخارج؛ التكامل الأخير لازم ينتهي برقم. وإذا كانت $f=1$ فالناتج هو الحجم.</span><span lang="en">Repeat outward; the last integral must end in a number. If $f=1$ the result is the volume.</span></li></ul></div><div class="panel reveal" id="tl-lab" style="--panel-accent: var(--accent-assess);"><div class="panel-head"><span class="panel-index">🧪</span><span class="symbol-badge">∫∫∫</span><h2><span lang="ar">مختبر الشرائح — التكامل الثلاثي</span><span lang="en">Slice lab — the triple integral</span><span class="bi-caption"><span lang="ar">اقطع الصندوق إلى شرائح عمودية على x أو y أو z، واجمع قيم المقاطع — لاحظ نفس الناتج</span><span lang="en">Cut the box into slices perpendicular to x, y or z and add up the cross-section values — notice the same result</span></span></h2></div><div class="sl-controls"><div class="sl-field" style="flex:2 1 240px;"><label><span lang="ar">الدالة والجسم</span><span lang="en">Function and solid</span></label><select id="tl-preset"></select></div></div>
+ <div class="sl-modes"><span style="font-weight:600;"><span lang="ar">اتجاه الشرائح (المتغير الخارجي):</span><span lang="en">Slice direction (outer variable):</span></span>
+ <label><input type="radio" name="tl-axis" value="z" checked> <span lang="ar">z — dz للخارج</span><span lang="en">z — dz outermost</span></label>
+ <label><input type="radio" name="tl-axis" value="y"> <span lang="ar">y — dy للخارج</span><span lang="en">y — dy outermost</span></label>
+ <label><input type="radio" name="tl-axis" value="x"> <span lang="ar">x — dx للخارج</span><span lang="en">x — dx outermost</span></label>
+ <span style="flex:1;"></span><button class="btn primary" id="tl-play" onclick="TL.togglePlay()"><span lang="ar">▶ تشغيل المسح</span><span lang="en">▶ Play sweep</span></button><button class="btn" onclick="TL.reset()"><span lang="ar">↺ إعادة</span><span lang="en">↺ Reset</span></button></div>
+ <div class="sl-modes"><span style="font-weight:600;"><span lang="ar">عدد الشرائح:</span><span lang="en">Number of slices:</span></span><input type="range" id="tl-n" min="2" max="40" value="8"><span class="mono" id="tl-n-val" style="font-family:var(--font-mono);">n = 8</span></div>
+ <div class="sl-stage"><canvas id="tl-canvas"></canvas><div class="sl-readout" id="tl-readout"><div><span lang="ar">اضغط تشغيل ▶</span><span lang="en">Press play ▶</span></div></div></div>
+ <div class="sl-legend"><span><i class="sl-dot" style="background:#7cffb2;opacity:.7"></i> <span lang="ar">شرائح تم جمعها</span><span lang="en">Slices already added</span></span><span><i class="sl-dot" style="background:#ffd166;opacity:.9"></i> <span lang="ar">الشريحة الحالية</span><span lang="en">Current slice</span></span><span><i class="sl-dot" style="background:#7cc4ff"></i> <span lang="ar">منحنى مساحة المقطع $S(t)$</span><span lang="en">Cross-section curve $S(t)$</span></span></div>
+ <p class="sl-note"><span lang="ar">💡 كل شريحة قيمتها $S(t)=\iint f$ على المقطع العمودي على المحور المختار، والمجموع $\sum S(t_k)\Delta t$ يقرّب التكامل الثلاثي. بدّل المحور: تتغير الشرائح والمنحنى لكن المجموع النهائي يطابق نفس الرقم — هذا هو تبديل ترتيب $dV$ في متوازي المستطيلات. زد $n$ لتقليل الخطأ.</span><span lang="en">💡 Each slice has value $S(t)=\iint f$ over the cross-section perpendicular to the chosen axis, and the sum $\sum S(t_k)\Delta t$ approximates the triple integral. Change the axis: the slices and the curve change, but the final sum matches the same number — that is swapping the order of $dV$ over a box. Increase $n$ to shrink the error. For Examples 3–4 the axis is locked to the outermost variable (nested limits).</span></p></div><div class="panel reveal" id="c-box" style="--panel-accent: var(--trace-cos);"><div class="panel-head"><span class="panel-index">01</span><span class="symbol-badge">▭</span><h2><span lang="ar">الحالة (a): متوازي مستطيلات</span><span lang="en">Case (a): rectangular box</span><span class="bi-caption">S is a rectangular parallelepiped</span></h2></div><p><span lang="ar">إذا كان $S$ متوازي مستطيلات:</span><span lang="en">If $S$ is a rectangular box:</span></p><div class="math-block small">\[S=[x_1,x_2]\times[y_1,y_2]\times[z_1,z_2]=\{(x,y,z): x_1\le x\le x_2,\ y_1\le y\le y_2,\ z_1\le z\le z_2\}\]</div><p><span lang="ar">فالتكامل يُحسب بثلاث تكاملات أحادية متتالية، والحدود كلها ثوابت:</span><span lang="en">the integral is computed as three successive single integrals, all limits constant:</span></p><div class="math-block">\[\int_{z_1}^{z_2}\!\int_{y_1}^{y_2}\!\int_{x_1}^{x_2} f(x,y,z)\,dx\,dy\,dz\]</div><ul><li><strong><span lang="ar">الربط:</span><span lang="en">Matching:</span></strong> <span lang="ar">أول رمز $dx$ (الأقرب لـ $f$) يقابل أول زوج حدود $x_1,x_2$ (الأقرب لـ $f$)، ثم $dy$، ثم $dz$.</span><span lang="en">The first symbol $dx$ (closest to $f$) pairs with the first pair of limits $x_1,x_2$ (closest to $f$), then $dy$, then $dz$.</span></li><li><span lang="ar">بما أن كل الحدود ثوابت، يمكن اختيار أي ترتيب للمتغيرات الثلاثة والنتيجة واحدة.</span><span lang="en">Since all limits are constants, you may choose any order for the three variables and the result is the same.</span></li></ul></div><div class="panel reveal" id="c-nest" style="--panel-accent: var(--trace-sin);"><div class="panel-head"><span class="panel-index">02</span><span class="symbol-badge">∫</span><h2><span lang="ar">الحالة (b): جسم محدود بسطحين</span><span lang="en">Case (b): solid bounded by two surfaces</span><span class="bi-caption">Solid between z=g₁(x,y) and z=g₂(x,y)</span></h2></div><p><span lang="ar">إذا كان $S$ جسماً محدوداً من الأسفل بالسطح $z=g_1(x,y)$ ومن الأعلى بـ $z=g_2(x,y)$، ويتغير $y$ بين المنحنيين $h_1(x)$ و $h_2(x)$، ويتغير $x$ بين $a$ و $b$:</span><span lang="en">If $S$ is bounded below by the surface $z=g_1(x,y)$ and above by $z=g_2(x,y)$, with $y$ between the curves $h_1(x)$ and $h_2(x)$, and $x$ between $a$ and $b$:</span></p><div class="math-block">\[\int_{a}^{b}\!\int_{h_1(x)}^{h_2(x)}\!\int_{g_1(x,y)}^{g_2(x,y)} f(x,y,z)\,dz\,dy\,dx\]</div><ul><li><strong><span lang="ar">الأعمق $dz$:</span><span lang="en">Innermost $dz$:</span></strong> <span lang="ar">حدوده دوال بـ $(x,y)$ ← بعد تعويضها يبقى $x,y$ فقط.</span><span lang="en">its limits are functions of $(x,y)$ → after substituting them only $x,y$ remain.</span></li><li><strong><span lang="ar">الوسط $dy$:</span><span lang="en">Middle $dy$:</span></strong> <span lang="ar">حدوده دوال بـ $x$ فقط ← بعد تعويضها يبقى $x$ فقط.</span><span lang="en">its limits are functions of $x$ only → after substituting them only $x$ remains.</span></li><li><strong><span lang="ar">الخارجي $dx$:</span><span lang="en">Outermost $dx$:</span></strong> <span lang="ar">حدوده أرقام $a,b$ ← والناتج رقم.</span><span lang="en">its limits are numbers $a,b$ → the result is a number.</span></li></ul></div><div class="panel reveal" id="ex1" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">03</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2><span lang="ar">مثال 1: $(xy+z)$ متوازي مستطيلات</span><span lang="en">Example 1: $(xy+z)$ over a box</span></h2></div><div class="question-box"><span class="ex-tag"><span lang="ar">المسألة</span><span lang="en">Problem</span></span><div class="math-block small">\[\int_{0}^{3}\!\int_{0}^{2}\!\int_{0}^{1} (xy+z)\,dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط لعرض خطوات الحل</span><span lang="en">Click to show the solution steps</span></div><div class="trigger-body"><p><span lang="ar">الداخلي بالنسبة لـ $x$:</span><span lang="en">Inner integral in $x$:</span></p><div class="math-block small">\[\int_0^1 (xy+z)\,dx=\left[\tfrac{x^2y}{2}+zx\right]_0^1=\tfrac{y}{2}+z\]</div><p><span lang="ar">الأوسط بالنسبة لـ $y$:</span><span lang="en">Middle integral in $y$:</span></p><div class="math-block small">\[\int_0^2\left(\tfrac{y}{2}+z\right)dy=\left[\tfrac{y^2}{4}+zy\right]_0^2=1+2z\]</div><p><span lang="ar">الخارجي بالنسبة لـ $z$:</span><span lang="en">Outer integral in $z$:</span></p><div class="math-block small">\[\int_0^3 (1+2z)\,dz=\left[z+z^2\right]_0^3=3+9=12\]</div><div class="result-box"><strong><span lang="ar">النتيجة النهائية:</span><span lang="en">Final result:</span></strong> \[12\]</div></div></div></div><div class="panel reveal" id="ex2" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">04</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2><span lang="ar">مثال 2: $8xyz$</span><span lang="en">Example 2: $8xyz$</span></h2></div><div class="question-box"><span class="ex-tag"><span lang="ar">المسألة</span><span lang="en">Problem</span></span><div class="math-block small">\[\int_{0}^{3}\!\int_{0}^{2}\!\int_{0}^{1} 8xyz\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط لعرض خطوات الحل</span><span lang="en">Click to show the solution steps</span></div><div class="trigger-body"><p><span lang="ar">هنا الترتيب $dz\,dy\,dx$ (الأقرب للدالة هو $z$ بحدود 0 إلى 1):</span><span lang="en">Here the order is $dz\,dy\,dx$ (innermost is $z$, limits 0 to 1):</span></p><div class="math-block small">\[\int_0^1 8xyz\,dz=\left[4xyz^2\right]_0^1=4xy\]</div><div class="math-block small">\[\int_0^2 4xy\,dy=\left[2xy^2\right]_0^2=8x\]</div><div class="math-block small">\[\int_0^3 8x\,dx=\left[4x^2\right]_0^3=36\]</div><div class="result-box"><strong><span lang="ar">النتيجة النهائية:</span><span lang="en">Final result:</span></strong> \[36\]</div><p><span lang="ar">تحقق سريع: الدالة حاصل ضرب، فالناتج $8\cdot\tfrac{9}{2}\cdot 2\cdot\tfrac12=36$ ✓</span><span lang="en">Quick check: the integrand is a product, so the result is $8\cdot\tfrac{9}{2}\cdot 2\cdot\tfrac12=36$ ✓</span></p></div></div></div><div class="panel reveal" id="ex3" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">05</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2><span lang="ar">مثال 3: حدود دوال (الحالة b)</span><span lang="en">Example 3: variable limits (case b)</span></h2></div><div class="question-box"><span class="ex-tag"><span lang="ar">المسألة</span><span lang="en">Problem</span></span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{x}\!\int_{0}^{y} (x+y+z)\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط لعرض خطوات الحل</span><span lang="en">Click to show the solution steps</span></div><div class="trigger-body"><p><span lang="ar">الحد العلوي لـ $z$ هو $y$، ولـ $y$ هو $x$ — نعوّض كل حد فور الوصول إليه:</span><span lang="en">The upper limit of $z$ is $y$, and of $y$ is $x$ — substitute each limit as soon as you reach it:</span></p><div class="math-block small">\[\int_0^y (x+y+z)\,dz=\left[xz+yz+\tfrac{z^2}{2}\right]_0^y=xy+y^2+\tfrac{y^2}{2}=xy+\tfrac{3y^2}{2}\]</div><div class="math-block small">\[\int_0^x\left(xy+\tfrac{3y^2}{2}\right)dy=\left[\tfrac{xy^2}{2}+\tfrac{y^3}{2}\right]_0^x=\tfrac{x^3}{2}+\tfrac{x^3}{2}=x^3\]</div><div class="math-block small">\[\int_0^1 x^3\,dx=\left[\tfrac{x^4}{4}\right]_0^1=\tfrac14\]</div><div class="result-box"><strong><span lang="ar">النتيجة النهائية:</span><span lang="en">Final result:</span></strong> \[\tfrac14\]</div></div></div></div><div class="panel reveal" id="ex4" style="--panel-accent: var(--accent-practice);"><div class="panel-head"><span class="panel-index">06</span><svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><h2><span lang="ar">مثال 4: التكامل بدون دالة (حجم الجسم)</span><span lang="en">Example 4: no function (volume of a solid)</span></h2></div><div class="question-box"><span class="ex-tag"><span lang="ar">المسألة</span><span lang="en">Problem</span></span><div class="math-block small">\[\int_{0}^{2}\!\int_{0}^{z}\!\int_{0}^{yz} dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط لعرض خطوات الحل</span><span lang="en">Click to show the solution steps</span></div><div class="trigger-body"><p><span lang="ar">الدالة $f=1$ فالتكامل يعطي حجم الجسم. الداخلي بالنسبة لـ $x$:</span><span lang="en">Here $f=1$, so the integral gives the volume of the solid. Inner integral in $x$:</span></p><div class="math-block small">\[\int_0^{yz} dx=\left[x\right]_0^{yz}=yz\]</div><div class="math-block small">\[\int_0^{z} yz\,dy=\left[\tfrac{y^2}{2}z\right]_0^z=\tfrac{z^3}{2}\]</div><div class="math-block small">\[\int_0^2 \tfrac{z^3}{2}\,dz=\left[\tfrac{z^4}{8}\right]_0^2=\tfrac{16}{8}=2\]</div><div class="result-box"><strong><span lang="ar">حجم الجسم:</span><span lang="en">Volume of the solid:</span></strong> \[2\]</div></div></div></div><div class="panel reveal" id="practice" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">✏️</span><span class="symbol-badge">CW</span><h2><span lang="ar">تمارين للتدريب (Classwork)</span><span lang="en">Practice problems (Classwork)</span><span class="bi-caption"><span lang="ar">حاول الحل بنفسك أولاً، ثم اضغط لعرض الإجابة</span><span lang="en">Try solving it yourself first, then click to see the answer</span></span></h2></div><div class="question-box"><span class="ex-tag"><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{2}\!\int_{0}^{3} xyz\,dx\,dy\,dz\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط للإجابة</span><span lang="en">Click for the answer</span></div><div class="trigger-body"><div class="math-block small">\[\left(\int_0^3 x\,dx\right)\left(\int_0^2 y\,dy\right)\left(\int_0^1 z\,dz\right)=\tfrac92\cdot 2\cdot\tfrac12\]</div><div class="result-box"><strong><span lang="ar">الإجابة:</span><span lang="en">Answer:</span></strong> \[\tfrac92\]</div></div></div><div class="question-box" style="margin-top:14px;"><span class="ex-tag"><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></span><div class="math-block small">\[\int_{0}^{1}\!\int_{0}^{x}\!\int_{0}^{y} 6\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط للإجابة</span><span lang="en">Click for the answer</span></div><div class="trigger-body"><div class="math-block small">\[\int_0^y 6\,dz=6y,\quad \int_0^x 6y\,dy=3x^2,\quad \int_0^1 3x^2\,dx=1\]</div><div class="result-box"><strong><span lang="ar">الإجابة:</span><span lang="en">Answer:</span></strong> \[1\]</div><p><span lang="ar">ملاحظة: حجم هذا الجسم $=\tfrac16$ وضربناه في 6.</span><span lang="en">Note: the volume of this solid is $\tfrac16$, and we multiplied by 6.</span></p></div></div><div class="question-box" style="margin-top:14px;"><span class="ex-tag"><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></span><div class="math-block small">\[\int_{0}^{1}\!\int_{1}^{2}\!\int_{0}^{3} (x+y)\,dz\,dy\,dx\]</div></div><div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)"><div class="trigger-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg><span lang="ar">اضغط للإجابة</span><span lang="en">Click for the answer</span></div><div class="trigger-body"><div class="math-block small">\[\int_0^3 (x+y)\,dz=3(x+y),\quad \int_1^2 3(x+y)\,dy=3x+\tfrac92,\quad \int_0^1\left(3x+\tfrac92\right)dx=6\]</div><div class="result-box"><strong><span lang="ar">الإجابة:</span><span lang="en">Answer:</span></strong> \[6\]</div></div></div></div><div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);"><div class="panel-head"><span class="panel-index">⚠️</span><span class="symbol-badge">!</span><h2><span lang="ar">الأخطاء الشائعة في التكاملات الثلاثية</span><span lang="en">Common mistakes in triple integrals</span></h2></div><ul class="mistake-list"><li><span class="mk"><span lang="ar">خطأ 1</span><span lang="en">Mistake 1</span></span> <strong><span lang="ar">عكس ربط الحدود بالرموز:</span><span lang="en">Reversing the limit–symbol pairing:</span></strong> <span lang="ar">أقرب حدود للدالة تخص أقرب رمز تفاضل ($dx$ في $dx\,dy\,dz$)، وليس العكس.</span><span lang="en">The limits closest to the function belong to the differential closest to it ($dx$ in $dx\,dy\,dz$), not the other way round.</span></li><li><span class="mk"><span lang="ar">خطأ 2</span><span lang="en">Mistake 2</span></span> <strong><span lang="ar">نسيان أن الحد الخارجي رقم:</span><span lang="en">Forgetting that the outermost limit is a number:</span></strong> <span lang="ar">أي متغير يظهر في الحد الخارجي يعني أن ترتيب الحدود أو الحدود نفسها خاطئة.</span><span lang="en">If a variable appears in the outermost limit, either the order of the limits or the limits themselves are wrong.</span></li><li><span class="mk"><span lang="ar">خطأ 3</span><span lang="en">Mistake 3</span></span> <strong><span lang="ar">عدم تعويض الحد الدالّي:</span><span lang="en">Not substituting a function limit:</span></strong> <span lang="ar">في مثال 3 عند التعويض $z=y$ يجب استبدال كل $z$ بـ $y$، فيظهر $\tfrac{y^2}{2}$ ويُجمع مع $y^2$ ليصبح $\tfrac{3y^2}{2}$.</span><span lang="en">In Example 3, when substituting $z=y$ you must replace every $z$ with $y$, so $\tfrac{y^2}{2}$ appears and combines with $y^2$ to give $\tfrac{3y^2}{2}$.</span></li><li><span class="mk"><span lang="ar">خطأ 4</span><span lang="en">Mistake 4</span></span> <strong><span lang="ar">اعتبار أن الترتيب حر دائماً:</span><span lang="en">Assuming the order is always free:</span></strong> <span lang="ar">التبديل الحر صحيح فقط للصندوق (الحالة a)؛ مع الحدود الدوال الترتيب مفروض.</span><span lang="en">Free swapping is valid only for a box (case a); with function limits the order is dictated.</span></li><li><span class="mk"><span lang="ar">خطأ 5</span><span lang="en">Mistake 5</span></span> <strong><span lang="ar">الخلط بين المتغيرات الثابتة:</span><span lang="en">Mixing up which variables are constant:</span></strong> <span lang="ar">أثناء التكامل بالنسبة لـ $z$ يُعامل $x,y$ كثوابت، وهكذا لكل مرحلة.</span><span lang="en">While integrating in $z$, treat $x,y$ as constants, and so on at every stage.</span></li><li><span class="mk"><span lang="ar">خطأ 6</span><span lang="en">Mistake 6</span></span> <strong><span lang="ar">فقدان الحجم عند $f=1$:</span><span lang="en">Losing the volume when $f=1$:</span></strong> <span lang="ar">التكامل بدون دالة ليس صفراً؛ $\iiint_S dV$ يعطي حجم الجسم $S$ (مثال 4).</span><span lang="en">An integral with no function is not zero; $\iiint_S dV$ gives the volume of $S$ (Example 4).</span></li></ul></div><div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);"><div class="panel-head"><span class="panel-index">📝</span><span class="symbol-badge">?</span><h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span><span class="bi-caption"><span lang="ar">6 أسئلة — اضغط على الإجابة لترى التصحيح فوراً</span><span lang="en">6 questions — click an answer to see the correction instantly</span></span></h2></div><div id="quiz-container"></div><div class="quiz-score"><span><span lang="ar">النتيجة</span><span lang="en">Score</span></span><span style="display:flex;align-items:center;gap:14px;"><button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()"><span lang="ar">🔄 إعادة الاختبار</span><span lang="en">🔄 Retake quiz</span></button><span><span class="val" id="quiz-score">0</span> / 6</span></span></div></div><div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);"><div class="panel-head"><span class="panel-index">🃏</span><span class="symbol-badge">↻</span><h2><span lang="ar">بطاقات المراجعة السريعة</span><span lang="en">Quick review flashcards</span><span class="bi-caption"><span lang="ar">اضغط على أي بطاقة لقلبها ورؤية الجواب</span><span lang="en">Click any card to flip it and see the answer</span></span></h2></div><div class="flash-toolbar"><button class="btn" onclick="shuffleFlashcards()"><span lang="ar">🔀 خلط البطاقات</span><span lang="en">🔀 Shuffle cards</span></button></div><div class="flash-grid" id="flash-grid"></div></div>
+<footer class="note">SIGNAL REFERENCE · VECTOR CALCULUS — TRIPLE INTEGRALS · v1.0 &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="toggleAll()"><span lang="ar">📖 إظهار/إخفاء كل الحلول</span><span lang="en">📖 Show/hide all solutions</span></button> &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()"><span lang="ar">🖨️ طباعة الملخص</span><span lang="en">🖨️ Print summary</span></button></footer>
 </div>
-
-<!-- عنصر الترجمة غير الظاهر لـ Google Translate -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'ar',
-      includedLanguages: 'ar,en',
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-
-  function toggleLanguage() {
-    const btnText = document.getElementById('lang-btn-text');
-    const isArabic = btnText.innerText === 'English';
-    const select = document.querySelector('.goog-te-combo');
-    if (select) {
-      select.value = isArabic ? 'en' : 'ar';
-      select.dispatchEvent(new Event('change'));
-      btnText.innerText = isArabic ? 'عربي' : 'English';
-    }
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 <script>
+function t(a, e) { return document.documentElement.lang === 'en' ? e : a; }
 /* ============ Utils ============ */
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         function toggleTrigger(el) { el.classList.toggle('open'); }
@@ -491,7 +442,7 @@
             const body = document.body;
             body.classList.toggle('light');
             const light = body.classList.contains('light');
-            document.getElementById('theme-btn').textContent = light ? '☀️️' : '🌙';
+            document.getElementById('theme-btn').textContent = light ? '☀️' : '🌙';
             try { localStorage.setItem('lecture7-theme', light ? 'light' : 'dark'); } catch(e) {}
         }
         (function initTheme() {
@@ -566,10 +517,14 @@
 /* ===== مختبر الشرائح ===== */
 const TL = (function () {
     const PRESETS = {
-        ex1: { name: 'مثال 1: f = xy + z على [0,1]×[0,2]×[0,3]', f: (x, y, z) => x * y + z, b: { x: [0, 1], y: [0, 2], z: [0, 3] }, exact: 12 },
-        ex2: { name: 'مثال 2: f = 8xyz على [0,3]×[0,2]×[0,1]', f: (x, y, z) => 8 * x * y * z, b: { x: [0, 3], y: [0, 2], z: [0, 1] }, exact: 36 },
-        p3:  { name: 'f = x + y + z على [0,1]³', f: (x, y, z) => x + y + z, b: { x: [0, 1], y: [0, 1], z: [0, 1] }, exact: 1.5 },
-        p4:  { name: 'f = x² + y² + z² على [0,2]³', f: (x, y, z) => x * x + y * y + z * z, b: { x: [0, 2], y: [0, 2], z: [0, 2] }, exact: 32 }
+        ex1: { name: 'مثال 1: f = xy + z على [0,1]×[0,2]×[0,3]', en: 'Example 1: f = xy + z on [0,1]×[0,2]×[0,3]', f: (x, y, z) => x * y + z, b: { x: [0, 1], y: [0, 2], z: [0, 3] }, exact: 12 },
+        ex2: { name: 'مثال 2: f = 8xyz على [0,3]×[0,2]×[0,1]', en: 'Example 2: f = 8xyz on [0,3]×[0,2]×[0,1]', f: (x, y, z) => 8 * x * y * z, b: { x: [0, 3], y: [0, 2], z: [0, 1] }, exact: 36 },
+        p3:  { name: 'f = x + y + z على [0,1]³', en: 'f = x + y + z on [0,1]³', f: (x, y, z) => x + y + z, b: { x: [0, 1], y: [0, 1], z: [0, 1] }, exact: 1.5 },
+        p4:  { name: 'f = x² + y² + z² على [0,2]³', en: 'f = x² + y² + z² on [0,2]³', f: (x, y, z) => x * x + y * y + z * z, b: { x: [0, 2], y: [0, 2], z: [0, 2] }, exact: 32 },
+        ex3: { name: 'مثال 3: 0≤z≤y≤x≤1 ، f = x+y+z', en: 'Example 3: 0≤z≤y≤x≤1, f = x+y+z', b: { x: [0, 1] }, exact: 0.25,
+               nest: { axis: 'x', order: 'dz dy dx', mid: t => [0, t], inn: (t, m) => [0, m], f: (t, m, i) => t + m + i } },
+        ex4: { name: 'مثال 4: 0≤x≤yz ، 0≤y≤z ، 0≤z≤2 ، f = 1', en: 'Example 4: 0≤x≤yz, 0≤y≤z, 0≤z≤2, f = 1', b: { z: [0, 2] }, exact: 2,
+               nest: { axis: 'z', order: 'dx dy dz', mid: t => [0, t], inn: (t, m) => [0, m * t], f: () => 1 } }
     };
     const canvas = document.getElementById('tl-canvas'), ctx = canvas.getContext('2d');
     const presetSel = document.getElementById('tl-preset'), nSlider = document.getElementById('tl-n');
@@ -578,6 +533,12 @@ const TL = (function () {
 
     function S(t) {
         if (!preset) return 0;
+        if (preset.nest) {
+            const N = preset.nest, M = 48, [m0, m1] = N.mid(t), hm = (m1 - m0) / M; let s = 0;
+            for (let i = 0; i < M; i++) { const m = m0 + (i + 0.5) * hm, [i0, i1] = N.inn(t, m), hi = (i1 - i0) / M;
+                for (let j = 0; j < M; j++) s += N.f(t, m, i0 + (j + 0.5) * hi) * hi * hm; }
+            return s;
+        }
         const o = ['x', 'y', 'z'].filter(k => k !== axis), m = 24;
         const [a1, b1] = preset.b[o[0]], [a2, b2] = preset.b[o[1]], h1 = (b1 - a1) / m, h2 = (b2 - a2) / m;
         let s = 0;
@@ -625,32 +586,39 @@ const TL = (function () {
         ctx.fillText('S(' + axis + ')', L.x + 4, 10);
         let sum = 0; for (let k = 0; k < filled; k++) sum += vals[k] * dt;
         const o = ['x', 'y', 'z'].filter(k => k !== axis);
-        readout.innerHTML = '<div>dV = d' + o.join(' d') + ' d' + axis + '</div><div>Σ = ' + sum.toFixed(4) + '</div><div>exact = ' + preset.exact + '</div><div>|err| = ' + Math.abs(preset.exact - sum).toFixed(4) + '</div>';
+        readout.innerHTML = '<div>dV = ' + (preset.nest ? preset.nest.order : 'd' + o.join(' d') + ' d' + axis) + '</div><div>Σ = ' + sum.toFixed(4) + '</div><div>exact = ' + preset.exact + '</div><div>|err| = ' + Math.abs(preset.exact - sum).toFixed(4) + '</div>';
     }
     function step() {
         if (!playing) return;
-        if (filled >= vals.length) { playing = false; playBtn.textContent = '▶ تشغيل المسح'; return; }
+        if (filled >= vals.length) { playing = false; setPlay(false); return; }
         filled++; draw(); timerId = setTimeout(step, 140);
     }
     function togglePlay() {
-        if (playing) { playing = false; playBtn.textContent = '▶ تشغيل المسح'; clearTimeout(timerId); return; }
+        if (playing) { playing = false; setPlay(false); clearTimeout(timerId); return; }
         if (filled >= vals.length) filled = 0;
-        playing = true; playBtn.textContent = '⏸ إيقاف'; step();
+        playing = true; setPlay(true); step();
     }
-    function reset() { playing = false; playBtn.textContent = '▶ تشغيل المسح'; clearTimeout(timerId); filled = 0; draw(); }
-    function applyConfig() { preset = PRESETS[presetSel.value]; recompute(); }
+    function reset() { playing = false; setPlay(false); clearTimeout(timerId); filled = 0; draw(); }
+    function setPlay(on) { playBtn.textContent = on ? t('⏸ إيقاف', '⏸ Pause') : t('▶ تشغيل المسح', '▶ Play sweep'); }
+    function applyConfig() {
+        preset = PRESETS[presetSel.value];
+        if (preset.nest) axis = preset.nest.axis;
+        document.querySelectorAll('input[name="tl-axis"]').forEach(r => { r.disabled = !!preset.nest && r.value !== axis; if (r.value === axis) r.checked = true; });
+        recompute();
+    }
+    function refresh() { [...presetSel.options].forEach(o => o.textContent = t(PRESETS[o.value].name, PRESETS[o.value].en)); setPlay(playing); draw(); }
 
     presetSel.addEventListener('change', applyConfig);
     document.querySelectorAll('input[name="tl-axis"]').forEach(r => r.addEventListener('change', () => { axis = document.querySelector('input[name="tl-axis"]:checked').value; recompute(); }));
     nSlider.addEventListener('input', () => { nVal.textContent = 'n = ' + nSlider.value; recompute(); });
-    Object.entries(PRESETS).forEach(([id, p]) => { const o = document.createElement('option'); o.value = id; o.textContent = p.name; presetSel.appendChild(o); });
+    Object.entries(PRESETS).forEach(([id, p]) => { const o = document.createElement('option'); o.value = id; o.textContent = t(p.name, p.en); presetSel.appendChild(o); });
     presetSel.value = 'ex1';
-    applyConfig();   // الضبط والتهيئة أولاً لتجنب توقف السكربت
+    applyConfig();   // الحالة أولاً، ثم resize()/draw() (درس خطأ 3)
     resize();
-    return { togglePlay, reset };
+    return { togglePlay, reset, refresh };
 })();
 
-const quizData = [
+const quizDataAr = [
     { q: 'أي مما يلي <strong>ليس</strong> شكلاً صحيحاً لعنصر الحجم $dV$؟', opts: ['$dx\\,dy\\,dz$', '$dy\\,dz\\,dx$', '$dz\\,dx\\,dy$', '$dx+dy+dz$'], correct: 3,
       feedback: '$dV$ حاصل ضرب ثلاثة تفاضلات بأي ترتيب، وليس مجموعها.' },
     { q: 'ما ناتج $\\displaystyle\\int_{0}^{3}\\!\\int_{0}^{2}\\!\\int_{0}^{1} 8xyz\\,dz\\,dy\\,dx$؟', opts: ['$12$', '$36$', '$72$', '$18$'], correct: 1,
@@ -665,6 +633,23 @@ const quizData = [
       feedback: 'الحدود تتدرج: الأعمق دوال بـ (x,y)، الأوسط دوال بـ x، والخارجي أرقام.' }
 ];
 
+let quizData = quizDataAr;
+const EN_Q = [
+    'Which of the following is <strong>not</strong> a valid form of the volume element $dV$?',
+    'What is $\\displaystyle\\int_{0}^{3}\\!\\int_{0}^{2}\\!\\int_{0}^{1} 8xyz\\,dz\\,dy\\,dx$?',
+    'What is the inner integral $\\displaystyle\\int_0^1 (xy+z)\\,dx$?',
+    'What is $\\displaystyle\\int_{0}^{1}\\!\\int_{0}^{x}\\!\\int_{0}^{y} (x+y+z)\\,dz\\,dy\\,dx$?',
+    'What is $\\displaystyle\\int_{0}^{2}\\!\\int_{0}^{z}\\!\\int_{0}^{yz} dx\\,dy\\,dz$?',
+    'In $\\int_a^b\\!\\int_{h_1(x)}^{h_2(x)}\\!\\int_{g_1(x,y)}^{g_2(x,y)} f\\,dz\\,dy\\,dx$, what kind of limits does the outermost integral have?'];
+const EN_F = [
+    '$dV$ is a product of three differentials in any order, not their sum.',
+    'The inner integral gives 4xy, then 8x, then [4x²]₀³ = 36.',
+    'The antiderivative is x²y/2 + zx, and for x from 0 to 1 it gives y/2 + z.',
+    'The inner integral gives xy + 3y²/2, then x³, then x⁴/4 from 0 to 1 = 1/4.',
+    'The inner integral gives yz, then z³/2, then z⁴/8 from 0 to 2 = 16/8 = 2.',
+    'The limits step down: the innermost are functions of (x,y), the middle ones of x, and the outermost are numbers.'];
+const EN_O = { 5: ['functions of $x,y$', 'functions of $x$', 'constants $a,b$', 'functions of $z$'] };
+const quizDataEn = quizDataAr.map((x, i) => Object.assign({}, x, { q: EN_Q[i], feedback: EN_F[i], opts: EN_O[i] || x.opts }));
 let quizScore = 0;
         let answered = new Set();
 
@@ -699,10 +684,10 @@ let quizScore = 0;
             if (optIdx === item.correct) {
                 quizScore++;
                 fb.className = 'quiz-feedback show ok';
-                fb.innerHTML = '✓ صحيح! ' + item.feedback;
+                fb.innerHTML = t('✓ صحيح! ', '✓ Correct! ') + item.feedback;
             } else {
                 fb.className = 'quiz-feedback show no';
-                fb.innerHTML = '✗ خطأ. ' + item.feedback;
+                fb.innerHTML = t('✗ خطأ. ', '✗ Incorrect. ') + item.feedback;
             }
             document.getElementById('quiz-score').textContent = quizScore;
             if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]).catch(()=>{});
@@ -717,7 +702,7 @@ let quizScore = 0;
         }
 
         
-let flashData = [
+const flashDataAr = [
     { f: 'التكامل الثلاثي', b: '$\\iiint_S f(x,y,z)\\,dV$ — حجم فائق تحت $w=f$ في $\\mathbb{R}^4$' },
     { f: 'أشكال عنصر الحجم dV', b: '$dx\\,dy\\,dz = dy\\,dz\\,dx = dz\\,dx\\,dy$' },
     { f: 'الحالة (a): S صندوق', b: 'كل الحدود أرقام ثابتة، والترتيب حر' },
@@ -729,13 +714,23 @@ let flashData = [
     { f: 'كيف نبدأ الحل؟', b: 'من الداخل: التكامل الأقرب للدالة، ونعامل بقية المتغيرات ثوابت' }
 ];
 
+let flashData = flashDataAr.slice();
+const EN_FL = [
+    ['The triple integral', '$\\iiint_S f(x,y,z)\\,dV$ — a hypervolume under $w=f$ in $\\mathbb{R}^4$'],
+    ['Forms of the volume element dV', null],
+    ['Case (a): S is a box', 'All limits are constants, and the order is free'],
+    ['Case (b): solid between two surfaces', 'Order $dz\\,dy\\,dx$ with limits: functions of (x,y), then of x, then numbers'],
+    ['Example 1: ∫₀³∫₀²∫₀¹(xy+z)dxdydz', null], ['Example 2: ∫₀³∫₀²∫₀¹ 8xyz dzdydx', null], ['Example 3: ∫₀¹∫₀ˣ∫₀ʸ(x+y+z)dzdydx', null],
+    ['Example 4: ∫₀²∫₀ᶻ∫₀^{yz} dxdydz', '$2$ — the volume of the solid'],
+    ['How do I start solving?', 'From the inside: the integral closest to the function, treating the other variables as constants']];
+const flashDataEn = flashDataAr.map((c, i) => ({ f: EN_FL[i][0], b: EN_FL[i][1] || c.b }));
 function renderFlashcards() {
             const grid = document.getElementById('flash-grid');
             grid.innerHTML = flashData.map(c => `
                 <div class="flash" onclick="this.classList.toggle('flipped')">
                     <div class="flash-inner">
                         <div class="flash-face flash-front">
-                            <div>${c.f}<span class="hint">اضغط للقلب ↻</span></div>
+                            <div>${c.f}<span class="hint">${t('اضغط للقلب ↻', 'Click to flip ↻')}</span></div>
                         </div>
                         <div class="flash-face flash-back">
                             <div>${c.b}</div>
@@ -783,6 +778,22 @@ function renderFlashcards() {
             renderFlashcards();
             setTimeout(addCopyButtons, 1200);
         });
+
+function toggleAll() { const ts = [...document.querySelectorAll('.trigger')]; const open = ts.some(x => !x.classList.contains('open')); ts.forEach(x => x.classList.toggle('open', open)); }
+function applyLang(l) {
+    const d = document.documentElement; d.lang = l; d.dir = l === 'en' ? 'ltr' : 'rtl';
+    try { localStorage.setItem('lecture7-lang', l); } catch (e) {}
+    document.getElementById('lang-btn').textContent = l === 'en' ? 'عربي' : 'EN';
+    document.title = l === 'en' ? 'Lecture 7 Summary - Triple Integrals' : 'ملخص المحاضرة 7 - Triple Integrals';
+    document.getElementById('fab-toc').setAttribute('aria-label', t('فتح الفهرس', 'Open contents'));
+    document.getElementById('theme-btn').title = t('تبديل المظهر', 'Toggle theme');
+    quizData = l === 'en' ? quizDataEn : quizDataAr;
+    flashData = (l === 'en' ? flashDataEn : flashDataAr).slice();
+    resetQuiz(); renderFlashcards(); TL.refresh();
+    if (window.renderNav) renderNav();
+}
+function toggleLang() { applyLang(document.documentElement.lang === 'en' ? 'ar' : 'en'); }
+window.addEventListener('load', () => { let s = null; try { s = localStorage.getItem('lecture7-lang'); } catch (e) {} applyLang(s === 'en' ? 'en' : 'ar'); });
 </script>
 <script src="nav.js"></script>
 </body>
