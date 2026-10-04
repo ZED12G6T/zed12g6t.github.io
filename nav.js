@@ -7,7 +7,8 @@ const lectures = [
   { name: "ملخص المحاضرة 4", url: "lecture4.html" },
   { name: "ملخص المحاضرة 5", url: "lecture5.html" },
   { name: "ملخص المحاضرة 6", url: "lecture6.html" },
-  { name: "ملخص المحاضرة 7", url: "lecture7.html" }
+  { name: "ملخص المحاضرة 7", url: "lecture7.html" },
+  { name: "Exercise 2", url: "exercise2.html" }
 ];
 
 function renderNavigation() {
