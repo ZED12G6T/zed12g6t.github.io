@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercise 2 — الحلول</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['\\[','\\]'],['$$','$$']]}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+:root{--bg:#0b1210;--panel:#111c18;--bg-inset:#0a110e;--ink-primary:#e6f5ee;--ink-secondary:#8fb0a2;--border-soft:#24382f;--trace-cos:#39ff9c;--trace-sin:#ffd23f;--accent-assess:#ff8a5c;--accent-practice:#6cb7ff;--accent-identity:#c58bff;--trace-alert:#ff5c7a}
+body.light{--bg:#f3f7f5;--panel:#fff;--bg-inset:#e9f0ed;--ink-primary:#12201a;--ink-secondary:#4a6358;--border-soft:#c6d6cd;--trace-cos:#0a9a58;--trace-sin:#b8860b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink-primary);font-family:'IBM Plex Sans Arabic',sans-serif;line-height:1.9}
+#progress{position:fixed;top:0;right:0;height:3px;width:0;background:var(--trace-cos);z-index:50}
+header{display:flex;gap:10px;align-items:center;padding:12px 18px;border-bottom:1px solid var(--border-soft);position:sticky;top:0;background:var(--bg);z-index:40}
+.channel-select{background:var(--bg-inset);color:var(--ink-primary);border:1px solid var(--border-soft);padding:6px 10px;border-radius:8px;font-family:inherit}
+.btn{background:var(--bg-inset);color:var(--ink-primary);border:1px solid var(--border-soft);padding:7px 14px;border-radius:8px;cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--trace-cos)}
+.btn.primary{background:var(--trace-cos);color:#04120b;border-color:var(--trace-cos);font-weight:600}
+main{max-width:900px;margin:auto;padding:0 16px 80px}
+.panel{background:var(--panel);border:1px solid var(--border-soft);border-radius:14px;padding:18px;margin:20px 0}
+.reveal{opacity:0;transform:translateY(14px);transition:.6s}.reveal.in{opacity:1;transform:none}
+.panel-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.panel-head h2{margin:0;font-size:20px}
+.num{font-family:'IBM Plex Mono',monospace;color:var(--accent-practice);font-size:22px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:12px;background:var(--bg-inset);border:1px solid var(--border-soft);padding:0 8px;border-radius:6px;color:var(--trace-sin)}
+.question-box{background:var(--bg-inset);border-right:3px solid var(--accent-assess);padding:10px 14px;border-radius:8px;margin:14px 0 8px}
+.tr{font-size:14px;color:var(--ink-secondary);margin-top:4px}
+.tr b{color:var(--accent-identity)}
+.trigger{width:100%;text-align:right;background:none;border:1px dashed var(--border-soft);color:var(--trace-cos);padding:8px 12px;border-radius:8px;cursor:pointer;font-family:inherit}
+.trigger-body{display:none;padding:10px 4px}.trigger-body.open{display:block}
+.step{font-weight:600;color:var(--trace-sin);margin:14px 0 2px}
+.math-block{direction:ltr;overflow-x:auto;position:relative;padding:4px 0}
+.copy-btn{position:absolute;top:0;left:0;font-size:11px;background:var(--bg-inset);color:var(--ink-secondary);border:1px solid var(--border-soft);border-radius:5px;cursor:pointer;z-index:2}
+.result-box{border:1px solid var(--trace-cos);background:rgba(57,255,156,.08);padding:8px 14px;border-radius:8px;margin:10px 0;direction:ltr;text-align:center}
+.note{font-size:13px;color:var(--ink-secondary)}
+#flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:10px}
+.card{min-height:120px;background:var(--bg-inset);border:1px solid var(--border-soft);border-radius:10px;padding:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;direction:ltr}
+.card small{color:var(--accent-identity);font-size:11px;margin-bottom:4px}
+.card.flip{border-color:var(--trace-sin)}
+.card .ar{direction:rtl;color:var(--accent-identity);font-size:13px;margin-top:4px}
+#fab{position:fixed;bottom:18px;left:18px;width:48px;height:48px;border-radius:50%;border:0;background:var(--trace-cos);color:#04120b;font-size:20px;cursor:pointer;z-index:60}
+#toc{position:fixed;top:0;left:-260px;width:250px;height:100%;background:var(--panel);border-right:1px solid var(--border-soft);padding:60px 14px;transition:.3s;z-index:55;overflow:auto}
+#toc.open{left:0}#toc a{display:block;color:var(--ink-secondary);text-decoration:none;padding:4px 0;font-size:14px}#toc a.active{color:var(--trace-cos)}
+html[lang=en] .tr{display:none}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<header>
+<button class="btn" onclick="document.body.classList.toggle('light');this.textContent=document.body.classList.contains('light')?'☀️':'🌙'">🌙</button>
+<button class="btn" id="lang-btn" onclick="toggleLang()" title="Translate page">EN</button>
+<select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
+    <!-- يتم توليد القائمة تلقائياً عبر nav.js — لا تكتب أي <option> هنا يدوياً -->
+</select>
+</header>
+<button id="fab" onclick="document.getElementById('toc').classList.toggle('open')">☰</button>
+<nav id="toc"></nav>
+<main>
+
+<section class="panel reveal" id="q1" data-t="Q1 — تكامل ثنائي" data-t-en="Q1 — Double integral">
+<div class="panel-head"><span class="num">Q1</span><span class="tag">DOUBLE</span><h2 data-en="Double integrals over a rectangle">تكاملات ثنائية على مستطيل</h2></div>
+
+<div class="question-box"><b>①</b> Evaluate $\displaystyle\int_1^2\!\!\int_0^2 (3x+xy)\,dx\,dy$
+<div class="tr"><b>الترجمة:</b> احسب التكامل؛ $x$ من 0 إلى 2 (داخلي)، و$y$ من 1 إلى 2 (خارجي).</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 1: Inner integral with respect to x ($y$ is constant)">الخطوة 1: التكامل الداخلي بالنسبة لـ x ($y$ ثابت)</div>
+<div class="math-block">\[\int_0^2(3x+xy)\,dx=\Big[\tfrac{3x^2}{2}+\tfrac{x^2y}{2}\Big]_{x=0}^{x=2}\]</div>
+<div class="step" data-en="Substituting the limits">التعويض بالحدود</div>
+<div class="math-block">\[=\Big(\tfrac{3(2)^2}{2}+\tfrac{(2)^2y}{2}\Big)-\Big(\tfrac{3(0)^2}{2}+\tfrac{(0)^2y}{2}\Big)=(6+2y)-0=6+2y\]</div>
+<div class="step" data-en="Step 2: Outer integral with respect to y">الخطوة 2: التكامل الخارجي بالنسبة لـ y</div>
+<div class="math-block">\[\int_1^2(6+2y)\,dy=\Big[6y+y^2\Big]_{y=1}^{y=2}\]</div>
+<div class="math-block">\[=\big(6(2)+(2)^2\big)-\big(6(1)+(1)^2\big)=16-7\]</div>
+<div class="result-box">$=9$</div></div>
+
+<div class="question-box"><b>②</b> Evaluate $\displaystyle\int_0^{2\pi}\!\!\int_0^{\pi}\sin(2x+y)\,dy\,dx$
+<div class="tr"><b>الترجمة:</b> احسب؛ $y$ من 0 إلى $\pi$ (داخلي)، و$x$ من 0 إلى $2\pi$ (خارجي).</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 1: Inner integral with respect to y ($x$ is constant)">الخطوة 1: التكامل الداخلي بالنسبة لـ y ($x$ ثابت)</div>
+<div class="math-block">\[\int_0^{\pi}\sin(2x+y)\,dy=\Big[-\cos(2x+y)\Big]_{y=0}^{y=\pi}\]</div>
+<div class="step" data-en="Substituting the limits">التعويض بالحدود</div>
+<div class="math-block">\[=-\cos(2x+\pi)-\big(-\cos(2x+0)\big)=-\cos(2x+\pi)+\cos 2x\]</div>
+<p class="note" data-en="We use $\cos(\theta+\pi)=-\cos\theta$, so $-\cos(2x+\pi)=+\cos 2x$.">نستخدم $\cos(\theta+\pi)=-\cos\theta$ فيصير $-\cos(2x+\pi)=+\cos 2x$.</p>
+<div class="math-block">\[=\cos 2x+\cos 2x=2\cos 2x\]</div>
+<div class="step" data-en="Step 2: Outer integral with respect to x">الخطوة 2: التكامل الخارجي بالنسبة لـ x</div>
+<div class="math-block">\[\int_0^{2\pi}2\cos 2x\,dx=\Big[\sin 2x\Big]_{x=0}^{x=2\pi}=\sin(4\pi)-\sin(0)=0-0\]</div>
+<div class="result-box">$=0$</div></div>
+</section>
+
+<section class="panel reveal" id="q2" data-t="Q2 — حدود متغيرة وحجم" data-t-en="Q2 — Variable limits & volume">
+<div class="panel-head"><span class="num">Q2</span><span class="tag">REGION / VOLUME</span><h2 data-en="Variable limits + volume">حدود متغيرة + حجم</h2></div>
+
+<div class="question-box"><b>①</b> Evaluate $\displaystyle\int_0^1\!\!\int_0^x (2xy+3)\,dy\,dx$
+<div class="tr"><b>الترجمة:</b> احسب؛ $y$ من 0 إلى $x$ (داخلي، حد متغير)، و$x$ من 0 إلى 1 (خارجي).</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 1: Inner integral with respect to y ($x$ is constant)">الخطوة 1: الداخلي بالنسبة لـ y ($x$ ثابت)</div>
+<div class="math-block">\[\int_0^x(2xy+3)\,dy=\Big[xy^2+3y\Big]_{y=0}^{y=x}\]</div>
+<div class="step" data-en="Substitute: $y=x$ then $y=0$">التعويض: $y=x$ ثم $y=0$</div>
+<div class="math-block">\[=\big(x\cdot x^2+3x\big)-\big(x\cdot 0^2+3\cdot 0\big)=x^3+3x\]</div>
+<div class="step" data-en="Step 2: Outer integral with respect to x">الخطوة 2: الخارجي بالنسبة لـ x</div>
+<div class="math-block">\[\int_0^1(x^3+3x)\,dx=\Big[\tfrac{x^4}{4}+\tfrac{3x^2}{2}\Big]_{x=0}^{x=1}=\Big(\tfrac14+\tfrac32\Big)-0\]</div>
+<div class="result-box">$=\dfrac{7}{4}$</div></div>
+
+<div class="question-box"><b>②</b> Find the volume under the plane $z=e^{2x+3y}$ over the region $R=[0,1]\times[0,2]$
+<div class="tr"><b>الترجمة:</b> أوجد الحجم تحت السطح $z=e^{2x+3y}$ فوق المنطقة المستطيلة $R=[0,1]\times[0,2]$.</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 0: Write the volume as a double integral">الخطوة 0: كتابة الحجم كتكامل ثنائي</div>
+<div class="math-block">\[V=\iint_R e^{2x+3y}\,dA=\int_0^1\!\!\int_0^2 e^{2x}\,e^{3y}\,dy\,dx\]</div>
+<div class="step" data-en="Step 1: Inner integral with respect to y ($e^{2x}$ is constant)">الخطوة 1: الداخلي بالنسبة لـ y ($e^{2x}$ ثابت)</div>
+<div class="math-block">\[\int_0^2 e^{2x}e^{3y}\,dy=e^{2x}\Big[\tfrac{e^{3y}}{3}\Big]_{y=0}^{y=2}=e^{2x}\Big(\tfrac{e^{3(2)}}{3}-\tfrac{e^{3(0)}}{3}\Big)=e^{2x}\,\tfrac{e^6-1}{3}\]</div>
+<div class="step" data-en="Step 2: Outer integral with respect to x">الخطوة 2: الخارجي بالنسبة لـ x</div>
+<div class="math-block">\[\int_0^1 e^{2x}\tfrac{e^6-1}{3}\,dx=\tfrac{e^6-1}{3}\Big[\tfrac{e^{2x}}{2}\Big]_{x=0}^{x=1}=\tfrac{e^6-1}{3}\Big(\tfrac{e^{2}}{2}-\tfrac{e^{0}}{2}\Big)\]</div>
+<div class="result-box">$V=\dfrac{(e^2-1)(e^6-1)}{6}\approx\dfrac{(6.389)(402.43)}{6}\approx 428.52$</div></div>
+</section>
+
+<section class="panel reveal" id="q3" data-t="Q3 — تكامل ثلاثي" data-t-en="Q3 — Triple integral">
+<div class="panel-head"><span class="num">Q3</span><span class="tag">TRIPLE</span><h2 data-en="Triple integrals">تكاملات ثلاثية</h2></div>
+<p class="note" data-en="Rule: solve from the inside out; the $d$ symbol closest to the integrand pairs with the innermost limits (the innermost is solved first).">القاعدة: نحل من الداخل للخارج؛ آخر رمز $d$ من اليمين أقرب لحدّه (الأقرب لـ $d$ يُحل أولاً).</p>
+
+<div class="question-box"><b>①</b> Evaluate $\displaystyle\int_0^3\!\!\int_0^2\!\!\int_0^1 (2x+y+3z^2)\,dx\,dy\,dz$
+<div class="tr"><b>الترجمة:</b> احسب؛ $x$ من 0 إلى 1، ثم $y$ من 0 إلى 2، ثم $z$ من 0 إلى 3.</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 1: With respect to x">الخطوة 1: بالنسبة لـ x</div>
+<div class="math-block">\[\int_0^1(2x+y+3z^2)\,dx=\Big[x^2+xy+3z^2x\Big]_{x=0}^{x=1}=(1+y+3z^2)-0\]</div>
+<div class="step" data-en="Step 2: With respect to y">الخطوة 2: بالنسبة لـ y</div>
+<div class="math-block">\[\int_0^2(1+y+3z^2)\,dy=\Big[y+\tfrac{y^2}{2}+3z^2y\Big]_{y=0}^{y=2}=\big(2+2+6z^2\big)-0=4+6z^2\]</div>
+<div class="step" data-en="Step 3: With respect to z">الخطوة 3: بالنسبة لـ z</div>
+<div class="math-block">\[\int_0^3(4+6z^2)\,dz=\Big[4z+2z^3\Big]_{z=0}^{z=3}=\big(4(3)+2(3)^3\big)-0=12+54\]</div>
+<div class="result-box">$=66$</div></div>
+
+<div class="question-box"><b>②</b> Evaluate $\displaystyle\int_0^1\!\!\int_0^2\!\!\int_0^{x-1} (y+1)\,dy\,dx\,dz$
+<div class="tr"><b>الترجمة:</b> احسب؛ $y$ من 0 إلى $x-1$ (حد متغير)، ثم $x$ من 0 إلى 2، ثم $z$ من 0 إلى 1.</div></div>
+<button class="trigger" onclick="tg(this)">▼ عرض الحل</button><div class="trigger-body">
+<div class="step" data-en="Step 1: With respect to y">الخطوة 1: بالنسبة لـ y</div>
+<div class="math-block">\[\int_0^{x-1}(y+1)\,dy=\Big[\tfrac{y^2}{2}+y\Big]_{y=0}^{y=x-1}=\Big(\tfrac{(x-1)^2}{2}+(x-1)\Big)-0\]</div>
+<div class="step" data-en="Step 2: With respect to x (integrate $(x-1)^n$ directly)">الخطوة 2: بالنسبة لـ x (تكامل $(x-1)^n$ مباشرة)</div>
+<div class="math-block">\[\int_0^2\Big[\tfrac{(x-1)^2}{2}+(x-1)\Big]dx=\Big[\tfrac{(x-1)^3}{6}+\tfrac{(x-1)^2}{2}\Big]_{x=0}^{x=2}\]</div>
+<div class="math-block">\[x=2:\ \tfrac{1^3}{6}+\tfrac{1^2}{2}=\tfrac23\qquad x=0:\ \tfrac{(-1)^3}{6}+\tfrac{(-1)^2}{2}=-\tfrac16+\tfrac12=\tfrac13\]</div>
+<div class="math-block">\[\tfrac23-\tfrac13=\tfrac13\]</div>
+<div class="step" data-en="Step 3: With respect to z (no z in the integrand, so it is constant)">الخطوة 3: بالنسبة لـ z (لا يوجد z داخل التكامل، فهو ثابت)</div>
+<div class="math-block">\[\int_0^1\tfrac13\,dz=\Big[\tfrac{z}{3}\Big]_{z=0}^{z=1}=\tfrac13-0\]</div>
+<div class="result-box">$=\dfrac13$</div></div>
+</section>
+
+<section class="panel reveal" id="flash" data-t="بطاقات المراجعة" data-t-en="Flashcards">
+<div class="panel-head"><span class="num">★</span><span class="tag">FLASH</span><h2 data-en="Flashcards: integrals & terms">بطاقات: تكاملات ومصطلحات</h2></div>
+<p class="note" data-en="Tap a card to flip it. Front: integral/term; back: result + meaning.">اضغط على البطاقة لقلبها. الوجه: تكامل/مصطلح، الظهر: الناتج + الترجمة.</p>
+<button class="btn" onclick="shuffleFlash()" data-en="🔀 Shuffle">🔀 خلط</button><div id="flash-grid"></div>
+</section>
+</main>
+
+<script>
+/* [نوع, وجه, ظهر, ترجمة] */
+const flashData=[
+["تكامل","$\\int x^n\\,dx$","$\\dfrac{x^{n+1}}{n+1}+C,\\ n\\ne-1$","قوة x"],
+["تكامل","$\\int \\frac1x\\,dx$","$\\ln|x|+C$","لوغاريتم طبيعي"],
+["تكامل أُسّي","$\\int e^{ax}\\,dx$","$\\dfrac{e^{ax}}{a}+C$","لا تنسَ القسمة على $a$"],
+["تكامل أُسّي","$\\int e^{ax+b}\\,dx$","$\\dfrac{e^{ax+b}}{a}+C$","الأُس خطي"],
+["تكامل أُسّي","$\\int a^{x}\\,dx$","$\\dfrac{a^x}{\\ln a}+C$","أساس عدد ثابت"],
+["أُسّي متعدد المتغيرات","$e^{2x+3y}$","$e^{2x}\\cdot e^{3y}$ (يتجزأ لضرب تكاملين)","خاصية الأُسّ: جمع الأسس"],
+["أُسّي بحد متغير","$\\int_0^2 e^{3y}dy$","$\\dfrac{e^6-1}{3}$","عوّض: $e^{3\\cdot2}$ و $e^{0}=1$"],
+["مثلثي","$\\int \\sin(ax+b)\\,dx$","$-\\dfrac{\\cos(ax+b)}{a}+C$","جيب"],
+["مثلثي","$\\int \\cos(ax+b)\\,dx$","$\\dfrac{\\sin(ax+b)}{a}+C$","جيب تمام"],
+["مثلثي","$\\cos(\\theta+\\pi)$","$-\\cos\\theta$","إزاحة بمقدار نصف دورة"],
+["مثلثي","$\\sin(k\\pi),\\ k\\in\\mathbb Z$","$0$","مضاعفات $\\pi$"],
+["تعويض (u-sub)","$\\int (x-1)^n dx$","$\\dfrac{(x-1)^{n+1}}{n+1}+C$","$u=x-1$، $du=dx$"],
+["تعويض (u-sub)","$\\int f(g(x))g'(x)dx$","$\\int f(u)\\,du,\\ u=g(x)$","تعويض متغير"],
+["بالتجزئة","$\\int u\\,dv$","$uv-\\int v\\,du$","تكامل بالتجزئة"],
+["بالتجزئة","$\\int x e^{x}dx$","$xe^{x}-e^{x}+C$","$u=x,\\ dv=e^xdx$"],
+["قوى مثلثية","$\\int \\sin^2x\\,dx$","$\\dfrac{x}{2}-\\dfrac{\\sin 2x}{4}+C$","$\\sin^2x=\\frac{1-\\cos2x}{2}$"],
+["مبرهنة","Fubini's Theorem","على مستطيل يمكن تبديل ترتيب التكامل","مبرهنة فوبيني"],
+["مصطلح","Iterated integral","solve inside → outside","تكامل مكرر"],
+["مصطلح","Limits of integration","upper / lower bounds","حدود التكامل"],
+["مصطلح","Evaluate","compute the value","احسب / أوجد قيمة"],
+["مصطلح","Region $R=[a,b]\\times[c,d]$","rectangle with constant limits","منطقة مستطيلة"],
+["مصطلح","Volume under surface","$V=\\iint_R f(x,y)\\,dA$","الحجم تحت السطح"],
+["مصطلح","Triple integral","$\\iiint_E f\\,dV$","تكامل ثلاثي"],
+["قاعدة","حد داخلي فيه متغير خارجي","مثل $\\int_0^x\\!dy$: الترتيب مفروض (y أولاً)","حد متغير"],
+["قاعدة","متغير غير موجود في الدالة","يُعامل كثابت: $\\int_0^1 \\tfrac13\\,dz=\\tfrac13$","ثابت بالنسبة للتكامل"]
+];
+let flashOrder=flashData.slice();
+function tg(b){const t=b.nextElementSibling;t.classList.toggle('open');b.textContent=t.classList.contains('open')?'▲ إخفاء':'▼ عرض الحل';typeset();}
+function typeset(){if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(()=>{});}
+function renderFlashcards(){const g=document.getElementById('flash-grid');if(!g)return;
+g.innerHTML=flashOrder.map((d,i)=>`<div class="card" data-i="${i}"><small>${d[0]}</small><div>${d[1]}</div></div>`).join('');
+g.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const d=flashOrder[+c.dataset.i];const f=c.classList.toggle('flip');
+c.innerHTML=f?`<small>${d[0]}</small><div>${d[2]}</div><div class="ar">${d[3]}</div>`:`<small>${d[0]}</small><div>${d[1]}</div>`;typeset();});}
+function shuffleFlash(){flashOrder.sort(()=>Math.random()-.5);renderFlashcards();typeset();}
+function addCopyButtons(){document.querySelectorAll('.math-block').forEach(m=>{if(m.querySelector('.copy-btn'))return;
+const src=m.textContent.trim();const b=document.createElement('button');b.className='copy-btn';b.textContent='copy TeX';
+b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(src.replace(/^\\\[|\\\]$/g,'').trim());b.textContent='✔';setTimeout(()=>b.textContent='copy TeX',1200)};
+m.prepend(b);});}
+function initUI(){const toc=document.getElementById('toc'),secs=[...document.querySelectorAll('section.panel[data-t]')];
+toc.innerHTML=secs.map(s=>`<a href="#${s.id}" data-id="${s.id}">${s.dataset.t}</a>`).join('');
+toc.onclick=()=>toc.classList.remove('open');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');toc.querySelectorAll('a').forEach(a=>a.classList.toggle('active',a.dataset.id===e.target.id));}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>io.observe(r));
+addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('progress').style.width=(100*h.scrollTop/(h.scrollHeight-h.clientHeight||1))+'%';});}
+try{renderFlashcards();}catch(e){console.error(e)}
+try{initUI();}catch(e){console.error(e)}
+try{addCopyButtons();}catch(e){console.error(e)}
+</script>
+<script>
+/* ===== Translate (AR <-> EN) ===== */
+let L='ar';
+document.querySelectorAll('[data-en]').forEach(e=>{e.dataset.ar=e.innerHTML;});
+const EXACT={"تكامل":"Integral","تكامل أُسّي":"Exponential integral","أُسّي متعدد المتغيرات":"Multivariable exponential","أُسّي بحد متغير":"Exponential with limits","مثلثي":"Trig","تعويض (u-sub)":"Substitution (u-sub)","بالتجزئة":"By parts","قوى مثلثية":"Trig powers","مبرهنة":"Theorem","مصطلح":"Term","قاعدة":"Rule","قوة x":"Power of x","لوغاريتم طبيعي":"Natural log","الأُس خطي":"Exponent is linear","أساس عدد ثابت":"Constant base","جيب":"Sine","جيب تمام":"Cosine","إزاحة بمقدار نصف دورة":"Half-turn shift","تعويض متغير":"Change of variable","تكامل بالتجزئة":"Integration by parts","مبرهنة فوبيني":"Fubini's theorem","تكامل مكرر":"Iterated integral","حدود التكامل":"Limits of integration","احسب / أوجد قيمة":"Evaluate / find the value","منطقة مستطيلة":"Rectangular region","الحجم تحت السطح":"Volume under a surface","تكامل ثلاثي":"Triple integral","حد متغير":"Variable limit","ثابت بالنسبة للتكامل":"Constant w.r.t. integration","خاصية الأُسّ: جمع الأسس":"Exponent rule: add exponents","مضاعفات $\\pi$":"Multiples of $\\pi$","$u=x-1$، $du=dx$":"$u=x-1$, $du=dx$"};
+const FRAG=[["لا تنسَ القسمة على","Don't forget to divide by"],["عوّض:","Substitute:"],[" و "," and "],["(يتجزأ لضرب تكاملين)","(splits into a product of two integrals)"],["على مستطيل يمكن تبديل ترتيب التكامل","On a rectangle the order of integration can be swapped"],["حد داخلي فيه متغير خارجي","Inner limit containing the outer variable"],["الترتيب مفروض (y أولاً)","order is forced (y first)"],["مثل","e.g."],["متغير غير موجود في الدالة","Variable absent from the integrand"],["يُعامل كثابت:","Treated as a constant:"]];
+function t(s){if(L==='ar')return s;if(EXACT[s])return EXACT[s];FRAG.forEach(([a,e])=>{s=s.split(a).join(e)});return s;}
+function tg(b){const body=b.nextElementSibling;body.classList.toggle('open');trigLabel(b);typeset();}
+function trigLabel(b){const o=b.nextElementSibling.classList.contains('open');b.textContent=L==='ar'?(o?'▲ إخفاء':'▼ عرض الحل'):(o?'▲ Hide':'▼ Show solution');}
+function renderFlashcards(){const g=document.getElementById('flash-grid');if(!g)return;
+g.innerHTML=flashOrder.map((d,i)=>`<div class="card" data-i="${i}"><small>${t(d[0])}</small><div>${t(d[1])}</div></div>`).join('');
+g.querySelectorAll('.card').forEach(c=>c.onclick=()=>{const d=flashOrder[+c.dataset.i];const f=c.classList.toggle('flip');
+c.innerHTML=f?`<small>${t(d[0])}</small><div>${t(d[2])}</div><div class="ar">${t(d[3])}</div>`:`<small>${t(d[0])}</small><div>${t(d[1])}</div>`;typeset();});}
+function toggleLang(){L=L==='ar'?'en':'ar';
+const de=document.documentElement;de.lang=L;de.dir=L==='ar'?'rtl':'ltr';
+document.querySelectorAll('[data-en]').forEach(e=>{e.innerHTML=L==='en'?e.dataset.en:e.dataset.ar;});
+document.querySelectorAll('#toc a').forEach(a=>{const s=document.getElementById(a.dataset.id);a.textContent=L==='en'?s.dataset.tEn:s.dataset.t;});
+document.querySelectorAll('.trigger').forEach(trigLabel);
+document.getElementById('lang-btn').textContent=L==='ar'?'EN':'ع';
+document.title=L==='ar'?'Exercise 2 — الحلول':'Exercise 2 — Solutions';
+renderFlashcards();typeset();}
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
