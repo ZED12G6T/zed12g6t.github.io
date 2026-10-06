@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Faraday's Law" data-title-en="Lecture 3 Summary - Faraday's Law">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 3 - قانون فاراداي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 3 · كهرومغناطيسية (2) · الفصل 9</span><span lang="en">LECTURE 3 · ELECTROMAGNETICS (2) · CH 9</span></p>
+  <h1><span><span lang="ar">قانون فاراداي والجهد المستحث</span><span lang="en">Faraday's Law &amp; Induced emf</span></span> <span class="h1-math ltr">$V_{emf}=-\frac{d\Psi}{dt}$</span></h1>
+  <p class="lead">
+    <span lang="ar">مغناطيس واقف قدام حلقة = ولا تيار. حرّكه أو غيّر شدته = يمشي تيار. يعني اللي يولّد الجهد هو <b>تغيّر</b> الفيض، مو وجوده. المحاضرة كلها سؤالين: كم الجهد؟ (فاراداي) ووين اتجاهه؟ (لنز) — في 3 طرق يتغير فيها الفيض.</span>
+    <span lang="en">A magnet sitting still next to a loop drives no current. Move it, or change its strength, and current flows. What creates the voltage is the <b>change</b> in flux, not the flux itself. The whole lecture answers two questions: how big is the voltage (Faraday) and which way does it push (Lenz), for the three ways the flux can change.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">transformer</span><span class="y">motional</span><span class="z">both</span>
+    <small><span lang="ar">← كل نوع emf له لون ثابت في الصفحة كلها، عشان تعرف كل حد من وين جا</span><span lang="en">← each kind of emf keeps one color across the page, so you always know where a term came from</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">أي تغيّر في الفيض داخل حلقة مغلقة يولّد جهد: $V_{emf}=-N\frac{d\Psi}{dt}$. فيض ثابت = صفر، مهما كان المجال قوي.</span><span lang="en">Any change of flux through a closed loop induces a voltage: $V_{emf}=-N\frac{d\Psi}{dt}$. Constant flux gives zero, however strong the field.</span></li>
+      <li><span lang="ar">الفيض يتغير بـ3 طرق: <strong class="vx">B يتغير والحلقة ثابتة</strong>، <strong class="vy">الحلقة تتحرك و B ثابت</strong>، أو <strong class="vz">الاثنين</strong> — وفي الثالثة نجمع الحدّين.</span><span lang="en">Flux changes in 3 ways: <strong class="vx">B varies, loop fixed</strong>; <strong class="vy">loop moves, B static</strong>; or <strong class="vz">both</strong> — and in the third we add the two terms.</span></li>
+      <li><span lang="ar">السالب هو قانون لنز: التيار المستحث يعاكس <b>التغيّر</b> في الفيض — ومنه نطلع الاتجاه وأي طرف موجب.</span><span lang="en">The minus sign is Lenz's law: the induced current opposes the <b>change</b> in flux — that gives the direction and which end is positive.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 من الساكن للمتغير ================= -->
+<section class="card" id="start" data-num="01" data-nav="البداية|Start">
+  <h2><span lang="ar">من الحقول الساكنة للحقول المتغيرة</span><span lang="en">From static fields to time-varying fields</span></h2>
+  <p class="sub"><span lang="ar">ليش المحاضرة هذي نقطة تحوّل في المادة</span><span lang="en">Why this lecture is a turning point in the course</span></p>
+
+  <p><span lang="ar">في كهرو (1) كانت الحقول <b>ساكنة</b>: $\mathbf E(x,y,z)$ و $\mathbf H(x,y,z)$ بدون $t$، وكل واحد مستقل عن الثاني. من اليوم الحقول <b>تتغير مع الزمن</b> $\mathbf E(x,y,z,t)$ و $\mathbf H(x,y,z,t)$، وصارت مربوطة ببعض: أي $\mathbf E$ متغير لازم معه $\mathbf H$ متغير، والعكس.</span><span lang="en">In Electromagnetics (1) the fields were <b>static</b>: $\mathbf E(x,y,z)$ and $\mathbf H(x,y,z)$ with no $t$, each independent of the other. From now on they <b>vary in time</b>, $\mathbf E(x,y,z,t)$ and $\mathbf H(x,y,z,t)$, and they are coupled: a time-varying $\mathbf E$ always comes with a time-varying $\mathbf H$, and vice versa.</span></p>
+
+  <div class="grid-3">
+    <div class="tile"><div class="t-top"><span lang="ar">المصدر · شحنة ساكنة</span><span lang="en">Source · static charge</span></div><div class="t-name"><span lang="ar">مجال كهربائي ثابت</span><span lang="en">Electrostatic field</span></div><div class="t-math">$\mathbf E(x,y,z)$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">المصدر · تيار ثابت (DC)</span><span lang="en">Source · steady current (DC)</span></div><div class="t-name"><span lang="ar">مجال مغناطيسي ثابت</span><span lang="en">Magnetostatic field</span></div><div class="t-math">$\mathbf H(x,y,z)$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">المصدر · تيار متغير / شحنة متسارعة</span><span lang="en">Source · varying current / accelerated charge</span></div><div class="t-name"><span lang="ar">حقول مرتبطة = موجات</span><span lang="en">Coupled fields = waves</span></div><div class="t-math">$\mathbf E(t)\leftrightarrow\mathbf H(t)$</div></div>
+  </div>
+
+  <h3><span lang="ar">معادلات ماكسويل للحقول الساكنة — نقطة البداية</span><span lang="en">Maxwell's equations for static fields — the starting point</span></h3>
+  <div class="m">\[\begin{array}{l|l|l}
+  \text{Point form} & \text{Integral form} & \\ \hline
+  \nabla\cdot\mathbf D=\rho_v & \oint_S \mathbf D\cdot d\mathbf S=\int_v \rho_v\,dv & \text{Gauss's law}\\
+  \nabla\cdot\mathbf B=0 & \oint_S \mathbf B\cdot d\mathbf S=0 & \text{No magnetic monopole}\\
+  \X{\nabla\times\mathbf E=0} & \X{\oint_L \mathbf E\cdot d\mathbf l=0} & \X{\text{E is conservative}}\\
+  \nabla\times\mathbf H=\mathbf J & \oint_L \mathbf H\cdot d\mathbf l=\int_S \mathbf J\cdot d\mathbf S & \text{Amp\`ere's law}
+  \end{array}\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 احفظ السطر الأزرق:</span><span lang="en">🔑 Keep an eye on the blue row:</span></strong>
+    <span lang="ar">المحاضرة هذي تكسر سطر واحد بس: $\nabla\times\mathbf E=0$. في الحالة A بتشوف وش صار بداله.</span>
+    <span lang="en">This lecture breaks exactly one row: $\nabla\times\mathbf E=0$. In case A you'll see what replaces it.</span>
+  </div>
+</section>
+
+<!-- ================= 02 قانون فاراداي ================= -->
+<section class="card" id="faraday" data-num="02" data-nav="فاراداي|Faraday">
+  <h2><span lang="ar">قانون فاراداي</span><span lang="en">Faraday's law</span></h2>
+  <p class="sub"><span lang="ar">التغيّر هو اللي يولّد الجهد، مو المجال</span><span lang="en">It's the change that induces voltage, not the field</span></p>
+
+  <p><span lang="ar">تجربة فاراداي (مغناطيس + حلقة + جلفانومتر) في ثلاث لقطات:</span><span lang="en">Faraday's experiment (magnet + loop + galvanometer) in three snapshots:</span></p>
+  <div class="grid-3">
+    <div class="tile"><div class="t-top">(a)</div><div class="t-name"><span lang="ar">المغناطيس يقرّب</span><span lang="en">Magnet moves in</span></div><div class="t-desc"><span lang="ar">المؤشر ينحرف ← فيه تيار</span><span lang="en">Needle deflects → current</span></div></div>
+    <div class="tile hl"><div class="t-top">(b)</div><div class="t-name"><span lang="ar">المغناطيس واقف</span><span lang="en">Magnet at rest</span></div><div class="t-desc"><span lang="ar">المؤشر صفر — مع إن المجال موجود!</span><span lang="en">Needle at zero — even though the field is there!</span></div></div>
+    <div class="tile"><div class="t-top">(c)</div><div class="t-name"><span lang="ar">المغناطيس يبعد</span><span lang="en">Magnet moves out</span></div><div class="t-desc"><span lang="ar">ينحرف بالعكس ← التيار عكس (a)</span><span lang="en">Deflects the other way → current reversed</span></div></div>
+  </div>
+
+  <p><span lang="ar">فاراداي لخّصها: الجهد المستحث في أي دائرة مغلقة = معدل تغيّر الفيض المترابط معها:</span><span lang="en">Faraday's summary: the induced emf in any closed circuit equals the rate of change of its flux linkage:</span></p>
+  <div class="m big">\[V_{emf}=-\frac{d\lambda}{dt}=-N\,\frac{d\Psi}{dt}\]</div>
+  <ul class="clean">
+    <li><span lang="ar">$\lambda=N\Psi$ <b>الفيض المترابط</b> (flux linkage) — $N$ عدد اللفات.</span><span lang="en">$\lambda=N\Psi$ is the <b>flux linkage</b> — $N$ is the number of turns.</span></li>
+    <li><span lang="ar">$\Psi=\int_S \mathbf B\cdot d\mathbf S$ الفيض في <b>اللفة الوحدة</b> (Wb). لو $\mathbf B$ منتظم وعمودي على الحلقة: $\Psi=B\times\text{المساحة}$.</span><span lang="en">$\Psi=\int_S \mathbf B\cdot d\mathbf S$ is the flux through <b>one turn</b> (Wb). For a uniform $\mathbf B$ normal to the loop: $\Psi=B\times\text{area}$.</span></li>
+    <li><span lang="ar">السالب = قانون لنز (القسم الجاي).</span><span lang="en">The minus sign is Lenz's law (next section).</span></li>
+  </ul>
+
+  <h3><span lang="ar">نفس القانون بدلالة $\mathbf E$ و $\mathbf B$ (لفة وحدة $N=1$)</span><span lang="en">The same law in terms of $\mathbf E$ and $\mathbf B$ (one turn, $N=1$)</span></h3>
+  <div class="m big">\[V_{emf}=\oint_L \mathbf E\cdot d\mathbf l=-\frac{d}{dt}\int_S \mathbf B\cdot d\mathbf S\]</div>
+  <ul class="clean">
+    <li><span lang="ar">$L$ المسار المغلق (الحلقة نفسها)، و $S$ السطح اللي تحده الحلقة.</span><span lang="en">$L$ is the closed path (the loop itself) and $S$ is the surface it bounds.</span></li>
+    <li><span lang="ar">$d\mathbf l$ و $d\mathbf S$ مربوطين بقاعدة اليد اليمنى: الأصابع مع $d\mathbf l$ ← الإبهام مع $d\mathbf S$. هذا اللي يحدد الإشارة، فلا تختارهم عشوائي.</span><span lang="en">$d\mathbf l$ and $d\mathbf S$ are tied by the right-hand rule: fingers along $d\mathbf l$ → thumb along $d\mathbf S$. That fixes the sign, so don't pick them independently.</span></li>
+  </ul>
+  <div class="callout key"><strong><span lang="ar">🔑 لاحظ:</span><span lang="en">🔑 Notice:</span></strong>
+    <span lang="ar">$\oint\mathbf E\cdot d\mathbf l\neq0$ — هذا $\mathbf E$ مو جاي من شحنات (خطوطه ما تبدأ وتنتهي على شحنة)، جاي من تغيّر $\mathbf B$. ونفس الفكرة في المولدات والبطاريات: تحوّل طاقة غير كهربائية لكهربائية.</span>
+    <span lang="en">$\oint\mathbf E\cdot d\mathbf l\neq0$ — this $\mathbf E$ isn't produced by charges (its lines don't start or end on charges); it's produced by the changing $\mathbf B$. Same idea as generators and batteries: they turn non-electrical energy into electrical energy.</span>
+  </div>
+
+  <h3><span lang="ar">الخريطة: الفيض يتغير بـ3 طرق</span><span lang="en">The map: flux changes in 3 ways</span></h3>
+  <div class="grid-3">
+    <div class="tile"><div class="t-top">A · transformer emf</div><div class="t-name"><span lang="ar">الحلقة ثابتة، $\mathbf B$ يتغير</span><span lang="en">Loop fixed, $\mathbf B$ varies</span></div><div class="t-math">$\X{-\int_S \frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S}$</div></div>
+    <div class="tile"><div class="t-top">B · motional emf</div><div class="t-name"><span lang="ar">الحلقة تتحرك، $\mathbf B$ ثابت</span><span lang="en">Loop moves, $\mathbf B$ static</span></div><div class="t-math">$\Y{\oint_L(\mathbf u\times\mathbf B)\cdot d\mathbf l}$</div></div>
+    <div class="tile hl"><div class="t-top">C · both</div><div class="t-name"><span lang="ar">تتحرك و $\mathbf B$ يتغير</span><span lang="en">Moves and $\mathbf B$ varies</span></div><div class="t-math">$\Z{\text{A}+\text{B}}$</div></div>
+  </div>
+  <p class="small muted"><span lang="ar">أول سؤال تسأله في أي مسألة: أي وحدة من الثلاث؟ — هل $\mathbf B$ فيه $t$؟ وهل فيه شي يتحرك؟</span><span lang="en">The first question in any problem: which of the three? Does $\mathbf B$ contain $t$? Is anything moving?</span></p>
+</section>
+
+<!-- ================= 03 لنز ================= -->
+<section class="card" id="lenz" data-num="03" data-nav="لنز|Lenz">
+  <h2><span lang="ar">قانون لنز: وش معنى السالب؟</span><span lang="en">Lenz's law: what the minus sign means</span></h2>
+  <p class="sub"><span lang="ar">الاتجاه والقطبية في 4 خطوات</span><span lang="en">Direction and polarity in 4 steps</span></p>
+
+  <p><span lang="ar"><b>لنز:</b> التيار المستحث يمشي باتجاه يخلّي المجال المغناطيسي <b>اللي يولّده هو</b> يعاكس <b>التغيّر</b> في الفيض الأصلي. الطبيعة "تعاند" التغيير.</span><span lang="en"><b>Lenz:</b> the induced current flows in the direction whose <b>own</b> magnetic field opposes the <b>change</b> in the original flux. Nature resists the change.</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">الفيض داخل الحلقة: يزيد ولا ينقص؟</span><span lang="en">Is the flux through the loop increasing or decreasing?</span></b><span class="why"><span lang="ar">لنز يهتم بالتغيّر، مو بالمجال نفسه.</span><span lang="en">Lenz cares about the change, not the field itself.</span></span></li>
+    <li><b><span lang="ar">اتجاه $\mathbf B$ المستحث</span><span lang="en">Direction of the induced $\mathbf B$</span></b><span class="why"><span lang="ar">يزيد ← $\mathbf B$ المستحث <b>عكس</b> $\mathbf B$. ينقص ← <b>نفس</b> اتجاه $\mathbf B$. (يحاول يرجّع الفيض لحاله)</span><span lang="en">Increasing → induced $\mathbf B$ <b>opposite</b> to $\mathbf B$. Decreasing → <b>same</b> direction as $\mathbf B$. (It tries to keep the flux where it was.)</span></span></li>
+    <li><b><span lang="ar">قاعدة اليد اليمنى ← اتجاه التيار</span><span lang="en">Right-hand rule → current direction</span></b><span class="why"><span lang="ar">الإبهام مع $\mathbf B$ المستحث، والأصابع تلف باتجاه التيار.</span><span lang="en">Thumb along the induced $\mathbf B$; the curled fingers give the current.</span></span></li>
+    <li><b><span lang="ar">القطبية: عامل الجزء اللي فيه الـ emf كأنه بطارية</span><span lang="en">Polarity: treat the part with the emf as a battery</span></b><span class="why"><span lang="ar">داخل البطارية التيار يمشي من − إلى +، يعني الطرف اللي يطلع منه التيار للدائرة هو الموجب.</span><span lang="en">Inside a battery current goes from − to +, so the end where current leaves into the circuit is the positive one.</span></span></li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ مثال سريع:</span><span lang="en">✅ Quick example:</span></strong>
+    <span lang="ar">قطب N يقرب من حلقة ← الفيض فيها يزيد ← الحلقة تولّد مجال عكسه، يعني تصير كأنها مغناطيس وجهه N مقابل المغناطيس ← <b>تدفعه</b>. ولو بعّدته: تصير S مقابله و<b>تسحبه</b>. دايماً تعاند الحركة.</span>
+    <span lang="en">An N pole approaches a loop → flux increases → the loop makes an opposing field, acting like a magnet with its N face toward the incoming one → it <b>repels</b> it. Pull the magnet away and the loop presents an S face and <b>attracts</b> it. It always resists the motion.</span>
+  </div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ انتبه:</span><span lang="en">⚠️ Careful:</span></strong>
+    <span lang="ar">$\mathbf B$ المستحث يعاكس <b>التغيّر</b>، مو $\mathbf B$ نفسه. لما الفيض ينقص، $\mathbf B$ المستحث يكون <b>بنفس</b> اتجاه $\mathbf B$.</span>
+    <span lang="en">The induced $\mathbf B$ opposes the <b>change</b>, not $\mathbf B$ itself. When the flux is decreasing, the induced $\mathbf B$ points the <b>same</b> way as $\mathbf B$.</span>
+  </div>
+</section>
+
+<!-- ================= 04 الحالة A ================= -->
+<section class="card" id="caseA" data-num="A" data-nav="A · محوّل|A · Transformer">
+  <h2><span lang="ar">الحالة A: حلقة ثابتة في $\mathbf B$ متغير (Transformer emf)</span><span lang="en">Case A: stationary loop in a time-varying $\mathbf B$ (transformer emf)</span></h2>
+  <p class="sub"><span lang="ar">الحلقة ما تتحرك — المجال هو اللي يتغير مع الزمن</span><span lang="en">The loop doesn't move — the field changes in time</span></p>
+
+  <div class="m big">\[V_{emf}=\oint_L \mathbf E\cdot d\mathbf l=\X{-\int_S \frac{\partial \mathbf B}{\partial t}\cdot d\mathbf S}\]</div>
+  <ul class="clean">
+    <li><span lang="ar"><b>ليش $\partial$ مو $d$؟</b> السطح $S$ ثابت، فالمشتقة تدخل داخل التكامل وتصير جزئية: الشي الوحيد اللي يتغير مع $t$ هو $\mathbf B$.</span><span lang="en"><b>Why $\partial$ and not $d$?</b> The surface $S$ is fixed, so the derivative moves inside the integral and becomes partial: the only thing changing with $t$ is $\mathbf B$.</span></li>
+    <li><span lang="ar"><b>ليش اسمه transformer؟</b> هذا مبدأ المحوّل: تيار متغير في ملف ← $\mathbf B$ متغير ← جهد في ملف ثاني واقف.</span><span lang="en"><b>Why "transformer"?</b> It's the transformer principle: varying current in one coil → varying $\mathbf B$ → voltage in another, stationary coil.</span></li>
+  </ul>
+
+  <h3><span lang="ar">النتيجة الكبيرة: أول معادلة ماكسويل للحقول المتغيرة</span><span lang="en">The big result: the first Maxwell equation for time-varying fields</span></h3>
+  <div class="funnel">
+    <div class="f-node"><span class="fv">$\oint_L \mathbf E\cdot d\mathbf l$</span><span class="fl"><span lang="ar">الطرف الأوسط</span><span lang="en">the middle term</span></span></div>
+    <div class="f-arrow">Stokes</div>
+    <div class="f-node"><span class="fv">$\int_S(\nabla\times\mathbf E)\cdot d\mathbf S=-\int_S\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S$</span><span class="fl"><span lang="ar">نفس السطح في الطرفين</span><span lang="en">same surface on both sides</span></span></div>
+    <div class="f-arrow"><span lang="ar">لأي سطح</span><span lang="en">any S</span></div>
+    <div class="f-node end"><span class="fv">$\X{\nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t}}$</span><span class="fl"><span lang="ar">المكاملات متساوية ✓</span><span lang="en">integrands equal ✓</span></span></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 السطر الأزرق تغيّر:</span><span lang="en">🔑 The blue row changed:</span></strong>
+    <span lang="ar">في الساكن كان $\nabla\times\mathbf E=0$، الحين $\nabla\times\mathbf E=-\partial\mathbf B/\partial t\neq0$. يعني $\mathbf E$ المتغير <b>مو محافظ</b>: الشغل حول مسار مغلق مو صفر — وهذا بالضبط اللي يدفع التيار يلف في الحلقة.</span>
+    <span lang="en">In statics $\nabla\times\mathbf E=0$; now $\nabla\times\mathbf E=-\partial\mathbf B/\partial t\neq0$. A time-varying $\mathbf E$ is <b>not conservative</b>: the work around a closed path isn't zero — which is exactly what pushes current around the loop.</span>
+  </div>
+</section>
+
+<!-- ================= 05 الحالة B ================= -->
+<section class="card" id="caseB" data-num="B" data-nav="B · حركي|B · Motional">
+  <h2><span lang="ar">الحالة B: حلقة تتحرك في $\mathbf B$ ثابت (Motional emf)</span><span lang="en">Case B: moving loop in a static $\mathbf B$ (motional emf)</span></h2>
+  <p class="sub"><span lang="ar">قوة لورنتز من المحاضرة 2 — بس على الإلكترونات داخل الموصل</span><span lang="en">The Lorentz force from Lecture 2 — acting on the electrons inside the conductor</span></p>
+
+  <p><span lang="ar">الموصل يتحرك بسرعة $\mathbf u$، فكل شحنة فيه تتحرك معه وتحس بقوة. نقسم على $Q$ ونطلع "مجال كهربائي حركي":</span><span lang="en">The conductor moves with velocity $\mathbf u$, so every charge in it moves too and feels a force. Divide by $Q$ to get a "motional electric field":</span></p>
+  <div class="m">\[\mathbf F_m=Q\,\mathbf u\times\mathbf B\quad\Longrightarrow\quad \mathbf E_m=\frac{\mathbf F_m}{Q}=\mathbf u\times\mathbf B\]</div>
+  <div class="m big">\[V_{emf}=\oint_L \mathbf E_m\cdot d\mathbf l=\Y{\oint_L(\mathbf u\times\mathbf B)\cdot d\mathbf l}\]</div>
+  <p><span lang="ar">اسمه <b>motional</b> أو <b>flux-cutting emf</b> (القضيب "يقطع" خطوط المجال). وهو اللي تشتغل عليه المولدات والمحركات: ملف يدور بين قطبين N و S. ونقطياً: $\nabla\times\mathbf E_m=\nabla\times(\mathbf u\times\mathbf B)$.</span><span lang="en">It's called <b>motional</b> or <b>flux-cutting emf</b> (the bar "cuts" the field lines). Generators, motors and alternators run on it: a coil rotating between N and S poles. In point form: $\nabla\times\mathbf E_m=\nabla\times(\mathbf u\times\mathbf B)$.</span></p>
+
+  <h3><span lang="ar">القضيب على السكة (شكل 9.5) — افهمه وتفهم كل مسائل الحالة B</span><span lang="en">The bar on rails (Fig. 9.5) — get this and you get every case-B problem</span></h3>
+  <div class="m">
+  <svg viewBox="0 0 540 250" role="img" aria-label="Sliding bar on rails with induced current" style="width:100%;max-width:540px;height:auto;font-family:var(--f-mono)">
+    <defs>
+      <marker id="ahB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink-2)"/></marker>
+      <marker id="ahG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--cy)"/></marker>
+      <marker id="ahO" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--cz)"/></marker>
+    </defs>
+    <rect x="70" y="60" width="200" height="120" style="fill:var(--accent-soft)"/>
+    <text x="170" y="198" text-anchor="middle" style="fill:var(--ink-3);font-size:11px">area grows → Ψ ↑</text>
+    <line x1="70" y1="60" x2="500" y2="60" style="stroke:var(--ink-2);stroke-width:3"/>
+    <line x1="70" y1="180" x2="500" y2="180" style="stroke:var(--ink-2);stroke-width:3"/>
+    <line x1="70" y1="60" x2="70" y2="180" style="stroke:var(--ink-2);stroke-width:3"/>
+    <text x="40" y="124" style="fill:var(--ink-2);font-size:13px">R</text>
+    <g style="fill:none;stroke:var(--ink-3);stroke-width:1.4">
+      <circle cx="120" cy="95" r="8"/><circle cx="120" cy="145" r="8"/><circle cx="215" cy="95" r="8"/><circle cx="215" cy="145" r="8"/>
+      <circle cx="360" cy="95" r="8"/><circle cx="360" cy="145" r="8"/><circle cx="450" cy="95" r="8"/><circle cx="450" cy="145" r="8"/>
+    </g>
+    <g style="fill:var(--ink-3)">
+      <circle cx="120" cy="95" r="2.2"/><circle cx="120" cy="145" r="2.2"/><circle cx="215" cy="95" r="2.2"/><circle cx="215" cy="145" r="2.2"/>
+      <circle cx="360" cy="95" r="2.2"/><circle cx="360" cy="145" r="2.2"/><circle cx="450" cy="95" r="2.2"/><circle cx="450" cy="145" r="2.2"/>
+    </g>
+    <text x="395" y="124" style="fill:var(--ink-2);font-size:13px">B (a_z, out)</text>
+    <rect x="270" y="46" width="20" height="148" rx="3" style="fill:var(--surface);stroke:var(--cy);stroke-width:2.5"/>
+    <text x="280" y="38" text-anchor="middle" style="fill:var(--ink);font-size:13px">P  −</text>
+    <text x="280" y="214" text-anchor="middle" style="fill:var(--ink);font-size:13px">Q  +</text>
+    <line x1="292" y1="120" x2="342" y2="120" style="stroke:var(--ink-2);stroke-width:2" marker-end="url(#ahB)"/>
+    <text x="318" y="112" text-anchor="middle" style="fill:var(--ink-2);font-size:12px">u (a_y)</text>
+    <line x1="280" y1="70" x2="280" y2="170" style="stroke:var(--cy);stroke-width:2" marker-end="url(#ahG)"/>
+    <text x="300" y="160" style="fill:var(--cy);font-size:11px">u×B = a_x</text>
+    <line x1="120" y1="60" x2="200" y2="60" style="stroke:var(--cz);stroke-width:2.5" marker-end="url(#ahO)"/>
+    <line x1="220" y1="180" x2="140" y2="180" style="stroke:var(--cz);stroke-width:2.5" marker-end="url(#ahO)"/>
+    <line x1="70" y1="150" x2="70" y2="95" style="stroke:var(--cz);stroke-width:2.5" marker-end="url(#ahO)"/>
+    <text x="160" y="52" text-anchor="middle" style="fill:var(--cz);font-size:12px">I (clockwise)</text>
+    <line x1="500" y1="230" x2="530" y2="230" style="stroke:var(--ink-3)" marker-end="url(#ahB)"/><text x="512" y="246" style="fill:var(--ink-3);font-size:11px">y</text>
+    <line x1="500" y1="230" x2="500" y2="200" style="stroke:var(--ink-3)" marker-end="url(#ahB)"/><text x="486" y="206" style="fill:var(--ink-3);font-size:11px">−x</text>
+  </svg>
+  </div>
+  <p class="small muted"><span lang="ar">القضيب يتحرك يمين ← المساحة تكبر ← الفيض الطالع ($\odot$) يزيد ← لنز: التيار مع عقارب الساعة ← داخل القضيب من P لـ Q، نفس اتجاه $\mathbf u\times\mathbf B$ ← Q موجب و P سالب.</span><span lang="en">The bar moves right → the area grows → the outward flux ($\odot$) increases → Lenz: clockwise current → inside the bar from P to Q, the same direction as $\mathbf u\times\mathbf B$ → Q is positive, P negative.</span></p>
+
+  <h3><span lang="ar">ملاحظتين من السلايد — هم فخ الاختبار</span><span lang="en">Two notes from the slides — they're the exam traps</span></h3>
+  <ol class="recipe">
+    <li><b><span lang="ar">نكامل على الجزء المتحرك بس</span><span lang="en">Integrate only over the moving part</span></b><span class="why"><span lang="ar">على السكة والمقاومة $\mathbf u=0$ فمساهمتهم صفر. يعني $\oint$ تصير عملياً $\int$ على طول القضيب.</span><span lang="en">On the rails and the resistor $\mathbf u=0$, so they contribute nothing. In practice $\oint$ becomes $\int$ along the bar.</span></span></li>
+    <li><b><span lang="ar">التيار باتجاه $\mathbf u\times\mathbf B$ — والسالب في الجواب عادي</span><span lang="en">The current is along $\mathbf u\times\mathbf B$ — and a negative answer is normal</span></b><span class="why"><span lang="ar">الكتاب يكامل عكس اتجاه التيار (مثلاً على $-\mathbf a_x$ والتيار على $+\mathbf a_x$) عشان يتفق مع $d\mathbf S=\mathbf a_z$ ولنز. فالسالب معناه بس: "التيار يمشي عكس الاتجاه اللي كاملت عليه".</span><span lang="en">The book integrates opposite to the current (e.g. along $-\mathbf a_x$ while the current flows along $+\mathbf a_x$) to stay consistent with $d\mathbf S=\mathbf a_z$ and Lenz. So the minus just means "the current flows opposite to the direction you integrated in".</span></span></li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ اختصار:</span><span lang="en">✅ Shortcut:</span></strong>
+    <span lang="ar">لو $\mathbf u$ و $\mathbf B$ والقضيب كلهم متعامدين: $|V_{emf}|=uB\ell$ — والاتجاه من $\mathbf u\times\mathbf B$.</span>
+    <span lang="en">When $\mathbf u$, $\mathbf B$ and the bar are mutually perpendicular: $|V_{emf}|=uB\ell$ — direction from $\mathbf u\times\mathbf B$.</span>
+  </div>
+</section>
+
+<!-- ================= 06 الحالة C ================= -->
+<section class="card" id="caseC" data-num="C" data-nav="C · الاثنين|C · Both">
+  <h2><span lang="ar">الحالة C: حلقة تتحرك في $\mathbf B$ متغير</span><span lang="en">Case C: moving loop in a time-varying $\mathbf B$</span></h2>
+  <p class="sub"><span lang="ar">الحالة العامة: الاثنين موجودين، فنجمعهم</span><span lang="en">The general case: both are present, so we add them</span></p>
+
+  <div class="m big">\[V_{emf}=\oint_L\mathbf E\cdot d\mathbf l=\X{-\int_S\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S}\;+\;\Y{\oint_L(\mathbf u\times\mathbf B)\cdot d\mathbf l}\;=\;\Z{-\frac{d\Psi}{dt}}\]</div>
+  <div class="m">\[\nabla\times\mathbf E=\X{-\frac{\partial\mathbf B}{\partial t}}+\Y{\nabla\times(\mathbf u\times\mathbf B)}\]</div>
+
+  <h3><span lang="ar">ليش $-\frac{d\Psi}{dt}$ لحالها تكفي؟ قاعدة السلسلة</span><span lang="en">Why does $-\frac{d\Psi}{dt}$ alone cover it? The chain rule</span></h3>
+  <p><span lang="ar">لو القضيب عند الموضع $y(t)$، فالفيض $\Psi(t,y)$ يعتمد على $t$ مرتين: مباشرة (لأن $\mathbf B$ يتغير) وعن طريق $y$ (لأن المساحة تتغير). المشتقة الكلية تنقسم <b>بالضبط</b> للحدّين:</span><span lang="en">With the bar at position $y(t)$, the flux $\Psi(t,y)$ depends on $t$ twice: directly (because $\mathbf B$ changes) and through $y$ (because the area changes). The total derivative splits <b>exactly</b> into the two terms:</span></p>
+  <div class="m big">\[\frac{d\Psi}{dt}=\X{\frac{\partial\Psi}{\partial t}\Big|_{y}}+\Y{\frac{\partial\Psi}{\partial y}\cdot\frac{dy}{dt}}\qquad \Big(\frac{dy}{dt}=u\Big)\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 يعني عندك طريقتين لأي مسألة من الحالة C:</span><span lang="en">🔑 So every case-C problem has two routes:</span></strong>
+    <span lang="ar">(1) احسب الحدّين لحالهم واجمعهم، أو (2) احسب $\Psi(t)$ كامل مع $y=ut$ واشتق مشتقة <b>كلية</b>. الاثنين يطلعون نفس الرقم — شوف مثال 1(c).</span>
+    <span lang="en">(1) compute the two terms separately and add, or (2) compute the full $\Psi(t)$ with $y=ut$ and take the <b>total</b> derivative. Both give the same number — see Example 1(c).</span>
+  </div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ السلايد كاتب $\partial\Psi/\partial t$:</span><span lang="en">⚠️ The slide writes $\partial\Psi/\partial t$:</span></strong>
+    <span lang="ar">المقصود المشتقة الكلية $d\Psi/dt$. لو ثبّت $y$ واشتقيت جزئي، تضيّع الجزء الحركي كله.</span>
+    <span lang="en">It means the total derivative $d\Psi/dt$. If you hold $y$ fixed and take a partial derivative, you lose the whole motional part.</span>
+  </div>
+</section>
+
+<!-- ================= 07 الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2><span lang="ar">طريقة حل أي مسألة emf</span><span lang="en">How to solve any emf problem</span></h2>
+  <p class="sub"><span lang="ar">نفس الخطوات للحالات الثلاث</span><span lang="en">The same steps for all three cases</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">حدّد الحالة</span><span lang="en">Identify the case</span></b><span class="why"><span lang="ar">$\mathbf B$ فيه $t$؟ ← فيه <span class="vx">transformer</span>. فيه شي يتحرك ($\mathbf u\neq0$)؟ ← فيه <span class="vy">motional</span>. الاثنين ← <span class="vz">C</span>. أغلب الأخطاء تبدأ من هنا.</span><span lang="en">Does $\mathbf B$ contain $t$? → <span class="vx">transformer</span> term. Is something moving ($\mathbf u\neq0$)? → <span class="vy">motional</span> term. Both → <span class="vz">C</span>. Most mistakes start here.</span></span></li>
+    <li><b><span lang="ar">ارسم الحلقة وحدّد $d\mathbf S$ و $d\mathbf l$</span><span lang="en">Draw the loop; fix $d\mathbf S$ and $d\mathbf l$</span></b><span class="why"><span lang="ar">عادة $d\mathbf S=dx\,dy\,\mathbf a_z$، و $d\mathbf l$ معه بقاعدة اليد اليمنى. الإشارة كلها تعتمد على هذا.</span><span lang="en">Usually $d\mathbf S=dx\,dy\,\mathbf a_z$, with $d\mathbf l$ following by the right-hand rule. The whole sign depends on it.</span></span></li>
+    <li><b><span lang="ar">احسب</span><span lang="en">Compute</span></b><span class="why"><span lang="ar">A: $-\int\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S$ على المساحة كلها. B: $\int(\mathbf u\times\mathbf B)\cdot d\mathbf l$ على القضيب بس. C: الاثنين، أو $-\frac{d\Psi}{dt}$ مع $y=ut$. وفيه $N$ لفات؟ اضرب في $N$.</span><span lang="en">A: $-\int\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S$ over the whole area. B: $\int(\mathbf u\times\mathbf B)\cdot d\mathbf l$ along the bar only. C: both, or $-\frac{d\Psi}{dt}$ with $y=ut$. $N$ turns? Multiply by $N$.</span></span></li>
+    <li><b><span lang="ar">الاتجاه والقطبية بلنز</span><span lang="en">Direction and polarity with Lenz</span></b><span class="why"><span lang="ar">أو من $\mathbf u\times\mathbf B$ في الحركي — ولازم تتفق مع إشارة جوابك.</span><span lang="en">Or from $\mathbf u\times\mathbf B$ for motional — and it must agree with the sign of your answer.</span></span></li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ افحص جوابك</span><span lang="en">✅ Check your answer</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">الوحدات: $\text{mWb/m}^2=\text{mT}$، و $\text{mWb/s}=\text{mV}$.</span><span lang="en">Units: $\text{mWb/m}^2=\text{mT}$, and $\text{mWb/s}=\text{mV}$.</span></li>
+      <li><span lang="ar">$\mathbf B$ ثابت والحلقة ثابتة؟ الجواب لازم صفر.</span><span lang="en">$\mathbf B$ static and loop fixed? The answer must be zero.</span></li>
+      <li><span lang="ar">جرّب الطريقة الثانية ($-d\Psi/dt$ بالفيض) — لازم نفس الرقم.</span><span lang="en">Try the other route ($-d\Psi/dt$ from the flux) — it must give the same number.</span></li>
+      <li><span lang="ar">الحركي ما يطلع إلا إذا القضيب "يقطع" خطوط المجال: $\mathbf u\times\mathbf B$ لازم يكون له مركبة على طول القضيب.</span><span lang="en">Motional emf only appears if the bar "cuts" field lines: $\mathbf u\times\mathbf B$ must have a component along the bar.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">قضيب على سكتين — نفس الشكل، ثلاث حالات</span><span lang="en">A bar on two rails — one figure, three cases</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 9.1</span></div>
+  <p><span lang="ar">قضيب موصل ينزلق بحرية على سكتين موصلتين كما في الشكل. احسب الجهد المستحث في القضيب:</span><span lang="en">A conducting bar slides freely over two conducting rails as shown. Calculate the induced voltage in the bar:</span></p>
+  <div class="m">\[\begin{array}{ll}
+  \text{(a)} & \text{bar stationed at } y=8\text{ cm},\quad \mathbf B=4\cos(10^6t)\,\mathbf a_z\ \text{mWb/m}^2\\
+  \text{(b)} & \mathbf u=20\,\mathbf a_y\ \text{m/s},\quad \mathbf B=4\,\mathbf a_z\ \text{mWb/m}^2\\
+  \text{(c)} & \mathbf u=20\,\mathbf a_y\ \text{m/s},\quad \mathbf B=4\cos(10^6t-y)\,\mathbf a_z\ \text{mWb/m}^2
+  \end{array}\]</div>
+  <div class="m">
+  <svg viewBox="0 0 520 230" role="img" aria-label="Example 1 figure: bar PQ on rails, B out of page" style="width:100%;max-width:520px;height:auto;font-family:var(--f-mono)">
+    <defs><marker id="ahE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--ink-2)"/></marker></defs>
+    <line x1="70" y1="50" x2="470" y2="50" style="stroke:var(--ink-2);stroke-width:3"/>
+    <line x1="70" y1="170" x2="470" y2="170" style="stroke:var(--ink-2);stroke-width:3"/>
+    <line x1="70" y1="50" x2="70" y2="170" style="stroke:var(--ink-2);stroke-width:3"/>
+    <line x1="470" y1="50" x2="505" y2="50" style="stroke:var(--ink-3)" marker-end="url(#ahE)"/><text x="508" y="45" style="fill:var(--ink-3);font-size:12px">y</text>
+    <line x1="70" y1="170" x2="70" y2="212" style="stroke:var(--ink-3)" marker-end="url(#ahE)"/><text x="78" y="222" style="fill:var(--ink-3);font-size:12px">x</text>
+    <text x="52" y="55" style="fill:var(--ink-2);font-size:12px">0</text>
+    <text x="22" y="175" style="fill:var(--ink-2);font-size:12px">6 cm</text>
+    <g style="fill:none;stroke:var(--ink-3);stroke-width:1.4">
+      <circle cx="115" cy="85" r="8"/><circle cx="115" cy="135" r="8"/><circle cx="195" cy="85" r="8"/><circle cx="195" cy="135" r="8"/>
+      <circle cx="320" cy="85" r="8"/><circle cx="320" cy="135" r="8"/><circle cx="410" cy="85" r="8"/><circle cx="410" cy="135" r="8"/>
+    </g>
+    <g style="fill:var(--ink-3)">
+      <circle cx="115" cy="85" r="2.2"/><circle cx="115" cy="135" r="2.2"/><circle cx="195" cy="85" r="2.2"/><circle cx="195" cy="135" r="2.2"/>
+      <circle cx="320" cy="85" r="2.2"/><circle cx="320" cy="135" r="2.2"/><circle cx="410" cy="85" r="2.2"/><circle cx="410" cy="135" r="2.2"/>
+    </g>
+    <text x="150" y="115" style="fill:var(--ink-2);font-size:13px">B</text>
+    <rect x="245" y="36" width="20" height="148" rx="3" style="fill:var(--accent-soft);stroke:var(--accent);stroke-width:2"/>
+    <text x="255" y="28" text-anchor="middle" style="fill:var(--ink);font-size:13px">P</text>
+    <text x="255" y="202" text-anchor="middle" style="fill:var(--ink);font-size:13px">Q</text>
+    <line x1="267" y1="110" x2="315" y2="110" style="stroke:var(--ink-2);stroke-width:2" marker-end="url(#ahE)"/>
+    <text x="324" y="114" style="fill:var(--ink-2);font-size:12px">u</text>
+  </svg>
+  </div>
+  <p class="small muted"><span lang="ar">لاحظ المحاور: $x$ لتحت، $y$ لليمين، و $\mathbf a_z=\mathbf a_x\times\mathbf a_y$ طالع من الورقة ($\odot$). السكة العليا عند $x=0$ والسفلى عند $x=6$ cm، والحلقة مقفلة عند $y=0$.</span><span lang="en">Note the axes: $x$ points down, $y$ points right, and $\mathbf a_z=\mathbf a_x\times\mathbf a_y$ points out of the page ($\odot$). The top rail is at $x=0$, the bottom one at $x=6$ cm, and the loop is closed at $y=0$.</span></p>
+
+  <!-- ---------- (a) ---------- -->
+  <h3><span lang="ar">(a) القضيب واقف عند $y=8$ cm</span><span lang="en">(a) Bar stationed at $y=8$ cm</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال: أي حالة؟</span><span lang="en">Read it: which case?</span></h4>
+      <p class="why"><span lang="ar">$\mathbf B$ فيه $t$، والقضيب واقف ($\mathbf u=0$) ← <strong class="vx">الحالة A (transformer)</strong>. نكامل على مساحة الحلقة كلها.</span><span lang="en">$\mathbf B$ contains $t$ and the bar is stationary ($\mathbf u=0$) → <strong class="vx">case A (transformer)</strong>. Integrate over the whole loop area.</span></p>
+      <div class="map"><span class="x">x: 0 → 0.06 m</span><span class="x">y: 0 → 0.08 m</span><span class="x">dS = dx dy a_z</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اشتق $\mathbf B$ بالنسبة لـ $t$</span><span lang="en">Differentiate $\mathbf B$ with respect to $t$</span> <span class="const"><span lang="ar">$x,y$ ما لهم دخل</span><span lang="en">no $x,y$ in B</span></span></h4>
+      <p class="why"><span lang="ar">مشتقة $\cos$ هي $-\sin$، ونضرب في $10^6$ (قاعدة السلسلة). ⚠️ حوّل الملّي: $4\text{ mWb/m}^2=4\times10^{-3}\text{ Wb/m}^2$.</span><span lang="en">The derivative of $\cos$ is $-\sin$, times $10^6$ (chain rule). ⚠️ Convert the milli: $4\text{ mWb/m}^2=4\times10^{-3}\text{ Wb/m}^2$.</span></p>
+      <div class="m">\[\frac{\partial\mathbf B}{\partial t}=-4(10^{-3})(10^6)\sin(10^6t)\,\mathbf a_z=-4\times10^{3}\sin(10^6t)\,\mathbf a_z\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل على المساحة</span><span lang="en">Integrate over the area</span></h4>
+      <p class="why"><span lang="ar">السالبين يصيرون موجب. والمكامَل ما فيه $x$ ولا $y$، فالتكامل = المكامَل × المساحة $0.06\times0.08$.</span><span lang="en">The two minus signs cancel. The integrand has no $x$ or $y$, so the integral is just integrand × area $0.06\times0.08$.</span></p>
+      <div class="m">\[V_{emf}=\X{-\int_S\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S}=\int_{y=0}^{0.08}\!\int_{x=0}^{0.06}4(10^{3})\sin(10^6t)\,dx\,dy=4(10^3)(0.08)(0.06)\sin(10^6t)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">القطبية بلنز</span><span lang="en">Polarity with Lenz</span></h4>
+      <p class="why"><span lang="ar">لما $\mathbf B$ (طالع) يزيد ← $\mathbf B$ المستحث داخل للورقة ← التيار مع عقارب الساعة ← داخل القضيب من P لـ Q ← القضيب كأنه بطارية والتيار يطلع من Q ← <b>Q موجب و P أقل جهد</b>.</span><span lang="en">When $\mathbf B$ (out of the page) increases → induced $\mathbf B$ into the page → clockwise current → inside the bar from P to Q → treat the bar as a battery with current leaving at Q → <b>Q positive, P at lower potential</b>.</span></p>
+    </li>
+    <li class="step final">
+      <div class="result">$V_{emf}=19.2\sin(10^6t)\ \text{V}$</div>
+      <p class="sanity"><span lang="ar">بالفيض: $\Psi=B\times\text{المساحة}=4\cos(10^6t)\times4.8\times10^{-3}$ mWb، و $-\frac{d\Psi}{dt}=19.2\sin(10^6t)$ V — نفس الجواب ✓. والرقم كبير لأن $\omega=10^6$ ضخمة.</span><span lang="en">Via flux: $\Psi=B\times\text{area}=4\cos(10^6t)\times4.8\times10^{-3}$ mWb, and $-\frac{d\Psi}{dt}=19.2\sin(10^6t)$ V — same answer ✓. It's large because $\omega=10^6$ is huge.</span></p>
+    </li>
+  </ol>
+
+  <!-- ---------- (b) ---------- -->
+  <h3><span lang="ar">(b) القضيب يتحرك و $\mathbf B$ ثابت</span><span lang="en">(b) The bar moves, $\mathbf B$ is constant</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال: أي حالة؟</span><span lang="en">Read it: which case?</span></h4>
+      <p class="why"><span lang="ar">$\mathbf B$ ما فيه $t$، والقضيب يتحرك ← <strong class="vy">الحالة B (motional)</strong>. نكامل على القضيب بس، لأنه الجزء الوحيد اللي يتحرك.</span><span lang="en">$\mathbf B$ has no $t$ and the bar moves → <strong class="vy">case B (motional)</strong>. Integrate along the bar only — it's the only moving part.</span></p>
+      <div class="map"><span class="y">u = 20 a_y m/s</span><span class="y">B = 4×10⁻³ a_z</span><span class="y">ℓ = 0.06 m</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">احسب $\mathbf u\times\mathbf B$</span><span lang="en">Compute $\mathbf u\times\mathbf B$</span></h4>
+      <p class="why"><span lang="ar">الترتيب الدوري $x\to y\to z$: $\mathbf a_y\times\mathbf a_z=\mathbf a_x$. يعني القوة على الشحنات الموجبة لتحت — من P لـ Q.</span><span lang="en">Cyclic order $x\to y\to z$: $\mathbf a_y\times\mathbf a_z=\mathbf a_x$. So positive charges are pushed down, from P to Q.</span></p>
+      <div class="m">\[\mathbf u\times\mathbf B=(20\,\mathbf a_y)\times(4\times10^{-3}\,\mathbf a_z)=0.08\,\mathbf a_x\ \text{V/m}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل على طول القضيب</span><span lang="en">Integrate along the bar</span> <span class="const"><span lang="ar">$d\mathbf l=dx\,\mathbf a_x$ من $\ell$ إلى $0$</span><span lang="en">$d\mathbf l=dx\,\mathbf a_x$ from $\ell$ to $0$</span></span></h4>
+      <p class="why"><span lang="ar">الكتاب يكامل من $x=\ell$ لـ $0$ (عكس التيار) عشان يتفق مع $d\mathbf S=\mathbf a_z$ — فيطلع سالب.</span><span lang="en">The book integrates from $x=\ell$ to $0$ (against the current) to stay consistent with $d\mathbf S=\mathbf a_z$ — so it comes out negative.</span></p>
+      <div class="m">\[V_{emf}=\Y{\int_L(\mathbf u\times\mathbf B)\cdot d\mathbf l}=\int_{x=\ell}^{0}(u\,\mathbf a_y\times B\,\mathbf a_z)\cdot dx\,\mathbf a_x=-uB\ell=-20(4\times10^{-3})(0.06)\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$V_{emf}=-4.8\ \text{mV}$</div>
+      <p class="sanity"><span lang="ar">$|V|=uB\ell=20\times0.004\times0.06=0.0048$ V ✓. وبالفيض: $\Psi=B\ell y=(4\times10^{-3})(0.06)(20t)$ ← $-\frac{d\Psi}{dt}=-4.8$ mV ✓. والسالب يعني بس إن التيار في القضيب على $+\mathbf a_x$ (P ← Q)، عكس اتجاه التكامل.</span><span lang="en">$|V|=uB\ell=20\times0.004\times0.06=0.0048$ V ✓. Via flux: $\Psi=B\ell y=(4\times10^{-3})(0.06)(20t)$ → $-\frac{d\Psi}{dt}=-4.8$ mV ✓. The minus only says the current in the bar flows along $+\mathbf a_x$ (P → Q), against the direction of integration.</span></p>
+    </li>
+  </ol>
+
+  <!-- ---------- (c) ---------- -->
+  <h3><span lang="ar">(c) القضيب يتحرك و $\mathbf B$ يتغير</span><span lang="en">(c) The bar moves and $\mathbf B$ varies</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال: أي حالة؟</span><span lang="en">Read it: which case?</span></h4>
+      <p class="why"><span lang="ar">$\mathbf B$ فيه $t$ <b>و</b> القضيب يتحرك ← <strong class="vz">الحالة C</strong>. المحاضرة تمشي بالطريقة (2): نحسب $\Psi$ ونشتقه كلياً. وبعدين نتحقق بالطريقة (1).</span><span lang="en">$\mathbf B$ contains $t$ <b>and</b> the bar moves → <strong class="vz">case C</strong>. The lecture takes route (2): find $\Psi$ and differentiate totally. Then we check with route (1).</span></p>
+      <div class="map"><span class="z">u = 20 a_y</span><span class="z">B = 4cos(10⁶t − y) a_z mWb/m²</span><span class="z">y = ut = 20t</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الفيض لين موضع القضيب $y$</span><span lang="en">The flux up to the bar's position $y$</span> <span class="const"><span lang="ar">$t$ ثابت أثناء التكامل</span><span lang="en">$t$ constant while integrating</span></span></h4>
+      <p class="why"><span lang="ar">نسمي متغير التكامل $y'$ لأن $y$ صار الحد العلوي (مكان القضيب). ⚠️ $\int\cos(c-y')\,dy'=-\sin(c-y')$ — انتبه للسالب.</span><span lang="en">Call the integration variable $y'$ because $y$ is now the upper limit (where the bar is). ⚠️ $\int\cos(c-y')\,dy'=-\sin(c-y')$ — watch the sign.</span></p>
+      <div class="m">\[\Psi=\int_{y'=0}^{y}\!\int_{x=0}^{0.06}4\cos(10^6t-y')\,dx\,dy'=-4(0.06)\sin(10^6t-y')\Big|_{0}^{y}=-0.24\sin(10^6t-y)+0.24\sin(10^6t)\ \text{mWb}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">عوّض مكان القضيب $y=ut=20t$</span><span lang="en">Substitute the bar's position $y=ut=20t$</span></h4>
+      <p class="why"><span lang="ar">$\frac{dy}{dt}=u$ ← $y=20t$ (بافتراض القضيب يبدأ من $y=0$ عند $t=0$). الحين $\Psi$ دالة في $t$ بس.</span><span lang="en">$\frac{dy}{dt}=u$ → $y=20t$ (assuming the bar starts at $y=0$ at $t=0$). Now $\Psi$ depends on $t$ only.</span></p>
+      <div class="m">\[\Psi=-0.24\sin(10^6t-20t)+0.24\sin(10^6t)\ \text{mWb}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اشتق مشتقة كلية</span><span lang="en">Take the total derivative</span></h4>
+      <p class="why"><span lang="ar">مشتقة $\sin\big((10^6-20)t\big)$ تطلع معامل $(10^6-20)$. ⚠️ السلايد كاتب $\partial$ بس المقصود $d$: لو ثبّت $y$ تضيع الـ $-20$ — وهي الجزء الحركي.</span><span lang="en">Differentiating $\sin\big((10^6-20)t\big)$ brings out $(10^6-20)$. ⚠️ The slide writes $\partial$ but means $d$: hold $y$ fixed and you lose the $-20$ — which is the motional part.</span></p>
+      <div class="m">\[V_{emf}=\Z{-\frac{d\Psi}{dt}}=0.24(10^6-20)\cos(10^6t-20t)-0.24(10^6)\cos(10^6t)\ \text{mV}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">تحقق بالطريقة (1): الحدّين لحالهم</span><span lang="en">Check with route (1): the two terms separately</span></h4>
+      <p class="why"><span lang="ar">الـ $0.24\times10^6$ mV $=240$ V هي الـ transformer، والـ $0.24\times20=4.8$ mV هي الحركي $-uB\ell$ بالضبط. الحركي ضئيل جداً جنب 240 V، عشان كذا نهمله ونكتب $\simeq$.</span><span lang="en">The $0.24\times10^6$ mV $=240$ V is the transformer part, and $0.24\times20=4.8$ mV is exactly the motional $-uB\ell$. The motional part is tiny next to 240 V, which is why we drop it and write $\simeq$.</span></p>
+      <div class="m">\[V_{emf}=\X{240\cos(10^6t-y)-240\cos(10^6t)}\;\Y{-\,4.8\times10^{-3}\cos(10^6t-y)}\ \ \text{V}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$V_{emf}\simeq240\cos(10^6t-y)-240\cos(10^6t)\ \text{V}$</div>
+      <p class="sanity"><span lang="ar">الطريقتين يطلعون نفس الشي بالضبط قبل التقريب ✓، و $y=20t$ هو مكان القضيب.</span><span lang="en">Both routes agree exactly before the approximation ✓, and $y=20t$ is the bar's position.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين — كل وحدة تدرّب قرار مختلف</span><span lang="en">Practice — each one trains a different decision</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · ملف ثابت</span><span lang="en">Exercise A · fixed coil</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">ملف فيه $N=50$ لفة، أبعاده $4\text{ cm}\times5\text{ cm}$، ثابت في المستوى $xy$، و $\mathbf B=20\sin(500t)\,\mathbf a_z$ mT. أوجد أقصى قيمة لـ $|V_{emf}|$ بالفولت.</span><span lang="en">A coil of $N=50$ turns, $4\text{ cm}\times5\text{ cm}$, fixed in the $xy$-plane, with $\mathbf B=20\sin(500t)\,\mathbf a_z$ mT. Find the maximum $|V_{emf}|$ in volts.</span></p>
+    <div class="check" data-answer="1"></div>
+    <details class="hint"><p><span lang="ar">الحالة A. $\mathbf B$ منتظم فـ $\Psi=B\times\text{المساحة}$، ولا تنسى $\lambda=N\Psi$.</span><span lang="en">Case A. $\mathbf B$ is uniform, so $\Psi=B\times\text{area}$; don't forget $\lambda=N\Psi$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الفيض في اللفة الوحدة</span><span lang="en">Flux through one turn</span></h4><div class="m">\[\Psi=(20\times10^{-3})\sin(500t)\times(0.04)(0.05)=4\times10^{-5}\sin(500t)\ \text{Wb}\]</div></li>
+      <li class="step"><h4><span lang="ar">اضرب في $N$ واشتق</span><span lang="en">Multiply by $N$ and differentiate</span></h4><div class="m">\[V_{emf}=-N\frac{d\Psi}{dt}=-50(4\times10^{-5})(500)\cos(500t)=-1\cdot\cos(500t)\ \text{V}\]</div></li>
+      <li class="step final"><div class="result">$|V_{emf}|_{max}=1\ \text{V}$</div><p class="sanity"><span lang="ar">بدون $N$ كان بيطلع 0.02 V بس — الـ 50 لفة فرقت كثير.</span><span lang="en">Without $N$ you'd get only 0.02 V — the 50 turns matter a lot.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · قضيب على سكة</span><span lang="en">Exercise B · bar on rails</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">نفس شكل مثال 1، بس المسافة بين السكتين $40$ cm، و $\mathbf B=0.3\,\mathbf a_z$ T ثابت، والقضيب يتحرك بـ $\mathbf u=5\,\mathbf a_y$ m/s، والسكتين مقفلة بمقاومة $R=2\ \Omega$. أوجد التيار بالأمبير.</span><span lang="en">Same figure as Example 1, but the rails are $40$ cm apart, $\mathbf B=0.3\,\mathbf a_z$ T is static, the bar moves at $\mathbf u=5\,\mathbf a_y$ m/s, and the rails are closed through $R=2\ \Omega$. Find the current in amperes.</span></p>
+    <div class="check" data-answer="0.3"></div>
+    <details class="hint"><p><span lang="ar">الحالة B: كل شي متعامد، فـ $|V|=uB\ell$. وبعدين أوم.</span><span lang="en">Case B: everything is perpendicular, so $|V|=uB\ell$. Then Ohm's law.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الجهد</span><span lang="en">The voltage</span></h4><div class="m">\[|V_{emf}|=uB\ell=5(0.3)(0.4)=0.6\ \text{V}\]</div></li>
+      <li class="step"><h4><span lang="ar">التيار واتجاهه</span><span lang="en">The current and its direction</span></h4><p class="why"><span lang="ar">$\mathbf u\times\mathbf B\propto\mathbf a_y\times\mathbf a_z=\mathbf a_x$ ← التيار في القضيب لتحت (P ← Q)، مع عقارب الساعة.</span><span lang="en">$\mathbf u\times\mathbf B\propto\mathbf a_y\times\mathbf a_z=\mathbf a_x$ → current in the bar flows down (P → Q), clockwise.</span></p><div class="m">\[I=\frac{V}{R}=\frac{0.6}{2}=0.3\ \text{A}\]</div></li>
+      <li class="step final"><div class="result">$I=0.3\ \text{A}$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · فخ</span><span lang="en">Exercise C · a trap</span></b><span class="lvl"><span lang="ar">مفهوم</span><span lang="en">concept</span></span></div>
+    <p><span lang="ar">نفس القضيب (على طول $x$، طوله $0.4$ m) يتحرك بـ $\mathbf u=5\,\mathbf a_y$ m/s، بس هالمرة $\mathbf B=0.3\,\mathbf a_x$ T (على طول القضيب نفسه). كم $V_{emf}$؟</span><span lang="en">The same bar (along $x$, length $0.4$ m) moves at $\mathbf u=5\,\mathbf a_y$ m/s, but this time $\mathbf B=0.3\,\mathbf a_x$ T (along the bar itself). What is $V_{emf}$?</span></p>
+    <div class="check" data-answer="0"></div>
+    <details class="hint"><p><span lang="ar">احسب $\mathbf u\times\mathbf B$ أول، وبعدين اضربه نقطياً في $d\mathbf l=dx\,\mathbf a_x$.</span><span lang="en">Compute $\mathbf u\times\mathbf B$ first, then dot it with $d\mathbf l=dx\,\mathbf a_x$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الضرب الاتجاهي مو صفر…</span><span lang="en">The cross product isn't zero…</span></h4><div class="m">\[\mathbf u\times\mathbf B=5(0.3)(\mathbf a_y\times\mathbf a_x)=-1.5\,\mathbf a_z\]</div></li>
+      <li class="step"><h4><span lang="ar">…بس عمودي على القضيب</span><span lang="en">…but it's perpendicular to the bar</span></h4><p class="why"><span lang="ar">$\mathbf a_z\cdot\mathbf a_x=0$: القوة تدفع الشحنات لبرّا الورقة، مو على طول القضيب، فما فيه تيار. وبالفيض: $\mathbf B\cdot\mathbf a_z=0$ يعني $\Psi=0$ دايماً.</span><span lang="en">$\mathbf a_z\cdot\mathbf a_x=0$: the force pushes charges out of the page, not along the bar, so no current flows. Via flux: $\mathbf B\cdot\mathbf a_z=0$, so $\Psi=0$ always.</span></p><div class="m">\[V_{emf}=\int(-1.5\,\mathbf a_z)\cdot dx\,\mathbf a_x=0\]</div></li>
+      <li class="step final"><div class="result">$V_{emf}=0$</div><p class="sanity"><span lang="ar">الحركة لحالها ما تكفي — لازم القضيب "يقطع" خطوط المجال.</span><span lang="en">Motion alone isn't enough — the bar has to "cut" field lines.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين د · الاثنين مع بعض</span><span lang="en">Exercise D · both at once</span></b><span class="lvl hard"><span lang="ar">تحدّي</span><span lang="en">challenge</span></span></div>
+    <p><span lang="ar">سكتين بينهم $20$ cm، القضيب يبدأ من $y=0$ عند $t=0$ ويتحرك بـ $\mathbf u=4\,\mathbf a_y$ m/s، و $\mathbf B=0.5\,t\,\mathbf a_z$ T (يزيد مع الزمن). أوجد $|V_{emf}|$ عند $t=3$ s.</span><span lang="en">Rails $20$ cm apart; the bar starts at $y=0$ at $t=0$ and moves at $\mathbf u=4\,\mathbf a_y$ m/s, with $\mathbf B=0.5\,t\,\mathbf a_z$ T (growing in time). Find $|V_{emf}|$ at $t=3$ s.</span></p>
+    <div class="check" data-answer="2.4"></div>
+    <details class="hint"><p><span lang="ar">الحالة C. أسهل طريق: $\Psi=B\times\ell\times y$ مع $y=4t$، واشتق.</span><span lang="en">Case C. Easiest route: $\Psi=B\times\ell\times y$ with $y=4t$, then differentiate.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الطريقة (2): الفيض كامل</span><span lang="en">Route (2): the full flux</span></h4><div class="m">\[\Psi=(0.5t)(0.2)(4t)=0.4\,t^2\ \text{Wb}\quad\Rightarrow\quad V_{emf}=-\frac{d\Psi}{dt}=-0.8\,t=-2.4\ \text{V at } t=3\]</div></li>
+      <li class="step"><h4><span lang="ar">تحقق بالطريقة (1)</span><span lang="en">Check with route (1)</span></h4><p class="why"><span lang="ar">عند $t=3$: $y=12$ m و $B=1.5$ T.</span><span lang="en">At $t=3$: $y=12$ m and $B=1.5$ T.</span></p><div class="m">\[\X{-\frac{\partial B}{\partial t}\,\ell y=-(0.5)(0.2)(12)=-1.2}\qquad \Y{-uB\ell=-(4)(1.5)(0.2)=-1.2}\qquad \Z{\text{sum}=-2.4\ \text{V}}\]</div></li>
+      <li class="step final"><div class="result">$|V_{emf}|=2.4\ \text{V}$</div><p class="sanity"><span lang="ar">لطيفة: كل جزء ساهم بالنص بالضبط. لو نسيت واحد منهم بتطلع 1.2 — نص الجواب.</span><span lang="en">Neat: each part contributes exactly half. Forget one and you get 1.2 — half the answer.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء الشائعة ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء الشائعة</span><span lang="en">Common mistakes</span></h2>
+  <p class="sub"><span lang="ar">كل واحد منها يضيّع درجات في الاختبار</span><span lang="en">Each of these costs marks in the exam</span></p>
+
+  <div class="mk"><div class="mk-title"><span lang="ar">"المجال قوي يعني فيه جهد"</span><span lang="en">"A strong field means a voltage"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf B=5\,\mathbf a_z\Rightarrow V\neq0$</div><span lang="ar">حلقة ثابتة في مجال ثابت قوي.</span><span lang="en">Fixed loop in a strong static field.</span></div><div class="yes"><div class="mm">$\frac{d\Psi}{dt}=0\Rightarrow V=0$</div><span lang="ar">الجهد من التغيّر بس.</span><span lang="en">Voltage comes only from change.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تكامل الحركي على الحلقة كلها</span><span lang="en">Integrating the motional term around the whole loop</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\oint$ <span lang="ar">على السكك والمقاومة</span><span lang="en">over rails and resistor</span></div><span lang="ar">تحسب أجزاء ما تتحرك.</span><span lang="en">You count parts that don't move.</span></div><div class="yes"><div class="mm">$\int_{\text{bar}}(\mathbf u\times\mathbf B)\cdot d\mathbf l$</div><span lang="ar">$\mathbf u=0$ في كل مكان غير القضيب.</span><span lang="en">$\mathbf u=0$ everywhere except the bar.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">مشتقة جزئية في الحالة C</span><span lang="en">A partial derivative in case C</span></div>
+    <div class="pair"><div class="no"><div class="mm">$-\frac{\partial\Psi}{\partial t}\Big|_{y}$</div><span lang="ar">يضيع الجزء الحركي.</span><span lang="en">Loses the motional part.</span></div><div class="yes"><div class="mm">$-\frac{d\Psi}{dt}$ <span lang="ar">مع</span><span lang="en">with</span> $y=ut$</div><span lang="ar">مشتقة كلية تجيب الحدّين.</span><span lang="en">The total derivative brings both terms.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">لنز: "المستحث دايماً عكس B"</span><span lang="en">Lenz: "the induced field always opposes B"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf B_{ind}=-\mathbf B$ <span lang="ar">دايماً</span><span lang="en">always</span></div><span lang="ar">غلط لما الفيض ينقص.</span><span lang="en">Wrong when the flux is decreasing.</span></div><div class="yes"><div class="mm">$\mathbf B_{ind}$ <span lang="ar">يعاكس التغيّر</span><span lang="en">opposes the change</span></div><span lang="ar">ينقص ← بنفس اتجاه $\mathbf B$.</span><span lang="en">Decreasing → same direction as $\mathbf B$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">ترتيب الضرب الاتجاهي</span><span lang="en">Cross-product order</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf B\times\mathbf u$</div><span lang="ar">$\mathbf a_z\times\mathbf a_y=-\mathbf a_x$ — الإشارة تنقلب.</span><span lang="en">$\mathbf a_z\times\mathbf a_y=-\mathbf a_x$ — the sign flips.</span></div><div class="yes"><div class="mm">$\mathbf u\times\mathbf B$</div><span lang="ar">$\mathbf a_y\times\mathbf a_z=+\mathbf a_x$.</span><span lang="en">$\mathbf a_y\times\mathbf a_z=+\mathbf a_x$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان $N$ أو الملّي</span><span lang="en">Forgetting $N$ or the milli</span></div>
+    <div class="pair"><div class="no"><div class="mm">$V=-\frac{d\Psi}{dt}$ ، $B=4$</div><span lang="ar">لملف فيه لفات، وبدون تحويل mWb.</span><span lang="en">For a multi-turn coil, without converting mWb.</span></div><div class="yes"><div class="mm">$V=-N\frac{d\Psi}{dt}$ ، $B=4\times10^{-3}$</div><span lang="ar">$\text{mWb/m}^2=10^{-3}\ \text{T}$.</span><span lang="en">$\text{mWb/m}^2=10^{-3}\ \text{T}$.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">8 أسئلة — اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">8 questions — click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">حلقة ثابتة في مجال $\mathbf B=5\,\mathbf a_z$ T (ثابت مع الزمن). كم $V_{emf}$؟</span><span lang="en">A fixed loop in $\mathbf B=5\,\mathbf a_z$ T (constant in time). What is $V_{emf}$?</span></p>
+      <button><span lang="ar">5 V</span><span lang="en">5 V</span></button><button>0</button><button><span lang="ar">يعتمد على المساحة</span><span lang="en">Depends on the area</span></button><button><span lang="ar">لا نهائي</span><span lang="en">Infinite</span></button>
+      <p class="q-why"><span lang="ar">الفيض ثابت ← $d\Psi/dt=0$ ← صفر، مهما كان المجال قوي.</span><span lang="en">Constant flux → $d\Psi/dt=0$ → zero, however strong the field.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">حلقة ثابتة و $\mathbf B=B_0\cos\omega t\,\mathbf a_z$. أي نوع emf؟</span><span lang="en">A fixed loop with $\mathbf B=B_0\cos\omega t\,\mathbf a_z$. Which kind of emf?</span></p>
+      <button>motional</button><button>transformer</button><button><span lang="ar">الاثنين</span><span lang="en">Both</span></button><button><span lang="ar">ولا واحد</span><span lang="en">Neither</span></button>
+      <p class="q-why"><span lang="ar">ما فيه حركة، و $\mathbf B$ فيه $t$ ← الحالة A.</span><span lang="en">Nothing moves and $\mathbf B$ contains $t$ → case A.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">المعادلة $\nabla\times\mathbf E=-\partial\mathbf B/\partial t$ تعني إن $\mathbf E$ المتغير مع الزمن:</span><span lang="en">The equation $\nabla\times\mathbf E=-\partial\mathbf B/\partial t$ means a time-varying $\mathbf E$ is:</span></p>
+      <button><span lang="ar">محافظ</span><span lang="en">Conservative</span></button><button><span lang="ar">صفر دايماً</span><span lang="en">Always zero</span></button><button><span lang="ar">مو محافظ: $\oint\mathbf E\cdot d\mathbf l\neq0$</span><span lang="en">Not conservative: $\oint\mathbf E\cdot d\mathbf l\neq0$</span></button><button><span lang="ar">جاي من شحنات ساكنة</span><span lang="en">Produced by static charges</span></button>
+      <p class="q-why"><span lang="ar">في الساكن $\nabla\times\mathbf E=0$ (محافظ). الحين الدوران مو صفر.</span><span lang="en">In statics $\nabla\times\mathbf E=0$ (conservative). Now the curl isn't zero.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">قضيب يتحرك بـ $\mathbf u=u\,\mathbf a_y$ في $\mathbf B=B\,\mathbf a_z$. التيار المستحث في القضيب باتجاه:</span><span lang="en">A bar moves with $\mathbf u=u\,\mathbf a_y$ in $\mathbf B=B\,\mathbf a_z$. The induced current in the bar points along:</span></p>
+      <button>$+\mathbf a_x$</button><button>$-\mathbf a_x$</button><button>$\mathbf a_z$</button><button><span lang="ar">ما فيه تيار</span><span lang="en">No current</span></button>
+      <p class="q-why"><span lang="ar">التيار باتجاه $\mathbf u\times\mathbf B$، و $\mathbf a_y\times\mathbf a_z=\mathbf a_x$.</span><span lang="en">The current follows $\mathbf u\times\mathbf B$, and $\mathbf a_y\times\mathbf a_z=\mathbf a_x$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">فيض طالع من الورقة و<b>ينقص</b>. التيار المستحث (وأنت تشوف الورقة من قدام):</span><span lang="en">The flux points out of the page and is <b>decreasing</b>. The induced current (looking at the page) is:</span></p>
+      <button><span lang="ar">مع عقارب الساعة</span><span lang="en">Clockwise</span></button><button><span lang="ar">عكس عقارب الساعة</span><span lang="en">Counterclockwise</span></button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button><span lang="ar">يعتمد على المقاومة</span><span lang="en">Depends on the resistance</span></button>
+      <p class="q-why"><span lang="ar">ينقص ← المستحث بنفس الاتجاه (طالع) ← اليد اليمنى بإبهام طالع = عكس عقارب الساعة.</span><span lang="en">Decreasing → the induced field points the same way (out) → right hand with thumb out = counterclockwise.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">في مثال 1(c) ليش كتبنا $\simeq$ في الجواب النهائي؟</span><span lang="en">In Example 1(c), why is the final answer written with $\simeq$?</span></p>
+      <button><span lang="ar">أهملنا الحركي (4.8 mV) جنب الـ transformer (240 V)</span><span lang="en">We dropped the motional part (4.8 mV) next to the transformer part (240 V)</span></button><button><span lang="ar">أهملنا الـ transformer</span><span lang="en">We dropped the transformer part</span></button><button><span lang="ar">قرّبنا الـ cos</span><span lang="en">We approximated the cos</span></button><button><span lang="ar">خطأ تقريب في الآلة</span><span lang="en">Calculator rounding</span></button>
+      <p class="q-why"><span lang="ar">الـ $-20$ في $(10^6-20)$ هي الحركي بالضبط، وهي ضئيلة جداً جنب $10^6$.</span><span lang="en">The $-20$ in $(10^6-20)$ is exactly the motional part, and it's tiny next to $10^6$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">ملف فيه 100 لفة، الفيض في كل لفة يتغير بانتظام 2 mWb خلال 0.1 s. كم $|V_{emf}|$؟</span><span lang="en">A 100-turn coil; the flux through each turn changes uniformly by 2 mWb in 0.1 s. What is $|V_{emf}|$?</span></p>
+      <button>0.02 V</button><button>2 V</button><button>20 V</button><button>0.2 V</button>
+      <p class="q-why">$N\frac{\Delta\Psi}{\Delta t}=100\times\frac{2\times10^{-3}}{0.1}=2$ V</p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">في مسائل القضيب على السكة، ليش نكامل $\mathbf u\times\mathbf B$ على القضيب بس؟</span><span lang="en">In bar-on-rails problems, why do we integrate $\mathbf u\times\mathbf B$ along the bar only?</span></p>
+      <button><span lang="ar">لأن $\mathbf B=0$ عند السكك</span><span lang="en">Because $\mathbf B=0$ at the rails</span></button><button><span lang="ar">لأن $\mathbf u=0$ على السكك والمقاومة</span><span lang="en">Because $\mathbf u=0$ on the rails and the resistor</span></button><button><span lang="ar">لأن القضيب أطول</span><span lang="en">Because the bar is longer</span></button><button><span lang="ar">بسبب نظرية ستوكس</span><span lang="en">Because of Stokes's theorem</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf E_m=\mathbf u\times\mathbf B$ يكون صفر في أي جزء ما يتحرك.</span><span lang="en">$\mathbf E_m=\mathbf u\times\mathbf B$ is zero on any part that doesn't move.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب — للمعادلات اللي لازم تنحفظ</span><span lang="en">Click a card to flip it — for the formulas you must memorize</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">قانون فاراداي</span><span lang="en">Faraday's law</span></div><div>$V_{emf}=-\frac{d\lambda}{dt}=-N\frac{d\Psi}{dt}$</div></div>
+    <div class="flash"><div><span lang="ar">فاراداي بدلالة $\mathbf E$ و $\mathbf B$</span><span lang="en">Faraday in terms of $\mathbf E$ and $\mathbf B$</span></div><div>$\oint_L\mathbf E\cdot d\mathbf l=-\frac{d}{dt}\int_S\mathbf B\cdot d\mathbf S$</div></div>
+    <div class="flash"><div><span lang="ar">Transformer emf — متى؟ وكيف؟</span><span lang="en">Transformer emf — when and how?</span></div><div><span lang="ar">حلقة ثابتة، $\mathbf B(t)$:</span><span lang="en">Fixed loop, $\mathbf B(t)$:</span> $-\int_S\frac{\partial\mathbf B}{\partial t}\cdot d\mathbf S$</div></div>
+    <div class="flash"><div><span lang="ar">Motional emf — متى؟ وكيف؟</span><span lang="en">Motional emf — when and how?</span></div><div><span lang="ar">حلقة تتحرك، $\mathbf B$ ثابت:</span><span lang="en">Moving loop, static $\mathbf B$:</span> $\oint(\mathbf u\times\mathbf B)\cdot d\mathbf l$</div></div>
+    <div class="flash"><div><span lang="ar">الحالة العامة (الاثنين)</span><span lang="en">The general case (both)</span></div><div><span lang="ar">مجموع الحدّين $=-\frac{d\Psi}{dt}$ (مشتقة كلية)</span><span lang="en">Sum of the two terms $=-\frac{d\Psi}{dt}$ (total derivative)</span></div></div>
+    <div class="flash"><div><span lang="ar">معادلة ماكسويل اللي تغيّرت</span><span lang="en">The Maxwell equation that changed</span></div><div>$\nabla\times\mathbf E=0\ \to\ \nabla\times\mathbf E=-\frac{\partial\mathbf B}{\partial t}$</div></div>
+    <div class="flash"><div><span lang="ar">قانون لنز</span><span lang="en">Lenz's law</span></div><div><span lang="ar">التيار المستحث يعاكس <b>التغيّر</b> في الفيض</span><span lang="en">The induced current opposes the <b>change</b> in flux</span></div></div>
+    <div class="flash"><div><span lang="ar">اختصار القضيب على السكة</span><span lang="en">Bar-on-rails shortcut</span></div><div><span lang="ar">$|V|=uB\ell$ لو الكل متعامد، والاتجاه من $\mathbf u\times\mathbf B$</span><span lang="en">$|V|=uB\ell$ when all are perpendicular; direction from $\mathbf u\times\mathbf B$</span></div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
