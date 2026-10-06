@@ -8,6 +8,7 @@ const lectures = [
   { name: "ملخص المحاضرة 5", url: "lecture5.html" },
   { name: "ملخص المحاضرة 6", url: "lecture6.html" },
   { name: "ملخص المحاضرة 7", url: "lecture7.html" },
+  { name: "ملخص المحاضرة 8", url: "lecture8.html" },
   { name: "Exercise 2", url: "exercise2.html" }
 ];
 

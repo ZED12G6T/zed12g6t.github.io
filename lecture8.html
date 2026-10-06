@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Change of Variables" data-title-en="Lecture 8 Summary - Change of Variables">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 8 - Change of Variables</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lecture.css">
+<script src="lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 8 · Vector Calculus</span><span lang="en">LECTURE 8 · VECTOR CALCULUS</span></p>
+  <h1><span><span lang="ar">تغيير المتغيرات في التكاملات المتعددة</span><span lang="en">Change of Variables in Multiple Integrals</span></span> <span class="h1-math ltr">$dA = |J|\,du\,dv$</span></h1>
+  <p class="lead">
+    <span lang="ar">أحياناً التكامل صعب مو لأن الحساب صعب، بل لأن الدالة أو المنطقة "مايلة" على محاور $x$ و $y$. الحل: نلبّسها متغيرات جديدة تخليها بسيطة. بس كل مربع صغير يتغير حجمه في الطريق، وهذا التغيير اسمه الجاكوبيان $|J|$.</span>
+    <span lang="en">Sometimes an integral is hard not because of the arithmetic, but because the function or the region is "tilted" against the $x$ and $y$ axes. The fix: dress it in new variables that make it simple. But every tiny square changes size along the way, and that change is the Jacobian $|J|$.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">x, y</span><span class="z">u, v · r, θ</span><span class="y">|J|</span>
+    <small><span lang="ar">← الأزرق = المتغيرات القديمة، البرتقالي = الجديدة، والأخضر = سعر التحويل بينهم</span><span lang="en">← blue = the old variables, orange = the new ones, green = the exchange rate between them</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">اختر متغيرات جديدة $u, v$ تبسّط الدالة أو المنطقة، واكتب $x$ و $y$ بدلالتها.</span><span lang="en">Pick new variables $u, v$ that simplify the function or the region, and write $x$ and $y$ in terms of them.</span></li>
+      <li><span lang="ar">احسب الجاكوبيان $J=\frac{\partial(x,y)}{\partial(u,v)}$ وبدّل $dA$ بـ $|J|\,du\,dv$، ولا تنسى تترجم حدود المنطقة.</span><span lang="en">Compute the Jacobian $J=\frac{\partial(x,y)}{\partial(u,v)}$, replace $dA$ with $|J|\,du\,dv$, and don't forget to translate the region's boundaries.</span></li>
+      <li><span lang="ar">القطبي حالة خاصة جاهزة: $x=r\cos\theta,\ y=r\sin\theta$ و $dA = r\,dr\,d\theta$. استخدمه مع الدوائر وأي شي فيه $x^2+y^2$.</span><span lang="en">Polar is a ready-made special case: $x=r\cos\theta,\ y=r\sin\theta$ and $dA = r\,dr\,d\theta$. Use it for circles and anything with $x^2+y^2$.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الفكرة ================= -->
+<section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
+  <h2><span lang="ar">ليش نغيّر المتغيرات؟</span><span lang="en">Why change variables?</span></h2>
+  <p class="sub"><span lang="ar">نفس فكرة التعويض في Calculus 1 بالضبط، بس ببعدين</span><span lang="en">Exactly the substitution idea from Calculus 1, in two dimensions</span></p>
+
+  <p><span lang="ar">تذكر التعويض العادي: لما تكتب $x = g(t)$ ما يكفي تبدّل $x$، لازم تبدّل $dx$ كمان: $dx = g'(t)\,dt$. العامل $g'(t)$ يقول لك كم تمددت الفترة الصغيرة. في التكامل الثنائي نفس الشي: نبدّل $x, y$ بـ $u, v$، و $dA$ يصير $|J|\,du\,dv$.</span><span lang="en">Recall ordinary substitution: when you write $x = g(t)$ it isn't enough to swap $x$; you must swap $dx$ too: $dx = g'(t)\,dt$. The factor $g'(t)$ tells you how much a tiny interval stretched. Double integrals work the same way: swap $x, y$ for $u, v$, and $dA$ becomes $|J|\,du\,dv$.</span></p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">بُعد واحد · Calculus 1</span><span lang="en">One dimension · Calculus 1</span></div><div class="t-math">$x = g(t) \;\Rightarrow\; dx = \Y{g'(t)}\,dt$</div><div class="t-desc"><span lang="ar">طول صغير يتمدد بمقدار $g'(t)$</span><span lang="en">A tiny length stretches by $g'(t)$</span></div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">بُعدين · هذي المحاضرة</span><span lang="en">Two dimensions · this lecture</span></div><div class="t-math">$x(u,v),\ y(u,v) \;\Rightarrow\; dA = \Y{|J|}\,du\,dv$</div><div class="t-desc"><span lang="ar">مساحة صغيرة تتمدد بمقدار $|J|$</span><span lang="en">A tiny area stretches by $|J|$</span></div></div>
+  </div>
+
+  <h3><span lang="ar">متى أستخدمه؟ علامتين</span><span lang="en">When do I use it? Two signs</span></h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name"><span lang="ar">🔎 الدالة فيها تركيبة مزعجة</span><span lang="en">🔎 The function has an awkward combination</span></div><div class="t-math">$e^{\frac{x-y}{x+y}} \;\Rightarrow\; \Z{u} = x-y,\ \Z{v} = x+y$</div><div class="t-desc"><span lang="ar">التركيبة نفسها تصير المتغير الجديد (مثال 1)</span><span lang="en">The combination itself becomes the new variable (Example 1)</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">⭕ المنطقة دائرية أو فيها $x^2+y^2$</span><span lang="en">⭕ The region is round, or there's an $x^2+y^2$</span></div><div class="t-math">$x^2+y^2 \;\Rightarrow\; \Z{r}^2$</div><div class="t-desc"><span lang="ar">القطبي $r, \theta$ (مثال 2 و 3)</span><span lang="en">Polar $r, \theta$ (Examples 2 and 3)</span></div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 الفكرة كلها:</span><span lang="en">🔑 The whole idea:</span></strong> <span lang="ar">نبدّل منطقة صعبة $R$ في المستوى $xy$ بمنطقة سهلة $R'$ في المستوى $uv$، وندفع سعر التحويل $|J|$.</span><span lang="en">trade a hard region $R$ in the $xy$-plane for an easy region $R'$ in the $uv$-plane, and pay the exchange rate $|J|$.</span></div>
+</section>
+
+<!-- ================= 02 الجاكوبيان ================= -->
+<section class="card" id="jacobian" data-num="02" data-nav="الجاكوبيان|Jacobian">
+  <h2><span lang="ar">الجاكوبيان: سعر التحويل</span><span lang="en">The Jacobian: the exchange rate</span></h2>
+  <p class="sub"><span lang="ar">محدد صغير 2×2 يقول لك كم تتمدد المساحة</span><span lang="en">A small 2×2 determinant that tells you how much area stretches</span></p>
+
+  <p><span lang="ar">خلّ $x = x(u,v)$ و $y = y(u,v)$ تحويل واحد لواحد (one-to-one) بين المستويين. الجاكوبيان هو المحدد:</span><span lang="en">Let $x = x(u,v)$ and $y = y(u,v)$ be a one-to-one mapping between the two planes. The Jacobian is the determinant:</span></p>
+  <div class="m big">\[\Y{J(u,v)} = \frac{\partial(\X{x},\X{y})}{\partial(\Z{u},\Z{v})} = \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[8pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} = \frac{\partial x}{\partial u}\,\frac{\partial y}{\partial v} - \frac{\partial x}{\partial v}\,\frac{\partial y}{\partial u}\]</div>
+  <div class="callout warn"><strong><span lang="ar">تذكير بالمحدد 2×2:</span><span lang="en">2×2 determinant reminder:</span></strong> $\begin{vmatrix} a & b\\ c & d\end{vmatrix} = ad - bc$ <span lang="ar">: القطر الرئيسي ناقص القطر الثاني.</span><span lang="en">: main diagonal minus the other diagonal.</span></div>
+
+  <p><span lang="ar">وبعدها القانون الأساسي للمحاضرة:</span><span lang="en">And then the key formula of the lecture:</span></p>
+  <div class="m big">\[\iint_{\X{R}} f(\X{x},\X{y})\,\X{dA} \;=\; \iint_{\Z{R'}} f\big(x(\Z{u},\Z{v}),\,y(\Z{u},\Z{v})\big)\;\Y{|J|}\;\Z{du}\,\Z{dv}\]</div>
+  <ul class="clean">
+    <li><span lang="ar">$R$ المنطقة الأصلية في $xy$، و $R'$ صورتها في $uv$.</span><span lang="en">$R$ is the original region in $xy$, and $R'$ is its image in $uv$.</span></li>
+    <li><span lang="ar">داخل الدالة كل $x$ و $y$ تنكتب بدلالة $u$ و $v$. الدكتور كتبها $f(u,v)$ اختصاراً، والمقصود نفس الدالة بعد التعويض.</span><span lang="en">Inside the function every $x$ and $y$ is written in terms of $u$ and $v$. The board writes it as $f(u,v)$ for short: the same function after substitution.</span></li>
+    <li><span lang="ar">$dA = |J|\,du\,dv = |J|\,dv\,du$ والترتيب حسب الحدود.</span><span lang="en">$dA = |J|\,du\,dv = |J|\,dv\,du$; the order follows the limits.</span></li>
+    <li><span lang="ar">ناخذ القيمة المطلقة $|J|$ لأن المساحة ما تكون سالبة.</span><span lang="en">We take the absolute value $|J|$ because area can't be negative.</span></li>
+  </ul>
+  <div class="callout key"><strong><span lang="ar">💱 تخيّلها عملة:</span><span lang="en">💱 Think of it as currency:</span></strong> <span lang="ar">$du\,dv$ عملة المستوى الجديد، و $dA$ عملة المستوى الأصلي، و $|J|$ سعر الصرف بينهم. لو $|J| = \frac12$ يعني كل مربع في $uv$ يصير نص حجمه في $xy$.</span><span lang="en">$du\,dv$ is the new plane's currency, $dA$ is the original plane's, and $|J|$ is the exchange rate. If $|J| = \frac12$, every square in $uv$ becomes half its size in $xy$.</span></div>
+</section>
+
+<!-- ================= 03 مختبر التحويل ================= -->
+<section class="card" id="see" data-num="03" data-nav="🔁 شوفها|🔁 See it">
+  <h2><span lang="ar">🔁 شوفها بعينك: كل خلية تتمدد بمقدار $|J|$</span><span lang="en">🔁 See it: every cell stretches by $|J|$</span></h2>
+  <p class="sub"><span lang="ar">مرّر الماوس (أو اضغط) على أي خلية في أي لوحة: تشوف صورتها في الثانية ونسبة المساحتين.</span><span lang="en">Hover over (or tap) any cell in either panel: you'll see its image in the other one and the ratio of the two areas.</span></p>
+  <div class="maplab"></div>
+  <p class="small muted"><span lang="ar">💡 في مثال 1 كل الخلايا تنكمش لنص حجمها بالضبط، لأن $|J| = \frac12$ ثابت. وكل ضلع ملوّن في $R$ له ضلع بنفس اللون في $R'$. في القطبي الخلايا البعيدة عن المركز أكبر، والنسبة تساوي $r$ نفسه. هذا سبب الـ $r$ الزايدة في $dA = r\,dr\,d\theta$.</span><span lang="en">💡 In Example 1 every cell shrinks to exactly half its size, because $|J| = \frac12$ is constant, and each colored edge of $R$ has a matching edge of the same color in $R'$. In polar, cells farther from the center are bigger, and the ratio equals $r$ itself. That's where the extra $r$ in $dA = r\,dr\,d\theta$ comes from.</span></p>
+</section>
+<script>
+  /* مختبر التحويل: names = المتغيرات الجديدة، a/b = مداها، fwd = (u,v) → (x,y)، inv = العكس، edges = أضلاع ملوّنة متقابلة */
+  window.MAP_PRESETS = {
+    ex1: {
+      label: ['مثال 1 · u = x − y ، v = x + y', 'Example 1 · u = x − y, v = x + y'],
+      names: ['u', 'v'], a: [-1, 1], b: [0, 1], da: 0.25, db: 0.25, fit: 'same',
+      fwd: (u, v) => [(u + v) / 2, (v - u) / 2], inv: (x, y) => [x - y, x + y],
+      inside: (u, v) => v >= -1e-9 && v <= 1 + 1e-9 && Math.abs(u) <= v + 1e-9,
+      region: [[0, 0], [1, 1], [-1, 1]], view: { x: [-0.2, 1.15], y: [-0.2, 1.15] },
+      edges: [
+        { from: [0, 0], to: [-1, 1], cls: 'e1', src: 'u = −v', dst: 'x = 0', srcAt: [-0.68, 0.36], dstAt: [-0.17, 0.52] },
+        { from: [0, 0], to: [1, 1], cls: 'e2', src: 'u = v', dst: 'y = 0', srcAt: [0.68, 0.36], dstAt: [0.5, -0.14] },
+        { from: [-1, 1], to: [1, 1], cls: 'e3', src: 'v = 1', dst: 'x + y = 1', srcAt: [0.5, 1.1], dstAt: [0.7, 0.66] }
+      ],
+      ticks: { src: [[-1, '−1', 'x'], [1, '1', 'x'], [1, '1', 'y']], dst: [[1, '1', 'x'], [1, '1', 'y']] },
+      J: () => 0.5, Jtxt: () => '|J| = 1/2', arrow: ['x = (u + v)/2', 'y = (v − u)/2'], sel: [5, 2]
+    },
+    polar: {
+      label: ['القطبي · x = r cos θ ، y = r sin θ', 'Polar · x = r cos θ, y = r sin θ'],
+      names: ['r', 'θ'], a: [0, 1], b: [0, 2 * Math.PI], da: 0.2, db: Math.PI / 8, fit: 'free',
+      fwd: (r, t) => [r * Math.cos(t), r * Math.sin(t)],
+      inv: (x, y) => { let t = Math.atan2(y, x); if (t < 0) t += 2 * Math.PI; return [Math.hypot(x, y), t]; },
+      inside: () => true,
+      region: [[0, 0], [1, 0], [1, 2 * Math.PI], [0, 2 * Math.PI]], view: { x: [-1.15, 1.15], y: [-1.15, 1.15] },
+      edges: [{ from: [1, 0], to: [1, 2 * Math.PI], cls: 'e1', src: 'r = 1', dst: 'x² + y² = 1', srcAt: [0.86, 6.65], dstAt: [0.8, 1.02] }],
+      ticks: { src: [[1, '1', 'x'], [Math.PI, 'π', 'y'], [2 * Math.PI, '2π', 'y']], dst: [[1, '1', 'x'], [-1, '−1', 'x'], [1, '1', 'y'], [-1, '−1', 'y']] },
+      J: r => r, Jtxt: J => '|J| = r = ' + J.toFixed(2), arrow: ['x = r cos θ', 'y = r sin θ'], sel: [3, 1]
+    }
+  };
+</script>
+
+<!-- ================= 04 الطريقة ================= -->
+<section class="card" id="recipe" data-num="04" data-nav="الطريقة|Method">
+  <h2><span lang="ar">الطريقة في 5 خطوات</span><span lang="en">The method in 5 steps</span></h2>
+  <ol class="recipe">
+    <li><b><span lang="ar">اختر $u$ و $v$</span><span lang="en">Choose $u$ and $v$</span></b><span class="why"><span lang="ar">من التركيبة المزعجة في الدالة، أو من معادلات أضلاع المنطقة.</span><span lang="en">From the awkward combination in the function, or from the region's edge equations.</span></span></li>
+    <li><b><span lang="ar">اعكس: اكتب $x$ و $y$ بدلالة $u$ و $v$</span><span lang="en">Invert: write $x$ and $y$ in terms of $u$ and $v$</span></b><span class="why"><span lang="ar">غالباً بجمع المعادلتين وطرحهم.</span><span lang="en">Usually by adding and subtracting the two equations.</span></span></li>
+    <li><b><span lang="ar">احسب $J$ وخذ $|J|$</span><span lang="en">Compute $J$ and take $|J|$</span></b><span class="why"><span lang="ar">أربع مشتقات جزئية ومحدد 2×2.</span><span lang="en">Four partial derivatives and a 2×2 determinant.</span></span></li>
+    <li><b><span lang="ar">ترجم حدود المنطقة وارسم $R'$</span><span lang="en">Translate the boundaries and sketch $R'$</span></b><span class="why"><span lang="ar">كل ضلع في $R$ عوّض فيه، يطلع لك ضلع في $R'$. والرسم يعطيك الحدود الجديدة.</span><span lang="en">Substitute into each edge of $R$ to get an edge of $R'$. The sketch hands you the new limits.</span></span></li>
+    <li><b><span lang="ar">اكتب التكامل الجديد وكامل</span><span lang="en">Write the new integral and evaluate</span></b><span class="why"><span lang="ar">الدالة بدلالة $u, v$، مضروبة في $|J|$، بالحدود الجديدة.</span><span lang="en">The function in terms of $u, v$, times $|J|$, over the new limits.</span></span></li>
+  </ol>
+  <div class="callout good">
+    <strong><span lang="ar">✅ افحص شغلك</span><span lang="en">✅ Check your work</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">أخذت القيمة المطلقة $|J|$؟</span><span lang="en">Did you take the absolute value $|J|$?</span></li>
+      <li><span lang="ar">ما بقي ولا $x$ ولا $y$ داخل التكامل الجديد؟</span><span lang="en">Is there no $x$ or $y$ left inside the new integral?</span></li>
+      <li><span lang="ar">رؤوس $R'$ هي صور رؤوس $R$؟ (عوّض كل رأس في $u$ و $v$)</span><span lang="en">Are the corners of $R'$ the images of $R$'s corners? (plug each corner into $u$ and $v$)</span></li>
+      <li><span lang="ar">لو $J$ ثابت: مساحة $R'$ × $|J|$ لازم تساوي مساحة $R$.</span><span lang="en">If $J$ is constant: area of $R'$ × $|J|$ must equal the area of $R$.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">دالة مزعجة على مثلث</span><span lang="en">An awkward function on a triangle</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">تحويل خطي</span><span lang="en">linear change of variables</span></span><span class="tag ltr">|J| = 1/2</span></div>
+  <div class="m big">\[\iint_R e^{\frac{x-y}{x+y}}\,dA, \qquad R=\{(x,y):\ x\ge0,\ y\ge0,\ x+y\le1\}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">المنطقة مثلث بسيط، بس الدالة هي المشكلة: $e^{\frac{x-y}{x+y}}$ ما تتكامل بسهولة لا بـ $x$ ولا بـ $y$. والأس فيه تركيبتين واضحتين: $x-y$ و $x+y$. هذي هي متغيراتنا الجديدة.</span><span lang="en">The region is a simple triangle; the function is the problem: $e^{\frac{x-y}{x+y}}$ won't integrate nicely in $x$ or in $y$. The exponent shows two obvious combinations, $x-y$ and $x+y$. Those are our new variables.</span></p>
+      <div class="map"><span class="z">u = x − y</span><span class="z">v = x + y</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اختر المتغيرات الجديدة</span><span lang="en">Choose the new variables</span></h4>
+      <div class="m">\[\Z{u} = x - y \quad (1), \qquad \Z{v} = x + y \quad (2)\]</div>
+      <p class="why"><span lang="ar">بهذا الاختيار الأس يصير $\frac{u}{v}$، أبسط بكثير.</span><span lang="en">With this choice the exponent becomes $\frac{u}{v}$, much simpler.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اعكس: $x$ و $y$ بدلالة $u$ و $v$</span><span lang="en">Invert: $x$ and $y$ in terms of $u$ and $v$</span> <span class="const"><span lang="ar">جمع وطرح</span><span lang="en">add and subtract</span></span></h4>
+      <p class="why"><span lang="ar">اجمع (1) و (2) عشان تختفي $y$، واطرحهم عشان تختفي $x$.</span><span lang="en">Add (1) and (2) to cancel $y$; subtract them to cancel $x$.</span></p>
+      <div class="m">\[\begin{aligned} (1)+(2):&\quad u+v = 2x &&\Longrightarrow\quad \X{x} = \tfrac{u+v}{2}\\[4pt] (1)-(2):&\quad u-v = -2y &&\Longrightarrow\quad \X{y} = \tfrac{v-u}{2} \end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">احسب الجاكوبيان</span><span lang="en">Compute the Jacobian</span></h4>
+      <p class="why"><span lang="ar">اشتق $x$ و $y$ بالنسبة لـ $u$ و $v$. كلها أرقام هنا.</span><span lang="en">Differentiate $x$ and $y$ with respect to $u$ and $v$. They're all numbers here.</span></p>
+      <div class="m">\[\frac{\partial x}{\partial u}=\tfrac12,\qquad \frac{\partial x}{\partial v}=\tfrac12,\qquad \frac{\partial y}{\partial u}=-\tfrac12,\qquad \frac{\partial y}{\partial v}=\tfrac12\]</div>
+      <div class="m">\[\Y{J} = \begin{vmatrix} \tfrac12 & \tfrac12 \\[4pt] -\tfrac12 & \tfrac12 \end{vmatrix} = \tfrac12\cdot\tfrac12 - \tfrac12\cdot\Big(-\tfrac12\Big) = \tfrac14+\tfrac14 = \tfrac12 \quad\Longrightarrow\quad dA = \Y{\tfrac12}\,du\,dv\]</div>
+      <p class="why">⚠️ <span lang="ar">انتبه للإشارة: ناقص في ناقص = زايد. لو طلع لك صفر فيه غلط.</span><span lang="en">Watch the sign: minus times minus is plus. If you get zero, something's off.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">ترجم حدود المنطقة</span><span lang="en">Translate the region's boundaries</span></h4>
+      <p class="why"><span lang="ar">كل ضلع في $R$ عوّض فيه $x$ و $y$ بدلالة $u$ و $v$:</span><span lang="en">In each edge of $R$, replace $x$ and $y$ by their $u, v$ expressions:</span></p>
+      <div class="m">\[\begin{aligned} \X{x = 0} \;&\Longrightarrow\; \tfrac{u+v}{2} = 0 \;\Longrightarrow\; \Z{u = -v}\\[2pt] \X{y = 0} \;&\Longrightarrow\; \tfrac{v-u}{2} = 0 \;\Longrightarrow\; \Z{u = v}\\[2pt] \X{x+y = 1} \;&\Longrightarrow\; \Z{v = 1} \end{aligned}\]</div>
+      <figure class="fig">
+        <svg viewBox="0 0 600 230" role="img" aria-label="R in the xy-plane and R′ in the uv-plane">
+          <path class="tint a" d="M70 190L220 190L70 40Z"/>
+          <path class="ax" d="M50 190H262M70 210V24"/>
+          <text x="268" y="194">x</text><text x="70" y="16" text-anchor="middle">y</text>
+          <path class="sk e1" d="M70 190V40"/><path class="sk e2" d="M70 190H220"/><path class="sk e3" d="M220 190L70 40"/>
+          <text class="lbl" x="62" y="118" text-anchor="end">x = 0</text>
+          <text class="lbl" x="145" y="210" text-anchor="middle">y = 0</text>
+          <text class="lbl" x="153" y="108">x + y = 1</text>
+          <text class="tick" x="220" y="206" text-anchor="middle">(1, 0)</text>
+          <text class="tick" x="62" y="44" text-anchor="end">(0, 1)</text>
+          <text class="lbl" x="108" y="164" text-anchor="middle">R</text>
+          <text x="300" y="98" text-anchor="middle">u = x − y</text><text x="300" y="114" text-anchor="middle">v = x + y</text>
+          <path class="sk a" d="M272 126H326M318 120L326 126L318 132"/>
+          <path class="tint a" d="M440 190L330 80L550 80Z"/>
+          <path class="ax" d="M315 190H572M440 210V40"/>
+          <text x="578" y="194">u</text><text x="440" y="32" text-anchor="middle">v</text>
+          <path class="sk e1" d="M440 190L330 80"/><path class="sk e2" d="M440 190L550 80"/><path class="sk e3" d="M330 80H550"/>
+          <text class="lbl" x="378" y="152" text-anchor="end">u = −v</text>
+          <text class="lbl" x="502" y="152">u = v</text>
+          <text class="lbl" x="440" y="70" text-anchor="middle">v = 1</text>
+          <text class="tick" x="326" y="72" text-anchor="end">(−1, 1)</text>
+          <text class="tick" x="554" y="72">(1, 1)</text>
+          <text class="lbl" x="440" y="124" text-anchor="middle">R′</text>
+        </svg>
+        <figcaption><span lang="ar">كل ضلع في $R$ يروح للضلع اللي بنفس لونه في $R'$</span><span lang="en">Each edge of $R$ goes to the edge of the same color in $R'$</span></figcaption>
+      </figure>
+      <p class="why"><span lang="ar">يعني $R'$ مثلث رؤوسه $(0,0)$ و $(-1,1)$ و $(1,1)$: $v$ من $0$ لـ $1$، و $u$ محصور بين $-v$ و $v$.</span><span lang="en">So $R'$ is the triangle with corners $(0,0)$, $(-1,1)$, $(1,1)$: $v$ runs from $0$ to $1$, and $u$ is trapped between $-v$ and $v$.</span></p>
+      <div class="map"><span class="z">u: −v → v</span><span class="z">v: 0 → 1</span></div>
+      <p class="why">⚠️ <span lang="ar">حدود $u$ فيها $v$، فلازم $u$ يكون التكامل الداخلي (نفس قاعدة المحاضرة 7).</span><span lang="en">$u$'s limits contain $v$, so $u$ must be the inner integral (the same rule as Lecture 7).</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اكتب التكامل الجديد</span><span lang="en">Write the new integral</span></h4>
+      <div class="m">\[\iint_R e^{\frac{x-y}{x+y}}\,dA = \Y{\frac12}\int_{\Z{0}}^{\Z{1}}\!\int_{\Z{-v}}^{\Z{v}} e^{u/v}\;\Z{du}\,\Z{dv}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل بالنسبة لـ $u$</span><span lang="en">Integrate in $u$</span> <span class="const"><span lang="ar">$v$ ثابت</span><span lang="en">$v$ constant</span></span></h4>
+      <p class="why"><span lang="ar">القاعدة: $\int e^{au}\,du = \frac1a e^{au}$. هنا $a = \frac1v$، فـ $\frac1a = v$.</span><span lang="en">The rule: $\int e^{au}\,du = \frac1a e^{au}$. Here $a = \frac1v$, so $\frac1a = v$.</span></p>
+      <div class="m">\[\int_{-v}^{v} e^{u/v}\,du = \Big[v\,e^{u/v}\Big]_{u=-v}^{u=v} = v\,e^{1} - v\,e^{-1} = v\,(e - e^{-1})\]</div>
+      <p class="left">v</p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل بالنسبة لـ $v$</span><span lang="en">Integrate in $v$</span></h4>
+      <p class="why"><span lang="ar">$e - e^{-1}$ رقم ثابت، يطلع برّا التكامل.</span><span lang="en">$e - e^{-1}$ is just a number; it comes out of the integral.</span></p>
+      <div class="m">\[\tfrac12\int_0^1 v\,(e-e^{-1})\,dv = \tfrac12\,(e-e^{-1})\Big[\tfrac{v^2}{2}\Big]_0^1 = \tfrac14\,(e-e^{-1})\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\tfrac14\left(e - e^{-1}\right) \approx 0.588$</div>
+      <p class="sanity"><span lang="ar">مساحة المثلث $R$ = ½، وقيم الدالة بين $e^{-1}\approx0.37$ و $e\approx2.72$. والجواب ÷ المساحة ≈ 1.18، متوسط منطقي بينهم ✓. وفحص ثاني: مساحة $R'$ = 1، × $|J| = \frac12$ = مساحة $R$ ✓</span><span lang="en">The triangle $R$ has area ½ and the function ranges from $e^{-1}\approx0.37$ to $e\approx2.72$. Answer ÷ area ≈ 1.18, a sensible average between them ✓. Second check: area of $R'$ = 1, × $|J| = \frac12$ = area of $R$ ✓</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 05 القطبي ================= -->
+<section class="card" id="polar" data-num="05" data-nav="القطبي|Polar">
+  <h2><span lang="ar">الإحداثيات القطبية: أشهر تغيير متغيرات</span><span lang="en">Polar coordinates: the most famous change of variables</span></h2>
+  <p class="sub"><span lang="ar">بدل ما نمشي يمين ويسار وفوق وتحت، نمشي مسافة $r$ من المركز بزاوية $\theta$</span><span lang="en">Instead of moving left/right and up/down, move a distance $r$ from the center at an angle $\theta$</span></p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 230" role="img" aria-label="A point (x, y) at distance r and angle θ" style="max-width:420px">
+      <path class="ax" d="M30 190H330M60 215V20"/>
+      <text x="336" y="194">x</text><text x="60" y="12" text-anchor="middle">y</text>
+      <path class="sk x" d="M60 190H201.8"/>
+      <path class="sk x dash" d="M201.8 190V79.2"/>
+      <path class="ax" d="M191.8 190V180H201.8"/>
+      <path class="sk z" d="M60 190L201.8 79.2"/>
+      <path class="sk z" d="M102 190A42 42 0 0 0 93.1 164.1"/>
+      <circle class="fi z" cx="201.8" cy="79.2" r="4.5"/>
+      <text class="lbl" x="210" y="74">(x, y)</text>
+      <text class="lbl" x="122" y="124">r</text>
+      <text class="lbl" x="113" y="176">θ</text>
+      <text class="lbl" x="131" y="210" text-anchor="middle">x = r cos θ</text>
+      <text class="lbl" x="210" y="140">y = r sin θ</text>
+    </svg>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name"><span lang="ar">من القطبي للكارتيزي</span><span lang="en">Polar → Cartesian</span></div><div class="t-math">$\X{x} = \Z{r}\cos\Z{\theta},\qquad \X{y} = \Z{r}\sin\Z{\theta}$</div><div class="t-desc"><span lang="ar">من المثلث: $\cos\theta = \frac{x}{r}$ و $\sin\theta = \frac{y}{r}$ (على السبورة انكتب $\cos x$ بالغلط، المقصود $\cos\theta$)</span><span lang="en">From the triangle: $\cos\theta = \frac{x}{r}$ and $\sin\theta = \frac{y}{r}$ (the board says $\cos x$ by mistake; it means $\cos\theta$)</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">والعكس</span><span lang="en">And back</span></div><div class="t-math">$x^2+y^2 = \Z{r}^2,\qquad \Z{\theta} = \tan^{-1}\frac{y}{x}$</div><div class="t-desc"><span lang="ar">فيثاغورس، و $\tan\theta = \frac{y}{x}$</span><span lang="en">Pythagoras, and $\tan\theta = \frac{y}{x}$</span></div></div>
+  </div>
+
+  <h3><span lang="ar">اشتق الجاكوبيان بنفسك</span><span lang="en">Derive the Jacobian yourself</span></h3>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">المشتقات الأربع</span><span lang="en">The four derivatives</span></h4>
+      <p class="why"><span lang="ar">لما نشتق بالنسبة لـ $r$ تكون $\theta$ ثابتة، والعكس.</span><span lang="en">When differentiating in $r$, $\theta$ is constant, and vice versa.</span></p>
+      <div class="m">\[\frac{\partial x}{\partial r}=\cos\theta,\qquad \frac{\partial x}{\partial \theta}=-r\sin\theta,\qquad \frac{\partial y}{\partial r}=\sin\theta,\qquad \frac{\partial y}{\partial \theta}=r\cos\theta\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المحدد</span><span lang="en">The determinant</span></h4>
+      <p class="why"><span lang="ar">ناقص في ناقص = زايد، وبعدين $\cos^2\theta+\sin^2\theta = 1$.</span><span lang="en">Minus times minus is plus, and then $\cos^2\theta+\sin^2\theta = 1$.</span></p>
+      <div class="m">\[\Y{J(r,\theta)} = \begin{vmatrix} \cos\theta & -r\sin\theta \\[4pt] \sin\theta & r\cos\theta \end{vmatrix} = r\cos^2\theta + r\sin^2\theta = r\,\big(\cos^2\theta+\sin^2\theta\big) = \Y{r}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="dA =">$dx\,dy = \Y{r}\,dr\,d\theta$</div>
+      <p class="sanity"><span lang="ar">$|J| = r$ موجبة دايماً لأن $r \ge 0$. وهي نفس النسبة اللي شفتها في المختبر فوق.</span><span lang="en">$|J| = r$ is always positive since $r \ge 0$, and it's the same ratio you saw in the lab above.</span></p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">⚠️ أشهر غلط في الامتحان:</span><span lang="en">⚠️ The most common exam mistake:</span></strong> <span lang="ar">تكتب $dr\,d\theta$ وتنسى $r$. تذكّر المختبر: الخلايا البعيدة أكبر بنسبة $r$.</span><span lang="en">writing $dr\,d\theta$ and forgetting the $r$. Remember the lab: far-out cells are bigger by a factor of $r$.</span></div>
+
+  <h3><span lang="ar">متى أستخدم القطبي؟ وكيف أكتب الحدود؟</span><span lang="en">When to use polar, and how to write the limits</span></h3>
+  <p><span lang="ar">لما تكون المنطقة دائرة أو جزء منها، أو الدالة فيها $x^2+y^2$. وهذي أشهر الحدود:</span><span lang="en">When the region is a disk or part of one, or the function contains $x^2+y^2$. The common limits:</span></p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name"><span lang="ar">قرص كامل نصف قطره $a$</span><span lang="en">Full disk of radius $a$</span></div><div class="t-math">$0\le r\le a,\quad 0\le\theta\le2\pi$</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">نص قرص (فوق محور $x$)</span><span lang="en">Half disk (above the $x$-axis)</span></div><div class="t-math">$0\le r\le a,\quad 0\le\theta\le\pi$</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">ربع قرص (الربع الأول)</span><span lang="en">Quarter disk (first quadrant)</span></div><div class="t-math">$0\le r\le a,\quad 0\le\theta\le\frac{\pi}{2}$</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">حلقة بين دائرتين</span><span lang="en">Ring between two circles</span></div><div class="t-math">$a\le r\le b,\quad 0\le\theta\le2\pi$</div></div>
+  </div>
+</section>
+
+<!-- ================= 06 الحجم ================= -->
+<section class="card" id="volume" data-num="06" data-nav="الحجم|Volume">
+  <h2><span lang="ar">الحجم بين سطحين</span><span lang="en">Volume between two surfaces</span></h2>
+  <p class="sub"><span lang="ar">مثال 2 و 3 نفس الفكرة: الحجم = مجموع أعمدة</span><span lang="en">Examples 2 and 3 share one idea: volume = a sum of columns</span></p>
+  <p><span lang="ar">تخيّل الجسم مقسوم أعمدة رفيعة واقفة. كل عمود قاعدته مساحة صغيرة $dA$ وطوله = السقف − الأرضية. نجمع الأعمدة:</span><span lang="en">Picture the solid split into thin standing columns. Each column sits on a tiny area $dA$, and its length = ceiling − floor. Add up the columns:</span></p>
+  <div class="m big">\[V = \iint_R \big(z_{\text{top}} - z_{\text{bottom}}\big)\,dA \qquad\Longrightarrow\qquad V = \iint_R (1 - z)\,dA\]</div>
+  <ul class="clean">
+    <li><span lang="ar">السقف هنا المستوى $z = 1$، والأرضية السطح ($z = x^2+y^2$ أو $z=\sqrt{x^2+y^2}$). عشان كذا الدكتور كتب الارتفاع $f(x,y) = 1 - z$.</span><span lang="en">The ceiling here is the plane $z = 1$ and the floor is the surface ($z = x^2+y^2$ or $z=\sqrt{x^2+y^2}$). That's why the board writes the height as $f(x,y) = 1 - z$.</span></li>
+    <li><span lang="ar">المنطقة $R$ = ظل الجسم على الأرض: المكان اللي يلتقي فيه السقف بالأرضية. هنا $x^2+y^2 = 1$، يعني قرص نصف قطره 1.</span><span lang="en">The region $R$ is the solid's shadow on the floor: where ceiling meets floor. Here $x^2+y^2 = 1$, a disk of radius 1.</span></li>
+  </ul>
+  <figure class="fig">
+    <svg viewBox="0 0 600 240" role="img" aria-label="Side views: the bowl and the cone under the plane z = 1">
+      <text class="lbl" x="150" y="22" text-anchor="middle">x² + y² ≤ z ≤ 1</text>
+      <path class="tint e1" d="M40 90L260 90L256.3 97.2L252.7 104.2L249 110.9L245.3 117.4L241.7 123.6L238 129.6L234.3 135.3L230.7 140.8L227 146.1L223.3 151.1L219.7 155.9L216 160.4L212.3 164.7L208.7 168.7L205 172.5L201.3 176L197.7 179.3L194 182.4L190.3 185.2L186.7 187.8L183 190.1L179.3 192.2L175.7 194L172 195.6L168.3 196.9L164.7 198L161 198.9L157.3 199.5L153.7 199.9L150 200L146.3 199.9L142.7 199.5L139 198.9L135.3 198L131.7 196.9L128 195.6L124.3 194L120.7 192.2L117 190.1L113.3 187.8L109.7 185.2L106 182.4L102.3 179.3L98.7 176L95 172.5L91.3 168.7L87.7 164.7L84 160.4L80.3 155.9L76.7 151.1L73 146.1L69.3 140.8L65.7 135.3L62 129.6L58.3 123.6L54.7 117.4L51 110.9L47.3 104.2L43.7 97.2Z"/>
+      <path class="ax" d="M25 200H282M150 214V56"/>
+      <text x="288" y="204">r</text><text x="150" y="48" text-anchor="middle">z</text>
+      <path class="sk dash" d="M30 90H270"/>
+      <path class="sk e1" d="M31.2 71.7L35.2 80.1L39.1 88.2L43.1 96.1L47 103.6L51 110.9L55 117.9L58.9 124.6L62.9 131L66.8 137.1L70.8 143L74.8 148.5L78.7 153.8L82.7 158.8L86.6 163.5L90.6 167.9L94.6 172.1L98.5 175.9L102.5 179.5L106.4 182.8L110.4 185.7L114.4 188.5L118.3 190.9L122.3 193L126.2 194.9L130.2 196.4L134.2 197.7L138.1 198.7L142.1 199.4L146 199.9L150 200L154 199.9L157.9 199.4L161.9 198.7L165.8 197.7L169.8 196.4L173.8 194.9L177.7 193L181.7 190.9L185.6 188.5L189.6 185.7L193.6 182.8L197.5 179.5L201.5 175.9L205.4 172.1L209.4 167.9L213.4 163.5L217.3 158.8L221.3 153.8L225.2 148.5L229.2 143L233.2 137.1L237.1 131L241.1 124.6L245 117.9L249 110.9L253 103.6L256.9 96.1L260.9 88.2L264.8 80.1L268.8 71.7"/>
+      <rect class="fi a" x="200" y="90" width="10" height="82.5" rx="2" opacity=".6"/>
+      <text class="lbl" x="205" y="80" text-anchor="middle">h = 1 − r²</text>
+      <text x="34" y="82">z = 1</text>
+      <text x="266" y="118">z = r²</text>
+      <text class="lbl" x="450" y="22" text-anchor="middle">√(x² + y²) ≤ z ≤ 1</text>
+      <path class="tint e3" d="M340 90L560 90L450 200Z"/>
+      <path class="ax" d="M325 200H582M450 214V56"/>
+      <text x="588" y="204">r</text><text x="450" y="48" text-anchor="middle">z</text>
+      <path class="sk dash" d="M330 90H570"/>
+      <path class="sk e3" d="M331.2 81.2L450 200L568.8 81.2"/>
+      <rect class="fi a" x="500" y="90" width="10" height="55" rx="2" opacity=".6"/>
+      <text class="lbl" x="505" y="80" text-anchor="middle">h = 1 − r</text>
+      <text x="334" y="82">z = 1</text>
+      <text x="548" y="130">z = r</text>
+    </svg>
+    <figcaption><span lang="ar">مقطع جانبي للجسمين: العمود الملوّن طوله = السقف − الأرضية. لف المقطع حول محور $z$ يطلع لك الجسم كامل، وعشان كذا القطبي مريح هنا.</span><span lang="en">Side cross-sections of the two solids: the shaded column's length = ceiling − floor. Spin the profile around the $z$-axis and you get the whole solid, which is why polar fits so well.</span></figcaption>
+  </figure>
+  <h3><span lang="ar">🧊 وهذي الأجسام نفسها مقسومة صناديق</span><span lang="en">🧊 And here are the same solids, split into boxes</span></h3>
+  <div class="lab"></div>
+</section>
+<script>
+  /* order 'zyx' = يبني عمود عمود (z الداخلي)، note = شرح خاص بدل شرح الترتيب */
+  const colNote = ['▶ زر التشغيل يبني الجسم <b>عمود عمود</b>: كل عمود واقف فوق مربع صغير $\\Delta A$ وطوله = السقف − الأرضية. جمع الأعمدة هو بالضبط $\\iint_R (1-z)\\,dA$. وكل ما كبّرت $n$ قرب المجموع من القيمة الدقيقة.', '▶ Play builds the solid <b>column by column</b>: each column stands on a tiny square $\\Delta A$ with length = ceiling − floor. Adding the columns is exactly $\\iint_R (1-z)\\,dA$, and raising $n$ brings the sum closer to the exact value.'];
+  window.LAB_PRESETS = {
+    bowl: { label: ['مثال 2 · داخل الصحن z = x² + y² تحت z = 1', 'Example 2 · inside the bowl z = x² + y² below z = 1'], f: () => 1,
+            box: { x: [-1, 1], y: [-1, 1], z: [0, 1] }, inside: (x, y, z) => x * x + y * y <= z, order: 'zyx', exact: Math.PI / 2, exactTxt: 'π/2', note: colNote },
+    cone: { label: ['مثال 3 · داخل المخروط z = √(x² + y²) تحت z = 1', 'Example 3 · inside the cone z = √(x² + y²) below z = 1'], f: () => 1,
+            box: { x: [-1, 1], y: [-1, 1], z: [0, 1] }, inside: (x, y, z) => Math.hypot(x, y) <= z, order: 'zyx', exact: Math.PI / 3, exactTxt: 'π/3', note: colNote }
+  };
+</script>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 2</span><span lang="en">Example 2</span></span><h2><span lang="ar">الحجم داخل الصحن</span><span lang="en">The volume inside a bowl</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">قطبي</span><span lang="en">polar</span></span><span class="tag"><span lang="ar">حجم</span><span lang="en">volume</span></span><span class="tag ltr">r dr dθ</span></div>
+  <p><span lang="ar">أوجد الحجم داخل الـ paraboloid $z = x^2+y^2$ لما $0 \le z \le 1$.</span><span lang="en">Find the volume inside the paraboloid $z = x^2+y^2$ for $0 \le z \le 1$.</span></p>
+  <div class="m big">\[V = \iint_R \big(1 - (x^2+y^2)\big)\,dA\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">الأرضية الصحن $z = x^2+y^2$ (مفتوح لفوق)، والسقف $z = 1$. والحدود دائرية والدالة فيها $x^2+y^2$: علامتين للقطبي.</span><span lang="en">The floor is the bowl $z = x^2+y^2$ (opening upward) and the ceiling is $z = 1$. The boundary is round and the function contains $x^2+y^2$: two signs for polar.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الارتفاع = السقف − الأرضية</span><span lang="en">Height = ceiling − floor</span></h4>
+      <div class="m">\[h(x,y) = 1 - (x^2+y^2)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">حدّد المنطقة $R$ (ظل الجسم)</span><span lang="en">Find the region $R$ (the shadow)</span></h4>
+      <p class="why"><span lang="ar">السقف يلاقي الأرضية لما $x^2+y^2 = 1$: دائرة نصف قطرها 1، فالظل قرص كامل.</span><span lang="en">Ceiling meets floor where $x^2+y^2 = 1$: a circle of radius 1, so the shadow is a full disk.</span></p>
+      <div class="map"><span class="z">r: 0 → 1</span><span class="z">θ: 0 → 2π</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">حوّل للقطبي</span><span lang="en">Convert to polar</span> <span class="const">$x^2+y^2 = r^2$</span></h4>
+      <p class="why"><span lang="ar">بدّل $x^2+y^2$ بـ $r^2$، و $dA$ بـ $r\,dr\,d\theta$. لا تنسى $r$!</span><span lang="en">Replace $x^2+y^2$ with $r^2$, and $dA$ with $r\,dr\,d\theta$. Don't forget the $r$!</span></p>
+      <div class="m">\[V = \int_{\Z{0}}^{\Z{2\pi}}\!\int_{\Z{0}}^{\Z{1}} (1-r^2)\,\Y{r}\;\Z{dr}\,\Z{d\theta} = \int_0^{2\pi}\!\int_0^1 (r - r^3)\,dr\,d\theta\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل بالنسبة لـ $r$</span><span lang="en">Integrate in $r$</span></h4>
+      <div class="m">\[\int_0^1 (r - r^3)\,dr = \Big[\tfrac{r^2}{2} - \tfrac{r^4}{4}\Big]_0^1 = \tfrac12 - \tfrac14 = \tfrac14\]</div>
+      <p class="left">θ</p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل بالنسبة لـ $\theta$</span><span lang="en">Integrate in $\theta$</span></h4>
+      <p class="why"><span lang="ar">الدالة ما فيها $\theta$ أصلاً، فالتكامل الخارجي بس يضرب في $2\pi$.</span><span lang="en">The integrand has no $\theta$ at all, so the outer integral just multiplies by $2\pi$.</span></p>
+      <div class="m">\[\int_0^{2\pi} \tfrac14\,d\theta = \tfrac14\,\theta\Big|_0^{2\pi} = \tfrac14\cdot 2\pi = \tfrac{\pi}{2}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="الحجم|Volume">$\tfrac{\pi}{2} \approx 1.571$</div>
+      <p class="sanity"><span lang="ar">الأسطوانة اللي نصف قطرها 1 وارتفاعها 1 حجمها $\pi$، والصحن ياخذ نصها بالضبط: $\frac{\pi}{2} &lt; \pi$ ✓</span><span lang="en">The cylinder of radius 1 and height 1 has volume $\pi$, and the bowl takes exactly half of it: $\frac{\pi}{2} &lt; \pi$ ✓</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 3</span><span lang="en">Example 3</span></span><h2><span lang="ar">الحجم داخل المخروط</span><span lang="en">The volume inside a cone</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">قطبي</span><span lang="en">polar</span></span><span class="tag"><span lang="ar">نفس فكرة مثال 2</span><span lang="en">same idea as Ex 2</span></span></div>
+  <p><span lang="ar">أوجد الحجم داخل المخروط $z = \sqrt{x^2+y^2}$ لما $0 \le z \le 1$.</span><span lang="en">Find the volume inside the cone $z = \sqrt{x^2+y^2}$ for $0 \le z \le 1$.</span></p>
+  <div class="m big">\[V = \iint_R \big(1 - \sqrt{x^2+y^2}\big)\,dA\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">نفس مثال 2 بالضبط، بس الأرضية مخروط $z=\sqrt{x^2+y^2}$ بدل الصحن. والسقف نفسه $z = 1$.</span><span lang="en">Exactly like Example 2, except the floor is the cone $z=\sqrt{x^2+y^2}$ instead of the bowl. Same ceiling $z = 1$.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الارتفاع بالقطبي</span><span lang="en">The height in polar</span></h4>
+      <p class="why"><span lang="ar">$\sqrt{r^2} = r$ لأن $r \ge 0$. القطبي يريحك من الجذر كله.</span><span lang="en">$\sqrt{r^2} = r$ because $r \ge 0$. Polar makes the square root vanish.</span></p>
+      <div class="m">\[h = 1 - \sqrt{x^2+y^2} = 1 - \sqrt{r^2} = 1 - r\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المنطقة</span><span lang="en">The region</span></h4>
+      <p class="why"><span lang="ar">$\sqrt{x^2+y^2} = 1$ هي نفس الدائرة، فنفس الحدود.</span><span lang="en">$\sqrt{x^2+y^2} = 1$ is the same circle, so the same limits.</span></p>
+      <div class="map"><span class="z">r: 0 → 1</span><span class="z">θ: 0 → 2π</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">حوّل وكامل بالنسبة لـ $r$</span><span lang="en">Convert and integrate in $r$</span></h4>
+      <p class="why"><span lang="ar">$\frac12 - \frac13 = \frac{3-2}{6} = \frac16$، نفس الحسبة اللي على طرف السبورة.</span><span lang="en">$\frac12 - \frac13 = \frac{3-2}{6} = \frac16$, the same side calculation from the board.</span></p>
+      <div class="m">\[V = \int_0^{2\pi}\!\int_0^1 (1-r)\,\Y{r}\,dr\,d\theta, \qquad \int_0^1 (r - r^2)\,dr = \Big[\tfrac{r^2}{2}-\tfrac{r^3}{3}\Big]_0^1 = \tfrac16\]</div>
+      <p class="left">θ</p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كامل بالنسبة لـ $\theta$</span><span lang="en">Integrate in $\theta$</span></h4>
+      <div class="m">\[\int_0^{2\pi} \tfrac16\,d\theta = \tfrac16\cdot2\pi = \tfrac{\pi}{3}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="الحجم|Volume">$\tfrac{\pi}{3} \approx 1.047$</div>
+      <p class="sanity"><span lang="ar">قانون حجم المخروط من الهندسة: $\frac13\pi r^2 h = \frac13\pi(1)^2(1) = \frac{\pi}{3}$ ✓. نفس الجواب بطريقتين!</span><span lang="en">The cone volume formula from geometry: $\frac13\pi r^2 h = \frac13\pi(1)^2(1) = \frac{\pi}{3}$ ✓. Same answer two ways!</span></p>
+      <figure class="fig">
+        <svg viewBox="0 0 600 250" role="img" aria-label="Area under r·h(r) for the bowl (1/4) and the cone (1/6)">
+          <text class="lbl" x="150" y="20" text-anchor="middle">h = 1 − r²</text>
+          <path class="tint e1" d="M50 200L54 192L58 184L62 176.1L66 168.2L70 160.4L74 152.7L78 145.1L82 137.6L86 130.3L90 123.2L94 116.3L98 109.5L102 103L106 96.8L110 90.8L114 85.1L118 79.7L122 74.7L126 69.9L130 65.6L134 61.6L138 58.1L142 54.9L146 52.2L150 50L154 48.2L158 47L162 46.2L166 46L170 46.4L174 47.3L178 48.9L182 51L186 53.8L190 57.2L194 61.3L198 66.1L202 71.6L206 77.8L210 84.8L214 92.5L218 101.1L222 110.4L226 120.6L230 131.6L234 143.5L238 156.2L242 169.9L246 184.5L250 200Z"/>
+          <path class="ax" d="M50 200H262M50 200V34"/>
+          <path class="sk e1" d="M50 200L54 192L58 184L62 176.1L66 168.2L70 160.4L74 152.7L78 145.1L82 137.6L86 130.3L90 123.2L94 116.3L98 109.5L102 103L106 96.8L110 90.8L114 85.1L118 79.7L122 74.7L126 69.9L130 65.6L134 61.6L138 58.1L142 54.9L146 52.2L150 50L154 48.2L158 47L162 46.2L166 46L170 46.4L174 47.3L178 48.9L182 51L186 53.8L190 57.2L194 61.3L198 66.1L202 71.6L206 77.8L210 84.8L214 92.5L218 101.1L222 110.4L226 120.6L230 131.6L234 143.5L238 156.2L242 169.9L246 184.5L250 200"/>
+          <text class="tick" x="50" y="216" text-anchor="middle">0</text><text class="tick" x="250" y="216" text-anchor="middle">1</text><text x="270" y="204">r</text>
+          <text class="lbl" x="174" y="40">r·h = r − r³</text>
+          <text class="lbl" x="150" y="160" text-anchor="middle">∫₀¹ = 1/4</text>
+          <text class="lbl" x="150" y="240" text-anchor="middle">V = 2π · 1/4 = π/2</text>
+          <text class="lbl" x="450" y="20" text-anchor="middle">h = 1 − r</text>
+          <path class="tint e3" d="M350 200L354 192.2L358 184.6L362 177.4L366 170.6L370 164L374 157.8L378 151.8L382 146.2L386 141L390 136L394 131.4L398 127L402 123L406 119.4L410 116L414 113L418 110.2L422 107.8L426 105.8L430 104L434 102.6L438 101.4L442 100.6L446 100.2L450 100L454 100.2L458 100.6L462 101.4L466 102.6L470 104L474 105.8L478 107.8L482 110.2L486 113L490 116L494 119.4L498 123L502 127L506 131.4L510 136L514 141L518 146.2L522 151.8L526 157.8L530 164L534 170.6L538 177.4L542 184.6L546 192.2L550 200Z"/>
+          <path class="ax" d="M350 200H562M350 200V34"/>
+          <path class="sk e3" d="M350 200L354 192.2L358 184.6L362 177.4L366 170.6L370 164L374 157.8L378 151.8L382 146.2L386 141L390 136L394 131.4L398 127L402 123L406 119.4L410 116L414 113L418 110.2L422 107.8L426 105.8L430 104L434 102.6L438 101.4L442 100.6L446 100.2L450 100L454 100.2L458 100.6L462 101.4L466 102.6L470 104L474 105.8L478 107.8L482 110.2L486 113L490 116L494 119.4L498 123L502 127L506 131.4L510 136L514 141L518 146.2L522 151.8L526 157.8L530 164L534 170.6L538 177.4L542 184.6L546 192.2L550 200"/>
+          <text class="tick" x="350" y="216" text-anchor="middle">0</text><text class="tick" x="550" y="216" text-anchor="middle">1</text><text x="570" y="204">r</text>
+          <text class="lbl" x="462" y="92">r·h = r − r²</text>
+          <text class="lbl" x="450" y="172" text-anchor="middle">∫₀¹ = 1/6</text>
+          <text class="lbl" x="450" y="240" text-anchor="middle">V = 2π · 1/6 = π/3</text>
+        </svg>
+        <figcaption><span lang="ar">ليش الصحن ($\frac{\pi}{2}$) أكبر من المخروط ($\frac{\pi}{3}$)؟ لأن ارتفاعه $1-r^2$ دايماً أكبر من $1-r$، فالمساحة تحت $r\cdot h$ أكبر. والحجم = المساحة × $2\pi$.</span><span lang="en">Why is the bowl ($\frac{\pi}{2}$) bigger than the cone ($\frac{\pi}{3}$)? Its height $1-r^2$ is always above $1-r$, so the area under $r\cdot h$ is bigger. Volume = that area × $2\pi$.</span></figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">حل بالورقة، اكتب جوابك واضغط تحقق. تقدر تكتب $\pi$ كذا: <span class="ltr">pi/2</span> أو <span class="ltr">8pi</span>. علقت؟ افتح التلميح، وبعدها الحل.</span><span lang="en">Solve on paper, type your answer and press check. You can type $\pi$ like <span class="ltr">pi/2</span> or <span class="ltr">8pi</span>. Stuck? Open the hint, then the solution.</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">نفس المثلث $R$ من مثال 1:</span><span lang="en">Same triangle $R$ as Example 1:</span></p>
+    <div class="m">\[\iint_R (x+y)^2\,dA, \qquad R=\{x\ge0,\ y\ge0,\ x+y\le1\}\]</div>
+    <div class="check" data-answer="1/4"></div>
+    <details class="hint"><p><span lang="ar">استخدم نفس $u$ و $v$ ونفس $R'$ و $|J|$ من مثال 1. و $(x+y)^2 = v^2$.</span><span lang="en">Reuse the same $u$, $v$, $R'$ and $|J|$ from Example 1. And $(x+y)^2 = v^2$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل</span><span lang="en">Convert</span></h4><div class="m">\[\iint_R (x+y)^2\,dA = \tfrac12\int_0^1\!\int_{-v}^{v} v^2\,du\,dv\]</div></li>
+      <li class="step"><h4>$\Z{u}$ <span class="const"><span lang="ar">$v$ ثابت</span><span lang="en">$v$ constant</span></span></h4><div class="m">\[\int_{-v}^{v} v^2\,du = v^2\cdot 2v = 2v^3\]</div></li>
+      <li class="step"><h4>$\Z{v}$</h4><div class="m">\[\tfrac12\int_0^1 2v^3\,dv = \tfrac12\cdot\tfrac12 = \tfrac14\]</div></li>
+      <li class="step final"><div class="result">$\tfrac14$</div><p class="sanity"><span lang="ar">تقدر تتأكد بدون تحويل: $\int_0^1\!\int_0^{1-x}(x+y)^2\,dy\,dx = \frac14$ ✓</span><span lang="en">You can confirm without changing variables: $\int_0^1\!\int_0^{1-x}(x+y)^2\,dy\,dx = \frac14$ ✓</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <div class="m">\[\iint_R (x^2+y^2)\,dA, \qquad R:\ x^2+y^2\le 1\]</div>
+    <div class="check" data-answer="pi/2"></div>
+    <details class="hint"><p><span lang="ar">قرص + $x^2+y^2$ يعني قطبي. ولا تنسى $r$ في $dA$.</span><span lang="en">A disk + $x^2+y^2$ means polar. Don't forget the $r$ in $dA$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل</span><span lang="en">Convert</span></h4><div class="m">\[\int_0^{2\pi}\!\int_0^1 r^2\cdot\Y{r}\,dr\,d\theta\]</div></li>
+      <li class="step"><h4>$\Z{r}$</h4><div class="m">\[\int_0^1 r^3\,dr = \tfrac14\]</div></li>
+      <li class="step"><h4>$\Z{\theta}$</h4><div class="m">\[\tfrac14\cdot 2\pi = \tfrac{\pi}{2}\]</div></li>
+      <li class="step final"><div class="result">$\tfrac{\pi}{2}$</div><p class="sanity"><span lang="ar">هذا حجم الجزء <b>تحت</b> الصحن داخل الأسطوانة، ومثال 2 الجزء <b>فوقه</b>: $\frac{\pi}{2} + \frac{\pi}{2} = \pi$ = حجم الأسطوانة كاملة ✓</span><span lang="en">This is the volume <b>under</b> the bowl inside the cylinder, and Example 2 is the part <b>above</b> it: $\frac{\pi}{2} + \frac{\pi}{2} = \pi$ = the whole cylinder ✓</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">نفس صحن مثال 2، بس لين $z = 4$: أوجد الحجم داخل $z = x^2+y^2$ لما $0 \le z \le 4$.</span><span lang="en">Example 2's bowl, but up to $z = 4$: find the volume inside $z = x^2+y^2$ for $0 \le z \le 4$.</span></p>
+    <div class="check" data-answer="8pi"></div>
+    <details class="hint"><p><span lang="ar">السقف $z = 4$، فالظل $x^2+y^2 = 4$، يعني $r$ من 0 لـ <b>2</b> مو 1. والارتفاع $4 - r^2$.</span><span lang="en">The ceiling is $z = 4$, so the shadow is $x^2+y^2 = 4$: $r$ runs from 0 to <b>2</b>, not 1. The height is $4 - r^2$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل</span><span lang="en">Convert</span></h4><div class="m">\[V = \int_0^{2\pi}\!\int_0^2 (4-r^2)\,\Y{r}\,dr\,d\theta\]</div></li>
+      <li class="step"><h4>$\Z{r}$</h4><div class="m">\[\int_0^2 (4r - r^3)\,dr = \Big[2r^2 - \tfrac{r^4}{4}\Big]_0^2 = 8 - 4 = 4\]</div></li>
+      <li class="step"><h4>$\Z{\theta}$</h4><div class="m">\[4\cdot 2\pi = 8\pi\]</div></li>
+      <li class="step final"><div class="result" data-label="الحجم|Volume">$8\pi \approx 25.13$</div><p class="sanity"><span lang="ar">الأسطوانة (نصف قطر 2، ارتفاع 4) حجمها $16\pi$، والصحن نصها: $8\pi$ ✓. نفس نسبة مثال 2.</span><span lang="en">The cylinder (radius 2, height 4) has volume $16\pi$, and the bowl is half of it: $8\pi$ ✓. The same ratio as Example 2.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تحدّي</span><span lang="en">Challenge</span></b><span class="lvl hard"><span lang="ar">أصعب شوي</span><span lang="en">a bit harder</span></span></div>
+    <div class="m">\[\iint_R e^{-(x^2+y^2)}\,dA, \qquad R:\ x^2+y^2\le 1\]</div>
+    <div class="check" data-answer="pi*(1-1/e)"></div>
+    <details class="hint"><p><span lang="ar">بالكارتيزي هذا التكامل مستحيل! بالقطبي، الـ $r$ اللي في $dA$ تنقذك: عوّض $w = r^2$ فيصير $dw = 2r\,dr$. (تقدر تكتب الجواب كذا: <span class="ltr">pi*(1-1/e)</span>)</span><span lang="en">In Cartesian this is impossible! In polar, the $r$ in $dA$ saves you: substitute $w = r^2$, so $dw = 2r\,dr$. (You can type the answer as <span class="ltr">pi*(1-1/e)</span>)</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل</span><span lang="en">Convert</span></h4><div class="m">\[\int_0^{2\pi}\!\int_0^1 e^{-r^2}\,\Y{r}\,dr\,d\theta\]</div></li>
+      <li class="step"><h4>$\Z{r}$ <span class="const">$w = r^2$</span></h4><div class="m">\[\int_0^1 e^{-r^2}\,r\,dr = \tfrac12\int_0^1 e^{-w}\,dw = \tfrac12\big(1 - e^{-1}\big)\]</div></li>
+      <li class="step"><h4>$\Z{\theta}$</h4><div class="m">\[\tfrac12\big(1-e^{-1}\big)\cdot 2\pi = \pi\big(1-e^{-1}\big)\]</div></li>
+      <li class="step final"><div class="result">$\pi\big(1-e^{-1}\big) \approx 1.986$</div><p class="sanity"><span lang="ar">الدالة بين $e^{-1}$ و $1$، ومساحة القرص $\pi$، فالجواب لازم بين $0.37\pi$ و $\pi$. وهو $0.63\pi$ ✓</span><span lang="en">The function lies between $e^{-1}$ and $1$ and the disk's area is $\pi$, so the answer must lie between $0.37\pi$ and $\pi$. It's $0.63\pi$ ✓</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">The mistakes that cost marks</span></h2>
+  <p class="sub"><span lang="ar">كل خطأ جنبه التصحيح</span><span lang="en">Each mistake next to its fix</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان $|J|$</span><span lang="en">Forgetting $|J|$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\iint_R f\,dA = \iint_{R'} f\,du\,dv$</div></div><div class="yes"><div class="mm">$\iint_R f\,dA = \iint_{R'} f\,|J|\,du\,dv$</div><span lang="ar">بدون $|J|$ جوابك يطلع ضعف الصح (أو نصه).</span><span lang="en">Without $|J|$ your answer comes out double (or half) the right one.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان $r$ في القطبي</span><span lang="en">Forgetting $r$ in polar</span></div>
+    <div class="pair"><div class="no"><div class="mm">$dA = dr\,d\theta$</div></div><div class="yes"><div class="mm">$dA = r\,dr\,d\theta$</div><span lang="ar">$r$ هو $|J|$ حق القطبي.</span><span lang="en">$r$ is polar's $|J|$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">ترك الحدود القديمة</span><span lang="en">Keeping the old limits</span></div>
+    <div class="pair"><div class="no"><span lang="ar">تكتب $u$ و $v$ من 0 لـ 1 لأن $x$ و $y$ كانت كذا.</span><span lang="en">Writing $u$ and $v$ from 0 to 1 because $x$ and $y$ were.</span></div><div class="yes"><span lang="ar">ترجم كل ضلع وارسم $R'$. في مثال 1: $0\le v\le1$ و $-v\le u\le v$.</span><span lang="en">Translate every edge and sketch $R'$. In Example 1: $0\le v\le1$ and $-v\le u\le v$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">بقاء $x$ أو $y$ داخل التكامل</span><span lang="en">Leaving $x$ or $y$ inside the integral</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\tfrac12\iint e^{\frac{x-y}{x+y}}\,du\,dv$</div></div><div class="yes"><div class="mm">$\tfrac12\iint e^{u/v}\,du\,dv$</div><span lang="ar">كل شي بدلالة المتغيرات الجديدة.</span><span lang="en">Everything in the new variables.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">$J$ سالب وتستخدمه مثل ما هو</span><span lang="en">Using a negative $J$ as is</span></div>
+    <div class="pair"><div class="no"><div class="mm">$J = -2 \;\Rightarrow\; dA = -2\,du\,dv$</div></div><div class="yes"><div class="mm">$dA = |{-2}|\,du\,dv = 2\,du\,dv$</div><span lang="ar">المساحة دايماً موجبة.</span><span lang="en">Area is always positive.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">مدى $\theta$ غلط</span><span lang="en">The wrong range for $\theta$</span></div>
+    <div class="pair"><div class="no"><span lang="ar">قرص كامل: $\theta$ من 0 لـ $\pi$.</span><span lang="en">Full disk: $\theta$ from 0 to $\pi$.</span></div><div class="yes"><span lang="ar">قرص كامل: $\theta$ من 0 لـ $2\pi$. نص القرص بس من 0 لـ $\pi$.</span><span lang="en">Full disk: $\theta$ from 0 to $2\pi$. Only a half disk runs from 0 to $\pi$.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">اختر وتشوف التصحيح والسبب فوراً</span><span lang="en">Pick an answer and see the correction and the reason instantly</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="3">
+      <p><span lang="ar">وش يمثّل $|J|$ هندسياً؟</span><span lang="en">What does $|J|$ mean geometrically?</span></p>
+      <button><span lang="ar">ميل المماس</span><span lang="en">The slope of the tangent</span></button><button><span lang="ar">طول نصف القطر</span><span lang="en">The length of the radius</span></button><button><span lang="ar">معامل تمدد المساحة</span><span lang="en">The area stretch factor</span></button><button><span lang="ar">حجم الجسم</span><span lang="en">The volume of the solid</span></button>
+      <p class="q-why"><span lang="ar">مربع صغير مساحته $du\,dv$ يصير مساحته $|J|\,du\,dv$ بعد التحويل.</span><span lang="en">A tiny square of area $du\,dv$ becomes area $|J|\,du\,dv$ after the mapping.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">في القطبي، $dA$ = ؟</span><span lang="en">In polar, $dA$ = ?</span></p>
+      <button>$r\,dr\,d\theta$</button><button>$dr\,d\theta$</button><button>$r^2\,dr\,d\theta$</button><button>$\theta\,dr\,d\theta$</button>
+      <p class="q-why"><span lang="ar">$J(r,\theta) = r\cos^2\theta + r\sin^2\theta = r$.</span><span lang="en">$J(r,\theta) = r\cos^2\theta + r\sin^2\theta = r$.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">لو $x=\frac{u+v}{2}$ و $y=\frac{v-u}{2}$، كم $J$؟</span><span lang="en">If $x=\frac{u+v}{2}$ and $y=\frac{v-u}{2}$, what is $J$?</span></p>
+      <button>$-\tfrac12$</button><button>$\tfrac14$</button><button>$2$</button><button>$\tfrac12$</button>
+      <p class="q-why"><span lang="ar">$\frac12\cdot\frac12 - \frac12\cdot\left(-\frac12\right) = \frac14 + \frac14 = \frac12$.</span><span lang="en">$\frac12\cdot\frac12 - \frac12\cdot\left(-\frac12\right) = \frac14 + \frac14 = \frac12$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">مع $u=x-y$ و $v=x+y$، الخط $x+y=1$ يصير؟</span><span lang="en">With $u=x-y$ and $v=x+y$, the line $x+y=1$ becomes?</span></p>
+      <button>$u = 1$</button><button>$v = 1$</button><button>$u = v$</button><button>$u = -v$</button>
+      <p class="q-why"><span lang="ar">$x+y$ هو $v$ بالتعريف.</span><span lang="en">$x+y$ is $v$ by definition.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">كم $\begin{vmatrix}2&1\\1&3\end{vmatrix}$؟</span><span lang="en">What is $\begin{vmatrix}2&1\\1&3\end{vmatrix}$?</span></p>
+      <button>$7$</button><button>$6$</button><button>$5$</button><button>$1$</button>
+      <p class="q-why"><span lang="ar">$2\cdot3 - 1\cdot1 = 5$: القطر الرئيسي ناقص الثاني.</span><span lang="en">$2\cdot3 - 1\cdot1 = 5$: main diagonal minus the other.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">القرص $x^2+y^2\le4$ بالقطبي؟</span><span lang="en">The disk $x^2+y^2\le4$ in polar?</span></p>
+      <button>$0\le r\le4,\ 0\le\theta\le2\pi$</button><button>$0\le r\le2,\ 0\le\theta\le2\pi$</button><button>$0\le r\le2,\ 0\le\theta\le\pi$</button><button>$0\le r\le4,\ 0\le\theta\le\pi$</button>
+      <p class="q-why"><span lang="ar">$r^2 \le 4$ يعني $r \le 2$، والقرص كامل فـ $\theta$ لين $2\pi$.</span><span lang="en">$r^2 \le 4$ means $r \le 2$, and a full disk sends $\theta$ up to $2\pi$.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">الحجم داخل المخروط $z=\sqrt{x^2+y^2}$ لما $0\le z\le1$؟</span><span lang="en">The volume inside the cone $z=\sqrt{x^2+y^2}$ for $0\le z\le1$?</span></p>
+      <button>$\tfrac{\pi}{2}$</button><button>$\pi$</button><button>$\tfrac{\pi}{3}$</button><button>$\tfrac{2\pi}{3}$</button>
+      <p class="q-why"><span lang="ar">مثال 3: $\int_0^1 (r-r^2)\,dr = \frac16$، × $2\pi$ = $\frac{\pi}{3}$.</span><span lang="en">Example 3: $\int_0^1 (r-r^2)\,dr = \frac16$, × $2\pi$ = $\frac{\pi}{3}$.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">لو طلع $J=-3$، وش تكتب بدل $dA$؟</span><span lang="en">If you get $J=-3$, what replaces $dA$?</span></p>
+      <button>$3\,du\,dv$</button><button>$-3\,du\,dv$</button><button>$9\,du\,dv$</button><button>$\tfrac13\,du\,dv$</button>
+      <p class="q-why"><span lang="ar">ناخذ القيمة المطلقة: $|{-3}| = 3$.</span><span lang="en">Take the absolute value: $|{-3}| = 3$.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات مراجعة سريعة</span><span lang="en">Quick review cards</span></h2>
+  <p class="sub"><span lang="ar">اقرأ السؤال، جاوب في راسك، بعدين اقلب البطاقة</span><span lang="en">Read the prompt, answer in your head, then flip the card</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">ليش نغيّر المتغيرات؟</span><span lang="en">Why change variables?</span></div><div><span lang="ar">عشان نبسّط الدالة أو المنطقة</span><span lang="en">To simplify the function or the region</span></div></div>
+    <div class="flash"><div>$J(u,v)$ = ?</div><div>$\begin{vmatrix} x_u & x_v\\ y_u & y_v\end{vmatrix}$</div></div>
+    <div class="flash"><div><span lang="ar">$dA$ بالمتغيرات الجديدة</span><span lang="en">$dA$ in the new variables</span></div><div>$|J|\,du\,dv$</div></div>
+    <div class="flash"><div><span lang="ar">وش يعني $|J|$؟</span><span lang="en">What does $|J|$ mean?</span></div><div><span lang="ar">معامل تمدد المساحة (سعر التحويل)</span><span lang="en">The area stretch factor (the exchange rate)</span></div></div>
+    <div class="flash"><div><span lang="ar">القطبي: $x$ و $y$</span><span lang="en">Polar: $x$ and $y$</span></div><div>$x = r\cos\theta,\ y = r\sin\theta$</div></div>
+    <div class="flash"><div><span lang="ar">$x^2+y^2$ بالقطبي</span><span lang="en">$x^2+y^2$ in polar</span></div><div>$r^2$</div></div>
+    <div class="flash"><div><span lang="ar">$dA$ بالقطبي</span><span lang="en">$dA$ in polar</span></div><div>$r\,dr\,d\theta$</div></div>
+    <div class="flash"><div><span lang="ar">حدود قرص نصف قطره $a$</span><span lang="en">Limits of a disk of radius $a$</span></div><div>$0\le r\le a,\ 0\le\theta\le2\pi$</div></div>
+    <div class="flash"><div><span lang="ar">الحجم بين سطحين</span><span lang="en">Volume between two surfaces</span></div><div><span lang="ar">$\iint_R$ (السقف − الأرضية) $dA$</span><span lang="en">$\iint_R$ (top − bottom) $dA$</span></div></div>
+    <div class="flash"><div><span lang="ar">مثال 1 · $e^{\frac{x-y}{x+y}}$ على المثلث</span><span lang="en">Ex 1 · $e^{\frac{x-y}{x+y}}$ on the triangle</span></div><div>$\tfrac14\left(e-e^{-1}\right)$</div></div>
+    <div class="flash"><div><span lang="ar">مثال 2 و 3 · الصحن والمخروط</span><span lang="en">Ex 2 and 3 · bowl and cone</span></div><div>$\tfrac{\pi}{2}$ <span lang="ar">و</span><span lang="en">and</span> $\tfrac{\pi}{3}$</div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>

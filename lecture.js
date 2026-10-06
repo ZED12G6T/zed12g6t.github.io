@@ -168,14 +168,19 @@
     if (t) t.addEventListener('click', () => { const open = solvers.some(s => !s.isOpen()); solvers.forEach(s => s.set(open)); });
   }
 
-  /* ---------- التحقق من الجواب: <div class="check" data-answer="9/2"></div> ---------- */
+  /* ---------- التحقق من الجواب: <div class="check" data-answer="9/2"></div> ----------
+     يقبل أرقام وكسور وتعابير فيها π و e: "pi/2" ، "8π" ، "pi*(1-1/e)" ، "(e-e^-1)/4" */
   function parseAnswer(s) {
-    s = String(s).trim()
+    s = String(s).trim().toLowerCase()
       .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
-      .replace(/[٫,]/g, '.').replace(/\s+/g, '').replace(/^=/, '');
-    const m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/);
-    if (m) return parseFloat(m[1]) / parseFloat(m[2]);
-    return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : NaN;
+      .replace(/[٫,]/g, '.').replace(/[×·]/g, '*').replace(/÷/g, '/').replace(/[−–]/g, '-')
+      .replace(/\s+/g, '').replace(/^=/, '').replace(/pi|π/g, 'P');
+    s = s.replace(/(\d|\)|P|e)(?=[(Pe])/g, '$1*').replace(/\)(?=\d)/g, ')*');   // ضرب ضمني: 2π ، π(…)
+    if (!s || !/^[\d.+\-*/^()Pe]+$/.test(s)) return NaN;   // أرقام وعمليات بس — ما فيه أي كود
+    try {
+      const v = Function('"use strict";return (' + s.replace(/\^/g, '**').replace(/P/g, '(Math.PI)').replace(/e/g, '(Math.E)') + ')')();
+      return typeof v === 'number' && isFinite(v) ? v : NaN;
+    } catch (e) { return NaN; }
   }
   function checks() {
     $$('.check[data-answer]').forEach(box => {
@@ -184,7 +189,7 @@
       const target = parseAnswer(box.dataset.answer);
       const run = () => {
         const v = parseAnswer(input.value);
-        if (isNaN(v)) { msg.className = 'check-msg no'; msg.innerHTML = L('اكتب رقم أو كسر مثل 3/4', 'Type a number or a fraction like 3/4'); return; }
+        if (isNaN(v)) { msg.className = 'check-msg no'; msg.innerHTML = L('اكتب رقم أو تعبير مثل 3/4 أو π/2', 'Type a number or an expression like 3/4 or pi/2'); return; }
         const ok = Math.abs(v - target) < 1e-3 * Math.max(1, Math.abs(target));
         msg.className = 'check-msg ' + (ok ? 'ok' : 'no');
         msg.innerHTML = ok ? L('✓ صح! ممتاز', '✓ Correct!') : L('✗ مو صحيح — جرّب مرة ثانية أو افتح التلميح', '✗ Not quite — try again or open the hint');
@@ -250,7 +255,7 @@
 
   /* ---------- المختبر ثلاثي الأبعاد: <div class="lab"></div> + window.LAB_PRESETS ---------- */
   function lab() {
-    const host = document.querySelector('.lab'), P = window.LAB_PRESETS;
+    const host = document.querySelector('div.lab'), P = window.LAB_PRESETS;
     if (!host || !P) return;
     host.innerHTML = `
 <div class="lab-controls">
@@ -364,6 +369,7 @@
         (done ? `<div><span class="k">|error| = </span><span class="v">${Math.abs(sum - p.exact).toFixed(4)}</span></div>` : '');
     }
     function writeOrder() {
+      if (P[key].note) { orderBox.innerHTML = T(P[key].note); typeset([orderBox]); return; }   // شرح خاص بدل شرح الترتيب
       const [a, m, o] = P[key].order.split(''), v = c => `<b class="v${c}">${c}</b>`;
       const dv = `<span class="ltr" style="font-family:var(--f-mono)">d${a} d${m} d${o}</span>`;
       orderBox.innerHTML = `<strong>${L('▶ زر التشغيل يبني الجسم بنفس ترتيب التكامل', '▶ Play builds the solid in the order of integration')} ${dv}:</strong> ` +
@@ -403,10 +409,126 @@
     build(); shown = cells.length; relabel();
   }
 
+  /* ---------- مختبر التحويل (المستوى الجديد ↔ xy): <div class="maplab"></div> + window.MAP_PRESETS ----------
+     كل preset: label=[عربي, English]، names=['u','v']، a و b = مدى المتغيرين الجديدين، da و db = حجم الخلية،
+     fwd(a,b) → [x,y]، inv(x,y) → [a,b]، inside(a,b) = شرط R′، region = رؤوس R′، view = {x:[..], y:[..]}،
+     edges = [{from, to, cls:'e1', src:'u = v', dst:'y = 0', srcAt:[a,b], dstAt:[x,y]}]،
+     ticks = {src:[[قيمة, 'نص', 'x'|'y']], dst:[..]}، J(a,b)، Jtxt(J)، arrow = ['سطر', ..]، sel = [i,j]،
+     fit = 'same' (نفس المقياس للوحتين عشان المساحات تنقارن بالعين) أو 'free' */
+  function maplab() {
+    const host = document.querySelector('.maplab'), P = window.MAP_PRESETS;
+    if (!host || !P) return;
+    const W = 320, H = 250, PAD = 30;
+    host.innerHTML = `
+<div class="seg">${Object.keys(P).map(k => `<button data-k="${k}">${T(P[k].label)}</button>`).join('')}</div>
+<div class="ml-panels">
+  <figure class="ml-panel"><figcaption></figcaption><svg viewBox="0 0 ${W} ${H}" role="img"></svg></figure>
+  <div class="ml-arrow"><span></span><b>→</b></div>
+  <figure class="ml-panel"><figcaption></figcaption><svg viewBox="0 0 ${W} ${H}" role="img"></svg></figure>
+</div>
+<div class="ml-read"></div>`;
+    const caps = host.querySelectorAll('figcaption'), svgs = host.querySelectorAll('.ml-panel svg');
+    const arrow = host.querySelector('.ml-arrow span'), read = host.querySelector('.ml-read');
+    let p, cell, tA, tB;
+    const fit = (xr, yr, uniform, s) => {
+      let sx = (W - 2 * PAD) / (xr[1] - xr[0]), sy = (H - 2 * PAD) / (yr[1] - yr[0]);
+      if (uniform) sx = sy = Math.min(sx, sy);
+      if (s) sx = sy = s;
+      const ox = W / 2 - sx * (xr[0] + xr[1]) / 2, oy = H / 2 + sy * (yr[0] + yr[1]) / 2;
+      return { s: sx, to: (x, y) => [ox + sx * x, oy - sy * y], from: (X, Y) => [(X - ox) / sx, (oy - Y) / sy] };
+    };
+    const lerp = (A, B, n) => Array.from({ length: n + 1 }, (_, k) => [A[0] + (B[0] - A[0]) * k / n, A[1] + (B[1] - A[1]) * k / n]);
+    const ring = (poly, n) => poly.flatMap((A, k) => lerp(A, poly[(k + 1) % poly.length], n).slice(0, -1));
+    const F = q => p.fwd(q[0], q[1]);
+    const d = (arr, t, close) => 'M' + arr.map(q => t.to(q[0], q[1]).map(v => v.toFixed(1)).join(' ')).join('L') + (close ? 'Z' : '');
+    const area = arr => Math.abs(arr.reduce((s, q, k) => { const r = arr[(k + 1) % arr.length]; return s + q[0] * r[1] - r[0] * q[1]; }, 0)) / 2;
+    const counts = () => [Math.round((p.a[1] - p.a[0]) / p.da), Math.round((p.b[1] - p.b[0]) / p.db)];
+    const f1 = v => v.toFixed(1);
+
+    function grid() {   // خطوط الشبكة داخل R′، كنقاط في المستوى الجديد
+      const out = [], [na, nb] = counts();
+      const keep = line => { let run = []; for (const q of line) { if (p.inside(q[0], q[1])) run.push(q); else { if (run.length > 1) out.push(run); run = []; } } if (run.length > 1) out.push(run); };
+      for (let i = 0; i <= na; i++) { const a = p.a[0] + i * p.da; keep(lerp([a, p.b[0]], [a, p.b[1]], 96)); }
+      for (let j = 0; j <= nb; j++) { const b = p.b[0] + j * p.db; keep(lerp([p.a[0], b], [p.a[1], b], 96)); }
+      return out;
+    }
+    function axes(t, xr, yr, nx, ny, ticks) {
+      const x0 = Math.min(Math.max(0, xr[0]), xr[1]), y0 = Math.min(Math.max(0, yr[0]), yr[1]);
+      const [L1, Y0] = t.to(xr[0], y0), [R1] = t.to(xr[1], y0), [X0, B1] = t.to(x0, yr[0]), [, T1] = t.to(x0, yr[1]);
+      let s = `<path class="ax" d="M${f1(L1 - 8)} ${f1(Y0)}H${f1(R1 + 10)}M${f1(X0)} ${f1(B1 + 8)}V${f1(T1 - 10)}"/>` +
+        `<text x="${f1(R1 + 14)}" y="${f1(Y0 + 4)}">${nx}</text><text x="${f1(X0)}" y="${f1(T1 - 14)}" text-anchor="middle">${ny}</text>`;
+      (ticks || []).forEach(([v, lab, ax]) => {
+        const [X, Y] = ax === 'x' ? t.to(v, y0) : t.to(x0, v);
+        s += ax === 'x' ? `<text class="tick" x="${f1(X)}" y="${f1(Y + 14)}" text-anchor="middle">${lab}</text>`
+                        : `<text class="tick" x="${f1(X - 6)}" y="${f1(Y + 4)}" text-anchor="end">${lab}</text>`;
+      });
+      return s;
+    }
+    function drawStatic() {
+      let sa = `<path class="tint a" d="${d(p.region, tA, true)}"/>`, sb = `<path class="tint a" d="${d(ring(p.region, 60).map(F), tB, true)}"/>`;
+      grid().forEach(l => { sa += `<path class="gl" d="${d(l, tA)}"/>`; sb += `<path class="gl" d="${d(l.map(F), tB)}"/>`; });
+      sa += axes(tA, p.a, p.b, p.names[0], p.names[1], p.ticks && p.ticks.src);
+      sb += axes(tB, p.view.x, p.view.y, 'x', 'y', p.ticks && p.ticks.dst);
+      (p.edges || []).forEach(e => {   // كل ضلع بلونه في اللوحتين، عشان تشوف مين صار مين
+        const line = lerp(e.from, e.to, 48), [x1, y1] = tA.to(...e.srcAt), [x2, y2] = tB.to(...e.dstAt);
+        sa += `<path class="sk ${e.cls}" d="${d(line, tA)}"/><text class="lbl" x="${f1(x1)}" y="${f1(y1)}" text-anchor="middle">${e.src}</text>`;
+        sb += `<path class="sk ${e.cls}" d="${d(line.map(F), tB)}"/><text class="lbl" x="${f1(x2)}" y="${f1(y2)}" text-anchor="middle">${e.dst}</text>`;
+      });
+      svgs[0].innerHTML = sa + '<g class="cellg"></g>';
+      svgs[1].innerHTML = sb + '<g class="cellg"></g>';
+    }
+    function drawCell() {
+      const [i, j] = cell, a0 = p.a[0] + i * p.da, b0 = p.b[0] + j * p.db, a1 = a0 + p.da, b1 = b0 + p.db;
+      const box = [[a0, b0], [a1, b0], [a1, b1], [a0, b1]], img = ring(box, 24).map(F);
+      svgs[0].querySelector('.cellg').innerHTML = `<path class="ml-cell" d="${d(box, tA, true)}"/>`;
+      svgs[1].querySelector('.cellg').innerHTML = `<path class="ml-cell" d="${d(img, tB, true)}"/>`;
+      const sA = p.da * p.db, dA = area(img), [n1, n2] = p.names, J = Math.abs(p.J((a0 + a1) / 2, (b0 + b1) / 2));
+      read.innerHTML =
+        `<div><span class="k">${L('مساحة الخلية في المستوى الجديد', 'Cell area in the new plane')}</span><span class="v">Δ${n1}·Δ${n2} = ${sA.toFixed(4)}</span></div>` +
+        `<div><span class="k">${L('مساحة صورتها في المستوى xy', 'Area of its image in the xy-plane')}</span><span class="v">ΔA = ${dA.toFixed(4)}</span></div>` +
+        `<div class="hl"><span class="k">${L('النسبة بينهم = |J| (سعر التحويل)', 'Their ratio = |J| (the exchange rate)')}</span><span class="v">${(dA / sA).toFixed(3)} ≈ ${p.Jtxt ? p.Jtxt(J) : '|J| = ' + J.toFixed(3)}</span></div>`;
+    }
+    const toSvg = (svg, e) => { const r = svg.getBoundingClientRect(); return [(e.clientX - r.left) / r.width * W, (e.clientY - r.top) / r.height * H]; };
+    function pick(q) {
+      if (!q || !isFinite(q[0]) || !isFinite(q[1])) return;
+      const [na, nb] = counts(), i = Math.floor((q[0] - p.a[0]) / p.da), j = Math.floor((q[1] - p.b[0]) / p.db);
+      if (i < 0 || j < 0 || i >= na || j >= nb || (i === cell[0] && j === cell[1])) return;
+      cell = [i, j]; drawCell();
+    }
+    ['pointermove', 'pointerdown'].forEach(ev => {
+      svgs[0].addEventListener(ev, e => pick(tA.from(...toSvg(svgs[0], e))));
+      svgs[1].addEventListener(ev, e => pick(p.inv(...tB.from(...toSvg(svgs[1], e)))));
+    });
+    svgs.forEach(svg => {   // الأسهم تحرك الخلية من الكيبورد
+      svg.tabIndex = 0;
+      svg.addEventListener('keydown', e => {
+        const k = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] }[e.key];
+        if (!k) return;
+        e.preventDefault();
+        const [na, nb] = counts();
+        cell = [Math.min(na - 1, Math.max(0, cell[0] + k[0])), Math.min(nb - 1, Math.max(0, cell[1] + k[1]))];
+        drawCell();
+      });
+    });
+    function use(k) {
+      p = P[k]; cell = (p.sel || [0, 0]).slice();
+      host.querySelectorAll('.seg button').forEach(b => b.classList.toggle('on', b.dataset.k === k));
+      let a = fit(p.a, p.b, p.fit !== 'free'), b = fit(p.view.x, p.view.y, true);
+      if (p.fit === 'same') { const s = Math.min(a.s, b.s); a = fit(p.a, p.b, true, s); b = fit(p.view.x, p.view.y, true, s); }
+      tA = a; tB = b;
+      caps[0].innerHTML = `${L('المستوى الجديد', 'New plane')} <span class="ltr">(${p.names.join(', ')})</span>`;
+      caps[1].innerHTML = `${L('المستوى الأصلي', 'Original plane')} <span class="ltr">(x, y)</span>`;
+      arrow.innerHTML = (p.arrow || []).join('<br>');
+      drawStatic(); drawCell();
+    }
+    host.querySelector('.seg').addEventListener('click', e => { const b = e.target.closest('button'); if (b) use(b.dataset.k); });
+    use(Object.keys(P)[0]);
+  }
+
   /* ---------- التشغيل ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     titleAr = document.title;
-    const steps = [chrome, sectionHeads, steppers, checks, quiz, cards, lab];
+    const steps = [chrome, sectionHeads, steppers, checks, quiz, cards, lab, maplab];
     steps.forEach(f => { try { f(); } catch (e) { console.error('lecture.js:', f.name, e); } });
     paintTheme();
     applyLang(isEn() ? 'en' : 'ar');
