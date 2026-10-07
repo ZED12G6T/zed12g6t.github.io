@@ -359,3 +359,33 @@ footer.foot { max-width: 900px; margin: 0 auto; padding: 4px 16px 50px; display:
   .card { box-shadow: none; break-inside: avoid; }
   .step { display: block !important; animation: none !important; }
 }
+
+/* ================= نص بلغتين معاً (للمواد اللي اختبارها إنجليزي) =================
+   <div class="bi"><p class="bi-en">English…</p><p class="bi-ar">عربي…</p></div>
+   بدون lang، فيظهر الاثنين في الوضعين. key = إطار مميز. <b> و <mark> داخلها = الكلمات المفتاحية. */
+.bi { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin: 12px 0; background: var(--surface); }
+.bi.key { border-color: color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.bi > p, .bi > div { padding: 11px 16px; }
+.bi-en { direction: ltr; text-align: left; unicode-bidi: isolate; font-size: .97rem; line-height: 1.75; background: var(--surface-2); border-bottom: 1px dashed var(--line-2); }
+.bi-ar { direction: rtl; text-align: right; font-size: .94rem; color: var(--ink-2); }
+.bi-en::before, .bi-ar::before { display: block; font: 600 .66rem var(--f-mono); letter-spacing: .08em; color: var(--ink-3); margin-bottom: 2px; }
+.bi-en::before { content: 'EN'; }
+.bi-ar::before { content: 'AR'; text-align: right; }
+.bi b, .bi mark { color: var(--accent); font-weight: 600; }
+.bi mark { background: var(--accent-soft); border-radius: 4px; padding: 0 3px; }
+.bi ol, .bi ul { padding-inline-start: 22px; display: grid; gap: 3px; margin-top: 4px; }
+
+/* شارة أولوية: <span class="prio x">..</span> بألوان x / y / z */
+.prio { display: inline-block; font: 600 .74rem var(--f-head); padding: 1px 10px; border-radius: 999px; border: 1px solid; vertical-align: middle; }
+.prio.x { color: var(--cx); border-color: color-mix(in srgb, var(--cx) 45%, transparent); background: color-mix(in srgb, var(--cx) 10%, transparent); }
+.prio.y { color: var(--cy); border-color: color-mix(in srgb, var(--cy) 45%, transparent); background: color-mix(in srgb, var(--cy) 10%, transparent); }
+.prio.z { color: var(--cz); border-color: color-mix(in srgb, var(--cz) 45%, transparent); background: color-mix(in srgb, var(--cz) 10%, transparent); }
+
+/* جدول بسيط: <div class="tbl-wrap"><table class="tbl">… */
+.tbl-wrap { overflow-x: auto; margin: 12px 0; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: .9rem; }
+table.tbl th, table.tbl td { border: 1px solid var(--line); padding: 7px 10px; text-align: start; vertical-align: top; }
+table.tbl th { background: var(--surface-2); font: 600 .85rem var(--f-head); }
+table.tbl .ok { color: var(--good); font-weight: 600; }
+table.tbl .bad { color: var(--bad); font-weight: 600; }
+table.tbl .mid { color: var(--warn); font-weight: 600; }
