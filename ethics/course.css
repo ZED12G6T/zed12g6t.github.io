@@ -106,3 +106,28 @@ body { font-size: 1.04rem; line-height: 2; }
   .titleblock { margin: 20px -18px 0; }
   .titleblock dd { font-size: .95rem; }
 }
+
+/* ===== تحسينات القراءة (خصوصاً على الجوال) ===== */
+/* العربي تحت الإنجليزي: هو اللي تفهم منه، فيكون بلون النص الأساسي وحجم مريح */
+.bi-ar { color: var(--ink); font-size: 1rem; line-height: 2; }
+/* المظلل في التعريف: لون خلفية هادي بدل خط تحت كل سطر */
+.bi mark { color: inherit; font-weight: 400; border: 0; padding: 0 2px; border-radius: 2px;
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--gold) 30%, transparent) 62%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* الترجمة الإنجليزية الصغيرة تحت كل بند: سطر مستقل صغير وهادي */
+.card li > .ltr.muted, .card p > .ltr.muted { display: block; text-align: right; margin-top: 1px;
+  font: 400 .82rem/1.6 'IBM Plex Sans Arabic', sans-serif; color: var(--ink-3); }
+/* رقم البند (1-1، 4-8): رقم واضح بلون الوثيقة */
+.card ul.clean li > b.ltr:first-child { font: 600 .86rem var(--f-mono); color: var(--accent); margin-inline-end: 4px; }
+/* التسميات الصغيرة بخط فيه عربي */
+.tile .t-top, .tile .t-desc { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+.tile .t-top { font-size: .78rem; font-weight: 500; }
+.why, .recipe li .why, .sanity { font-size: .95rem; }
+.card ul.clean { gap: 10px; }
+
+@media (max-width: 680px) {
+  body { font-size: 1.02rem; }
+  .bi-en { font-size: 1rem; line-height: 1.75; }
+  .bi > p, .bi > div { padding: 10px 13px; }
+  .sec-num { width: 42px; height: 42px; font-size: .95rem; }
+  .sec-head h2 { font-size: 1.4rem; }
+}
