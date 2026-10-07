@@ -1,0 +1,127 @@
+/* =====================================================================
+   course.css — ثيم مادة أخلاقيات المهنة فقط ("لوحة رسم هندسي")
+   يُحمَّل بعد ../lecture.css في صفحات ethics/ بس، فما يأثر على باقي المواد.
+   فاتح = ورق رسم هندسي بشبكة خفيفة · ليلي = بلوبرنت (أزرق بروسي بخطوط فاتحة)
+   ===================================================================== */
+
+:root {
+  --bg: #e6ecef;  --surface: #f8fafa;  --surface-2: #eef3f4;
+  --ink: #12263a; --ink-2: #4a5d6e;    --ink-3: #66798a;
+  --line: #cbd6dc; --line-2: #a9bac4;
+  --accent: #174c7a; --accent-soft: #e2ecf4;
+  --cx: #1d63b8; --cy: #1b7f5a; --cz: #a4610e;
+  --good: #1b7a45; --good-soft: #e5f3ea;
+  --bad: #b42318;  --bad-soft: #fbeceb;
+  --warn: #9a5b00; --warn-soft: #fbf1df;
+  --grid: rgba(18, 38, 58, .05); --grid-major: rgba(18, 38, 58, .085);
+  --shadow: 0 1px 0 rgba(18, 38, 58, .07);
+  --r: 4px;
+  --f-head: 'Reem Kufi', 'IBM Plex Sans Arabic', sans-serif;
+  --f-body: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d2a43;  --surface: #12334f;  --surface-2: #163c5c;
+    --ink: #e8f1f8; --ink-2: #a9c0d3;    --ink-3: #86a0b6;
+    --line: #24506f; --line-2: #2f6185;
+    --accent: #8cd0ff; --accent-soft: rgba(140, 208, 255, .12);
+    --cx: #8cc2ff; --cy: #6ee0b0; --cz: #ffb86b;
+    --good: #6ee0a0; --good-soft: rgba(110, 224, 160, .1);
+    --bad: #ff8a8a;  --bad-soft: rgba(255, 138, 138, .1);
+    --warn: #ffc46b; --warn-soft: rgba(255, 196, 107, .1);
+    --grid: rgba(140, 208, 255, .06); --grid-major: rgba(140, 208, 255, .11);
+    --shadow: 0 1px 0 rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d2a43;  --surface: #12334f;  --surface-2: #163c5c;
+  --ink: #e8f1f8; --ink-2: #a9c0d3;    --ink-3: #86a0b6;
+  --line: #24506f; --line-2: #2f6185;
+  --accent: #8cd0ff; --accent-soft: rgba(140, 208, 255, .12);
+  --cx: #8cc2ff; --cy: #6ee0b0; --cz: #ffb86b;
+  --good: #6ee0a0; --good-soft: rgba(110, 224, 160, .1);
+  --bad: #ff8a8a;  --bad-soft: rgba(255, 138, 138, .1);
+  --warn: #ffc46b; --warn-soft: rgba(255, 196, 107, .1);
+  --grid: rgba(140, 208, 255, .06); --grid-major: rgba(140, 208, 255, .11);
+  --shadow: 0 1px 0 rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
+/* ورق الرسم: شبكة صغيرة كل 24px وكبيرة كل 120px */
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+#progress i { background: var(--accent); }
+
+/* الزوايا: 4px لكل شي مربّع، والشارات تبقى دائرية */
+.card, .tldr, .callout, .bi, .tile, .prob, .q, .mk, .opt, .btn, .icon-btn, #lecture-select,
+.face, .pair > div, .m, .f-node, .result, .score, .q-why, .tbl-wrap { border-radius: var(--r); }
+
+/* ===== اللوحة: إطار رسم مزدوج ===== */
+.card, .hero .sheet {
+  background: var(--surface); border: 1px solid var(--line-2);
+  box-shadow: inset 0 0 0 5px var(--surface), inset 0 0 0 6px var(--line), var(--shadow);
+}
+.card h3, .tldr-title, .mk-title, .face.front { font-family: var(--f-head); }
+.card h3 { font-weight: 600; font-size: 1.1rem; }
+
+/* رقم القسم = فقاعة تفصيل مثل اللي في المخططات */
+.sec-num {
+  width: 44px; height: 44px; border-radius: 50%; padding: 0; margin-top: 0;
+  display: grid; place-items: center; font: 600 .85rem var(--f-mono);
+  color: var(--ink); background: var(--surface); border: 1.5px solid var(--ink);
+  box-shadow: 0 0 0 3px var(--surface), 0 0 0 4px var(--line-2);
+}
+.sec-head { align-items: center; }
+.sec-head h2 { font: 600 1.45rem/1.45 var(--f-head); }
+.ex-head h2 { font: 600 1.35rem var(--f-head); }
+.ex-badge { font: 600 .85rem var(--f-head); color: var(--ink); background: transparent; border: 1.5px solid var(--ink); border-radius: 3px; padding: 1px 10px; }
+
+/* ===== رأس الصفحة: لوحة + جدول عنوان (title block) ===== */
+.hero { padding: 6px 0 0; }
+.hero .sheet { padding: 28px 26px 0; overflow: hidden; }
+.hero h1 { font: 700 clamp(2.1rem, 7vw, 3.3rem)/1.3 var(--f-head); margin: 0 0 10px; color: var(--ink); }
+.hero .lead { max-width: 64ch; }
+.titleblock { display: grid; grid-template-columns: repeat(3, 1fr); margin: 22px -26px 0; border-top: 1.5px solid var(--ink); }
+.titleblock > div { padding: 10px 16px 12px; border-inline-start: 1px solid var(--line-2); min-width: 0; }
+.titleblock > div:first-child { border-inline-start: 0; }
+.titleblock dt { font-size: .74rem; color: var(--ink-3); }
+.titleblock dd { font: 600 1rem/1.5 var(--f-head); color: var(--ink); }
+.xyz-bar { margin-top: 14px; }
+.xyz-bar > span, .prio { font: 600 .8rem var(--f-body); }
+.tldr { border-inline-start: 4px solid var(--accent); box-shadow: var(--shadow); }
+
+/* ===== الفهرس العلوي: تبويب مسطّر بدل الكبسولة ===== */
+.pills { background: color-mix(in srgb, var(--surface) 90%, transparent); }
+.pills a { border-radius: 0; border: 0; padding: 6px 10px; }
+.pills a.active { background: transparent; color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); border: 0; }
+
+/* ===== خطوات الطريقة: مربعات مرقمة بخط رسم ===== */
+.recipe li::before { border-radius: 2px; background: transparent; color: var(--accent); border: 1.5px solid var(--accent); font: 600 .95rem var(--f-mono); }
+.step-n { background: var(--surface); color: var(--ink); border: 1.5px solid var(--ink); }
+
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.btn.primary:hover:not(:disabled) { color: var(--surface); }
+.tile.hl { background: var(--accent-soft); }
+.tile .t-name { font-family: var(--f-body); font-weight: 600; }
+.bi-en { border-bottom-style: solid; }
+
+@media (max-width: 680px) {
+  .hero .sheet { padding: 22px 18px 0; }
+  .titleblock { margin: 18px -18px 0; }
+  .titleblock > div { padding: 8px 10px 10px; }
+  .titleblock dd { font-size: .9rem; }
+  .card { box-shadow: inset 0 0 0 4px var(--surface), inset 0 0 0 5px var(--line), var(--shadow); }
+}
+@media print {
+  body { background-image: none; }
+}
