@@ -1,616 +1,81 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تجميع دروس المنحنيات والمماسات</title>
-
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
-        :root {
-            --bg-void:      #05090a;
-            --bg-panel:     #0b1210;
-            --grid-minor:   rgba(124, 255, 178, 0.045);
-            --grid-major:   rgba(124, 255, 178, 0.11);
-            --ink-primary:  #e9f5ef;
-            --ink-secondary:#7f9d92;
-
-            --trace-cos:    #7cffb2;  /* تعريفات ومفاهيم أساسية */
-            --trace-sin:    #ffb454;  /* حالات خاصة وصيغ مرتبطة */
-            --accent-practice: #b98cff; /* أمثلة محلولة */
-            --accent-assess:   #7cc4ff; /* توضيح هندسي / متجهات */
-
-            --border-soft:  rgba(124, 255, 178, 0.16);
-            --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
-            --font-mono:    'IBM Plex Mono', monospace;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { font-family: var(--font-arabic); background-color: var(--bg-void); color: var(--ink-primary); line-height: 1.85; padding: 22px 14px 60px; min-height: 100vh; }
-
-        .bg-grid {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image:
-                repeating-linear-gradient(0deg,  var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(90deg, var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
-                repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
-            background-color: var(--bg-void);
-        }
-        .bg-grid::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%); }
-
-        a:focus-visible, select:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
-
-        .main-wrapper { max-width: 760px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
-
-        /* ---------------- bezel nav ---------------- */
-        .bezel { background: linear-gradient(180deg, #0d1614, #0a100e); border: 1px solid var(--border-soft); border-radius: 10px; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-        .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
-        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; }
-        .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
-        .channel-select { font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500; padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft); background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 220px; }
-        .channel-select:hover { border-color: var(--trace-cos); }
-
-        /* ---------------- quick-jump pills ---------------- */
-        .pill-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
-        .pill-row::-webkit-scrollbar { display: none; }
-        .pill-row a { flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary); transition: color .2s, border-color .2s; white-space: nowrap; }
-        .pill-row a:hover { color: var(--ink-primary); border-color: var(--accent-assess); }
-
-        /* ---------------- hero: curve + tangent ---------------- */
-        .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
-        .hero h1 { font-size: 1.4rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
-        .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 540px; margin: 0 auto 18px; }
-        .scope-screen { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 6px 4px; overflow: hidden; }
-        .scope-screen svg { display: block; width: 100%; height: auto; }
-        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; }
-        .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
-        .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
-
-        /* ---------------- chapters ---------------- */
-        .chapter-head { padding: 6px 4px 14px; border-bottom: 1px dashed var(--border-soft); margin-bottom: 4px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-        .chapter-tag { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-secondary); border: 1px solid var(--border-soft); border-radius: 999px; padding: 3px 11px; flex-shrink: 0; }
-        .chapter-head h1 { font-size: 1.32rem; font-weight: 700; color: var(--ink-primary); }
-        .chapter-head .bi-caption { font-size: 0.85rem; font-weight: 400; color: var(--ink-secondary); display: block; margin-top: 4px; }
-        .chapter-sub { color: var(--ink-secondary); font-size: 0.92rem; margin: -8px 0 6px 4px; }
-
-        /* ---------------- panels ---------------- */
-        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; }
-        .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
-        .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
-        .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
-
-        .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .panel-index { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--bg-void); background: var(--panel-accent, var(--trace-cos)); border-radius: 5px; padding: 3px 8px; flex-shrink: 0; }
-        .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
-        .panel h2 { font-size: 1.08rem; font-weight: 700; color: var(--ink-primary); }
-        .panel h3 { font-size: 0.94rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 16px 0 8px; }
-        .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
-        .panel p:last-child { margin-bottom: 0; }
-        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 12px; }
-        .panel li { color: #dcece5; font-size: 0.94rem; margin-bottom: 8px; }
-        .en { direction: ltr; display: inline-block; font-weight: 600; color: #cfe3da; }
-        .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
-
-        .math-block { background: #030605; border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; }
-        .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
-
-        .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
-
-        .question-box { background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25); border-radius: 9px; padding: 14px 16px; margin-bottom: 10px; }
-        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
-
-        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
-        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
-        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
-        .trigger-body { display: none; padding: 4px 16px 18px; }
-        .trigger.open .trigger-hint { display: none; }
-        .trigger.open .trigger-body { display: block; }
-        .trigger.open { border-style: solid; }
-        .result-box strong { color: var(--panel-accent, var(--trace-cos)); }
-
-        .step-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.06); border-radius: 6px; padding: 2px 9px; margin-bottom: 6px; }
-
-        .divider { border: 0; border-top: 1px dashed var(--border-soft); margin: 20px 0; }
-
-        .diagram-frame { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; margin: 14px 0; }
-        .diagram-frame svg { max-width: 100%; height: auto; }
-        .diagram-caption { font-size: 0.85rem; color: var(--ink-secondary); margin-top: 10px; text-align: center; }
-
-        .location-tag { color: var(--ink-secondary); font-size: 0.86rem; font-style: italic; margin-top: 4px; }
-
-        .apps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 10px; }
-        .apps-grid .app { background: #030605; border: 1px solid var(--border-soft); border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-        .apps-grid .app svg { width: 15px; height: 15px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
-
-        footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
-
-        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.15rem; }
-            .panel { padding: 18px 15px; }
-            .panel h2 { font-size: 1rem; }
-            .channel-select { min-width: 0; width: 100%; }
-            .bezel { flex-direction: column; align-items: stretch; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخصات المحاضرات</title>
+<meta name="description" content="ملخصات محاضرات المتجهات والكهرومغناطيسية والدوائر وأخلاقيات المهنة، والمرصد.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
 </head>
 <body>
+<header class="top"><div class="col">
+  <div class="bar">
+    <a class="brand" href="./">ملخصات المحاضرات</a>
+    <div class="ctrls"><button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">☾</button></div>
+  </div>
+  <nav class="tabs" aria-label="المواد"><a class="tab on" href="./" aria-current="page">الرئيسية</a><a class="tab" href="https://zed12g6t.github.io/marsad/">المرصد</a><a class="tab" href="vectors/">المتجهات</a><a class="tab" href="electromagnetism/">الكهرومغناطيسية</a><a class="tab" href="ethics/">أخلاقيات المهنة</a></nav>
+</div></header>
+<main class="col">
+  <div class="eyebrow">Lecture Notes</div>
+  <h1>ملخصات المحاضرات</h1>
+  <p class="lead">كل المواد في مكان واحد. اختر المادة وافتح ملخص أي محاضرة، أو روح للمرصد.</p>
+  <div class="chips"><span class="chip">Vector Calculus</span><span class="chip">Electromagnetism II</span><span class="chip">Circuits II</span><span class="chip">Professional Ethics</span></div>
 
-    <div class="bg-grid"></div>
-
-    <div class="main-wrapper">
-
-        <!-- شريط الانتقال السريع — نفس القيم، شكل جديد فقط -->
-        <div class="bezel">
-            <div class="bezel-id">
-                <span class="lamp"></span>
-                <span>ملخصات المحاضرات — <strong>المنحنيات والمماسات</strong></span>
-            </div>
-            <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-             
-            </select>
-        </div>
-
-        <div class="pill-row">
-            <a href="#ch1">مثال شامل: المماس</a>
-            <a href="#ch2">مفهوم المماس</a>
-            <a href="#ch3">القطع الناقص</a>
-            <a href="#ch4">اللولب الدائري</a>
-            <a href="#ch5">الدائرة</a>
-            <a href="#ch6">مقدمة المنحنيات</a>
-        </div>
-
-        <!-- hero: curve + tangent -->
-        <div class="hero">
-            <h1>المنحنيات والمماسات</h1>
-            <p class="sub">متجه الموضع $\mathbf{r}(t)$ يرسم المنحنى، ومتجه المماس $\mathbf{r}'(t)$ يلمسه عند كل نقطة باتجاه الحركة</p>
-            <div class="scope-screen">
-                <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arr-tan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M0 0L10 5 0 10z" fill="#7cc4ff"/>
-                        </marker>
-                    </defs>
-                    <path d="M 40 150 C 150 20, 250 170, 350 90 S 550 10, 660 60" fill="none" stroke="#7cffb2" stroke-width="2.6"/>
-                    <circle cx="350" cy="90" r="4.5" fill="#e9f5ef"/>
-                    <text x="358" y="82" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="12">r(t)</text>
-                    <line id="tanLine" x1="350" y1="90" x2="470" y2="55" stroke="#7cc4ff" stroke-width="2.6" marker-end="url(#arr-tan)"/>
-                    <text x="478" y="50" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">r'(t)</text>
-                </svg>
-            </div>
-            <div class="scope-legend">
-                <span><i class="swatch" style="background:#7cffb2"></i> r(t) — المنحنى</span>
-                <span><i class="swatch" style="background:#7cc4ff"></i> r'(t) — متجه المماس</span>
-            </div>
-        </div>
-
-        <!-- ==================== الفصل 1 ==================== -->
-        <div class="chapter-head" id="ch1">
-            <span class="chapter-tag">01</span>
-            <div>
-                <h1>مثال تطبيقي شامل على المماسات</h1>
-                <span class="chapter-sub">حساب متجه المماس، متجه المماس الموحد، ومعادلة خط المماس الوسيطية</span>
-            </div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">1.1</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-                <h2>المعطيات والمطلوب <span class="en">(Problem Statement)</span></h2>
-            </div>
-            <p><strong>المعطيات:</strong> دالة المنحنى:</p>
-            <div class="math-block">\[ \mathbf{r}(t) = \langle 4 \cos t, 4 \sin t, 0 \rangle \]</div>
-            <p><strong>المطلوب عند اللحظة $t = 0$:</strong></p>
-            <ul>
-                <li><strong>(a)</strong> متجه المماس $\mathbf{r}'(0)$ <span class="en">(Tangent vector)</span>.</li>
-                <li><strong>(b)</strong> متجه المماس الموحد $\mathbf{u}(0)$ <span class="en">(Unit tangent vector)</span>.</li>
-                <li><strong>(c)</strong> معادلة خط المماس الوسيطية $\mathbf{q}(w)$ <span class="en">(Parametric tangent line)</span>.</li>
-            </ul>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">1.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <h2>خطوات الحل <span class="en">(Solution Steps)</span></h2>
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل الكاملة (a, b, c)
-                </div>
-                <div class="trigger-body">
-                    <h3>(a) إيجاد متجه المماس $\mathbf{r}'(0)$</h3>
-                    <span class="step-tag">خطوة 1</span>
-                    <p>إيجاد المشتقة الأولى العامة $\mathbf{r}'(t)$:</p>
-                    <div class="math-block small">\[ \mathbf{r}'(t) = \langle -4\sin t, 4\cos t, 0 \rangle \]</div>
-                    <span class="step-tag">خطوة 2</span>
-                    <p>التعويض بـ $t=0$:</p>
-                    <div class="math-block small">\[ \mathbf{r}'(0) = \langle -4\sin(0), 4\cos(0), 0 \rangle = \langle 0, 4, 0 \rangle \]</div>
-                    <div class="result-box"><strong>الناتج (a):</strong> $\mathbf{r}'(0) = \langle 0, 4, 0 \rangle$</div>
-
-                    <hr class="divider">
-
-                    <h3>(b) إيجاد متجه المماس الموحد $\mathbf{u}(0)$</h3>
-                    <span class="step-tag">خطوة 1</span>
-                    <p>حساب طول المتجه $|\mathbf{r}'(0)|$:</p>
-                    <div class="math-block small">\[ |\mathbf{r}'(0)| = \sqrt{0^2+4^2+0^2} = 4 \]</div>
-                    <span class="step-tag">خطوة 2</span>
-                    <p>تطبيق قانون متجه المماس الموحد:</p>
-                    <div class="math-block small">\[ \mathbf{u}(0) = \frac{\langle 0,4,0\rangle}{4} = \langle 0, 1, 0 \rangle \]</div>
-                    <div class="result-box"><strong>الناتج (b):</strong> $\mathbf{u}(0) = \langle 0, 1, 0 \rangle$</div>
-
-                    <hr class="divider">
-
-                    <h3>(c) إيجاد معادلة خط المماس $\mathbf{q}(w)$</h3>
-                    <span class="step-tag">خطوة 1</span>
-                    <p>حساب متجه الموضع عند $t=0$:</p>
-                    <div class="math-block small">\[ \mathbf{r}(0) = \langle 4\cos(0), 4\sin(0), 0 \rangle = \langle 4, 0, 0 \rangle \]</div>
-                    <span class="step-tag">خطوة 2</span>
-                    <p>التعويض في الصيغة العامة:</p>
-                    <div class="math-block small">\[ \mathbf{q}(w) = \mathbf{r}(0) + w\,\mathbf{r}'(0) = \langle 4,0,0\rangle + w\langle 0,4,0\rangle \]</div>
-                    <span class="step-tag">خطوة 3</span>
-                    <p>تبسيط الناتج:</p>
-                    <div class="math-block small">\[ \mathbf{q}(w) = \langle 4, 4w, 0 \rangle \]</div>
-                    <div class="result-box"><strong>الناتج (c):</strong> $\mathbf{q}(w) = \langle 4, 4w, 0 \rangle$</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== الفصل 2 ==================== -->
-        <div class="chapter-head" id="ch2">
-            <span class="chapter-tag">02</span>
-            <h1>مفهوم المماس ومعادلاته <span class="en" style="font-size:0.85rem;">(Tangent to a Curve)</span></h1>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">2.1</span>
-                <span class="symbol-badge" style="width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;color:var(--trace-cos);border:1px solid var(--trace-cos);background:rgba(124,255,178,0.06);">r'</span>
-                <h2>مفهوم المماس <span class="en">(Tangent to a Curve)</span></h2>
-            </div>
-            <p><strong>التعريف:</strong> المماسات هي خطوط مستقيمة تمس المنحنى عند نقطة واحدة فقط <span class="en">(Straight lines touching a curve at one point)</span>.</p>
-            <p><strong>متجه المماس <span class="en">(Tangent Vector)</span>:</strong></p>
-            <ul>
-                <li>يُرمز له بالرمز $\mathbf{r}'(t)$.</li>
-                <li>يُحسب باشتقاق كل مركبة من مركبات دالة الموضع $\mathbf{r}(t)$.</li>
-            </ul>
-            <div class="math-block small">\[ \mathbf{r}'(t) = \langle x'(t), y'(t), z'(t) \rangle \]</div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">2.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
-                <h2>متجه المماس الموحد <span class="en">(Unit Tangent Vector)</span></h2>
-            </div>
-            <p><strong>التعريف:</strong> متجه مماس مقداره يساوي 1 <span class="en">(Unit vector)</span> وبنفس اتجاه حركة المنحنى.</p>
-            <ul>
-                <li>يُرمز له بالرمز $\mathbf{u}(t)$ (أو $\mathbf{T}$ في بعض المراجع).</li>
-                <li>يُحسب بقسمة متجه المماس على طوله:</li>
-            </ul>
-            <div class="math-block small">\[ \mathbf{u}(t) = \frac{\mathbf{r}'(t)}{|\mathbf{r}'(t)|} \]</div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">2.3</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
-                <h2>معادلة خط المماس <span class="en">(Tangent Line Equation)</span></h2>
-            </div>
-            <p>تُستخدم لتمثيل خط المماس المار بنقطة على المنحنى بصيغة وسيطية <span class="en">(Parametric Form)</span>:</p>
-            <div class="math-block small">\[ \mathbf{q}(w) = \mathbf{r}(t) + w\,\mathbf{r}'(t) \]</div>
-            <ul>
-                <li>$\mathbf{r}(t)$: متجه الموضع عند النقطة المحددة على المنحنى.</li>
-                <li>$\mathbf{r}'(t)$: متجه المماس عند تلك النقطة.</li>
-                <li>$w$: متغير وسيط جديد <span class="en">(Parameter)</span> خاص بخط المماس، لتفادي الخلط مع زمن المنحنى $t$.</li>
-            </ul>
-        </div>
-
-        <!-- ==================== الفصل 3 ==================== -->
-        <div class="chapter-head" id="ch3">
-            <span class="chapter-tag">03</span>
-            <h1>اتجاه الحركة وتمثيل القطع الناقص</h1>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">3.1</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 12v5h5"/></svg>
-                <h2>اتجاه الحركة على المنحنى <span class="en">(Curve Orientation)</span></h2>
-            </div>
-            <p>تتحدد حركة المتجه $\mathbf{r}(t)$ على المنحنى باتجاهين رئيسيين بحسب تغير المتغير $t$:</p>
-            <ol>
-                <li><strong>الاتجاه الموجب <span class="en">(Positive Sense)</span>:</strong> عكس عقارب الساعة <span class="en">(Counterclockwise)</span>.</li>
-                <li><strong>الاتجاه السالب <span class="en">(Negative Sense)</span>:</strong> مع عقارب الساعة <span class="en">(Clockwise)</span>.</li>
-            </ol>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">3.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="9" ry="6"/></svg>
-                <h2>تمثيل القطع الناقص <span class="en">(Ellipse Representation)</span></h2>
-            </div>
-            <p>القطع الناقص هو تعميم لشكل الدائرة لكن بأبعاد مختلفة على المحاور.</p>
-            <p><strong>المعادلة الكارتيزية القياسية:</strong></p>
-            <div class="math-block small">\[ \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1 \]</div>
-            <ul>
-                <li>$a$: نصف المحور الأفقي <span class="en">(x-axis)</span>.</li>
-                <li>$b$: نصف المحور الرأسي <span class="en">(y-axis)</span>.</li>
-            </ul>
-            <p><strong>الصيغة العامة للدالة المتجهة $\mathbf{r}(t)$:</strong></p>
-            <div class="math-block small">\[ \mathbf{r}(t) = \langle a \cos t, b \sin t, 0 \rangle \]</div>
-
-            <div class="diagram-frame">
-                <svg width="340" height="240" viewBox="-170 -120 340 240" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="-150" y1="0" x2="150" y2="0" stroke="#3a4a44" stroke-width="1.5" stroke-dasharray="4"/>
-                    <line x1="0" y1="-100" x2="0" y2="100" stroke="#3a4a44" stroke-width="1.5" stroke-dasharray="4"/>
-                    <polygon points="150,0 142,-4 142,4" fill="#7f9d92"/>
-                    <polygon points="0,-100 -4,-92 4,-92" fill="#7f9d92"/>
-                    <text x="140" y="20" fill="#7f9d92" font-size="14">x</text>
-                    <text x="-15" y="-85" fill="#7f9d92" font-size="14">y</text>
-                    <text x="-12" y="18" fill="#7f9d92" font-size="12">O</text>
-
-                    <ellipse cx="0" cy="0" rx="120" ry="70" fill="none" stroke="#7cffb2" stroke-width="2.4"/>
-
-                    <line x1="0" y1="0" x2="84.85" y2="-49.49" stroke="#7cc4ff" stroke-width="2.4"/>
-                    <polygon points="84.85,-49.49 75,-50 81,-40" fill="#7cc4ff"/>
-                    <circle cx="84.85" cy="-49.49" r="4" fill="#e9f5ef"/>
-                    <text x="95" y="-55" fill="#7cc4ff" font-size="13" font-weight="bold">r(t)</text>
-
-                    <path d="M 40,-66 A 120 70 0 0 0 -40,-66" fill="none" stroke="#ffb454" stroke-width="2" stroke-dasharray="3"/>
-                    <polygon points="-40,-66 -30,-72 -32,-60" fill="#ffb454"/>
-                    <text x="-16" y="-80" fill="#ffb454" font-size="11">الاتجاه الموجب (+)</text>
-
-                    <text x="55" y="18" fill="#e9f5ef" font-size="13">a = 3</text>
-                    <text x="8" y="-35" fill="#e9f5ef" font-size="13">b = 2</text>
-                </svg>
-                <div class="diagram-caption">القطع الناقص ومتجه $\mathbf{r}(t)$ مع اتجاه الحركة الموجب</div>
-            </div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">3.3</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <h2>مثال تطبيقي <span class="en">(Example)</span></h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                أوجد الدالة المتجهة $\mathbf{r}(t)$ للقطع الناقص:
-                <div class="math-block small" style="margin-top:8px;">\[ \frac{x^2}{9} + \frac{y^2}{4} = 1 \]</div>
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol>
-                        <li>إيجاد أنصاف المحاور: $a^2=9 \Rightarrow a=3$، $b^2=4 \Rightarrow b=2$</li>
-                        <li>التعويض في الصيغة العامة:</li>
-                    </ol>
-                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 3\cos t, 2\sin t, 0 \rangle$</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== الفصل 4 ==================== -->
-        <div class="chapter-head" id="ch4">
-            <span class="chapter-tag">04</span>
-            <h1>تمثيل اللولب الدائري <span class="en" style="font-size:0.85rem;">(Circular Helix)</span></h1>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">4.1</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/><path d="M13 4c4 2 4 4 0 6s-4 4 0 6 4 4 0 6"/></svg>
-                <h2>تمثيل اللولب الدائري <span class="en">(Circular Helix)</span></h2>
-            </div>
-            <p>اللولب الدائري هو منحنى ثلاثي الأبعاد يدور بشكل حلزوني (مثل السبرنق أو برغي المسامير) ويرتفع مع محور $z$.</p>
-            <p><strong>الصيغة العامة للدالة المتجهة $\mathbf{r}(t)$:</strong></p>
-            <div class="math-block small">\[ \mathbf{r}(t) = \langle a\cos t, a\sin t, ct \rangle \]</div>
-            <ul>
-                <li>$a$: نصف قطر الدوران على المستويين $x$ و $y$.</li>
-                <li>$c$: ثابت يحدد معدل الارتفاع أو الصعود على المحور $z$.</li>
-            </ul>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-sin);">
-            <div class="panel-head">
-                <span class="panel-index">4.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11z"/></svg>
-                <h2>الحالات الخاصة حسب قيمة $c$</h2>
-            </div>
-            <p>تتحدد طبيعة وشكل اللولب بناءً على إشارة وقيمة الثابت $c$:</p>
-            <ol>
-                <li><strong>$c > 0$ <span class="en">(Right-handed screw)</span>:</strong> يدور اللولب ويرتفع للأعلى بجهة اليد اليمنى.</li>
-                <li><strong>$c < 0$ <span class="en">(Left-handed screw)</span>:</strong> يدور اللولب ويهبط للأسفل أو يتجه بجهة اليد اليسرى.</li>
-                <li><strong>$c = 0$:</strong> ينعدم الارتفاع وترجع المعادلة إلى دائرة عادية $x^2+y^2=a^2$ في المستوى $xy$.</li>
-            </ol>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">4.3</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <h2>مثال تطبيقي <span class="en">(Example)</span></h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                أوجد الدالة المتجهة للولب دائري عندما $a=1$ و $c=1$.
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض الحل
-                </div>
-                <div class="trigger-body">
-                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle \cos t, \sin t, t \rangle$</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== الفصل 5 ==================== -->
-        <div class="chapter-head" id="ch5">
-            <span class="chapter-tag">05</span>
-            <h1>تطبيقات الدائرة في المستوى <span class="en" style="font-size:0.85rem;">(xy-plane)</span></h1>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">5.1</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>
-                <h2>القاعدة العامة للدائرة في المستوى</h2>
-            </div>
-            <p>عند تمثيل دائرة مركزها نقطة الأصل $(0,0)$ ونصف قطرها $a$ بدالة متجهة:</p>
-            <div class="math-block small">\[ \mathbf{r}(t) = \langle a\cos t, a\sin t, 0 \rangle \]</div>
-            <ul>
-                <li>$a$: نصف قطر الدائرة.</li>
-                <li>$t$: المتغير الوسيط (الزاوية بالراديان).</li>
-                <li>المركبة الثالثة $0$ لأن الدائرة تقع بالكامل في المستوى $xy$.</li>
-            </ul>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">5.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                <h2>المثال التطبيقي <span class="en">(Example)</span></h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">المعطيات</span>
-                $x^2+y^2=4, \; z=0$
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol>
-                        <li>معادلة الدائرة $x^2+y^2=a^2$، وبما أن $a^2=4$، إذن $a=2$.</li>
-                        <li>التعويض في الصيغة العامة:</li>
-                    </ol>
-                    <div class="result-box"><strong>الناتج:</strong> $\mathbf{r}(t) = \langle 2\cos t, 2\sin t, 0 \rangle$</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">5.3</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 6h10M4 18h7"/></svg>
-                <h2>تحديد النقاط على الدائرة</h2>
-            </div>
-            <p>نعوض بقيم زوايا شهيرة لـ $t$ للوصول لإحداثيات النقاط على محيط الدائرة:</p>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض النقاط الثلاث
-                </div>
-                <div class="trigger-body">
-                    <p><strong>عند $t = 0$:</strong></p>
-                    <div class="math-block small">\[ \mathbf{r}(0) = \langle 2(1), 2(0), 0 \rangle = \langle 2, 0, 0 \rangle \]</div>
-                    <div class="location-tag">(موقع النقطة على المحور الموجب لـ $x$)</div>
-
-                    <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{4}$ (زاوية $45^\circ$):</strong></p>
-                    <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{4}\right) = \left\langle \sqrt{2}, \sqrt{2}, 0 \right\rangle \]</div>
-                    <div class="location-tag">(موقع النقطة في منتصف الربع الأول)</div>
-
-                    <p style="margin-top:14px;"><strong>عند $t = \frac{\pi}{2}$ (زاوية $90^\circ$):</strong></p>
-                    <div class="math-block small">\[ \mathbf{r}\left(\tfrac{\pi}{2}\right) = \langle 0, 2, 0 \rangle \]</div>
-                    <div class="location-tag">(موقع النقطة على المحور الموجب لـ $y$)</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ==================== الفصل 6 ==================== -->
-        <div class="chapter-head" id="ch6">
-            <span class="chapter-tag">06</span>
-            <div>
-                <h1>Curves, Arc length and Curvature
-                    <span class="bi-caption">المقاطع، طول القوس، والانحناء</span>
-                </h1>
-            </div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">6.1</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18C10 8 14 20 20 6"/></svg>
-                <h2>تعريف المنحنيات وأهميتها</h2>
-            </div>
-            <p>المنحنيات في الفراغ <span class="en">(Curves in space)</span> مهمة في حساب التفاضل والتكامل <span class="en">(Calculus)</span> والفيزياء <span class="en">(Physics)</span>، كتمثيل لمسار جسم متحرك <span class="en">(path of moving body)</span>.</p>
-            <p>تندرج تحت الهندسة التفاضلية <span class="en">(Differential Geometry)</span> وحساب المتجهات، ولها ثلاثة تطبيقات عملية:</p>
-            <div class="apps-grid">
-                <div class="app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span class="en">Engineering design</span> (التصميم الهندسي)</div>
-                <div class="app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2 7h7l-5.5 4.5L17 21l-5-4-5 4 1.5-7.5L3 9h7z"/></svg><span class="en">Space travel</span> (رحلات الفضاء)</div>
-                <div class="app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg><span class="en">Geography</span> (الجغرافيا الخرائطية)</div>
-            </div>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">6.2</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L20 4M4 20h6M4 20v-6"/></svg>
-                <h2>التعبير عن المنحنى بدالة متجهة</h2>
-            </div>
-            <p>منحنى في الفراغ $C$ يتحدد عبر المحاور الإحداثية الثلاثية $(x,y,z)$.</p>
-            <p>المتجه الممتد من نقطة الأصل إلى أي نقطة على المنحنى يُرمز له بـ $\mathbf{r}(t)$ ويُسمى <span class="en">Position Vector</span>.</p>
-            <p>المنحنى $C$ يُعبر عنه بدالة متجهة قابلة للتفاضل <span class="en">(Differentiable / Vector function)</span>.</p>
-        </div>
-
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">6.3</span>
-                <span style="width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:700;color:var(--trace-cos);border:1px solid var(--trace-cos);background:rgba(124,255,178,0.06);">r(t)</span>
-                <h2>الصيغ الرياضية لـ $\mathbf{r}(t)$</h2>
-            </div>
-            <p>تُكتب دالة متجه الموضع إما بصيغة متجهات الوحدة:</p>
-            <div class="math-block small">\[ \mathbf{r}(t) = x(t)\mathbf{i} + y(t)\mathbf{j} + z(t)\mathbf{k} \]</div>
-            <p>أو بالصيغة الإحداثية:</p>
-            <div class="math-block small">\[ \mathbf{r}(t) = \langle x(t), y(t), z(t) \rangle \]</div>
-        </div>
-
-        <footer class="note">SIGNAL REFERENCE · CURVES &amp; TANGENTS</footer>
+  <a class="obs" href="https://zed12g6t.github.io/marsad/">
+    <div>
+      <div class="eyebrow">Observatory</div>
+      <h2>المرصد</h2>
+      <p>إحدى عشرة تجربة علمية ثلاثية الأبعاد تشتغل في المتصفح، من ذرة الهيدروجين إلى تصادم مجرتين. كلها معادلات تقدر تغيّرها بيدك.</p>
+      <span class="go">افتح المرصد ←</span>
     </div>
+    <div class="thumbs"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/atom.jpg" alt="ذرة الهيدروجين" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/chladni.jpg" alt="لوحة كلادني" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/black-hole.jpg" alt="الثقب الأسود" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/galaxies.jpg" alt="تصادم مجرتين" loading="lazy" width="64" height="64"></div>
+  </a>
 
-    <script>
-        (function () {
-            const el = document.getElementById('tanLine');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduceMotion || !el) return;
-            const len = el.getTotalLength ? el.getTotalLength() : 80;
-            el.style.strokeDasharray = len;
-            el.style.strokeDashoffset = len;
-            el.style.transition = 'stroke-dashoffset 1s ease 0.3s';
-            requestAnimationFrame(() => requestAnimationFrame(() => { el.style.strokeDashoffset = 0; }));
-        })();
-
-        function toggleTrigger(el) { el.classList.toggle('open'); }
-     
-   
-</script>
-    <script src="nav.js"></script>
+  <div class="sec-h"><span class="num">01</span><h2>المواد</h2></div>
+  <div class="subjects">
+    <div class="subj">
+      <div class="board">∬ f dA = ∬ f |J| du dv</div>
+      <div class="s-body">
+        <div class="s-meta"><span class="code">Vector Calculus</span><span class="count">8 محاضرات · تمرين</span></div>
+        <h3>المتجهات</h3>
+        <div class="latest">آخر محاضرة: <b>تغيير المتغيرات في التكاملات المتعددة</b></div>
+        <div class="lects"><a href="vectors/lecture1.html" aria-label="المحاضرة 1">1</a><a href="vectors/lecture2.html" aria-label="المحاضرة 2">2</a><a href="vectors/lecture3.html" aria-label="المحاضرة 3">3</a><a href="vectors/lecture4.html" aria-label="المحاضرة 4">4</a><a href="vectors/lecture5.html" aria-label="المحاضرة 5">5</a><a href="vectors/lecture6.html" aria-label="المحاضرة 6">6</a><a href="vectors/lecture7.html" aria-label="المحاضرة 7">7</a><a class="new" href="vectors/lecture8.html" aria-label="المحاضرة 8">8</a></div>
+        <a class="open" href="vectors/">افتح المادة ←</a>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="board">V<sub>emf</sub>&nbsp;= −dΨ / dt</div>
+      <div class="s-body">
+        <div class="s-meta"><span class="code">Electromagnetism II</span><span class="count">3 محاضرات</span></div>
+        <h3>الكهرومغناطيسية (2)</h3>
+        <div class="latest">آخر محاضرة: <b>قانون فاراداي والجهد المستحث</b></div>
+        <div class="lects"><a href="electromagnetism/lecture1.html" aria-label="المحاضرة 1">1</a><a href="electromagnetism/lecture2.html" aria-label="المحاضرة 2">2</a><a class="new" href="electromagnetism/lecture3.html" aria-label="المحاضرة 3">3</a></div>
+        <a class="open" href="electromagnetism/">افتح المادة ←</a>
+      </div>
+    </div>
+    <div class="subj soon">
+      <div class="board">Z = R + jX</div>
+      <div class="s-body">
+        <div class="s-meta"><span class="code">Circuits II</span><span class="count">قريباً</span></div>
+        <h3>الدوائر 2</h3>
+        <div class="latest">الملخصات تنضاف هنا قريب.</div>
+        <span class="open">قريباً</span>
+      </div>
+    </div>
+    <div class="subj">
+      <div class="board word">قانوني؟ ولا أخلاقي؟</div>
+      <div class="s-body">
+        <div class="s-meta"><span class="code">Professional Ethics</span><span class="count">3 محاضرات</span></div>
+        <h3>أخلاقيات المهنة</h3>
+        <div class="latest">ابدأ بالمحاضرة 3: <b>ميثاق المهندس السعودي</b></div>
+        <div class="lects"><a href="ethics/lecture1.html" aria-label="المحاضرة 1">1</a><a href="ethics/lecture2.html" aria-label="المحاضرة 2">2</a><a class="new" href="ethics/lecture3.html" aria-label="المحاضرة 3">3</a></div>
+        <a class="open" href="ethics/">افتح المادة ←</a>
+      </div>
+    </div>
+  </div>
+</main>
 </body>
 </html>
