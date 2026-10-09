@@ -1,5 +1,6 @@
 // قائمة محاضرات الكهرومغناطيسية - عند إضافة محاضرة جديدة تضيف سطر هنا فقط
 const lectures = [
+  { name: "🏠 فهرس المادة", url: "index.html" },
   { name: "ملخص المحاضرة 1", url: "lecture1.html" },
   { name: "ملخص المحاضرة 2", url: "lecture2.html" },
   { name: "ملخص المحاضرة 3", url: "lecture3.html" }
@@ -11,7 +12,7 @@ function renderNavigation() {
 
   // معرفة اسم الصفحة الحالية لتحديد الخيار المفعل تلقائياً
   let currentPath = window.location.pathname.split("/").pop();
-  if (!currentPath) currentPath = "lecture1.html";
+  if (!currentPath) currentPath = "index.html";
 
   select.innerHTML = lectures.map(lec => `
     <option value="${lec.url}" ${currentPath === lec.url ? 'selected' : ''}>

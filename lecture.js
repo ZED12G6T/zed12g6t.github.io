@@ -75,8 +75,7 @@
     main.insertAdjacentHTML('beforebegin', `
 <div id="progress"><i></i></div>
 <header class="topbar">
-  <div class="brand"><span class="logo"><i style="background:var(--cx)"></i><i style="background:var(--cy)"></i><i style="background:var(--cz)"></i></span>
-    <span>${L('ملخصات المحاضرات ·', 'Lecture summaries ·')} <b>${root.dataset.topic || ''}</b></span></div>
+  <div class="brand"><a href="../" style="color:inherit;text-decoration:none">${L('ملخصات المحاضرات ·', 'Lecture summaries ·')}</a> <b>${root.dataset.topic || ''}</b></div>
   <div class="tb-actions">
     ${arOnly ? '' : '<button class="icon-btn" id="lang-btn" title="Language / اللغة">EN</button>'}
     <button class="icon-btn" id="theme-btn" title="المظهر / Theme">☾</button>
