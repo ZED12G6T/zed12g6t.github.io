@@ -326,6 +326,10 @@ details.hint > :not(summary) { font-size: .9rem; color: var(--ink-2); margin-top
 .face.front .hint { position: absolute; bottom: 8px; inset-inline-end: 12px; font: .68rem var(--f-mono); color: var(--ink-3); }
 .face.back { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 35%, transparent); transform: rotateY(180deg); }
 
+/* ================= فيديو المحاضرة ================= */
+.video-wrap { margin-top: 14px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #000; aspect-ratio: 16 / 9; }
+.video-wrap video { display: block; width: 100%; height: 100%; object-fit: contain; }
+
 footer.foot { max-width: 900px; margin: 0 auto; padding: 4px 16px 50px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; color: var(--ink-3); font-size: .8rem; }
 
 /* ================= الجوال ================= */
@@ -354,7 +358,7 @@ footer.foot { max-width: 900px; margin: 0 auto; padding: 4px 16px 50px; display:
 }
 
 @media print {
-  .pills, .tb-actions, #progress, .solve-bar, .lab, .check, footer.foot { display: none !important; }
+  .pills, .tb-actions, #progress, .solve-bar, .lab, .check, footer.foot, #video { display: none !important; }
   body { background: #fff; }
   .card { box-shadow: none; break-inside: avoid; }
   .step { display: block !important; animation: none !important; }
