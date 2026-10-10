@@ -1,7 +1,8 @@
 // قائمة محاضرات تحليل الدوائر الكهربائية 2 - عند إضافة محاضرة جديدة تضيف سطر هنا فقط
 const lectures = [
   { name: "🏠 فهرس المادة", url: "index.html" },
-  { name: "المحاضرة 1 · الإشارات الجيبية", url: "lecture1.html" }
+  { name: "المحاضرة 1 · الإشارات الجيبية", url: "lecture1.html" },
+  { name: "المحاضرة 2 · الفيزورات", url: "lecture2.html" }
 ];
 
 function renderNavigation() {
