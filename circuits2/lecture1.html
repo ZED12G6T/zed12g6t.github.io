@@ -125,16 +125,16 @@
 
   <p>قبل ما تقارن زاويتين، لازم تكتب الموجتين بنفس الشكل: <b>cos</b>، والرقم اللي قدامها <b>موجب</b>. هذي القواعد الأربع (من معادلة 9.10 في المقرر) تحوّل أي موجة لهذا الشكل:</p>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">إشارة سالبة؟ زِد أو انقص 180°</div><div class="t-math">$-\cos(\omega t) = \cos(\omega t \pm 180^\circ)$</div></div>
+    <div class="tile"><div class="t-name">إشارة سالبة؟ زِد أو انقص <span class="ltr">180°</span></div><div class="t-math">$-\cos(\omega t) = \cos(\omega t \pm 180^\circ)$</div></div>
     <div class="tile"><div class="t-name">إشارة سالبة مع sin</div><div class="t-math">$-\sin(\omega t) = \sin(\omega t \pm 180^\circ)$</div></div>
-    <div class="tile hl"><div class="t-name">sin ← cos: انقص 90°</div><div class="t-math">$\sin(\omega t) = \cos(\omega t - 90^\circ)$</div></div>
-    <div class="tile"><div class="t-name">cos ← sin: زِد 90°</div><div class="t-math">$\cos(\omega t) = \sin(\omega t + 90^\circ)$</div></div>
+    <div class="tile hl"><div class="t-name">sin ← cos: انقص <span class="ltr">90°</span></div><div class="t-math">$\sin(\omega t) = \cos(\omega t - 90^\circ)$</div></div>
+    <div class="tile"><div class="t-name">cos ← sin: زِد <span class="ltr">90°</span></div><div class="t-math">$\cos(\omega t) = \sin(\omega t + 90^\circ)$</div></div>
   </div>
 
   <h3>الطريقة: مقارنة طور موجتين</h3>
   <ol class="recipe">
-    <li><b>شيل الإشارة السالبة</b> من السعة: زِد أو انقص 180° من الزاوية. <span class="why">اختر اللي يخلي الزاوية بين −180° و 180°.</span></li>
-    <li><b>حوّل sin إلى cos</b>: انقص 90° من الزاوية. <span class="why">لأن sin متأخرة عن cos بـ 90°.</span></li>
+    <li><b>شيل الإشارة السالبة</b> من السعة: زِد أو انقص <span class="ltr">180°</span> من الزاوية. <span class="why">اختر اللي يخلي الزاوية بين <span class="ltr">−180°</span> و <span class="ltr">180°</span>.</span></li>
+    <li><b>حوّل sin إلى cos</b>: انقص <span class="ltr">90°</span> من الزاوية. <span class="why">لأن sin متأخرة عن cos بـ <span class="ltr">90°</span>.</span></li>
     <li><b>اطرح الزاويتين</b>: الفرق هو فرق الطور. <span class="why">الأكبر زاوية هي اللي تسبق.</span></li>
   </ol>
 </section>
@@ -149,7 +149,7 @@
     <li class="step read">
       <h4>اقرأ السؤال</h4>
       <p class="why">الموجة مكتوبة أصلاً بالشكل $V_m\cos(\omega t + \phi)$، فكل اللي عليك تقارنها بالشكل العام وتطلع كل رقم من مكانه.</p>
-      <div class="map"><span class="x">V_m = 12</span><span class="y">ω = 50</span><span class="z">φ = 10°</span></div>
+      <div class="map"><span class="x">V_m = 12</span><span class="y">ω = 50</span><span class="z">φ = <span class="ltr">10°</span></span></div>
     </li>
     <li class="step">
       <h4>السعة والطور مباشرة</h4>
@@ -183,12 +183,12 @@
       <p class="why">ما نقدر نقارن الزاويتين على طول، لأن فيه مشكلتين: $v_1$ قدامها رقم <b>سالب</b> ($-10$)، و $v_2$ مكتوبة <b>sin</b> مو cos. نصلح المشكلتين بالقواعد اللي فوق، وبعدها نقارن.</p>
     </li>
     <li class="step">
-      <h4>صلّح $v_1$: شيل السالب <span class="const">−180°</span></h4>
+      <h4>صلّح $v_1$: شيل السالب <span class="const"><span class="ltr">−180°</span></span></h4>
       <div class="m">\[v_1 = -10\cos(\omega t + 50^\circ) = 10\cos(\omega t + 50^\circ - 180^\circ) = \X{10}\cos(\omega t \Z{- 130^\circ})\]</div>
-      <p class="why">اخترنا −180° بدل +180° عشان الزاوية تبقى بين −180° و 180° (لو زدنا كان طلع 230°).</p>
+      <p class="why">اخترنا <span class="ltr">−180°</span> بدل +<span class="ltr">180°</span> عشان الزاوية تبقى بين <span class="ltr">−180°</span> و <span class="ltr">180°</span> (لو زدنا كان طلع <span class="ltr">230°</span>).</p>
     </li>
     <li class="step">
-      <h4>صلّح $v_2$: من sin إلى cos <span class="const">−90°</span></h4>
+      <h4>صلّح $v_2$: من sin إلى cos <span class="const"><span class="ltr">−90°</span></span></h4>
       <div class="m">\[v_2 = 12\sin(\omega t - 10^\circ) = \X{12}\cos(\omega t - 10^\circ - 90^\circ) = 12\cos(\omega t \Z{- 100^\circ})\]</div>
     </li>
     <li class="step">
@@ -198,7 +198,7 @@
     </li>
     <li class="step final">
       <div class="result">$v_2$ تسبق $v_1$ بـ $30^\circ$</div>
-      <p class="sanity">تقدر تكتب $v_2 = 12\cos(\omega t - 130^\circ + 30^\circ)$: نفس زاوية $v_1$ بالضبط زائد 30° ✓</p>
+      <p class="sanity">تقدر تكتب $v_2 = 12\cos(\omega t - 130^\circ + 30^\circ)$: نفس زاوية $v_1$ بالضبط زائد <span class="ltr">30°</span> ✓</p>
     </li>
   </ol>
 </section>
@@ -226,7 +226,7 @@
     <p>كم درجة تسبق $v_2$ الموجة $v_1$؟</p>
     <div class="m">\[\begin{gathered}v_1 = 5\sin(\omega t + 20^\circ) \\ v_2 = 8\cos(\omega t - 40^\circ)\end{gathered}\]</div>
     <div class="check" data-answer="30"></div>
-    <details class="hint"><p>حوّل $v_1$ إلى cos بطرح 90°، وبعدها اطرح الزاويتين.</p></details>
+    <details class="hint"><p>حوّل $v_1$ إلى cos بطرح <span class="ltr">90°</span>، وبعدها اطرح الزاويتين.</p></details>
     <ol class="solve" data-start="solution">
       <li class="step"><h4>$v_1$ إلى cos</h4><div class="m">\[v_1 = 5\cos(\omega t + 20^\circ - 90^\circ) = 5\cos(\omega t \Z{- 70^\circ})\]</div></li>
       <li class="step"><h4>اطرح</h4><div class="m">\[(-40^\circ) - (-70^\circ) = 30^\circ\]</div></li>
@@ -236,13 +236,13 @@
 
   <div class="prob">
     <div class="prob-top"><b>تمرين ج</b><span class="lvl">فخ</span></div>
-    <p>اكتب الموجة بالشكل $V_m\cos(\omega t + \phi)$ بسعة موجبة، و $\phi$ بين −180° و 180°. كم $\phi$؟</p>
+    <p>اكتب الموجة بالشكل $V_m\cos(\omega t + \phi)$ بسعة موجبة، و $\phi$ بين <span class="ltr">−180°</span> و <span class="ltr">180°</span>. كم $\phi$؟</p>
     <div class="m">\[v(t) = -4\cos(\omega t + 60^\circ)\]</div>
     <div class="check" data-answer="-120"></div>
-    <details class="hint"><p>شيل الإشارة السالبة بـ ±180°. أي وحدة فيهم تخلي الزاوية في المدى المطلوب؟</p></details>
+    <details class="hint"><p>شيل الإشارة السالبة بـ <span class="ltr">±180°</span>. أي وحدة فيهم تخلي الزاوية في المدى المطلوب؟</p></details>
     <ol class="solve" data-start="solution">
       <li class="step"><h4>جرّب الاثنين</h4><div class="m">\[60^\circ + 180^\circ = 240^\circ \ ✗ \qquad 60^\circ - 180^\circ = -120^\circ \ ✓\]</div></li>
-      <li class="step final"><div class="result">$v(t) = 4\cos(\omega t - 120^\circ)$</div><p class="sanity">240° و −120° نفس الزاوية فعلياً (الفرق 360°)، بس المطلوب في المدى ✓</p></li>
+      <li class="step final"><div class="result">$v(t) = 4\cos(\omega t - 120^\circ)$</div><p class="sanity"><span class="ltr">240°</span> و <span class="ltr">−120°</span> نفس الزاوية فعلياً (الفرق <span class="ltr">360°</span>)، بس المطلوب في المدى ✓</p></li>
     </ol>
   </div>
 </section>
@@ -267,9 +267,9 @@
       <p class="q-why">$f = 377 / 2\pi \approx 60\text{ Hz}$، وهذا تردد كهرباء البيت في السعودية.</p></div>
     <div class="q" data-answer="4"><p>$\sin(\omega t)$ بصيغة cos تساوي:</p>
       <button>$\cos(\omega t + 90^\circ)$</button><button>$-\cos(\omega t)$</button><button>$\cos(\omega t + 180^\circ)$</button><button>$\cos(\omega t - 90^\circ)$</button>
-      <p class="q-why">sin متأخرة عن cos بـ 90°، فنطرح 90°.</p></div>
+      <p class="q-why">sin متأخرة عن cos بـ <span class="ltr">90°</span>، فنطرح <span class="ltr">90°</span>.</p></div>
     <div class="q" data-answer="1"><p>$v_1 = \cos(\omega t + 20^\circ)$ و $v_2 = \cos(\omega t - 15^\circ)$. أيش الصح؟</p>
-      <button>$v_1$ تسبق بـ 35°</button><button>$v_2$ تسبق بـ 35°</button><button>$v_1$ تسبق بـ 5°</button><button>متوافقين</button>
+      <button>$v_1$ تسبق بـ <span class="ltr">35°</span></button><button>$v_2$ تسبق بـ <span class="ltr">35°</span></button><button>$v_1$ تسبق بـ <span class="ltr">5°</span></button><button>متوافقين</button>
       <p class="q-why">$20 - (-15) = 35^\circ$، والأكبر زاوية ($v_1$) هي اللي تسبق.</p></div>
     <div class="q" data-answer="3"><p>لو ضاعفنا $\omega$، الزمن الدوري $T$:</p>
       <button>يتضاعف</button><button>ما يتغير</button><button>ينقص للنص</button><button>يصير صفر</button>
