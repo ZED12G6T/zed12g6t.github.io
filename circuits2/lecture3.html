@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 3 - Phasor Relationships for R, L, C" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 3 - جمع الموجات وعلاقات R و L و C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* مختبر R و L و C: خاص بهذي الصفحة */
+  .tile.x, .tile.y, .tile.z { border-top: 3px solid var(--c); }
+  .rlc-lab .lab-controls { align-items: center; }
+  .rlc-lab .seg { display: flex; gap: 6px; }
+  .rlc-lab .seg .btn { min-width: 48px; font-family: var(--f-mono); }
+  .rlc-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .rlc-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .rlc-lab .ml-read { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 3 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.3–9.4</span></p>
+  <h1><span>علاقات R و L و C بالفيزورات</span> <span class="h1-math ltr">$\dfrac{\mathbf{V}}{\mathbf{I}} = R,\ \ \Y{j\omega} L,\ \ \dfrac{1}{\Y{j\omega} C}$</span></h1>
+  <p class="lead">في المحاضرة 2 تعلمنا نحوّل الموجة إلى فيزور. هنا نستخدمه في شغلتين: <b>نجمع موجات</b> بنفس التردد بجمع أرقام مركبة بدل قوانين المثلثات، و<b>نكتب علاقة الجهد بالتيار</b> لكل عنصر في الدائرة: المقاومة (R) والملف (L) والمكثف (C). وبعدها كل قانون فيه تفاضل أو تكامل يصير ضرب أو قسمة بسيطة.</p>
+  <div class="xyz-bar">
+    <span class="x">المقدار</span><span class="y">$j\omega$</span><span class="z">الزاوية</span>
+    <small>← نفس ألوان المحاضرات اللي قبل: كل رقم له لون ثابت</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>موجتين بنفس $\omega$؟ حوّل كل وحدة لفيزور، اجمعهم كأرقام مركبة، وارجع للزمن. بدون أي قانون مثلثات.</li>
+      <li>المقاومة: $\mathbf{V} = R\,\mathbf{I}$، والجهد والتيار <b>متفقين في الطور</b> (in phase).</li>
+      <li>الملف: $\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$، والتيار <b>يتأخر</b> عن الجهد <span class="ltr">90°</span>. المكثف: $\mathbf{I} = \Y{j\omega} C\,\mathbf{V}$، والتيار <b>يسبق</b> الجهد <span class="ltr">90°</span>.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 جمع الموجات ================= -->
+<section class="card" id="sum" data-num="01" data-nav="جمع الموجات|Sum">
+  <h2>جمع موجتين = جمع سهمين</h2>
+  <p class="sub">بشرط وحيد: الموجتين بنفس التردد $\omega$</p>
+
+  <p>لو عندك تيارين يدخلون نفس النقطة، مثل $i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$، وتبي مجموعهم. بالطريقة المباشرة تحتاج قوانين مثلثات طويلة. بالفيزورات الموضوع أسهل بكثير: كل موجة تصير سهم (رقم مركب)، وجمع الموجات يصير جمع الأسهم.</p>
+
+  <h3>الطريقة: أربع خطوات</h3>
+  <ol class="recipe">
+    <li><b>وحّد الشكل</b>: حوّل كل موجة لـ cos برقم موجب قدامها. <span class="why">sin تنقص <span class="ltr">90°</span>، والإشارة السالبة تزيد أو تنقص <span class="ltr">180°</span>.</span></li>
+    <li><b>حوّل لفيزورات</b>، واكتب كل واحد بالشكل الديكارتي $x + jy$. <span class="why">لأن الجمع أسهل بالديكارتي.</span></li>
+    <li><b>اجمع</b> الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</li>
+    <li><b>ارجع للقطبي ثم للزمن</b>، بنفس $\omega$ الأصلية. <span class="why">انتبه لربع النقطة وأنت تحسب الزاوية.</span></li>
+  </ol>
+  <div class="callout key"><strong>🔑 ليش لازم نفس $\omega$؟</strong> الفيزور ما يحفظ $\omega$، لأنه يفترض إن كل الأسهم تدور بنفس السرعة. لو الترددين مختلفين، الأسهم تدور بسرعات مختلفة والزاوية بينها تتغير مع الوقت، فما ينفع تجمعهم كأرقام ثابتة.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>اجمع تيارين</h2></div>
+  <div class="tags"><span class="tag">Example 9.6</span><span class="tag">جمع موجات</span></div>
+  <div class="m big">\[\begin{gathered}i_1(t) = 4\cos(\omega t + 30^\circ)\ \text{A} \\ i_2(t) = 5\sin(\omega t - 20^\circ)\ \text{A} \\ i_1 + i_2 = \ ?\end{gathered}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">نفس $\omega$ في الاثنين، فنقدر نستخدم الفيزورات. $i_1$ جاهزة (cos)، و $i_2$ لازم تتحول من sin إلى cos أول.</p>
+    </li>
+    <li class="step">
+      <h4>فيزور $i_1$</h4>
+      <div class="m">\[\mathbf{I}_1 = \X{4}\angle\Z{30^\circ}\]</div>
+    </li>
+    <li class="step">
+      <h4>حوّل $i_2$ لـ cos <span class="const">sin: انقص <span class="ltr">90°</span></span></h4>
+      <div class="m">\[\begin{gathered}i_2 = 5\cos(\omega t - 20^\circ - 90^\circ) = 5\cos(\omega t - 110^\circ) \\ \mathbf{I}_2 = \X{5}\angle\Z{-110^\circ}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>حوّل للديكارتي واجمع</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I}_1 = 3.464 + j2, \qquad \mathbf{I}_2 = -1.710 - j4.698 \\ \mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2 = 1.754 - j2.698\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>ارجع للقطبي</h4>
+      <div class="m">\[\mathbf{I} = \X{3.218}\angle\Z{-56.97^\circ}\ \text{A}\]</div>
+      <p class="why">النقطة $(1.754, -2.698)$ في الربع الرابع، فالزاوية سالبة، والحاسبة تعطيها صح مباشرة.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$i(t) = 3.218\cos(\omega t - 56.97^\circ)\ \text{A}$</div>
+      <p class="sanity">لاحظ إن المجموع (3.218) أصغر بكثير من $4 + 5 = 9$. السبب إن الفرق بين زاويتي الموجتين <span class="ltr">140°</span>، فهم تقريباً عكس بعض ويلغون بعض جزئياً ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 02 R و L و C ================= -->
+<section class="card" id="rlc" data-num="02" data-nav="R و L و C|R L C">
+  <h2>كل عنصر وعلاقة الجهد بالتيار فيه</h2>
+  <p class="sub">نحوّل قانون كل عنصر من الزمن إلى الفيزور</p>
+
+  <p>في كل العناصر نفترض إن التيار يدخل العنصر من الطرف الموجب (+) للجهد. هذا اسمه <b>اصطلاح الإشارة للعنصر السلبي</b> (Passive Sign Convention)، وعليه تنبني كل القوانين تحت.</p>
+
+  <h3>المقاومة R (Resistor)</h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">في الزمن (قانون أوم)</div><div class="t-math">$v = R\,i$</div></div>
+    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{V} = R\,\mathbf{I}$</div><div class="t-desc">$R$ رقم حقيقي ما يغيّر الزاوية، فالجهد والتيار <b>متفقين في الطور</b> (in phase).</div></div>
+  </div>
+
+  <h3>الملف L (Inductor)</h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">في الزمن</div><div class="t-math">$v = L\,\dfrac{di}{dt}$</div></div>
+    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$</div><div class="t-desc">الضرب في $j$ يزيد زاوية الجهد <span class="ltr">90°</span>، يعني <b>التيار يتأخر</b> عن الجهد <span class="ltr">90°</span> (lags).</div></div>
+  </div>
+  <p><b>من وين جت؟</b> لو التيار $i = I_m\cos(\omega t + \phi)$، نفاضل ونستخدم $-\sin A = \cos(A + 90^\circ)$:</p>
+  <div class="m">\[\begin{gathered}v = L\frac{di}{dt} = -\omega L I_m \sin(\omega t + \phi) \\ = \omega L I_m\cos(\omega t + \phi + 90^\circ) \\[6pt] \mathbf{V} = \omega L I_m\angle(\phi + 90^\circ) \\ = \Y{j\omega} L\,\mathbf{I}\end{gathered}\]</div>
+  <p>لأن $I_m\angle\phi = \mathbf{I}$، و $1\angle 90^\circ = j$. نفس قاعدة المحاضرة 2: التفاضل = ضرب في $j\omega$.</p>
+
+  <h3>المكثف C (Capacitor)</h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">في الزمن</div><div class="t-math">$i = C\,\dfrac{dv}{dt}$</div></div>
+    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{I} = \Y{j\omega} C\,\mathbf{V} \;\Rightarrow\; \mathbf{V} = \dfrac{\mathbf{I}}{\Y{j\omega} C}$</div><div class="t-desc">هنا التيار هو اللي مضروب في $j$، يعني <b>التيار يسبق</b> الجهد <span class="ltr">90°</span> (leads).</div></div>
+  </div>
+
+  <figure class="fig">
+    <svg viewBox="0 0 590 195" role="img" aria-label="مخططات الفيزورات للمقاومة والملف والمكثف: في المقاومة الجهد والتيار على نفس الخط، في الملف الجهد قدام التيار بتسعين درجة، وفي المكثف التيار قدام الجهد بتسعين درجة" style="max-width:640px">
+      <path class="ax" d="M410 150H575M465 160V22"/>
+      <path class="sk e1" d="M465 150L561.7 82.3M553.8 83.6L561.7 82.3L557.8 89.3"/>
+      <text class="lbl" x="569" y="81.2" text-anchor="middle">V</text>
+      <path class="sk e2" d="M465 150L520.7 111M512.8 112.3L520.7 111L516.8 118"/>
+      <text class="lbl" x="526.7" y="129" text-anchor="middle">I</text>
+      <path class="sk z" d="M491 150A26 26 0 0 0 486.3 135.1"/>
+      <text class="lbl" x="501.3" y="142.9" text-anchor="middle">φ</text>
+      <text class="tick" x="490" y="182" text-anchor="middle">R · in phase</text>
+      <path class="ax" d="M215 150H380M270 160V22"/>
+      <path class="sk e2" d="M270 150L331.4 107M323.5 108.3L331.4 107L327.5 114"/>
+      <text class="lbl" x="338.8" y="105.8" text-anchor="middle">I</text>
+      <path class="sk e1" d="M270 150L212.6 68.1M213.9 76L212.6 68.1L219.6 72"/>
+      <text class="lbl" x="207.5" y="64.7" text-anchor="middle">V</text>
+      <path class="sk z" d="M296 150A26 26 0 0 0 291.3 135.1"/>
+      <text class="lbl" x="306.3" y="142.9" text-anchor="middle">φ</text>
+      <path class="gl" d="M277.4 144.8L272.2 137.5L264.8 142.6" style="stroke:var(--ink-3)"/>
+      <text class="tick" x="295" y="182" text-anchor="middle">L · I lags V</text>
+      <path class="ax" d="M20 150H185M75 160V22"/>
+      <path class="sk e1" d="M75 150L136.4 107M128.5 108.3L136.4 107L132.5 114"/>
+      <text class="lbl" x="143.8" y="105.8" text-anchor="middle">V</text>
+      <path class="sk e2" d="M75 150L17.6 68.1M18.9 76L17.6 68.1L24.6 72"/>
+      <text class="lbl" x="12.5" y="64.7" text-anchor="middle">I</text>
+      <path class="sk z" d="M101 150A26 26 0 0 0 96.3 135.1"/>
+      <text class="lbl" x="111.3" y="142.9" text-anchor="middle">φ</text>
+      <path class="gl" d="M82.4 144.8L77.2 137.5L69.8 142.6" style="stroke:var(--ink-3)"/>
+      <text class="tick" x="100" y="182" text-anchor="middle">C · I leads V</text>
+    </svg>
+    <figcaption>مخطط الفيزورات لكل عنصر (Figures 9.10 و 9.12 و 9.14). تذكّر إن الأسهم تدور عكس عقارب الساعة، فاللي قدّام في الدوران هو اللي يسبق.</figcaption>
+  </figure>
+
+  <h3>الملخص (Table 9.2)</h3>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>العنصر</th><th>في الزمن</th><th>في الفيزور</th><th>التيار مقارنة بالجهد</th></tr>
+      <tr><td>المقاومة R</td><td>$v = R\,i$</td><td>$\mathbf{V} = R\,\mathbf{I}$</td><td>متفقين في الطور</td></tr>
+      <tr><td>الملف L</td><td>$v = L\,\dfrac{di}{dt}$</td><td>$\mathbf{V} = j\omega L\,\mathbf{I}$</td><td>يتأخر <span class="ltr">90°</span></td></tr>
+      <tr><td>المكثف C</td><td>$i = C\,\dfrac{dv}{dt}$</td><td>$\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$</td><td>يسبق <span class="ltr">90°</span></td></tr>
+    </table>
+  </div>
+  <div class="callout good"><strong>🧠 حيلة للحفظ: ELI the ICE man.</strong> الحرف E يرمز للجهد، و I للتيار. في الملف <b>L</b>: الجهد قبل التيار (<b>E</b>L<b>I</b>). وفي المكثف <b>C</b>: التيار قبل الجهد (<b>I</b>C<b>E</b>).</div>
+</section>
+
+<!-- ================= 03 المختبر ================= -->
+<section class="card" id="lab" data-num="03" data-nav="المختبر|Lab">
+  <h2>شوف الفرق بعينك</h2>
+  <p class="sub">نفس الجهد على المقاومة أو الملف أو المكثف، والتيار يتغير</p>
+
+  <div class="rlc-lab">
+    <h3>🎛️ اختر العنصر وغيّر التردد</h3>
+    <p class="lab-note">الجهد ثابت $\mathbf{V} = 10\angle 0^\circ\ \text{V}$، والقيم: $R = 5\ \Omega$ و $L = 1\ \text{H}$ و $C = 0.04\ \text{F}$.</p>
+    <div class="lab-controls">
+      <div class="field"><label>العنصر</label><span class="seg"><button class="btn small primary" type="button" data-el="R" aria-pressed="true">R</button><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small" type="button" data-el="C" aria-pressed="false">C</button></span></div>
+      <div class="field"><label>التردد ω (rad/s)</label><input type="range" dir="ltr" id="wS" min="1" max="20" step="1" value="5"><span class="rv" id="wSv"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 245" role="img" aria-label="يسار: فيزور الجهد وفيزور التيار. يمين: موجة الجهد وموجة التيار، مع الفرق بين قمتيهما">
+        <circle cx="120" cy="120" r="90" class="gl"/>
+        <path class="ax" d="M20 120H222M120 225V15"/>
+        <text x="226" y="124">Re</text><text x="120" y="10" text-anchor="middle">Im</text>
+        <path class="sk e1" id="vArrow"/>
+        <path class="sk e2" id="iArrow"/>
+        <text class="lbl" id="vLbl" text-anchor="middle">V</text>
+        <text class="lbl" id="iLbl" text-anchor="middle">I</text>
+        <path class="ax" d="M270 120H586M270 25V215"/>
+        <text x="590" y="124">ωt</text>
+        <text class="tick" x="420" y="134" text-anchor="middle">180°</text><text class="tick" x="570" y="134" text-anchor="middle">360°</text>
+        <path class="sk e1" id="vWave"/>
+        <path class="sk e2" id="iWave"/>
+        <circle class="fi e1" id="vPk" r="4.5"/>
+        <circle class="fi e2" id="iPk" r="4.5"/>
+        <path class="sk z" id="gap"/>
+        <text class="lbl" id="gapT" y="14" text-anchor="middle"></text>
+        <text class="lbl" x="285" y="238" style="fill:var(--e1)">v(t)</text>
+        <text class="lbl" x="335" y="238" style="fill:var(--e2)">i(t)</text>
+      </svg>
+      <figcaption>الموجات مرسومة بنفس الارتفاع عشان تقارن الطور بس، والأرقام الحقيقية تحت. النقطتين هم قمة كل موجة، والخط اللي فوقهم هو الفرق بينهم.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">نسبة الجهد للتيار |V| / |I|</span><span class="v" id="rX"></span></div>
+      <div class="hl"><span class="k">التيار I</span><span class="v" id="rI"></span></div>
+      <div><span class="k">مين يسبق؟</span><span class="v" id="rLead" style="direction:rtl;font-family:var(--f-body)"></span></div>
+    </div>
+  </div>
+  <div class="callout key"><strong>🔑 لاحظ مع التردد:</strong> في الملف، كل ما زاد $\omega$ كبرت $\omega L$ وقلّ التيار، يعني الملف يعاند التردد العالي. وفي المكثف العكس: كل ما زاد $\omega$ صغرت $1/(\omega C)$ وزاد التيار. والمقاومة ما تتأثر بالتردد أبداً. هذي النسبة هي بداية فكرة <b>المعاوقة</b> (Impedance) في المحاضرة الجاية.</div>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>تيار الملف</h2></div>
+  <div class="tags"><span class="tag">Example 9.8</span><span class="tag">ملف L</span></div>
+  <p>الجهد $v = 12\cos(60t + 45^\circ)$ V موصّل على ملف قيمته $0.1$ H. أوجد التيار في الحالة المستقرة (steady-state).</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">عندنا الجهد ونبي التيار، فنستخدم علاقة الملف ونقسم: $\mathbf{I} = \dfrac{\mathbf{V}}{j\omega L}$. ومن الموجة: $\omega = 60$ rad/s.</p>
+    </li>
+    <li class="step">
+      <h4>اكتب الفيزور واحسب $j\omega L$</h4>
+      <div class="m">\[\mathbf{V} = \X{12}\angle\Z{45^\circ}, \qquad \Y{j\omega} L = j(60)(0.1) = j6 = 6\angle 90^\circ\]</div>
+    </li>
+    <li class="step">
+      <h4>اقسم <span class="const">اقسم الأطوال واطرح الزوايا</span></h4>
+      <div class="m">\[\mathbf{I} = \frac{12\angle 45^\circ}{6\angle 90^\circ} = \X{2}\angle\Z{-45^\circ}\ \text{A}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i(t) = 2\cos(60t - 45^\circ)\ \text{A}$</div>
+      <p class="sanity">زاوية التيار <span class="ltr">−45°</span> وزاوية الجهد <span class="ltr">45°</span>: التيار متأخر <span class="ltr">90°</span> بالضبط، مثل ما يقول قانون الملف ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>حل معادلة تفاضلية تكاملية بالفيزورات</h2></div>
+  <div class="tags"><span class="tag">Example 9.7</span><span class="tag">تفاضل وتكامل</span></div>
+  <p>باستخدام الفيزورات، أوجد التيار $i(t)$ في دائرة معادلتها:</p>
+  <div class="m big">\[\begin{gathered}4i + 8\int i\,dt - 3\frac{di}{dt} \\ = 50\cos(2t + 75^\circ)\end{gathered}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">بدل ما نحل معادلة تفاضلية، نحوّل كل حد للفيزور بقواعد المحاضرة 2: التكامل = قسمة على $j\omega$، والتفاضل = ضرب في $j\omega$. ومن الطرف اليمين: $\omega = 2$.</p>
+    </li>
+    <li class="step">
+      <h4>حوّل كل حد للفيزور</h4>
+      <div class="m">\[4\mathbf{I} + \frac{8\mathbf{I}}{\Y{j\omega}} - 3\Y{j\omega}\mathbf{I} = 50\angle 75^\circ\]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض $\omega = 2$ <span class="const">1/j = −j</span></h4>
+      <div class="m">\[\begin{gathered}\frac{8}{j2} = \frac{4}{j} = -j4, \qquad 3j(2) = j6 \\ \mathbf{I}\,(4 - j4 - j6) = 50\angle 75^\circ\end{gathered}\]</div>
+      <p class="why">$\dfrac{1}{j} = -j$، لأن $j \times (-j) = -j^2 = 1$.</p>
+    </li>
+    <li class="step">
+      <h4>اقسم</h4>
+      <div class="m">\[\mathbf{I} = \frac{50\angle 75^\circ}{4 - j10} = \frac{50\angle 75^\circ}{10.77\angle{-68.2^\circ}} = \X{4.642}\angle\Z{143.2^\circ}\ \text{A}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i(t) = 4.642\cos(2t + 143.2^\circ)\ \text{A}$</div>
+      <p class="sanity">انتبه: هذا <b>الحل المستقر</b> (steady-state) بس، يعني شكل التيار بعد ما الدائرة تستقر. وعشان كذا ما احتجنا أي قيم ابتدائية.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس، والزوايا بالدرجات. قرّب لمنزلتين عشريتين على الأقل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>كم مقدار (سعة) المجموع:</p>
+    <div class="m">\[v = 3\cos(\omega t) + 4\sin(\omega t)\]</div>
+    <div class="check" data-answer="5"></div>
+    <details class="hint"><p>$4\sin(\omega t)$ فيزورها $4\angle{-90^\circ} = -j4$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>اجمع الفيزورين</h4><div class="m">\[3\angle 0^\circ + 4\angle{-90^\circ} = 3 - j4\]</div></li>
+      <li class="step final"><div class="result">$\sqrt{3^2 + 4^2} = 5$، يعني $v = 5\cos(\omega t - 53.13^\circ)$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
+    <p>ملف $L = 0.2$ H يمر فيه تيار $i = 5\cos(100t + 10^\circ)$ A. كم زاوية فيزور الجهد $\mathbf{V}$ بالدرجات؟</p>
+    <div class="check" data-answer="100"></div>
+    <details class="hint"><p>$\mathbf{V} = j\omega L\,\mathbf{I}$، و $j$ تزيد الزاوية <span class="ltr">90°</span>.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>احسب $j\omega L$</h4><div class="m">\[j(100)(0.2) = j20 = 20\angle 90^\circ\]</div></li>
+      <li class="step final"><div class="result">$\mathbf{V} = (20\angle 90^\circ)(5\angle 10^\circ) = 100\angle 100^\circ$ V</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>مكثف $C = 50\ \mu\text{F}$ عليه جهد $v = 10\cos(1000t)$ V. كم سعة التيار $I_m$ بالأمبير؟</p>
+    <div class="check" data-answer="0.5"></div>
+    <details class="hint"><p>$\mathbf{I} = j\omega C\,\mathbf{V}$، و $50\ \mu\text{F} = 50 \times 10^{-6}$ F.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>احسب $j\omega C$</h4><div class="m">\[j(1000)(50 \times 10^{-6}) = j0.05\]</div></li>
+      <li class="step final"><div class="result">$\mathbf{I} = (j0.05)(10\angle 0^\circ) = 0.5\angle 90^\circ$ A</div><p class="sanity">التيار يسبق الجهد <span class="ltr">90°</span>، مثل ما نتوقع في المكثف ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">تطبيق</span></div>
+    <p>المعادلة $2i + 4\dfrac{di}{dt} = 20\cos(t)$. كم سعة التيار $|\mathbf{I}|$؟</p>
+    <div class="check" data-answer="4.472"></div>
+    <details class="hint"><p>هنا $\omega = 1$، والتفاضل = ضرب في $j\omega$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>حوّل للفيزور</h4><div class="m">\[(2 + j4)\,\mathbf{I} = 20\angle 0^\circ\]</div></li>
+      <li class="step final"><div class="result">$|\mathbf{I}| = \dfrac{20}{\sqrt{2^2 + 4^2}} = \dfrac{20}{4.472} = 4.472$ A</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تنسى تحوّل sin قبل الجمع</div>
+    <div class="pair"><div class="no">$5\sin(\omega t - 20^\circ) \Rightarrow 5\angle{-20^\circ}$</div><div class="yes">$5\angle{-110^\circ}$</div></div></div>
+  <div class="mk"><div class="mk-title">تجمع موجات بترددات مختلفة</div>
+    <div class="pair"><div class="no">$\cos(10t) + \cos(20t) \Rightarrow 1\angle 0^\circ + 1\angle 0^\circ$</div><div class="yes">ما ينفع بالفيزورات، لازم نفس $\omega$</div></div></div>
+  <div class="mk"><div class="mk-title">تقلب علاقة المكثف</div>
+    <div class="pair"><div class="no">$\mathbf{V} = j\omega C\,\mathbf{I}$</div><div class="yes">$\mathbf{I} = j\omega C\,\mathbf{V}$، يعني $\mathbf{V} = \mathbf{I}/(j\omega C)$</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط مين يسبق في الملف</div>
+    <div class="pair"><div class="no">في الملف التيار يسبق الجهد</div><div class="yes">في الملف التيار <b>يتأخر</b> <span class="ltr">90°</span> (ELI)</div></div></div>
+  <div class="mk"><div class="mk-title">تقسم على $j$ غلط</div>
+    <div class="pair"><div class="no">$\dfrac{8}{j2} = j4$</div><div class="yes">$\dfrac{8}{j2} = \dfrac{4}{j} = -j4$</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="1"><p>في المقاومة، الفرق في الطور بين $\mathbf{V}$ و $\mathbf{I}$:</p>
+      <button><span class="ltr">0°</span></button><button><span class="ltr">90°</span></button><button><span class="ltr">−90°</span></button><button><span class="ltr">180°</span></button>
+      <p class="q-why">$\mathbf{V} = R\,\mathbf{I}$ و $R$ رقم حقيقي موجب، فما يغيّر الزاوية.</p></div>
+    <div class="q" data-answer="2"><p>في الملف L:</p>
+      <button>التيار يسبق الجهد بـ <span class="ltr">90°</span></button><button>التيار يتأخر عن الجهد بـ <span class="ltr">90°</span></button><button>متفقين في الطور</button><button>التيار يتأخر بـ <span class="ltr">180°</span></button>
+      <p class="q-why">$\mathbf{V} = j\omega L\,\mathbf{I}$: الجهد قدام التيار <span class="ltr">90°</span> (ELI).</p></div>
+    <div class="q" data-answer="2"><p>علاقة المكثف في مجال الفيزور:</p>
+      <button>$\mathbf{V} = j\omega C\,\mathbf{I}$</button><button>$\mathbf{I} = j\omega C\,\mathbf{V}$</button><button>$\mathbf{V} = C\,\mathbf{I}$</button><button>$\mathbf{I} = \mathbf{V}/(j\omega C)$</button>
+      <p class="q-why">من $i = C\,dv/dt$: التفاضل يصير ضرب في $j\omega$، فالتيار = $j\omega C$ ضرب الجهد.</p></div>
+    <div class="q" data-answer="2"><p>لو كبّرنا $\omega$ والجهد ثابت، تيار <b>الملف</b>:</p>
+      <button>يزيد</button><button>يقل</button><button>ما يتغير</button><button>يصير صفر دايماً</button>
+      <p class="q-why">$|\mathbf{I}| = |\mathbf{V}|/(\omega L)$: كل ما كبر $\omega$ صغر التيار. جرّبها في المختبر.</p></div>
+    <div class="q" data-answer="2"><p>تقدر تجمع $\cos(5t)$ و $\cos(7t)$ بالفيزورات؟</p>
+      <button>نعم، دايماً</button><button>لا، لازم نفس التردد</button><button>بس لو السعات متساوية</button><button>بس لو الاثنين cos</button>
+      <p class="q-why">الفيزور يفترض نفس $\omega$ لكل الموجات.</p></div>
+    <div class="q" data-answer="2"><p>$\dfrac{1}{j}$ يساوي:</p>
+      <button>$j$</button><button>$-j$</button><button>$1$</button><button>$-1$</button>
+      <p class="q-why">$j \times (-j) = -j^2 = 1$، فمقلوب $j$ هو $-j$.</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* مختبر R و L و C: الجهد ثابت V = 10∠0°، والتيار يتغير حسب العنصر و ω */
+(function () {
+  const $ = id => document.getElementById(id);
+  const VM = 10, R = 5, L = 1, C = 0.04;
+  const CX = 120, CY = 120;                         // مخطط الفيزورات
+  const WX = 270, WP = 300 / 360, WY = 120;         // الموجات: ωt من 0 إلى 360°
+  const AV = 80, AI = 55;                           // ارتفاع الموجتين للرسم بس
+  const rad = d => d * Math.PI / 180, f = n => n.toFixed(1), r2 = n => +n.toFixed(2);
+  const arrow = (r, deg) => {
+    const a = rad(deg), x = CX + r * Math.cos(a), y = CY - r * Math.sin(a), h = 9, w = 0.45;
+    return `M${CX} ${CY}L${f(x)} ${f(y)}M${f(x - h * Math.cos(a - w))} ${f(y + h * Math.sin(a - w))}L${f(x)} ${f(y)}L${f(x - h * Math.cos(a + w))} ${f(y + h * Math.sin(a + w))}`;
+  };
+  const place = (id, r, deg, dy) => { const a = rad(deg); $(id).setAttribute('x', f(CX + r * Math.cos(a))); $(id).setAttribute('y', f(CY - r * Math.sin(a) + dy)); };
+  let el = 'R';
+  function draw() {
+    const w = +$('wS').value;
+    const X = el === 'R' ? R : el === 'L' ? w * L : 1 / (w * C);   // |V| / |I|
+    const th = el === 'R' ? 0 : el === 'L' ? -90 : 90;              // زاوية التيار
+    $('wSv').textContent = w;
+    $('vArrow').setAttribute('d', arrow(85, 0));
+    $('iArrow').setAttribute('d', arrow(60, th));
+    place('vLbl', 97, 0, 5);
+    if (el === 'R') place('iLbl', 55, 0, 18); else place('iLbl', 74, th, 5);
+    let dv = '', di = '';
+    for (let k = 0; k <= 360; k += 4) {
+      const x = f(WX + k * WP);
+      dv += (k ? 'L' : 'M') + x + ' ' + f(WY - AV * Math.cos(rad(k)));
+      di += (k ? 'L' : 'M') + x + ' ' + f(WY - AI * Math.cos(rad(k + th)));
+    }
+    $('vWave').setAttribute('d', dv); $('iWave').setAttribute('d', di);
+    const iPk = (360 - th) % 360, vPk = el === 'C' ? 360 : 0;       // مكان القمة: R 0، L 90، C 270
+    $('vPk').setAttribute('cx', f(WX + vPk * WP)); $('vPk').setAttribute('cy', WY - AV);
+    $('iPk').setAttribute('cx', f(WX + iPk * WP)); $('iPk').setAttribute('cy', WY - AI);
+    if (el === 'R') { $('gap').setAttribute('d', ''); $('gapT').textContent = ''; }
+    else {
+      const a = WX + Math.min(vPk, iPk) * WP, b = WX + Math.max(vPk, iPk) * WP, y = 24;
+      $('gap').setAttribute('d', `M${f(a)} ${y}H${f(b)}M${f(a)} ${y - 5}V${y + 5}M${f(b)} ${y - 5}V${y + 5}`);
+      $('gapT').setAttribute('x', f((a + b) / 2)); $('gapT').textContent = '90°';
+    }
+    $('rX').textContent = el === 'R' ? `R = ${R} Ω` : el === 'L' ? `ωL = ${r2(X)} Ω` : `1/(ωC) = ${r2(X)} Ω`;
+    $('rI').textContent = `${r2(VM / X)} ∠ ${th < 0 ? '−' : ''}${Math.abs(th)}° A`;
+    $('rLead').innerHTML = el === 'R' ? 'متفقين في الطور' : el === 'L' ? 'التيار يتأخر <span class="ltr">90°</span>' : 'التيار يسبق <span class="ltr">90°</span>';
+  }
+  document.querySelectorAll('.rlc-lab [data-el]').forEach(b => b.addEventListener('click', () => {
+    el = b.dataset.el;
+    document.querySelectorAll('.rlc-lab [data-el]').forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
+    draw();
+  }));
+  $('wS').addEventListener('input', draw);
+  draw();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

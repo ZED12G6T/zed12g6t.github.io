@@ -2,7 +2,8 @@
 const lectures = [
   { name: "🏠 فهرس المادة", url: "index.html" },
   { name: "المحاضرة 1 · الإشارات الجيبية", url: "lecture1.html" },
-  { name: "المحاضرة 2 · الفيزورات", url: "lecture2.html" }
+  { name: "المحاضرة 2 · الفيزورات", url: "lecture2.html" },
+  { name: "المحاضرة 3 · علاقات R و L و C", url: "lecture3.html" }
 ];
 
 function renderNavigation() {
