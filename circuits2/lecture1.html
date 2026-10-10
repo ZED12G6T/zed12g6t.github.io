@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 1 - Sinusoids" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 1 - الإشارات الجيبية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* مختبر الطور: خاص بهذي الصفحة */
+  .tile.x, .tile.y, .tile.z { border-top: 3px solid var(--c); }
+  .wave-lab .fig { margin-top: 4px; }
+  .wave-lab .ref { stroke: var(--ink-3); stroke-width: 2; fill: none; stroke-dasharray: 6 5; }
+  .wave-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .wave-lab .ml-read { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 1 · تحليل دوائر كهربائية 2 · Ch 9.2</p>
+  <h1><span>الإشارات الجيبية (Sinusoids)</span> <span class="h1-math ltr">$v(t) = \X{V_m}\cos(\Y{\omega} t + \Z{\phi})$</span></h1>
+  <p class="lead">الكهرباء في بيتك اسمها تيار متردد (AC): قيمتها ما تبقى ثابتة، بل ترتفع وتنزل بانتظام 60 مرة في الثانية، ورسمها يطلع موجة شكلها مثل منحنى sin أو cos. هذي الموجة اسمها <b>إشارة جيبية</b> (Sinusoid)، وتقدر تعرفها كاملة من ثلاث أرقام بس: <b>أعلى قيمة توصل لها</b>، و<b>سرعة تكرارها</b>، و<b>من وين تبدأ</b>.</p>
+  <div class="xyz-bar">
+    <span class="x">السعة $V_m$</span><span class="y">التردد $\omega$</span><span class="z">الطور $\phi$</span>
+    <small>← كل رقم من الثلاثة له لون ثابت في الصفحة كلها</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>أي موجة جيبية = $\X{V_m}\cos(\Y{\omega} t + \Z{\phi})$: السعة $V_m$ هي أعلى قيمة، و $\omega$ هي سرعة التكرار، و $\phi$ هي نقطة البداية.</li>
+      <li>من $\omega$ تطلع كل شي: $T = \dfrac{2\pi}{\omega}$ و $f = \dfrac{1}{T}$، يعني $\omega = 2\pi f$.</li>
+      <li>عشان تعرف أي موجة توصل لقمتها أول: اكتب الموجتين بنفس الشكل (cos ورقم موجب قدامها)، وبعدها قارن الزوايا. اللي زاويتها أكبر توصل أول، ونقول إنها <b>تسبق</b> (leads).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الفكرة ================= -->
+<section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
+  <h2>ثلاث أرقام تكفي لوصف أي موجة</h2>
+  <p class="sub">اقرأ المعادلة كأنها بطاقة تعريف للموجة</p>
+
+  <div class="m big">\[v(t) = \X{V_m}\,\cos(\Y{\omega}\, t + \Z{\phi})\]</div>
+  <div class="grid-3">
+    <div class="tile x"><div class="t-name">📏 السعة $\X{V_m}$ (Amplitude)</div><div class="t-desc">أعلى قيمة توصل لها الموجة. الموجة تطلع لين $+V_m$ وتنزل لين $-V_m$. وحدتها فولت (V) للجهد، وأمبير (A) للتيار.</div></div>
+    <div class="tile y"><div class="t-name">⏱️ التردد الزاوي $\Y{\omega}$</div><div class="t-desc">سرعة تكرار الموجة، ووحدتها راديان في الثانية (rad/s). كل ما كبرت، تتكرر الموجة أسرع وتصير موجاتها أضيق.</div></div>
+    <div class="tile z"><div class="t-name">🚦 الطور $\Z{\phi}$ (Phase)</div><div class="t-desc">يحدد وين تكون الموجة لحظة البداية ($t=0$): هل هي عند القمة، أو قبلها، أو بعدها. ينكتب بالدرجات (°) أو الراديان.</div></div>
+  </div>
+
+
+  <h3>المصطلحات بكلام بسيط</h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">Sinusoid · إشارة جيبية</div><div class="t-desc">أي موجة شكلها مثل منحنى sin أو cos.</div></div>
+    <div class="tile"><div class="t-name">Periodic · دورية</div><div class="t-desc">تعيد نفسها بالضبط كل فترة ثابتة $T$.</div></div>
+    <div class="tile"><div class="t-name">Leading · تسبق</div><div class="t-desc">توصل للقمة قبل الموجة الثانية.</div></div>
+    <div class="tile"><div class="t-name">Lagging · تتأخر</div><div class="t-desc">توصل للقمة بعد الموجة الثانية.</div></div>
+  </div>
+
+  <h3>من $\omega$ للزمن الدوري والتردد</h3>
+  <p>الموجة <b>دورية</b> (Periodic): تعيد نفسها بالضبط كل فترة ثابتة، يعني $v(t) = v(t + T)$. هذي الفترة اسمها <b>الزمن الدوري</b> $T$ بالثواني، وهي الوقت اللي تاخذه الموجة عشان تكمل دورة وحدة (لما تزيد الزاوية $\omega t$ بمقدار $2\pi$). أما <b>التردد</b> $f$ فهو عدد الدورات في الثانية الوحدة:</p>
+  <div class="grid-3">
+    <div class="tile"><div class="t-top">الزمن الدوري (s)</div><div class="t-math">$T = \dfrac{2\pi}{\Y{\omega}}$</div></div>
+    <div class="tile"><div class="t-top">التردد (Hz)</div><div class="t-math">$f = \dfrac{1}{T}$</div></div>
+    <div class="tile hl"><div class="t-top">الرابط بينهم</div><div class="t-math">$\Y{\omega} = 2\pi f$</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 لا تخلط:</strong> $\omega$ بالـ rad/s، و $f$ بالـ Hz. كهرباء البيت $f = 60\text{ Hz}$ يعني $\omega = 2\pi(60) \approx 377\text{ rad/s}$.</div>
+</section>
+
+<!-- ================= 02 الطور ================= -->
+<section class="card" id="phase" data-num="02" data-nav="الطور|Phase">
+  <h2>الطور: مين يسبق ومين يتأخر؟</h2>
+  <p class="sub">موجتين بنفس الشكل، بس وحدة توصل للقمة قبل الثانية</p>
+
+  <p>خذ موجتين بنفس السعة ونفس $\omega$، الفرق الوحيد بينهم $\phi$:</p>
+  <div class="m">\[\begin{gathered}v_1 = V_m\cos(\omega t) \\ v_2 = V_m\cos(\omega t + \Z{\phi})\end{gathered}\]</div>
+  <p>الفرق بين زاويتي البداية اسمه <b>فرق الطور</b> (Phase difference)، ويعلمك مين يوصل للقمة أول:</p>
+  <ul class="clean">
+    <li>لو $\phi > 0$: الموجة $v_2$ توصل قمتها <b>قبل</b> $v_1$، فنقول $v_2$ <b>تسبق</b> $v_1$ (leads).</li>
+    <li>لو $\phi &lt; 0$: الموجة $v_2$ توصل قمتها <b>بعد</b> $v_1$، فنقول $v_2$ <b>تتأخر</b> عن $v_1$ (lags).</li>
+    <li>لو $\phi = 0$: يوصلون للقمة مع بعض، فنقول إنهم <b>متوافقين في الطور</b> (in phase).</li>
+  </ul>
+  <p>حرّك الطور تحت وشوف بنفسك:</p>
+
+  <div class="wave-lab">
+    <h3>🎛️ جرّبها بنفسك</h3>
+    <div class="lab-controls">
+      <div class="field"><label>السعة A</label><input type="range" dir="ltr" id="wA" min="1" max="10" step="1" value="6"><span class="rv" id="wAv"></span></div>
+      <div class="field"><label>الطور φ (°)</label><input type="range" dir="ltr" id="wP" min="-180" max="180" step="5" value="45"><span class="rv" id="wPv"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 220" role="img" aria-label="موجة مرجعية متقطعة وموجة متحركة حسب السعة والطور">
+        <path class="gl" d="M40 30H580M40 190H580"/>
+        <path class="ax" d="M40 110H586M40 20V200"/>
+        <text x="592" y="114">ωt</text>
+        <text class="tick" x="175" y="126" text-anchor="middle">180°</text>
+        <text class="tick" x="310" y="126" text-anchor="middle">360°</text>
+        <text class="tick" x="445" y="126" text-anchor="middle">540°</text>
+        <path class="ax" d="M175 106V114M310 106V114M445 106V114"/>
+        <path class="ref" id="wRef"/>
+        <path class="sk e1" id="wCur"/>
+        <circle class="fi e1" id="wDot" r="5"/>
+        <circle class="fi" id="wDot0" r="4" style="fill:var(--ink-3)"/>
+      </svg>
+      <figcaption>المتقطعة = المرجع $6\cos(\omega t)$ · الملوّنة = $A\cos(\omega t + \phi)$ · النقطة = أول قمة</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">المعادلة</span><span class="v" id="wEq"></span></div>
+      <div><span class="k">أول قمة عند</span><span class="v" id="wPk"></span></div>
+      <div class="hl"><span class="k">مقارنة بالمرجع</span><span class="v" id="wRel" style="direction:rtl;font-family:var(--f-body)"></span></div>
+    </div>
+  </div>
+  <div class="callout warn"><strong>⚠️ لاحظ:</strong> لما تكون $\phi$ موجبة، الرسمة تنزاح لليسار (يعني توصل للقمة أبكر)، مو لليمين. كثير من الطلاب يتوقعون العكس.</div>
+</section>
+
+<!-- ================= 03 قواعد التحويل ================= -->
+<section class="card" id="rules" data-num="03" data-nav="التحويل|Convert">
+  <h2>قبل أي مقارنة: وحّد الشكل</h2>
+  <p class="sub">ما تقدر تقارن موجة sin مع موجة cos، ولا موجة قدامها سالب مع موجة قدامها موجب</p>
+
+  <p>قبل ما تقارن زاويتين، لازم تكتب الموجتين بنفس الشكل: <b>cos</b>، والرقم اللي قدامها <b>موجب</b>. هذي القواعد الأربع (من معادلة 9.10 في المقرر) تحوّل أي موجة لهذا الشكل:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">إشارة سالبة؟ زِد أو انقص 180°</div><div class="t-math">$-\cos(\omega t) = \cos(\omega t \pm 180^\circ)$</div></div>
+    <div class="tile"><div class="t-name">إشارة سالبة مع sin</div><div class="t-math">$-\sin(\omega t) = \sin(\omega t \pm 180^\circ)$</div></div>
+    <div class="tile hl"><div class="t-name">sin ← cos: انقص 90°</div><div class="t-math">$\sin(\omega t) = \cos(\omega t - 90^\circ)$</div></div>
+    <div class="tile"><div class="t-name">cos ← sin: زِد 90°</div><div class="t-math">$\cos(\omega t) = \sin(\omega t + 90^\circ)$</div></div>
+  </div>
+
+  <h3>الطريقة: مقارنة طور موجتين</h3>
+  <ol class="recipe">
+    <li><b>شيل الإشارة السالبة</b> من السعة: زِد أو انقص 180° من الزاوية. <span class="why">اختر اللي يخلي الزاوية بين −180° و 180°.</span></li>
+    <li><b>حوّل sin إلى cos</b>: انقص 90° من الزاوية. <span class="why">لأن sin متأخرة عن cos بـ 90°.</span></li>
+    <li><b>اطرح الزاويتين</b>: الفرق هو فرق الطور. <span class="why">الأكبر زاوية هي اللي تسبق.</span></li>
+  </ol>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>اقرأ بطاقة تعريف الموجة</h2></div>
+  <div class="tags"><span class="tag">Example 9.1</span><span class="tag">سعة · طور · زمن دوري · تردد</span></div>
+  <p>أوجد السعة والطور والزمن الدوري والتردد للموجة:</p>
+  <div class="m big">\[v(t) = 12\cos(50t + 10^\circ)\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">الموجة مكتوبة أصلاً بالشكل $V_m\cos(\omega t + \phi)$، فكل اللي عليك تقارنها بالشكل العام وتطلع كل رقم من مكانه.</p>
+      <div class="map"><span class="x">V_m = 12</span><span class="y">ω = 50</span><span class="z">φ = 10°</span></div>
+    </li>
+    <li class="step">
+      <h4>السعة والطور مباشرة</h4>
+      <div class="m">\[\X{V_m} = 12\text{ V}, \qquad \Z{\phi} = 10^\circ, \qquad \Y{\omega} = 50\text{ rad/s}\]</div>
+    </li>
+    <li class="step">
+      <h4>الزمن الدوري من $\omega$</h4>
+      <div class="m">\[T = \frac{2\pi}{\Y{\omega}} = \frac{2\pi}{50} = 0.1257\text{ s}\]</div>
+      <p class="why">الآلة الحاسبة لازم تكون على radian هنا، لأن $2\pi$ راديان.</p>
+    </li>
+    <li class="step">
+      <h4>التردد</h4>
+      <div class="m">\[f = \frac{1}{T} = \frac{1}{0.1257} = 7.958\text{ Hz}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$V_m = 12\text{ V},\ \phi = 10^\circ,\ T = 0.1257\text{ s},\ f = 7.958\text{ Hz}$</div>
+      <p class="sanity">تأكد بطريق ثاني: $f = \dfrac{\omega}{2\pi} = \dfrac{50}{6.283} = 7.958$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مين يسبق؟</h2></div>
+  <div class="tags"><span class="tag">Example 9.2</span><span class="tag">إشارة سالبة + sin</span></div>
+  <p>احسب فرق الطور بين الموجتين، ومين فيهم يسبق:</p>
+  <div class="m big">\[\begin{gathered}v_1 = -10\cos(\omega t + 50^\circ) \\ v_2 = 12\sin(\omega t - 10^\circ)\end{gathered}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">ما نقدر نقارن الزاويتين على طول، لأن فيه مشكلتين: $v_1$ قدامها رقم <b>سالب</b> ($-10$)، و $v_2$ مكتوبة <b>sin</b> مو cos. نصلح المشكلتين بالقواعد اللي فوق، وبعدها نقارن.</p>
+    </li>
+    <li class="step">
+      <h4>صلّح $v_1$: شيل السالب <span class="const">−180°</span></h4>
+      <div class="m">\[v_1 = -10\cos(\omega t + 50^\circ) = 10\cos(\omega t + 50^\circ - 180^\circ) = \X{10}\cos(\omega t \Z{- 130^\circ})\]</div>
+      <p class="why">اخترنا −180° بدل +180° عشان الزاوية تبقى بين −180° و 180° (لو زدنا كان طلع 230°).</p>
+    </li>
+    <li class="step">
+      <h4>صلّح $v_2$: من sin إلى cos <span class="const">−90°</span></h4>
+      <div class="m">\[v_2 = 12\sin(\omega t - 10^\circ) = \X{12}\cos(\omega t - 10^\circ - 90^\circ) = 12\cos(\omega t \Z{- 100^\circ})\]</div>
+    </li>
+    <li class="step">
+      <h4>قارن الزاويتين</h4>
+      <div class="m">\[\Z{\phi_2} - \Z{\phi_1} = (-100^\circ) - (-130^\circ) = 30^\circ\]</div>
+      <p class="why">الفرق موجب، يعني $v_2$ زاويتها أكبر، فهي اللي تسبق. السعات (10 و 12) ما لها دخل في الطور.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$v_2$ تسبق $v_1$ بـ $30^\circ$</div>
+      <p class="sanity">تقدر تكتب $v_2 = 12\cos(\omega t - 130^\circ + 30^\circ)$: نفس زاوية $v_1$ بالضبط زائد 30° ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">حل بالورقة، اكتب الرقم بس (بدون وحدة) واضغط تحقق. علقت؟ افتح التلميح، وبعدها الحل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>كم التردد $f$ بالهيرتز للموجة:</p>
+    <div class="m">\[i(t) = 20\cos(100\pi t + 30^\circ)\ \text{A}\]</div>
+    <div class="check" data-answer="50"></div>
+    <details class="hint"><p>$\omega$ هي الرقم اللي مضروب في $t$، وبعدها $f = \omega / 2\pi$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>طابق $\omega$</h4><div class="m">\[\Y{\omega} = 100\pi\ \text{rad/s}\]</div></li>
+      <li class="step"><h4>احسب $f$</h4><div class="m">\[f = \frac{100\pi}{2\pi} = 50\ \text{Hz}\]</div></li>
+      <li class="step final"><div class="result">$f = 50\text{ Hz}$</div><p class="sanity">وجود $\pi$ في $\omega$ غالباً يعني إن الجواب رقم مرتب ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
+    <p>كم درجة تسبق $v_2$ الموجة $v_1$؟</p>
+    <div class="m">\[\begin{gathered}v_1 = 5\sin(\omega t + 20^\circ) \\ v_2 = 8\cos(\omega t - 40^\circ)\end{gathered}\]</div>
+    <div class="check" data-answer="30"></div>
+    <details class="hint"><p>حوّل $v_1$ إلى cos بطرح 90°، وبعدها اطرح الزاويتين.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>$v_1$ إلى cos</h4><div class="m">\[v_1 = 5\cos(\omega t + 20^\circ - 90^\circ) = 5\cos(\omega t \Z{- 70^\circ})\]</div></li>
+      <li class="step"><h4>اطرح</h4><div class="m">\[(-40^\circ) - (-70^\circ) = 30^\circ\]</div></li>
+      <li class="step final"><div class="result">$v_2$ تسبق بـ $30^\circ$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">فخ</span></div>
+    <p>اكتب الموجة بالشكل $V_m\cos(\omega t + \phi)$ بسعة موجبة، و $\phi$ بين −180° و 180°. كم $\phi$؟</p>
+    <div class="m">\[v(t) = -4\cos(\omega t + 60^\circ)\]</div>
+    <div class="check" data-answer="-120"></div>
+    <details class="hint"><p>شيل الإشارة السالبة بـ ±180°. أي وحدة فيهم تخلي الزاوية في المدى المطلوب؟</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>جرّب الاثنين</h4><div class="m">\[60^\circ + 180^\circ = 240^\circ \ ✗ \qquad 60^\circ - 180^\circ = -120^\circ \ ✓\]</div></li>
+      <li class="step final"><div class="result">$v(t) = 4\cos(\omega t - 120^\circ)$</div><p class="sanity">240° و −120° نفس الزاوية فعلياً (الفرق 360°)، بس المطلوب في المدى ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تقارن sin مع cos مباشرة</div>
+    <div class="pair"><div class="no">$v_1 = \cos(\omega t + 10^\circ)$ و $v_2 = \sin(\omega t + 10^\circ)$ متوافقين</div><div class="yes">$v_2 = \cos(\omega t - 80^\circ)$، يعني $v_1$ تسبق بـ $90^\circ$</div></div></div>
+  <div class="mk"><div class="mk-title">تتجاهل الإشارة السالبة</div>
+    <div class="pair"><div class="no">$-10\cos(\omega t + 50^\circ)$ طورها $50^\circ$</div><div class="yes">طورها $-130^\circ$ بعد ما تشيل السالب</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط بين $\omega$ و $f$</div>
+    <div class="pair"><div class="no">$12\cos(50t)$ ترددها $50\text{ Hz}$</div><div class="yes">$\omega = 50\text{ rad/s}$، و $f = 7.96\text{ Hz}$</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>موجة $\omega = 377\text{ rad/s}$. ترددها تقريباً:</p>
+      <button>377 Hz</button><button>60 Hz</button><button>120 Hz</button><button>2368 Hz</button>
+      <p class="q-why">$f = 377 / 2\pi \approx 60\text{ Hz}$، وهذا تردد كهرباء البيت في السعودية.</p></div>
+    <div class="q" data-answer="4"><p>$\sin(\omega t)$ بصيغة cos تساوي:</p>
+      <button>$\cos(\omega t + 90^\circ)$</button><button>$-\cos(\omega t)$</button><button>$\cos(\omega t + 180^\circ)$</button><button>$\cos(\omega t - 90^\circ)$</button>
+      <p class="q-why">sin متأخرة عن cos بـ 90°، فنطرح 90°.</p></div>
+    <div class="q" data-answer="1"><p>$v_1 = \cos(\omega t + 20^\circ)$ و $v_2 = \cos(\omega t - 15^\circ)$. أيش الصح؟</p>
+      <button>$v_1$ تسبق بـ 35°</button><button>$v_2$ تسبق بـ 35°</button><button>$v_1$ تسبق بـ 5°</button><button>متوافقين</button>
+      <p class="q-why">$20 - (-15) = 35^\circ$، والأكبر زاوية ($v_1$) هي اللي تسبق.</p></div>
+    <div class="q" data-answer="3"><p>لو ضاعفنا $\omega$، الزمن الدوري $T$:</p>
+      <button>يتضاعف</button><button>ما يتغير</button><button>ينقص للنص</button><button>يصير صفر</button>
+      <p class="q-why">$T = 2\pi/\omega$: علاقة عكسية.</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* مختبر الطور: يرسم A·cos(ωt + φ) مقابل المرجع 6·cos(ωt) */
+(function () {
+  const $ = id => document.getElementById(id);
+  const X0 = 40, PX = 540 / 720, Y0 = 110, PY = 8;   // ωt من 0 إلى 720° ، والسعة 1 = 8px
+  const path = (A, phi) => {
+    let d = '';
+    for (let deg = 0; deg <= 720; deg += 4) {
+      const y = Y0 - PY * A * Math.cos((deg + phi) * Math.PI / 180);
+      d += (deg ? 'L' : 'M') + (X0 + deg * PX).toFixed(1) + ' ' + y.toFixed(1);
+    }
+    return d;
+  };
+  const sgn = n => (n > 0 ? '+ ' : '− ') + Math.abs(n);
+  function draw() {
+    const A = +$('wA').value, phi = +$('wP').value;
+    const pk = ((-phi % 360) + 360) % 360;   // أول قمة: ωt + φ = 0
+    $('wAv').textContent = A; $('wPv').textContent = phi + '°';
+    $('wRef').setAttribute('d', path(6, 0));
+    $('wCur').setAttribute('d', path(A, phi));
+    $('wDot').setAttribute('cx', X0 + pk * PX); $('wDot').setAttribute('cy', Y0 - PY * A);
+    $('wDot0').setAttribute('cx', X0 + 360 * PX); $('wDot0').setAttribute('cy', Y0 - PY * 6);
+    $('wEq').textContent = phi ? `${A} cos(ωt ${sgn(phi)}°)` : `${A} cos(ωt)`;
+    $('wPk').textContent = `ωt = ${pk}°`;
+    $('wRel').textContent = phi > 0 ? `تسبق بـ ${phi}°` : phi < 0 ? `تتأخر بـ ${-phi}°` : 'متوافقة (in phase)';
+  }
+  $('wA').addEventListener('input', draw); $('wP').addEventListener('input', draw);
+  draw();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
