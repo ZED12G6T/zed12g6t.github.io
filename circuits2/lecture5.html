@@ -30,6 +30,7 @@
   .kv-lab .ml-read { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   @media (max-width: 560px) { .kv-lab .ml-read { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
 </style>
+<link rel="stylesheet" href="../fonts.css">
 </head>
 <body>
 <main class="wrap">
@@ -348,7 +349,7 @@
       <p class="why">في الضرب السعات تنضرب ($0.8575 \times 20$) والزوايا تنجمع ($30.96^\circ - 15^\circ$).</p>
     </li>
     <li class="step final">
-      <div class="result">$v_o(t) = 17.15\cos(4t + 15.96^\circ)\ \text{V}$</div>
+      <div class="result">$v_o(t) =$ $17.15\cos(4t + 15.96^\circ)$ V</div>
       <p class="sanity">السعة 17.15 أقل من 20، منطقي لأن جزء من جهد المصدر راح على المقاومة 60&nbsp;Ω ✓</p>
     </li>
   </ol>
@@ -451,7 +452,7 @@
     <div class="check" data-answer="10"></div>
     <details class="hint"><p>اجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي، وبعدها احسب السعة.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = 8 - j6$، و $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2} = 10\ \Omega$</div></li>
+      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = 8 - j6$، و $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2}$ $= 10\ \Omega$</div></li>
     </ol>
   </div>
 
@@ -461,7 +462,7 @@
     <div class="check" data-answer="13"></div>
     <details class="hint"><p>$\mathbf{V}_R$ و $\mathbf{V}_L$ بينهم <span class="ltr">90°</span>، فالمصدر مثل الوتر في مثلث قائم.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$|\mathbf{V}_s| = \sqrt{12^2 + 5^2} = 13$ V</div><p class="sanity">مو 17! القراءات ما تنجمع مباشرة، الفيزورات هي اللي تنجمع.</p></li>
+      <li class="step final"><div class="result">$|\mathbf{V}_s| = \sqrt{12^2 + 5^2}$ $= 13$ V</div><p class="sanity">مو 17! القراءات ما تنجمع مباشرة، الفيزورات هي اللي تنجمع.</p></li>
     </ol>
   </div>
 
@@ -471,7 +472,7 @@
     <div class="check" data-answer="-2"></div>
     <details class="hint"><p>$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وبعدها اضرب فوق وتحت في مرافق المقام.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4} = \dfrac{-j16\,(4 + j4)}{32} = 2 - j2\ \Omega$، يعني $X = -2$</div></li>
+      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4}$ $= \dfrac{-j16\,(4 + j4)}{32}$ $= 2 - j2\ \Omega$، يعني $X = -2$</div></li>
     </ol>
   </div>
 
@@ -481,7 +482,7 @@
     <div class="check" data-answer="8"></div>
     <details class="hint"><p>مقسم الجهد، وخذ السعات: $|\mathbf{V}_C| = \dfrac{|\mathbf{Z}_C|}{|\mathbf{Z}_R + \mathbf{Z}_C|}\,|\mathbf{V}|$.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$|\mathbf{V}_C| = \dfrac{8}{|6 - j8|} \times 10 = \dfrac{8}{10} \times 10 = 8$ V</div><p class="sanity">نفس بداية المختبر: 6 و 8 والمصدر 10 ✓</p></li>
+      <li class="step final"><div class="result">$|\mathbf{V}_C| = \dfrac{8}{|6 - j8|}\,(10)$ $= \dfrac{8}{10}\,(10) = 8$ V</div><p class="sanity">نفس بداية المختبر: 6 و 8 والمصدر 10 ✓</p></li>
     </ol>
   </div>
 
@@ -491,7 +492,7 @@
     <div class="check" data-answer="4"></div>
     <details class="hint"><p>مقسم التيار: فوق المعاوقة <b>الثانية</b>.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{I}_1 = \dfrac{j4}{3 + j4}\,(5) = \dfrac{4\angle 90^\circ}{5\angle 53.13^\circ}\,(5) = 4\angle 36.87^\circ$ A</div><p class="sanity">$\mathbf{Z}_1$ أصغر من $\mathbf{Z}_2$، فتاخذ أكثر من نص التيار ✓</p></li>
+      <li class="step final"><div class="result">$\mathbf{I}_1 = \dfrac{j4}{3 + j4}\,(5)$ $= \dfrac{4\angle 90^\circ}{5\angle 53.13^\circ}\,(5)$ $= 4\angle 36.87^\circ$ A</div><p class="sanity">$\mathbf{Z}_1$ أصغر من $\mathbf{Z}_2$، فتاخذ أكثر من نص التيار ✓</p></li>
     </ol>
   </div>
 
@@ -501,7 +502,7 @@
     <div class="check" data-answer="10"></div>
     <details class="hint"><p>$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$، وانتبه: $j10 + (-j10) = 0$.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">المجموع $= 10 + j10 - j10 = 10$، و $\mathbf{Z}_1 = \dfrac{(j10)(-j10)}{10} = \dfrac{100}{10} = 10\ \Omega$</div></li>
+      <li class="step final"><p class="why">المجموع تحت الكسر: $10 + j10 - j10 = 10$، لأن $j10$ و $-j10$ يلغون بعض.</p><div class="result">$\mathbf{Z}_1 = \dfrac{(j10)(-j10)}{10}$ $= \dfrac{100}{10} = 10\ \Omega$</div></li>
     </ol>
   </div>
 </section>
