@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 5 - Kirchhoff's Laws & Impedance Combinations" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 5 - قوانين كيرشوف وتوصيل المعاوقات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر ومختبر KVL و KCL: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .box { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+  .fig .box2 { fill: color-mix(in srgb, var(--e1) 14%, transparent); stroke: var(--e1); stroke-width: 2; }
+  .fig .dot { fill: var(--ink-2); }
+  .fig .term { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.6; }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.acc { fill: var(--accent); }
+  .fig text.lbl.e1t { fill: var(--e1); }
+  .fig text.lbl.x, .fig text.lbl.y, .fig text.lbl.z { fill: var(--c); }
+  .kv-lab .lab-controls { align-items: center; }
+  .kv-lab .seg { display: flex; gap: 6px; }
+  .kv-lab .seg .btn { min-width: 48px; }
+  .kv-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .kv-lab .ml-read { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .kv-lab .ml-read { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 5 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.6–9.7</span></p>
+  <h1><span>قوانين كيرشوف وتوصيل المعاوقات</span> <span class="h1-math ltr">$\sum \mathbf{V} = 0 \quad \sum \mathbf{I} = 0$</span></h1>
+  <p class="lead">في دوائر التيار المستمر (DC) تعلمت التوالي والتوازي ومقسم الجهد ومقسم التيار. الخبر الحلو: كلها ترجع تشتغل هنا بنفس الشكل، بس بالفيزورات والمعاوقات بدل الأرقام العادية والمقاومات. والسبب إن قانوني كيرشوف صحيحين للفيزورات. وفي آخر المحاضرة أداة جديدة: تحويل دلتا-واي (Δ-Y).</p>
+  <div class="xyz-bar">
+    <span class="x">المقاومة $R$</span><span class="y">الملف أو المكثف</span><span class="z">المصدر (المجموع)</span>
+    <small>← نفس الألوان في المختبر</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>قانونا كيرشوف صحيحين للفيزورات: $\sum \mathbf{V} = 0$ حول أي حلقة، و $\sum \mathbf{I} = 0$ عند أي عقدة. بس انتبه: القراءات (السعات) ما تنجمع مباشرة.</li>
+      <li>التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots$. والتوازي: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، ولمعاوقتين $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$. ومقسم الجهد والتيار نفس DC.</li>
+      <li>إذا ما فيه توالي ولا توازي، حوّل المثلث (Δ) لنجمة (Y) أو العكس. وفي الشبكة المتزنة: $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 كيرشوف ================= -->
+<section class="card" id="kirchhoff" data-num="01" data-nav="كيرشوف|Kirchhoff">
+  <h2>كيرشوف في عالم الفيزورات</h2>
+  <p class="sub">هل KVL و KCL يشتغلون مع الفيزورات؟ نعم، وهذا السبب</p>
+
+  <p>ما نقدر نحلل أي دائرة بدون قانوني كيرشوف. فلازم نتأكد إنهم صحيحين للفيزورات مو بس للقيم اللحظية. نبدأ بقانون الجهد (KVL) حول حلقة مقفلة:</p>
+  <ol class="recipe">
+    <li><b>في الزمن:</b> مجموع الجهود حول الحلقة صفر: $v_1 + v_2 + \cdots + v_n = 0$، وكل جهد موجة جيبية $V_{mk}\cos(\omega t + \theta_k)$ بنفس $\omega$.</li>
+    <li><b>نكتب كل موجة كجزء حقيقي:</b> $V_{mk}\cos(\omega t + \theta_k) = \text{Re}(\mathbf{V}_k e^{j\omega t})$، فتصير المعادلة: $\text{Re}\big[(\mathbf{V}_1 + \cdots + \mathbf{V}_n)\,e^{j\omega t}\big] = 0$</li>
+    <li><b>هذا صحيح في كل لحظة $t$:</b> والطريقة الوحيدة إنه يصير صفر دايماً هي إن القوس نفسه صفر. يعني مجموع الفيزورات صفر.</li>
+  </ol>
+  <p>وبنفس الخطوات نثبت قانون التيار (KCL) عند أي عقدة. فالنتيجة:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">قانون الجهد KVL</div><div class="t-math">$\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0$</div><div class="t-desc">مجموع فيزورات الجهد حول أي حلقة مقفلة (Eq. 9.55).</div></div>
+    <div class="tile"><div class="t-name">قانون التيار KCL</div><div class="t-math">$\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0$</div><div class="t-desc">مجموع فيزورات التيار الداخلة أو الطالعة من أي عقدة (Eq. 9.57).</div></div>
+  </div>
+  <div class="callout warn"><strong>⚠️ الفيزورات تنجمع، القراءات لا:</strong> مقاومة ومكثف على التوالي مع مصدر سعته 10&nbsp;V. الفولتميتر على المقاومة يقرأ 6&nbsp;V، وعلى المكثف 8&nbsp;V. المجموع 14 مو 10! لأن الجهدين بينهم <span class="ltr">90°</span>، فينجمعون مثل أضلاع مثلث قائم: $\sqrt{6^2 + 8^2} = 10$. جرّبها بنفسك في المختبر تحت.</div>
+  <div class="callout key"><strong>🔑 النتيجة:</strong> كل أدوات DC ترجع تشتغل: توصيل المعاوقات ومقسم الجهد والتيار (هذي المحاضرة)، وتحليل العقد والحلقات (المحاضرة 6)، وثيفنن ونورتن (المحاضرة 7). بس بدل $R$ حط $\mathbf{Z}$، وبدل الأرقام العادية حط فيزورات.</div>
+</section>
+
+<!-- ================= 02 التوالي ================= -->
+<section class="card" id="series" data-num="02" data-nav="التوالي|Series">
+  <h2>التوالي ومقسم الجهد</h2>
+  <p class="sub">نفس التيار يمر في كل المعاوقات</p>
+
+  <p>لو عندك $N$ معاوقات على التوالي، نفس التيار $\mathbf{I}$ يمر فيهم كلهم. ومن KVL جهد المصدر يساوي مجموع جهودهم:</p>
+  <div class="m">\[\begin{gathered}\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_N \\ = \mathbf{I}\,(\mathbf{Z}_1 + \mathbf{Z}_2 + \cdots + \mathbf{Z}_N)\end{gathered}\]</div>
+  <p>فالمعاوقة المكافئة (Equivalent impedance) اللي يشوفها المصدر $\mathbf{Z}_{eq} = \mathbf{V}/\mathbf{I}$ هي المجموع:</p>
+  <div class="m big">\[\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots + \mathbf{Z}_N\]</div>
+
+  <h3>مقسم الجهد (Voltage division)</h3>
+  <figure class="fig">
+    <svg viewBox="0 0 300 175" role="img" aria-label="مصدر جهد V مع معاوقتين Z1 و Z2 على التوالي، والجهد V1 على Z1 والجهد V2 على Z2" style="max-width:320px">
+      <circle class="wire" cx="50" cy="95" r="17"/>
+      <path class="wire" d="M42 95q4 -7 8 0t8 0"/>
+      <path class="wire" d="M50 78V40H110M170 40H250V65M250 125V150H50V112"/>
+      <rect class="box" x="110" y="30" width="60" height="20" rx="2"/>
+      <rect class="box" x="240" y="65" width="20" height="60" rx="2"/>
+      <path class="sk e2" d="M66 26H94M87 21L94 26L87 31"/>
+      <text class="lbl" x="80" y="16" text-anchor="middle">I</text>
+      <text class="lbl" x="140" y="22" text-anchor="middle">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="120" y="68" text-anchor="middle">+</text><text class="lbl" x="140" y="68" text-anchor="middle">V<tspan class="sb" dy="3">1</tspan></text><text class="lbl" x="160" y="68" text-anchor="middle">−</text>
+      <text class="lbl" x="268" y="99">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="228" y="80" text-anchor="end">+</text><text class="lbl" x="230" y="99" text-anchor="end">V<tspan class="sb" dy="3">2</tspan></text><text class="lbl" x="228" y="120" text-anchor="end">−</text>
+      <text class="lbl" x="30" y="72" text-anchor="middle">+</text><text class="lbl" x="22" y="99" text-anchor="middle">V</text><text class="lbl" x="30" y="124" text-anchor="middle">−</text>
+    </svg>
+    <figcaption>Figure 9.19: معاوقتين على التوالي يقسمون جهد المصدر بينهم.</figcaption>
+  </figure>
+  <p>لمعاوقتين: التيار $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وجهد كل وحدة $\mathbf{V}_1 = \mathbf{Z}_1\mathbf{I}$ و $\mathbf{V}_2 = \mathbf{Z}_2\mathbf{I}$. يعني:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">جهد $\mathbf{Z}_1$</div><div class="t-math">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
+    <div class="tile"><div class="t-top">جهد $\mathbf{Z}_2$</div><div class="t-math">$\mathbf{V}_2 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 نفس قانون DC:</strong> كل معاوقة تاخذ من الجهد بنسبة حجمها من المجموع (Eq. 9.61). الفرق الوحيد إن الحساب بأرقام مركبة، فالنتيجة لها سعة وزاوية.</div>
+</section>
+
+<!-- ================= 03 التوازي ================= -->
+<section class="card" id="parallel" data-num="03" data-nav="التوازي|Parallel">
+  <h2>التوازي ومقسم التيار</h2>
+  <p class="sub">نفس الجهد على كل المعاوقات</p>
+
+  <p>لو $N$ معاوقات على التوازي، نفس الجهد $\mathbf{V}$ عليهم كلهم. ومن KCL تيار المصدر يساوي مجموع تياراتهم:</p>
+  <div class="m">\[\begin{gathered}\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_N \\ = \mathbf{V}\left(\frac{1}{\mathbf{Z}_1} + \frac{1}{\mathbf{Z}_2} + \cdots + \frac{1}{\mathbf{Z}_N}\right)\end{gathered}\]</div>
+  <p>فمقلوب المكافئة يساوي مجموع المقلوبات. وبما إن مقلوب المعاوقة هو المسامحة (المحاضرة 4)، تصير القاعدة أبسط بكثير:</p>
+  <div class="m">\[\begin{gathered}\frac{1}{\mathbf{Z}_{eq}} = \frac{1}{\mathbf{Z}_1} + \frac{1}{\mathbf{Z}_2} + \cdots + \frac{1}{\mathbf{Z}_N} \\[6pt] \mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots + \mathbf{Y}_N\end{gathered}\]</div>
+  <p>يعني <b>المسامحات على التوازي تنجمع مباشرة</b>، مثل المعاوقات على التوالي. ولمعاوقتين بس، القاعدة المشهورة "الضرب على الجمع":</p>
+  <div class="m big">\[\mathbf{Z}_{eq} = \frac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\]</div>
+
+  <h3>مقسم التيار (Current division)</h3>
+  <figure class="fig">
+    <svg viewBox="0 0 300 175" role="img" aria-label="مصدر تيار I مع معاوقتين Z1 و Z2 على التوازي، والتيار I1 في Z1 والتيار I2 في Z2" style="max-width:320px">
+      <circle class="wire" cx="50" cy="95" r="17"/>
+      <path class="wire" d="M50 105V85M44 92L50 85L56 92"/>
+      <path class="wire" d="M50 78V40H240V65M240 125V150H50V112M160 40V65M160 125V150"/>
+      <rect class="box" x="150" y="65" width="20" height="60" rx="2"/>
+      <rect class="box" x="230" y="65" width="20" height="60" rx="2"/>
+      <path class="sk e2" d="M172 44V60M167 53L172 60L177 53"/>
+      <text class="lbl" x="180" y="57">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M252 44V60M247 53L252 60L257 53"/>
+      <text class="lbl" x="260" y="57">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="176" y="99">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="256" y="99">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="105" y="72" text-anchor="middle">+</text><text class="lbl" x="105" y="99" text-anchor="middle">V</text><text class="lbl" x="105" y="124" text-anchor="middle">−</text>
+      <text class="lbl" x="24" y="99" text-anchor="middle">I</text>
+    </svg>
+    <figcaption>Figure 9.21: معاوقتين على التوازي يقسمون تيار المصدر بينهم.</figcaption>
+  </figure>
+  <p>الجهد مشترك: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$. ومنها:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">تيار $\mathbf{Z}_1$</div><div class="t-math">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
+    <div class="tile"><div class="t-top">تيار $\mathbf{Z}_2$</div><div class="t-math">$\mathbf{I}_2 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 انتبه للتبديل:</strong> في مقسم التيار، فوق $\mathbf{I}_1$ المعاوقة <b>الثانية</b> $\mathbf{Z}_2$ (Eq. 9.66). لأن التيار يروح أكثر للطريق الأسهل: المعاوقة الأصغر تاخذ التيار الأكبر.</div>
+
+  <h3>الخلاصة: توالي أو توازي</h3>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th></th><th>التوالي</th><th>التوازي</th></tr>
+      <tr><td>المشترك</td><td>التيار $\mathbf{I}$</td><td>الجهد $\mathbf{V}$</td></tr>
+      <tr><td>المكافئة</td><td>$\mathbf{Z}_1 + \mathbf{Z}_2$</td><td>$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</td></tr>
+      <tr><td>اللي ينجمع</td><td>المعاوقات $\mathbf{Z}$</td><td>المسامحات $\mathbf{Y}$</td></tr>
+      <tr><td>المقسّم</td><td>$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</td><td>$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 04 المختبر ================= -->
+<section class="card" id="lab" data-num="04" data-nav="المختبر|Lab">
+  <h2>القراءات ما تنجمع، الفيزورات تنجمع</h2>
+  <p class="sub">مقاومة مع ملف أو مكثف، على التوالي أو التوازي، ومصدر $10\angle 0^\circ$ V</p>
+
+  <div class="kv-lab">
+    <h3>🎛️ غيّر التوصيل والقيم، وشوف KVL و KCL بعينك</h3>
+    <p class="lab-note">القيم: $L = 1.6\ \text{H}$ و $C = 25\ \text{mF}$. والبداية $R = 6\ \Omega$ و $\omega = 5$ rad/s، يعني معاوقة المكثف $-j8\ \Omega$.</p>
+    <div class="lab-controls">
+      <div class="field"><label>التوصيل</label><span class="seg"><button class="btn small primary" type="button" data-mode="S" aria-pressed="true">توالي</button><button class="btn small" type="button" data-mode="P" aria-pressed="false">توازي</button></span></div>
+      <div class="field"><label>العنصر مع R</label><span class="seg"><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small primary" type="button" data-el="C" aria-pressed="true">C</button></span></div>
+      <div class="field"><label>المقاومة R (Ω)</label><input type="range" dir="ltr" id="vR" min="1" max="20" step="1" value="6"><span class="rv" id="vRv"></span></div>
+      <div class="field"><label>التردد ω (rad/s)</label><input type="range" dir="ltr" id="vW" min="1" max="20" step="1" value="5"><span class="rv" id="vWv"></span></div>
+    </div>
+    <figure class="fig">
+      <svg id="vSvg" viewBox="0 0 600 260" role="img" aria-label="مخطط الفيزورات: سهم المقاومة وسهم الملف أو المكثف ينجمعون رأس بذيل ويوصلون لسهم المصدر، ومعه الدائرة">
+        <path class="ax" d="M40 130H380M60 245V15"/>
+        <text x="384" y="134">Re</text><text x="60" y="10" text-anchor="middle">Im</text>
+        <path class="ax" id="vRt"/>
+        <path class="sk z" id="vT" style="stroke-width:3"/>
+        <path class="sk x" id="vA" style="stroke-width:3"/>
+        <path class="sk y" id="vB" style="stroke-width:3"/>
+        <text class="lbl z" id="vTl" text-anchor="middle"></text>
+        <text class="lbl x" id="vAl" text-anchor="middle"></text>
+        <text class="lbl y" id="vBl" text-anchor="middle"></text>
+        <g id="vCirc">
+          <circle class="wire" cx="430" cy="130" r="16"/>
+          <path class="wire" d="M422 130q4 -7 8 0t8 0"/>
+          <g id="gS">
+            <path class="wire" d="M430 114V50H470M530 50H560V110M560 150V210H430V146"/>
+            <path class="elm" d="M470 50L475 42L485 58L495 42L505 58L515 42L525 58L530 50"/>
+            <g id="sL"><path class="elm" d="M560 110a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/></g>
+            <g id="sC"><path class="wire" d="M560 110V124M560 136V150"/><path class="elm" d="M546 124H574M546 136H574"/></g>
+            <text class="lbl" x="500" y="34" text-anchor="middle">R</text>
+            <text class="lbl" id="sLbl" x="580" y="135">C</text>
+          </g>
+          <g id="gP">
+            <path class="wire" d="M430 114V50H570V110M570 150V210H430V146M500 50V100M500 160V210"/>
+            <path class="elm" d="M500 100L492 105L508 115L492 125L508 135L492 145L508 155L500 160"/>
+            <g id="pL"><path class="elm" d="M570 110a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/></g>
+            <g id="pC"><path class="wire" d="M570 110V124M570 136V150"/><path class="elm" d="M556 124H584M556 136H584"/></g>
+            <circle class="dot" cx="500" cy="50" r="3"/><circle class="dot" cx="500" cy="210" r="3"/>
+            <text class="lbl" x="484" y="134" text-anchor="end">R</text>
+            <text class="lbl" id="pLbl" x="590" y="135">C</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>في التوالي نرسم الجهود، وفي التوازي نرسم التيارات. السهمين بينهم <span class="ltr">90°</span> دايماً، ولما تركبهم رأس بذيل يوصلون لسهم المصدر بالضبط: هذا هو KVL أو KCL. والرسم يغير مقاسه تلقائيًا عشان يبقى داخل الإطار.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k" id="kA"></span><span class="v" id="rA"></span></div>
+      <div><span class="k" id="kB"></span><span class="v" id="rB"></span></div>
+      <div><span class="k">مجموع القراءتين (السعات)</span><span class="v" id="rS"></span></div>
+      <div class="hl"><span class="k" id="kT"></span><span class="v" id="rT"></span></div>
+    </div>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> مع البداية، الفولتميتر على المقاومة يقرأ 6 وعلى المكثف 8، ومجموعهم 14، بس المصدر 10! غيّر $R$ و $\omega$ وشوف: مجموع القراءتين دايماً أكبر من المصدر، أما مجموع الفيزورات فيساويه بالضبط. وبعدها حوّل على التوازي وشوف نفس الشي مع التيارات.</div>
+</section>
+
+<!-- ================= 05 دلتا-واي ================= -->
+<section class="card" id="delta" data-num="05" data-nav="Δ-Y|Δ-Y">
+  <h2>تحويل دلتا-واي (Δ-Y)</h2>
+  <p class="sub">لما ما تلقى توالي ولا توازي</p>
+
+  <p>أحياناً ثلاث معاوقات مربوطة بين ثلاث عقد على شكل مثلث (دلتا Δ) أو على شكل نجمة (واي Y)، وما تقدر تجمعها توالي ولا توازي. الحل: تحوّل الشكل للثاني، بنفس قوانين دوائر DC بس بالمعاوقات.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 250" role="img" aria-label="شبكة Y من العقد a و b و c إلى المركز n بالمعاوقات Z1 و Z2 و Z3، وشبكة دلتا على أضلاع المثلث بالمعاوقات Za و Zb و Zc" style="max-width:380px">
+      <path class="wire" d="M60 40H300L180 225Z"/>
+      <path class="wire" d="M60 40L180 102M300 40L180 102M180 225V102"/>
+      <rect class="box" x="-20" y="-7" width="40" height="14" rx="2" transform="translate(180 40)"/>
+      <rect class="box" x="-20" y="-7" width="40" height="14" rx="2" transform="translate(120 132.5) rotate(57)"/>
+      <rect class="box" x="-20" y="-7" width="40" height="14" rx="2" transform="translate(240 132.5) rotate(-57)"/>
+      <rect class="box2" x="-18" y="-7" width="36" height="14" rx="2" transform="translate(120 71) rotate(27.3)"/>
+      <rect class="box2" x="-18" y="-7" width="36" height="14" rx="2" transform="translate(240 71) rotate(-27.3)"/>
+      <rect class="box2" x="-18" y="-7" width="36" height="14" rx="2" transform="translate(180 163.5) rotate(90)"/>
+      <circle class="dot" cx="60" cy="40" r="3.5"/><circle class="dot" cx="300" cy="40" r="3.5"/><circle class="dot" cx="180" cy="225" r="3.5"/><circle class="dot" cx="180" cy="102" r="3"/>
+      <text class="lbl" x="50" y="44" text-anchor="end">a</text><text class="lbl" x="310" y="44">b</text><text class="lbl" x="180" y="244" text-anchor="middle">c</text><text class="lbl" x="192" y="98">n</text>
+      <text class="lbl acc" x="180" y="25" text-anchor="middle">Z<tspan class="sb" dy="3">c</tspan></text>
+      <text class="lbl acc" x="98" y="152" text-anchor="end">Z<tspan class="sb" dy="3">b</tspan></text>
+      <text class="lbl acc" x="262" y="152">Z<tspan class="sb" dy="3">a</tspan></text>
+      <text class="lbl e1t" x="128" y="54" text-anchor="middle">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl e1t" x="232" y="54" text-anchor="middle">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl e1t" x="194" y="168">Z<tspan class="sb" dy="3">3</tspan></text>
+    </svg>
+    <figcaption>Figure 9.22: معاوقات الـ Y ($\mathbf{Z}_1, \mathbf{Z}_2, \mathbf{Z}_3$) من العقد للمركز $n$، ومعاوقات الـ Δ ($\mathbf{Z}_a, \mathbf{Z}_b, \mathbf{Z}_c$) على الأضلاع. كل ضلع في الـ Δ اسمه نفس حرف العقدة اللي تقابله.</figcaption>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">من Δ إلى Y (Eq. 9.68)</div>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_1 = \frac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c} \\[4pt] \mathbf{Z}_2 = \frac{\mathbf{Z}_c\mathbf{Z}_a}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c} \\[4pt] \mathbf{Z}_3 = \frac{\mathbf{Z}_a\mathbf{Z}_b}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}\end{gathered}\]</div>
+      <div class="t-desc">كل فرع في الـ Y = ضرب ضلعي الـ Δ اللي جنب عقدته ÷ مجموع الأضلاع الثلاثة. مثلاً $\mathbf{Z}_1$ عند العقدة $a$، والضلعين اللي جنب $a$ هم $\mathbf{Z}_b$ و $\mathbf{Z}_c$.</div></div>
+    <div class="tile"><div class="t-name">من Y إلى Δ (Eq. 9.67)</div>
+      <div class="m">\[\begin{gathered}N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1 \\[6pt] \mathbf{Z}_a = \frac{N}{\mathbf{Z}_1} \\[4pt] \mathbf{Z}_b = \frac{N}{\mathbf{Z}_2} \\[4pt] \mathbf{Z}_c = \frac{N}{\mathbf{Z}_3}\end{gathered}\]</div>
+      <div class="t-desc">$N$ نفس البسط للثلاثة. وكل ضلع في الـ Δ = $N$ ÷ فرع الـ Y اللي يقابله. مثلاً $\mathbf{Z}_a$ يقابل العقدة $a$، فنقسم على $\mathbf{Z}_1$.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 الشبكة المتزنة (Balanced):</strong> إذا الفروع الثلاثة متساوية، القوانين كلها تختصر لسطر واحد (Eq. 9.69): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ أو $\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$. والدلتا دايماً هي الأكبر.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>المعاوقة الداخلة لدائرة</h2></div>
+  <div class="tags"><span class="tag">Example 9.10</span><span class="tag">توالي · توازي</span></div>
+  <p>أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$ للدائرة، والتردد $\omega = 50$ rad/s:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 320 185" role="img" aria-label="مكثف 2 ملي فاراد على التوالي من طرف الدخل، بعده فرع رأسي فيه مقاومة 3 أوم ومكثف 10 ملي فاراد، وبعده ملف 0.2 هنري ثم مقاومة 8 أوم للأسفل" style="max-width:340px">
+      <circle class="term" cx="30" cy="40" r="4"/><circle class="term" cx="30" cy="160" r="4"/>
+      <path class="wire" d="M34 40H76M86 40H180M230 40H270V75M270 125V160H34M150 40V60M150 100V118M150 128V160"/>
+      <path class="elm" d="M76 28V52M86 28V52"/>
+      <path class="elm" d="M180 40a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0"/>
+      <path class="elm" d="M150 60L142 63L158 70L142 77L158 83L142 90L158 97L150 100"/>
+      <path class="elm" d="M138 118H162M138 128H162"/>
+      <path class="elm" d="M270 75L262 78L278 85L262 92L278 98L262 105L278 112L270 125"/>
+      <circle class="dot" cx="150" cy="40" r="3"/><circle class="dot" cx="150" cy="160" r="3"/>
+      <path class="sk e2" d="M40 100H66M59 95L66 100L59 105"/>
+      <text class="lbl" x="53" y="88" text-anchor="middle">Z<tspan class="sb" dy="3">in</tspan></text>
+      <text class="lbl" x="81" y="20" text-anchor="middle">2 mF</text>
+      <text class="lbl" x="205" y="22" text-anchor="middle">0.2 H</text>
+      <text class="lbl" x="164" y="84">3 Ω</text>
+      <text class="lbl" x="168" y="127">10 mF</text>
+      <text class="lbl" x="284" y="104">8 Ω</text>
+    </svg>
+    <figcaption>Figure 9.23: الدائرة اللي نبي معاوقتها من طرفي الدخل.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">نقسمها لثلاث معاوقات: $\mathbf{Z}_1$ المكثف 2&nbsp;mF، و $\mathbf{Z}_2$ المقاومة 3&nbsp;Ω مع المكثف 10&nbsp;mF (توالي)، و $\mathbf{Z}_3$ الملف 0.2&nbsp;H مع المقاومة 8&nbsp;Ω (توالي). الفرعين $\mathbf{Z}_2$ و $\mathbf{Z}_3$ على التوازي، والكل على التوالي مع $\mathbf{Z}_1$: يعني $\mathbf{Z}_{in} = \mathbf{Z}_1 + \mathbf{Z}_2 \parallel \mathbf{Z}_3$.</p>
+    </li>
+    <li class="step">
+      <h4>معاوقة كل جزء <span class="const">ω = 50</span></h4>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_1 = \frac{1}{j(50)(0.002)} = \frac{1}{j0.1} = -j10\ \Omega \\[4pt] \mathbf{Z}_2 = 3 + \frac{1}{j(50)(0.01)} = 3 - j2\ \Omega \\[4pt] \mathbf{Z}_3 = 8 + j(50)(0.2) = 8 + j10\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>التوازي: $\mathbf{Z}_2 \parallel \mathbf{Z}_3$ <span class="const">الضرب على الجمع</span></h4>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_2 \parallel \mathbf{Z}_3 = \frac{(3 - j2)(8 + j10)}{11 + j8} \\ = \frac{44 + j14}{11 + j8} \cdot \frac{11 - j8}{11 - j8} \\ = \frac{596 - j198}{185} = 3.22 - j1.07\ \Omega\end{gathered}\]</div>
+      <p class="why">ضربنا فوق وتحت في مرافق المقام $11 - j8$ عشان نتخلص من $j$ تحت، والمقام صار $11^2 + 8^2 = 185$.</p>
+    </li>
+    <li class="step">
+      <h4>اجمع مع $\mathbf{Z}_1$</h4>
+      <div class="m">\[\mathbf{Z}_{in} = -j10 + 3.22 - j1.07\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{Z}_{in} = \X{3.22} \Y{- j11.07}\ \Omega$</div>
+      <p class="sanity">الجزء التخيلي سالب، يعني الدائرة كلها سعوية عند $\omega = 50$. والمسيطر هو المكثف 2&nbsp;mF لوحده بـ $-j10$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مقسم الجهد في عالم الفيزورات</h2></div>
+  <div class="tags"><span class="tag">Example 9.11</span><span class="tag">توازي · مقسم جهد</span></div>
+  <p>أوجد $v_o(t)$ في الدائرة:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 320 200" role="img" aria-label="مصدر 20 cos(4t − 15°) مع مقاومة 60 أوم على التوالي، وبعدها مكثف 10 ملي فاراد وملف 5 هنري على التوازي، والجهد vo على الملف" style="max-width:340px">
+      <circle class="wire" cx="50" cy="100" r="17"/>
+      <text class="lbl" x="50" y="96" text-anchor="middle">+</text><text class="lbl" x="50" y="113" text-anchor="middle">−</text>
+      <path class="wire" d="M50 83V40H90M150 40H270V80M270 120V160H50V117M190 40V94M190 106V160"/>
+      <path class="elm" d="M90 40L95 32L105 48L115 32L125 48L135 32L145 48L150 40"/>
+      <path class="elm" d="M176 94H204M176 106H204"/>
+      <path class="elm" d="M270 80a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <circle class="dot" cx="190" cy="40" r="3"/><circle class="dot" cx="190" cy="160" r="3"/>
+      <text class="lbl" x="120" y="24" text-anchor="middle">60 Ω</text>
+      <text class="lbl" x="170" y="104" text-anchor="end">10 mF</text>
+      <text class="lbl" x="256" y="104" text-anchor="end">5 H</text>
+      <text class="lbl" x="296" y="76" text-anchor="middle">+</text><text class="lbl" x="296" y="104" text-anchor="middle">v<tspan class="sb" dy="3">o</tspan></text><text class="lbl" x="296" y="134" text-anchor="middle">−</text>
+      <text class="lbl" x="14" y="190">vs = 20 cos(4t − 15°)</text>
+    </svg>
+    <figcaption>Figure 9.25: مقاومة على التوالي مع ملف ومكثف على التوازي.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <p class="why">أول شي نحوّل الدائرة لعالم الفيزورات: المصدر يصير فيزور، والملف والمكثف يصيرون معاوقات. بعدها الملف والمكثف على التوازي نسميهم $\mathbf{Z}_2$، والمقاومة $\mathbf{Z}_1 = 60\ \Omega$ على التوالي معهم، و $v_o$ هو جهد $\mathbf{Z}_2$. يعني مقسم جهد.</p>
+    </li>
+    <li class="step">
+      <h4>التحويل للفيزورات <span class="const">ω = 4</span></h4>
+      <div class="m">\[\begin{gathered}v_s = 20\cos(4t - 15^\circ) \Rightarrow \mathbf{V}_s = 20\angle -15^\circ\ \text{V} \\[4pt] 10\ \text{mF} \Rightarrow \frac{1}{j(4)(0.01)} = -j25\ \Omega \\[4pt] 5\ \text{H} \Rightarrow j(4)(5) = j20\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>التوازي: $-j25 \parallel j20$</h4>
+      <div class="m">\[\mathbf{Z}_2 = \frac{(-j25)(j20)}{-j25 + j20} = \frac{500}{-j5} = j100\ \Omega\]</div>
+      <p class="why">لاحظ: $j100$ أكبر من الاثنين! لأن الملف والمكثف يلغون بعض في المقام ($-j25 + j20 = -j5$ صغير). في DC التوازي دايماً يصغّر، هنا لا.</p>
+    </li>
+    <li class="step">
+      <h4>مقسم الجهد</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_o = \frac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}_s = \frac{j100}{60 + j100}\,(20\angle -15^\circ) \\ = (0.8575\angle 30.96^\circ)(20\angle -15^\circ) \\ = \X{17.15}\angle\Z{15.96^\circ}\ \text{V}\end{gathered}\]</div>
+      <p class="why">في الضرب السعات تنضرب ($0.8575 \times 20$) والزوايا تنجمع ($30.96^\circ - 15^\circ$).</p>
+    </li>
+    <li class="step final">
+      <div class="result">$v_o(t) = 17.15\cos(4t + 15.96^\circ)\ \text{V}$</div>
+      <p class="sanity">السعة 17.15 أقل من 20، منطقي لأن جزء من جهد المصدر راح على المقاومة 60&nbsp;Ω ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>فك الدائرة بتحويل Δ إلى Y</h2></div>
+  <div class="tags"><span class="tag">Example 9.12</span><span class="tag">Δ-Y · توالي · توازي</span></div>
+  <p>أوجد التيار $\mathbf{I}$ في الدائرة:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 380 230" role="img" aria-label="مصدر 50 بزاوية صفر، مقاومة 12 أوم، ثم بين العقد a و b و c مثلث: j4 بين a و b، و 2 ناقص j4 بين a و c، و 8 بين b و c. ومن b مكثف سالب j3 للأسفل، ومن c ملف j6 ومقاومة 8 للأسفل" style="max-width:400px">
+      <circle class="wire" cx="80" cy="150" r="17"/>
+      <text class="lbl" x="80" y="146" text-anchor="middle">+</text><text class="lbl" x="80" y="163" text-anchor="middle">−</text>
+      <path class="wire" d="M80 133V100H105M145 100H190M230 100H270M310 100H340V115M340 155V162M340 198V215H80V167M175 100V45H195M235 45H262M272 45H340V100M255 100V150M255 160V215"/>
+      <path class="elm" d="M105 100L108 93L115 107L122 93L128 107L135 93L142 107L145 100"/>
+      <path class="elm" d="M190 100a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0"/>
+      <path class="elm" d="M270 100L273 93L280 107L287 93L293 107L300 93L307 107L310 100"/>
+      <path class="elm" d="M195 45L198 38L205 52L212 38L218 52L225 38L232 52L235 45"/>
+      <path class="elm" d="M262 33V57M272 33V57"/>
+      <path class="elm" d="M241 150H269M241 160H269"/>
+      <path class="elm" d="M340 115a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <path class="elm" d="M340 162L333 165L347 171L333 177L347 183L333 189L347 195L340 198"/>
+      <circle class="dot" cx="175" cy="100" r="3.5"/><circle class="dot" cx="255" cy="100" r="3.5"/><circle class="dot" cx="340" cy="100" r="3.5"/>
+      <path class="sk e2" d="M84 86H100M94 81L100 86L94 91"/>
+      <text class="lbl" x="91" y="76" text-anchor="middle">I</text>
+      <text class="lbl" x="58" y="154" text-anchor="end">50∠0°</text>
+      <text class="lbl" x="125" y="84" text-anchor="middle">12 Ω</text>
+      <text class="lbl" x="210" y="84" text-anchor="middle">j4 Ω</text>
+      <text class="lbl" x="290" y="84" text-anchor="middle">8 Ω</text>
+      <text class="lbl" x="215" y="29" text-anchor="middle">2 Ω</text>
+      <text class="lbl" x="267" y="25" text-anchor="middle">−j4 Ω</text>
+      <text class="lbl" x="237" y="159" text-anchor="end">−j3 Ω</text>
+      <text class="lbl" x="354" y="139">j6 Ω</text>
+      <text class="lbl" x="354" y="184">8 Ω</text>
+      <text class="lbl" x="170" y="118" text-anchor="end">a</text><text class="lbl" x="250" y="118" text-anchor="end">b</text><text class="lbl" x="350" y="104">c</text>
+    </svg>
+    <figcaption>Figure 9.28: بين العقد $a$ و $b$ و $c$ ثلاث معاوقات على شكل مثلث (Δ).</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">المقاومة 12&nbsp;Ω على التوالي مع المصدر، بس بعدها العقد $a$ و $b$ و $c$ مربوطة بمثلث: $j4$ بين $a$ و $b$، و $2 - j4$ بين $a$ و $c$، و $8$ بين $b$ و $c$. ما فيه توالي ولا توازي واضح، فنحوّل هذي الـ Δ إلى Y.</p>
+    </li>
+    <li class="step">
+      <h4>حوّل Δ إلى Y <span class="const">المجموع = 10</span></h4>
+      <p class="why">مجموع الأضلاع: $j4 + (2 - j4) + 8 = 10\ \Omega$. وكل فرع = ضرب الضلعين اللي عند عقدته ÷ 10:</p>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_{an} = \frac{j4\,(2 - j4)}{10} = 1.6 + j0.8\ \Omega \\[4pt] \mathbf{Z}_{bn} = \frac{j4\,(8)}{10} = j3.2\ \Omega \\[4pt] \mathbf{Z}_{cn} = \frac{8\,(2 - j4)}{10} = 1.6 - j3.2\ \Omega\end{gathered}\]</div>
+      <figure class="fig">
+        <svg viewBox="0 0 380 230" role="img" aria-label="نفس الدائرة بعد التحويل: من a المعاوقة Zan للمركز n، ومن n المعاوقة Zbn للعقدة b والمعاوقة Zcn للعقدة c" style="max-width:400px">
+          <circle class="wire" cx="80" cy="150" r="17"/>
+          <text class="lbl" x="80" y="146" text-anchor="middle">+</text><text class="lbl" x="80" y="163" text-anchor="middle">−</text>
+          <path class="wire" d="M80 133V100H105M145 100H175V45H190M230 45H270M310 45H340V115M340 155V162M340 198V215H80V167M250 45V62M250 102V150M250 160V215"/>
+          <path class="elm" d="M105 100L108 93L115 107L122 93L128 107L135 93L142 107L145 100"/>
+          <rect class="box2" x="190" y="38" width="40" height="14" rx="2"/>
+          <rect class="box2" x="270" y="38" width="40" height="14" rx="2"/>
+          <rect class="box2" x="243" y="62" width="14" height="40" rx="2"/>
+          <path class="elm" d="M236 150H264M236 160H264"/>
+          <path class="elm" d="M340 115a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+          <path class="elm" d="M340 162L333 165L347 171L333 177L347 183L333 189L347 195L340 198"/>
+          <circle class="dot" cx="175" cy="100" r="3.5"/><circle class="dot" cx="250" cy="45" r="3.5"/><circle class="dot" cx="250" cy="118" r="3.5"/><circle class="dot" cx="340" cy="100" r="3.5"/>
+          <text class="lbl" x="58" y="154" text-anchor="end">50∠0°</text>
+          <text class="lbl" x="125" y="84" text-anchor="middle">12 Ω</text>
+          <text class="lbl e1t" x="210" y="30" text-anchor="middle">Z<tspan class="sb" dy="3">an</tspan></text>
+          <text class="lbl e1t" x="290" y="30" text-anchor="middle">Z<tspan class="sb" dy="3">cn</tspan></text>
+          <text class="lbl e1t" x="264" y="86">Z<tspan class="sb" dy="3">bn</tspan></text>
+          <text class="lbl" x="250" y="30" text-anchor="middle">n</text>
+          <text class="lbl" x="232" y="159" text-anchor="end">−j3 Ω</text>
+          <text class="lbl" x="354" y="139">j6 Ω</text>
+          <text class="lbl" x="354" y="184">8 Ω</text>
+          <text class="lbl" x="170" y="118" text-anchor="end">a</text><text class="lbl" x="242" y="124" text-anchor="end">b</text><text class="lbl" x="350" y="104">c</text>
+        </svg>
+        <figcaption>Figure 9.29: بعد التحويل صار فيه توالي وتوازي واضح.</figcaption>
+      </figure>
+    </li>
+    <li class="step">
+      <h4>المعاوقة الكلية</h4>
+      <p class="why">من $n$ فيه فرعين للأرضي: الأول $\mathbf{Z}_{bn}$ ثم $-j3$ (توالي)، والثاني $\mathbf{Z}_{cn}$ ثم $8 + j6$ (توالي). والفرعين على التوازي، وقبلهم 12&nbsp;Ω و $\mathbf{Z}_{an}$ على التوالي:</p>
+      <div class="m">\[\begin{gathered}\mathbf{Z} = 12 + \mathbf{Z}_{an} + (\mathbf{Z}_{bn} - j3) \parallel (\mathbf{Z}_{cn} + 8 + j6) \\ = 13.6 + j0.8 + (j0.2) \parallel (9.6 + j2.8) \\ = 13.6 + j0.8 + \frac{j0.2\,(9.6 + j2.8)}{9.6 + j3} \\ = 13.6 + j1 = 13.64\angle 4.204^\circ\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>التيار: قانون أوم</h4>
+      <div class="m">\[\mathbf{I} = \frac{\mathbf{V}}{\mathbf{Z}} = \frac{50\angle 0^\circ}{13.64\angle 4.204^\circ}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{I} = \X{3.666}\angle\Z{-4.204^\circ}\ \text{A}$</div>
+      <p class="sanity">الزاوية صغيرة لأن المعاوقة الكلية تقريباً مقاومة بس ($13.6 + j1$) ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>$\mathbf{Z}_1 = 3 + j4$ و $\mathbf{Z}_2 = 5 - j10$ (بالأوم) على التوالي. كم سعة المكافئة $|\mathbf{Z}_{eq}|$ بالأوم؟</p>
+    <div class="check" data-answer="10"></div>
+    <details class="hint"><p>اجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي، وبعدها احسب السعة.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = 8 - j6$، و $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2} = 10\ \Omega$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>مقاومة وملف على التوالي. الفولتميتر يقرأ 12&nbsp;V على المقاومة و 5&nbsp;V على الملف (سعات). كم سعة جهد المصدر بالفولت؟</p>
+    <div class="check" data-answer="13"></div>
+    <details class="hint"><p>$\mathbf{V}_R$ و $\mathbf{V}_L$ بينهم <span class="ltr">90°</span>، فالمصدر مثل الوتر في مثلث قائم.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">$|\mathbf{V}_s| = \sqrt{12^2 + 5^2} = 13$ V</div><p class="sanity">مو 17! القراءات ما تنجمع مباشرة، الفيزورات هي اللي تنجمع.</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>مقاومة 4&nbsp;Ω على التوازي مع مكثف معاوقته $-j4\ \Omega$. كم الجزء التخيلي $X$ للمكافئة $\mathbf{Z}_{eq}$؟ (انتبه للإشارة)</p>
+    <div class="check" data-answer="-2"></div>
+    <details class="hint"><p>$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وبعدها اضرب فوق وتحت في مرافق المقام.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4} = \dfrac{-j16\,(4 + j4)}{32} = 2 - j2\ \Omega$، يعني $X = -2$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>مصدر $10\angle 0^\circ$ V على مقاومة 6&nbsp;Ω ومكثف $-j8\ \Omega$ على التوالي. كم سعة جهد المكثف $|\mathbf{V}_C|$ بالفولت؟</p>
+    <div class="check" data-answer="8"></div>
+    <details class="hint"><p>مقسم الجهد، وخذ السعات: $|\mathbf{V}_C| = \dfrac{|\mathbf{Z}_C|}{|\mathbf{Z}_R + \mathbf{Z}_C|}\,|\mathbf{V}|$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">$|\mathbf{V}_C| = \dfrac{8}{|6 - j8|} \times 10 = \dfrac{8}{10} \times 10 = 8$ V</div><p class="sanity">نفس بداية المختبر: 6 و 8 والمصدر 10 ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
+    <p>تيار $5\angle 0^\circ$ A يدخل على $\mathbf{Z}_1 = 3\ \Omega$ و $\mathbf{Z}_2 = j4\ \Omega$ على التوازي. كم سعة التيار في $\mathbf{Z}_1$، يعني $|\mathbf{I}_1|$ بالأمبير؟</p>
+    <div class="check" data-answer="4"></div>
+    <details class="hint"><p>مقسم التيار: فوق المعاوقة <b>الثانية</b>.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">$\mathbf{I}_1 = \dfrac{j4}{3 + j4}\,(5) = \dfrac{4\angle 90^\circ}{5\angle 53.13^\circ}\,(5) = 4\angle 36.87^\circ$ A</div><p class="sanity">$\mathbf{Z}_1$ أصغر من $\mathbf{Z}_2$، فتاخذ أكثر من نص التيار ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">تطبيق</span></div>
+    <p>شبكة دلتا فيها $\mathbf{Z}_a = 10$ و $\mathbf{Z}_b = j10$ و $\mathbf{Z}_c = -j10$ (بالأوم). حوّلها لواي: كم $|\mathbf{Z}_1|$ بالأوم؟</p>
+    <div class="check" data-answer="10"></div>
+    <details class="hint"><p>$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$، وانتبه: $j10 + (-j10) = 0$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="result">المجموع $= 10 + j10 - j10 = 10$، و $\mathbf{Z}_1 = \dfrac{(j10)(-j10)}{10} = \dfrac{100}{10} = 10\ \Omega$</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تجمع قراءات الفولتميتر مباشرة</div>
+    <div class="pair"><div class="no">$|\mathbf{V}_R| + |\mathbf{V}_C| = |\mathbf{V}_s|$، يعني $6 + 8 = 14$</div><div class="yes">الفيزورات هي اللي تنجمع: $|\mathbf{V}_s| = \sqrt{6^2 + 8^2} = 10$</div></div></div>
+  <div class="mk"><div class="mk-title">تعكس المعاوقة في مقسم التيار</div>
+    <div class="pair"><div class="no">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div><div class="yes">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$ (الثانية فوق)</div></div></div>
+  <div class="mk"><div class="mk-title">تجمع المعاوقات المتوازية</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</div><div class="yes">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، أو $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2$</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب إن التوازي دايماً يصغّر</div>
+    <div class="pair"><div class="no">$-j25 \parallel j20$ لازم أصغر من $j20$</div><div class="yes">$-j25 \parallel j20 = j100$، أكبر من الاثنين (مثال 2)</div></div></div>
+  <div class="mk"><div class="mk-title">تاخذ الضلعين الغلط في Δ إلى Y</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_a\mathbf{Z}_b}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</div><div class="yes">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$: الضلعين اللي جنب العقدة $a$</div></div></div>
+  <div class="mk"><div class="mk-title">تقلب نسبة الشبكة المتزنة</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_Y = 3\mathbf{Z}_\Delta$</div><div class="yes">$\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$: الدلتا هي الأكبر</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="1"><p>قانون KVL في عالم الفيزورات يقول:</p>
+      <button>مجموع فيزورات الجهد حول أي حلقة = صفر</button><button>مجموع سعات الجهد حول أي حلقة = صفر</button><button>مجموع فيزورات التيار حول أي حلقة = صفر</button><button>الجهد ثابت حول الحلقة</button>
+      <p class="q-why">الفيزورات تنجمع كأرقام مركبة. أما السعات (قراءات الفولتميتر) فما تحقق KVL.</p></div>
+    <div class="q" data-answer="2"><p>معاوقتين على التوازي، المكافئة $\mathbf{Z}_{eq}$ =</p>
+      <button>$\mathbf{Z}_1 + \mathbf{Z}_2$</button><button>$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</button><button>$\dfrac{\mathbf{Z}_1 + \mathbf{Z}_2}{\mathbf{Z}_1\mathbf{Z}_2}$</button><button>$\mathbf{Z}_1 - \mathbf{Z}_2$</button>
+      <p class="q-why">الضرب على الجمع، نفس المقاومات في DC.</p></div>
+    <div class="q" data-answer="2"><p>في مقسم التيار لمعاوقتين على التوازي، $\mathbf{I}_1$ =</p>
+      <button>$\dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</button><button>$\dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</button><button>$\mathbf{Z}_1\mathbf{Z}_2\,\mathbf{I}$</button><button>$\dfrac{\mathbf{I}}{2}$</button>
+      <p class="q-why">المعاوقة الثانية فوق، لأن التيار يروح أكثر للطريق الأسهل.</p></div>
+    <div class="q" data-answer="3"><p>مقاومة وملف على التوالي. الفولتميتر يقرأ 3&nbsp;V على المقاومة و 4&nbsp;V على الملف. سعة جهد المصدر:</p>
+      <button>7&nbsp;V</button><button>1&nbsp;V</button><button>5&nbsp;V</button><button>12&nbsp;V</button>
+      <p class="q-why">بينهم <span class="ltr">90°</span>، فالسعة $\sqrt{3^2 + 4^2} = 5$ V.</p></div>
+    <div class="q" data-answer="4"><p>المسامحات على التوازي:</p>
+      <button>تنضرب في بعض</button><button>نجمع مقلوباتها</button><button>ما تتغير</button><button>تنجمع مباشرة</button>
+      <p class="q-why">$\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، وهذا اللي يخلي المسامحة مريحة مع التوازي.</p></div>
+    <div class="q" data-answer="3"><p>دلتا متزنة كل ضلع فيها $\mathbf{Z}_\Delta = 6 + j9\ \Omega$. كل فرع في الواي المكافئة:</p>
+      <button>$18 + j27$</button><button>$6 + j9$</button><button>$2 + j3$</button><button>$3 + j4.5$</button>
+      <p class="q-why">$\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta = 2 + j3\ \Omega$.</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* مختبر KVL و KCL: مقاومة مع ملف أو مكثف، توالي أو توازي، ومصدر 10∠0° */
+(function () {
+  const $ = id => document.getElementById(id);
+  const L = 1.6, C = 0.025, VS = 10;
+  const OX = 60, OY = 130;                          // نقطة الأصل
+  const f = n => n.toFixed(1), r2 = n => +n.toFixed(2);
+  const deg = z => { const d = Math.atan2(z[1], z[0]) * 180 / Math.PI; return Math.abs(d) < 0.005 ? '0°' : `${d < 0 ? '−' : ''}${Math.abs(d).toFixed(2)}°`; };
+  const mag = z => Math.hypot(z[0], z[1]);
+  const put = (id, x, y) => { $(id).setAttribute('x', f(x)); $(id).setAttribute('y', f(y)); };
+  const name = (id, v, s) => { $(id).innerHTML = `${v}<tspan class="sb" dy="3">${s}</tspan>`; };
+  function arrow(x1, y1, x2, y2) {                  // خط برأس سهم
+    const a = Math.atan2(y2 - y1, x2 - x1), n = Math.hypot(x2 - x1, y2 - y1), h = Math.min(9, n * 0.6), wd = 0.45;
+    if (n < 2) return '';
+    return `M${f(x1)} ${f(y1)}L${f(x2)} ${f(y2)}M${f(x2 - h * Math.cos(a - wd))} ${f(y2 - h * Math.sin(a - wd))}L${f(x2)} ${f(y2)}L${f(x2 - h * Math.cos(a + wd))} ${f(y2 - h * Math.sin(a + wd))}`;
+  }
+  function tag(id, x1, y1, x2, y2, ox, oy) {        // اسم السهم في نص الضلع، بعيد عن النقطة (ox, oy)
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, n = Math.hypot(x2 - x1, y2 - y1) || 1;
+    let nx = -(y2 - y1) / n, ny = (x2 - x1) / n;
+    if (nx * (ox - mx) + ny * (oy - my) > 0) { nx = -nx; ny = -ny; }
+    put(id, mx + 15 * nx, my + 15 * ny + 4);
+  }
+  let mode = 'S', el = 'C';
+  function draw() {
+    const R = +$('vR').value, w = +$('vW').value;
+    const X = el === 'L' ? w * L : -1 / (w * C);   // مفاعلة الملف أو المكثف
+    $('vRv').textContent = R; $('vWv').textContent = w;
+    let A, B, S, u;                                  // A للمقاومة و B للعنصر، كأرقام مركبة [re, im]
+    if (mode === 'S') {
+      const m2 = R * R + X * X, I = [VS * R / m2, -VS * X / m2];   // I = V / (R + jX)
+      A = [R * I[0], R * I[1]];                     // V_R = R I
+      B = [-X * I[1], X * I[0]];                    // V_X = jX I
+      S = 22; u = 'V';
+    } else {
+      A = [VS / R, 0];                              // I_R = V / R
+      B = [0, -VS / X];                             // I_X = V / (jX)
+      S = Math.min(150, 300 / A[0], 105 / Math.abs(B[1])); u = 'A';
+    }
+    const T = [A[0] + B[0], A[1] + B[1]];           // المجموع = المصدر
+    const px = OX + A[0] * S, py = OY - A[1] * S, qx = OX + T[0] * S, qy = OY - T[1] * S;
+    $('vA').setAttribute('d', arrow(OX, OY, px, py));
+    $('vB').setAttribute('d', arrow(px, py, qx, qy));
+    $('vT').setAttribute('d', arrow(OX, OY, qx, qy));
+    const la = Math.hypot(px - OX, py - OY), lb = Math.hypot(qx - px, qy - py), k = 9;
+    if (la > 16 && lb > 16) {                       // علامة الزاوية القائمة بين السهمين
+      const ux = (OX - px) / la, uy = (OY - py) / la, vx = (qx - px) / lb, vy = (qy - py) / lb;
+      $('vRt').setAttribute('d', `M${f(px + k * ux)} ${f(py + k * uy)}L${f(px + k * ux + k * vx)} ${f(py + k * uy + k * vy)}L${f(px + k * vx)} ${f(py + k * vy)}`);
+    } else $('vRt').setAttribute('d', '');
+    const q = mode === 'S' ? 'V' : 'I';
+    name('vAl', q, 'R'); name('vBl', q, el); name('vTl', q, 's');
+    tag('vAl', OX, OY, px, py, qx, qy);
+    tag('vBl', px, py, qx, qy, OX, OY);
+    tag('vTl', OX, OY, qx, qy, px, py);
+    const what = mode === 'S' ? 'جهد' : 'تيار', who = el === 'L' ? 'الملف' : 'المكثف';
+    $('kA').innerHTML = `${what} المقاومة ${q}<sub>R</sub>`;
+    $('kB').innerHTML = `${what} ${who} ${q}<sub>${el}</sub>`;
+    $('kT').innerHTML = `مجموع الفيزورات = ${what} المصدر ${q}<sub>s</sub>`;
+    $('rA').textContent = `${r2(mag(A))} ∠ ${deg(A)} ${u}`;
+    $('rB').textContent = `${r2(mag(B))} ∠ ${deg(B)} ${u}`;
+    $('rS').textContent = `${r2(mag(A) + mag(B))} ${u}`;
+    $('rT').textContent = `${r2(mag(T))} ∠ ${deg(T)} ${u}`;
+    $('gS').style.display = mode === 'S' ? '' : 'none';
+    $('gP').style.display = mode === 'P' ? '' : 'none';
+    $('sL').style.display = $('pL').style.display = el === 'L' ? '' : 'none';
+    $('sC').style.display = $('pC').style.display = el === 'C' ? '' : 'none';
+    $('sLbl').textContent = $('pLbl').textContent = el;
+  }
+  const press = (sel, b) => document.querySelectorAll(`.kv-lab ${sel}`).forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
+  document.querySelectorAll('.kv-lab [data-mode]').forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; press('[data-mode]', b); draw(); }));
+  document.querySelectorAll('.kv-lab [data-el]').forEach(b => b.addEventListener('click', () => { el = b.dataset.el; press('[data-el]', b); draw(); }));
+  ['vR', 'vW'].forEach(id => $(id).addEventListener('input', draw));
+  draw();
+  const mq = matchMedia('(max-width: 560px)');     // على الجوال: الدائرة تنزل تحت المخطط عشان الرسم يكبر
+  const fit = () => {
+    $('vSvg').setAttribute('viewBox', mq.matches ? '30 0 380 460' : '0 0 600 260');
+    if (mq.matches) $('vCirc').setAttribute('transform', 'translate(-282 241)'); else $('vCirc').removeAttribute('transform');
+  };
+  mq.addEventListener('change', fit); fit();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

@@ -4,7 +4,8 @@ const lectures = [
   { name: "المحاضرة 1 · الإشارات الجيبية", url: "lecture1.html" },
   { name: "المحاضرة 2 · الفيزورات", url: "lecture2.html" },
   { name: "المحاضرة 3 · علاقات R و L و C", url: "lecture3.html" },
-  { name: "المحاضرة 4 · المعاوقة والمسامحة", url: "lecture4.html" }
+  { name: "المحاضرة 4 · المعاوقة والمسامحة", url: "lecture4.html" },
+  { name: "المحاضرة 5 · كيرشوف وتوصيل المعاوقات", url: "lecture5.html" }
 ];
 
 function renderNavigation() {
