@@ -5,78 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ملخصات المحاضرات</title>
 <meta name="description" content="ملخصات محاضرات المتجهات والكهرومغناطيسية والدوائر وأخلاقيات المهنة، والمرصد.">
+<meta name="theme-color" content="#05060a">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css">
-<script src="site.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/thick-naskh-swash.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="home.css">
+<script type="importmap">{ "imports": { "three": "./lib/three/three.module.min.js" } }</script>
+<script type="module" src="home.js"></script>
 </head>
 <body>
-<header class="top"><div class="col">
-  <div class="bar">
-    <a class="brand" href="./">ملخصات المحاضرات</a>
-    <div class="ctrls"><button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">☾</button></div>
-  </div>
-  <nav class="tabs" aria-label="المواد"><a class="tab on" href="./" aria-current="page">الرئيسية</a><a class="tab" href="https://zed12g6t.github.io/marsad/">المرصد</a><a class="tab" href="vectors/">المتجهات</a><a class="tab" href="electromagnetism/">الكهرومغناطيسية</a><a class="tab" href="circuits2/">الدوائر 2</a><a class="tab" href="ethics/">أخلاقيات المهنة</a></nav>
-</div></header>
-<main class="col">
-  <div class="eyebrow">Lecture Notes</div>
-  <h1>ملخصات المحاضرات</h1>
-  <p class="lead">كل المواد في مكان واحد. اختر المادة وافتح ملخص أي محاضرة، أو روح للمرصد.</p>
-  <div class="chips"><span class="chip">Vector Calculus</span><span class="chip">Electromagnetism II</span><span class="chip">Circuits II</span><span class="chip">Professional Ethics</span></div>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
 
-  <a class="obs" href="https://zed12g6t.github.io/marsad/">
-    <div>
-      <div class="eyebrow">Observatory</div>
-      <h2>المرصد</h2>
-      <p>إحدى عشرة تجربة علمية ثلاثية الأبعاد تشتغل في المتصفح، من ذرة الهيدروجين إلى تصادم مجرتين. كلها معادلات تقدر تغيّرها بيدك.</p>
-      <span class="go">افتح المرصد ←</span>
+<header class="top">
+  <a class="brand" href="./">ملخصات المحاضرات</a>
+  <nav class="links" aria-label="روابط">
+    <a href="#subjects">المواد</a>
+    <a href="https://zed12g6t.github.io/marsad/">المرصد</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" data-cam="0">
+    <div class="pill-count">
+      <span class="dots"><i>∇</i><i>Φ</i><i>Ω</i><i>⚖</i></span>
+      4 مواد · 18 محاضرة · 11 تجربة في المرصد
     </div>
-    <div class="thumbs"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/atom.jpg" alt="ذرة الهيدروجين" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/chladni.jpg" alt="لوحة كلادني" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/black-hole.jpg" alt="الثقب الأسود" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/galaxies.jpg" alt="تصادم مجرتين" loading="lazy" width="64" height="64"></div>
-  </a>
+    <h1>ملخصات <em>المحاضرات</em></h1>
+    <p class="lead">كل المواد في مكان واحد. اختر المادة وافتح ملخص أي محاضرة، أو روح للمرصد وجرّب المعادلات بيدك.</p>
+    <a class="cta" href="#subjects"><span>اختر مادتك وابدأ المذاكرة</span><b>تصفح المواد</b></a>
+  </section>
 
-  <div class="sec-h"><span class="num">01</span><h2>المواد</h2></div>
-  <div class="subjects">
-    <div class="subj">
-      <div class="board">∬ f dA = ∬ f |J| du dv</div>
-      <div class="s-body">
+  <section class="subjects-sec" id="subjects" data-cam="1">
+    <p class="kicker">Lecture Notes</p>
+    <h2 class="big">المواد</h2>
+    <div class="subjects">
+      <article class="subj">
+        <a class="tile" href="vectors/" aria-label="المتجهات">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38 L36 12 M36 12 h-11 M36 12 v11"/><path d="M10 38 L40 34 M40 34 l-7 -4 M40 34 l-6 5" opacity=".55"/><circle cx="10" cy="38" r="2.4"/></svg>
+        </a>
         <div class="s-meta"><span class="code">Vector Calculus</span><span class="count">8 محاضرات · تمرين</span></div>
-        <h3>المتجهات</h3>
-        <div class="latest">آخر محاضرة: <b>تغيير المتغيرات في التكاملات المتعددة</b></div>
+        <h3><a href="vectors/">المتجهات</a></h3>
+        <p class="formula">∬ f dA = ∬ f |J| du dv</p>
+        <p class="latest">آخر محاضرة: <b>تغيير المتغيرات في التكاملات المتعددة</b></p>
         <div class="lects"><a href="vectors/lecture1.html" aria-label="المحاضرة 1">1</a><a href="vectors/lecture2.html" aria-label="المحاضرة 2">2</a><a href="vectors/lecture3.html" aria-label="المحاضرة 3">3</a><a href="vectors/lecture4.html" aria-label="المحاضرة 4">4</a><a href="vectors/lecture5.html" aria-label="المحاضرة 5">5</a><a href="vectors/lecture6.html" aria-label="المحاضرة 6">6</a><a href="vectors/lecture7.html" aria-label="المحاضرة 7">7</a><a class="new" href="vectors/lecture8.html" aria-label="المحاضرة 8">8</a></div>
         <a class="open" href="vectors/">افتح المادة ←</a>
-      </div>
-    </div>
-    <div class="subj">
-      <div class="board">V<sub>emf</sub>&nbsp;= −dΨ / dt</div>
-      <div class="s-body">
+      </article>
+      <article class="subj">
+        <a class="tile" href="electromagnetism/" aria-label="الكهرومغناطيسية">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="4"/><ellipse cx="24" cy="24" rx="17" ry="7"/><ellipse cx="24" cy="24" rx="17" ry="7" transform="rotate(60 24 24)"/><ellipse cx="24" cy="24" rx="17" ry="7" transform="rotate(-60 24 24)"/></svg>
+        </a>
         <div class="s-meta"><span class="code">Electromagnetism II</span><span class="count">3 محاضرات</span></div>
-        <h3>الكهرومغناطيسية (2)</h3>
-        <div class="latest">آخر محاضرة: <b>قانون فاراداي والجهد المستحث</b></div>
+        <h3><a href="electromagnetism/">الكهرومغناطيسية (2)</a></h3>
+        <p class="formula">V<sub>emf</sub> = −dΨ / dt</p>
+        <p class="latest">آخر محاضرة: <b>قانون فاراداي والجهد المستحث</b></p>
         <div class="lects"><a href="electromagnetism/lecture1.html" aria-label="المحاضرة 1">1</a><a href="electromagnetism/lecture2.html" aria-label="المحاضرة 2">2</a><a class="new" href="electromagnetism/lecture3.html" aria-label="المحاضرة 3">3</a></div>
         <a class="open" href="electromagnetism/">افتح المادة ←</a>
-      </div>
-    </div>
-    <div class="subj">
-      <div class="board">Z = R + jX</div>
-      <div class="s-body">
+      </article>
+      <article class="subj">
+        <a class="tile" href="circuits2/" aria-label="الدوائر 2">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24 C 11 10, 16 10, 20 24 S 29 38, 34 24 S 40 12, 42 18"/><path d="M6 36 h8 l2 -4 l3 8 l3 -8 l3 8 l3 -8 l2 4 h10" opacity=".55"/></svg>
+        </a>
         <div class="s-meta"><span class="code">Circuits II</span><span class="count">4 محاضرات من 11</span></div>
-        <h3>الدوائر 2</h3>
-        <div class="latest">آخر محاضرة: <b>المعاوقة والمسامحة</b></div>
+        <h3><a href="circuits2/">الدوائر 2</a></h3>
+        <p class="formula">Z = R + jX</p>
+        <p class="latest">آخر محاضرة: <b>المعاوقة والمسامحة</b></p>
         <div class="lects"><a href="circuits2/lecture1.html" aria-label="المحاضرة 1">1</a><a href="circuits2/lecture2.html" aria-label="المحاضرة 2">2</a><a href="circuits2/lecture3.html" aria-label="المحاضرة 3">3</a><a class="new" href="circuits2/lecture4.html" aria-label="المحاضرة 4">4</a></div>
         <a class="open" href="circuits2/">افتح المادة ←</a>
-      </div>
-    </div>
-    <div class="subj">
-      <div class="board word">قانوني؟ ولا أخلاقي؟</div>
-      <div class="s-body">
+      </article>
+      <article class="subj">
+        <a class="tile" href="ethics/" aria-label="أخلاقيات المهنة">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8 v32 M14 40 h20 M10 15 h28"/><path d="M10 15 l-5 12 h10 z M38 15 l-5 12 h10 z"/><circle cx="24" cy="8" r="2"/></svg>
+        </a>
         <div class="s-meta"><span class="code">Professional Ethics</span><span class="count">3 محاضرات</span></div>
-        <h3>أخلاقيات المهنة</h3>
-        <div class="latest">ابدأ بالمحاضرة 3: <b>ميثاق المهندس السعودي</b></div>
+        <h3><a href="ethics/">أخلاقيات المهنة</a></h3>
+        <p class="formula word">قانوني؟ ولا أخلاقي؟</p>
+        <p class="latest">ابدأ بالمحاضرة 3: <b>ميثاق المهندس السعودي</b></p>
         <div class="lects"><a href="ethics/lecture1.html" aria-label="المحاضرة 1">1</a><a href="ethics/lecture2.html" aria-label="المحاضرة 2">2</a><a class="new" href="ethics/lecture3.html" aria-label="المحاضرة 3">3</a></div>
         <a class="open" href="ethics/">افتح المادة ←</a>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
+
+  <section class="obs-sec" data-cam="2" data-anchor="end">
+    <div class="obs">
+      <p class="kicker">Observatory</p>
+      <h2 class="big">المرصد</h2>
+      <p>إحدى عشرة تجربة علمية ثلاثية الأبعاد تشتغل في المتصفح، من ذرة الهيدروجين إلى تصادم مجرتين. كلها معادلات تقدر تغيّرها بيدك.</p>
+      <div class="thumbs"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/atom.jpg" alt="ذرة الهيدروجين" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/chladni.jpg" alt="لوحة كلادني" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/black-hole.jpg" alt="الثقب الأسود" loading="lazy" width="64" height="64"><img src="https://zed12g6t.github.io/marsad/assets/thumbs/galaxies.jpg" alt="تصادم مجرتين" loading="lazy" width="64" height="64"></div>
+      <a class="cta small" href="https://zed12g6t.github.io/marsad/"><b>افتح المرصد ←</b></a>
+    </div>
+  </section>
+
+  <section class="outro" data-cam="3">
+    <div class="outro-in">
+      <p class="reveal">مكان واحد يجمع محاضراتك، مختصرة ومرتبة، عشان تذاكر بفهم مو بحفظ.</p>
+      <p class="reveal sub">من المتجهات إلى ميثاق المهندس، كل ملخص مكتوب عشان تفهم الفكرة قبل المعادلة.</p>
+    </div>
+  </section>
 </main>
+
+<footer class="foot">ملخصات المحاضرات · <a href="#subjects">المواد</a> · <a href="https://zed12g6t.github.io/marsad/">المرصد</a></footer>
 </body>
 </html>
