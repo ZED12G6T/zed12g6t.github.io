@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 6 - Nodal & Mesh Analysis (AC)" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 6 - تحليل العقد والحلقات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر وحاسبة كرامر: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .box { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+  .fig .bound { stroke: var(--e1); stroke-width: 1.6; stroke-dasharray: 6 4; fill: color-mix(in srgb, var(--e1) 7%, transparent); }
+  .fig .dot { fill: var(--ink-2); }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.e1t { fill: var(--e1); }
+  .fig text.lbl.e2t { fill: var(--e2); }
+  .fig text.lbl.x, .fig text.lbl.y { fill: var(--c); }
+  .cr-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .cr-lab .seg { display: flex; gap: 6px; }
+  .cr-mat { direction: ltr; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px 6px; align-items: center; max-width: 560px; margin: 4px auto 0; }
+  .cr-mat input { font: 600 .92rem var(--f-mono); width: 100%; min-width: 0; height: 38px; padding: 0 8px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); text-align: center; }
+  .cr-mat input:focus { border-color: var(--accent); outline: none; }
+  .cr-mat input.bad { border-color: var(--bad); background: var(--bad-soft); }
+  .cr-mat .op { font: 600 .9rem var(--f-mono); color: var(--ink-2); white-space: nowrap; }
+  .cr-msg { min-height: 1.5em; margin: 8px 0 0; font-size: .86rem; color: var(--bad); text-align: center; }
+  .cr-lab .ml-read .pol { display: block; font-size: .8rem; font-weight: 500; color: var(--ink-3); }
+  .cr-lab .cr-sol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 560px) { .cr-mat { gap: 6px 4px; } .cr-mat input { font-size: .8rem; padding: 0 3px; } .cr-mat .op { font-size: .8rem; } .cr-lab .cr-sol { grid-template-columns: 1fr; } }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 6 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 10.2–10.3</span></p>
+  <h1><span>تحليل العقد والحلقات</span> <span class="h1-math ltr">$\mathbf{V}_1 = \dfrac{\Delta_1}{\Delta}$</span></h1>
+  <p class="lead">في المحاضرة 5 شفنا إن قانوني كيرشوف صحيحين للفيزورات. يعني أقوى طريقتين تعلمتهم في دوائر DC ترجع تشتغل هنا بنفس الخطوات: تحليل العقد (Nodal analysis) المبني على KCL، وتحليل الحلقات (Mesh analysis) المبني على KVL. الفرق الوحيد إننا نحول الدائرة لمجال التردد أول، فتطلع المعادلات بأرقام مركبة، ونحلها بقاعدة كرامر (Cramer's rule).</p>
+  <div class="xyz-bar">
+    <span class="x">المجهول الأول ($\mathbf{V}_1$ أو $\mathbf{I}_1$)</span><span class="y">المجهول الثاني</span><span class="z">المحددات $\Delta$</span>
+    <small>← نفس الألوان في الأمثلة والحاسبة</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>تحليل العقد: KCL عند كل عقدة، والمجاهيل جهود العقد. التيار من العقدة $a$ للعقدة $b$ عبر $\mathbf{Z}$ هو $\dfrac{\mathbf{V}_a - \mathbf{V}_b}{\mathbf{Z}}$. ولو بين عقدتين مصدر جهد: عقدة فائقة (Supernode).</li>
+      <li>تحليل الحلقات: KVL حول كل حلقة، والمجاهيل تيارات الحلقات (كلها مع عقارب الساعة). الفرع المشترك جهده $\mathbf{Z}(\mathbf{I}_1 - \mathbf{I}_2)$. ولو بين حلقتين مصدر تيار: حلقة فائقة (Supermesh).</li>
+      <li>الحل بكرامر: $\Delta$ ثم $\Delta_1$ و $\Delta_2$، والمجهول $= \Delta_k / \Delta$. نفس DC بالضبط، بس الحساب بأرقام مركبة.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 تحليل العقد ================= -->
+<section class="card" id="nodal" data-num="01" data-nav="العقد|Nodal">
+  <h2>تحليل العقد (Nodal analysis)</h2>
+  <p class="sub">KCL عند كل عقدة، والمجاهيل جهود العقد</p>
+
+  <p>الفكرة: نختار عقدة وحدة تكون المرجع (Reference) وجهدها صفر، وغالباً تكون اللي تحت وعليها رمز الأرضي. وباقي العقد نسمي جهودها $\mathbf{V}_1, \mathbf{V}_2, \dots$ بالنسبة للمرجع. وبعدها نكتب KCL عند كل عقدة، فتطلع معادلة لكل مجهول. الخطوات:</p>
+  <ol class="recipe">
+    <li><b>حوّل لمجال التردد:</b> كل مصدر يصير فيزور، وكل عنصر يصير معاوقة: المقاومة $R$، والملف $j\omega L$، والمكثف $\dfrac{1}{j\omega C}$.</li>
+    <li><b>اختر المرجع وسمّ العقد:</b> ولو فيه مصدر جهد بين عقدة والمرجع، جهد هالعقدة معروف ومو مجهول.</li>
+    <li><b>KCL عند كل عقدة:</b> التيار الطالع من العقدة $a$ للعقدة $b$ عبر معاوقة $\mathbf{Z}$ هو $\dfrac{\mathbf{V}_a - \mathbf{V}_b}{\mathbf{Z}}$، ولو الطرف الثاني هو المرجع يصير $\dfrac{\mathbf{V}_a}{\mathbf{Z}}$.</li>
+    <li><b>المصادر التابعة:</b> لو فيه مصدر يعتمد على تيار أو جهد (مثل $2\mathbf{I}_x$)، اكتب هالتيار أو الجهد بدلالة جهود العقد.</li>
+    <li><b>حل المعادلات:</b> معادلتين بمجهولين؟ كرامر (القسم 05). وبعدها ارجع للزمن لو المطلوب دالة زمنية.</li>
+  </ol>
+  <figure class="fig">
+    <svg viewBox="0 0 340 200" role="img" aria-label="مصدر تيار يدخل العقدة V1، ومنها المعاوقة Z1 للمرجع، و Z2 بين العقدتين V1 و V2، و Z3 من V2 للمرجع" style="max-width:360px">
+      <circle class="wire" cx="45" cy="110" r="16"/>
+      <path class="wire" d="M45 119V101M40 107L45 101L50 107"/>
+      <path class="wire" d="M45 94V45H175M235 45H270V80M270 140V170H45V126M140 45V80M140 140V170"/>
+      <rect class="box" x="130" y="80" width="20" height="60" rx="2"/>
+      <rect class="box" x="175" y="35" width="60" height="20" rx="2"/>
+      <rect class="box" x="260" y="80" width="20" height="60" rx="2"/>
+      <circle class="dot" cx="140" cy="45" r="3"/>
+      <circle class="dot" cx="270" cy="45" r="3"/>
+      <path class="wire" d="M205 170V178M196 178H214M199 182H211M202 186H208"/>
+      <text class="lbl" x="140" y="31" text-anchor="middle">V<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="270" y="31" text-anchor="middle">V<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="158" y="114">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="205" y="25" text-anchor="middle">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="288" y="114">Z<tspan class="sb" dy="3">3</tspan></text>
+      <text class="lbl" x="14" y="114">I<tspan class="sb" dy="3">s</tspan></text>
+    </svg>
+    <figcaption>دائرة فيها عقدتين غير المرجع، فالمجاهيل $\mathbf{V}_1$ و $\mathbf{V}_2$. والمرجع هو السلك اللي تحت.</figcaption>
+  </figure>
+  <p>عند العقدة 1 مصدر التيار داخل، وفيه تيارين طالعين: واحد في $\mathbf{Z}_1$ للمرجع، وواحد في $\mathbf{Z}_2$ للعقدة 2. وعند العقدة 2 كل اللي جاي من $\mathbf{Z}_2$ يطلع في $\mathbf{Z}_3$:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">KCL عند العقدة 1</div><div class="t-math">$\mathbf{I}_s = \dfrac{\mathbf{V}_1}{\mathbf{Z}_1} + \dfrac{\mathbf{V}_1 - \mathbf{V}_2}{\mathbf{Z}_2}$</div><div class="t-desc">الداخل يساوي الطالع.</div></div>
+    <div class="tile"><div class="t-name">KCL عند العقدة 2</div><div class="t-math">$\dfrac{\mathbf{V}_1 - \mathbf{V}_2}{\mathbf{Z}_2} = \dfrac{\mathbf{V}_2}{\mathbf{Z}_3}$</div><div class="t-desc">نفس تيار $\mathbf{Z}_2$، بس هنا هو الداخل.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 كم معادلة؟</strong> دائرة فيها $n$ عقد تحتاج $n - 1$ معادلة، يعني كل العقد ما عدا المرجع. وكل عقدة جهدها معروف (مصدر جهد بينها وبين المرجع) تنقص معادلة.</div>
+</section>
+
+<!-- ================= 02 العقدة الفائقة ================= -->
+<section class="card" id="supernode" data-num="02" data-nav="العقدة الفائقة|Supernode">
+  <h2>العقدة الفائقة (Supernode)</h2>
+  <p class="sub">لما يكون فيه مصدر جهد بين عقدتين</p>
+
+  <p>المشكلة: لو بين عقدتين مصدر جهد (ولا وحدة منهم المرجع)، التيار اللي يمر في المصدر مجهول، والمصدر ما له معاوقة نقسم عليها. فما نقدر نكتب KCL عند كل عقدة لوحدها. الحل: نعتبر العقدتين مع المصدر عقدة وحدة كبيرة اسمها العقدة الفائقة، ونكتب لها معادلتين:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 340 205" role="img" aria-label="مصدر جهد Vs بين العقدتين V1 و V2، وحولهم حدود متقطعة اسمها العقدة الفائقة. مصدر تيار Is يدخل V1، و Z1 من V1 للمرجع، و Z2 من V2 للمرجع" style="max-width:360px">
+      <ellipse class="bound" cx="190" cy="60" rx="100" ry="40"/>
+      <circle class="wire" cx="45" cy="120" r="16"/>
+      <path class="wire" d="M45 129V111M40 117L45 111L50 117"/>
+      <path class="wire" d="M45 104V60H175M205 60H260V95M260 145V180H45V136M120 60V95M120 145V180"/>
+      <circle class="wire" cx="190" cy="60" r="15"/>
+      <text class="lbl" x="183" y="64" text-anchor="middle">+</text>
+      <text class="lbl" x="197" y="64" text-anchor="middle">−</text>
+      <rect class="box" x="110" y="95" width="20" height="50" rx="2"/>
+      <rect class="box" x="250" y="95" width="20" height="50" rx="2"/>
+      <circle class="dot" cx="120" cy="60" r="3"/>
+      <circle class="dot" cx="260" cy="60" r="3"/>
+      <path class="wire" d="M190 180V188M181 188H199M184 192H196M187 196H193"/>
+      <text class="lbl" x="128" y="50">V<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="252" y="50" text-anchor="end">V<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="190" y="38" text-anchor="middle">V<tspan class="sb" dy="3">s</tspan></text>
+      <text class="lbl e1t" x="190" y="132" text-anchor="middle">supernode</text>
+      <text class="lbl" x="138" y="124">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="278" y="124">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="14" y="124">I<tspan class="sb" dy="3">s</tspan></text>
+    </svg>
+    <figcaption>العقدتين مع مصدر الجهد صاروا عقدة وحدة كبيرة (الحدود المتقطعة). والتيارات اللي تقطع الحدود ثلاثة بس.</figcaption>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">KCL حول العقدة الفائقة</div><div class="t-math">$\mathbf{I}_s = \dfrac{\mathbf{V}_1}{\mathbf{Z}_1} + \dfrac{\mathbf{V}_2}{\mathbf{Z}_2}$</div><div class="t-desc">اجمع بس التيارات اللي تقطع الحدود المتقطعة.</div></div>
+    <div class="tile"><div class="t-name">معادلة القيد (Constraint)</div><div class="t-math">$\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_s$</div><div class="t-desc">المصدر يحدد الفرق بين العقدتين، والموجب عند $\mathbf{V}_1$.</div></div>
+  </div>
+  <p>معادلتين ومجهولين، والحل جاهز. وتيار المصدر نفسه ما احتجناه أبداً.</p>
+  <div class="callout warn"><strong>⚠️ اللي داخل العقدة الفائقة يطلع من المعادلة:</strong> لو فيه عنصر على التوازي مع مصدر الجهد، تياره يطلع من عقدة ويدخل الثانية بدون ما يقطع الحدود. فما يدخل في KCL أبداً، مثل المقاومة 4&nbsp;Ω في مثال 2.</div>
+</section>
+
+<!-- ================= 03 تحليل الحلقات ================= -->
+<section class="card" id="mesh" data-num="03" data-nav="الحلقات|Mesh">
+  <h2>تحليل الحلقات (Mesh analysis)</h2>
+  <p class="sub">KVL حول كل حلقة، والمجاهيل تيارات الحلقات</p>
+
+  <p>الحلقة (Mesh) مسار مقفل ما بداخله أي مسار ثاني، مثل فتحات الشباك. نعطي كل حلقة تيار خاص فيها، وهذي التيارات هي المجاهيل. وانتبه: هالطريقة تشتغل بس مع الدوائر المستوية (Planar)، يعني اللي تنرسم على ورقة بدون ما تتقاطع أسلاكها. الخطوات:</p>
+  <ol class="recipe">
+    <li><b>حوّل لمجال التردد:</b> نفس تحليل العقد.</li>
+    <li><b>تيار لكل حلقة:</b> $\mathbf{I}_1, \mathbf{I}_2, \dots$ وكلهم مع عقارب الساعة (Clockwise)، عشان الإشارات تمشي على نظام واحد.</li>
+    <li><b>KVL حول كل حلقة:</b> امشِ مع تيار الحلقة. المعاوقة اللي تخص الحلقة لحالها جهدها $\mathbf{Z}\mathbf{I}_1$، والمعاوقة المشتركة مع حلقة ثانية جهدها $\mathbf{Z}(\mathbf{I}_1 - \mathbf{I}_2)$، يعني تيار حلقتك ناقص تيار الجارة.</li>
+    <li><b>مصدر تيار على طرف حلقة لحالها:</b> يعطيك تيارها مباشرة. ولو سهمه عكس اتجاه الحلقة، تصير القيمة سالبة.</li>
+    <li><b>حل المعادلات:</b> كرامر (القسم 05).</li>
+  </ol>
+  <figure class="fig">
+    <svg viewBox="0 0 340 195" role="img" aria-label="حلقتين: الحلقة 1 فيها مصدر Vs و Z1، والحلقة 2 فيها Z2، و Z3 مشتركة بينهم. تيار I1 و I2 مع عقارب الساعة" style="max-width:360px">
+      <path class="wire" d="M50 84V35H85M145 35H300V70M300 130V165H50V116M180 35V70M180 130V165"/>
+      <circle class="wire" cx="50" cy="100" r="16"/>
+      <text class="lbl" x="50" y="97" text-anchor="middle">+</text>
+      <text class="lbl" x="50" y="112" text-anchor="middle">−</text>
+      <rect class="box" x="85" y="25" width="60" height="20" rx="2"/>
+      <rect class="box" x="170" y="70" width="20" height="60" rx="2"/>
+      <rect class="box" x="290" y="70" width="20" height="60" rx="2"/>
+      <circle class="dot" cx="180" cy="35" r="3"/>
+      <circle class="dot" cx="180" cy="165" r="3"/>
+      <path class="sk e2" d="M105.8 109.2A13 13 0 1 1 124.2 109.2M130.9 107.1L124.2 109.2L126.2 102.5"/>
+      <text class="lbl e2t" x="115" y="104" text-anchor="middle">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M230.8 109.2A13 13 0 1 1 249.2 109.2M255.9 107.1L249.2 109.2L251.2 102.5"/>
+      <text class="lbl e2t" x="240" y="104" text-anchor="middle">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="28" y="104" text-anchor="end">V<tspan class="sb" dy="3">s</tspan></text>
+      <text class="lbl" x="115" y="18" text-anchor="middle">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="198" y="104">Z<tspan class="sb" dy="3">3</tspan></text>
+      <text class="lbl" x="318" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
+    </svg>
+    <figcaption>حلقتين وتيارين مع عقارب الساعة، والمعاوقة $\mathbf{Z}_3$ مشتركة بينهم.</figcaption>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">KVL للحلقة 1</div><div class="t-math">$\mathbf{V}_s = \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_3(\mathbf{I}_1 - \mathbf{I}_2)$</div><div class="t-desc">المصدر يرفع الجهد، والمعاوقات تنزّله.</div></div>
+    <div class="tile"><div class="t-name">KVL للحلقة 2</div><div class="t-math">$0 = \mathbf{Z}_3(\mathbf{I}_2 - \mathbf{I}_1) + \mathbf{Z}_2\mathbf{I}_2$</div><div class="t-desc">من جهة الحلقة 2 ينعكس الطرح: $\mathbf{I}_2 - \mathbf{I}_1$.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 التيار الحقيقي في كل فرع:</strong> في الفرع اللي يخص حلقة وحدة، هو تيار الحلقة نفسه. وفي الفرع المشترك، هو الفرق بين التيارين، يعني في $\mathbf{Z}_3$ نازل $\mathbf{I}_1 - \mathbf{I}_2$.</div>
+</section>
+
+<!-- ================= 04 الحلقة الفائقة ================= -->
+<section class="card" id="supermesh" data-num="04" data-nav="الحلقة الفائقة|Supermesh">
+  <h2>الحلقة الفائقة (Supermesh)</h2>
+  <p class="sub">لما يكون فيه مصدر تيار بين حلقتين</p>
+
+  <p>المشكلة: لو فيه مصدر تيار في الفرع المشترك بين حلقتين، الجهد عليه مجهول، فما نقدر نكتب KVL لكل حلقة لوحدها. الحل: نتجاهل هالفرع ونمشي حول الحلقتين كأنهم حلقة وحدة كبيرة اسمها الحلقة الفائقة، ونكتب لها معادلتين:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 340 200" role="img" aria-label="حلقتين بينهم مصدر تيار Is في الفرع المشترك، وحولهم حدود متقطعة اسمها الحلقة الفائقة. الحلقة 1 فيها Vs و Z1، والحلقة 2 فيها Z2" style="max-width:360px">
+      <rect class="bound" x="72" y="52" width="208" height="98" rx="14"/>
+      <path class="wire" d="M50 84V35H85M145 35H300V70M300 130V165H50V116M180 35V84M180 116V165"/>
+      <circle class="wire" cx="50" cy="100" r="16"/>
+      <text class="lbl" x="50" y="97" text-anchor="middle">+</text>
+      <text class="lbl" x="50" y="112" text-anchor="middle">−</text>
+      <circle class="wire" cx="180" cy="100" r="16"/>
+      <path class="wire" d="M180 109V91M175 97L180 91L185 97"/>
+      <rect class="box" x="85" y="25" width="60" height="20" rx="2"/>
+      <rect class="box" x="290" y="70" width="20" height="60" rx="2"/>
+      <circle class="dot" cx="180" cy="35" r="3"/>
+      <circle class="dot" cx="180" cy="165" r="3"/>
+      <path class="sk e2" d="M105.8 109.2A13 13 0 1 1 124.2 109.2M130.9 107.1L124.2 109.2L126.2 102.5"/>
+      <text class="lbl e2t" x="115" y="104" text-anchor="middle">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M235.8 109.2A13 13 0 1 1 254.2 109.2M260.9 107.1L254.2 109.2L256.2 102.5"/>
+      <text class="lbl e2t" x="245" y="104" text-anchor="middle">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="28" y="104" text-anchor="end">V<tspan class="sb" dy="3">s</tspan></text>
+      <text class="lbl" x="115" y="18" text-anchor="middle">Z<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="202" y="104">I<tspan class="sb" dy="3">s</tspan></text>
+      <text class="lbl" x="318" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl e1t" x="180" y="188" text-anchor="middle">supermesh</text>
+    </svg>
+    <figcaption>مصدر التيار في الفرع المشترك، فالحلقتين صاروا حلقة وحدة كبيرة (الحدود المتقطعة).</figcaption>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">KVL حول الحلقة الفائقة</div><div class="t-math">$\mathbf{V}_s = \mathbf{Z}_1\mathbf{I}_1 + \mathbf{Z}_2\mathbf{I}_2$</div><div class="t-desc">امشِ على المسار الخارجي بس، وتجاهل فرع مصدر التيار.</div></div>
+    <div class="tile"><div class="t-name">معادلة القيد (Constraint)</div><div class="t-math">$\mathbf{I}_2 - \mathbf{I}_1 = \mathbf{I}_s$</div><div class="t-desc">في الفرع المشترك $\mathbf{I}_2$ طالع مع السهم، و $\mathbf{I}_1$ نازل عكسه.</div></div>
+  </div>
+  <p>لاحظ التشابه: العقدة الفائقة سببها مصدر جهد، والحلقة الفائقة سببها مصدر تيار. والطريقتين كأنهم صورة بالمراية لبعض:</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th></th><th>تحليل العقد</th><th>تحليل الحلقات</th></tr></thead>
+      <tbody>
+        <tr><td>القانون</td><td>KCL</td><td>KVL</td></tr>
+        <tr><td>المجاهيل</td><td>جهود العقد</td><td>تيارات الحلقات</td></tr>
+        <tr><td>عدد المعادلات</td><td>عدد العقد ناقص 1</td><td>عدد الحلقات</td></tr>
+        <tr><td>الحالة الخاصة</td><td>مصدر جهد بين عقدتين: عقدة فائقة</td><td>مصدر تيار بين حلقتين: حلقة فائقة</td></tr>
+        <tr><td>يشتغل مع</td><td>أي دائرة</td><td>الدوائر المستوية بس</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout key"><strong>🔑 أيهم أختار؟</strong> اللي يعطيك معادلات أقل. مصادر الجهد المربوطة بالمرجع تعطيك جهود عقد جاهزة، ومصادر التيار على أطراف الحلقات تعطيك تيارات حلقات جاهزة.</div>
+</section>
+
+<!-- ================= 05 كرامر ================= -->
+<section class="card" id="cramer" data-num="05" data-nav="كرامر|Cramer">
+  <h2>قاعدة كرامر للأرقام المركبة</h2>
+  <p class="sub">معادلتين بمجهولين؟ ثلاث محددات وتخلص</p>
+
+  <p>الطريقتين تعطيك معادلات خطية معاملاتها أرقام مركبة. لو عندك معادلتين بمجهولين $x_1$ و $x_2$، اكتبهم على شكل مصفوفة:</p>
+  <div class="m">\[\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}\]</div>
+  <p>وقاعدة كرامر (Cramer's rule) تحلها بثلاث محددات (Determinants). والمحدد $2 \times 2$ هو ضرب القطر الرئيسي ناقص ضرب القطر الثاني:</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">المحدد الرئيسي</div><div class="t-math">$\begin{gathered}\Z{\Delta} = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} \\ = a_{11}a_{22} - a_{12}a_{21}\end{gathered}$</div></div>
+    <div class="tile"><div class="t-top">بدّل العمود الأول بعمود $b$</div><div class="t-math">$\begin{gathered}\Delta_1 = \begin{vmatrix} b_1 & a_{12} \\ b_2 & a_{22} \end{vmatrix} \\ = b_1a_{22} - a_{12}b_2\end{gathered}$</div></div>
+    <div class="tile"><div class="t-top">بدّل العمود الثاني بعمود $b$</div><div class="t-math">$\begin{gathered}\Delta_2 = \begin{vmatrix} a_{11} & b_1 \\ a_{21} & b_2 \end{vmatrix} \\ = a_{11}b_2 - b_1a_{21}\end{gathered}$</div></div>
+    <div class="tile"><div class="t-top">الحل</div><div class="t-math">$\X{x_1} = \dfrac{\Delta_1}{\Delta} \qquad \Y{x_2} = \dfrac{\Delta_2}{\Delta}$</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 نصيحة حساب:</strong> الجمع والطرح أسهل بالشكل المستطيل ($a + jb$)، والضرب والقسمة أسهل بالقطبي ($r\angle\theta$). فاحسب $\Delta$ و $\Delta_1$ و $\Delta_2$ بالمستطيل، وحوّلهم للقطبي وقت القسمة.</div>
+  <div class="callout warn"><strong>⚠️ لو طلع $\Delta = 0$:</strong> ما فيه حل وحيد، وغالباً فيه غلط في كتابة المعادلات. راجع الإشارات.</div>
+</section>
+
+<!-- ================= 06 المختبر ================= -->
+<section class="card" id="lab" data-num="06" data-nav="المختبر|Lab">
+  <h2>حاسبة كرامر</h2>
+  <p class="sub">اكتب معادلتين بمجهولين، وشوف المحددات والحل والفيزورين</p>
+
+  <div class="cr-lab">
+    <h3>🎛️ جرّب أمثلة المحاضرة، أو اكتب معادلات تمرينك</h3>
+    <p class="lab-note">اكتب كل رقم بالمستطيل مثل <span class="ltr">8-j2</span> أو <span class="ltr">j50</span>، أو بالقطبي مثل <span class="ltr">10∠45</span> (أو <span class="ltr">10&lt;45</span>)، والزاوية بالدرجات.</p>
+    <div class="lab-controls">
+      <div class="field"><label>أمثلة جاهزة</label><span class="seg"><button class="btn small primary" type="button" data-preset="1" aria-pressed="true">مثال 1</button><button class="btn small" type="button" data-preset="3" aria-pressed="false">مثال 3</button><button class="btn small" type="button" data-preset="4" aria-pressed="false">مثال 4</button></span></div>
+    </div>
+    <div class="cr-mat" role="group" aria-label="المعادلتين">
+      <input id="a11" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 1: معامل المجهول الأول"><span class="op"><b class="vx n1"></b> +</span><input id="a12" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 1: معامل المجهول الثاني"><span class="op"><b class="vy n2"></b> =</span><input id="b1" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 1: الطرف الثاني">
+      <input id="a21" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 2: معامل المجهول الأول"><span class="op"><b class="vx n1"></b> +</span><input id="a22" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 2: معامل المجهول الثاني"><span class="op"><b class="vy n2"></b> =</span><input id="b2" type="text" autocomplete="off" spellcheck="false" aria-label="المعادلة 2: الطرف الثاني">
+    </div>
+    <p class="cr-msg" id="cMsg" role="status"></p>
+    <div class="ml-read">
+      <div><span class="k">المحدد $\Delta$</span><span class="v" id="rD"></span></div>
+      <div><span class="k">$\Delta_1$ (العمود الأول صار $b$)</span><span class="v" id="rD1"></span></div>
+      <div><span class="k">$\Delta_2$ (العمود الثاني صار $b$)</span><span class="v" id="rD2"></span></div>
+    </div>
+    <figure class="fig">
+      <svg id="cSvg" viewBox="0 0 300 220" role="img" aria-label="المستوى المركب: سهم المجهول الأول وسهم المجهول الثاني" style="max-width:340px">
+        <path class="ax" d="M30 110H270M150 205V15"/>
+        <text x="274" y="114">Re</text><text x="150" y="10" text-anchor="middle">Im</text>
+        <path class="sk x" id="cA" style="stroke-width:3"/>
+        <path class="sk y" id="cB" style="stroke-width:3"/>
+        <text class="lbl x" id="cAl" text-anchor="middle"></text>
+        <text class="lbl y" id="cBl" text-anchor="middle"></text>
+      </svg>
+      <figcaption>الحل كفيزورين على المستوى المركب. والرسم يغير مقاسه تلقائيًا عشان الأطول يبقى داخل الإطار.</figcaption>
+    </figure>
+    <div class="ml-read cr-sol">
+      <div class="hl"><span class="k" id="kX1"></span><span class="v" id="rX1"></span></div>
+      <div class="hl"><span class="k" id="kX2"></span><span class="v" id="rX2"></span></div>
+    </div>
+  </div>
+  <div class="callout key"><strong>🔑 استخدمها صح:</strong> حل التمرين بيدك أول، وبعدين اكتب معادلاتك هنا وقارن. لو $\Delta$ عندك يختلف، المشكلة في الضرب. ولو $\Delta$ صح والجواب غلط، راجع $\Delta_1$ و $\Delta_2$: يمكن بدّلت العمود الغلط.</div>
+</section>
+
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>تحليل العقد مع مصدر تابع</h2></div>
+  <div class="tags"><span class="tag">Example 10.1</span><span class="tag">تحليل العقد</span></div>
+  <p>أوجد $i_x$ في الدائرة باستخدام تحليل العقد:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 400 195" role="img" aria-label="مصدر 20cos4t فولت، بعده مقاومة 10 أوم للعقدة V1، ومن V1 مكثف 0.1 فاراد للمرجع وتياره ix نازل، وبين V1 و V2 ملف 1 هنري، ومن V2 مصدر تيار تابع 2ix لفوق، وملف 0.5 هنري للمرجع" style="max-width:430px">
+      <circle class="wire" cx="92" cy="110" r="16"/>
+      <text class="lbl" x="92" y="107" text-anchor="middle">+</text>
+      <text class="lbl" x="92" y="122" text-anchor="middle">−</text>
+      <path class="wire" d="M92 94V50H110M150 50H195M245 50H345V90M345 130V170H92V126M172 50V104M172 114V170M270 50V90M270 130V170"/>
+      <path class="elm" d="M110 50L113.33 42L120 58L126.67 42L133.33 58L140 42L146.67 58L150 50"/>
+      <path class="elm" d="M195 50a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0"/>
+      <path class="elm" d="M160 104H184M160 114H184"/>
+      <path class="elm" d="M345 90a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <polygon class="wire" points="270,90 290,110 270,130 250,110"/>
+      <path class="wire" d="M270 119V101M266 107L270 101L274 107"/>
+      <circle class="dot" cx="172" cy="50" r="3"/>
+      <circle class="dot" cx="270" cy="50" r="3"/>
+      <path class="wire" d="M220 170V178M211 178H229M214 182H226M217 186H223"/>
+      <path class="sk e2" d="M184 60V82M179 75L184 82L189 75"/>
+      <text class="lbl e2t" x="190" y="76">i<tspan class="sb" dy="3">x</tspan></text>
+      <text class="lbl" x="70" y="114" text-anchor="end">20cos4t V</text>
+      <text class="lbl" x="130" y="34" text-anchor="middle">10 Ω</text>
+      <text class="lbl" x="172" y="36" text-anchor="middle">V<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="220" y="32" text-anchor="middle">1 H</text>
+      <text class="lbl" x="270" y="36" text-anchor="middle">V<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="190" y="114">0.1 F</text>
+      <text class="lbl" x="296" y="114">2i<tspan class="sb" dy="3">x</tspan></text>
+      <text class="lbl" x="359" y="114">0.5 H</text>
+    </svg>
+    <figcaption>Figure 10.1: الدائرة في مجال الزمن.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">المصدر مربوط بالمرجع، فجهد عقدته معروف. يبقى عندنا عقدتين مجهولتين: $\mathbf{V}_1$ و $\mathbf{V}_2$. وفيه مصدر تيار تابع $2i_x$ يعتمد على $i_x$، وهو تيار المكثف النازل من $\mathbf{V}_1$.</p>
+    </li>
+    <li class="step">
+      <h4>حوّل لمجال التردد <span class="const">ω = 4 rad/s</span></h4>
+      <div class="m">\[\begin{gathered}20\cos 4t \;\Rightarrow\; 20\angle 0^\circ\ \text{V} \\[4pt] 1\ \text{H} \;\Rightarrow\; j\omega L = j4\ \Omega \\[4pt] 0.5\ \text{H} \;\Rightarrow\; j\omega L = j2\ \Omega \\[4pt] 0.1\ \text{F} \;\Rightarrow\; \frac{1}{j\omega C} = \frac{1}{j0.4} \\ = -j2.5\ \Omega\end{gathered}\]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 400 195" role="img" aria-label="نفس الدائرة في مجال التردد: مصدر 20 بزاوية صفر، ومقاومة 10، ومكثف سالب j2.5، وملف j4 بين العقدتين، ومصدر تابع 2Ix، وملف j2" style="max-width:430px">
+      <circle class="wire" cx="92" cy="110" r="16"/>
+      <text class="lbl" x="92" y="107" text-anchor="middle">+</text>
+      <text class="lbl" x="92" y="122" text-anchor="middle">−</text>
+      <path class="wire" d="M92 94V50H110M150 50H195M245 50H345V90M345 130V170H92V126M172 50V104M172 114V170M270 50V90M270 130V170"/>
+      <path class="elm" d="M110 50L113.33 42L120 58L126.67 42L133.33 58L140 42L146.67 58L150 50"/>
+      <path class="elm" d="M195 50a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0"/>
+      <path class="elm" d="M160 104H184M160 114H184"/>
+      <path class="elm" d="M345 90a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <polygon class="wire" points="270,90 290,110 270,130 250,110"/>
+      <path class="wire" d="M270 119V101M266 107L270 101L274 107"/>
+      <circle class="dot" cx="172" cy="50" r="3"/>
+      <circle class="dot" cx="270" cy="50" r="3"/>
+      <path class="wire" d="M220 170V178M211 178H229M214 182H226M217 186H223"/>
+      <path class="sk e2" d="M184 60V82M179 75L184 82L189 75"/>
+      <text class="lbl e2t" x="190" y="76">I<tspan class="sb" dy="3">x</tspan></text>
+      <text class="lbl" x="70" y="114" text-anchor="end">20∠0° V</text>
+      <text class="lbl" x="130" y="34" text-anchor="middle">10 Ω</text>
+      <text class="lbl" x="172" y="36" text-anchor="middle">V<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="220" y="32" text-anchor="middle">j4 Ω</text>
+      <text class="lbl" x="270" y="36" text-anchor="middle">V<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="190" y="114">−j2.5 Ω</text>
+      <text class="lbl" x="296" y="114">2I<tspan class="sb" dy="3">x</tspan></text>
+      <text class="lbl" x="359" y="114">j2 Ω</text>
+    </svg>
+    <figcaption>Figure 10.2: نفس الدائرة بعد التحويل لمجال التردد.</figcaption>
+  </figure>
+    </li>
+    <li class="step">
+      <h4>KCL عند العقدة 1</h4>
+      <div class="m">\[\begin{gathered}\frac{20 - \mathbf{V}_1}{10} = \frac{\mathbf{V}_1}{-j2.5} \\ + \frac{\mathbf{V}_1 - \mathbf{V}_2}{j4} \\[6pt] (1 + j1.5)\,\mathbf{V}_1 + j2.5\,\mathbf{V}_2 = 20\end{gathered}\]</div>
+      <p class="why">الداخل من المقاومة 10&nbsp;Ω يساوي الطالع في المكثف والملف. ضربنا الطرفين في 10 ورتبنا، لأن $\tfrac{10}{-j2.5} = j4$ و $\tfrac{10}{j4} = -j2.5$.</p>
+    </li>
+    <li class="step">
+      <h4>KCL عند العقدة 2</h4>
+      <div class="m">\[\begin{gathered}2\mathbf{I}_x + \frac{\mathbf{V}_1 - \mathbf{V}_2}{j4} = \frac{\mathbf{V}_2}{j2} \\[4pt] \mathbf{I}_x = \frac{\mathbf{V}_1}{-j2.5} \\[6pt] 11\,\mathbf{V}_1 + 15\,\mathbf{V}_2 = 0\end{gathered}\]</div>
+      <p class="why">الداخل للعقدة 2: المصدر التابع والتيار الجاي من الملف $j4$. والطالع: الملف $j2$. عوضنا $\mathbf{I}_x$ بدلالة $\mathbf{V}_1$ فطلعت $j0.55\,\mathbf{V}_1 + j0.75\,\mathbf{V}_2 = 0$، وضربناها في $-j20$.</p>
+    </li>
+    <li class="step">
+      <h4>المحددات <span class="const">كرامر</span></h4>
+      <div class="m">\[\begin{gathered}\Delta = \begin{vmatrix} 1 + j1.5 & j2.5 \\ 11 & 15 \end{vmatrix} \\ = (15 + j22.5) - j27.5 \\ = \Z{15 - j5} \\[6pt] \Delta_1 = 20(15) - 0 = 300 \\[4pt] \Delta_2 = 0 - 20(11) = -220\end{gathered}\]</div>
+      <p class="why">ضرب القطر ناقص ضرب القطر: $(1 + j1.5)(15) = 15 + j22.5$ و $(j2.5)(11) = j27.5$. وفي $\Delta_1$ بدّلنا العمود الأول بالطرف الثاني $(20, 0)$، وفي $\Delta_2$ بدّلنا العمود الثاني.</p>
+    </li>
+    <li class="step">
+      <h4>الجهدين</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_1 = \frac{300}{15 - j5} = 18 + j6 \\ = \X{18.97\angle 18.43^\circ}\ \text{V} \\[8pt] \mathbf{V}_2 = \frac{-220}{15 - j5} \\ = -13.2 - j4.4 \\ = \Y{13.91\angle 198.43^\circ}\ \text{V}\end{gathered}\]</div>
+      <p class="why">$\mathbf{V}_2$ في الربع الثالث (الحقيقي والتخيلي سالبين)، فزاويته $180^\circ + \tan^{-1}\tfrac{4.4}{13.2} = 198.43^\circ$، وهي نفسها $-161.57^\circ$ اللي تطلع في الحاسبة. والكتاب كاتب <span class="ltr">198.3°</span>، وهو تقريب.</p>
+    </li>
+    <li class="step">
+      <h4>تيار المكثف</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I}_x = \frac{\mathbf{V}_1}{-j2.5} \\ = \frac{18.97\angle 18.43^\circ}{2.5\angle -90^\circ} \\ = 7.59\angle 108.43^\circ\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i_x =$ $7.59\cos(4t + 108.43^\circ)$ A</div>
+      <p class="sanity">تيار المكثف متقدم على جهده بـ <span class="ltr">90°</span>: $18.43^\circ + 90^\circ = 108.43^\circ$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>عقدة فائقة</h2></div>
+  <div class="tags"><span class="tag">Example 10.2</span><span class="tag">Supernode</span></div>
+  <p>احسب $\mathbf{V}_1$ و $\mathbf{V}_2$ في الدائرة. مصدر التيار $3\angle 0^\circ$ A:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 385 210" role="img" aria-label="مصدر تيار 3 أمبير يدخل العقدة V1. من V1 مكثف سالب j3 للمرجع، وبين V1 و V2 مقاومة 4 أوم ومعها على التوازي مصدر جهد 10 بزاوية 45 والموجب عند V1. من V2 ملف j6 ومقاومة 12 للمرجع. والعقدتين مع المصدر داخل حدود متقطعة اسمها العقدة الفائقة" style="max-width:420px">
+      <ellipse class="bound" cx="200" cy="68" rx="85" ry="45"/>
+      <circle class="wire" cx="60" cy="130" r="16"/>
+      <path class="wire" d="M60 139V121M55 127L60 121L65 127"/>
+      <path class="wire" d="M60 114V90H180M220 90H340V117M340 157V185H60V146M140 90V125M140 135V185M260 90V117M260 157V185M140 90V45H185M215 45H260V90"/>
+      <path class="elm" d="M180 90L183.33 82L190 98L196.67 82L203.33 98L210 82L216.67 98L220 90"/>
+      <path class="elm" d="M128 125H152M128 135H152"/>
+      <path class="elm" d="M260 117a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <path class="elm" d="M340 117L332 120.33L348 127L332 133.67L348 140.33L332 147L348 153.67L340 157"/>
+      <circle class="wire" cx="200" cy="45" r="15"/>
+      <text class="lbl" x="193" y="49" text-anchor="middle">+</text>
+      <text class="lbl" x="207" y="49" text-anchor="middle">−</text>
+      <circle class="dot" cx="140" cy="90" r="3"/>
+      <circle class="dot" cx="260" cy="90" r="3"/>
+      <path class="wire" d="M200 185V193M191 193H209M194 197H206M197 201H203"/>
+      <text class="lbl" x="38" y="134" text-anchor="end">3 A</text>
+      <text class="lbl" x="148" y="82">V<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="252" y="82" text-anchor="end">V<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="200" y="76" text-anchor="middle">4 Ω</text>
+      <text class="lbl" x="200" y="14" text-anchor="middle">10∠45° V</text>
+      <text class="lbl" x="158" y="134">−j3 Ω</text>
+      <text class="lbl" x="274" y="141">j6 Ω</text>
+      <text class="lbl" x="352" y="141">12 Ω</text>
+      <text class="lbl e1t" x="284" y="34">supernode</text>
+    </svg>
+    <figcaption>Figure 10.4: العقدتين 1 و 2 مع مصدر الجهد يكونون عقدة فائقة (الحدود المتقطعة، Figure 10.5).</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">مصدر الجهد $10\angle 45^\circ$ V بين العقدتين 1 و 2، ولا وحدة منهم المرجع: هذي عقدة فائقة. والمقاومة 4&nbsp;Ω على التوازي مع المصدر، يعني داخل الحدود، فما تدخل في KCL.</p>
+    </li>
+    <li class="step">
+      <h4>KCL حول العقدة الفائقة</h4>
+      <div class="m">\[\begin{gathered}3 = \frac{\mathbf{V}_1}{-j3} + \frac{\mathbf{V}_2}{j6} + \frac{\mathbf{V}_2}{12} \\[6pt] 36 = j4\,\mathbf{V}_1 + (1 - j2)\,\mathbf{V}_2\end{gathered}\]</div>
+      <p class="why">الداخل: مصدر التيار. والطالع من الحدود: المكثف والملف والمقاومة 12&nbsp;Ω. ضربنا في 12، لأن $\tfrac{12}{-j3} = j4$ و $\tfrac{12}{j6} = -j2$.</p>
+    </li>
+    <li class="step">
+      <h4>معادلة القيد</h4>
+      <div class="m">\[\mathbf{V}_1 = \mathbf{V}_2 + 10\angle 45^\circ\]</div>
+      <p class="why">الطرف الموجب للمصدر عند العقدة 1، فجهدها أعلى من العقدة 2 بـ $10\angle 45^\circ$.</p>
+    </li>
+    <li class="step">
+      <h4>عوّض القيد في KCL</h4>
+      <div class="m">\[\begin{gathered}36 = j4\,(\mathbf{V}_2 + 10\angle 45^\circ) \\ + (1 - j2)\,\mathbf{V}_2 \\[6pt] 36 - 40\angle 135^\circ = (1 + j2)\,\mathbf{V}_2\end{gathered}\]</div>
+      <p class="why">$j4 = 4\angle 90^\circ$، فـ $j4 \times 10\angle 45^\circ = 40\angle 135^\circ$. و $j4 + 1 - j2 = 1 + j2$.</p>
+    </li>
+    <li class="step">
+      <h4>احسب $\mathbf{V}_2$</h4>
+      <div class="m">\[\begin{gathered}36 - (-28.28 + j28.28) \\ = 64.28 - j28.28 \\ = 70.23\angle -23.75^\circ \\[8pt] \mathbf{V}_2 = \frac{70.23\angle -23.75^\circ}{2.236\angle 63.43^\circ} \\ = \Y{31.41\angle -87.18^\circ}\ \text{V}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>ارجع للقيد</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_1 = (1.54 - j31.37) \\ + (7.07 + j7.07) \\ = 8.61 - j24.30\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{V}_1 = \X{25.78\angle -70.48^\circ}$ V و $\mathbf{V}_2 = \Y{31.41\angle -87.18^\circ}$ V</div>
+      <p class="sanity">تأكد من القيد: $\mathbf{V}_1 - \mathbf{V}_2 = 7.07 + j7.07 = 10\angle 45^\circ$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>تحليل الحلقات بثلاث حلقات</h2></div>
+  <div class="tags"><span class="tag">Example 10.3</span><span class="tag">تحليل الحلقات</span></div>
+  <p>أوجد التيار $\mathbf{I}_o$ في الدائرة باستخدام تحليل الحلقات. مصدر التيار $5\angle 0^\circ$ A:</p>
+  <figure class="fig">
+    <svg viewBox="0 0 385 215" role="img" aria-label="ثلاث حلقات. اليسار فوق: مصدر تيار 5 أمبير لفوق. اليسار تحت: مقاومة 8. بينهم ملف j10 أفقي. في النص مكثفين سالب j2 فوق وتحت. فوق اليمين مقاومة 4، واليمين مصدر جهد 20 بزاوية 90 والموجب فوق، والتيار Io لفوق. تيارات الحلقات I1 تحت يسار و I2 يمين و I3 فوق يسار" style="max-width:420px">
+      <path class="wire" d="M70 30V56M70 88V137M70 177V200M70 115H105M155 115H190M190 30V67M190 77V152M190 162V200M70 30H225M265 30H300V99M300 131V200H70"/>
+      <circle class="wire" cx="70" cy="72" r="16"/>
+      <path class="wire" d="M70 81V63M65 69L70 63L75 69"/>
+      <path class="elm" d="M70 137L62 140.33L78 147L62 153.67L78 160.33L62 167L78 173.67L70 177"/>
+      <path class="elm" d="M105 115a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0"/>
+      <path class="elm" d="M178 67H202M178 77H202"/>
+      <path class="elm" d="M178 152H202M178 162H202"/>
+      <path class="elm" d="M225 30L228.33 22L235 38L241.67 22L248.33 38L255 22L261.67 38L265 30"/>
+      <circle class="wire" cx="300" cy="115" r="16"/>
+      <text class="lbl" x="300" y="112" text-anchor="middle">+</text>
+      <text class="lbl" x="300" y="127" text-anchor="middle">−</text>
+      <circle class="dot" cx="70" cy="115" r="3"/>
+      <circle class="dot" cx="190" cy="115" r="3"/>
+      <circle class="dot" cx="190" cy="30" r="3"/>
+      <circle class="dot" cx="190" cy="200" r="3"/>
+      <path class="sk e2" d="M120.8 81.2A13 13 0 1 1 139.2 81.2M145.9 79.1L139.2 81.2L141.2 74.5"/>
+      <text class="lbl e2t" x="130" y="76" text-anchor="middle">I<tspan class="sb" dy="3">3</tspan></text>
+      <path class="sk e2" d="M120.8 166.2A13 13 0 1 1 139.2 166.2M145.9 164.1L139.2 166.2L141.2 159.5"/>
+      <text class="lbl e2t" x="130" y="161" text-anchor="middle">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M240.8 124.2A13 13 0 1 1 259.2 124.2M265.9 122.1L259.2 124.2L261.2 117.5"/>
+      <text class="lbl e2t" x="250" y="119" text-anchor="middle">I<tspan class="sb" dy="3">2</tspan></text>
+      <path class="sk e2" d="M316 66V42M311 49L316 42L321 49"/>
+      <text class="lbl e2t" x="324" y="58">I<tspan class="sb" dy="3">o</tspan></text>
+      <text class="lbl" x="48" y="76" text-anchor="end">5 A</text>
+      <text class="lbl" x="56" y="161" text-anchor="end">8 Ω</text>
+      <text class="lbl" x="130" y="101" text-anchor="middle">j10 Ω</text>
+      <text class="lbl" x="208" y="76">−j2 Ω</text>
+      <text class="lbl" x="208" y="161">−j2 Ω</text>
+      <text class="lbl" x="245" y="18" text-anchor="middle">4 Ω</text>
+      <text class="lbl" x="322" y="119">20∠90° V</text>
+    </svg>
+    <figcaption>Figure 10.7: ثلاث حلقات، وكل تياراتها مع عقارب الساعة.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">ثلاث حلقات وتياراتها مع عقارب الساعة: $\mathbf{I}_1$ تحت يسار، و $\mathbf{I}_2$ يمين، و $\mathbf{I}_3$ فوق يسار. مصدر التيار على طرف الحلقة 3 لحالها، فيعطينا $\mathbf{I}_3$ مباشرة. والمطلوب $\mathbf{I}_o$: سهمه لفوق في فرع المصدر $20\angle 90^\circ$، والحلقة 2 تمشي هناك لتحت، يعني $\mathbf{I}_o = -\mathbf{I}_2$.</p>
+    </li>
+    <li class="step">
+      <h4>الحلقة 3 <span class="const">مصدر تيار</span></h4>
+      <div class="m">\[\mathbf{I}_3 = 5\ \text{A}\]</div>
+      <p class="why">على الطرف اليسار، الحلقة 3 تمشي لفوق (مع عقارب الساعة)، نفس اتجاه سهم المصدر، فالإشارة موجبة.</p>
+    </li>
+    <li class="step">
+      <h4>KVL للحلقة 1</h4>
+      <div class="m">\[\begin{gathered}(8 + j10 - j2)\,\mathbf{I}_1 - (-j2)\,\mathbf{I}_2 \\ - j10\,\mathbf{I}_3 = 0\end{gathered}\]</div>
+      <p class="why">مجموع معاوقات الحلقة 1 في $\mathbf{I}_1$، وبعدها نطرح كل معاوقة مشتركة في تيار الجارة: $-j2$ مع الحلقة 2، و $j10$ مع الحلقة 3.</p>
+    </li>
+    <li class="step">
+      <h4>KVL للحلقة 2</h4>
+      <div class="m">\[\begin{gathered}(4 - j2 - j2)\,\mathbf{I}_2 - (-j2)\,\mathbf{I}_1 \\ - (-j2)\,\mathbf{I}_3 + 20\angle 90^\circ = 0\end{gathered}\]</div>
+      <p class="why">الحلقة 2 فيها 4&nbsp;Ω والمكثفين، وكل مكثف مشترك مع حلقة. وتمر في المصدر من + إلى −، فينزل الجهد بـ $20\angle 90^\circ = j20$.</p>
+    </li>
+    <li class="step">
+      <h4>عوّض $\mathbf{I}_3 = 5$</h4>
+      <div class="m">\[\begin{gathered}(8 + j8)\,\mathbf{I}_1 + j2\,\mathbf{I}_2 = j50 \\[4pt] j2\,\mathbf{I}_1 + (4 - j4)\,\mathbf{I}_2 = -j30\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>المحددات <span class="const">كرامر</span></h4>
+      <div class="m">\[\begin{gathered}\Delta = (8 + j8)(4 - j4) \\ - (j2)(j2) = 64 + 4 = \Z{68} \\[8pt] \Delta_2 = (8 + j8)(-j30) \\ - (j50)(j2) = 340 - j240 \\ = 416.17\angle -35.22^\circ\end{gathered}\]</div>
+      <p class="why">$8 + j8 = 8(1 + j)$ و $4 - j4 = 4(1 - j)$، وضربهم $32(1 + j)(1 - j) = 64$. و $(j2)(j2) = -4$ فتنقلب موجبة. وما نحتاج $\Delta_1$ لأن المطلوب من $\mathbf{I}_2$ بس.</p>
+    </li>
+    <li class="step">
+      <h4>$\mathbf{I}_2$</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I}_2 = \frac{\Delta_2}{\Delta} \\ = \frac{416.17\angle -35.22^\circ}{68} \\ = \Y{6.12\angle -35.22^\circ}\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{I}_o = -\mathbf{I}_2$ $= 6.12\angle 144.78^\circ$ A</div>
+      <p class="sanity">الضرب في $-1$ يزيد الزاوية <span class="ltr">180°</span>: $-35.22^\circ + 180^\circ = 144.78^\circ$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>حلقة فائقة</h2></div>
+  <div class="tags"><span class="tag">Example 10.4</span><span class="tag">Supermesh</span></div>
+  <p>أوجد $\mathbf{V}_o$ باستخدام تحليل الحلقات. المصادر كلها زاويتها صفر: $10\angle 0^\circ$ V و $4\angle 0^\circ$ A و $3\angle 0^\circ$ A.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 390 235" role="img" aria-label="أربع حلقات. اليسار: مكثف سالب j4 فوق، ومصدر 10 فولت تحت. النص: مصدر تيار 4 أمبير لفوق فوق، ومكثف سالب j2 تحت وعليه الجهد Vo. اليمين: مقاومة 6 فوق، ومصدر تيار 3 أمبير لفوق تحت. السلك الأفقي في النص فيه مقاومة 8 يسار وملف j5 يمين. والحلقتين 3 و 4 فوق داخل حدود متقطعة اسمها الحلقة الفائقة" style="max-width:420px">
+      <rect class="bound" x="88" y="42" width="236" height="70" rx="14"/>
+      <path class="wire" d="M70 30V72M70 82V156M70 188V220M210 30V61M210 93V167M210 177V220M340 30V57M340 97V156M340 188V220M70 30H340M70 220H340M70 125H120M160 125H250M300 125H340"/>
+      <path class="elm" d="M58 72H82M58 82H82"/>
+      <circle class="wire" cx="70" cy="172" r="16"/>
+      <text class="lbl" x="70" y="169" text-anchor="middle">+</text>
+      <text class="lbl" x="70" y="184" text-anchor="middle">−</text>
+      <path class="elm" d="M120 125L123.33 117L130 133L136.67 117L143.33 133L150 117L156.67 133L160 125"/>
+      <path class="elm" d="M250 125a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0a6.25 6.25 0 0 1 12.5 0"/>
+      <circle class="wire" cx="210" cy="77" r="16"/>
+      <path class="wire" d="M210 86V68M205 74L210 68L215 74"/>
+      <path class="elm" d="M198 167H222M198 177H222"/>
+      <path class="elm" d="M340 57L332 60.33L348 67L332 73.67L348 80.33L332 87L348 93.67L340 97"/>
+      <circle class="wire" cx="340" cy="172" r="16"/>
+      <path class="wire" d="M340 181V163M335 169L340 163L345 169"/>
+      <circle class="dot" cx="70" cy="125" r="3"/>
+      <circle class="dot" cx="210" cy="30" r="3"/>
+      <circle class="dot" cx="210" cy="125" r="3"/>
+      <circle class="dot" cx="210" cy="220" r="3"/>
+      <circle class="dot" cx="340" cy="125" r="3"/>
+      <path class="sk e2" d="M125.8 87.2A13 13 0 1 1 144.2 87.2M150.9 85.1L144.2 87.2L146.2 80.5"/>
+      <text class="lbl e2t" x="135" y="82" text-anchor="middle">I<tspan class="sb" dy="3">3</tspan></text>
+      <path class="sk e2" d="M265.8 87.2A13 13 0 1 1 284.2 87.2M290.9 85.1L284.2 87.2L286.2 80.5"/>
+      <text class="lbl e2t" x="275" y="82" text-anchor="middle">I<tspan class="sb" dy="3">4</tspan></text>
+      <path class="sk e2" d="M120.8 191.2A13 13 0 1 1 139.2 191.2M145.9 189.1L139.2 191.2L141.2 184.5"/>
+      <text class="lbl e2t" x="130" y="186" text-anchor="middle">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M265.8 191.2A13 13 0 1 1 284.2 191.2M290.9 189.1L284.2 191.2L286.2 184.5"/>
+      <text class="lbl e2t" x="275" y="186" text-anchor="middle">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="50" y="81" text-anchor="end">−j4 Ω</text>
+      <text class="lbl" x="48" y="176" text-anchor="end">10 V</text>
+      <text class="lbl" x="188" y="81" text-anchor="end">4 A</text>
+      <text class="lbl" x="140" y="147" text-anchor="middle">8 Ω</text>
+      <text class="lbl" x="275" y="147" text-anchor="middle">j5 Ω</text>
+      <text class="lbl" x="190" y="176" text-anchor="end">−j2 Ω</text>
+      <text class="lbl" x="232" y="160" text-anchor="middle">+</text>
+      <text class="lbl" x="226" y="177">V<tspan class="sb" dy="3">o</tspan></text>
+      <text class="lbl" x="232" y="194" text-anchor="middle">−</text>
+      <text class="lbl" x="354" y="81">6 Ω</text>
+      <text class="lbl" x="362" y="176">3 A</text>
+      <text class="lbl" x="210" y="20" text-anchor="middle">A</text>
+      <text class="lbl e1t" x="262" y="22">supermesh</text>
+    </svg>
+    <figcaption>Figure 10.10: الحلقتين 3 و 4 يكونون حلقة فائقة بسبب مصدر 4&nbsp;A بينهم.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">أربع حلقات مع عقارب الساعة: $\mathbf{I}_1$ و $\mathbf{I}_2$ تحت، و $\mathbf{I}_3$ و $\mathbf{I}_4$ فوق. مصدر 4&nbsp;A في الفرع المشترك بين الحلقتين 3 و 4: حلقة فائقة. ومصدر 3&nbsp;A على طرف الحلقة 2 لحالها. والمطلوب $\mathbf{V}_o$ على المكثف $-j2$.</p>
+    </li>
+    <li class="step">
+      <h4>الحلقة 2 <span class="const">مصدر تيار</span></h4>
+      <div class="m">\[\mathbf{I}_2 = -3\ \text{A}\]</div>
+      <p class="why">سهم المصدر لفوق، لكن الحلقة 2 على طرفها اليمين تمشي لتحت (مع عقارب الساعة)، فالإشارة سالبة.</p>
+    </li>
+    <li class="step">
+      <h4>KVL للحلقة 1</h4>
+      <div class="m">\[\begin{gathered}-10 + (8 - j2)\,\mathbf{I}_1 \\ - (-j2)\,\mathbf{I}_2 - 8\,\mathbf{I}_3 = 0 \\[8pt] (8 - j2)\,\mathbf{I}_1 + j2\,\mathbf{I}_2 \\ - 8\,\mathbf{I}_3 = 10\end{gathered}\]</div>
+      <p class="why">الحلقة 1 تطلع في المصدر من − إلى +، فالجهد يرتفع ونكتبه $-10$. والمقاومة 8&nbsp;Ω مشتركة مع الحلقة 3، والمكثف $-j2$ مشترك مع الحلقة 2.</p>
+    </li>
+    <li class="step">
+      <h4>KVL حول الحلقة الفائقة</h4>
+      <div class="m">\[\begin{gathered}(8 - j4)\,\mathbf{I}_3 - 8\,\mathbf{I}_1 \\ + (6 + j5)\,\mathbf{I}_4 - j5\,\mathbf{I}_2 = 0\end{gathered}\]</div>
+      <p class="why">نمشي حول الحلقتين 3 و 4 مع بعض ونتجاهل فرع المصدر. الحلقة 3 فيها $-j4$ و 8&nbsp;Ω (مشتركة مع 1)، والحلقة 4 فيها 6&nbsp;Ω و $j5$ (مشترك مع 2).</p>
+    </li>
+    <li class="step">
+      <h4>القيد عند العقدة A</h4>
+      <div class="m">\[\mathbf{I}_4 = \mathbf{I}_3 + 4\]</div>
+      <p class="why">في الفرع المشترك $\mathbf{I}_4$ طالع لفوق مع السهم، و $\mathbf{I}_3$ نازل، والفرق بينهم هو تيار المصدر.</p>
+    </li>
+    <li class="step">
+      <h4>اختصر لمعادلتين</h4>
+      <div class="m">\[\begin{gathered}(8 - j2)\,\mathbf{I}_1 - 8\,\mathbf{I}_3 \\ = 10 + j6 \\[8pt] -8\,\mathbf{I}_1 + (14 + j)\,\mathbf{I}_3 \\ = -24 - j35\end{gathered}\]</div>
+      <p class="why">في الأولى عوضنا $\mathbf{I}_2 = -3$. وفي الثانية عوضنا $\mathbf{I}_4 = \mathbf{I}_3 + 4$ و $\mathbf{I}_2 = -3$، فصار معامل $\mathbf{I}_3$ هو $8 - j4 + 6 + j5 = 14 + j$، والثوابت $4(6 + j5) + j15 = 24 + j35$ انتقلت للطرف الثاني.</p>
+    </li>
+    <li class="step">
+      <h4>المحددات <span class="const">كرامر</span></h4>
+      <div class="m">\[\begin{gathered}\Delta = (8 - j2)(14 + j) - 64 \\ = \Z{50 - j20} \\[8pt] \Delta_1 = (10 + j6)(14 + j) \\ - (-8)(-24 - j35) \\ = -58 - j186\end{gathered}\]</div>
+      <p class="why">$(8 - j2)(14 + j) = 114 - j20$ و $(-8)(-8) = 64$. و $(10 + j6)(14 + j) = 134 + j94$ و $(-8)(-24 - j35) = 192 + j280$.</p>
+    </li>
+    <li class="step">
+      <h4>$\mathbf{I}_1$</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I}_1 = \frac{-58 - j186}{50 - j20} \\ = 0.283 - j3.607 \\ = \X{3.618\angle -85.52^\circ}\ \text{A}\end{gathered}\]</div>
+      <p class="why">الزاوية $-85.52^\circ$ هي نفسها $274.48^\circ$ اللي في الكتاب (زد <span class="ltr">360°</span>).</p>
+    </li>
+    <li class="step final">
+      <div class="m">\[\begin{gathered}\mathbf{V}_o = -j2\,(\mathbf{I}_1 - \mathbf{I}_2) \\ = -j2\,(3.283 - j3.607) \\ = -7.214 - j6.566\end{gathered}\]</div>
+      <div class="result">$\mathbf{V}_o = 9.75\angle 222.31^\circ$ V</div>
+      <p class="sanity">التيار النازل في المكثف هو $\mathbf{I}_1 - \mathbf{I}_2$ لأنه فرع مشترك. والكتاب يطلع $9.756\angle 222.32^\circ$ لأنه قرّب زاوية $\mathbf{I}_1$ لـ <span class="ltr">274.5°</span> قبل الضرب.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>احسب المحدد $\Delta = \begin{vmatrix} 5 + j4 & 2 \\ -j4 & 1 \end{vmatrix}$. كم سعته $|\Delta|$؟</p>
+    <div class="check" data-answer="13"></div>
+    <details class="hint"><p>ضرب القطر الرئيسي ناقص ضرب القطر الثاني: $(5 + j4)(1) - (2)(-j4)$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\Delta = (5 + j4) - (-j8) \\ = 5 + j12\end{gathered}\]</div><div class="result">$|\Delta| = \sqrt{5^2 + 12^2}$ $= 13$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>مصدر تيار $10\angle 0^\circ$ A يدخل عقدة جهدها $\mathbf{V}$، ومن العقدة للمرجع مقاومة 4&nbsp;Ω وملف $j3\ \Omega$. اكتب KCL، كم $|\mathbf{V}|$ بالفولت؟</p>
+    <div class="check" data-answer="24"></div>
+    <details class="hint"><p>$10 = \dfrac{\mathbf{V}}{4} + \dfrac{\mathbf{V}}{j3}$، واضرب الطرفين في 12.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}120 = 3\mathbf{V} - j4\mathbf{V} \\ = (3 - j4)\,\mathbf{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}| = \dfrac{120}{|3 - j4|}$ $= \dfrac{120}{5} = 24$ V</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>في رسمة العقدة الفائقة (القسم 02): $\mathbf{I}_s = 4\angle 0^\circ$ A و $\mathbf{Z}_1 = 10\ \Omega$ و $\mathbf{Z}_2 = j5\ \Omega$ و $\mathbf{V}_s = 10\angle 0^\circ$ V. كم $|\mathbf{V}_1|$ بالفولت؟</p>
+    <div class="check" data-answer="20"></div>
+    <details class="hint"><p>KCL: $4 = \dfrac{\mathbf{V}_1}{10} + \dfrac{\mathbf{V}_2}{j5}$، والقيد $\mathbf{V}_2 = \mathbf{V}_1 - 10$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}40 = \mathbf{V}_1 - j2(\mathbf{V}_1 - 10) \\ (1 - j2)\,\mathbf{V}_1 = 40 - j20 \\ \mathbf{V}_1 = 16 + j12\end{gathered}\]</div><p class="why">ضربنا KCL في 10، و $\tfrac{10}{j5} = -j2$.</p><div class="result">$|\mathbf{V}_1| = 20$ V</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>في رسمة الحلقتين (القسم 03): $\mathbf{V}_s = 50\angle 0^\circ$ V و $\mathbf{Z}_1 = 2\ \Omega$ و $\mathbf{Z}_3 = j1\ \Omega$ و $\mathbf{Z}_2 = 4\ \Omega$. كم $|\mathbf{I}_2|$ بالأمبير؟</p>
+    <div class="check" data-answer="5"></div>
+    <details class="hint"><p>المعادلتين: $(2 + j)\,\mathbf{I}_1 - j\,\mathbf{I}_2 = 50$ و $-j\,\mathbf{I}_1 + (4 + j)\,\mathbf{I}_2 = 0$. وبعدها كرامر.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\Delta = (2 + j)(4 + j) \\ - (-j)(-j) = 8 + j6 \\[6pt] \Delta_2 = 0 - 50(-j) = j50 \\[6pt] \mathbf{I}_2 = \frac{j50}{8 + j6} = 3 + j4\end{gathered}\]</div><p class="why">$(2 + j)(4 + j) = 7 + j6$، و $(-j)(-j) = j^2 = -1$ فينطرح ويصير $+1$.</p><div class="result">$|\mathbf{I}_2| = 5$ A</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
+    <p>في رسمة الحلقة الفائقة (القسم 04): $\mathbf{V}_s = 30\angle 0^\circ$ V و $\mathbf{Z}_1 = 4\ \Omega$ و $\mathbf{Z}_2 = -j3\ \Omega$ و $\mathbf{I}_s = 5\angle 0^\circ$ A. كم $|\mathbf{I}_2|$ بالأمبير؟</p>
+    <div class="check" data-answer="10"></div>
+    <details class="hint"><p>KVL حول الحلقة الفائقة: $30 = 4\mathbf{I}_1 - j3\,\mathbf{I}_2$، والقيد $\mathbf{I}_2 = \mathbf{I}_1 + 5$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}30 = 4\mathbf{I}_1 - j3(\mathbf{I}_1 + 5) \\ (4 - j3)\,\mathbf{I}_1 = 30 + j15 \\ \mathbf{I}_1 = 3 + j6 \\ \mathbf{I}_2 = \mathbf{I}_1 + 5 = 8 + j6\end{gathered}\]</div><div class="result">$|\mathbf{I}_2| = 10$ A</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">تطبيق</span></div>
+    <p>في مثال 3، كم $|\mathbf{I}_1|$ بالأمبير؟ (تحتاج $\Delta_1$)</p>
+    <div class="check" data-answer="3.590"></div>
+    <details class="hint"><p>$\Delta_1 = b_1a_{22} - a_{12}b_2$، يعني $(j50)(4 - j4) - (j2)(-j30)$. و $\Delta = 68$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\Delta_1 = (200 + j200) - 60 \\ = 140 + j200 \\[6pt] \mathbf{I}_1 = \frac{140 + j200}{68} \\ = 2.06 + j2.94\end{gathered}\]</div><div class="result">$|\mathbf{I}_1| = 3.59$ A</div><p class="sanity">جرّب نفس المعادلات في الحاسبة (مثال 3) وتأكد ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تكتب المعادلات قبل ما تحوّل للتردد</div>
+    <div class="pair"><div class="no">تحط المكثف 0.1&nbsp;F في KCL كأنه مقاومة</div><div class="yes">حوّل أول: $\dfrac{1}{j(4)(0.1)} = -j2.5\ \Omega$ عند $\omega = 4$</div></div></div>
+  <div class="mk"><div class="mk-title">تعكس الطرح في التيار الطالع</div>
+    <div class="pair"><div class="no">الطالع من العقدة 1: $\dfrac{\mathbf{V}_2 - \mathbf{V}_1}{\mathbf{Z}}$</div><div class="yes">الطالع من العقدة 1: $\dfrac{\mathbf{V}_1 - \mathbf{V}_2}{\mathbf{Z}}$، يعني عقدتك أول</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى إشارة مصدر التيار على طرف الحلقة</div>
+    <div class="pair"><div class="no">$\mathbf{I}_2 = 3$ لأن المصدر 3&nbsp;A</div><div class="yes">$\mathbf{I}_2 = -3$: السهم لفوق والحلقة تمشي هناك لتحت (مثال 4)</div></div></div>
+  <div class="mk"><div class="mk-title">تدخّل العنصر اللي داخل العقدة الفائقة</div>
+    <div class="pair"><div class="no">$3 = \dfrac{\mathbf{V}_1}{-j3} + \dfrac{\mathbf{V}_1 - \mathbf{V}_2}{4} + \cdots$</div><div class="yes">المقاومة 4&nbsp;Ω داخل الحدود، فتطلع من KCL (مثال 2)</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى معادلة القيد</div>
+    <div class="pair"><div class="no">معادلة KCL وحدة للعقدة الفائقة وتوقف</div><div class="yes">ومعها القيد $\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_s$، وإلا عندك مجهولين ومعادلة وحدة</div></div></div>
+  <div class="mk"><div class="mk-title">تكتب KVL لحلقة فيها مصدر تيار مشترك</div>
+    <div class="pair"><div class="no">KVL للحلقة 3 لحالها، وجهد مصدر التيار مجهول</div><div class="yes">حلقة فائقة حول الحلقتين 3 و 4، ومعها القيد $\mathbf{I}_4 - \mathbf{I}_3 = 4$</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط بين $\Delta_1$ و $\Delta_2$</div>
+    <div class="pair"><div class="no">$\Delta_1$: تبدّل العمود الثاني بعمود $b$</div><div class="yes">$\Delta_1$: العمود الأول (عمود $x_1$) هو اللي يتبدّل</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="1"><p>تحليل العقد مبني على:</p>
+      <button>قانون التيار KCL</button><button>قانون الجهد KVL</button><button>قانون أوم بس</button><button>نظرية ثيفنن</button>
+      <p class="q-why">نكتب KCL عند كل عقدة، والمجاهيل جهود العقد.</p></div>
+    <div class="q" data-answer="2"><p>المجاهيل في تحليل الحلقات هي:</p>
+      <button>جهود العقد</button><button>تيارات الحلقات</button><button>المعاوقات</button><button>المحددات</button>
+      <p class="q-why">لكل حلقة تيار خاص فيها، ونكتب KVL حولها.</p></div>
+    <div class="q" data-answer="1"><p>مصدر جهد بين عقدتين، ولا وحدة منهم المرجع. وش نسوي؟</p>
+      <button>عقدة فائقة</button><button>حلقة فائقة</button><button>نشيل المصدر</button><button>نخلي جهد العقدتين صفر</button>
+      <p class="q-why">KCL حول العقدتين مع بعض، ومعها القيد $\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_s$.</p></div>
+    <div class="q" data-answer="3"><p>التيار من العقدة $a$ للعقدة $b$ عبر معاوقة $\mathbf{Z}$:</p>
+      <button>$\dfrac{\mathbf{V}_b - \mathbf{V}_a}{\mathbf{Z}}$</button><button>$\mathbf{Z}(\mathbf{V}_a - \mathbf{V}_b)$</button><button>$\dfrac{\mathbf{V}_a - \mathbf{V}_b}{\mathbf{Z}}$</button><button>$\dfrac{\mathbf{V}_a}{\mathbf{Z}}$</button>
+      <p class="q-why">التيار يمشي من الجهد الأعلى للأقل، فالعقدة اللي يطلع منها أول.</p></div>
+    <div class="q" data-answer="4"><p>المحدد $\begin{vmatrix} 2 & j \\ j & 1 \end{vmatrix}$ =</p>
+      <button>1</button><button>$2 - j$</button><button>$2 + j2$</button><button>3</button>
+      <p class="q-why">$2(1) - (j)(j) = 2 - j^2 = 2 + 1 = 3$.</p></div>
+    <div class="q" data-answer="2"><p>تحليل الحلقات يشتغل مع:</p>
+      <button>كل الدوائر</button><button>الدوائر المستوية بس</button><button>دوائر DC بس</button><button>الدوائر اللي ما فيها مصادر تيار</button>
+      <p class="q-why">الحلقة لازم تكون فتحة في رسمة على ورقة بدون تقاطع، وهذا ما يصير إلا في الدوائر المستوية (Planar).</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* حاسبة كرامر: معادلتين بمجهولين بأرقام مركبة، والحل كفيزورين */
+(function () {
+  const $ = id => document.getElementById(id);
+  const IDS = ['a11', 'a12', 'b1', 'a21', 'a22', 'b2'];
+  const PRESETS = {                                 // معادلات الأمثلة 1 و 3 و 4
+    1: { v: ['1+j1.5', 'j2.5', '20', '11', '15', '0'], q: 'V', s: ['1', '2'], u: 'V' },
+    3: { v: ['8+j8', 'j2', 'j50', 'j2', '4-j4', '-j30'], q: 'I', s: ['1', '2'], u: 'A' },
+    4: { v: ['8-j2', '-8', '10+j6', '-8', '14+j', '-24-j35'], q: 'I', s: ['1', '3'], u: 'A' }
+  };
+  const OX = 150, OY = 110;                        // نقطة الأصل في المستوى المركب
+  const f = n => n.toFixed(1);
+  function parse(t) {                              // نص مثل 8-j2 أو 10∠45 إلى رقم مركب [re, im]، أو null لو غلط
+    const s = t.replace(/\s+/g, '').replace(/[−–]/g, '-').replace(/[iJI]/g, 'j').replace(/°/g, '');
+    if (!s) return null;
+    const p = s.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:∠|<|@)([+-]?(?:\d+\.?\d*|\.\d+))$/);
+    if (p) { const r = +p[1], a = +p[2] * Math.PI / 180; return [r * Math.cos(a), r * Math.sin(a)]; }
+    const terms = s.match(/[+-]?[^+-]+/g);
+    if (!terms || terms.join('') !== s) return null;
+    let re = 0, im = 0;
+    for (const tm of terms) {
+      if (tm.includes('j')) {
+        const n = tm.replace('j', '');
+        if (!/^[+-]?(\d+\.?\d*|\.\d+)?$/.test(n)) return null;
+        im += n === '' || n === '+' ? 1 : n === '-' ? -1 : +n;
+      } else {
+        if (!/^[+-]?(\d+\.?\d*|\.\d+)$/.test(tm)) return null;
+        re += +tm;
+      }
+    }
+    return [re, im];
+  }
+  const mul = (a, b) => [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]];
+  const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
+  const div = (a, b) => { const d = b[0] * b[0] + b[1] * b[1]; return [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]; };
+  const mag = z => Math.hypot(z[0], z[1]);
+  const r3 = n => Math.round(n * 1000) / 1000;
+  const num = n => (n < 0 ? '−' : '') + Math.abs(n);
+  function rect(z) {                               // الشكل المستطيل مثل 15 − j5
+    const re = r3(z[0]), im = r3(z[1]);
+    if (im === 0) return num(re);
+    const jm = `j${Math.abs(im)}`;
+    if (re === 0) return (im < 0 ? '−' : '') + jm;
+    return `${num(re)} ${im < 0 ? '−' : '+'} ${jm}`;
+  }
+  function polar(z) {                              // الشكل القطبي مثل 15.811∠−18.43°
+    const m = mag(z);
+    if (m < 5e-4) return '0';
+    let a = Math.atan2(z[1], z[0]) * 180 / Math.PI;
+    if (Math.abs(a) < 0.005) a = 0;
+    return `${r3(m)}∠${a < 0 ? '−' : ''}${Math.abs(a).toFixed(2)}°`;
+  }
+  const show = (id, z, u = '') => { $(id).innerHTML = `${rect(z)}${u ? ' ' + u : ''}<span class="pol">= ${polar(z)}${u ? ' ' + u : ''}</span>`; };
+  function arrow(x1, y1, x2, y2) {                 // خط برأس سهم
+    const a = Math.atan2(y2 - y1, x2 - x1), n = Math.hypot(x2 - x1, y2 - y1), h = Math.min(9, n * 0.6), wd = 0.45;
+    if (n < 2) return '';
+    return `M${f(x1)} ${f(y1)}L${f(x2)} ${f(y2)}M${f(x2 - h * Math.cos(a - wd))} ${f(y2 - h * Math.sin(a - wd))}L${f(x2)} ${f(y2)}L${f(x2 - h * Math.cos(a + wd))} ${f(y2 - h * Math.sin(a + wd))}`;
+  }
+  function tip(id, z, S, dflt) {                   // اسم السهم بعد رأسه بشوي
+    const x = OX + z[0] * S, y = OY - z[1] * S, n = Math.hypot(x - OX, y - OY);
+    const [px, py] = n < 2 ? dflt : [x + 14 * (x - OX) / n, y + 14 * (y - OY) / n];
+    $(id).setAttribute('x', f(px)); $(id).setAttribute('y', f(py + 4));
+  }
+  let cur = PRESETS[1];
+  function draw() {
+    const nm = k => `${cur.q}<sub>${cur.s[k]}</sub>`;
+    document.querySelectorAll('.cr-mat .n1').forEach(e => { e.innerHTML = nm(0); });
+    document.querySelectorAll('.cr-mat .n2').forEach(e => { e.innerHTML = nm(1); });
+    $('kX1').innerHTML = `${nm(0)} = Δ<sub>1</sub> / Δ`;
+    $('kX2').innerHTML = `${nm(1)} = Δ<sub>2</sub> / Δ`;
+    $('cAl').innerHTML = `${cur.q}<tspan class="sb" dy="3">${cur.s[0]}</tspan>`;
+    $('cBl').innerHTML = `${cur.q}<tspan class="sb" dy="3">${cur.s[1]}</tspan>`;
+    let bad = false;
+    const v = IDS.map(id => { const z = parse($(id).value); $(id).classList.toggle('bad', !z); if (!z) bad = true; return z; });
+    const blank = ids => ids.forEach(id => { $(id).textContent = '—'; });
+    const noPlot = () => { $('cA').setAttribute('d', ''); $('cB').setAttribute('d', ''); $('cAl').style.display = $('cBl').style.display = 'none'; };
+    if (bad) {
+      $('cMsg').innerHTML = 'اكتب الرقم مثل <span class="ltr">8-j2</span> أو <span class="ltr">j50</span> أو <span class="ltr">10∠45</span>';
+      blank(['rD', 'rD1', 'rD2', 'rX1', 'rX2']); noPlot(); return;
+    }
+    const [a11, a12, b1, a21, a22, b2] = v;
+    const D = sub(mul(a11, a22), mul(a12, a21));   // Δ = a11 a22 − a12 a21
+    const D1 = sub(mul(b1, a22), mul(a12, b2));    // العمود الأول صار b
+    const D2 = sub(mul(a11, b2), mul(b1, a21));    // العمود الثاني صار b
+    show('rD', D); show('rD1', D1); show('rD2', D2);
+    if (mag(D) < 1e-9) {
+      $('cMsg').textContent = 'Δ = 0: ما فيه حل وحيد. راجع المعادلات.';
+      blank(['rX1', 'rX2']); noPlot(); return;
+    }
+    $('cMsg').textContent = '';
+    const X1 = div(D1, D), X2 = div(D2, D);
+    show('rX1', X1, cur.u); show('rX2', X2, cur.u);
+    const m = Math.max(mag(X1), mag(X2)), S = m > 0 ? 88 / m : 0;   // الأطول يصير 88 بكسل
+    $('cA').setAttribute('d', arrow(OX, OY, OX + X1[0] * S, OY - X1[1] * S));
+    $('cB').setAttribute('d', arrow(OX, OY, OX + X2[0] * S, OY - X2[1] * S));
+    $('cAl').style.display = $('cBl').style.display = '';
+    tip('cAl', X1, S, [OX + 14, OY - 10]); tip('cBl', X2, S, [OX - 14, OY + 14]);
+  }
+  const press = b => document.querySelectorAll('.cr-lab [data-preset]').forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
+  function load(b) { cur = PRESETS[b.dataset.preset]; IDS.forEach((id, i) => { $(id).value = cur.v[i]; }); press(b); draw(); }
+  document.querySelectorAll('.cr-lab [data-preset]').forEach(b => b.addEventListener('click', () => load(b)));
+  IDS.forEach(id => $(id).addEventListener('input', () => { press(null); draw(); }));
+  load(document.querySelector('.cr-lab [data-preset="1"]'));
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

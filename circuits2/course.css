@@ -53,3 +53,10 @@ html:root[data-theme="dark"] {
   --accent-soft:rgba(208,134,106,.14);
   --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 30px -18px rgba(0,0,0,.8);
 }
+
+/* الجواب الطويل في صندوق النتيجة على الجوال: يصغر شوي وينزل تحت كلمة "الجواب"، ولو ما كفى يتمرر داخل صندوقه بدل ما يوسّع الصفحة كلها */
+@media (max-width: 560px) {
+  .result .r-val { font-size: 1.12rem; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  /* نسخة قارئ الشاشة المخفية من المعادلة أعرض من المعادلة نفسها، فنحصرها بعرضها عشان ما يصير تمرير فاضي */
+  .result .r-val mjx-assistive-mml { max-width: 100%; }
+}
