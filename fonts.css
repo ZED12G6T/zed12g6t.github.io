@@ -1,0 +1,7 @@
+/* fonts.css — خط النسخ (Thick Naskh Swash) لكل نصوص الموقع.
+   المستثنى: أسماء المواد الإنجليزية الصفراء (.code و .en-name و .chip) والمعادلات (MathJax) عشان ما تخرب. */
+@font-face { font-family: 'Naskh Swash'; src: url('assets/fonts/thick-naskh-swash.woff2') format('woff2'); font-display: swap; }
+html body,
+body *:not(mjx-container):not(mjx-container *):not(.code):not(.en-name):not(.chip) {
+  font-family: 'Naskh Swash', 'IBM Plex Sans Arabic', serif !important;
+}
