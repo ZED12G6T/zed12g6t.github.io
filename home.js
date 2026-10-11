@@ -44,7 +44,7 @@ try {
 if (renderer) start();
 
 function start() {
-  let dpr = Math.min(devicePixelRatio || 1, isSmall ? 1.5 : 1.75);
+  let dpr = Math.min(devicePixelRatio || 1, isSmall ? 1.25 : 1.5);
   renderer.setPixelRatio(dpr);
   renderer.setSize(innerWidth, innerHeight, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -121,7 +121,7 @@ function start() {
   }
 
   // ---- البحيرة (انعكاس حقيقي بدقة منخفضة + تموج)
-  const reflScale = isSmall ? .3 : .5;
+  const reflScale = isSmall ? .25 : .35;
   const water = new Reflector(new THREE.PlaneGeometry(500, 500), {
     textureWidth: innerWidth * dpr * reflScale, textureHeight: innerHeight * dpr * reflScale, color: 0x8a96aa,
     shader: {
@@ -145,9 +145,33 @@ function start() {
   });
   water.rotation.x = -Math.PI / 2;
   scene.add(water);
+  // الانعكاس يرسم المشهد مرة ثانية، فنخلي النجمة فيه بالزجاج الخفيف
+  const reflectPass = water.onBeforeRender;
+  water.onBeforeRender = function (...a) { const m = starMesh.material; starMesh.material = glassCheap; reflectPass.apply(this, a); starMesh.material = m; };
+  // بحيرة بدون انعكاس، للأجهزة البطيئة
+  const plainWater = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), new THREE.ShaderMaterial({
+    uniforms: { time: { value: 0 } },
+    vertexShader: 'varying vec3 vW; void main(){ vW = (modelMatrix * vec4(position,1.)).xyz; gl_Position = projectionMatrix * viewMatrix * vec4(vW,1.); }',
+    fragmentShader: `uniform float time; varying vec3 vW;
+      void main(){
+        float d = length(vW.xz - cameraPosition.xz);
+        vec3 c = mix(vec3(.014,.03,.055), vec3(.05,.07,.11), smoothstep(4., 70., d));
+        float r = sin(vW.x * 1.3 + time * 1.1) * .5 + sin(vW.z * 2.3 - time * 1.4 + vW.x * .4) * .5 + sin((vW.x + vW.z) * 4.1 + time * 2.) * .25;
+        c += vec3(.5,.6,.8) * pow(max(0., r - .85), 2.) * .25 * (1. - smoothstep(3., 25., d));
+        gl_FragColor = vec4(c, 1.);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+      }`
+  }));
+  plainWater.rotation.x = -Math.PI / 2; plainWater.visible = false; scene.add(plainWater);
+  let useReflection = true;
 
   // ---- الزجاج
-  const glass = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: .03, transmission: 1, thickness: .7, ior: 1.5, dispersion: isSmall ? 0 : 5, envMap, envMapIntensity: 2.6, iridescence: .9, iridescenceIOR: 1.3, clearcoat: 1, attenuationColor: 0xe4ecff, attenuationDistance: 2.5, flatShading: true });
+  // زجاج حقيقي (transmission) للنجمة على الكمبيوتر بس، لأنه يرسم المشهد مرة زيادة.
+  // الجوال والبلورات الصغيرة والانعكاس ياخذون زجاج خفيف بانعكاسات بس.
+  const glassCheap = new THREE.MeshPhysicalMaterial({ color: 0xdfe7ff, metalness: .1, roughness: .02, transparent: true, opacity: .38, depthWrite: false, envMap, envMapIntensity: 3.2, iridescence: 1, iridescenceIOR: 1.35, clearcoat: 1, flatShading: true });
+  const glassReal = new THREE.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: .03, transmission: 1, thickness: .7, ior: 1.5, dispersion: 5, envMap, envMapIntensity: 2.6, iridescence: .9, iridescenceIOR: 1.3, clearcoat: 1, attenuationColor: 0xe4ecff, attenuationDistance: 2.5, flatShading: true });
+  let glass = isSmall ? glassCheap : glassReal;
 
   function mergeNonIndexed(geos) {
     const arr = [];
@@ -181,8 +205,8 @@ function start() {
 
   // بلورات صغيرة طايرة حول البحيرة
   const shards = [];
-  for (let i = 0; i < 6; i++) {
-    const m = new THREE.Mesh(new THREE.OctahedronGeometry(R(.12, .26), 0), glass);
+  for (let i = 0; i < (isSmall ? 4 : 6); i++) {
+    const m = new THREE.Mesh(new THREE.OctahedronGeometry(R(.12, .26), 0), glassCheap);
     m.scale.y = R(1.4, 2.2);
     m.position.set(R(-7, 7), R(.8, 4), R(-6, 2.5));
     m.userData = { y: m.position.y, s: R(.4, 1), p: R(0, 6) };
@@ -299,7 +323,6 @@ function start() {
     }
     const pl = new THREE.PointLight(0xff5fa8, 7, 5, 1.6); pl.position.set(-.9, .7, .6); island.add(pl);
     const gl = new THREE.PointLight(0x4dffb5, 5, 4, 1.6); gl.position.set(.5, .6, .6); island.add(gl);
-    const pl2 = new THREE.PointLight(0xff5c9a, 4, 3.5, 1.6); pl2.position.set(2.1, 1.3, .4); island.add(pl2);
   }
   island.position.set(0, 11, -4);
   island.rotation.y = -.25;
@@ -315,7 +338,6 @@ function start() {
     const p = pod(1, 1.3); placeOn(rock, p, .9 * flip, .2); g.add(p);
     const m1 = mushroom(0xff5fb0, 1.2); placeOn(rock, m1, -.3 * flip, .55); g.add(m1);
     const m2 = mushroom(0x4dffb5, .9); placeOn(rock, m2, .5 * flip, .6); g.add(m2);
-    const l = new THREE.PointLight(0xff6fb0, 4, 4, 1.6); l.position.set(0, 1, .8); g.add(l);
     g.position.set(x, .05, z); g.scale.setScalar(s); g.rotation.y = flip * .4;
     scene.add(g); return g;
   }
@@ -407,18 +429,29 @@ function start() {
   resize();
 
   const camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), tmp = new THREE.Vector3();
-  let first = true, veilNow = .35;
-  const root = document.documentElement;
+  let first = true, veilNow = -1;
   const clock = new THREE.Clock();
-  let slowFrames = 0, frames = 0;
+  let slowFrames = 0, frames = 0, acc = 0, level = 0;
   const speed = reduceMotion ? .15 : 1;
+  const veilEl = document.querySelector('.veil');
+  // الجوال يرسم 30 إطار بالثانية بس، المشهد هادي وما يحتاج أكثر
+  const minStep = isSmall ? 1 / 31 : 0;
+
+  // لو الجهاز ما لحق: ننزل الدقة، بعدين نطفي الزجاج الحقيقي، بعدين الانعكاس
+  function degrade() {
+    level++;
+    if (level === 1 && dpr > 1) { dpr = 1; renderer.setPixelRatio(dpr); starMat.uniforms.px.value = dpr; flyMat.uniforms.px.value = dpr; resize(); }
+    else if (glass !== glassCheap) { glass = glassCheap; starMesh.material = glassCheap; }
+    else if (useReflection) { useReflection = false; water.visible = false; plainWater.visible = true; }
+  }
 
   function frame() {
-    const dt = Math.min(clock.getDelta(), .1), t = clock.elapsedTime * speed;
+    acc += clock.getDelta();
+    if (acc < minStep) return;
+    const dt = Math.min(acc, .1), t = clock.elapsedTime * speed; acc = 0;
 
-    // تخفيف الدقة تلقائياً لو الجهاز بطيء
-    frames++; if (dt > 1 / 32) slowFrames++;
-    if (frames === 120) { if (slowFrames > 60 && dpr > 1) { dpr = Math.max(1, dpr * .7); renderer.setPixelRatio(dpr); starMat.uniforms.px.value = dpr; flyMat.uniforms.px.value = dpr; resize(); } frames = slowFrames = 0; }
+    frames++; if (dt > (isSmall ? 1 / 24 : 1 / 40)) slowFrames++;
+    if (frames === 90) { if (slowFrames > 45) degrade(); frames = slowFrames = 0; }
 
     const target = camTarget(scrollY);
     const off = target.pos.clone().sub(target.look).multiplyScalar(distScale);
@@ -429,8 +462,8 @@ function start() {
     const k = 1 - Math.pow(.0015, dt);
     camPos.lerp(tmp, k); camLook.lerp(target.look, k);
     camera.position.copy(camPos); camera.lookAt(camLook);
-    veilNow += (target.veil - veilNow) * k;
-    root.style.setProperty('--veil', veilNow.toFixed(3));
+    const v = veilNow + (target.veil - veilNow) * k;
+    if (Math.abs(v - veilNow) > .002) { veilNow = v; veilEl.style.opacity = v.toFixed(3); }
 
     // الحركة
     starMesh.rotation.y = t * .28; starMesh.rotation.x = Math.sin(t * .35) * .18; starMesh.rotation.z = Math.sin(t * .23) * .12;
@@ -439,7 +472,7 @@ function start() {
     for (const s of shards) { const u = s.userData; s.position.y = u.y + Math.sin(t * u.s + u.p) * .25; s.rotation.y = t * u.s; s.rotation.x = t * u.s * .5; }
     island.position.y = 11 + Math.sin(t * .6) * .12; island.rotation.y = -.25 + Math.sin(t * .2) * .12;
     for (const g of glows) g.material.opacity = g.userData.base * (.75 + .25 * Math.sin(t * 2 + g.userData.p));
-    starMat.uniforms.time.value = t; flyMat.uniforms.time.value = t; water.material.uniforms.time.value = t;
+    starMat.uniforms.time.value = t; flyMat.uniforms.time.value = t; water.material.uniforms.time.value = t; plainWater.material.uniforms.time.value = t;
 
     // شهاب كل كم ثانية
     if (!reduceMotion) {
@@ -460,7 +493,7 @@ function start() {
     island.visible = camLook.y > 4;
 
     // لا نرسم الانعكاس لما الكاميرا تطالع فوق
-    water.visible = camLook.y - camPos.y < 3;
+    if (useReflection) water.visible = camLook.y - camPos.y < 3;
 
     renderer.render(scene, camera);
     if (!document.body.classList.contains('gl-ready')) document.body.classList.add('gl-ready');
