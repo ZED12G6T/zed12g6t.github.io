@@ -1,0 +1,160 @@
+/* =====================================================================
+   home.css — الصفحة الرئيسية بس (الهب): خلفية داكنة ومشهد ثلاثي الأبعاد.
+   فهارس المواد و404 باقية على site.css، وصفحات المحاضرات على lecture.css.
+   ===================================================================== */
+
+@font-face { font-family: 'Naskh Swash'; src: url('assets/fonts/thick-naskh-swash.woff2') format('woff2'); font-display: swap; }
+
+:root {
+  --bg: #05060a;
+  --ink: #f4f2ec; --ink-2: #a3a7b3; --ink-3: #6c707c;
+  --glass: rgba(14, 16, 24, .55); --glass-line: rgba(255, 255, 255, .09);
+  --accent: #f7d86a;
+  /* كل خطوط الصفحة بخط النسخ، ما عدا أسماء المواد الإنجليزية الصفراء (.code) */
+  --f-swash: 'Naskh Swash', 'Readex Pro', serif;
+  --f-head: var(--f-swash);
+  --f-body: var(--f-swash);
+  --f-mono: var(--f-swash);
+  --f-math: var(--f-swash);
+  --f-code: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.8; font-weight: 400; font-synthesis: none;
+  /* الخلفية لو ما اشتغل WebGL: سماء ليلية بسيطة */
+  background:
+    radial-gradient(120% 60% at 50% 100%, #10203a 0%, transparent 60%),
+    radial-gradient(60% 40% at 30% 30%, #151a2b 0%, transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; opacity: 0; transition: opacity 1.2s ease; }
+body.gl-ready #scene { opacity: 1; }
+/* طبقة تغميق خفيفة تزيد مع النزول عشان النص يبان فوق المشهد */
+.veil { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(80% 70% at 50% 45%, rgba(5,6,10,0) 0%, rgba(5,6,10,.55) 100%); opacity: var(--veil, .6); }
+
+.top, main, .foot { position: relative; z-index: 2; }
+
+/* ================= الشريط العلوي ================= */
+.top {
+  position: fixed; top: 0; inset-inline: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px max(16px, calc((100vw - 1100px) / 2));
+}
+.top::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,6,10,.75), rgba(5,6,10,0)); z-index: -1; pointer-events: none; }
+.top { transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
+.top.scrolled { background: rgba(5,6,10,.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: var(--glass-line); }
+.top.scrolled::before { opacity: 0; }
+.brand { font: 400 1rem var(--f-head); letter-spacing: .01em; }
+.links { display: flex; gap: 4px; }
+.links a { padding: 6px 14px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; border: 1px solid transparent; transition: color .2s, border-color .2s, background .2s; }
+.links a:hover { color: var(--ink); border-color: var(--glass-line); background: rgba(255,255,255,.04); }
+
+/* ================= البطل ================= */
+section { padding-inline: 16px; }
+.hero {
+  min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  text-align: center; padding-bottom: 12svh; padding-top: 90px;
+}
+.pill-count { display: inline-flex; align-items: center; gap: 10px; color: var(--ink-2); font-size: .86rem; margin-bottom: 14px; }
+.dots { display: inline-flex; }
+.dots i {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font: normal 600 .72rem var(--f-math);
+  background: linear-gradient(145deg, #cfd2da, #7d818c); color: #15171d; border: 2px solid var(--bg); margin-inline-start: -8px;
+}
+.dots i:first-child { margin-inline-start: 0; }
+h1 {
+  font: 400 clamp(2.6rem, 9vw, 6rem)/1.15 var(--f-head); margin: 0;  text-wrap: balance;
+  text-shadow: 0 4px 40px rgba(0,0,0,.5);
+}
+h1 em { font-style: normal; padding-inline: .05em; }
+.lead { color: #d9dbe2; max-width: 46ch; margin: 18px auto 0; font-size: clamp(.98rem, 2.4vw, 1.12rem); text-shadow: 0 2px 16px rgba(0,0,0,.7); }
+
+.cta {
+  display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 30px;
+  width: min(480px, 100%); padding: 6px; padding-inline-start: 22px; border-radius: 16px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.22);
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+  color: #c9ccd4; font-size: .92rem; transition: border-color .2s, background .2s;
+}
+.cta:hover { border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.12); }
+.cta b { background: #fff; color: #0b0c10; font-weight: 400; padding: 10px 20px; border-radius: 11px; white-space: nowrap; }
+.cta.small { width: auto; padding-inline-start: 6px; margin-top: 22px; }
+
+/* ================= عناوين الأقسام ================= */
+.kicker { font: 400 .78rem var(--f-mono); color: var(--ink-3); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 6px; text-align: center; }
+.big { font: 400 clamp(2rem, 6vw, 3.4rem)/1.2 var(--f-head); margin: 0; text-align: center; }
+
+/* ================= المواد ================= */
+.subjects-sec { max-width: 1100px; margin: 0 auto; padding-top: 18vh; padding-bottom: 14vh; }
+.subjects { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 44px; }
+@media (max-width: 1000px) { .subjects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .subjects { grid-template-columns: 1fr; } }
+.subj {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 26px 20px 22px; border-radius: 26px;
+  background: var(--glass); border: 1px solid var(--glass-line);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .3s;
+}
+.subj:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.18); }
+.tile {
+  width: 104px; height: 104px; border-radius: 28px; display: grid; place-items: center; margin-bottom: 18px;
+  background: linear-gradient(160deg, #111318, #050608); border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 18px 40px rgba(0,0,0,.45);
+}
+.tile svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.tile svg circle { fill: #fff; stroke: none; }
+.tile svg circle[r="4"] { fill: none; stroke: #fff; }
+.s-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; font-size: .86rem; color: var(--ink-3); }
+.code { font-family: var(--f-code); font-size: .76rem; direction: ltr; unicode-bidi: isolate; color: var(--accent); opacity: .85; }
+.subj h3 { font: 400 1.25rem/1.5 var(--f-head); margin: 6px 0 2px; }
+.formula { font: 400 1.1rem var(--f-math); color: #cfd2da; margin: 2px 0 8px; direction: ltr; unicode-bidi: isolate; }
+.formula.word { font: 400 1.25rem var(--f-swash); direction: rtl; }
+.latest { font-size: .95rem; color: var(--ink-2); margin: 0 0 14px; }
+.latest b { color: #dfe1e7; font-weight: 400; }
+.lects { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 14px; }
+.lects a {
+  width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+  font: 400 .82rem var(--f-mono); color: #d6d8de; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.lects a:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+.lects a.new { background: var(--accent); color: #1a1505; border-color: var(--accent); }
+.open { margin-top: auto; font-weight: 400; font-size: .92rem; color: #fff; opacity: .85; }
+.open:hover { opacity: 1; }
+
+/* ================= المرصد ================= */
+.obs-sec { min-height: 150svh; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 7svh; }
+.obs { max-width: 560px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.obs > p:not(.kicker) { color: #c7cad2; margin: 14px 0 0; text-shadow: 0 2px 14px rgba(0,0,0,.8); }
+.thumbs { display: grid; grid-template-columns: repeat(4, 64px); gap: 8px; margin-top: 20px; }
+.thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 16px; border: 1px solid var(--glass-line); background: #111318; display: block; font-size: 0; color: transparent; }
+
+/* ================= الخاتمة ================= */
+.outro { min-height: 190svh; }
+.outro-in { position: sticky; top: 0; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 900px; margin: 0 auto; text-align: center; }
+.reveal { font: 400 clamp(1.7rem, 5vw, 3.1rem)/1.45 var(--f-head); margin: 0; text-wrap: balance; }
+.reveal.sub { font-size: clamp(1.05rem, 2.6vw, 1.45rem); font-weight: 400; margin-top: 26px; max-width: 38ch; }
+.reveal span { color: rgba(255,255,255,.14); transition: color .35s ease; }
+.reveal span.lit { color: var(--ink); }
+.reveal.sub span.lit { color: var(--ink-2); }
+
+.foot { text-align: center; color: var(--ink-3); font-size: .85rem; padding: 40px 16px 48px; }
+.foot a:hover { color: var(--ink); }
+
+@media (max-width: 560px) {
+  .brand { font-size: .92rem; }
+  .links a { padding: 6px 10px; }
+  .hero { padding-bottom: 9svh; }
+  .cta { font-size: .84rem; padding-inline-start: 14px; }
+  .cta b { padding: 10px 14px; }
+}
