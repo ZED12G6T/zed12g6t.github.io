@@ -10,11 +10,13 @@
   --ink: #f4f2ec; --ink-2: #a3a7b3; --ink-3: #6c707c;
   --glass: rgba(14, 16, 24, .55); --glass-line: rgba(255, 255, 255, .09);
   --accent: #f7d86a;
-  --f-head: 'Readex Pro', 'IBM Plex Sans Arabic', sans-serif;
-  --f-body: 'IBM Plex Sans Arabic', sans-serif;
-  --f-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --f-math: 'STIX Two Text', 'Times New Roman', serif;
+  /* كل خطوط الصفحة بخط النسخ، ما عدا أسماء المواد الإنجليزية الصفراء (.code) */
   --f-swash: 'Naskh Swash', 'Readex Pro', serif;
+  --f-head: var(--f-swash);
+  --f-body: var(--f-swash);
+  --f-mono: var(--f-swash);
+  --f-math: var(--f-swash);
+  --f-code: 'JetBrains Mono', ui-monospace, monospace;
   color-scheme: dark;
 }
 
@@ -22,7 +24,7 @@
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
-  margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.75;
+  margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.8; font-weight: 400; font-synthesis: none;
   /* الخلفية لو ما اشتغل WebGL: سماء ليلية بسيطة */
   background:
     radial-gradient(120% 60% at 50% 100%, #10203a 0%, transparent 60%),
@@ -51,7 +53,7 @@ body.gl-ready #scene { opacity: 1; }
 .top { transition: background .3s, border-color .3s; border-bottom: 1px solid transparent; }
 .top.scrolled { background: rgba(5,6,10,.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: var(--glass-line); }
 .top.scrolled::before { opacity: 0; }
-.brand { font: 600 1rem var(--f-head); letter-spacing: .01em; }
+.brand { font: 400 1rem var(--f-head); letter-spacing: .01em; }
 .links { display: flex; gap: 4px; }
 .links a { padding: 6px 14px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; border: 1px solid transparent; transition: color .2s, border-color .2s, background .2s; }
 .links a:hover { color: var(--ink); border-color: var(--glass-line); background: rgba(255,255,255,.04); }
@@ -70,10 +72,10 @@ section { padding-inline: 16px; }
 }
 .dots i:first-child { margin-inline-start: 0; }
 h1 {
-  font: 600 clamp(2.6rem, 9vw, 6rem)/1.15 var(--f-head); margin: 0; letter-spacing: -.01em; text-wrap: balance;
+  font: 400 clamp(2.6rem, 9vw, 6rem)/1.15 var(--f-head); margin: 0;  text-wrap: balance;
   text-shadow: 0 4px 40px rgba(0,0,0,.5);
 }
-h1 em { font-family: var(--f-swash); font-style: normal; font-weight: 400; font-size: 1.12em; padding-inline: .05em; }
+h1 em { font-style: normal; padding-inline: .05em; }
 .lead { color: #d9dbe2; max-width: 46ch; margin: 18px auto 0; font-size: clamp(.98rem, 2.4vw, 1.12rem); text-shadow: 0 2px 16px rgba(0,0,0,.7); }
 
 .cta {
@@ -84,12 +86,12 @@ h1 em { font-family: var(--f-swash); font-style: normal; font-weight: 400; font-
   color: #c9ccd4; font-size: .92rem; transition: border-color .2s, background .2s;
 }
 .cta:hover { border-color: rgba(255,255,255,.45); background: rgba(255,255,255,.12); }
-.cta b { background: #fff; color: #0b0c10; font-weight: 600; padding: 10px 20px; border-radius: 11px; white-space: nowrap; }
+.cta b { background: #fff; color: #0b0c10; font-weight: 400; padding: 10px 20px; border-radius: 11px; white-space: nowrap; }
 .cta.small { width: auto; padding-inline-start: 6px; margin-top: 22px; }
 
 /* ================= عناوين الأقسام ================= */
-.kicker { font: 500 .78rem var(--f-mono); color: var(--ink-3); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 6px; text-align: center; }
-.big { font: 600 clamp(2rem, 6vw, 3.4rem)/1.2 var(--f-head); margin: 0; text-align: center; }
+.kicker { font: 400 .78rem var(--f-mono); color: var(--ink-3); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 6px; text-align: center; }
+.big { font: 400 clamp(2rem, 6vw, 3.4rem)/1.2 var(--f-head); margin: 0; text-align: center; }
 
 /* ================= المواد ================= */
 .subjects-sec { max-width: 1100px; margin: 0 auto; padding-top: 18vh; padding-bottom: 14vh; }
@@ -112,22 +114,22 @@ h1 em { font-family: var(--f-swash); font-style: normal; font-weight: 400; font-
 .tile svg { width: 50px; height: 50px; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .tile svg circle { fill: #fff; stroke: none; }
 .tile svg circle[r="4"] { fill: none; stroke: #fff; }
-.s-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; font-size: .78rem; color: var(--ink-3); }
-.code { font-family: var(--f-mono); direction: ltr; unicode-bidi: isolate; color: var(--accent); opacity: .85; }
-.subj h3 { font: 600 1.25rem/1.5 var(--f-head); margin: 6px 0 2px; }
-.formula { font: italic 1.02rem var(--f-math); color: #cfd2da; margin: 2px 0 8px; direction: ltr; unicode-bidi: isolate; }
+.s-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; font-size: .86rem; color: var(--ink-3); }
+.code { font-family: var(--f-code); font-size: .76rem; direction: ltr; unicode-bidi: isolate; color: var(--accent); opacity: .85; }
+.subj h3 { font: 400 1.25rem/1.5 var(--f-head); margin: 6px 0 2px; }
+.formula { font: 400 1.1rem var(--f-math); color: #cfd2da; margin: 2px 0 8px; direction: ltr; unicode-bidi: isolate; }
 .formula.word { font: 400 1.25rem var(--f-swash); direction: rtl; }
-.latest { font-size: .86rem; color: var(--ink-2); margin: 0 0 14px; }
-.latest b { color: #dfe1e7; font-weight: 500; }
+.latest { font-size: .95rem; color: var(--ink-2); margin: 0 0 14px; }
+.latest b { color: #dfe1e7; font-weight: 400; }
 .lects { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 14px; }
 .lects a {
   width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
-  font: 500 .82rem var(--f-mono); color: #d6d8de; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);
+  font: 400 .82rem var(--f-mono); color: #d6d8de; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03);
   transition: background .2s, color .2s, border-color .2s;
 }
 .lects a:hover { border-color: rgba(255,255,255,.5); color: #fff; }
 .lects a.new { background: var(--accent); color: #1a1505; border-color: var(--accent); }
-.open { margin-top: auto; font-weight: 700; font-size: .92rem; color: #fff; opacity: .85; }
+.open { margin-top: auto; font-weight: 400; font-size: .92rem; color: #fff; opacity: .85; }
 .open:hover { opacity: 1; }
 
 /* ================= المرصد ================= */
@@ -140,8 +142,8 @@ h1 em { font-family: var(--f-swash); font-style: normal; font-weight: 400; font-
 /* ================= الخاتمة ================= */
 .outro { min-height: 190svh; }
 .outro-in { position: sticky; top: 0; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 900px; margin: 0 auto; text-align: center; }
-.reveal { font: 600 clamp(1.7rem, 5vw, 3.1rem)/1.45 var(--f-head); margin: 0; text-wrap: balance; }
-.reveal.sub { font-size: clamp(1.05rem, 2.6vw, 1.45rem); font-weight: 500; margin-top: 26px; max-width: 38ch; }
+.reveal { font: 400 clamp(1.7rem, 5vw, 3.1rem)/1.45 var(--f-head); margin: 0; text-wrap: balance; }
+.reveal.sub { font-size: clamp(1.05rem, 2.6vw, 1.45rem); font-weight: 400; margin-top: 26px; max-width: 38ch; }
 .reveal span { color: rgba(255,255,255,.14); transition: color .35s ease; }
 .reveal span.lit { color: var(--ink); }
 .reveal.sub span.lit { color: var(--ink-2); }
