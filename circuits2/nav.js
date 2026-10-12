@@ -6,7 +6,8 @@ const lectures = [
   { name: "المحاضرة 3 · علاقات R و L و C", url: "lecture3.html" },
   { name: "المحاضرة 4 · المعاوقة والمسامحة", url: "lecture4.html" },
   { name: "المحاضرة 5 · كيرشوف وتوصيل المعاوقات", url: "lecture5.html" },
-  { name: "المحاضرة 6 · تحليل العقد والحلقات", url: "lecture6.html" }
+  { name: "المحاضرة 6 · تحليل العقد والحلقات", url: "lecture6.html" },
+  { name: "المحاضرة 8 · القدرة اللحظية والمتوسطة", url: "lecture8.html" }
 ];
 
 function renderNavigation() {
