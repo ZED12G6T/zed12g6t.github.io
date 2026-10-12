@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 8 - Instantaneous & Average Power" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 8 - القدرة اللحظية والمتوسطة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر ومختبر القدرة: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .tile.x, .tile.y, .tile.z { border-top: 3px solid var(--c); }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .box { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+  .fig .dot { fill: var(--ink-2); }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.e2t { fill: var(--e2); }
+  .fig text.lbl.zt { fill: var(--cz); }
+  .fig .pos { fill: color-mix(in srgb, var(--good) 22%, transparent); stroke: none; }
+  .fig .neg { fill: color-mix(in srgb, var(--bad) 28%, transparent); stroke: none; }
+  .fig .avg { stroke: var(--cz); stroke-width: 1.6; stroke-dasharray: 6 4; fill: none; }
+  .fig .mesh { stroke: var(--e1); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+  .pw-lab .lab-controls { align-items: center; }
+  .pw-lab .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pw-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .pw-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pw-lab .pw-say { margin: 10px 0 0; text-align: center; font-weight: 500; color: var(--ink-2); }
+  @media (max-width: 560px) { .pw-lab .ml-read { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 8 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.1–11.2</span></p>
+  <h1><span>القدرة اللحظية والمتوسطة</span> <span class="h1-math ltr">$P = \tfrac{1}{2}\,\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</span></h1>
+  <p class="lead">لين الحين كنا نحسب الجهد والتيار بس. هالمحاضرة تبدأ الفصل 11: كم قدرة (Power) ياخذ الحمل فعلاً؟ في AC الجهد والتيار يتغيرون كل لحظة، فالقدرة بعد تتغير، وأحياناً تطلع سالبة. وعشان كذا نحتاج رقم واحد ثابت يوصف القدرة، وهو القدرة المتوسطة (Average power).</p>
+  <div class="xyz-bar">
+    <span class="x">الجهد $v(t)$ و $\mathbf{V}$</span><span class="y">التيار $i(t)$ و $\mathbf{I}$</span><span class="z">القدرة $p(t)$ و $P$</span>
+    <small>← نفس الألوان في القوانين والمختبر</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>القدرة اللحظية $p(t) = v(t)\,i(t)$ فيها جزء ثابت وجزء جيبي تردده $2\omega$، يعني ضعف تردد الجهد. وتصير سالبة لما الملف أو المكثف يرجّع طاقة للمصدر.</li>
+      <li>القدرة المتوسطة هي الجزء الثابت: $P = \tfrac{1}{2}V_m I_m \cos(\theta_v - \theta_i)$، وبالفيزورات $P = \tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$. المهم الفرق بين الزاويتين، مو الزوايا نفسها.</li>
+      <li>المقاومة تاخذ قدرة دايم: $P = \tfrac{1}{2}|\mathbf{I}|^2 R$. والملف والمكثف متوسط قدرتهم صفر، لأن فرق الطور $\pm 90^\circ$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 القدرة اللحظية ================= -->
+<section class="card" id="instant" data-num="01" data-nav="القدرة اللحظية|p(t)">
+  <h2>القدرة اللحظية (Instantaneous power)</h2>
+  <p class="sub">جهد اللحظة ضرب تيار اللحظة</p>
+
+  <p>القدرة اللحظية $p(t)$ هي القدرة اللي ياخذها العنصر في أي لحظة، وتنقاس بالواط (W). وهي ببساطة ضرب الجهد في التيار بنفس اللحظة، بشرط اصطلاح الإشارة السلبي (Passive sign convention)، يعني التيار داخل من طرف الموجب:</p>
+  <div class="m">\[\Z{p(t)} = \X{v(t)}\,\Y{i(t)}\]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 360 130" role="img" aria-label="مصدر جيبي على اليسار موصول بدائرة خطية سلبية على اليمين، والتيار i(t) داخل للدائرة والجهد v(t) على طرفيها" style="max-width:380px">
+      <rect class="box" x="10" y="25" width="110" height="80" rx="6"/>
+      <rect class="box" x="240" y="25" width="110" height="80" rx="6"/>
+      <path class="wire" d="M120 45H240M120 85H240"/>
+      <path class="sk e2" d="M160 33H200M194 28L200 33L194 38"/>
+      <text class="lbl" x="65" y="69" text-anchor="middle">مصدر جيبي</text>
+      <text class="lbl" x="295" y="61" text-anchor="middle">دائرة خطية</text>
+      <text class="lbl" x="295" y="79" text-anchor="middle">سلبية</text>
+      <text class="lbl e2t" x="180" y="22" text-anchor="middle">i(t)</text>
+      <text class="lbl" x="200" y="60" text-anchor="middle">+</text>
+      <text class="lbl" x="200" y="71" text-anchor="middle">v(t)</text>
+      <text class="lbl" x="200" y="82" text-anchor="middle">−</text>
+    </svg>
+    <figcaption>Figure 11.1: مصدر جيبي يغذي دائرة خطية سلبية (Passive linear network)، يعني فيها R و L و C بس.</figcaption>
+  </figure>
+  <p>خلنا نفترض الجهد والتيار على طرفي الدائرة:</p>
+  <div class="grid-2">
+    <div class="tile x"><div class="t-name">الجهد</div><div class="t-math">$\X{v(t)} = V_m\cos(\omega t + \theta_v)$</div><div class="t-desc">$V_m$ القيمة العظمى (Peak)، و $\theta_v$ زاوية الطور.</div></div>
+    <div class="tile y"><div class="t-name">التيار</div><div class="t-math">$\Y{i(t)} = I_m\cos(\omega t + \theta_i)$</div><div class="t-desc">نفس التردد $\omega$، بس زاويته $\theta_i$.</div></div>
+  </div>
+  <p>نضربهم ونستخدم متطابقة الضرب (Trigonometric identity):</p>
+  <div class="m">\[\begin{gathered}\cos A\cos B = \\ \tfrac{1}{2}\big[\cos(A - B) + \cos(A + B)\big]\end{gathered}\]</div>
+  <p>هنا $A - B = \theta_v - \theta_i$ (الوقت يروح)، و $A + B = 2\omega t + \theta_v + \theta_i$. فيطلع:</p>
+  <div class="m">\[\begin{gathered}\Z{p(t)} = \underbrace{\tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)}_{\text{ثابت}} \\ + \underbrace{\tfrac{1}{2}V_m I_m\cos(2\omega t + \theta_v + \theta_i)}_{\text{جيبي بتردد } 2\omega}\end{gathered}\]</div>
+  <div class="callout key"><strong>🔑 جزئين:</strong> الأول ثابت ما يتغير مع الوقت، وقيمته تعتمد على فرق الطور بين الجهد والتيار. والثاني موجة جيبية تردده $2\omega$، يعني لو الجهد يعيد نفسه كل $T$، القدرة تعيد نفسها كل $T/2$.</div>
+</section>
+
+<!-- ================= 02 ليش تصير سالبة ================= -->
+<section class="card" id="negative" data-num="02" data-nav="القدرة السالبة|p < 0">
+  <h2>ليش القدرة تصير سالبة؟</h2>
+  <p class="sub">الملف والمكثف يخزنون الطاقة ويرجعونها</p>
+
+  <p>ارسم $p(t)$ وبتلقاها موجة طالعة لفوق بمقدار الجزء الثابت. فجزء من الدورة تكون موجبة، وجزء سالبة:</p>
+  <figure class="fig">
+    <svg id="sFig" viewBox="0 0 600 210" role="img" aria-label="منحنى القدرة اللحظية على دورة كاملة: موجة تردده ضعف تردد الجهد، مرفوعة بالقيمة المتوسطة، والمناطق تحت الصفر ملونة بالأحمر" style="max-width:600px">
+      <path class="pos" id="sPos"/>
+      <path class="neg" id="sNeg"/>
+      <path class="ax" d="M40 150H572M40 20V195"/>
+      <text x="576" y="154">t</text><text x="34" y="18" text-anchor="end">p(t)</text>
+      <text class="tick" x="300" y="166" text-anchor="middle">T/2</text><text class="tick" x="560" y="166" text-anchor="middle">T</text>
+      <path class="avg" d="M40 115H560"/>
+      <path class="sk z" id="sP"/>
+      <path class="sk" d="M110 115V51M105 57L110 51L115 57M105 109L110 115L115 109" style="stroke-width:1.6"/>
+      <text class="lbl" x="118" y="86">½ V<tspan class="sb" dy="3">m</tspan><tspan dy="-3"> I</tspan><tspan class="sb" dy="3">m</tspan></text>
+      <text class="lbl zt" x="566" y="119">P</text>
+    </svg>
+    <figcaption>Figure 11.2: القدرة اللحظية على دورة وحدة $T$. الخط المتقطع هو المتوسط $P = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$. والأخضر طاقة داخلة للدائرة، والأحمر طاقة راجعة للمصدر.</figcaption>
+  </figure>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">لما $p(t) > 0$</div><div class="t-math">الدائرة تاخذ طاقة</div><div class="t-desc">الطاقة رايحة من المصدر للدائرة.</div></div>
+    <div class="tile"><div class="t-top">لما $p(t) < 0$</div><div class="t-math">المصدر ياخذ طاقة</div><div class="t-desc">الدائرة ترجّع طاقة للمصدر.</div></div>
+  </div>
+  <p>كيف دائرة سلبية ترجّع طاقة؟ عشان فيها عناصر تخزين: المكثف يخزن طاقة في المجال الكهربائي، والملف في المجال المغناطيسي. في جزء من الدورة يشحنون، وفي الجزء الثاني يفضّون اللي خزنوه ويرجعونه للمصدر. أما المقاومة ما تخزن شي، كل اللي ياخذه يتحول حرارة.</p>
+  <div class="callout warn"><strong>⚠️ لاحظ:</strong> $p(t)$ دورتها $T_0 = T/2$، يعني لو سألك عن تردد القدرة اللحظية الجواب $2\omega$ مو $\omega$.</div>
+</section>
+
+<!-- ================= 03 القدرة المتوسطة ================= -->
+<section class="card" id="average" data-num="03" data-nav="القدرة المتوسطة|P">
+  <h2>القدرة المتوسطة (Average power)</h2>
+  <p class="sub">متوسط $p(t)$ على دورة كاملة</p>
+
+  <p>القدرة اللحظية تتغير كل لحظة فصعب نقيسها. أما المتوسطة ثابتة وسهلة القياس، وجهاز الواطميتر (Wattmeter) اللي يقيس القدرة أصلاً يقرأ المتوسطة. وتعريفها:</p>
+  <div class="m">\[\Z{P} = \frac{1}{T}\int_0^T p(t)\,dt\]</div>
+  <p>لو عوضنا $p(t)$ بالجزئين، يصير عندنا تكاملين:</p>
+  <ol class="recipe">
+    <li><b>الجزء الثابت:</b> متوسط الثابت هو نفسه، فيطلع $\tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$.</li>
+    <li><b>الجزء الجيبي:</b> متوسط أي موجة جيبية على دورتها صفر، لأن المساحة الموجبة تلغيها السالبة.</li>
+  </ol>
+  <p>فيبقى الجزء الثابت بس:</p>
+  <div class="m">\[\Z{P} = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)\]</div>
+  <div class="callout key"><strong>🔑 المهم الفرق:</strong> بما إن $\cos(\theta_v - \theta_i) = \cos(\theta_i - \theta_v)$، ما يفرق مين تطرح من مين. المهم فرق الطور بين الجهد والتيار، مو قيمة كل زاوية لحالها.</div>
+  <div class="callout"><strong>💡 للتذكير:</strong> $p(t)$ تتغير مع الوقت و $P$ ما تتغير. وعشان تحسب $p(t)$ لازم $v(t)$ و $i(t)$ بمجال الزمن، أما $P$ تقدر تحسبها من مجال الزمن أو من الفيزورات مباشرة (القسم الجاي).</div>
+</section>
+
+<!-- ================= 04 بالفيزورات ================= -->
+<section class="card" id="phasor" data-num="04" data-nav="بالفيزورات|Re[VI*]">
+  <h2>القدرة المتوسطة بالفيزورات</h2>
+  <p class="sub">مرافق التيار يعطيك فرق الزاويتين مباشرة</p>
+
+  <p>الفيزورين هم $\X{\mathbf{V}} = V_m\angle\theta_v$ و $\Y{\mathbf{I}} = I_m\angle\theta_i$. والمرافق (Complex conjugate) $\mathbf{I}^*$ نفس السعة بس الزاوية بعكس الإشارة: $\mathbf{I}^* = I_m\angle{-\theta_i}$. فلو ضربنا:</p>
+  <div class="m">\[\begin{gathered}\tfrac{1}{2}\X{\mathbf{V}}\Y{\mathbf{I}^*} = \tfrac{1}{2}V_m I_m\angle(\theta_v - \theta_i) \\ = \tfrac{1}{2}V_m I_m\big[\cos(\theta_v - \theta_i) \\ + j\sin(\theta_v - \theta_i)\big]\end{gathered}\]</div>
+  <p>الجزء الحقيقي هو بالضبط $P$:</p>
+  <div class="m">\[\begin{gathered}\Z{P} = \tfrac{1}{2}\,\mathrm{Re}\big[\X{\mathbf{V}}\Y{\mathbf{I}^*}\big] \\ = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)\end{gathered}\]</div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">من الزمن</div><div class="t-math">$\tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$</div><div class="t-desc">لو معطاك $v(t)$ و $i(t)$. تأكد إن الاثنين $\cos$.</div></div>
+    <div class="tile"><div class="t-top">من الفيزورات</div><div class="t-math">$\tfrac{1}{2}\,\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</div><div class="t-desc">لو معطاك $\mathbf{V}$ و $\mathbf{I}$، أو حسبتهم من تحليل الدائرة.</div></div>
+  </div>
+  <div class="callout warn"><strong>⚠️ لا تنسى النجمة:</strong> $\mathrm{Re}[\mathbf{V}\mathbf{I}]$ بدون مرافق يعطيك $\cos(\theta_v + \theta_i)$، وهذا غلط. المرافق هو اللي يقلب الجمع لطرح.</div>
+</section>
+
+<!-- ================= 05 حالتين خاصتين ================= -->
+<section class="card" id="special" data-num="05" data-nav="حالات خاصة|R, L, C">
+  <h2>المقاومة مقابل الملف والمكثف</h2>
+  <p class="sub">حالتين خاصتين تختصر عليك الحساب</p>
+
+  <p><b>حمل مقاوم بحت (Purely resistive):</b> الجهد والتيار بنفس الطور، يعني $\theta_v = \theta_i$ و $\cos 0 = 1$. وبما إن $V_m = I_m R$:</p>
+  <div class="m">\[\Z{P} = \tfrac{1}{2}V_m I_m = \tfrac{1}{2}I_m^2 R = \tfrac{1}{2}|\mathbf{I}|^2 R\]</div>
+  <p>والمقاومة تاخذ قدرة في كل لحظة، لأن $p(t)$ عندها ما تنزل تحت الصفر أبداً.</p>
+  <p><b>حمل مفاعل بحت (Purely reactive):</b> ملف أو مكثف بس، فرق الطور $\theta_v - \theta_i = \pm 90^\circ$:</p>
+  <div class="m">\[\Z{P} = \tfrac{1}{2}V_m I_m\cos 90^\circ = 0\]</div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">المقاومة R</div><div class="t-math">$\theta_v - \theta_i = 0^\circ$</div><div class="t-desc">$P = \tfrac{1}{2}|\mathbf{I}|^2 R$، ودايم موجبة.</div></div>
+    <div class="tile"><div class="t-name">الملف L</div><div class="t-math">$\theta_v - \theta_i = +90^\circ$</div><div class="t-desc">التيار متأخر، و $P = 0$.</div></div>
+    <div class="tile"><div class="t-name">المكثف C</div><div class="t-math">$\theta_v - \theta_i = -90^\circ$</div><div class="t-desc">التيار متقدم، و $P = 0$.</div></div>
+    <div class="tile"><div class="t-name">معاوقة عامة $R + jX$</div><div class="t-math">$P = \tfrac{1}{2}|\mathbf{I}|^2 R$</div><div class="t-desc">الجزء الحقيقي $R$ بس هو اللي ياخذ قدرة.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 الخلاصة:</strong> الحمل المقاوم ($R$) ياخذ قدرة في كل الأوقات، والحمل المفاعل ($L$ أو $C$) متوسط قدرته صفر. يعني في أي دائرة، القدرة المتوسطة كلها تروح للمقاومات.</div>
+</section>
+
+<!-- ================= 06 المختبر ================= -->
+<section class="card" id="lab" data-num="06" data-nav="المختبر|Lab">
+  <h2>شوف القدرة وهي تتغير</h2>
+  <p class="sub">غيّر فرق الطور، وشوف كم من الدورة القدرة سالبة</p>
+
+  <div class="pw-lab">
+    <h3>🎛️ اختر حمل جاهز، أو حرّك المؤشرات</h3>
+    <p class="lab-note">الجهد $v = V_m\cos\omega t$ والتيار $i = I_m\cos(\omega t - \theta)$، يعني $\theta = \theta_v - \theta_i$. الموجات مرسومة بنسبة لقيمتها العظمى عشان تشوف الشكل، والأرقام الحقيقية تحت.</p>
+    <div class="lab-controls">
+      <div class="field"><label>حمل جاهز</label><span class="seg"><button class="btn small primary" type="button" data-pre="R" aria-pressed="true">R</button><button class="btn small" type="button" data-pre="L" aria-pressed="false">L</button><button class="btn small" type="button" data-pre="C" aria-pressed="false">C</button><button class="btn small" type="button" data-pre="e1" aria-pressed="false">مثال 1</button></span></div>
+      <div class="field"><label>$V_m$ (V)</label><input type="range" dir="ltr" id="vmS" min="10" max="200" step="10" value="120"><span class="rv" id="vmSv"></span></div>
+      <div class="field"><label>$I_m$ (A)</label><input type="range" dir="ltr" id="imS" min="1" max="20" step="1" value="10"><span class="rv" id="imSv"></span></div>
+      <div class="field"><label>فرق الطور $\theta_v - \theta_i$</label><input type="range" dir="ltr" id="thS" min="-90" max="90" step="1" value="0"><span class="rv" id="thSv"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 300" role="img" aria-label="فوق: موجة الجهد وموجة التيار على دورة. تحت: موجة القدرة اللحظية مع خط متقطع للمتوسط، والأجزاء السالبة بالأحمر">
+        <path class="ax" d="M40 70H572M40 15V125"/>
+        <text x="576" y="74">ωt</text>
+        <text class="tick" x="300" y="84" text-anchor="middle">180°</text><text class="tick" x="560" y="84" text-anchor="middle">360°</text>
+        <path class="sk e1" id="vW"/>
+        <path class="sk e2" id="iW"/>
+        <text class="lbl" x="48" y="140" style="fill:var(--e1)">v(t)</text>
+        <text class="lbl" x="92" y="140" style="fill:var(--e2)">i(t)</text>
+        <path class="pos" id="pPos"/>
+        <path class="neg" id="pNeg"/>
+        <path class="ax" d="M40 215H572M40 145V292"/>
+        <text x="576" y="219">ωt</text>
+        <path class="avg" id="pAvg"/>
+        <path class="sk z" id="pW"/>
+        <text class="lbl zt" x="48" y="160">p(t)</text>
+        <text class="lbl zt" id="pAvgT" x="566" text-anchor="end">P</text>
+      </svg>
+      <figcaption>فوق الجهد والتيار، وتحت القدرة اللحظية. لاحظ إن موجة القدرة تكمل دورتين وموجة الجهد دورة وحدة.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k">القدرة المتوسطة $P$</span><span class="v" id="rP"></span></div>
+      <div><span class="k">سعة الجزء الجيبي $\tfrac{1}{2}V_m I_m$</span><span class="v" id="rH"></span></div>
+      <div><span class="k">نسبة الدورة اللي $p(t)$ فيها سالبة</span><span class="v" id="rN"></span></div>
+      <div><span class="k">أعلى قيمة لـ $p(t)$</span><span class="v" id="rMax"></span></div>
+      <div><span class="k">أقل قيمة لـ $p(t)$</span><span class="v" id="rMin"></span></div>
+      <div><span class="k">$\cos(\theta_v - \theta_i)$</span><span class="v" id="rC"></span></div>
+    </div>
+    <p class="pw-say" id="rSay"></p>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> ابدأ من R وحرّك فرق الطور شوي شوي لين <span class="ltr">90°</span>. بتشوف الخط المتقطع ينزل لين الصفر، والأحمر يكبر لين يصير نص الدورة بالضبط. هذا الملف: ياخذ طاقة نص الدورة ويرجعها النص الثاني.</div>
+</section>
+
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>القدرة اللحظية والمتوسطة</h2></div>
+  <div class="tags"><span class="tag">Example 11.1</span><span class="tag">من مجال الزمن</span></div>
+  <p>لو $v(t) = 120\cos(377t + 45^\circ)$ V و $i(t) = 10\cos(377t - 10^\circ)$ A، أوجد القدرة اللحظية والقدرة المتوسطة اللي تاخذها الدائرة السلبية في Figure 11.1.</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">الاثنين $\cos$ وبنفس التردد $\omega = 377$، فنقدر نضرب مباشرة. $V_m = 120$ و $\theta_v = 45^\circ$، و $I_m = 10$ و $\theta_i = -10^\circ$.</p>
+    </li>
+    <li class="step">
+      <h4>اضرب الجهد في التيار</h4>
+      <div class="m">\[\begin{gathered}p = vi = 1200\cos(377t + 45^\circ) \\ \times\cos(377t - 10^\circ)\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>طبّق المتطابقة</h4>
+      <div class="m">\[\begin{gathered}A - B = 55^\circ \\ A + B = 754t + 35^\circ \\[4pt] p = 600\big[\cos 55^\circ \\ + \cos(754t + 35^\circ)\big]\end{gathered}\]</div>
+      <p class="why">نص 1200 يطلع 600، و $600\cos 55^\circ = 344.2$.</p>
+    </li>
+    <li class="step">
+      <h4>القدرة اللحظية</h4>
+      <div class="m">\[\begin{gathered}\Z{p(t)} = 344.2 \\ + 600\cos(754t + 35^\circ)\ \text{W}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة المتوسطة</h4>
+      <div class="m">\[\begin{gathered}P = \tfrac{1}{2}(120)(10) \\ \times\cos\big[45^\circ - (-10^\circ)\big] \\ = 600\cos 55^\circ = 344.2\ \text{W}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$P = 344.2$ W</div>
+      <p class="sanity">طلعت نفس الجزء الثابت في $p(t)$ ✓، وتردد الجزء الجيبي $754 = 2 \times 377$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>القدرة في معاوقة</h2></div>
+  <div class="tags"><span class="tag">Example 11.2</span><span class="tag">من الفيزورات</span></div>
+  <p>احسب القدرة المتوسطة اللي تاخذها معاوقة $\mathbf{Z} = 30 - j70\ \Omega$ لما نحط عليها جهد $\mathbf{V} = 120\angle 0^\circ$ V.</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">عندنا الجهد بس، فنحتاج التيار أول من قانون أوم $\mathbf{I} = \mathbf{V}/\mathbf{Z}$. والقسمة أسهل بالقطبي.</p>
+    </li>
+    <li class="step">
+      <h4>حوّل المعاوقة للقطبي</h4>
+      <div class="m">\[\begin{gathered}|\mathbf{Z}| = \sqrt{30^2 + 70^2} = 76.16 \\ \angle\mathbf{Z} = -\tan^{-1}\tfrac{70}{30} = -66.8^\circ\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب التيار</h4>
+      <div class="m">\[\begin{gathered}\Y{\mathbf{I}} = \frac{120\angle 0^\circ}{76.16\angle{-66.8^\circ}} \\ = 1.576\angle 66.8^\circ\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة المتوسطة</h4>
+      <div class="m">\[\begin{gathered}P = \tfrac{1}{2}(120)(1.576) \\ \times\cos(0^\circ - 66.8^\circ) \\ = 37.24\ \text{W}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$P = 37.24$ W</div>
+      <p class="sanity">بالطريقة الثانية: $\tfrac{1}{2}|\mathbf{I}|^2 R = \tfrac{1}{2}(1.576)^2(30) \approx 37.2$ ✓. الجزء $-j70$ ما ياخذ شي.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>القدرة المعطاة والمأخوذة</h2></div>
+  <div class="tags"><span class="tag">Example 11.3</span><span class="tag">مصدر ومقاومة ومكثف</span></div>
+  <p>في الدائرة، أوجد القدرة المتوسطة اللي يعطيها المصدر، والقدرة المتوسطة اللي تاخذها المقاومة.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 345 195" role="img" aria-label="مصدر جهد 5 بزاوية 30 درجة، على التوالي مع مقاومة 4 أوم ومكثف سالب j2 أوم، والتيار I يمشي مع عقارب الساعة" style="max-width:360px">
+      <circle class="wire" cx="90" cy="110" r="16"/>
+      <text class="lbl" x="90" y="107" text-anchor="middle">+</text>
+      <text class="lbl" x="90" y="122" text-anchor="middle">−</text>
+      <path class="wire" d="M90 94V50H140M180 50H280V105M280 115V170H90V126"/>
+      <path class="elm" d="M140 50L143.33 42L150 58L156.67 42L163.33 58L170 42L176.67 58L180 50"/>
+      <path class="elm" d="M268 105H292M268 115H292"/>
+      <path class="sk e2" d="M205 38H235M229 33L235 38L229 43"/>
+      <text class="lbl e2t" x="220" y="28" text-anchor="middle">I</text>
+      <text class="lbl" x="66" y="114" text-anchor="end">5∠30° V</text>
+      <text class="lbl" x="160" y="34" text-anchor="middle">4 Ω</text>
+      <text class="lbl" x="300" y="114">−j2 Ω</text>
+    </svg>
+    <figcaption>Figure 11.3: دائرة توالي، فيها تيار واحد $\mathbf{I}$.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">كل العناصر على التوالي، فنفس التيار $\mathbf{I}$ يمشي في الكل. نحسبه من المعاوقة الكلية $4 - j2$.</p>
+    </li>
+    <li class="step">
+      <h4>احسب التيار</h4>
+      <div class="m">\[\begin{gathered}\Y{\mathbf{I}} = \frac{5\angle 30^\circ}{4 - j2} \\ = \frac{5\angle 30^\circ}{4.472\angle{-26.57^\circ}} \\ = 1.118\angle 56.57^\circ\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة اللي يعطيها المصدر</h4>
+      <div class="m">\[\begin{gathered}P_s = \tfrac{1}{2}(5)(1.118) \\ \times\cos(30^\circ - 56.57^\circ) \\ = 2.5\ \text{W}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة اللي تاخذها المقاومة</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_R = 4\mathbf{I} \\ = 4.472\angle 56.57^\circ\ \text{V} \\[4pt] P_R = \tfrac{1}{2}(4.472)(1.118) \\ = 2.5\ \text{W}\end{gathered}\]</div>
+      <p class="why">جهد المقاومة وتيارها بنفس الزاوية، فـ $\cos 0 = 1$.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$P_s = P_R = 2.5$ W</div>
+      <p class="sanity">اللي أعطاه المصدر كله راح للمقاومة، والمكثف أخذ صفر ✓. وبالطريقة السريعة: $\tfrac{1}{2}(1.118)^2(4) = 2.5$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>قدرة كل عنصر بتحليل الحلقات</h2></div>
+  <div class="tags"><span class="tag">Example 11.4</span><span class="tag">حفظ القدرة</span></div>
+  <p>أوجد القدرة المتوسطة اللي يولدها كل مصدر، والقدرة المتوسطة اللي ياخذها كل عنصر سلبي في الدائرة.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 470 195" role="img" aria-label="مصدر تيار 4 أمبير على اليسار، فوق مقاومة 20 أوم ثم مكثف سالب j5، وفي النص ملف j10 نازل للأسفل، وعلى اليمين مصدر جهد 60 بزاوية 30 والموجب فوق. الحلقة 1 يسار والحلقة 2 يمين" style="max-width:480px">
+      <circle class="wire" cx="100" cy="110" r="16"/>
+      <path class="wire" d="M100 119V101M95 107L100 101L105 107"/>
+      <path class="wire" d="M100 94V50H140M180 50H290M300 50H380V94M380 126V170H100V126M240 50V90M240 130V170"/>
+      <path class="elm" d="M140 50L143.33 42L150 58L156.67 42L163.33 58L170 42L176.67 58L180 50"/>
+      <path class="elm" d="M290 38V62M300 38V62"/>
+      <path class="elm" d="M240 90a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <circle class="wire" cx="380" cy="110" r="16"/>
+      <text class="lbl" x="380" y="107" text-anchor="middle">+</text>
+      <text class="lbl" x="380" y="122" text-anchor="middle">−</text>
+      <circle class="dot" cx="240" cy="50" r="3"/>
+      <circle class="dot" cx="240" cy="170" r="3"/>
+      <path class="mesh" d="M154 107A18 18 0 1 1 162 131M165.8 136.9L162 131L169 130.6"/>
+      <path class="mesh" d="M294 107A18 18 0 1 1 302 131M305.8 136.9L302 131L309 130.6"/>
+      <text class="lbl" x="170" y="119" text-anchor="middle" style="fill:var(--e1)">I<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="310" y="119" text-anchor="middle" style="fill:var(--e1)">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="76" y="114" text-anchor="end">4∠0° A</text>
+      <text class="lbl" x="160" y="34" text-anchor="middle">20 Ω</text>
+      <text class="lbl" x="295" y="30" text-anchor="middle">−j5 Ω</text>
+      <text class="lbl" x="252" y="114">j10 Ω</text>
+      <text class="lbl" x="404" y="114">60∠30° V</text>
+    </svg>
+    <figcaption>Figure 11.5: الحلقة 1 فيها مصدر التيار، والحلقة 2 فيها مصدر الجهد. والملف $j10$ مشترك بينهم.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">مصدر التيار على طرف الحلقة 1 بروحه، فتيارها معروف: $\mathbf{I}_1 = 4$ A. يبقى نكتب KVL للحلقة 2 بس. وبعدها نحسب قدرة كل عنصر من جهده وتياره.</p>
+    </li>
+    <li class="step">
+      <h4>KVL للحلقة 2</h4>
+      <div class="m">\[\begin{gathered}j10(\mathbf{I}_2 - \mathbf{I}_1) - j5\,\mathbf{I}_2 \\ + 60\angle 30^\circ = 0 \\[4pt] j5\,\mathbf{I}_2 = j40 - 60\angle 30^\circ\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب $\mathbf{I}_2$</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I}_2 = 8 - 12\angle{-60^\circ} \\ = 8 - (6 - j10.39) \\ = 2 + j10.39 \\ = 10.58\angle 79.1^\circ\ \text{A}\end{gathered}\]</div>
+      <p class="why">قسمنا على $j5$: $\tfrac{j40}{j5} = 8$، و $\tfrac{60\angle 30^\circ}{5\angle 90^\circ} = 12\angle{-60^\circ}$.</p>
+    </li>
+    <li class="step">
+      <h4>مصدر الجهد</h4>
+      <div class="m">\[\begin{gathered}P_5 = \tfrac{1}{2}(60)(10.58) \\ \times\cos(30^\circ - 79.1^\circ) \\ = 207.8\ \text{W}\end{gathered}\]</div>
+      <p class="why">$\mathbf{I}_2$ داخل من طرفه الموجب، فحسب اصطلاح الإشارة السلبي الإشارة الموجبة تعني إنه <b>ياخذ</b> قدرة. يعني الدائرة تشحنه.</p>
+    </li>
+    <li class="step">
+      <h4>مصدر التيار</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_1 = 20\mathbf{I}_1 + j10(\mathbf{I}_1 - \mathbf{I}_2) \\ = 80 + j10(2 - j10.39) \\ = 183.9 + j20 \\ = 185.0\angle 6.21^\circ\ \text{V}\end{gathered}\]</div>
+      <div class="m">\[\begin{gathered}P_1 = -\tfrac{1}{2}(185.0)(4)\cos 6.21^\circ \\ = -367.8\ \text{W}\end{gathered}\]</div>
+      <p class="why">التيار طالع من طرفه الموجب، فنحط سالب. والسالب يعني إنه <b>يعطي</b> قدرة للدائرة.</p>
+    </li>
+    <li class="step">
+      <h4>المقاومة</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_2 = 20\mathbf{I}_1 = 80\angle 0^\circ \\[4pt] P_2 = \tfrac{1}{2}(80)(4) = 160\ \text{W}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>الملف والمكثف</h4>
+      <div class="m">\[\begin{gathered}\mathbf{V}_4 = -j5\,\mathbf{I}_2 = 52.9\angle{-10.9^\circ} \\ P_4 = \tfrac{1}{2}(52.9)(10.58) \\ \times\cos(-90^\circ) = 0 \\[6pt] \mathbf{V}_3 = j10(\mathbf{I}_1 - \mathbf{I}_2) \\ = 105.8\angle 10.9^\circ \\ P_3 = \tfrac{1}{2}(105.8)(10.58) \\ \times\cos 90^\circ = 0\end{gathered}\]</div>
+      <p class="why">تيار الملف $\mathbf{I}_1 - \mathbf{I}_2 = 10.58\angle{-79.1^\circ}$. والفرق دايم <span class="ltr">90°</span> فالمتوسط صفر، وكان ممكن تكتبه مباشرة بدون حساب.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$P_1 = -367.8$ W، $P_2 = 160$ W، $P_5 = 207.8$ W، $P_3 = P_4 = 0$</div>
+      <p class="sanity">المجموع: $-367.8 + 160 + 0 + 0 + 207.8 = 0$ ✓. يعني القدرة محفوظة: اللي أعطاه مصدر التيار راح للمقاومة ومصدر الجهد.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس بالواط. قرّب لمنزلة عشرية وحدة على الأقل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>جهد $\mathbf{V} = 10\angle 30^\circ$ V وتيار $\mathbf{I} = 2\angle{-30^\circ}$ A. احسب $P$ باستخدام $\tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$.</p>
+    <div class="check" data-answer="5"></div>
+    <details class="hint"><p>المرافق يقلب إشارة الزاوية: $\mathbf{I}^* = 2\angle 30^\circ$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}\mathbf{I}^* = (10\angle 30^\circ) \\ \times(2\angle 30^\circ) \\ = 20\angle 60^\circ = 10 + j17.32\end{gathered}\]</div><div class="result">$P = \tfrac{1}{2}(10)$ $= 5$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>تيار $\mathbf{I} = 10\angle 30^\circ$ A يمشي في معاوقة $\mathbf{Z} = 20\angle{-22^\circ}\ \Omega$. كم القدرة المتوسطة اللي تاخذها؟</p>
+    <div class="check" data-answer="927.18"></div>
+    <details class="hint"><p>احسب الجهد أول: $\mathbf{V} = \mathbf{I}\mathbf{Z}$، وفي الضرب السعات تنضرب والزوايا تنجمع.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V} = (10\angle 30^\circ) \\ \times(20\angle{-22^\circ}) \\ = 200\angle 8^\circ\ \text{V} \\[4pt] P = \tfrac{1}{2}(200)(10) \\ \times\cos(8^\circ - 30^\circ)\end{gathered}\]</div><div class="result">$P = 1000\cos 22^\circ$ $= 927.2$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>جهد $\mathbf{V} = 100\angle 0^\circ$ V على معاوقة $\mathbf{Z} = 6 + j8\ \Omega$. كم القدرة المتوسطة؟</p>
+    <div class="check" data-answer="300"></div>
+    <details class="hint"><p>$|\mathbf{Z}| = 10$، فـ $|\mathbf{I}| = 10$ A. وبعدها $\tfrac{1}{2}|\mathbf{I}|^2 R$ بالجزء الحقيقي بس.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}|\mathbf{I}| = \frac{100}{\sqrt{6^2 + 8^2}} = 10\ \text{A} \\ P = \tfrac{1}{2}(10)^2(6)\end{gathered}\]</div><div class="result">$P = 300$ W</div><p class="sanity">بالطريقة الثانية: زاوية $\mathbf{Z}$ هي $53.13^\circ$، و $\tfrac{1}{2}(100)(10)\cos 53.13^\circ = 300$ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>$v(t) = 80\cos(10t + 20^\circ)$ V و $i(t) = 15\sin(10t + 60^\circ)$ A. كم القدرة المتوسطة؟</p>
+    <div class="check" data-answer="385.67"></div>
+    <details class="hint"><p>انتبه: التيار $\sin$. حوّله لـ $\cos$ أول: $\sin x = \cos(x - 90^\circ)$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}i = 15\cos(10t - 30^\circ) \\ P = \tfrac{1}{2}(80)(15) \\ \times\cos\big[20^\circ - (-30^\circ)\big]\end{gathered}\]</div><div class="result">$P = 600\cos 50^\circ$ $= 385.7$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
+    <p>في مثال 1 طلعت $p(t) = 344.2 + 600\cos(754t + 35^\circ)$ W. كم أقل قيمة توصلها $p(t)$؟</p>
+    <div class="check" data-answer="-255.85"></div>
+    <details class="hint"><p>أقل قيمة للـ $\cos$ هي $-1$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[p_{\min} = 344.2 - 600\]</div><div class="result">$p_{\min} = -255.8$ W</div><p class="sanity">سالبة: يعني فيه لحظات الدائرة ترجّع فيها طاقة للمصدر. جرّب "مثال 1" في المختبر وشوف نفس الرقم ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
+    <p>مصدر $8\angle 45^\circ$ V على التوالي مع مقاومة 3&nbsp;Ω وملف $j1\ \Omega$. كم القدرة المتوسطة اللي تاخذها المقاومة؟</p>
+    <div class="check" data-answer="9.6"></div>
+    <details class="hint"><p>$|\mathbf{Z}| = \sqrt{3^2 + 1^2} = \sqrt{10}$، وزاوية المصدر ما تأثر على $|\mathbf{I}|$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}|\mathbf{I}| = \frac{8}{\sqrt{10}} = 2.53\ \text{A} \\ P_R = \tfrac{1}{2}|\mathbf{I}|^2(3) \\ = \tfrac{1}{2}(6.4)(3)\end{gathered}\]</div><div class="result">$P_R = 9.6$ W</div><p class="sanity">والملف ياخذ صفر، فالمصدر يعطي 9.6&nbsp;W بالضبط ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تنسى النص</div>
+    <div class="pair"><div class="no">$P = V_m I_m\cos(\theta_v - \theta_i)$</div><div class="yes">$P = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$ لأن $V_m$ و $I_m$ قيم عظمى</div></div></div>
+  <div class="mk"><div class="mk-title">تاخذ زاوية الـ sin مثل ما هي</div>
+    <div class="pair"><div class="no">$i = 15\sin(10t + 60^\circ)$ فـ $\theta_i = 60^\circ$</div><div class="yes">حوّل أول: $15\cos(10t - 30^\circ)$، فـ $\theta_i = -30^\circ$</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى المرافق</div>
+    <div class="pair"><div class="no">$P = \tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}]$</div><div class="yes">$P = \tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$، والنجمة تقلب زاوية التيار</div></div></div>
+  <div class="mk"><div class="mk-title">تستخدم المعاوقة كلها بدل الجزء الحقيقي</div>
+    <div class="pair"><div class="no">$P = \tfrac{1}{2}|\mathbf{I}|^2|\mathbf{Z}|$</div><div class="yes">$P = \tfrac{1}{2}|\mathbf{I}|^2 R$، والجزء التخيلي ما ياخذ قدرة متوسطة</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب تردد القدرة نفس تردد الجهد</div>
+    <div class="pair"><div class="no">$v$ بتردد 377، فـ $p(t)$ بتردد 377</div><div class="yes">$p(t)$ بتردد $2 \times 377 = 754$ rad/s</div></div></div>
+  <div class="mk"><div class="mk-title">تفهم الإشارة السالبة غلط</div>
+    <div class="pair"><div class="no">$P_1 = -367.8$ W يعني فيه غلط بالحساب</div><div class="yes">بالاصطلاح السلبي، السالب يعني العنصر يعطي قدرة (مثال 4)</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>لو تردد الجهد $\omega$، تردد الجزء الجيبي في $p(t)$:</p>
+      <button>$\omega$</button><button>$2\omega$</button><button>$\omega/2$</button><button>صفر</button>
+      <p class="q-why">من المتطابقة طلع $\cos(2\omega t + \theta_v + \theta_i)$.</p></div>
+    <div class="q" data-answer="3"><p>حمل فيه ملف بس. قدرته المتوسطة:</p>
+      <button>$\tfrac{1}{2}V_m I_m$</button><button>$V_m I_m$</button><button>صفر</button><button>سالبة دايم</button>
+      <p class="q-why">فرق الطور $90^\circ$ و $\cos 90^\circ = 0$. ياخذ طاقة ويرجعها.</p></div>
+    <div class="q" data-answer="3"><p>القدرة المتوسطة تعتمد على:</p>
+      <button>$\theta_v$ بس</button><button>$\theta_i$ بس</button><button>الفرق $\theta_v - \theta_i$</button><button>المجموع $\theta_v + \theta_i$</button>
+      <p class="q-why">$P = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$، والمجموع يطلع في الجزء الجيبي اللي متوسطه صفر.</p></div>
+    <div class="q" data-answer="2"><p>جهاز الواطميتر يقرأ:</p>
+      <button>القدرة اللحظية</button><button>القدرة المتوسطة</button><button>أعلى قيمة للقدرة</button><button>الجهد بس</button>
+      <p class="q-why">القدرة اللحظية تتغير كل لحظة، فالجهاز يقيس متوسطها.</p></div>
+    <div class="q" data-answer="2"><p>بالفيزورات، $P = \tfrac{1}{2}\mathrm{Re}[\ ?\ ]$:</p>
+      <button>$\mathbf{V}\mathbf{I}$</button><button>$\mathbf{V}\mathbf{I}^*$</button><button>$\mathbf{V}/\mathbf{I}$</button><button>$|\mathbf{V}||\mathbf{I}|$</button>
+      <p class="q-why">المرافق يخلي زاوية الضرب $\theta_v - \theta_i$، والجزء الحقيقي يعطي الـ $\cos$.</p></div>
+    <div class="q" data-answer="2"><p>لما $p(t)$ تصير سالبة لحظة، معناها:</p>
+      <button>المقاومة تولد طاقة</button><button>الدائرة ترجّع طاقة للمصدر</button><button>فيه غلط بالدائرة</button><button>القدرة المتوسطة سالبة</button>
+      <p class="q-why">الملف والمكثف يفضّون الطاقة اللي خزنوها ويرجعونها للمصدر.</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* القدرة اللحظية: الرسمة الثابتة في القسم 02، ومختبر القسم 06 */
+(function () {
+  const $ = id => document.getElementById(id);
+  const rad = d => d * Math.PI / 180, f = n => n.toFixed(1);
+  const X0 = 40, WP = 520 / 360;                    // ωt من 0 إلى 360° على 520 بكسل
+  const r2 = n => { const v = Math.round(n * 100) / 100; return (v < 0 ? '−' : '') + Math.abs(v); };
+  function pPaths(th, y0, S) {                      // p/(VmIm) = ½[cosθ + cos(2ωt − θ)] مع θv = 0
+    let line = '', pos = `M${X0} ${y0}`, neg = `M${X0} ${y0}`;
+    for (let k = 0; k <= 360; k += 3) {
+      const x = f(X0 + k * WP), p = 0.5 * (Math.cos(rad(th)) + Math.cos(rad(2 * k - th)));
+      line += (k ? 'L' : 'M') + x + ' ' + f(y0 - S * p);
+      pos += 'L' + x + ' ' + f(y0 - S * Math.max(p, 0));
+      neg += 'L' + x + ' ' + f(y0 - S * Math.min(p, 0));
+    }
+    const end = `L${f(X0 + 360 * WP)} ${y0}Z`;
+    return [line, pos + end, neg + end];
+  }
+  const fig = pPaths(60, 150, 140);                 // الرسمة الثابتة: فرق طور 60°
+  $('sP').setAttribute('d', fig[0]); $('sPos').setAttribute('d', fig[1]); $('sNeg').setAttribute('d', fig[2]);
+
+  const PRE = { R: [120, 10, 0], L: [120, 10, 90], C: [120, 10, -90], e1: [120, 10, 55] };
+  function draw() {
+    const Vm = +$('vmS').value, Im = +$('imS').value, th = +$('thS').value, c = Math.cos(rad(th));
+    $('vmSv').textContent = Vm; $('imSv').textContent = Im; $('thSv').textContent = (th < 0 ? '−' : '') + Math.abs(th) + '°';
+    let dv = '', di = '';
+    for (let k = 0; k <= 360; k += 4) {
+      const x = f(X0 + k * WP);
+      dv += (k ? 'L' : 'M') + x + ' ' + f(70 - 48 * Math.cos(rad(k)));
+      di += (k ? 'L' : 'M') + x + ' ' + f(70 - 34 * Math.cos(rad(k - th)));
+    }
+    $('vW').setAttribute('d', dv); $('iW').setAttribute('d', di);
+    const [l, p, n] = pPaths(th, 215, 72);
+    $('pW').setAttribute('d', l); $('pPos').setAttribute('d', p); $('pNeg').setAttribute('d', n);
+    const ya = 215 - 72 * 0.5 * c;
+    $('pAvg').setAttribute('d', `M${X0} ${f(ya)}H${f(X0 + 360 * WP)}`);
+    $('pAvgT').setAttribute('y', f(ya - 6));
+    const H = 0.5 * Vm * Im, P = H * c;
+    const neg = Math.abs(c) > 1 - 1e-12 ? 0 : 1 - Math.acos(-c) / Math.PI;   // نسبة الدورة اللي p(t) فيها سالبة
+    $('rP').textContent = `${r2(P)} W`;
+    $('rH').textContent = `${r2(H)} W`;
+    $('rMax').textContent = `${r2(P + H)} W`;
+    $('rMin').textContent = `${r2(P - H)} W`;
+    $('rC').textContent = r2(c);
+    $('rN').textContent = `${Math.round(neg * 100)}%`;
+    $('rSay').innerHTML = th === 0 ? 'مقاومة بحتة: $p(t)$ ما تنزل تحت الصفر، والحمل ياخذ قدرة في كل لحظة.'
+      : Math.abs(th) === 90 ? 'مفاعل بحت: اللي ياخذه في نص الدورة يرجّعه في النص الثاني، فالمتوسط صفر.'
+      : 'حمل فيه مقاومة ومفاعلة: ياخذ أكثر مما يرجّع، والفرق هو $P$.';
+    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([$('rSay')]).catch(() => {});
+  }
+  const press = b => document.querySelectorAll('.pw-lab [data-pre]').forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
+  document.querySelectorAll('.pw-lab [data-pre]').forEach(b => b.addEventListener('click', () => {
+    const [v, i, t] = PRE[b.dataset.pre];
+    $('vmS').value = v; $('imS').value = i; $('thS').value = t; press(b); draw();
+  }));
+  ['vmS', 'imS', 'thS'].forEach(id => $(id).addEventListener('input', () => { press(null); draw(); }));
+  draw();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
