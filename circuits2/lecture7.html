@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 7 - Thevenin & Norton Equivalents" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 7 - مكافئ ثيفنن ونورتن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر وحاسبة ثيفنن: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .tile.x, .tile.y, .tile.z { border-top: 3px solid var(--c); }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .box { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+  .fig .zbox { fill: color-mix(in srgb, var(--cz) 14%, transparent); stroke: var(--cz); stroke-width: 2; }
+  .fig .src { fill: none; stroke: var(--ink-2); stroke-width: 2; }
+  .fig .vsrc { fill: none; stroke: var(--cx); stroke-width: 2.2; }
+  .fig .isrc { fill: none; stroke: var(--cy); stroke-width: 2.2; }
+  .fig .dot { fill: var(--ink-2); }
+  .fig .term { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.8; }
+  .fig .cur { stroke: var(--e1); stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.xt { fill: var(--cx); } .fig text.lbl.yt { fill: var(--cy); } .fig text.lbl.zt { fill: var(--cz); }
+  .fig text.lbl.e1t { fill: var(--e1); }
+  .fig text.big { font-size: 22px; font-weight: 700; fill: var(--ink-3); }
+  .th-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .th-lab .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .th-in { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 10px; max-width: 600px; margin: 8px auto 0; }
+  .th-in label { display: flex; flex-direction: column; gap: 4px; font-size: .85rem; color: var(--ink-2); }
+  .th-in input { font: 600 .92rem var(--f-mono); width: 100%; min-width: 0; height: 38px; padding: 0 8px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); text-align: center; direction: ltr; }
+  .th-in input:focus { border-color: var(--accent); outline: none; }
+  .th-in input.bad { border-color: var(--bad); background: var(--bad-soft); }
+  .th-msg { min-height: 1.5em; margin: 8px 0 0; font-size: .86rem; color: var(--bad); text-align: center; }
+  .th-lab .ml-read { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .th-lab .ml-read .pol { display: block; font-size: .8rem; font-weight: 500; color: var(--ink-3); }
+  .th-lab .th-say { margin: 10px 0 0; text-align: center; font-weight: 500; color: var(--ink-2); }
+  @media (max-width: 560px) { .th-in { grid-template-columns: repeat(2, minmax(0, 1fr)); } .th-lab .ml-read { grid-template-columns: 1fr; } }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 7 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 10.6</span></p>
+  <h1><span>مكافئ ثيفنن ونورتن</span> <span class="h1-math ltr">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$</span></h1>
+  <p class="lead">أحياناً الدائرة كبيرة وفيها عناصر كثير، بس اللي يهمك هو اللي يصير عند طرفين بس، مثلاً عند الحمل. ثيفنن (Thevenin) ونورتن (Norton) يقولون لك: كل اللي ورا هالطرفين تقدر تختصره في مصدر واحد ومعاوقة وحدة. نفس اللي درسته في الـ DC، والفرق الوحيد إن الأرقام صارت مركبة.</p>
+  <div class="xyz-bar">
+    <span class="x">جهد ثيفنن $\mathbf{V}_{Th}$</span><span class="y">تيار نورتن $\mathbf{I}_N$</span><span class="z">المعاوقة $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span>
+    <small>← نفس الألوان في القوانين والمختبر</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>مكافئ ثيفنن: مصدر جهد $\mathbf{V}_{Th}$ على التوالي مع $\mathbf{Z}_{Th}$. و $\mathbf{V}_{Th}$ هو جهد الدائرة المفتوحة (Open-circuit voltage) بين الطرفين.</li>
+      <li>مكافئ نورتن: مصدر تيار $\mathbf{I}_N$ على التوازي مع $\mathbf{Z}_N$. و $\mathbf{I}_N$ هو تيار القصر (Short-circuit current) بين الطرفين. والعلاقة: $\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$.</li>
+      <li>$\mathbf{Z}_{Th}$: صفّر المصادر المستقلة واجمع المعاوقات. ولو فيه مصدر تابع، حط مصدر اختبار عند الطرفين: $\mathbf{Z}_{Th} = \mathbf{V}_s/\mathbf{I}_s$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الفكرة ================= -->
+<section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
+  <h2>دائرة كاملة في مصدر ومعاوقة</h2>
+  <p class="sub">اللي يشوفه الحمل من الطرفين هو اللي يهم</p>
+
+  <p>تخيل عندك دائرة خطية (Linear circuit) فيها مصادر ومقاومات وملفات ومكثفات، وطالع منها طرفين $a$ و $b$ تبي توصل عليهم حمل. الحمل ما يدري وش داخل الدائرة، كل اللي يحس فيه هو الجهد والتيار عند الطرفين. فلو لقينا دائرة أبسط تعطي نفس الجهد والتيار لأي حمل، نقدر نستبدلها فيها.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 340 150" role="img" aria-label="على اليسار صندوق دائرة خطية له طرفين a و b، وعلى اليمين مكافئ ثيفنن: مصدر جهد V_Th على التوالي مع معاوقة Z_Th إلى الطرف a" style="max-width:360px">
+      <rect class="box" x="10" y="30" width="96" height="90" rx="6"/>
+      <text class="lbl" x="58" y="72" text-anchor="middle">دائرة</text>
+      <text class="lbl" x="58" y="90" text-anchor="middle">خطية</text>
+      <path class="wire" d="M106 50H136M106 100H136"/>
+      <circle class="term" cx="139" cy="50" r="3.5"/><circle class="term" cx="139" cy="100" r="3.5"/>
+      <text class="lbl" x="139" y="40" text-anchor="middle">a</text><text class="lbl" x="139" y="120" text-anchor="middle">b</text>
+      <text class="big" x="160" y="83" text-anchor="middle">=</text>
+      <circle class="vsrc" cx="232" cy="75" r="16"/>
+      <text class="lbl" x="232" y="72" text-anchor="middle">+</text><text class="lbl" x="232" y="86" text-anchor="middle">−</text>
+      <path class="wire" d="M232 59V50H258M298 50H316M232 91V100H316"/>
+      <rect class="zbox" x="258" y="41" width="40" height="18" rx="3"/>
+      <circle class="term" cx="319" cy="50" r="3.5"/><circle class="term" cx="319" cy="100" r="3.5"/>
+      <text class="lbl" x="319" y="40" text-anchor="middle">a</text><text class="lbl" x="319" y="120" text-anchor="middle">b</text>
+      <text class="lbl xt" x="211" y="79" text-anchor="end">V<tspan class="sb" dy="3">Th</tspan></text>
+      <text class="lbl zt" x="278" y="33" text-anchor="middle">Z<tspan class="sb" dy="3">Th</tspan></text>
+    </svg>
+    <figcaption>Figure 10.20: مكافئ ثيفنن (Thevenin equivalent). الدائرة كلها صارت مصدر جهد على التوالي مع معاوقة.</figcaption>
+  </figure>
+  <figure class="fig">
+    <svg viewBox="0 0 340 150" role="img" aria-label="على اليسار صندوق دائرة خطية له طرفين a و b، وعلى اليمين مكافئ نورتن: مصدر تيار I_N سهمه لفوق على التوازي مع معاوقة Z_N" style="max-width:360px">
+      <rect class="box" x="10" y="30" width="96" height="90" rx="6"/>
+      <text class="lbl" x="58" y="72" text-anchor="middle">دائرة</text>
+      <text class="lbl" x="58" y="90" text-anchor="middle">خطية</text>
+      <path class="wire" d="M106 50H136M106 100H136"/>
+      <circle class="term" cx="139" cy="50" r="3.5"/><circle class="term" cx="139" cy="100" r="3.5"/>
+      <text class="lbl" x="139" y="40" text-anchor="middle">a</text><text class="lbl" x="139" y="120" text-anchor="middle">b</text>
+      <text class="big" x="160" y="83" text-anchor="middle">=</text>
+      <circle class="isrc" cx="222" cy="75" r="16"/>
+      <path class="wire" d="M222 84V66M217 72L222 66L227 72" style="stroke:var(--cy)"/>
+      <path class="wire" d="M222 59V50H316M222 91V100H316M270 50V61M270 89V100"/>
+      <rect class="zbox" x="261" y="61" width="18" height="28" rx="3"/>
+      <circle class="dot" cx="270" cy="50" r="3"/><circle class="dot" cx="270" cy="100" r="3"/>
+      <circle class="term" cx="319" cy="50" r="3.5"/><circle class="term" cx="319" cy="100" r="3.5"/>
+      <text class="lbl" x="319" y="40" text-anchor="middle">a</text><text class="lbl" x="319" y="120" text-anchor="middle">b</text>
+      <text class="lbl yt" x="200" y="79" text-anchor="end">I<tspan class="sb" dy="3">N</tspan></text>
+      <text class="lbl zt" x="285" y="79">Z<tspan class="sb" dy="3">N</tspan></text>
+    </svg>
+    <figcaption>Figure 10.21: مكافئ نورتن (Norton equivalent). الدائرة كلها صارت مصدر تيار على التوازي مع معاوقة.</figcaption>
+  </figure>
+  <div class="callout key"><strong>🔑 نفس الـ DC بالضبط:</strong> الخطوات ما تغيرت. الفرق إن المقاومة $R$ صارت معاوقة $\mathbf{Z}$، والجهد والتيار صاروا فيزورات. يعني الشغل الزايد كله في حساب الأعداد المركبة (Complex numbers).</div>
+</section>
+
+<!-- ================= 02 ثيفنن ================= -->
+<section class="card" id="thevenin" data-num="02" data-nav="ثيفنن|Thevenin">
+  <h2>مكافئ ثيفنن (Thevenin)</h2>
+  <p class="sub">رقمين تحسبهم: جهد مفتوح ومعاوقة</p>
+
+  <div class="grid-2">
+    <div class="tile x"><div class="t-name">جهد ثيفنن</div><div class="t-math">$\X{\mathbf{V}_{Th}} = \mathbf{V}_{oc}$</div><div class="t-desc">الجهد بين $a$ و $b$ وهم مفتوحين، يعني بدون حمل.</div></div>
+    <div class="tile z"><div class="t-name">معاوقة ثيفنن</div><div class="t-math">$\Z{\mathbf{Z}_{Th}}$</div><div class="t-desc">المعاوقة اللي تشوفها من الطرفين بعد ما تصفّر المصادر المستقلة.</div></div>
+  </div>
+  <p>والطريقة خطوات ثابتة:</p>
+  <ol class="recipe">
+    <li><b>شيل الحمل</b> وخل الطرفين $a$ و $b$ مفتوحين.</li>
+    <li><b>احسب $\X{\mathbf{V}_{Th}}$:</b> الجهد بين الطرفين المفتوحين، بأي طريقة تعرفها: مقسم جهد، عقد، حلقات.</li>
+    <li><b>احسب $\Z{\mathbf{Z}_{Th}}$:</b> صفّر المصادر المستقلة واجمع المعاوقات توالي وتوازي (القسم 04 فيه التفاصيل).</li>
+    <li><b>ارسم المكافئ</b> ورجّع الحمل. تيار الحمل صار مقسوم بسيط:</li>
+  </ol>
+  <div class="m">\[\mathbf{I}_L = \frac{\X{\mathbf{V}_{Th}}}{\Z{\mathbf{Z}_{Th}} + \mathbf{Z}_L}\]</div>
+  <div class="callout"><strong>💡 ليش مفيد؟</strong> لو بتجرب أكثر من حمل على نفس الدائرة، ما تعيد تحليل الدائرة كل مرة. تحسب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ مرة وحدة، وبعدها كل حمل جديد معادلة سطر واحد.</div>
+</section>
+
+<!-- ================= 03 نورتن ================= -->
+<section class="card" id="norton" data-num="03" data-nav="نورتن|Norton">
+  <h2>مكافئ نورتن (Norton)</h2>
+  <p class="sub">نفس الدائرة، بس بمصدر تيار</p>
+
+  <div class="grid-2">
+    <div class="tile y"><div class="t-name">تيار نورتن</div><div class="t-math">$\Y{\mathbf{I}_N} = \mathbf{I}_{sc}$</div><div class="t-desc">التيار اللي يمشي في سلك يقصر $a$ مع $b$.</div></div>
+    <div class="tile z"><div class="t-name">معاوقة نورتن</div><div class="t-math">$\Z{\mathbf{Z}_N} = \Z{\mathbf{Z}_{Th}}$</div><div class="t-desc">هي نفسها معاوقة ثيفنن، ما تحسبها مرتين.</div></div>
+  </div>
+  <p>المكافئين يوصفون نفس الدائرة، فبينهم علاقة مباشرة مثل تحويل المصادر (Source transformation):</p>
+  <div class="m">\[\X{\mathbf{V}_{Th}} = \Z{\mathbf{Z}_N}\,\Y{\mathbf{I}_N}, \qquad \Z{\mathbf{Z}_{Th}} = \Z{\mathbf{Z}_N}\]</div>
+  <p>يعني لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث يطلع بالقسمة أو الضرب. مثلاً $\Y{\mathbf{I}_N} = \X{\mathbf{V}_{Th}}/\Z{\mathbf{Z}_{Th}}$.</p>
+  <div class="callout warn"><strong>⚠️ انتبه للقسمة:</strong> $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ أعداد مركبة، فالقسمة تقسم السعات وتطرح الزوايا. لا تقسم الجزء الحقيقي على الحقيقي والتخيلي على التخيلي.</div>
+</section>
+
+<!-- ================= 04 إيجاد Z_Th ================= -->
+<section class="card" id="zth" data-num="04" data-nav="إيجاد Z_Th|Z_Th">
+  <h2>كيف تحسب $\mathbf{Z}_{Th}$؟</h2>
+  <p class="sub">طريقتين، والمصدر التابع هو اللي يحدد</p>
+
+  <p><b>الحالة 1: مصادر مستقلة بس.</b> صفّر كل مصدر مستقل (Turn off independent sources):</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">مصدر جهد</div><div class="t-math">يصير سلك (قصر)</div><div class="t-desc">جهده صفر، يعني $\mathbf{V} = 0$ بين طرفيه.</div></div>
+    <div class="tile"><div class="t-top">مصدر تيار</div><div class="t-math">يصير فتح</div><div class="t-desc">تياره صفر، يعني تشيله وتخلي مكانه مفتوح.</div></div>
+  </div>
+  <p>وبعدها اجمع المعاوقات توالي وتوازي وأنت تطالع من الطرفين $a$ و $b$. وتذكّر قانون التوازي لمعاوقتين:</p>
+  <div class="m">\[\mathbf{Z}_1 \parallel \mathbf{Z}_2 = \frac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\]</div>
+
+  <p><b>الحالة 2: فيه مصدر تابع (Dependent source).</b> المصدر التابع ما تصفّره، لأن قيمته تعتمد على جهد أو تيار في الدائرة. صفّر المستقلة بس، وبعدين:</p>
+  <ol class="recipe">
+    <li>حط مصدر اختبار (Test source) عند الطرفين، مثلاً مصدر تيار $\mathbf{I}_s$ بقيمة تختارها أنت.</li>
+    <li>حلل الدائرة واحسب الجهد $\mathbf{V}_s$ على طرفيه.</li>
+    <li>القسمة تعطيك المعاوقة:</li>
+  </ol>
+  <div class="m">\[\Z{\mathbf{Z}_{Th}} = \frac{\mathbf{V}_s}{\mathbf{I}_s}\]</div>
+  <div class="callout key"><strong>🔑 اختار رقم مريح:</strong> قيمة $\mathbf{I}_s$ ما تفرق لأن الدائرة خطية، فالجهد يتناسب معها والقسمة تطلع نفسها. اختار رقم يخلي الحساب سهل، مثل ما سوا الكتاب في مثال 2 لما اختار <span class="ltr">3 A</span>.</div>
+  <div class="callout warn"><strong>⚠️ مصادر بترددات مختلفة:</strong> لو الدائرة فيها مصادر تشتغل على أكثر من تردد، المعاوقات تختلف مع كل تردد. فتطلع مكافئ ثيفنن أو نورتن لكل تردد لحاله، مو مكافئ واحد للكل.</div>
+</section>
+
+<!-- ================= 05 المختبر ================= -->
+<section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
+  <h2>حاسبة ثيفنن ونورتن</h2>
+  <p class="sub">دائرة قنطرة، غيّر المعاوقات وشوف المكافئ يتغير</p>
+
+  <div class="th-lab">
+    <h3>🎛️ جرّب مثال المحاضرة، أو اكتب معاوقات تمرينك</h3>
+    <p class="lab-note">اكتب كل رقم بالمستطيل مثل <span class="ltr">8-j6</span> أو <span class="ltr">j12</span>، أو بالقطبي مثل <span class="ltr">120∠75</span> (أو <span class="ltr">120&lt;75</span>). ولو تبي مقسم جهد بسيط بدل القنطرة، خل $\mathbf{Z}_d = 0$ و $\mathbf{Z}_c$ أي رقم: كذا الطرف $b$ يصير هو الأرضي.</p>
+    <div class="lab-controls">
+      <div class="field"><label>أمثلة جاهزة</label><span class="seg"><button class="btn small primary" type="button" data-pre="ex1" aria-pressed="true">مثال 1</button><button class="btn small" type="button" data-pre="div" aria-pressed="false">مقسم جهد (تمرين ج)</button></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 400 200" role="img" aria-label="دائرة قنطرة: مصدر جهد Vs على اليسار، فرع فيه Za فوق و Zb تحت والطرف a بينهم، وفرع فيه Zc فوق و Zd تحت والطرف b بينهم، والحمل ZL بين a و b" style="max-width:420px">
+        <circle class="src" cx="50" cy="100" r="16"/>
+        <text class="lbl" x="50" y="97" text-anchor="middle">+</text><text class="lbl" x="50" y="111" text-anchor="middle">−</text>
+        <path class="wire" d="M50 84V20H330V40M50 116V180H330V160M170 20V40M170 80V120M170 160V180M330 80V120M170 100H185M315 100H330"/>
+        <rect class="box" x="161" y="40" width="18" height="40" rx="3"/><rect class="box" x="161" y="120" width="18" height="40" rx="3"/>
+        <rect class="box" x="321" y="40" width="18" height="40" rx="3"/><rect class="box" x="321" y="120" width="18" height="40" rx="3"/>
+        <circle class="dot" cx="170" cy="20" r="3"/><circle class="dot" cx="170" cy="180" r="3"/>
+        <circle class="term" cx="188" cy="100" r="3.5"/><circle class="term" cx="312" cy="100" r="3.5"/>
+        <path class="wire" d="M192 100H225M275 100H308" style="stroke-dasharray:4 3"/>
+        <rect class="box" x="225" y="91" width="50" height="18" rx="3" style="stroke-dasharray:4 3"/>
+        <text class="lbl" x="250" y="84" text-anchor="middle">Z<tspan class="sb" dy="3">L</tspan></text>
+        <text class="lbl" x="188" y="122" text-anchor="middle">a</text><text class="lbl" x="312" y="122" text-anchor="middle">b</text>
+        <text class="lbl" x="28" y="104" text-anchor="end">V<tspan class="sb" dy="3">s</tspan></text>
+        <text class="lbl" x="152" y="64" text-anchor="end">Z<tspan class="sb" dy="3">a</tspan></text>
+        <text class="lbl" x="152" y="144" text-anchor="end">Z<tspan class="sb" dy="3">b</tspan></text>
+        <text class="lbl" x="348" y="64">Z<tspan class="sb" dy="3">c</tspan></text>
+        <text class="lbl" x="348" y="144">Z<tspan class="sb" dy="3">d</tspan></text>
+      </svg>
+      <figcaption>القنطرة العامة. الحمل $\mathbf{Z}_L$ متقطع لأننا نشيله وقت حساب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$، ونرجعه آخر شي.</figcaption>
+    </figure>
+    <div class="th-in" role="group" aria-label="قيم الدائرة">
+      <label><span>$\mathbf{V}_s$ (V)</span><input id="iVs" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span>$\mathbf{Z}_a$ (Ω)</span><input id="iZa" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span>$\mathbf{Z}_b$ (Ω)</span><input id="iZb" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span>$\mathbf{Z}_c$ (Ω)</span><input id="iZc" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span>$\mathbf{Z}_d$ (Ω)</span><input id="iZd" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span>الحمل $\mathbf{Z}_L$ (Ω)</span><input id="iZL" type="text" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <p class="th-msg" id="tMsg" role="status"></p>
+    <div class="ml-read">
+      <div class="hl"><span class="k vz">$\mathbf{Z}_{Th} = \mathbf{Z}_a \parallel \mathbf{Z}_b + \mathbf{Z}_c \parallel \mathbf{Z}_d$</span><span class="v" id="rZ"></span></div>
+      <div class="hl"><span class="k vx">$\mathbf{V}_{Th} = \mathbf{V}_a - \mathbf{V}_b$</span><span class="v" id="rV"></span></div>
+      <div><span class="k vy">$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</span><span class="v" id="rI"></span></div>
+      <div><span class="k">تيار الحمل $\mathbf{I}_L$</span><span class="v" id="rL"></span></div>
+    </div>
+    <p class="th-say" id="tSay"></p>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> غيّر $\mathbf{Z}_L$ لأي رقم. لاحظ إن $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ ما تحركوا أبداً، لأنهم صفة الدائرة مو الحمل. بعدين جرّب $\mathbf{Z}_L$ تساوي مرافق $\mathbf{Z}_{Th}$ (نفس الحقيقي والتخيلي بعكس الإشارة)، وشوف التخيلي يختفي من المقام.</div>
+</section>
+
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>مكافئ ثيفنن لدائرة قنطرة</h2></div>
+  <div class="tags"><span class="tag">Example 10.8</span><span class="tag">مصادر مستقلة بس</span></div>
+  <p>أوجد مكافئ ثيفنن عند الطرفين $a$-$b$ في الدائرة.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 400 200" role="img" aria-label="مصدر 120 بزاوية 75 فولت على اليسار. فرع يسار فيه مكثف سالب j6 فوق ومقاومة 8 أوم تحت والطرف a بينهم. فرع يمين فيه مقاومة 4 أوم فوق وملف j12 تحت والطرف b بينهم" style="max-width:420px">
+      <circle class="src" cx="110" cy="100" r="16"/>
+      <text class="lbl" x="110" y="97" text-anchor="middle">+</text><text class="lbl" x="110" y="111" text-anchor="middle">−</text>
+      <path class="wire" d="M110 84V20H330V40M110 116V180H330V160M210 20V45M210 55V120M210 160V180M330 80V120M210 100H240M300 100H330"/>
+      <path class="elm" d="M198 45H222M198 55H222"/>
+      <path class="elm" d="M210 120L218 123.33L202 130L218 136.67L202 143.33L218 150L202 156.67L210 160"/>
+      <path class="elm" d="M330 40L338 43.33L322 50L338 56.67L322 63.33L338 70L322 76.67L330 80"/>
+      <path class="elm" d="M330 120a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <circle class="dot" cx="210" cy="20" r="3"/><circle class="dot" cx="210" cy="180" r="3"/>
+      <circle class="dot" cx="210" cy="100" r="3"/><circle class="dot" cx="330" cy="100" r="3"/>
+      <circle class="term" cx="243" cy="100" r="3.5"/><circle class="term" cx="297" cy="100" r="3.5"/>
+      <text class="lbl" x="243" y="90" text-anchor="middle">a</text><text class="lbl" x="297" y="90" text-anchor="middle">b</text>
+      <text class="lbl xt" x="256" y="118" text-anchor="middle">+</text><text class="lbl xt" x="284" y="118" text-anchor="middle">−</text>
+      <text class="lbl xt" x="270" y="134" text-anchor="middle">V<tspan class="sb" dy="3">Th</tspan></text>
+      <text class="lbl" x="90" y="104" text-anchor="end">120∠75° V</text>
+      <text class="lbl" x="196" y="40" text-anchor="end">−j6 Ω</text>
+      <text class="lbl" x="196" y="144" text-anchor="end">8 Ω</text>
+      <text class="lbl" x="346" y="64">4 Ω</text>
+      <text class="lbl" x="346" y="144">j12 Ω</text>
+      <text class="lbl" x="210" y="12" text-anchor="middle">d</text><text class="lbl" x="210" y="196" text-anchor="middle">f</text>
+    </svg>
+    <figcaption>Figure 10.22: القنطرة مرسومة كفرعين. الطرف $a$ بين المكثف والمقاومة 8&nbsp;Ω، والطرف $b$ بين المقاومة 4&nbsp;Ω والملف.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">مصدر مستقل واحد ومافيه مصادر تابعة، فـ $\mathbf{Z}_{Th}$ تطلع بتصفير المصدر وجمع المعاوقات. و $\mathbf{V}_{Th}$ من الفرعين: كل فرع مقسم جهد لحاله.</p>
+    </li>
+    <li class="step">
+      <h4>صفّر المصدر</h4>
+      <p class="why">مصدر الجهد يصير سلك، فالنقطة $d$ تتوصل بـ $f$. من الطرف $a$: المكثف $-j6$ والمقاومة 8 صاروا الاثنين بين $a$ و $d{=}f$، يعني على التوازي. ونفس الشي من $b$: المقاومة 4 والملف $j12$ على التوازي.</p>
+    </li>
+    <li class="step">
+      <h4>التوازي الأول</h4>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_1 = -j6 \parallel 8 = \frac{-j6 \times 8}{8 - j6} \\ = 2.88 - j3.84\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>التوازي الثاني</h4>
+      <div class="m">\[\begin{gathered}\mathbf{Z}_2 = 4 \parallel j12 = \frac{j12 \times 4}{4 + j12} \\ = 3.6 + j1.2\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>معاوقة ثيفنن</h4>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{Z}_{Th}} = \mathbf{Z}_1 + \mathbf{Z}_2 \\ = 6.48 - j2.64\ \Omega\end{gathered}\]</div>
+      <p class="why">$\mathbf{Z}_1$ و $\mathbf{Z}_2$ على التوالي، لأن الطريق من $a$ لـ $b$ يمر بالأول ثم الثاني.</p>
+    </li>
+    <li class="step">
+      <h4>تيار كل فرع</h4>
+      <p class="why">رجّع المصدر. الطرفين مفتوحين، فكل فرع ياخذ تياره لحاله:</p>
+      <div class="m">\[\begin{gathered}\mathbf{I}_1 = \frac{120\angle 75^\circ}{8 - j6}\ \text{A} \\[4pt] \mathbf{I}_2 = \frac{120\angle 75^\circ}{4 + j12}\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>KVL حول الطرفين</h4>
+      <p class="why">نمشي من $b$ لـ $c$ لـ $d$ لـ $e$ ونرجع لـ $a$، وكل التيارات نازلة من $d$:</p>
+      <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} - 4\mathbf{I}_2 + (-j6)\mathbf{I}_1 = 0 \\[4pt] \X{\mathbf{V}_{Th}} = 4\mathbf{I}_2 + j6\,\mathbf{I}_1\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض</h4>
+      <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = \frac{480\angle 75^\circ}{4 + j12} \\ + \frac{720\angle 165^\circ}{8 - j6} \\ = 37.95\angle 3.43^\circ \\ + 72\angle 201.87^\circ \\ = -28.94 - j24.55 \\ = 37.95\angle 220.31^\circ\ \text{V}\end{gathered}\]</div>
+      <p class="why">$j6 = 6\angle 90^\circ$، فضربه في $120\angle 75^\circ$ يعطي $720\angle 165^\circ$. والجمع لازم بالمستطيل.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{Z}_{Th} = 6.48 - j2.64$ Ω</div>
+      <div class="result">$\mathbf{V}_{Th} = 37.95\angle 220.31^\circ$ V</div>
+      <p class="sanity">جرّب "مثال 1" في المختبر وبتطلع نفس الأرقام ✓. والزاوية $220.31^\circ$ هي نفسها $-139.69^\circ$.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مكافئ ثيفنن مع مصدر تابع</h2></div>
+  <div class="tags"><span class="tag">Example 10.9</span><span class="tag">مصدر اختبار</span></div>
+  <p>أوجد مكافئ ثيفنن للدائرة كما تشوفها من الطرفين $a$-$b$.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 470 210" role="img" aria-label="مصدر تيار 15 أمبير على اليسار سهمه لفوق. عند العقدة 1 فرع نازل فيه 2 أوم وسالب j4 والتيار Io نازل فيه. ومن العقدة 1 لليمين 4 أوم و j3 إلى العقدة 2، وعندها مصدر تيار تابع 0.5Io سهمه لتحت، ثم الطرف a. والطرف b تحت" style="max-width:490px">
+      <circle class="src" cx="90" cy="110" r="16"/>
+      <path class="wire" d="M90 119V101M85 107L90 101L95 107"/>
+      <path class="wire" d="M90 94V30H230M270 30H290M330 30H445M90 126V190H445M190 30V60M190 100V125M190 135V190M360 30V92M360 128V190"/>
+      <path class="elm" d="M190 60L198 63.33L182 70L198 76.67L182 83.33L198 90L182 96.67L190 100"/>
+      <path class="elm" d="M178 125H202M178 135H202"/>
+      <path class="elm" d="M230 30L233.33 22L240 38L246.67 22L253.33 38L260 22L266.67 38L270 30"/>
+      <path class="elm" d="M290 30a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0"/>
+      <polygon class="src" points="360,92 378,110 360,128 342,110"/>
+      <path class="wire" d="M360 101V119M355 113L360 119L365 113"/>
+      <path class="cur" d="M178 42V54M174 49L178 54L182 49"/>
+      <circle class="dot" cx="190" cy="30" r="3"/><circle class="dot" cx="190" cy="190" r="3"/>
+      <circle class="dot" cx="360" cy="30" r="3"/><circle class="dot" cx="360" cy="190" r="3"/>
+      <circle class="term" cx="448" cy="30" r="3.5"/><circle class="term" cx="448" cy="190" r="3.5"/>
+      <text class="lbl" x="448" y="18" text-anchor="middle">a</text><text class="lbl" x="448" y="207" text-anchor="middle">b</text>
+      <text class="lbl xt" x="448" y="80" text-anchor="middle">+</text><text class="lbl xt" x="448" y="150" text-anchor="middle">−</text>
+      <text class="lbl xt" x="448" y="116" text-anchor="middle">V<tspan class="sb" dy="3">Th</tspan></text>
+      <text class="lbl e1t" x="170" y="52" text-anchor="end">I<tspan class="sb" dy="3">o</tspan></text>
+      <text class="lbl" x="68" y="114" text-anchor="end">15∠0° A</text>
+      <text class="lbl" x="206" y="84">2 Ω</text>
+      <text class="lbl" x="208" y="134">−j4 Ω</text>
+      <text class="lbl" x="250" y="14" text-anchor="middle">4 Ω</text>
+      <text class="lbl" x="310" y="14" text-anchor="middle">j3 Ω</text>
+      <text class="lbl" x="384" y="114">0.5I<tspan class="sb" dy="3">o</tspan></text>
+      <text class="lbl" x="190" y="20" text-anchor="middle">1</text><text class="lbl" x="360" y="20" text-anchor="middle">2</text>
+    </svg>
+    <figcaption>Figure 10.25: المصدر التابع $0.5\mathbf{I}_o$ يعتمد على التيار $\mathbf{I}_o$ اللي نازل في الفرع الأوسط.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ الدائرة</h4>
+      <p class="why">فيه مصدر تابع، فـ $\mathbf{Z}_{Th}$ ما تطلع بجمع المعاوقات. نحسب $\mathbf{V}_{Th}$ عادي، وبعدين نحط مصدر اختبار عشان $\mathbf{Z}_{Th}$.</p>
+    </li>
+    <li class="step">
+      <h4>KCL عند العقدة 1</h4>
+      <p class="why">الطرفين مفتوحين، فالتيار اللي يروح يمين من العقدة 1 هو نفسه تيار المصدر التابع $0.5\mathbf{I}_o$:</p>
+      <div class="m">\[\begin{gathered}15 = \mathbf{I}_o + 0.5\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 10\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>KVL للحلقة اليمين</h4>
+      <p class="why">من تحت الفرع الأوسط، طلوع عليه، ثم يمين عبر $4 + j3$، ثم نزول على الطرفين:</p>
+      <div class="m">\[\begin{gathered}-\mathbf{I}_o(2 - j4) + 0.5\mathbf{I}_o(4 + j3) \\ + \X{\mathbf{V}_{Th}} = 0\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>جهد ثيفنن</h4>
+      <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = 10(2 - j4) \\ - 5(4 + j3) \\ = 20 - j40 \\ - 20 - j15 \\ = -j55 = 55\angle{-90^\circ}\ \text{V}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>شيل المصدر المستقل وحط مصدر اختبار</h4>
+      <p class="why">مصدر التيار 15&nbsp;A يصير فتح. والمصدر التابع يبقى. ونحط مصدر تيار $\mathbf{I}_s = 3\angle 0^\circ$ A داخل للطرف $a$. اختار الكتاب 3 لأنها تنقسم على $1.5$ بسهولة.</p>
+      <figure class="fig">
+        <svg viewBox="0 0 450 210" role="img" aria-label="نفس الدائرة بدون مصدر 15 أمبير، ومصدر اختبار 3 أمبير على الطرفين a و b سهمه لفوق، والجهد Vs على طرفيه" style="max-width:470px">
+          <path class="wire" d="M190 30H230M270 30H290M330 30H410V94M410 126V190H190M190 30V60M190 100V125M190 135V190M360 30V92M360 128V190"/>
+          <path class="elm" d="M190 60L198 63.33L182 70L198 76.67L182 83.33L198 90L182 96.67L190 100"/>
+          <path class="elm" d="M178 125H202M178 135H202"/>
+          <path class="elm" d="M230 30L233.33 22L240 38L246.67 22L253.33 38L260 22L266.67 38L270 30"/>
+          <path class="elm" d="M290 30a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0"/>
+          <polygon class="src" points="360,92 378,110 360,128 342,110"/>
+          <path class="wire" d="M360 101V119M355 113L360 119L365 113"/>
+          <circle class="isrc" cx="410" cy="110" r="16"/>
+          <path class="wire" d="M410 119V101M405 107L410 101L415 107" style="stroke:var(--cy)"/>
+          <path class="cur" d="M178 42V54M174 49L178 54L182 49"/>
+          <circle class="dot" cx="360" cy="30" r="3"/><circle class="dot" cx="360" cy="190" r="3"/>
+          <text class="lbl" x="418" y="24">a</text><text class="lbl" x="418" y="202">b</text>
+          <text class="lbl yt" x="432" y="114">I<tspan class="sb" dy="3">s</tspan></text>
+          <text class="lbl" x="380" y="54">+</text><text class="lbl" x="380" y="176">−</text>
+          <text class="lbl" x="366" y="160" text-anchor="start">V<tspan class="sb" dy="3">s</tspan></text>
+          <text class="lbl e1t" x="170" y="52" text-anchor="end">I<tspan class="sb" dy="3">o</tspan></text>
+          <text class="lbl" x="206" y="84">2 Ω</text>
+          <text class="lbl" x="208" y="134">−j4 Ω</text>
+          <text class="lbl" x="250" y="14" text-anchor="middle">4 Ω</text>
+          <text class="lbl" x="310" y="14" text-anchor="middle">j3 Ω</text>
+          <text class="lbl" x="326" y="114" text-anchor="end">0.5I<tspan class="sb" dy="3">o</tspan></text>
+          <text class="lbl" x="120" y="114" text-anchor="middle">مفتوح</text>
+        </svg>
+        <figcaption>Figure 10.26(b): مصدر الاختبار $\mathbf{I}_s = 3$ A مكان الحمل، والمصدر المستقل صار مفتوح.</figcaption>
+      </figure>
+    </li>
+    <li class="step">
+      <h4>KCL عند الطرف $a$</h4>
+      <p class="why">$\mathbf{I}_s$ داخل، ويطلع منه $0.5\mathbf{I}_o$ للمصدر التابع و $\mathbf{I}_o$ يسار عبر $4 + j3$ ثم نازل في الفرع الأوسط:</p>
+      <div class="m">\[\begin{gathered}3 = \mathbf{I}_o + 0.5\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 2\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>جهد الاختبار</h4>
+      <p class="why">KVL على الحلقة الخارجية: $\mathbf{I}_o$ يمر في $4 + j3$ وبعدها في $2 - j4$.</p>
+      <div class="m">\[\begin{gathered}\mathbf{V}_s = \mathbf{I}_o(4 + j3 + 2 - j4) \\ = 2(6 - j)\ \text{V}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>معاوقة ثيفنن</h4>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{Z}_{Th}} = \frac{\mathbf{V}_s}{\mathbf{I}_s} = \frac{2(6 - j)}{3} \\ = 4 - j0.6667\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{V}_{Th} = 55\angle{-90^\circ}$ V</div>
+      <div class="result">$\mathbf{Z}_{Th} = 4 - j0.667$ Ω</div>
+      <p class="sanity">لو جربت $\mathbf{I}_s = 6$ بدل 3، بيطلع $\mathbf{I}_o = 4$ و $\mathbf{V}_s = 4(6 - j)$، والقسمة نفسها ✓. ولاحظ إن $\mathbf{Z}_{Th}$ مو مجموع المعاوقات $6 - j$، المصدر التابع غيّرها.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>مكافئ ثيفنن لدائرة: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. كم سعة تيار نورتن $|\mathbf{I}_N|$ بالأمبير؟</p>
+    <div class="check" data-answer="2"></div>
+    <details class="hint"><p>$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$، والسعة $|\mathbf{Z}_{Th}| = \sqrt{3^2 + 4^2}$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{I}_N = \frac{10\angle 0^\circ}{5\angle 53.13^\circ} \\ = 2\angle{-53.13^\circ}\ \text{A}\end{gathered}\]</div><div class="result">$|\mathbf{I}_N| = 2$ A</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>مكافئ نورتن: $\mathbf{I}_N = 4\angle 30^\circ$ A و $\mathbf{Z}_N = 5\angle{-20^\circ}\ \Omega$. كم سعة جهد ثيفنن $|\mathbf{V}_{Th}|$ بالفولت؟</p>
+    <div class="check" data-answer="20"></div>
+    <details class="hint"><p>$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$: السعات تنضرب والزوايا تنجمع.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N \\ = (5\angle{-20^\circ})(4\angle 30^\circ) \\ = 20\angle 10^\circ\ \text{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}_{Th}| = 20$ V</div><p class="sanity">و $\mathbf{Z}_{Th} = \mathbf{Z}_N = 5\angle{-20^\circ}$ نفسها ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>مصدر $20\angle 0^\circ$ V على التوالي مع مقاومة 6&nbsp;Ω، والطرفين $a$-$b$ على مكثف $-j8\ \Omega$ موصول بعدها. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</p>
+    <div class="check" data-answer="3.84"></div>
+    <details class="hint"><p>صفّر المصدر: يصير سلك، فالمقاومة والمكثف يصيرون على التوازي من الطرفين.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} = 6 \parallel (-j8) \\ = \frac{-j48}{6 - j8} \\ = 3.84 - j2.88\ \Omega\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 3.84$ Ω</div><p class="sanity">اختار "مقسم جهد" في المختبر وشوف نفس الرقم ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>نفس دائرة تمرين ج. كم سعة $|\mathbf{V}_{Th}|$ بالفولت؟</p>
+    <div class="check" data-answer="16"></div>
+    <details class="hint"><p>الطرفين مفتوحين، فهو مقسم جهد: $\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8}$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8} \\ = 20 \times \frac{8\angle{-90^\circ}}{10\angle{-53.13^\circ}} \\ = 16\angle{-36.87^\circ}\ \text{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}_{Th}| = 16$ V</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
+    <p>نرجع لمكافئ تمرين أ: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. وصلنا حمل $\mathbf{Z}_L = 3 - j4\ \Omega$. كم سعة تيار الحمل بالأمبير؟</p>
+    <div class="check" data-answer="1.67"></div>
+    <details class="hint"><p>$\mathbf{I}_L = \mathbf{V}_{Th}/(\mathbf{Z}_{Th} + \mathbf{Z}_L)$. اجمع المعاوقتين أول وشوف وش يصير بالتخيلي.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} + \mathbf{Z}_L \\ = (3 + j4) + (3 - j4) \\ = 6\ \Omega \\[4pt] \mathbf{I}_L = \frac{10}{6}\end{gathered}\]</div><div class="result">$|\mathbf{I}_L| = 1.67$ A</div><p class="sanity">الحمل هنا مرافق $\mathbf{Z}_{Th}$، فالتخيلي انلغى. هذي فكرة أقصى نقل للقدرة اللي بتجيك في الفصل 11.</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
+    <p>نفس دائرة مثال 2، بس المصدر التابع صار $0.25\mathbf{I}_o$ بدل $0.5\mathbf{I}_o$. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</p>
+    <div class="check" data-answer="4.8"></div>
+    <details class="hint"><p>نفس الخطوات: KCL عند $a$ يعطي $\mathbf{I}_s = 1.25\,\mathbf{I}_o$. اختار $\mathbf{I}_s = 5$ عشان القسمة تطلع رقم صحيح.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}5 = 1.25\,\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 4\ \text{A} \\ \mathbf{V}_s = 4(6 - j) \\ = 24 - j4 \\ \mathbf{Z}_{Th} = \frac{24 - j4}{5} \\ = 4.8 - j0.8\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 4.8$ Ω</div><p class="sanity">كل ما صغر المصدر التابع، قربت $\mathbf{Z}_{Th}$ من مجموع المعاوقات $6 - j$. ولو صار صفر، بتطلع $6 - j$ بالضبط ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تصفّر المصدر التابع</div>
+    <div class="pair"><div class="no">مثال 2: $\mathbf{Z}_{Th} = (4 + j3) + (2 - j4) = 6 - j$</div><div class="yes">المصدر التابع يبقى، وتحط مصدر اختبار: $\mathbf{Z}_{Th} = 4 - j0.667$</div></div></div>
+  <div class="mk"><div class="mk-title">تصفّر المصادر بالعكس</div>
+    <div class="pair"><div class="no">مصدر الجهد يصير فتح، ومصدر التيار سلك</div><div class="yes">مصدر الجهد يصير سلك (قصر)، ومصدر التيار يصير فتح</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب $\mathbf{V}_{Th}$ والحمل موصول</div>
+    <div class="pair"><div class="no">$\mathbf{V}_{Th}$ هو الجهد على الحمل</div><div class="yes">$\mathbf{V}_{Th}$ جهد الدائرة المفتوحة، بعد ما تشيل الحمل</div></div></div>
+  <div class="mk"><div class="mk-title">تجمع زوايا بدل ما تحوّل للمستطيل</div>
+    <div class="pair"><div class="no">تجمع السعات: $37.95 + 72 = 109.95$</div><div class="yes">حوّل للمستطيل واجمع: $-28.94 - j24.55$</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب $\mathbf{Z}_N$ من جديد</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_N$ تحتاج حساب لحالها</div><div class="yes">$\mathbf{Z}_N = \mathbf{Z}_{Th}$ نفسها، و $\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</div></div></div>
+  <div class="mk"><div class="mk-title">مكافئ واحد لمصادر بترددات مختلفة</div>
+    <div class="pair"><div class="no">مكافئ ثيفنن واحد يجمع كل المصادر</div><div class="yes">مكافئ لكل تردد لحاله، لأن $j\omega L$ و $1/j\omega C$ يتغيرون مع $\omega$</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>جهد ثيفنن $\mathbf{V}_{Th}$ هو:</p>
+      <button>الجهد على الحمل</button><button>جهد الدائرة المفتوحة بين الطرفين</button><button>جهد المصدر الأصلي</button><button>صفر دايم</button>
+      <p class="q-why">تشيل الحمل وتقيس الجهد بين $a$ و $b$ وهم مفتوحين.</p></div>
+    <div class="q" data-answer="3"><p>تيار نورتن $\mathbf{I}_N$ هو:</p>
+      <button>تيار الحمل</button><button>تيار المصدر الأصلي</button><button>التيار في سلك يقصر الطرفين</button><button>$\mathbf{V}_{Th} \times \mathbf{Z}_{Th}$</button>
+      <p class="q-why">تيار القصر (Short-circuit current)، ويساوي $\mathbf{V}_{Th}/\mathbf{Z}_{Th}$.</p></div>
+    <div class="q" data-answer="1"><p>العلاقة بين المكافئين:</p>
+      <button>$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$</button><button>$\mathbf{V}_{Th} = \mathbf{I}_N/\mathbf{Z}_N$</button><button>$\mathbf{Z}_{Th} = 1/\mathbf{Z}_N$</button><button>ما بينهم علاقة</button>
+      <p class="q-why">نفس تحويل المصادر: مصدر جهد مع معاوقة توالي = مصدر تيار مع نفس المعاوقة توازي.</p></div>
+    <div class="q" data-answer="2"><p>لما تصفّر مصدر جهد مستقل عشان $\mathbf{Z}_{Th}$، تستبدله بـ:</p>
+      <button>فتح</button><button>سلك (قصر)</button><button>مقاومة 1 Ω</button><button>تخليه مثل ما هو</button>
+      <p class="q-why">جهده صفر، والعنصر اللي جهده صفر هو السلك.</p></div>
+    <div class="q" data-answer="4"><p>في دائرة فيها مصدر تابع، $\mathbf{Z}_{Th}$ تحسبها:</p>
+      <button>بتصفير كل المصادر</button><button>بجمع كل المعاوقات</button><button>من $\mathbf{V}_{Th}$ بس</button><button>بمصدر اختبار: $\mathbf{V}_s/\mathbf{I}_s$</button>
+      <p class="q-why">المصدر التابع ما يتصفر، فتحط مصدر اختبار وتقسم الجهد على التيار.</p></div>
+    <div class="q" data-answer="3"><p>دائرة فيها مصدرين بترددين مختلفين. كم مكافئ ثيفنن تحتاج؟</p>
+      <button>واحد</button><button>صفر</button><button>واحد لكل تردد</button><button>واحد لكل عنصر</button>
+      <p class="q-why">المعاوقات تتغير مع التردد، فكل تردد له مكافئه.</p></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* حاسبة ثيفنن ونورتن لدائرة القنطرة في القسم 05 */
+(function () {
+  const $ = id => document.getElementById(id);
+  const IDS = ['iVs', 'iZa', 'iZb', 'iZc', 'iZd', 'iZL'];
+  const PRE = {                                     // مثال 1 (Example 10.8) وتمرين ج
+    ex1: ['120∠75', '-j6', '8', '4', 'j12', '10'],
+    div: ['20', '6', '-j8', '1', '0', '10']
+  };
+  function parse(t) {                               // نص مثل 8-j6 أو 120∠75 إلى رقم مركب [re, im]، أو null لو غلط
+    const s = t.replace(/\s+/g, '').replace(/[−–]/g, '-').replace(/[iJI]/g, 'j').replace(/°/g, '');
+    if (!s) return null;
+    const p = s.match(/^([+-]?(?:\d+\.?\d*|\.\d+))(?:∠|<|@)([+-]?(?:\d+\.?\d*|\.\d+))$/);
+    if (p) { const r = +p[1], a = +p[2] * Math.PI / 180; return [r * Math.cos(a), r * Math.sin(a)]; }
+    const terms = s.match(/[+-]?[^+-]+/g);
+    if (!terms || terms.join('') !== s) return null;
+    let re = 0, im = 0;
+    for (const tm of terms) {
+      if (tm.includes('j')) {
+        const n = tm.replace('j', '');
+        if (!/^[+-]?(\d+\.?\d*|\.\d+)?$/.test(n)) return null;
+        im += n === '' || n === '+' ? 1 : n === '-' ? -1 : +n;
+      } else {
+        if (!/^[+-]?(\d+\.?\d*|\.\d+)$/.test(tm)) return null;
+        re += +tm;
+      }
+    }
+    return [re, im];
+  }
+  const add = (a, b) => [a[0] + b[0], a[1] + b[1]];
+  const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
+  const mul = (a, b) => [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]];
+  const div = (a, b) => { const d = b[0] * b[0] + b[1] * b[1]; return [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]; };
+  const mag = z => Math.hypot(z[0], z[1]);
+  const zero = z => mag(z) < 1e-9;
+  const par = (a, b) => zero(a) || zero(b) ? [0, 0] : div(mul(a, b), add(a, b));   // التوازي، والسلك يقصر كل شي معه
+  const ratio = (top, bot) => zero(add(top, bot)) ? null : div(bot, add(top, bot)); // نسبة مقسم الجهد على المعاوقة السفلية
+  const r3 = n => Math.round(n * 1000) / 1000;
+  const num = n => (n < 0 ? '−' : '') + Math.abs(n);
+  function rect(z) {
+    const re = r3(z[0]), im = r3(z[1]);
+    if (im === 0) return num(re);
+    const jm = `j${Math.abs(im)}`;
+    if (re === 0) return (im < 0 ? '−' : '') + jm;
+    return `${num(re)} ${im < 0 ? '−' : '+'} ${jm}`;
+  }
+  function polar(z) {
+    const m = mag(z);
+    if (m < 5e-4) return '0';
+    let a = Math.atan2(z[1], z[0]) * 180 / Math.PI;
+    if (Math.abs(a) < 0.005) a = 0;
+    return `${r3(m)}∠${a < 0 ? '−' : ''}${Math.abs(a).toFixed(2)}°`;
+  }
+  const show = (id, z, u) => { $(id).innerHTML = `${rect(z)} ${u}<span class="pol">= ${polar(z)} ${u}</span>`; };
+  const clear = () => ['rZ', 'rV', 'rI', 'rL'].forEach(id => { $(id).textContent = '—'; });
+  function calc() {
+    const v = {};
+    let ok = true;
+    IDS.forEach(id => { const z = parse($(id).value); $(id).classList.toggle('bad', !z); if (!z) ok = false; v[id] = z; });
+    if (!ok) { $('tMsg').textContent = 'فيه رقم مكتوب غلط. اكتبه مثل 8-j6 أو 120∠75.'; clear(); $('tSay').textContent = ''; return; }
+    const ka = ratio(v.iZa, v.iZb), kc = ratio(v.iZc, v.iZd);
+    if (!ka || !kc) { $('tMsg').textContent = 'مجموع معاوقتين في فرع واحد طلع صفر، فالمصدر صار مقصور. غيّر الأرقام.'; clear(); $('tSay').textContent = ''; return; }
+    $('tMsg').textContent = '';
+    const Zth = add(par(v.iZa, v.iZb), par(v.iZc, v.iZd));
+    const Vth = mul(v.iVs, sub(ka, kc));
+    show('rZ', Zth, 'Ω'); show('rV', Vth, 'V');
+    if (zero(Zth)) { $('rI').textContent = '∞ (المعاوقة صفر)'; } else show('rI', div(Vth, Zth), 'A');
+    const den = add(Zth, v.iZL);
+    if (zero(den)) { $('rL').textContent = '∞'; $('tSay').textContent = ''; return; }
+    const IL = div(Vth, den);
+    show('rL', IL, 'A');
+    const conj = Math.abs(v.iZL[0] - Zth[0]) < 0.01 && Math.abs(v.iZL[1] + Zth[1]) < 0.01 && !zero(v.iZL);
+    $('tSay').innerHTML = conj ? 'الحمل يساوي مرافق Z<sub>Th</sub>: التخيلي انلغى من المقام، والتيار صار V<sub>Th</sub> مقسوم على 2R<sub>Th</sub>.'
+      : zero(Zth) ? '' : `ومن مكافئ نورتن بمقسم التيار: <bdi dir="ltr">I<sub>N</sub>·Z<sub>N</sub>/(Z<sub>N</sub> + Z<sub>L</sub>) = ${polar(mul(div(Vth, Zth), div(Zth, den)))} A</bdi>، نفس الجواب.`;
+  }
+  const press = b => document.querySelectorAll('.th-lab [data-pre]').forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
+  function load(k) { PRE[k].forEach((t, i) => { $(IDS[i]).value = t; }); calc(); }
+  document.querySelectorAll('.th-lab [data-pre]').forEach(b => b.addEventListener('click', () => { press(b); load(b.dataset.pre); }));
+  IDS.forEach(id => $(id).addEventListener('input', () => { press(null); calc(); }));
+  load('ex1');
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
