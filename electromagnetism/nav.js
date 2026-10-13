@@ -4,6 +4,7 @@ const lectures = [
   { name: "ملخص المحاضرة 1", url: "lecture1.html" },
   { name: "ملخص المحاضرة 2", url: "lecture2.html" },
   { name: "ملخص المحاضرة 3", url: "lecture3.html" },
+  { name: "المحاضرة 4 الجزء الأول", url: "lecture4-1.html" },
   { name: "ملخص المحاضرة 5", url: "lecture5.html" }
 ];
 
