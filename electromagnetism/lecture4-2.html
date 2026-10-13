@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Time-Harmonic Fields &amp; Phasors" data-title-en="Lecture 4 Part 2 - Time-Harmonic Fields &amp; Phasors">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 4 الجزء الثاني - المجالات التوافقية زمنياً والفيزرات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 4 · الجزء الثاني · كهرومغناطيسية (2) · الفصل 9 (9.7)</span><span lang="en">LECTURE 4 · PART 2 · ELECTROMAGNETICS (2) · CH 9.7</span></p>
+  <h1><span><span lang="ar">المجالات التوافقية زمنياً والفيزرات</span><span lang="en">Time-Harmonic Fields &amp; Phasors</span></span> <span class="h1-math ltr">$\mathbf A=\mathrm{Re}[\Z{\mathbf A_s}e^{j\omega t}]$</span></h1>
+  <p class="lead">
+    <span lang="ar">في <a href="lecture4-1.html">الجزء الأول</a> كمّلنا معادلات ماكسويل. بس حلّها والمجالات فيها $\cos$ و $\sin$ متعب: كل مشتقة تقلب الجيب وتغيّر الطور. الحل: نكتب كل مجال جيبي كرقم مركب ثابت اسمه <b>الفيزر</b>، فتصير $\partial/\partial t$ مجرد ضرب في $j\omega$، والمعادلات التفاضلية في الزمن تصير جبر. وهذي الأداة اللي بنمشي عليها في كل المحاضرة 5.</span>
+    <span lang="en">In <a href="lecture4-1.html">part 1</a> we completed Maxwell's equations. But solving them with $\cos$ and $\sin$ fields is tedious: every derivative flips the sinusoid and shifts the phase. The fix: write each sinusoidal field as a constant complex number called a <b>phasor</b>. Then $\partial/\partial t$ becomes multiplication by $j\omega$, and differential equations in time become algebra. This is the tool all of Lecture 5 runs on.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · <span lang="ar">المجال الكهربائي</span><span lang="en">electric field</span></span><span class="y">H · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">A<sub>s</sub> · <span lang="ar">الفيزر (رقم مركب بدون زمن)</span><span lang="en">phasor (complex, no time)</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">الفيزر رقم مركب يشيل السعة والطور: $\Z{z}=x+jy=r\angle\phi=re^{j\phi}$. الجمع والطرح أسهل بالصيغة المستطيلة، والضرب والقسمة والجذر بالقطبية.</span><span lang="en">A phasor is a complex number holding amplitude and phase: $\Z{z}=x+jy=r\angle\phi=re^{j\phi}$. Add and subtract in rectangular form; multiply, divide and take roots in polar form.</span></li>
+      <li><span lang="ar">$A_0\cos(\omega t+\theta)\ \leftrightarrow\ \Z{A_s}=A_0e^{j\theta}$، والرابط بينهم $\mathbf A=\mathrm{Re}[\Z{\mathbf A_s}e^{j\omega t}]$. الفيزر يعتمد على المكان بس (مو الزمن). ولو المعطى $\sin$ حوّله لـ $\cos(\cdot-90^\circ)$ أو استخدم $\mathrm{Im}$.</span><span lang="en">$A_0\cos(\omega t+\theta)\ \leftrightarrow\ \Z{A_s}=A_0e^{j\theta}$, linked by $\mathbf A=\mathrm{Re}[\Z{\mathbf A_s}e^{j\omega t}]$. The phasor depends on position only, not time. If you are given $\sin$, turn it into $\cos(\cdot-90^\circ)$ or use $\mathrm{Im}$.</span></li>
+      <li><span lang="ar">$\partial/\partial t\to j\omega$، فماكسويل يصير $\nabla\times\X{\mathbf E_s}=-j\omega\mathbf B_s$ و $\nabla\times\Y{\mathbf H_s}=\mathbf J_s+j\omega\mathbf D_s$. وفي الأمثلة 9.7 و 9.8 نطلّع $\beta$ و $H$ اللي تخلّي المجالين يحققون المعادلات: $\beta=\omega\sqrt{\mu\varepsilon}$.</span><span lang="en">$\partial/\partial t\to j\omega$, so Maxwell becomes $\nabla\times\X{\mathbf E_s}=-j\omega\mathbf B_s$ and $\nabla\times\Y{\mathbf H_s}=\mathbf J_s+j\omega\mathbf D_s$. Examples 9.7 and 9.8 find the $\beta$ and $H$ that make both fields satisfy them: $\beta=\omega\sqrt{\mu\varepsilon}$.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الرقم المركب ================= -->
+<section class="card" id="complex" data-num="01" data-nav="الرقم المركب|Complex numbers">
+  <h2><span lang="ar">الفيزر رقم مركب: صيغتين لنفس الرقم</span><span lang="en">A phasor is a complex number: two forms of one number</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 2–4 و 6 · المستطيلة والقطبية ومتى نستخدم كل وحدة</span><span lang="en">Slides 2–4 and 6 · rectangular, polar, and when to use each</span></p>
+  <p><span lang="ar">المجال <b>التوافقي زمنياً</b> (time-harmonic) هو اللي يتغير مع الزمن بشكل جيبي ($\cos$ أو $\sin$). وأي موجة جيبية تتحدد برقمين: <b>السعة</b> و<b>الطور</b>. الفيزر رقم مركب واحد يشيل الاثنين:</span><span lang="en">A <b>time-harmonic</b> field varies sinusoidally with time ($\cos$ or $\sin$). Any sinusoid is fixed by two numbers, its <b>amplitude</b> and its <b>phase</b>. A phasor is one complex number that carries both:</span></p>
+  <div class="m big">\[\begin{aligned}\Z{z}&=x+jy=r\angle\phi\\&=re^{j\phi}=r(\cos\phi+j\sin\phi)\end{aligned}\]</div>
+  <p><span lang="ar">حيث $j=\sqrt{-1}$، و $x$ الجزء الحقيقي، و $y$ الجزء التخيلي. التحويل بين الصيغتين:</span><span lang="en">where $j=\sqrt{-1}$, $x$ is the real part and $y$ the imaginary part. Converting between the two forms:</span></p>
+  <div class="eq-grid">
+    <div class="eq-box"><h3><span lang="ar">من قطبي إلى مستطيل</span><span lang="en">Polar to rectangular</span></h3>
+      <div class="m">\[x=r\cos\phi,\qquad y=r\sin\phi\]</div></div>
+    <div class="eq-box"><h3><span lang="ar">من مستطيل إلى قطبي</span><span lang="en">Rectangular to polar</span></h3>
+      <div class="m">\[r=|\Z{z}|=\sqrt{x^2+y^2},\qquad\phi=\tan^{-1}\frac{y}{x}\]</div></div>
+  </div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ انتبه للربع في $\tan^{-1}$</span><span lang="en">⚠️ Watch the quadrant in $\tan^{-1}$</span></strong>
+    <p><span lang="ar">الآلة الحاسبة تعطيك زاوية بين $-90^\circ$ و $90^\circ$ بس. لو $x$ سالب، زِد $180^\circ$. مثال من المثال 9.5: $-1+j6$ الآلة تعطي $\tan^{-1}(-6)=-80.54^\circ$، بس النقطة في الربع الثاني، فالصح $-80.54^\circ+180^\circ=99.46^\circ$. وللتنبيه (من السلايد 3): $x,y,z,r,\phi$ هنا رموز للرقم المركب، مو إحداثيات.</span><span lang="en">Your calculator only returns angles between $-90^\circ$ and $90^\circ$. If $x$ is negative, add $180^\circ$. From Example 9.5: for $-1+j6$ the calculator gives $\tan^{-1}(-6)=-80.54^\circ$, but the point is in the second quadrant, so the right angle is $-80.54^\circ+180^\circ=99.46^\circ$. And a note from slide 3: $x,y,z,r,\phi$ here are complex-number symbols, not coordinates.</span></p>
+  </div>
+  <p><span lang="ar">السلايد 4: <b>الجمع والطرح</b> أسهل بالمستطيلة (اجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي)، و<b>الضرب والقسمة</b> أسهل بالقطبية (اضرب المقادير واجمع الزوايا):</span><span lang="en">Slide 4: <b>addition and subtraction</b> are easier in rectangular form (real with real, imaginary with imaginary), and <b>multiplication and division</b> are easier in polar form (multiply magnitudes, add angles):</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">العملية</span><span lang="en">Operation</span></th><th><span lang="ar">الصيغة الأسهل</span><span lang="en">Easier form</span></th><th><span lang="ar">القانون</span><span lang="en">Rule</span></th></tr></thead>
+    <tbody>
+      <tr><td><span lang="ar">جمع / طرح</span><span lang="en">Add / subtract</span></td><td><span lang="ar">مستطيلة</span><span lang="en">Rectangular</span></td><td>$z_1\pm z_2=(x_1\pm x_2)+j(y_1\pm y_2)$</td></tr>
+      <tr><td><span lang="ar">ضرب</span><span lang="en">Multiply</span></td><td><span lang="ar">قطبية</span><span lang="en">Polar</span></td><td>$z_1z_2=r_1r_2\angle\phi_1+\phi_2$</td></tr>
+      <tr><td><span lang="ar">قسمة</span><span lang="en">Divide</span></td><td><span lang="ar">قطبية</span><span lang="en">Polar</span></td><td>$\dfrac{z_1}{z_2}=\dfrac{r_1}{r_2}\angle\phi_1-\phi_2$</td></tr>
+      <tr><td><span lang="ar">جذر</span><span lang="en">Square root</span></td><td><span lang="ar">قطبية</span><span lang="en">Polar</span></td><td>$\sqrt{z}=\sqrt{r}\angle\phi/2$</td></tr>
+      <tr><td><span lang="ar">المرافق</span><span lang="en">Conjugate</span></td><td><span lang="ar">الاثنين</span><span lang="en">Either</span></td><td>$z^*=x-jy=r\angle-\phi=re^{-j\phi}$</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key"><strong><span lang="ar">🔑 $j$ مجرد دوران $90^\circ$</span><span lang="en">🔑 $j$ is just a $90^\circ$ rotation</span></strong>
+    <p><span lang="ar">$j=1\angle90^\circ$، فالضرب في $j$ يلف الرقم $90^\circ$ عكس عقارب الساعة. و $\dfrac1j=-j=1\angle-90^\circ$ يلفه $90^\circ$ مع عقارب الساعة. حفظ هالحقيقة يوفّر عليك وقت في المثال 9.6 ($20/j$) وفي $j\omega$ تحت.</span><span lang="en">$j=1\angle90^\circ$, so multiplying by $j$ rotates a number $90^\circ$ counter-clockwise, and $\dfrac1j=-j=1\angle-90^\circ$ rotates it $90^\circ$ clockwise. Knowing this saves time in Example 9.6 ($20/j$) and with $j\omega$ below.</span></p>
+  </div>
+</section>
+
+<!-- ================= 02 الفيزر الدوار ================= -->
+<section class="card" id="rotate" data-num="02" data-nav="الفيزر الدوّار|Rotating phasor">
+  <h2><span lang="ar">نضيف الزمن: سهم يلف، وظلّه هو الموجة</span><span lang="en">Adding time: a spinning arrow whose shadow is the wave</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 5–8 · من أين يجي $\cos(\omega t+\theta)$</span><span lang="en">Slides 5–8 · where $\cos(\omega t+\theta)$ comes from</span></p>
+  <p><span lang="ar">خلّ الزاوية تزيد مع الزمن: $\phi=\omega t+\theta$. صار السهم يلف بسرعة $\omega$ (راديان في الثانية):</span><span lang="en">Let the angle grow with time: $\phi=\omega t+\theta$. The arrow now spins at $\omega$ radians per second:</span></p>
+  <div class="m">\[re^{j\phi}=re^{j(\omega t+\theta)}=\Z{re^{j\theta}}\,e^{j\omega t}\]</div>
+  <p><span lang="ar">والجزء الحقيقي والتخيلي منه:</span><span lang="en">Its real and imaginary parts are:</span></p>
+  <div class="m">\[\begin{aligned}\mathrm{Re}\big(re^{j\phi}\big)&=r\cos(\omega t+\theta)\\ \mathrm{Im}\big(re^{j\phi}\big)&=r\sin(\omega t+\theta)\end{aligned}\]</div>
+  <p><span lang="ar">يعني الموجة $r\cos(\omega t+\theta)$ هي <b>ظل</b> السهم على المحور الحقيقي. الجزء $\Z{re^{j\theta}}$ ثابت (هذا الفيزر)، و $e^{j\omega t}$ هو اللي يلف. ولأن كل المجالات في المسألة تلف بنفس $\omega$، نشيل $e^{j\omega t}$ ونشتغل بالفيزرات بس. جرّب في المختبر: غيّر الطور، وبدّل بين $\cos$ و $\sin$، وشغّل $\partial/\partial t$.</span><span lang="en">So the wave $r\cos(\omega t+\theta)$ is the <b>shadow</b> of the arrow on the real axis. The part $\Z{re^{j\theta}}$ is constant (that is the phasor) and $e^{j\omega t}$ does the spinning. Since every field in a problem spins at the same $\omega$, we drop $e^{j\omega t}$ and work with phasors only. Try it in the lab: change the phase, switch between $\cos$ and $\sin$, and turn on $\partial/\partial t$.</span></p>
+  <div class="wlab" id="ph-lab">
+    <div class="lab-controls">
+      <div class="seg" role="group" aria-label="Given function"><button type="button" data-fn="cos" class="on">cos</button><button type="button" data-fn="sin">sin</button></div>
+      <div class="seg" role="group" aria-label="Derivative"><button type="button" data-d="0" class="on">A<sub>s</sub></button><button type="button" data-d="1">+ ∂/∂t</button></div>
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label><span lang="ar">السعة</span><span lang="en">Amplitude</span> · <span class="rv" data-r="a">A₀ = 1.5</span></label><input type="range" data-k="a" min="0.5" max="2" step="0.1" value="1.5" aria-label="amplitude"></div>
+      <div class="field"><label><span lang="ar">الطور</span><span lang="en">Phase</span> · <span class="rv" data-r="th">θ = 30°</span></label><input type="range" data-k="th" min="-180" max="180" step="15" value="30" aria-label="phase theta in degrees"></div>
+      <div class="field"><label><span lang="ar">الزمن</span><span lang="en">Time</span> · <span class="rv" data-r="wt">ωt = 0°</span></label><input type="range" data-k="wt" min="0" max="360" step="1" value="0" aria-label="omega t in degrees"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">السهم في المستوى المركب (الشكل 9.12) والموجة اللي يرسمها</span><span lang="en">The arrow in the complex plane (Figure 9.12) and the wave it draws</span></div>
+        <div class="legend"><span><i class="c-a"></i><span lang="ar">$\Z{\mathbf A_s}e^{j\omega t}$ وظلّه $A(t)$</span><span lang="en">$\Z{\mathbf A_s}e^{j\omega t}$ and its shadow $A(t)$</span></span><span><i class="c-p dash"></i><span lang="ar">$j\omega\Z{\mathbf A_s}$ (مقسوم على $\omega$)</span><span lang="en">$j\omega\Z{\mathbf A_s}$ (divided by $\omega$)</span></span></div></div>
+      <div class="wv-plot"></div>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k"><span lang="ar">المعطى</span><span lang="en">Given</span></span><span class="v" data-o="f"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">الفيزر (قطبي)</span><span lang="en">Phasor (polar)</span></span><span class="v" data-o="p"></span></div>
+      <div><span class="k"><span lang="ar">الفيزر (مستطيل)</span><span lang="en">Phasor (rectangular)</span></span><span class="v" data-o="r"></span></div>
+      <div><span class="k"><span lang="ar">القيمة الحين</span><span lang="en">Value now</span></span><span class="v" data-o="v"></span></div>
+      <div><span class="k"><span class="ltr">∂A/∂t</span></span><span class="v" data-o="d"></span></div>
+    </div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 وش تشوف في المختبر؟</span><span lang="en">🔑 What the lab shows</span></strong>
+    <p><span lang="ar">لما تختار $\sin$، السهم يرجع $90^\circ$ لورا، لأن $\sin\alpha=\cos(\alpha-90^\circ)$ (السلايد 7). ولما تشغّل $\partial/\partial t$ يطلع سهم ثاني متقدم $90^\circ$: الاشتقاق في الزمن = ضرب في $j\omega$ = تكبير بـ $\omega$ ولف $90^\circ$. وهذا بالضبط اللي شفناه في الجزء الأول لما $\sin$ صار $\cos$.</span><span lang="en">When you pick $\sin$, the arrow falls back $90^\circ$, because $\sin\alpha=\cos(\alpha-90^\circ)$ (slide 7). When you turn on $\partial/\partial t$ a second arrow appears $90^\circ$ ahead: differentiating in time = multiplying by $j\omega$ = scaling by $\omega$ and rotating $90^\circ$. That is exactly the $\sin$-becomes-$\cos$ step from part 1.</span></p>
+  </div>
+</section>
+
+<!-- ================= 03 التحويل ================= -->
+<section class="card" id="convert" data-num="03" data-nav="اللحظي ↔ الفيزر|Instant ↔ phasor">
+  <h2><span lang="ar">من الصيغة اللحظية للفيزر والعكس</span><span lang="en">From instantaneous form to phasor and back</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 7–10 · القاعدة الوحيدة اللي تحتاجها</span><span lang="en">Slides 7–10 · the only rule you need</span></p>
+  <p><span lang="ar">التيار الجيبي $I(t)=I_0\cos(\omega t+\theta)$ هو الجزء الحقيقي من $I_0e^{j\theta}e^{j\omega t}$. لو شلنا عامل الزمن $e^{j\omega t}$ يبقى <b>فيزر التيار</b>:</span><span lang="en">The sinusoidal current $I(t)=I_0\cos(\omega t+\theta)$ is the real part of $I_0e^{j\theta}e^{j\omega t}$. Dropping the time factor $e^{j\omega t}$ leaves the <b>phasor current</b>:</span></p>
+  <div class="m">\[\Z{I_s}=I_0e^{j\theta}=I_0\angle\theta,\qquad I(t)=\mathrm{Re}\big(\Z{I_s}e^{j\omega t}\big)\]</div>
+  <p><span lang="ar">الحرف $s$ يعني "صيغة الفيزر". ونفس الشي للمتجهات: لو $\mathbf A(x,y,z,t)$ مجال توافقي زمنياً، فيزره $\Z{\mathbf A_s}(x,y,z)$ والعلاقة بينهم:</span><span lang="en">The subscript $s$ means "phasor form". Vectors work the same way: if $\mathbf A(x,y,z,t)$ is time-harmonic, its phasor is $\Z{\mathbf A_s}(x,y,z)$ and the two are related by:</span></p>
+  <div class="eq-box"><div class="m big">\[\mathbf A(x,y,z,t)=\mathrm{Re}\big[\Z{\mathbf A_s}(x,y,z)\,e^{j\omega t}\big]\]</div></div>
+  <p><span lang="ar"><b>الفيزر دالة في المكان، مو في الزمن</b> (السلايد 9). مثلاً موجة تمشي على $x$:</span><span lang="en"><b>The phasor is a function of position, not of time</b> (slide 9). For example, a wave traveling along $x$:</span></p>
+  <div class="m">\[\begin{aligned}\mathbf A&=A_0\cos(\omega t-\beta x)\,\mathbf a_y\\&=\mathrm{Re}\big(A_0e^{-j\beta x}\mathbf a_y\,e^{j\omega t}\big)\\ \Rightarrow\ \Z{\mathbf A_s}&=A_0e^{-j\beta x}\,\mathbf a_y\end{aligned}\]</div>
+  <p><span lang="ar">الحد $-\beta x$ بقى في الفيزر لأنه مكان، و $\omega t$ راح. وبما إن $e^{j\omega t}$ هو الشي الوحيد اللي فيه $t$، المشتقة والتكامل في الزمن يصيرون ضرب وقسمة:</span><span lang="en">The $-\beta x$ term stays in the phasor because it is position; $\omega t$ is gone. And since $e^{j\omega t}$ is the only thing that contains $t$, differentiating and integrating in time become multiplication and division:</span></p>
+  <div class="m">\[\begin{aligned}\frac{\partial\mathbf A}{\partial t}&=\mathrm{Re}\big(j\omega\Z{\mathbf A_s}e^{j\omega t}\big)\\ \Rightarrow\ \frac{\partial\mathbf A}{\partial t}&\to j\omega\Z{\mathbf A_s}\\ \int\mathbf A\,dt&\to\frac{\Z{\mathbf A_s}}{j\omega}\end{aligned}\]</div>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">الصيغة اللحظية (حقيقية وفيها زمن)</span><span lang="en">Instantaneous (real, has time)</span></th><th><span lang="ar">الفيزر (مركب وبدون زمن)</span><span lang="en">Phasor (complex, no time)</span></th></tr></thead>
+    <tbody>
+      <tr><td>$A_0\cos(\omega t+\theta)$</td><td>$A_0e^{j\theta}=A_0\angle\theta$</td></tr>
+      <tr><td>$A_0\sin(\omega t+\theta)$</td><td>$A_0e^{j(\theta-90^\circ)}=-jA_0e^{j\theta}$</td></tr>
+      <tr><td>$A_0\cos(\omega t-\beta z)$</td><td>$A_0e^{-j\beta z}$</td></tr>
+      <tr><td>$\partial\mathbf A/\partial t$</td><td>$j\omega\Z{\mathbf A_s}$</td></tr>
+      <tr><td>$\int\mathbf A\,dt$</td><td>$\Z{\mathbf A_s}/j\omega$</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ ثلاث قواعد لا تكسرها</span><span lang="en">⚠️ Three rules not to break</span></strong>
+    <p><span lang="ar">(1) ما فيه $t$ داخل الفيزر أبداً. (2) لما ترجع للزمن لا تنسى $\mathrm{Re}$: $\mathbf A=\Z{\mathbf A_s}e^{j\omega t}$ بدون $\mathrm{Re}$ رقم مركب، والمجال الحقيقي لازم يكون حقيقي. (3) لو المعطى $\sin$ إمّا تحوّله لـ $\cos(\cdot-90^\circ)$ وتكمّل بـ $\mathrm{Re}$، أو تكمّل كل المسألة بـ $\mathrm{Im}$ (زي المثال 9.8). المهم ما تخلطهم.</span><span lang="en">(1) Never put $t$ inside a phasor. (2) When going back to time, don't forget $\mathrm{Re}$: $\Z{\mathbf A_s}e^{j\omega t}$ without $\mathrm{Re}$ is complex, and a physical field must be real. (3) If you are given $\sin$, either convert it to $\cos(\cdot-90^\circ)$ and use $\mathrm{Re}$, or use $\mathrm{Im}$ for the whole problem (as in Example 9.8). Just don't mix them.</span></p>
+  </div>
+</section>
+
+<!-- ================= 04 ماكسويل بالفيزر ================= -->
+<section class="card" id="maxwell" data-num="04" data-nav="ماكسويل بالفيزر|Phasor Maxwell">
+  <h2><span lang="ar">معادلات ماكسويل بصيغة الفيزر</span><span lang="en">Maxwell's equations in phasor form</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 10–13 · الجدول 9.2</span><span lang="en">Slides 10–13 · Table 9.2</span></p>
+  <p><span lang="ar">خذ قانون فاراداي وعوّض فيه $\X{\mathbf E}=\mathrm{Re}(\X{\mathbf E_s}e^{j\omega t})$ و $\mathbf B=\mathrm{Re}(\mathbf B_se^{j\omega t})$:</span><span lang="en">Take Faraday's law and substitute $\X{\mathbf E}=\mathrm{Re}(\X{\mathbf E_s}e^{j\omega t})$ and $\mathbf B=\mathrm{Re}(\mathbf B_se^{j\omega t})$:</span></p>
+  <div class="m">\[\nabla\times\big\{\mathrm{Re}[\X{\mathbf E_s}e^{j\omega t}]\big\}=-\frac{\partial}{\partial t}\big\{\mathrm{Re}[\mathbf B_se^{j\omega t}]\big\}\]</div>
+  <p><span lang="ar">الـ curl يشتغل على $x,y,z$ بس، فيدخل جوّا $\mathrm{Re}$ ويتعدّى $e^{j\omega t}$. والمشتقة في الزمن تنزل على $e^{j\omega t}$ بس، لأن $\mathbf B_s$ ما يعتمد على الزمن:</span><span lang="en">The curl acts only on $x,y,z$, so it moves inside $\mathrm{Re}$ and skips $e^{j\omega t}$. The time derivative hits only $e^{j\omega t}$, because $\mathbf B_s$ does not depend on time:</span></p>
+  <div class="m">\[\begin{aligned}&\mathrm{Re}\big\{[\nabla\times\X{\mathbf E_s}]e^{j\omega t}\big\}\\&\quad=-\mathrm{Re}\big\{j\omega\mathbf B_se^{j\omega t}\big\}\\ \Rightarrow\ &\boxed{\nabla\times\X{\mathbf E_s}=-j\omega\mathbf B_s}\end{aligned}\]</div>
+  <p><span lang="ar">ونفس الشي للباقي. النتيجة الجدول 9.2 (بعامل زمن $e^{j\omega t}$):</span><span lang="en">The others follow the same way. The result is Table 9.2 (time factor $e^{j\omega t}$):</span></p>
+  <div class="eq-grid">
+    <div class="eq-box"><h3><span class="eq-n">1</span><span lang="ar">جاوس</span><span lang="en">Gauss</span></h3>
+      <div class="m">\[\nabla\cdot\mathbf D_s=\rho_{vs}\]</div><div class="m">\[\oint\mathbf D_s\cdot d\mathbf S=\int\rho_{vs}\,dv\]</div></div>
+    <div class="eq-box"><h3><span class="eq-n">2</span><span lang="ar">لا قطب منفرد</span><span lang="en">No monopoles</span></h3>
+      <div class="m">\[\nabla\cdot\mathbf B_s=0\]</div><div class="m">\[\oint\mathbf B_s\cdot d\mathbf S=0\]</div></div>
+    <div class="eq-box"><h3><span class="eq-n">3</span><span lang="ar">فاراداي</span><span lang="en">Faraday</span></h3>
+      <div class="m">\[\nabla\times\X{\mathbf E_s}=-j\omega\mathbf B_s\]</div><div class="m">\[\oint\X{\mathbf E_s}\cdot d\mathbf l=-j\omega\int\mathbf B_s\cdot d\mathbf S\]</div></div>
+    <div class="eq-box"><h3><span class="eq-n">4</span><span lang="ar">أمبير-ماكسويل</span><span lang="en">Ampère–Maxwell</span></h3>
+      <div class="m">\[\nabla\times\Y{\mathbf H_s}=\mathbf J_s+j\omega\mathbf D_s\]</div><div class="m">\[\oint\Y{\mathbf H_s}\cdot d\mathbf l=\int(\mathbf J_s+j\omega\mathbf D_s)\cdot d\mathbf S\]</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 قارنها بالجزء الأول:</span><span lang="en">🔑 Compare with part 1:</span></strong>
+    <p><span lang="ar">كل $\partial/\partial t$ صار $j\omega$، وكل شي ثاني ما تغيّر. وفي وسط بدون فقد ومصادر ($\sigma=0$، $\rho_v=0$، $\mathbf D=\varepsilon\X{\mathbf E}$، $\mathbf B=\mu\Y{\mathbf H}$) يبقى لك زوج المعادلات اللي بنحل فيه المثالين 9.7 و 9.8:</span><span lang="en">Every $\partial/\partial t$ became $j\omega$; nothing else changed. In a lossless, source-free medium ($\sigma=0$, $\rho_v=0$, $\mathbf D=\varepsilon\X{\mathbf E}$, $\mathbf B=\mu\Y{\mathbf H}$) you are left with the pair we use in Examples 9.7 and 9.8:</span></p>
+    <div class="m">\[\begin{aligned}\nabla\times\X{\mathbf E_s}&=-j\omega\mu\Y{\mathbf H_s}\\ \nabla\times\Y{\mathbf H_s}&=j\omega\varepsilon\X{\mathbf E_s}\end{aligned}\]</div>
+  </div>
+</section>
+
+<!-- ================= 05 تذكير رياضي ================= -->
+<section class="card" id="tools" data-num="05" data-nav="تذكير رياضي|Math reminder">
+  <h2><span lang="ar">تذكير: الأدوات الرياضية اللي تحتاجها</span><span lang="en">Reminder: the math tools you need</span></h2>
+  <p class="sub"><span lang="ar">سلايدات "Remember" (20–23 و 26–28) · الـ divergence والـ curl ونظريتين</span><span lang="en">The "Remember" slides (20–23 and 26–28) · divergence, curl and two theorems</span></p>
+  <div class="eq-grid">
+    <div class="eq-box"><h3><span lang="ar">نظرية ستوكس</span><span lang="en">Stokes's theorem</span></h3>
+      <div class="m">\[\oint_L\mathbf A\cdot d\mathbf l=\int_S(\nabla\times\mathbf A)\cdot d\mathbf S\]</div>
+      <p><span lang="ar">تحوّل المعادلات 3 و 4 بين النقطية والتكاملية.</span><span lang="en">Converts equations 3 and 4 between point and integral form.</span></p></div>
+    <div class="eq-box"><h3><span lang="ar">نظرية الـ divergence</span><span lang="en">Divergence theorem</span></h3>
+      <div class="m">\[\oint_S\mathbf A\cdot d\mathbf S=\int_v\nabla\cdot\mathbf A\,dv\]</div>
+      <p><span lang="ar">تحوّل المعادلات 1 و 2.</span><span lang="en">Converts equations 1 and 2.</span></p></div>
+    <div class="eq-box"><h3><span lang="ar">الـ divergence: كارتيزي</span><span lang="en">Divergence: Cartesian</span></h3>
+      <div class="m">\[\nabla\cdot\mathbf A=\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}\]</div></div>
+    <div class="eq-box"><h3><span lang="ar">الـ divergence: أسطواني</span><span lang="en">Divergence: cylindrical</span></h3>
+      <div class="m">\[\nabla\cdot\mathbf A=\frac1\rho\frac{\partial(\rho A_\rho)}{\partial\rho}+\frac1\rho\frac{\partial A_\phi}{\partial\phi}+\frac{\partial A_z}{\partial z}\]</div></div>
+    <div class="eq-box"><h3><span lang="ar">الـ curl: كارتيزي</span><span lang="en">Curl: Cartesian</span></h3>
+      <div class="m">\[\nabla\times\mathbf A=\begin{vmatrix}\mathbf a_x&\mathbf a_y&\mathbf a_z\\ \frac{\partial}{\partial x}&\frac{\partial}{\partial y}&\frac{\partial}{\partial z}\\ A_x&A_y&A_z\end{vmatrix}\]</div>
+      <div class="m">\[\begin{aligned}&=\Big[\tfrac{\partial A_z}{\partial y}-\tfrac{\partial A_y}{\partial z}\Big]\mathbf a_x+\Big[\tfrac{\partial A_x}{\partial z}-\tfrac{\partial A_z}{\partial x}\Big]\mathbf a_y\\&\quad+\Big[\tfrac{\partial A_y}{\partial x}-\tfrac{\partial A_x}{\partial y}\Big]\mathbf a_z\end{aligned}\]</div></div>
+    <div class="eq-box"><h3><span lang="ar">الـ curl: أسطواني</span><span lang="en">Curl: cylindrical</span></h3>
+      <div class="m">\[\nabla\times\mathbf A=\frac1\rho\begin{vmatrix}\mathbf a_\rho&\rho\,\mathbf a_\phi&\mathbf a_z\\ \frac{\partial}{\partial\rho}&\frac{\partial}{\partial\phi}&\frac{\partial}{\partial z}\\ A_\rho&\rho A_\phi&A_z\end{vmatrix}\]</div>
+      <div class="m">\[\begin{aligned}&=\Big[\tfrac1\rho\tfrac{\partial A_z}{\partial\phi}-\tfrac{\partial A_\phi}{\partial z}\Big]\mathbf a_\rho+\Big[\tfrac{\partial A_\rho}{\partial z}-\tfrac{\partial A_z}{\partial\rho}\Big]\mathbf a_\phi\\&\quad+\tfrac1\rho\Big[\tfrac{\partial(\rho A_\phi)}{\partial\rho}-\tfrac{\partial A_\rho}{\partial\phi}\Big]\mathbf a_z\end{aligned}\]</div></div>
+  </div>
+  <div class="callout good"><strong><span lang="ar">✅ حيلة توفّر وقت:</span><span lang="en">✅ A time-saving trick:</span></strong>
+    <p><span lang="ar">في مسائل هالمحاضرة المجال عادة له مركّبة وحدة وتعتمد على متغير واحد (مثلاً $E_y(z)$). فمن الـ curl يبقى حد واحد بس، والباقي أصفار. مثلاً $\nabla\times(E_y\mathbf a_y)=-\dfrac{\partial E_y}{\partial z}\mathbf a_x$ لو $E_y$ تعتمد على $z$ بس.</span><span lang="en">In this lecture's problems a field usually has one component that depends on one variable (say $E_y(z)$). Then only one term of the curl survives and the rest are zero. For example $\nabla\times(E_y\mathbf a_y)=-\dfrac{\partial E_y}{\partial z}\mathbf a_x$ when $E_y$ depends on $z$ only.</span></p>
+  </div>
+</section>
+
+<!-- ================= مثال 9.5 ================= -->
+<section class="card" id="ex95" data-nav="مثال 9.5|Example 9.5">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">حساب أعداد مركبة (9.5)</span><span lang="en">Evaluating complex numbers (9.5)</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة · السلايدات 14–17</span><span lang="en">Lecture example · slides 14–17</span></span><span class="tag ltr">Sadiku 9.5</span></div>
+  <p><span lang="ar">احسب:</span><span lang="en">Evaluate:</span></p>
+  <div class="m">\[\begin{aligned}\text{(a)}\ \ z_1&=\frac{j(3-j4)^*}{(-1+j6)(2+j)^2}\\ \text{(b)}\ \ z_2&=\left[\frac{1+j}{4-j8}\right]^{1/2}\end{aligned}\]</div>
+  <h3><span lang="ar">(a) الطريقة 1: بالصيغة المستطيلة</span><span lang="en">(a) Method 1: rectangular form</span></h3>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">سمّ الأجزاء</span><span lang="en">Name the pieces</span></h4>
+      <div class="m">\[\begin{aligned}z_1&=\frac{z_3z_4}{z_5z_6}\\ z_3&=j\\ z_4&=(3-j4)^*=3+j4\\ z_5&=-1+j6\\ z_6&=(2+j)^2=3+j4\end{aligned}\]</div>
+      <p class="why"><span lang="ar">المرافق يقلب إشارة التخيلي بس. و $(2+j)^2=4+j4+j^2=4-1+j4$.</span><span lang="en">The conjugate only flips the sign of the imaginary part. And $(2+j)^2=4+j4+j^2=4-1+j4$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اضرب البسط، واضرب المقام</span><span lang="en">Multiply out the top and the bottom</span></h4>
+      <div class="m">\[\begin{aligned}z_3z_4&=j(3+j4)=-4+j3\\ z_5z_6&=(-1+j6)(3+j4)\\&=-3-j4+j18-24\\&=-27+j14\end{aligned}\]</div>
+      <p class="why"><span lang="ar">في كل مرة يطلع $j\cdot j$ اكتبه $-1$.</span><span lang="en">Every $j\cdot j$ becomes $-1$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اقسم: اضرب في مرافق المقام</span><span lang="en">Divide: multiply by the denominator's conjugate</span></h4>
+      <div class="m">\[\begin{aligned}z_1&=\frac{(-4+j3)(-27-j14)}{(-27+j14)(-27-j14)}\\&=\frac{150-j25}{27^2+14^2}=\frac{150-j25}{925}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$z\,z^*=x^2+y^2$ رقم حقيقي، فالمقام يصير حقيقي ونقسم عادي.</span><span lang="en">$z\,z^*=x^2+y^2$ is real, so the denominator becomes real and we divide normally.</span></p></li>
+    <li class="step final"><div class="result">$z_1=0.1622-j0.027$<br>$=0.1644\angle-9.46^\circ$</div>
+      <p class="sanity"><span lang="ar">$r=\sqrt{0.1622^2+0.027^2}=0.1644$ و $\tan^{-1}(-0.027/0.1622)=-9.46^\circ$ (الربع الرابع، ما يحتاج تصحيح).</span><span lang="en">$r=\sqrt{0.1622^2+0.027^2}=0.1644$ and $\tan^{-1}(-0.027/0.1622)=-9.46^\circ$ (fourth quadrant, no correction needed).</span></p></li>
+  </ol>
+  <h3><span lang="ar">(a) الطريقة 2: بالصيغة القطبية</span><span lang="en">(a) Method 2: polar form</span></h3>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">حوّل كل جزء لقطبي</span><span lang="en">Turn each piece to polar</span></h4>
+      <div class="m">\[\begin{aligned}z_3&=j=1\angle90^\circ\\ z_4&=(5\angle-53.13^\circ)^*=5\angle53.13^\circ\\ z_5&=-1+j6=\sqrt{37}\angle99.46^\circ\\ z_6&=(\sqrt5\angle26.57^\circ)^2=5\angle53.13^\circ\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$z_5$ في الربع الثاني ($x<0$)، فزدنا $180^\circ$. وتربيع $z_6$: المقدار يتربّع والزاوية تتضاعف.</span><span lang="en">$z_5$ is in the second quadrant ($x<0$), so we added $180^\circ$. Squaring $z_6$ squares the magnitude and doubles the angle.</span></p></li>
+    <li class="step"><h4><span lang="ar">اضرب المقادير واجمع الزوايا</span><span lang="en">Multiply magnitudes, add angles</span></h4>
+      <div class="m">\[\begin{aligned}z_1&=\frac{(1\angle90^\circ)(5\angle53.13^\circ)}{(\sqrt{37}\angle99.46^\circ)(5\angle53.13^\circ)}\\&=\frac{1}{\sqrt{37}}\angle90^\circ-99.46^\circ\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$5\angle53.13^\circ$ فوق وتحت ينشطبون. هنا القطبية أسرع بكثير.</span><span lang="en">$5\angle53.13^\circ$ on top and bottom cancel. Polar form is much faster here.</span></p></li>
+    <li class="step final"><div class="result">$z_1=0.1644\angle-9.46^\circ$<br>$=0.1622-j0.027$</div>
+      <p class="sanity"><span lang="ar">نفس جواب الطريقة 1 ✓.</span><span lang="en">Same as method 1 ✓.</span></p></li>
+  </ol>
+  <h3><span lang="ar">(b) الجذر التربيعي</span><span lang="en">(b) The square root</span></h3>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">البسط والمقام قطبي</span><span lang="en">Top and bottom in polar form</span></h4>
+      <div class="m">\[\begin{aligned}z_7&=1+j=\sqrt2\angle45^\circ\\ z_8&=4-j8=4\sqrt5\angle-63.4^\circ\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$|4-j8|=\sqrt{16+64}=\sqrt{80}=4\sqrt5$.</span><span lang="en">$|4-j8|=\sqrt{16+64}=\sqrt{80}=4\sqrt5$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اقسم</span><span lang="en">Divide</span></h4>
+      <div class="m">\[\begin{aligned}\frac{z_7}{z_8}&=\frac{\sqrt2}{4\sqrt5}\angle45^\circ-(-63.4^\circ)\\&=0.1581\angle108.4^\circ\end{aligned}\]</div>
+      <p class="why"><span lang="ar">طرح زاوية سالبة = جمع.</span><span lang="en">Subtracting a negative angle adds it.</span></p></li>
+    <li class="step"><h4><span lang="ar">خذ الجذر</span><span lang="en">Take the root</span></h4>
+      <div class="m">\[z_2=\sqrt{0.1581}\,\angle\frac{108.4^\circ}{2}\]</div>
+      <p class="why"><span lang="ar">الجذر: جذر المقدار، ونص الزاوية.</span><span lang="en">Root: square-root the magnitude, halve the angle.</span></p></li>
+    <li class="step final"><div class="result">$z_2=0.3976\angle54.2^\circ$</div>
+      <p class="sanity"><span lang="ar">ربّعه: $0.3976^2=0.1581$ و $2\times54.2^\circ=108.4^\circ$ ✓. وللعلم فيه جذر ثاني مقابل له: $0.3976\angle234.2^\circ$ (تشوفه في الرسمة)، والسلايد كتب الجذر الأساسي بس.</span><span lang="en">Square it: $0.3976^2=0.1581$ and $2\times54.2^\circ=108.4^\circ$ ✓. There is also a second, opposite root $0.3976\angle234.2^\circ$ (see the figure); the slide gives only the principal one.</span></p></li>
+  </ol>
+  <figure class="wv" id="roots">
+    <div class="wv-head"><div class="wv-title"><span lang="ar">الجذر في المستوى المركب: نص الزاوية، والجذرين متقابلين</span><span lang="en">The root in the complex plane: half the angle, two opposite roots</span></div>
+      <div class="legend"><span><i class="c-k"></i>$z_7/z_8=0.1581\angle108.4^\circ$</span><span><i class="c-a"></i>$z_2=0.3976\angle54.2^\circ$</span><span><i class="c-a dash"></i><span lang="ar">الجذر الثاني</span><span lang="en">second root</span></span></div></div>
+    <div class="wv-plot"></div>
+  </figure>
+</section>
+
+<!-- ================= مثال 9.6 ================= -->
+<section class="card" id="ex96" data-nav="مثال 9.6|Example 9.6">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">من اللحظي للفيزر والعكس (9.6)</span><span lang="en">Instantaneous to phasor and back (9.6)</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة · السلايدات 18–19</span><span lang="en">Lecture example · slides 18–19</span></span><span class="tag ltr">Sadiku 9.6</span></div>
+  <p><span lang="ar">إذا $\mathbf A=10\cos(10^8t-10x+60^\circ)\,\mathbf a_z$ و $\Z{\mathbf B_s}=(20/j)\,\mathbf a_x+10e^{j2\pi x/3}\,\mathbf a_y$، اكتب $\mathbf A$ بصيغة الفيزر و $\Z{\mathbf B_s}$ بالصيغة اللحظية.</span><span lang="en">Given $\mathbf A=10\cos(10^8t-10x+60^\circ)\,\mathbf a_z$ and $\Z{\mathbf B_s}=(20/j)\,\mathbf a_x+10e^{j2\pi x/3}\,\mathbf a_y$, express $\mathbf A$ in phasor form and $\Z{\mathbf B_s}$ in instantaneous form.</span></p>
+  <div class="map"><span class="x">ω = 10⁸ rad/s</span><span class="x">A₀ = 10</span><span class="x">θ = 60° − 10x</span></div>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">اكتب $\mathbf A$ كجزء حقيقي</span><span lang="en">Write $\mathbf A$ as a real part</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf A&=\mathrm{Re}\big[10e^{j(\omega t-10x+60^\circ)}\mathbf a_z\big]\\ \omega&=10^8\end{aligned}\]</div>
+      <p class="why"><span lang="ar">لأن $\cos\alpha=\mathrm{Re}(e^{j\alpha})$.</span><span lang="en">Because $\cos\alpha=\mathrm{Re}(e^{j\alpha})$.</span></p></li>
+    <li class="step"><h4><span lang="ar">افصل $e^{j\omega t}$</span><span lang="en">Split off $e^{j\omega t}$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf A&=\mathrm{Re}\big[\Z{10e^{j(60^\circ-10x)}\mathbf a_z}\,e^{j\omega t}\big]\\&=\mathrm{Re}\big(\Z{\mathbf A_s}e^{j\omega t}\big)\end{aligned}\]</div>
+      <p class="why"><span lang="ar">كل شي غير $e^{j\omega t}$ هو الفيزر، بما فيه $-10x$ لأنه مكان.</span><span lang="en">Everything except $e^{j\omega t}$ is the phasor, including $-10x$ since it is position.</span></p></li>
+    <li class="step"><h4><span lang="ar">الحين $\Z{\mathbf B_s}$: رتّب $20/j$</span><span lang="en">Now $\Z{\mathbf B_s}$: tidy up $20/j$</span></h4>
+      <div class="m">\[\begin{aligned}\Z{\mathbf B_s}&=-j20\,\mathbf a_x+10e^{j2\pi x/3}\mathbf a_y\\&=20e^{-j\pi/2}\mathbf a_x+10e^{j2\pi x/3}\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$1/j=-j=e^{-j\pi/2}$: لفّة $-90^\circ$.</span><span lang="en">$1/j=-j=e^{-j\pi/2}$: a $-90^\circ$ turn.</span></p></li>
+    <li class="step"><h4><span lang="ar">اضرب في $e^{j\omega t}$ وخذ $\mathrm{Re}$</span><span lang="en">Multiply by $e^{j\omega t}$ and take $\mathrm{Re}$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf B=\mathrm{Re}\big[&20e^{j(\omega t-\pi/2)}\mathbf a_x\\&+10e^{j(\omega t+2\pi x/3)}\mathbf a_y\big]\\=\ &20\cos(\omega t-\pi/2)\,\mathbf a_x\\&+10\cos\Big(\omega t+\frac{2\pi x}{3}\Big)\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">الأس يدخل كله داخل $\cos$.</span><span lang="en">The whole exponent goes inside the $\cos$.</span></p></li>
+    <li class="step final"><div class="result">$\Z{\mathbf A_s}=10e^{j(60^\circ-10x)}\,\mathbf a_z$<br>$\mathbf B=20\sin\omega t\,\mathbf a_x$<br>$\quad+10\cos\Big(\omega t+\dfrac{2\pi x}{3}\Big)\mathbf a_y$</div>
+      <p class="sanity"><span lang="ar">$\cos(\omega t-90^\circ)=\sin\omega t$. و $\omega$ لـ $\mathbf B$ ما انعطى، فيبقى رمز.</span><span lang="en">$\cos(\omega t-90^\circ)=\sin\omega t$. And $\omega$ for $\mathbf B$ was not given, so it stays a symbol.</span></p></li>
+  </ol>
+</section>
+
+<!-- ================= مثال 9.7 ================= -->
+<section class="card" id="ex97" data-nav="مثال 9.7|Example 9.7">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">أوجد $H_0$ و $\beta$ عشان المجالين يحققون ماكسويل (9.7)</span><span lang="en">Find $H_0$ and $\beta$ so the fields satisfy Maxwell (9.7)</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة · السلايدات 24–30</span><span lang="en">Lecture example · slides 24–30</span></span><span class="tag ltr">Sadiku 9.7</span></div>
+  <p><span lang="ar">في الفراغ:</span><span lang="en">In free space:</span></p>
+  <div class="m">\[\begin{aligned}\X{\mathbf E}&=\frac{50}{\rho}\cos(10^6t+\beta z)\,\mathbf a_\phi\ \text{V/m}\\ \Y{\mathbf H}&=\frac{H_0}{\rho}\cos(10^6t+\beta z)\,\mathbf a_\rho\ \text{A/m}\end{aligned}\]</div>
+  <p><span lang="ar">اكتبهم بصيغة الفيزر وأوجد $H_0$ و $\beta$ بحيث المجالين يحققون معادلات ماكسويل.</span><span lang="en">Express them in phasor form and find $H_0$ and $\beta$ so that the fields satisfy Maxwell's equations.</span></p>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">الفيزرات</span><span lang="en">The phasors</span></h4>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_s}&=\frac{50}{\rho}e^{j\beta z}\mathbf a_\phi\\ \Y{\mathbf H_s}&=\frac{H_0}{\rho}e^{j\beta z}\mathbf a_\rho\\ \omega&=10^6\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\X{\mathbf E}=\mathrm{Re}(\X{\mathbf E_s}e^{j\omega t})$: نشيل $\omega t$ ونخلّي $\beta z$.</span><span lang="en">$\X{\mathbf E}=\mathrm{Re}(\X{\mathbf E_s}e^{j\omega t})$: drop $\omega t$, keep $\beta z$.</span></p></li>
+    <li class="step"><h4><span lang="ar">ماكسويل في الفراغ</span><span lang="en">Maxwell in free space</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\cdot\X{\mathbf E_s}&=0,\qquad\nabla\cdot\Y{\mathbf H_s}=0\\ \nabla\times\Y{\mathbf H_s}&=j\omega\varepsilon_0\X{\mathbf E_s}\\ \nabla\times\X{\mathbf E_s}&=-j\omega\mu_0\Y{\mathbf H_s}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">الفراغ: $\rho_v=0$، $\sigma=0$ (فـ $\mathbf J=0$)، $\varepsilon=\varepsilon_0$، $\mu=\mu_0$.</span><span lang="en">Free space: $\rho_v=0$, $\sigma=0$ (so $\mathbf J=0$), $\varepsilon=\varepsilon_0$, $\mu=\mu_0$.</span></p></li>
+    <li class="step"><h4><span lang="ar">معادلتين الـ divergence تتحقق لحالها</span><span lang="en">The two divergence equations hold by themselves</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\cdot\X{\mathbf E_s}&=\frac1\rho\frac{\partial E_{\phi s}}{\partial\phi}=0\\ \nabla\cdot\Y{\mathbf H_s}&=\frac1\rho\frac{\partial(\rho H_{\rho s})}{\partial\rho}\\&=\frac1\rho\frac{\partial(H_0e^{j\beta z})}{\partial\rho}=0\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$E_{\phi s}$ ما فيها $\phi$، و $\rho H_{\rho s}=H_0e^{j\beta z}$ ما فيها $\rho$. فما تعطينا معلومة.</span><span lang="en">$E_{\phi s}$ has no $\phi$, and $\rho H_{\rho s}=H_0e^{j\beta z}$ has no $\rho$. So they tell us nothing.</span></p></li>
+    <li class="step"><h4><span lang="ar">أمبير: curl الـ $\Y{\mathbf H_s}$</span><span lang="en">Ampère: the curl of $\Y{\mathbf H_s}$</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\times\Y{\mathbf H_s}&=\frac{\partial H_{\rho s}}{\partial z}\mathbf a_\phi\\&=\frac{jH_0\beta}{\rho}e^{j\beta z}\mathbf a_\phi\\&=j\omega\varepsilon_0\frac{50}{\rho}e^{j\beta z}\mathbf a_\phi\\ \Rightarrow\ H_0\beta&=50\,\omega\varepsilon_0\quad\text{(i)}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$H_{\rho s}$ تعتمد على $z$ بس، فمن الـ curl الأسطواني يبقى حد $\mathbf a_\phi$: $\partial A_\rho/\partial z$.</span><span lang="en">$H_{\rho s}$ depends on $z$ only, so the cylindrical curl keeps just the $\mathbf a_\phi$ term $\partial A_\rho/\partial z$.</span></p></li>
+    <li class="step"><h4><span lang="ar">فاراداي: curl الـ $\X{\mathbf E_s}$</span><span lang="en">Faraday: the curl of $\X{\mathbf E_s}$</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\times\X{\mathbf E_s}&=-\frac{\partial E_{\phi s}}{\partial z}\mathbf a_\rho\\&=-j\beta\frac{50}{\rho}e^{j\beta z}\mathbf a_\rho\\&=-j\omega\mu_0\frac{H_0}{\rho}e^{j\beta z}\mathbf a_\rho\\ \Rightarrow\ \frac{H_0}{\beta}&=\frac{50}{\omega\mu_0}\quad\text{(ii)}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">حد $\mathbf a_z$ صفر: $\frac1\rho\frac{\partial(\rho E_{\phi s})}{\partial\rho}=\frac1\rho\frac{\partial(50e^{j\beta z})}{\partial\rho}=0$.</span><span lang="en">The $\mathbf a_z$ term is zero: $\frac1\rho\frac{\partial(\rho E_{\phi s})}{\partial\rho}=\frac1\rho\frac{\partial(50e^{j\beta z})}{\partial\rho}=0$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اضرب (i) × (ii): يطلع $H_0$</span><span lang="en">Multiply (i) × (ii): get $H_0$</span></h4>
+      <div class="m">\[\begin{aligned}H_0^2&=(50)^2\frac{\varepsilon_0}{\mu_0}\\ \Rightarrow\ H_0&=\pm50\sqrt{\frac{\varepsilon_0}{\mu_0}}\\&=\pm\frac{50}{120\pi}=\pm0.1326\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\beta$ ينشطب، و $\sqrt{\mu_0/\varepsilon_0}=120\pi\approx377\ \Omega$.</span><span lang="en">$\beta$ cancels, and $\sqrt{\mu_0/\varepsilon_0}=120\pi\approx377\ \Omega$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اقسم (i) ÷ (ii): يطلع $\beta$</span><span lang="en">Divide (i) ÷ (ii): get $\beta$</span></h4>
+      <div class="m">\[\begin{aligned}\beta^2&=\omega^2\mu_0\varepsilon_0\\ \Rightarrow\ \beta&=\pm\omega\sqrt{\mu_0\varepsilon_0}=\pm\frac{\omega}{c}\\&=\pm\frac{10^6}{3\times10^8}=\pm3.33\times10^{-3}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$H_0$ ينشطب، و $1/\sqrt{\mu_0\varepsilon_0}=c=3\times10^8\ \text{m/s}$.</span><span lang="en">$H_0$ cancels, and $1/\sqrt{\mu_0\varepsilon_0}=c=3\times10^8\ \text{m/s}$.</span></p></li>
+    <li class="step final"><div class="result">$H_0=0.1326,$ $\beta=3.33\times10^{-3}\ \text{rad/m}$<br><span lang="ar">أو</span><span lang="en">or</span> $H_0=-0.1326,$ $\beta=-3.33\times10^{-3}$</div>
+      <p class="sanity"><span lang="ar">الإشارتين لازم يكونون نفس الشي، لأن (i) تقول $H_0\beta=50\omega\varepsilon_0>0$. وبس هالزوجين يحققون المعادلات الأربع. ولاحظ $50/H_0=120\pi$: نسبة $E$ إلى $H$ في الفراغ دايماً $377\ \Omega$ (بنسمّيها $\eta_0$ في المحاضرة 5).</span><span lang="en">The two signs must match, because (i) says $H_0\beta=50\omega\varepsilon_0>0$. Only these two pairs satisfy all four equations. Note $50/H_0=120\pi$: the ratio of $E$ to $H$ in free space is always $377\ \Omega$ (called $\eta_0$ in Lecture 5).</span></p></li>
+  </ol>
+</section>
+
+<!-- ================= مثال 9.8 ================= -->
+<section class="card" id="ex98" data-nav="مثال 9.8|Example 9.8">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">أوجد $\beta$ و $\Y{\mathbf H}$ من $\X{\mathbf E}$ (9.8)</span><span lang="en">Find $\beta$ and $\Y{\mathbf H}$ from $\X{\mathbf E}$ (9.8)</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة · السلايدات 31–34</span><span lang="en">Lecture example · slides 31–34</span></span><span class="tag ltr">Sadiku 9.8</span></div>
+  <p><span lang="ar">وسط فيه $\sigma=0$، $\mu=\mu_0$، $\varepsilon=4\varepsilon_0$، و $\X{\mathbf E}=20\sin(10^8t-\beta z)\,\mathbf a_y\ \text{V/m}$. احسب $\beta$ و $\Y{\mathbf H}$.</span><span lang="en">In a medium characterized by $\sigma=0$, $\mu=\mu_0$, $\varepsilon=4\varepsilon_0$ and $\X{\mathbf E}=20\sin(10^8t-\beta z)\,\mathbf a_y\ \text{V/m}$, calculate $\beta$ and $\Y{\mathbf H}$.</span></p>
+  <div class="map"><span class="x">ω = 10⁸ rad/s</span><span class="x">μ = μ₀</span><span class="x">ε = 4ε₀</span><span class="x">σ = 0</span></div>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">الفيزر بـ $\mathrm{Im}$</span><span lang="en">The phasor using $\mathrm{Im}$</span></h4>
+      <div class="m">\[\begin{aligned}\X{\mathbf E}&=\mathrm{Im}\big(\X{\mathbf E_s}e^{j\omega t}\big)\\ \Rightarrow\ \X{\mathbf E_s}&=20e^{-j\beta z}\,\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">المعطى $\sin$، فالأسهل نستخدم $\mathrm{Im}$ ونكمّل فيه للآخر. و $\nabla\cdot\X{\mathbf E_s}=\partial E_{ys}/\partial y=0$ ✓.</span><span lang="en">The field is given as $\sin$, so it is easiest to use $\mathrm{Im}$ all the way. And $\nabla\cdot\X{\mathbf E_s}=\partial E_{ys}/\partial y=0$ ✓.</span></p></li>
+    <li class="step"><h4><span lang="ar">فاراداي يعطي $\Y{\mathbf H_s}$</span><span lang="en">Faraday gives $\Y{\mathbf H_s}$</span></h4>
+      <div class="m">\[\begin{aligned}\Y{\mathbf H_s}&=\frac{\nabla\times\X{\mathbf E_s}}{-j\omega\mu}\\&=\frac{1}{-j\omega\mu}\Big[-\frac{\partial E_{ys}}{\partial z}\mathbf a_x\Big]\\&=-\frac{20\beta}{\omega\mu}e^{-j\beta z}\,\mathbf a_x\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\partial E_{ys}/\partial z=-j\beta\,20e^{-j\beta z}$، فالبسط $+j\beta\,20e^{-j\beta z}$، وقسمته على $-j\omega\mu$ تطلّع إشارة سالبة. و $\nabla\cdot\Y{\mathbf H_s}=0$ ✓.</span><span lang="en">$\partial E_{ys}/\partial z=-j\beta\,20e^{-j\beta z}$, so the bracket is $+j\beta\,20e^{-j\beta z}$, and dividing by $-j\omega\mu$ gives a minus sign. And $\nabla\cdot\Y{\mathbf H_s}=0$ ✓.</span></p></li>
+    <li class="step"><h4><span lang="ar">أمبير يرجّع $\X{\mathbf E_s}$</span><span lang="en">Ampère gives back $\X{\mathbf E_s}$</span></h4>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_s}&=\frac{\nabla\times\Y{\mathbf H_s}}{j\omega\varepsilon}=\frac{1}{j\omega\varepsilon}\frac{\partial H_{xs}}{\partial z}\mathbf a_y\\&=\frac{20\beta^2}{\omega^2\mu\varepsilon}e^{-j\beta z}\,\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\Y{\mathbf H_s}$ على $\mathbf a_x$ وتعتمد على $z$، فالـ curl يعطي $\frac{\partial H_x}{\partial z}\mathbf a_y$.</span><span lang="en">$\Y{\mathbf H_s}$ is along $\mathbf a_x$ and depends on $z$, so the curl gives $\frac{\partial H_x}{\partial z}\mathbf a_y$.</span></p></li>
+    <li class="step"><h4><span lang="ar">قارن مع $\X{\mathbf E_s}$ المعطى</span><span lang="en">Compare with the given $\X{\mathbf E_s}$</span></h4>
+      <div class="m">\[\begin{aligned}20&=\frac{20\beta^2}{\omega^2\mu\varepsilon}\\ \Rightarrow\ \beta&=\omega\sqrt{\mu\varepsilon}=\frac{10^8\sqrt{4}}{3\times10^8}\\&=\frac23\ \text{rad/m}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\sqrt{\mu_0\cdot4\varepsilon_0}=2/c$. وأخذنا الموجب زي السلايد (الموجة تمشي على $+z$).</span><span lang="en">$\sqrt{\mu_0\cdot4\varepsilon_0}=2/c$. We take the positive root as the slide does (wave traveling along $+z$).</span></p></li>
+    <li class="step"><h4><span lang="ar">عوّض في $\Y{\mathbf H_s}$</span><span lang="en">Substitute into $\Y{\mathbf H_s}$</span></h4>
+      <div class="m">\[\begin{aligned}\Y{\mathbf H_s}&=-\frac{20(2/3)}{10^8(4\pi\times10^{-7})}e^{-j\beta z}\mathbf a_x\\&=-\frac{1}{3\pi}e^{-j\beta z}\mathbf a_x\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$10^8\times4\pi\times10^{-7}=40\pi$، و $\frac{40/3}{40\pi}=\frac{1}{3\pi}=0.1061$.</span><span lang="en">$10^8\times4\pi\times10^{-7}=40\pi$, and $\frac{40/3}{40\pi}=\frac{1}{3\pi}=0.1061$.</span></p></li>
+    <li class="step final"><div class="result">$\beta=\dfrac23\ \text{rad/m}$<br>$\Y{\mathbf H}=\mathrm{Im}(\Y{\mathbf H_s}e^{j\omega t})$<br>$=-\dfrac{1}{3\pi}\sin\Big(10^8t-\dfrac{2z}{3}\Big)\mathbf a_x$ $\text{A/m}$</div>
+      <p class="sanity"><span lang="ar">تأكد: $\X{\mathbf E}\times\Y{\mathbf H}$ لازم يطلع على اتجاه الانتشار $+\mathbf a_z$: $\mathbf a_y\times(-\mathbf a_x)=+\mathbf a_z$ ✓. والنسبة $20\big/\tfrac{1}{3\pi}=60\pi=\sqrt{\mu/\varepsilon}$ ✓.</span><span lang="en">Check: $\X{\mathbf E}\times\Y{\mathbf H}$ must point along the travel direction $+\mathbf a_z$: $\mathbf a_y\times(-\mathbf a_x)=+\mathbf a_z$ ✓. And the ratio $20\big/\tfrac{1}{3\pi}=60\pi=\sqrt{\mu/\varepsilon}$ ✓.</span></p></li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">⚠️ انتبه للإشارة في السلايد 34</span><span lang="en">⚠️ Watch the sign on slide 34</span></strong>
+    <p><span lang="ar">السلايد كاتب $\Y{\mathbf H_s}=+\frac{1}{3\pi}e^{-j\beta z}\mathbf a_x$ وبعدين $\pm\frac{1}{3\pi}\sin(\cdots)$. من الخطوة 2، $\Y{\mathbf H_s}=-\frac{20\beta}{\omega\mu}\cdots$، فمع $\beta=+\tfrac23$ الإشارة <b>سالبة</b>. والـ $\pm$ معناها: لو أخذت $\beta=\pm\tfrac23$ تطلع $\Y{\mathbf H}=\mp\tfrac{1}{3\pi}\sin(10^8t-\beta z)\,\mathbf a_x$. الإشارة الموجبة تجي مع $\beta=-\tfrac23$ (موجة تمشي على $-z$).</span><span lang="en">The slide writes $\Y{\mathbf H_s}=+\frac{1}{3\pi}e^{-j\beta z}\mathbf a_x$ and then $\pm\frac{1}{3\pi}\sin(\cdots)$. From step 2, $\Y{\mathbf H_s}=-\frac{20\beta}{\omega\mu}\cdots$, so with $\beta=+\tfrac23$ the sign is <b>negative</b>. The $\pm$ means: taking $\beta=\pm\tfrac23$ gives $\Y{\mathbf H}=\mp\tfrac{1}{3\pi}\sin(10^8t-\beta z)\,\mathbf a_x$. The plus sign goes with $\beta=-\tfrac23$ (a wave traveling along $-z$).</span></p>
+  </div>
+  <p><span lang="ar">شغّل الرسمة: $\X{E_y}$ و $\Y{H_x}$ يمشون مع بعض على $+z$، و $\Y{H_x}$ دايماً عكس إشارة $\X{E_y}$. هذا معنى الإشارة السالبة.</span><span lang="en">Play the chart: $\X{E_y}$ and $\Y{H_x}$ travel together along $+z$, and $\Y{H_x}$ always has the opposite sign of $\X{E_y}$. That is what the minus sign means.</span></p>
+  <div class="wlab" id="wave-lab">
+    <div class="lab-controls"><button type="button" class="btn primary" data-play></button></div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">المجالين على طول $z$ (كل واحد على أقصى قيمته)، $\lambda=2\pi/\beta=3\pi\approx9.42\ \text{m}$</span><span lang="en">Both fields along $z$ (each over its peak), $\lambda=2\pi/\beta=3\pi\approx9.42\ \text{m}$</span></div>
+        <div class="legend"><span><i class="c-e"></i>$\X{E_y}/20$</span><span><i class="c-h"></i>$\Y{H_x}/0.1061$</span></div></div>
+      <div class="wv-plot"></div>
+    </figure>
+  </div>
+  <p><span lang="ar">ملاحظة السلايد 34: لو استخدمنا $\mathrm{Re}$ بدل $\mathrm{Im}$، كان كتبنا $\X{\mathbf E}=20\cos(10^8t-\beta z-90^\circ)\mathbf a_y$ و $\X{\mathbf E_s}=20e^{-j\beta z-j90^\circ}\mathbf a_y=-j20e^{-j\beta z}\mathbf a_y$، ويطلع نفس الجواب. والحل بالفيزر أسهل بكثير من الحل المباشر في الزمن.</span><span lang="en">Slide 34's note: had we used $\mathrm{Re}$ instead of $\mathrm{Im}$, we would write $\X{\mathbf E}=20\cos(10^8t-\beta z-90^\circ)\mathbf a_y$ and $\X{\mathbf E_s}=20e^{-j\beta z-j90^\circ}\mathbf a_y=-j20e^{-j\beta z}\mathbf a_y$, with the same final answer. Working with phasors is much simpler than working directly in time.</span></p>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2><span lang="ar">طريقة حل مسائل "أوجد β و H"</span><span lang="en">How to solve "find β and H" problems</span></h2>
+  <p class="sub"><span lang="ar">أربع خطوات تمشي على المثالين 9.7 و 9.8 وأغلب أسئلة الاختبار</span><span lang="en">Four steps that cover Examples 9.7, 9.8 and most exam questions</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">حوّل للفيزر</span><span lang="en">Go to phasors</span></b><span class="why"><span lang="ar">$\cos$ ← $\mathrm{Re}$، و $\sin$ ← $\mathrm{Im}$ (أو اطرح $90^\circ$). شِيل $\omega t$ وخلّ $e^{\mp j\beta z}$.</span><span lang="en">$\cos$ → $\mathrm{Re}$, $\sin$ → $\mathrm{Im}$ (or subtract $90^\circ$). Drop $\omega t$, keep $e^{\mp j\beta z}$.</span></span></li>
+    <li><b><span lang="ar">طبّق ماكسويل بالفيزر</span><span lang="en">Apply phasor Maxwell</span></b><span class="why"><span lang="ar">$\nabla\times\X{\mathbf E_s}=-j\omega\mu\Y{\mathbf H_s}$ و $\nabla\times\Y{\mathbf H_s}=j\omega\varepsilon\X{\mathbf E_s}$. والـ divergence تتأكد منها بس (عادة صفر لحالها).</span><span lang="en">$\nabla\times\X{\mathbf E_s}=-j\omega\mu\Y{\mathbf H_s}$ and $\nabla\times\Y{\mathbf H_s}=j\omega\varepsilon\X{\mathbf E_s}$. The divergences are just a check (usually zero by themselves).</span></span></li>
+    <li><b><span lang="ar">قارن المعاملات</span><span lang="en">Match coefficients</span></b><span class="why"><span lang="ar">يطلع لك معادلتين. اضربهم تطلع السعة، واقسمهم يطلع $\beta=\pm\omega\sqrt{\mu\varepsilon}$. انتبه أي إشارات تمشي مع بعض.</span><span lang="en">You get two equations. Multiply them for the amplitude; divide them for $\beta=\pm\omega\sqrt{\mu\varepsilon}$. Watch which signs go together.</span></span></li>
+    <li><b><span lang="ar">ارجع للزمن وتأكد</span><span lang="en">Back to time, then check</span></b><span class="why"><span lang="ar">اضرب في $e^{j\omega t}$ وخذ نفس $\mathrm{Re}$ أو $\mathrm{Im}$ اللي بديت فيه. تأكد: $\X{\mathbf E}\times\Y{\mathbf H}$ على اتجاه الانتشار، و $|E|/|H|=\sqrt{\mu/\varepsilon}$.</span><span lang="en">Multiply by $e^{j\omega t}$ and take the same $\mathrm{Re}$ or $\mathrm{Im}$ you started with. Check: $\X{\mathbf E}\times\Y{\mathbf H}$ points along the travel direction, and $|E|/|H|=\sqrt{\mu/\varepsilon}$.</span></span></li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين</span><span lang="en">Practice</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · من اللحظي للفيزر</span><span lang="en">Exercise A · instantaneous to phasor</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">$\X{\mathbf E}=5\sin(10^6t-2z+30^\circ)\,\mathbf a_x\ \text{V/m}$. اكتب $\X{\mathbf E_s}$ بمرجع $\cos$ (يعني $\X{\mathbf E}=\mathrm{Re}[\X{\mathbf E_s}e^{j\omega t}]$). كم طور $\X{\mathbf E_s}$ عند $z=0$ بالدرجات؟</span><span lang="en">$\X{\mathbf E}=5\sin(10^6t-2z+30^\circ)\,\mathbf a_x\ \text{V/m}$. Write $\X{\mathbf E_s}$ with a $\cos$ reference (so $\X{\mathbf E}=\mathrm{Re}[\X{\mathbf E_s}e^{j\omega t}]$). What is the phase of $\X{\mathbf E_s}$ at $z=0$, in degrees?</span></p>
+    <div class="check" data-answer="-60"></div>
+    <details class="hint"><p><span lang="ar">$\sin\alpha=\cos(\alpha-90^\circ)$.</span><span lang="en">$\sin\alpha=\cos(\alpha-90^\circ)$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل $\sin$ لـ $\cos$</span><span lang="en">Turn $\sin$ into $\cos$</span></h4><div class="m">\[\begin{aligned}\X{\mathbf E}&=5\cos(10^6t-2z\\&\qquad+30^\circ-90^\circ)\,\mathbf a_x\\&=5\cos(10^6t-2z-60^\circ)\,\mathbf a_x\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">شِيل $\omega t$</span><span lang="en">Drop $\omega t$</span></h4><div class="m">\[\X{\mathbf E_s}=5e^{-j(2z+60^\circ)}\,\mathbf a_x\]</div></li>
+      <li class="step final"><div class="result">$\X{\mathbf E_s}=5e^{-j60^\circ}e^{-j2z}\,\mathbf a_x$<br><span lang="ar">الطور عند $z=0$: $-60^\circ$</span><span lang="en">phase at $z=0$: $-60^\circ$</span></div><p class="sanity"><span lang="ar">لو استخدمت $\mathrm{Im}$ بدل $\mathrm{Re}$ يطلع $5e^{j(30^\circ-2z)}$: فيزر مختلف لنفس المجال، لأن المرجع اختلف. عشان كذا لازم تحدد المرجع ✓.</span><span lang="en">With $\mathrm{Im}$ instead of $\mathrm{Re}$ you'd get $5e^{j(30^\circ-2z)}$: a different phasor for the same field, because the reference changed. That is why you must state the reference ✓.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · قسمة مركبة</span><span lang="en">Exercise B · complex division</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">احسب $z=\dfrac{(1+j2)^2}{3-j4}$. كم الجزء الحقيقي لـ $z$؟</span><span lang="en">Evaluate $z=\dfrac{(1+j2)^2}{3-j4}$. What is the real part of $z$?</span></p>
+    <div class="check" data-answer="-1"></div>
+    <details class="hint"><p><span lang="ar">بالقطبية: $|1+j2|=\sqrt5$ و $|3-j4|=5$. انتبه للزوايا.</span><span lang="en">In polar form: $|1+j2|=\sqrt5$ and $|3-j4|=5$. Watch the angles.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">قطبي</span><span lang="en">Polar form</span></h4><div class="m">\[\begin{aligned}(1+j2)^2&=(\sqrt5\angle63.43^\circ)^2\\&=5\angle126.87^\circ\\ 3-j4&=5\angle-53.13^\circ\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">اقسم</span><span lang="en">Divide</span></h4><div class="m">\[\begin{aligned}z&=\tfrac55\angle126.87^\circ-(-53.13^\circ)\\&=1\angle180^\circ\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$z=1\angle180^\circ=-1$</div><p class="sanity"><span lang="ar">بالمستطيلة: $(1+j2)^2=-3+j4=-(3-j4)$، فالقسمة $=-1$ مباشرة ✓.</span><span lang="en">In rectangular form: $(1+j2)^2=-3+j4=-(3-j4)$, so the ratio is $-1$ right away ✓.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · زي المثال 9.8</span><span lang="en">Exercise C · like Example 9.8</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">وسط فيه $\sigma=0$، $\mu=\mu_0$، $\varepsilon=9\varepsilon_0$، و $\X{\mathbf E}=30\cos(10^9t-\beta z)\,\mathbf a_x\ \text{V/m}$. أوجد $\beta$ و $\Y{\mathbf H}$. كم سعة $\Y{\mathbf H}$ بالـ <span dir="ltr">mA/m</span>؟</span><span lang="en">A medium with $\sigma=0$, $\mu=\mu_0$, $\varepsilon=9\varepsilon_0$ has $\X{\mathbf E}=30\cos(10^9t-\beta z)\,\mathbf a_x\ \text{V/m}$. Find $\beta$ and $\Y{\mathbf H}$. What is the amplitude of $\Y{\mathbf H}$ in mA/m?</span></p>
+    <div class="check" data-answer="238.7"></div>
+    <details class="hint"><p><span lang="ar">$\beta=\omega\sqrt{\mu\varepsilon}$، وبعدين $\Y{\mathbf H_s}=\nabla\times\X{\mathbf E_s}/(-j\omega\mu)$.</span><span lang="en">$\beta=\omega\sqrt{\mu\varepsilon}$, then $\Y{\mathbf H_s}=\nabla\times\X{\mathbf E_s}/(-j\omega\mu)$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>$\beta$</h4><div class="m">\[\begin{aligned}\beta&=\omega\sqrt{\mu_0\cdot9\varepsilon_0}=\frac{3\omega}{c}\\&=\frac{3\times10^9}{3\times10^8}=10\ \text{rad/m}\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">الـ curl</span><span lang="en">The curl</span></h4><div class="m">\[\begin{aligned}\nabla\times\X{\mathbf E_s}&=\frac{\partial E_{xs}}{\partial z}\mathbf a_y\\&=-j\beta\,30e^{-j\beta z}\,\mathbf a_y\end{aligned}\]</div><p class="why"><span lang="ar">$\X{\mathbf E_s}=30e^{-j\beta z}\mathbf a_x$، ومن الـ curl الكارتيزي يبقى $\frac{\partial A_x}{\partial z}\mathbf a_y$.</span><span lang="en">$\X{\mathbf E_s}=30e^{-j\beta z}\mathbf a_x$, and the Cartesian curl keeps $\frac{\partial A_x}{\partial z}\mathbf a_y$.</span></p></li>
+      <li class="step"><h4><span lang="ar">اقسم على $-j\omega\mu_0$</span><span lang="en">Divide by $-j\omega\mu_0$</span></h4><div class="m">\[\begin{aligned}\Y{\mathbf H_s}&=\frac{30\beta}{\omega\mu_0}e^{-j\beta z}\mathbf a_y\\ \frac{30\beta}{\omega\mu_0}&=\frac{300}{400\pi}=0.2387\\ \Rightarrow\ \Y{\mathbf H_s}&=0.2387\,e^{-j10z}\,\mathbf a_y\end{aligned}\]</div><p class=\"why\">$\omega\mu_0=10^9\times4\pi\times10^{-7}=400\pi$.</p></li>
+      <li class="step final"><div class="result">$|\Y{\mathbf H}|=238.7\ \text{mA/m}$<br>$\Y{\mathbf H}=0.2387\cos(10^9t-10z)$ $\mathbf a_y\ \text{A/m}$</div><p class="sanity"><span lang="ar">$\sqrt{\mu/\varepsilon}=120\pi/3=125.7\ \Omega$ و $30/125.7=0.2387$ ✓. والاتجاه $\mathbf a_x\times\mathbf a_y=+\mathbf a_z$ ✓.</span><span lang="en">$\sqrt{\mu/\varepsilon}=120\pi/3=125.7\ \Omega$ and $30/125.7=0.2387$ ✓. Direction: $\mathbf a_x\times\mathbf a_y=+\mathbf a_z$ ✓.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء الشائعة ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء الشائعة</span><span lang="en">Common mistakes</span></h2>
+  <p class="sub"><span lang="ar">كل واحد منها يضيّع درجات في الاختبار</span><span lang="en">Each of these costs marks in the exam</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">ترك $t$ داخل الفيزر</span><span lang="en">Leaving $t$ in the phasor</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf E_s=20e^{j(10^8t-\beta z)}\mathbf a_y$</div><span lang="ar">هذا مو فيزر.</span><span lang="en">That is not a phasor.</span></div><div class="yes"><div class="mm">$\mathbf E_s=20e^{-j\beta z}\mathbf a_y$</div><span lang="ar">المكان يبقى، والزمن يروح.</span><span lang="en">Position stays, time goes.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">معاملة $\sin$ كأنها $\cos$</span><span lang="en">Treating $\sin$ as $\cos$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$5\sin(\omega t+30^\circ)\to5\angle30^\circ$</div><span lang="ar">مع $\mathrm{Re}$ هذا غلط.</span><span lang="en">Wrong with $\mathrm{Re}$.</span></div><div class="yes"><div class="mm">$5\angle-60^\circ$</div><span lang="ar">اطرح $90^\circ$، أو استخدم $\mathrm{Im}$ للآخر.</span><span lang="en">Subtract $90^\circ$, or use $\mathrm{Im}$ throughout.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">زاوية $\tan^{-1}$ في الربع الغلط</span><span lang="en">$\tan^{-1}$ in the wrong quadrant</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\angle(-1+j6)=-80.54^\circ$</div><span lang="ar">هذا جواب الآلة بس.</span><span lang="en">That is just the calculator.</span></div><div class="yes"><div class="mm">$\angle(-1+j6)=99.46^\circ$</div><span lang="ar">$x<0$ ← زِد $180^\circ$.</span><span lang="en">$x<0$ → add $180^\circ$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">قسمة على $j$</span><span lang="en">Dividing by $j$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$20/j=j20$</div><span lang="ar">الإشارة انقلبت غلط.</span><span lang="en">Wrong sign.</span></div><div class="yes"><div class="mm">$20/j=-j20=20\angle-90^\circ$</div><span lang="ar">اضرب فوق وتحت في $j$: $j^2=-1$.</span><span lang="en">Multiply top and bottom by $j$: $j^2=-1$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">إشارة $\mathbf H$ في المثال 9.8</span><span lang="en">The sign of $\mathbf H$ in Example 9.8</span></div>
+    <div class="pair"><div class="no"><div class="mm">$+\frac{1}{3\pi}\sin(10^8t-\frac{2z}{3})\mathbf a_x$</div><span lang="ar">$\mathbf E\times\mathbf H$ يطلع على $-z$.</span><span lang="en">$\mathbf E\times\mathbf H$ points to $-z$.</span></div><div class="yes"><div class="mm">$-\frac{1}{3\pi}\sin(10^8t-\frac{2z}{3})\mathbf a_x$</div><span lang="ar">$\mathbf E\times\mathbf H$ على اتجاه الانتشار $+z$.</span><span lang="en">$\mathbf E\times\mathbf H$ along the travel direction $+z$.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">7 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">7 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">فيزر $10\cos(\omega t-30^\circ)$ هو:</span><span lang="en">The phasor of $10\cos(\omega t-30^\circ)$ is:</span></p>
+      <button>$10\angle30^\circ$</button><button>$10\angle-30^\circ$</button><button>$10e^{j\omega t}$</button><button>$10\angle-120^\circ$</button>
+      <p class="q-why"><span lang="ar">$\cos$ مع $\mathrm{Re}$: الطور ينقل زي ما هو، و $\omega t$ يروح.</span><span lang="en">$\cos$ with $\mathrm{Re}$: the phase carries over as is, and $\omega t$ goes away.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">$\partial\mathbf A/\partial t$ بصيغة الفيزر:</span><span lang="en">$\partial\mathbf A/\partial t$ in phasor form:</span></p>
+      <button>$j\omega\mathbf A_s$</button><button>$\mathbf A_s/j\omega$</button><button>$-j\omega\mathbf A_s$</button><button>$\omega\mathbf A_s$</button>
+      <p class="q-why"><span lang="ar">$\frac{\partial}{\partial t}e^{j\omega t}=j\omega e^{j\omega t}$. و $\mathbf A_s/j\omega$ هو التكامل.</span><span lang="en">$\frac{\partial}{\partial t}e^{j\omega t}=j\omega e^{j\omega t}$. And $\mathbf A_s/j\omega$ is the integral.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">الفيزر $\mathbf A_s$ يعتمد على:</span><span lang="en">The phasor $\mathbf A_s$ depends on:</span></p>
+      <button><span lang="ar">الزمن بس</span><span lang="en">time only</span></button><button><span lang="ar">الزمن والمكان</span><span lang="en">time and position</span></button><button><span lang="ar">ولا شي، رقم ثابت دايماً</span><span lang="en">nothing, always a constant</span></button><button><span lang="ar">المكان بس $(x,y,z)$</span><span lang="en">position only $(x,y,z)$</span></button>
+      <p class="q-why"><span lang="ar">الزمن كله في $e^{j\omega t}$ اللي شلناه. مثل $A_0e^{-j\beta x}$.</span><span lang="en">All the time dependence is in the $e^{j\omega t}$ we dropped, e.g. $A_0e^{-j\beta x}$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">أسهل صيغة لضرب وقسمة الأعداد المركبة:</span><span lang="en">The easiest form for multiplying and dividing complex numbers:</span></p>
+      <button><span lang="ar">المستطيلة</span><span lang="en">rectangular</span></button><button><span lang="ar">القطبية</span><span lang="en">polar</span></button><button><span lang="ar">الاثنين نفس الشي</span><span lang="en">both are the same</span></button><button><span lang="ar">لازم نرجع للزمن</span><span lang="en">we must go back to time</span></button>
+      <p class="q-why"><span lang="ar">اضرب المقادير واجمع الزوايا. أما الجمع والطرح فبالمستطيلة.</span><span lang="en">Multiply magnitudes and add angles. Addition and subtraction are easier in rectangular form.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p>$20/j=$</p>
+      <button>$j20$</button><button>$-20$</button><button>$-j20$</button><button>$20$</button>
+      <p class="q-why"><span lang="ar">$\frac{1}{j}=\frac{j}{j^2}=-j$، يعني لفّة $-90^\circ$.</span><span lang="en">$\frac{1}{j}=\frac{j}{j^2}=-j$, a $-90^\circ$ turn.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">قانون فاراداي بالفيزر:</span><span lang="en">Faraday's law in phasor form:</span></p>
+      <button>$\nabla\times\mathbf E_s=-j\omega\mathbf B_s$</button><button>$\nabla\times\mathbf E_s=j\omega\mathbf B_s$</button><button>$\nabla\times\mathbf E_s=-\mathbf B_s/j\omega$</button><button>$\nabla\times\mathbf E_s=0$</button>
+      <p class="q-why"><span lang="ar">$-\partial\mathbf B/\partial t$ صارت $-j\omega\mathbf B_s$. والإشارة السالبة (لنز) باقية.</span><span lang="en">$-\partial\mathbf B/\partial t$ becomes $-j\omega\mathbf B_s$; the minus sign (Lenz) stays.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">في وسط بدون فقد ($\sigma=0$)، $\beta$ يساوي:</span><span lang="en">In a lossless medium ($\sigma=0$), $\beta$ equals:</span></p>
+      <button>$\omega/\sqrt{\mu\varepsilon}$</button><button>$\omega\sqrt{\mu\varepsilon}$</button><button>$\sqrt{\mu/\varepsilon}$</button><button>$\omega\mu\varepsilon$</button>
+      <p class="q-why"><span lang="ar">من قسمة المعادلتين: $\beta^2=\omega^2\mu\varepsilon$. و $\sqrt{\mu/\varepsilon}$ هي نسبة $E/H$ مو $\beta$.</span><span lang="en">Dividing the two equations gives $\beta^2=\omega^2\mu\varepsilon$. $\sqrt{\mu/\varepsilon}$ is the ratio $E/H$, not $\beta$.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب، للقوانين اللي لازم تنحفظ</span><span lang="en">Click a card to flip it, for the formulas you must memorize</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">الرقم المركب</span><span lang="en">Complex number</span></div><div>$z=x+jy=r\angle\phi=re^{j\phi}$</div></div>
+    <div class="flash"><div><span lang="ar">المقدار والزاوية</span><span lang="en">Magnitude and angle</span></div><div>$r=\sqrt{x^2+y^2},\quad\phi=\tan^{-1}\dfrac{y}{x}$</div></div>
+    <div class="flash"><div><span lang="ar">الضرب والقسمة</span><span lang="en">Multiply and divide</span></div><div>$z_1z_2=r_1r_2\angle\phi_1+\phi_2$<br>$\dfrac{z_1}{z_2}=\dfrac{r_1}{r_2}\angle\phi_1-\phi_2$</div></div>
+    <div class="flash"><div><span lang="ar">الجذر والمرافق</span><span lang="en">Root and conjugate</span></div><div>$\sqrt z=\sqrt r\angle\phi/2,\quad z^*=r\angle-\phi$</div></div>
+    <div class="flash"><div><span lang="ar">اللحظي ↔ الفيزر</span><span lang="en">Instantaneous ↔ phasor</span></div><div>$\mathbf A=\mathrm{Re}\big[\mathbf A_se^{j\omega t}\big]$</div></div>
+    <div class="flash"><div><span lang="ar">$\sin$ إلى $\cos$</span><span lang="en">$\sin$ to $\cos$</span></div><div>$\sin\alpha=\cos(\alpha-90^\circ)\ \Rightarrow\ \times(-j)$</div></div>
+    <div class="flash"><div><span lang="ar">المشتقة والتكامل</span><span lang="en">Derivative and integral</span></div><div>$\dfrac{\partial}{\partial t}\to j\omega,\qquad\int dt\to\dfrac{1}{j\omega}$</div></div>
+    <div class="flash"><div><span lang="ar">ماكسويل بالفيزر (curl)</span><span lang="en">Phasor Maxwell (curl)</span></div><div>$\nabla\times\mathbf E_s=-j\omega\mathbf B_s$<br>$\nabla\times\mathbf H_s=\mathbf J_s+j\omega\mathbf D_s$</div></div>
+    <div class="flash"><div><span lang="ar">ماكسويل بالفيزر (divergence)</span><span lang="en">Phasor Maxwell (divergence)</span></div><div>$\nabla\cdot\mathbf D_s=\rho_{vs},\qquad\nabla\cdot\mathbf B_s=0$</div></div>
+    <div class="flash"><div><span lang="ar">$\beta$ ونسبة $E/H$ (بدون فقد)</span><span lang="en">$\beta$ and $E/H$ (lossless)</span></div><div>$\beta=\omega\sqrt{\mu\varepsilon},\qquad\dfrac{|E|}{|H|}=\sqrt{\dfrac{\mu}{\varepsilon}}$</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">➡️ وبعدها</span><span lang="en">➡️ Next</span></strong>
+    <p><span lang="ar">في <a href="lecture5.html">المحاضرة 5</a> نستخدم هالفيزرات نفسها عشان نطلّع معادلة الموجة، و $\beta=\omega\sqrt{\mu\varepsilon}$ و $\eta=\sqrt{\mu/\varepsilon}$ يرجعون هناك. والجزء الأول هنا: <a href="lecture4-1.html">تيار الإزاحة ومعادلات ماكسويل</a>.</span><span lang="en">In <a href="lecture5.html">Lecture 5</a> these same phasors give the wave equation, and $\beta=\omega\sqrt{\mu\varepsilon}$ and $\eta=\sqrt{\mu/\varepsilon}$ come back there. Part 1 is here: <a href="lecture4-1.html">displacement current and Maxwell's equations</a>.</span></p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const { $, $$, L, TL, N, TAU, chart, player, grid, path, P, axName, arrow } = EM;
+  const R2D = 180 / Math.PI;
+  const wrap = d => { d = ((d + 180) % 360 + 360) % 360 - 180; return d === -180 ? 180 : d; };   // الزاوية بين −180 و 180
+  const dg = d => N(d, Math.abs(d - Math.round(d)) < 0.05 ? 0 : 1) + '°';
+
+  /* ---------- 02: مختبر الفيزر الدوّار ---------- */
+  const PL = { a: 1.5, th: 30, fn: 'cos', d: false, wt: 0 };
+  const ang0 = () => wrap(PL.th - (PL.fn === 'sin' ? 90 : 0));   // زاوية الفيزر بمرجع cos
+  const geoP = s => {
+    const W = s.W, H = s.H;
+    if (W < 520) { const k = 30; return { W, H, k, cx: Math.round(W / 2), cy: 2 * k + 14, wx0: 34, wx1: W - 14, wy: 4 * k + 24 + 2 * k + 16 }; }
+    const pw = Math.min(H, Math.round(W * 0.44)), k = (pw / 2 - 26) / 2;
+    return { W, H, k, cx: Math.round(pw / 2), cy: Math.round(H / 2), wx0: pw + 18, wx1: W - 14, wy: Math.round(H / 2) };
+  };
+  const ph = chart($('#ph-lab .wv-plot'), {
+    label: 'A phasor arrow rotating in the complex plane with its projection on the real axis, next to the cosine wave that projection traces over one period',
+    h: W => W < 520 ? 306 : 250, pad: () => ({ l: 0, r: 0, t: 0, b: 0 }), x: [0, 1],
+    st: s => {
+      const G = geoP(s), { k, cx, cy, wx0, wx1, wy } = G, R = 2 * k + 10;
+      const tx = d => (wx0 + (wx1 - wx0) * d / 360).toFixed(1);
+      let o = `<line class="ax" x1="${cx - R}" x2="${cx + R}" y1="${cy}" y2="${cy}"/><line class="ax" x1="${cx}" x2="${cx}" y1="${cy - R}" y2="${cy + R}"/>` +
+        `<text class="ttl" x="${cx + R - 2}" y="${cy - 6}" text-anchor="end">Re</text><text class="ttl" x="${cx + 6}" y="${cy - R + 10}">Im</text>` +
+        `<line class="ax" x1="${wx0}" x2="${wx1}" y1="${wy}" y2="${wy}"/><line class="gl" x1="${wx0}" x2="${wx0}" y1="${wy - 2 * k - 6}" y2="${wy + 2 * k + 6}"/>`;
+      [[90, '90°'], [180, '180°'], [270, '270°'], [360, '360°']].forEach(([d, t]) => {
+        o += `<line class="gl" x1="${tx(d)}" x2="${tx(d)}" y1="${wy - 2 * k - 6}" y2="${wy + 2 * k + 6}"/><text class="tick" x="${tx(d)}" y="${wy + 2 * k + 16}" text-anchor="${d === 360 ? 'end' : 'middle'}">${t}</text>`;
+      });
+      return o + `<text class="ttl" x="${wx0 + 4}" y="${wy - 2 * k - 10}">A(t)</text><text class="tick" x="${wx0}" y="${wy + 2 * k + 16}" text-anchor="middle">ωt = 0</text>`;
+    },
+    dy: s => {
+      const G = geoP(s), { k, cx, cy, wx0, wx1, wy } = G, r = PL.a * k, a0 = ang0(), a = (a0 + PL.wt) / R2D;
+      const ex = cx + r * Math.cos(a), ey = cy - r * Math.sin(a);
+      const tx = d => wx0 + (wx1 - wx0) * d / 360, ty = v => wy - k * v;
+      let o = `<circle class="guide" cx="${cx}" cy="${cy}" r="${r.toFixed(1)}"/>` +
+        `<line class="guide" x1="${ex.toFixed(1)}" x2="${ex.toFixed(1)}" y1="${ey.toFixed(1)}" y2="${cy}"/><line class="guide" x1="${ex.toFixed(1)}" x2="${cx}" y1="${ey.toFixed(1)}" y2="${ey.toFixed(1)}"/>` +
+        `<line class="ln c-a" style="stroke-width:4" x1="${cx}" x2="${ex.toFixed(1)}" y1="${cy}" y2="${cy}"/>`;
+      if (PL.d) {
+        const b = a + Math.PI / 2, dx = cx + r * Math.cos(b), dyy = cy - r * Math.sin(b);
+        o += arrow(cx, cy, dx, dyy, 'c-p') + P('ln c-p dash', path(d => PL.a * Math.cos((a0 + d + 90) / R2D), 0, 360, 120, tx, ty)) +
+          `<circle class="dot c-p" cx="${tx(PL.wt).toFixed(1)}" cy="${ty(PL.a * Math.cos(b)).toFixed(1)}" r="4"/>`;
+      }
+      o += arrow(cx, cy, ex, ey, 'c-a') + `<text class="lbl" x="${((cx + ex) / 2 - 11 * Math.sin(a)).toFixed(1)}" y="${((cy + ey) / 2 - 11 * Math.cos(a) + 4).toFixed(1)}" text-anchor="middle">r</text>` +
+        P('ln c-a', path(d => PL.a * Math.cos((a0 + d) / R2D), 0, 360, 120, tx, ty)) +
+        `<line class="mark" x1="${tx(PL.wt).toFixed(1)}" x2="${tx(PL.wt).toFixed(1)}" y1="${wy - 2 * k - 6}" y2="${wy + 2 * k + 6}"/>` +
+        `<circle class="dot c-a" cx="${tx(PL.wt).toFixed(1)}" cy="${ty(PL.a * Math.cos(a)).toFixed(1)}" r="4.5"/>`;
+      return o;
+    }
+  });
+  (function () {
+    const lab = $('#ph-lab'); if (!lab || !ph) return;
+    const out = k => $(`[data-o="${k}"]`, lab), rv = k => $(`[data-r="${k}"]`, lab), rng = k => $(`input[data-k="${k}"]`, lab);
+    const fs = $$('[data-fn]', lab), ds = $$('[data-d]', lab);
+    const sgn = d => (d < 0 ? ' − ' : ' + ') + dg(Math.abs(d));
+    const sync = () => {
+      const a0 = ang0(), A = N(PL.a, 1), wt = Math.round(PL.wt) % 360;
+      rng('a').value = PL.a; rng('th').value = PL.th; rng('wt').value = wt;
+      rv('a').textContent = `A₀ = ${A}`; rv('th').textContent = `θ = ${dg(PL.th)}`; rv('wt').textContent = `ωt = ${wt}°`;
+      fs.forEach(b => { const on = b.dataset.fn === PL.fn; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      ds.forEach(b => { const on = !!+b.dataset.d === PL.d; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      out('f').textContent = PL.fn === 'cos' ? `A(t) = ${A} cos(ωt${sgn(PL.th)})` : `${A} sin(ωt${sgn(PL.th)}) = ${A} cos(ωt${sgn(a0)})`;
+      out('p').textContent = `Aₛ = ${A}∠${dg(a0)}`;
+      const x = PL.a * Math.cos(a0 / R2D), y = PL.a * Math.sin(a0 / R2D);
+      out('r').textContent = `Aₛ = ${N(x)} ${y < -0.005 ? '−' : '+'} j${N(Math.abs(y))}`;
+      out('v').innerHTML = `Re[Aₛe<sup>jωt</sup>] = ${N(PL.a * Math.cos((a0 + PL.wt) / R2D))}`;
+      out('d').innerHTML = PL.d ? `jωAₛ = ${A}ω∠${dg(wrap(a0 + 90))}` : L('شغّل ∂/∂t', 'turn on ∂/∂t');
+      ph.drawDyn();
+    };
+    const anim = player($('[data-play]', lab), lab, dt => { PL.wt = (PL.wt + dt * 70) % 360; sync(); }, true);
+    rng('a').addEventListener('input', e => { PL.a = +e.target.value; sync(); });
+    rng('th').addEventListener('input', e => { PL.th = +e.target.value; sync(); });
+    rng('wt').addEventListener('input', e => { PL.wt = +e.target.value; anim.stop(); sync(); });
+    fs.forEach(b => b.addEventListener('click', () => { PL.fn = b.dataset.fn; sync(); }));
+    ds.forEach(b => b.addEventListener('click', () => { PL.d = !!+b.dataset.d; sync(); }));
+    sync();
+  })();
+
+  /* ---------- مثال 9.5: الجذر في المستوى المركب ---------- */
+  chart($('#roots .wv-plot'), {
+    label: 'Complex plane showing 0.1581 at 108.4 degrees and its two square roots, 0.3976 at 54.2 degrees and at 234.2 degrees, on a circle of radius 0.3976',
+    h: () => 240, pad: () => ({ l: 0, r: 0, t: 0, b: 0 }), x: [0, 1],
+    st: s => {
+      const cx = s.W / 2, cy = s.H / 2, k = (s.H / 2 - 18) / 0.45, R = 0.47 * k;
+      const pt = (m, d) => [cx + m * k * Math.cos(d / R2D), cy - m * k * Math.sin(d / R2D)];
+      const [wx, wy] = pt(0.1581, 108.4), [ax, ay] = pt(0.3976, 54.2), [bx, by] = pt(0.3976, 234.2);
+      const arc = (m, d0, d1) => { const [x0, y0] = pt(m, d0), [x1, y1] = pt(m, d1); return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${(m * k).toFixed(1)} ${(m * k).toFixed(1)} 0 0 0 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+      return `<line class="ax" x1="${cx - R}" x2="${cx + R}" y1="${cy}" y2="${cy}"/><line class="ax" x1="${cx}" x2="${cx}" y1="${cy - R}" y2="${cy + R}"/>` +
+        `<text class="ttl" x="${cx + R}" y="${cy - 6}" text-anchor="end">Re</text><text class="ttl" x="${cx + 6}" y="${cy - R + 10}">Im</text>` +
+        `<circle class="guide" cx="${cx}" cy="${cy}" r="${(0.3976 * k).toFixed(1)}"/>` +
+        P('ln c-k thin', arc(0.07, 0, 108.4)) + P('ln c-a thin', arc(0.24, 0, 54.2)) +
+        arrow(cx, cy, wx, wy, 'c-k') + arrow(cx, cy, ax, ay, 'c-a') + P('ln c-a dash', `M${cx} ${cy}L${bx.toFixed(1)} ${by.toFixed(1)}`) + `<circle class="dot c-a" cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="4"/>` +
+        `<text class="lbl" x="${(wx - 6).toFixed(1)}" y="${(wy - 8).toFixed(1)}" text-anchor="end">108.4°</text>` +
+        `<text class="lbl" x="${(ax + 6).toFixed(1)}" y="${(ay - 6).toFixed(1)}">54.2°</text>` +
+        `<text class="lbl" x="${(bx - 6).toFixed(1)}" y="${(by + 16).toFixed(1)}" text-anchor="end">234.2°</text>`;
+    }
+  });
+
+  /* ---------- مثال 9.8: E و H يمشون على z ---------- */
+  const BETA = 2 / 3, LAM = TAU / BETA, H0 = 1 / (3 * Math.PI);
+  const WV = { wt: 0 };
+  const zT = [[0, '0'], [LAM / 2, 'λ/2'], [LAM, 'λ'], [1.5 * LAM, '3λ/2'], [2 * LAM, '2λ', 'end']];
+  const ev = z => Math.sin(WV.wt - BETA * z);
+  const wv = chart($('#wave-lab .wv-plot'), {
+    label: 'Snapshot of Ey and Hx along z over two wavelengths, each normalized to its peak; Hx is always the negative of Ey and both move toward plus z',
+    h: () => 220, pad: () => ({ l: 34, r: 24, t: 30, b: 30 }), x: [0, 2 * LAM], y: [-1.2, 1.2], start: LAM / 4,
+    st: s => grid(s, { yt: [[1, '1'], [0, '0'], [-1, '−1']], xt: zT, xgrid: true }) + axName(s, 'z') +
+      arrow(s.W - s.pr - 70, s.pt - 14, s.W - s.pr - 10, s.pt - 14, 'c-k') + `<text class="tick" x="${s.W - s.pr - 76}" y="${s.pt - 10}" text-anchor="end">${TL('اتجاه الانتشار', 'travel direction')}</text>`,
+    dy: s => {
+      let o = P('ln c-e', path(ev, 0, 2 * LAM, 240, s.X, s.Y)) + P('ln c-h', path(z => -ev(z), 0, 2 * LAM, 240, s.X, s.Y));
+      // قمة E تمشي يمين: ωt − βz = π/2
+      for (let n = -1; n < 3; n++) { const z = (WV.wt - Math.PI / 2) / BETA + n * LAM; if (z >= 0 && z <= 2 * LAM) o += `<circle class="dot c-e" cx="${s.X(z).toFixed(1)}" cy="${s.Y(1).toFixed(1)}" r="4"/>`; }
+      return o;
+    },
+    hover: (z, s) => ({ hd: `z = ${N(z, 2)} m`, rows: [
+      { c: 'c-e', k: 'E<sub>y</sub>', v: N(20 * ev(z), 2) + ' V/m' },
+      { c: 'c-h', k: 'H<sub>x</sub>', v: N(-H0 * ev(z) * 1000, 1) + ' mA/m' }],
+      pts: [{ c: 'c-e', y: s.Y(ev(z)) }, { c: 'c-h', y: s.Y(-ev(z)) }] })
+  });
+  if (wv) player($('#wave-lab [data-play]'), $('#wave-lab'), dt => { WV.wt = (WV.wt + dt * 1.6) % TAU; wv.drawDyn(); }, true);
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
