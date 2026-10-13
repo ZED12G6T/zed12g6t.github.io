@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Displacement Current &amp; Maxwell's Equations" data-title-en="Lecture 4 Part 1 - Displacement Current &amp; Maxwell's Equations">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 4 الجزء الأول - تيار الإزاحة ومعادلات ماكسويل</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 4 · الجزء الأول · كهرومغناطيسية (2) · الفصل 9 (9.4–9.5)</span><span lang="en">LECTURE 4 · PART 1 · ELECTROMAGNETICS (2) · CH 9.4–9.5</span></p>
+  <h1><span><span lang="ar">تيار الإزاحة ومعادلات ماكسويل</span><span lang="en">Displacement Current &amp; Maxwell's Equations</span></span> <span class="h1-math ltr">$\nabla\times\mathbf H=\mathbf J+\partial\mathbf D/\partial t$</span></h1>
+  <p class="lead">
+    <span lang="ar">في المحاضرة 3 أضفنا لقانون فاراداي الحد $-\partial\mathbf B/\partial t$. الحين نكمّل الصورة: قانون أمبير اللي درسناه في الكهرومغناطيسية 1 يطلع غلط لما المجالات تتغير مع الزمن، لأنه يناقض حفظ الشحنة. ماكسويل صلّحه بإضافة حد واحد اسمه <b>تيار الإزاحة</b>، وبهالحد صارت المعادلات الأربع كاملة، وطلعت منها الموجات الكهرومغناطيسية (المحاضرة 5).</span>
+    <span lang="en">In Lecture 3 we added $-\partial\mathbf B/\partial t$ to Faraday's law. Now we complete the picture: the Ampère's law from Electromagnetics 1 fails when fields vary in time, because it contradicts charge conservation. Maxwell fixed it by adding a single term called the <b>displacement current</b>. With that term the four equations became complete, and electromagnetic waves fall out of them (Lecture 5).</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · D · J<sub>d</sub> <span lang="ar">المجال الكهربائي وتيار الإزاحة</span><span lang="en">electric field &amp; displacement current</span></span><span class="y">H · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">J · <span lang="ar">تيار التوصيل</span><span lang="en">conduction current</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">قانون أمبير القديم $\nabla\times\Y{\mathbf H}=\Z{\mathbf J}$ يعطي $\nabla\cdot\Z{\mathbf J}=0$ دايماً، بس حفظ الشحنة يقول $\nabla\cdot\Z{\mathbf J}=-\partial\rho_v/\partial t$. فماكسويل أضاف $\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$ وصار $\nabla\times\Y{\mathbf H}=\Z{\mathbf J}+\partial\X{\mathbf D}/\partial t$.</span><span lang="en">The old Ampère's law $\nabla\times\Y{\mathbf H}=\Z{\mathbf J}$ always gives $\nabla\cdot\Z{\mathbf J}=0$, but charge conservation says $\nabla\cdot\Z{\mathbf J}=-\partial\rho_v/\partial t$. So Maxwell added $\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$, giving $\nabla\times\Y{\mathbf H}=\Z{\mathbf J}+\partial\X{\mathbf D}/\partial t$.</span></li>
+      <li><span lang="ar">تيار الإزاحة مو شحنات تمشي، هو مجال كهربائي يتغير. مثاله المشهور: بين لوحين مكثف عليه جهد متردد. في الترددات المنخفضة نهمله جنب $\Z{\mathbf J}=\sigma\mathbf E$، وفي ترددات الراديو يصير بنفس الحجم، وبدونه ما فيه موجات.</span><span lang="en">The displacement current is not moving charge; it is a changing electric field. The classic case is the gap of a capacitor driven by an AC voltage. At low frequencies it is negligible next to $\Z{\mathbf J}=\sigma\mathbf E$; at radio frequencies the two are comparable, and without it there would be no waves.</span></li>
+      <li><span lang="ar">معادلات ماكسويل الأربع (جاوس، لا يوجد قطب مغناطيسي منفرد، فاراداي، أمبير-ماكسويل) + قوة لورنتز + العلاقات المكوّنة + الشروط الحدية = كل الكهرومغناطيسية. وفي الموصل المثالي ($\sigma=\infty$): $\mathbf E=\mathbf H=\mathbf J=0$ جوّاه.</span><span lang="en">Maxwell's four equations (Gauss, no magnetic monopoles, Faraday, Ampère–Maxwell) + the Lorentz force + the constitutive relations + the boundary conditions = all of electromagnetism. Inside a perfect conductor ($\sigma=\infty$): $\mathbf E=\mathbf H=\mathbf J=0$.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 المشكلة ================= -->
+<section class="card" id="problem" data-num="01" data-nav="المشكلة|The problem">
+  <h2><span lang="ar">المشكلة: قانون أمبير يناقض حفظ الشحنة</span><span lang="en">The problem: Ampère's law contradicts charge conservation</span></h2>
+  <p class="sub"><span lang="ar">السلايد 2 · ثلاث معادلات ما تمشي مع بعض</span><span lang="en">Slide 2 · three equations that don't fit together</span></p>
+
+  <p><span lang="ar">للمجالات الثابتة (الستاتيكية) قانون أمبير بالصيغة النقطية:</span><span lang="en">For static fields, Ampère's law in point form reads:</span></p>
+  <div class="m big">\[\nabla\times\Y{\mathbf H}=\Z{\mathbf J}\qquad\text{(1)}\]</div>
+  <p><span lang="ar">خذ الـ divergence للطرفين. وتذكّر قاعدة رياضية ثابتة: <b>الـ divergence لأي curl يساوي صفر دايماً</b>. يعني:</span><span lang="en">Take the divergence of both sides, and recall a fixed math rule: <b>the divergence of any curl is identically zero</b>. So:</span></p>
+  <div class="m">\[\nabla\cdot(\nabla\times\Y{\mathbf H})=0=\nabla\cdot\Z{\mathbf J}\qquad\text{(2)}\]</div>
+  <p><span lang="ar">بس معادلة الاستمرارية (حفظ الشحنة) تقول إن التيار الطالع من أي نقطة لازم يساوي النقص في الشحنة اللي فيها:</span><span lang="en">But the continuity equation (charge conservation) says the current leaving any point must equal the drop in the charge stored there:</span></p>
+  <div class="m">\[\nabla\cdot\Z{\mathbf J}=-\frac{\partial\rho_v}{\partial t}\qquad\text{(3)}\]</div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ وين التناقض؟</span><span lang="en">⚠️ Where is the contradiction?</span></strong>
+    <p><span lang="ar">(2) تقول $\nabla\cdot\Z{\mathbf J}=0$ دايماً، و (3) تقول $\nabla\cdot\Z{\mathbf J}=-\partial\rho_v/\partial t$. في الحالة الثابتة $\partial\rho_v/\partial t=0$ فما فيه مشكلة. بس لما الشحنة تتغير مع الزمن (مكثف يشحن مثلاً) الاثنين ما يتفقون. وبما إن حفظ الشحنة قانون أساسي ما نقدر نلمسه، يبقى إن (1) ناقصة.</span><span lang="en">(2) says $\nabla\cdot\Z{\mathbf J}=0$ always, while (3) says $\nabla\cdot\Z{\mathbf J}=-\partial\rho_v/\partial t$. In the static case $\partial\rho_v/\partial t=0$, so no problem. But when charge changes with time (a charging capacitor, say) they disagree. Charge conservation is fundamental and can't be touched, so (1) must be incomplete.</span></p>
+  </div>
+</section>
+
+<!-- ================= 02 الاشتقاق ================= -->
+<section class="card" id="derive" data-num="02" data-nav="تيار الإزاحة|Displacement current">
+  <h2><span lang="ar">التصليح: نضيف حد ونخلّي الرياضيات تحدده</span><span lang="en">The fix: add a term and let the math decide what it is</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 2–4 · من المعادلة (4) إلى (8)</span><span lang="en">Slides 2–4 · from equation (4) to (8)</span></p>
+  <p><span lang="ar">الفكرة: نضيف لـ (1) حد مجهول $\X{\mathbf J_d}$، ونطلب إن النتيجة تتفق مع حفظ الشحنة. اضغط "الخطوة التالية" وامشِ معها.</span><span lang="en">The idea: add an unknown term $\X{\mathbf J_d}$ to (1) and demand that the result agrees with charge conservation. Press "next step" and follow along.</span></p>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">أضف حد مجهول</span><span lang="en">Add an unknown term</span></h4>
+      <div class="m">\[\nabla\times\Y{\mathbf H}=\Z{\mathbf J}+\X{\mathbf J_d}\qquad\text{(4)}\]</div>
+      <p class="why"><span lang="ar">$\X{\mathbf J_d}$ لازم يكون كثافة تيار (نفس وحدة $\Z{\mathbf J}$: <span dir="ltr">A/m²</span>) عشان نقدر نجمعهم.</span><span lang="en">$\X{\mathbf J_d}$ must be a current density (same unit as $\Z{\mathbf J}$: A/m²) so the two can be added.</span></p></li>
+    <li class="step"><h4><span lang="ar">خذ الـ divergence مرة ثانية</span><span lang="en">Take the divergence again</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\cdot(\nabla\times\Y{\mathbf H})&=0\\&=\nabla\cdot\Z{\mathbf J}+\nabla\cdot\X{\mathbf J_d}\quad(5)\end{aligned}\]</div>
+      <p class="why"><span lang="ar">نفس القاعدة: divergence الـ curl صفر. بس الحين فيه حدين على اليمين، فما يلزم كل واحد يكون صفر.</span><span lang="en">Same rule: the divergence of a curl is zero. But now there are two terms on the right, so neither has to vanish on its own.</span></p></li>
+    <li class="step"><h4><span lang="ar">خلّها تتفق مع (3)</span><span lang="en">Make it agree with (3)</span></h4>
+      <div class="m">\[\begin{aligned}\nabla\cdot\X{\mathbf J_d}&=-\nabla\cdot\Z{\mathbf J}=\frac{\partial\rho_v}{\partial t}\\&=\frac{\partial}{\partial t}(\nabla\cdot\X{\mathbf D})\\&=\nabla\cdot\frac{\partial\X{\mathbf D}}{\partial t}\quad(6)\end{aligned}\]</div>
+      <p class="why"><span lang="ar">عوّضنا $\rho_v=\nabla\cdot\X{\mathbf D}$ من قانون جاوس، وبدّلنا ترتيب $\partial/\partial t$ مع $\nabla\cdot$ (واحد على الزمن والثاني على المكان، فما يتعارضون).</span><span lang="en">We substituted $\rho_v=\nabla\cdot\X{\mathbf D}$ from Gauss's law and swapped $\partial/\partial t$ with $\nabla\cdot$ (one acts on time, the other on space, so they commute).</span></p></li>
+    <li class="step"><h4><span lang="ar">قارن الطرفين</span><span lang="en">Compare both sides</span></h4>
+      <div class="m">\[\X{\mathbf J_d}=\frac{\partial\X{\mathbf D}}{\partial t}\qquad\text{(7)}\]</div>
+      <p class="why"><span lang="ar">الـ divergence حق الاثنين متساوي، فأبسط اختيار (واللي اختاره ماكسويل) إنهم نفس الشي.</span><span lang="en">Their divergences are equal, so the simplest choice (Maxwell's) is that they are the same thing.</span></p></li>
+    <li class="step final"><div class="result">$\nabla\times\Y{\mathbf H}=\Z{\mathbf J}+\dfrac{\partial\X{\mathbf D}}{\partial t}\quad\text{(8)}$</div>
+      <p class="sanity"><span lang="ar">لو المجالات ثابتة $\partial\X{\mathbf D}/\partial t=0$ وترجع (1) زي ما هي ✓. يعني التصليح ما خرّب شي من الكهرومغناطيسية 1، بس كمّله للمجالات المتغيرة.</span><span lang="en">For static fields $\partial\X{\mathbf D}/\partial t=0$ and we get (1) back ✓. The fix breaks nothing from Electromagnetics 1; it only completes it for time-varying fields.</span></p></li>
+  </ol>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th><span lang="ar">تيار التوصيل</span><span lang="en">Conduction current</span></th><th><span lang="ar">تيار الإزاحة</span><span lang="en">Displacement current</span></th></tr></thead>
+    <tbody>
+      <tr><th><span lang="ar">الكثافة</span><span lang="en">Density</span></th><td>$\Z{\mathbf J}=\sigma\mathbf E$</td><td>$\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$</td></tr>
+      <tr><th><span lang="ar">وش هو فعلياً؟</span><span lang="en">What is it physically?</span></th><td><span lang="ar">شحنات تتحرك</span><span lang="en">Moving charges</span></td><td><span lang="ar">مجال كهربائي يتغير مع الزمن</span><span lang="en">A time-varying electric field</span></td></tr>
+      <tr><th><span lang="ar">يحتاج موصل؟</span><span lang="en">Needs a conductor?</span></th><td><span lang="ar">إيه ($\sigma\neq0$)</span><span lang="en">Yes ($\sigma\neq0$)</span></td><td><span lang="ar">لا، يصير حتى في الفراغ</span><span lang="en">No, it exists even in vacuum</span></td></tr>
+      <tr><th><span lang="ar">التيار الكلي</span><span lang="en">Total current</span></th><td>$I=\displaystyle\int_S\Z{\mathbf J}\cdot d\mathbf S$</td><td>$I_d=\displaystyle\int_S\X{\mathbf J_d}\cdot d\mathbf S=\frac{d}{dt}\int_S\X{\mathbf D}\cdot d\mathbf S$</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout key"><strong><span lang="ar">🔑 ليش هالحد مهم لهالدرجة؟ (السلايد 5)</span><span lang="en">🔑 Why does this term matter so much? (slide 5)</span></strong>
+    <p><span lang="ar">بدون $\X{\mathbf J_d}$ ما فيه موجات راديو ولا تلفزيون: $\mathbf B$ المتغير يولّد $\mathbf E$ (فاراداي)، و $\mathbf E$ المتغير يولّد $\mathbf H$ (هذا الحد بالذات)، فالاثنين يولّدون بعض ويمشون. ماكسويل وصل له بالرياضيات بس، لأن ما كان فيه مصادر تردد عالي وقتها، وبعد سنين هيرتز ولّد موجات الراديو واكتشفها وأثبته. من الحالات النادرة اللي الرياضيات فيها سبقت التجربة.</span><span lang="en">Without $\X{\mathbf J_d}$ there would be no radio or TV waves: a changing $\mathbf B$ produces $\mathbf E$ (Faraday), and a changing $\mathbf E$ produces $\mathbf H$ (this very term), so each regenerates the other and they travel. Maxwell reached it by mathematics alone, since high-frequency sources didn't exist then; years later Hertz generated and detected radio waves and confirmed it. A rare case of a mathematical argument paving the way for experiment.</span></p>
+  </div>
+</section>
+
+<!-- ================= 03 المقارنة ================= -->
+<section class="card" id="compare" data-num="03" data-nav="متى نهمله؟|When to neglect">
+  <h2><span lang="ar">متى نهمل تيار الإزاحة؟ يعتمد على التردد</span><span lang="en">When can we neglect it? It depends on frequency</span></h2>
+  <p class="sub"><span lang="ar">السلايد 5 · "في الترددات المنخفضة نهمله، وفي ترددات الراديو يصيرون متقاربين"</span><span lang="en">Slide 5 · "negligible at low frequencies, comparable at radio frequencies"</span></p>
+  <p><span lang="ar">لمجال جيبي $\mathbf E=E_0\cos\omega t$: $|\Z{\mathbf J}|=\sigma E_0$ و $|\X{\mathbf J_d}|=\omega\varepsilon E_0$ (المشتقة تطلّع $\omega$). فالنسبة بينهم:</span><span lang="en">For a sinusoidal field $\mathbf E=E_0\cos\omega t$: $|\Z{\mathbf J}|=\sigma E_0$ and $|\X{\mathbf J_d}|=\omega\varepsilon E_0$ (the derivative brings out $\omega$). So their ratio is:</span></p>
+  <div class="m big">\[\frac{|\X{\mathbf J_d}|}{|\Z{\mathbf J}|}=\frac{\omega\varepsilon}{\sigma}\]</div>
+  <p><span lang="ar">النسبة تكبر مع التردد. مرّر على الرسمة (أو المسها) وشوف كل مادة متى توصل للخط $=1$. هذي هي نفس $\sigma/\omega\varepsilon$ (مقلوبة) اللي بنستخدمها في المحاضرة 5 عشان نفرّق بين العازل والموصل.</span><span lang="en">The ratio grows with frequency. Hover over (or touch) the chart and see where each material reaches the $=1$ line. This is the same $\sigma/\omega\varepsilon$ (flipped) that Lecture 5 uses to tell a dielectric from a conductor.</span></p>
+  <figure class="wv" id="ratio">
+    <div class="wv-head"><div class="wv-title"><span lang="ar">$|\X{\mathbf J_d}|/|\Z{\mathbf J}|=\omega\varepsilon/\sigma$ مع التردد</span><span lang="en">$|\X{\mathbf J_d}|/|\Z{\mathbf J}|=\omega\varepsilon/\sigma$ versus frequency</span></div>
+      <div class="legend"><span><i class="c-a"></i><span lang="ar">نحاس</span><span lang="en">copper</span></span><span><i class="c-e"></i><span lang="ar">ماء البحر</span><span lang="en">seawater</span></span><span><i class="c-h"></i><span lang="ar">تربة رطبة</span><span lang="en">wet soil</span></span></div></div>
+    <div class="wv-plot"></div>
+  </figure>
+  <details class="tv"><summary><span lang="ar">القيم كجدول</span><span lang="en">The values as a table</span></summary>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th><span lang="ar">المادة</span><span lang="en">Material</span></th><th>σ (S/m)</th><th>ε<sub>r</sub></th><th><span lang="ar">التردد اللي يتساوون فيه</span><span lang="en">Frequency where they are equal</span></th></tr></thead>
+      <tbody>
+        <tr><td><span lang="ar">نحاس</span><span lang="en">Copper</span></td><td class="ltr">5.8×10⁷</td><td>1</td><td class="ltr">≈ 10¹⁸ Hz <span lang="ar">(فوق الضوء بكثير)</span><span lang="en">(far above light)</span></td></tr>
+        <tr><td><span lang="ar">ماء البحر</span><span lang="en">Seawater</span></td><td>4</td><td>81</td><td class="ltr">≈ 889 MHz</td></tr>
+        <tr><td><span lang="ar">تربة رطبة</span><span lang="en">Wet soil</span></td><td class="ltr">10⁻²</td><td>10</td><td class="ltr">≈ 18 MHz</td></tr>
+      </tbody>
+    </table></div>
+  </details>
+  <div class="callout good"><strong><span lang="ar">✅ الخلاصة:</span><span lang="en">✅ Takeaway:</span></strong>
+    <p><span lang="ar">في الأسلاك (نحاس) تيار الإزاحة تافه في أي تردد عملي، عشان كذا ما احتجناه في الدوائر. بس في العوازل والفراغ ($\sigma=0$) هو التيار الوحيد الموجود، وهو اللي يخلّي الموجة تمشي.</span><span lang="en">In wires (copper) the displacement current is negligible at any practical frequency, which is why circuits never needed it. But in dielectrics and free space ($\sigma=0$) it is the only current there is, and it is what lets a wave travel.</span></p>
+  </div>
+</section>
+
+<!-- ================= 04 المكثف ================= -->
+<section class="card" id="cap" data-num="04" data-nav="المكثف|Capacitor">
+  <h2><span lang="ar">مثال المكثف: نفس الحلقة، سطحين، جوابين؟</span><span lang="en">The capacitor: same loop, two surfaces, two answers?</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 6–9 · ليش لازم تيار الإزاحة</span><span lang="en">Slides 6–9 · why the displacement current is needed</span></p>
+  <p><span lang="ar">مكثف موصّل بمصدر جهد متردد، وحوالين السلك حلقة مغلقة $L$. قانون أمبير بالصيغة التكاملية يقول $\oint_L\Y{\mathbf H}\cdot d\mathbf l=$ التيار اللي يعبر <b>أي سطح</b> حدوده $L$. الطرف الأيسر يعتمد على $L$ بس، فلازم كل الأسطح تعطي نفس الجواب:</span><span lang="en">A capacitor is driven by an AC voltage source, with a closed path $L$ around the wire. Ampère's law in integral form says $\oint_L\Y{\mathbf H}\cdot d\mathbf l=$ the current crossing <b>any surface</b> bounded by $L$. The left side depends only on $L$, so every surface must give the same answer:</span></p>
+  <ul class="clean">
+    <li><span lang="ar"><b>$S_1$ (سطح مسطّح):</b> يقطع السلك، فيعبره تيار التوصيل كامل: $\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_{S_1}\Z{\mathbf J}\cdot d\mathbf S=\Z{I}$.</span><span lang="en"><b>$S_1$ (flat surface):</b> it cuts the wire, so the whole conduction current crosses it: $\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_{S_1}\Z{\mathbf J}\cdot d\mathbf S=\Z{I}$.</span></li>
+    <li><span lang="ar"><b>$S_2$ (سطح على شكل بالونة):</b> يمر بين لوحين المكثف، وهناك ما فيه شحنات تمشي ($\Z{\mathbf J}=0$): $\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_{S_2}\Z{\mathbf J}\cdot d\mathbf S=0$. تناقض! نفس $L$ وجوابين.</span><span lang="en"><b>$S_2$ (balloon-shaped surface):</b> it passes between the plates, where no charge moves ($\Z{\mathbf J}=0$): $\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_{S_2}\Z{\mathbf J}\cdot d\mathbf S=0$. A contradiction: same $L$, two answers.</span></li>
+  </ul>
+  <p><span lang="ar">جرّبها في المختبر: بدّل بين السطحين، وشغّل أو طفّي تصليح ماكسويل.</span><span lang="en">Try it in the lab: switch between the two surfaces, and turn Maxwell's fix on or off.</span></p>
+  <div class="wlab" id="cap-lab">
+    <div class="lab-controls">
+      <div class="seg" role="group" aria-label="Surface"><button type="button" data-s="1" class="on">S₁</button><button type="button" data-s="2">S₂</button></div>
+      <div class="seg" role="group" aria-label="Law"><button type="button" data-mx="0"><span lang="ar">أمبير القديم</span><span lang="en">Old Ampère</span></button><button type="button" data-mx="1" class="on"><span lang="ar">مع $\X{\mathbf J_d}$</span><span lang="en">With $\X{\mathbf J_d}$</span></button></div>
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label><span lang="ar">الزمن</span><span lang="en">Time</span> · <span class="rv">ωt = 0°</span></label><input type="range" min="0" max="360" step="1" value="0" aria-label="omega t in degrees"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">الدائرة والحلقة $L$ والسطحين</span><span lang="en">The circuit, the loop $L$ and the two surfaces</span></div>
+        <div class="legend"><span><i class="pt c-a"></i><span lang="ar">شحنات تمشي ($\Z{\mathbf J}$)</span><span lang="en">moving charge ($\Z{\mathbf J}$)</span></span><span><i class="c-e"></i>$\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$</span><span><i class="c-h"></i><span lang="ar">الحلقة $L$</span><span lang="en">loop $L$</span></span></div></div>
+      <div class="wv-plot"></div>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k"><span lang="ar">التيار في السلك</span><span lang="en">Current in the wire</span></span><span class="v" data-o="i">I = 1.00 I₀</span></div>
+      <div><span class="k"><span lang="ar">عن طريق $S_1$</span><span lang="en">Through $S_1$</span></span><span class="v" data-o="s1"></span></div>
+      <div><span class="k"><span lang="ar">عن طريق $S_2$</span><span lang="en">Through $S_2$</span></span><span class="v" data-o="s2"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">النتيجة</span><span lang="en">Verdict</span></span><span class="v" data-o="v"></span></div>
+    </div>
+  </div>
+  <p><span lang="ar">مع التصليح، التيار الكلي $\Z{\mathbf J}+\X{\mathbf J_d}$ هو اللي ندخّله في القانون (السلايد 9):</span><span lang="en">With the fix, the total current $\Z{\mathbf J}+\X{\mathbf J_d}$ is what goes into the law (slide 9):</span></p>
+  <div class="m wide">\[\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_{S_1}\Z{\mathbf J}\cdot d\mathbf S=\Z{I}=\int_{S_2}\X{\mathbf J_d}\cdot d\mathbf S=\frac{d}{dt}\int_{S_2}\X{\mathbf D}\cdot d\mathbf S=\frac{dQ}{dt}=\X{I_d}\]</div>
+  <div class="m narrow">\[\begin{aligned}\oint_L\Y{\mathbf H}\cdot d\mathbf l&=\int_{S_1}\Z{\mathbf J}\cdot d\mathbf S=\Z{I}\\&=\int_{S_2}\X{\mathbf J_d}\cdot d\mathbf S=\frac{d}{dt}\int_{S_2}\X{\mathbf D}\cdot d\mathbf S\\&=\frac{dQ}{dt}=\X{I_d}\end{aligned}\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 ليش $\X{I_d}=\Z{I}$ بالضبط؟</span><span lang="en">🔑 Why is $\X{I_d}=\Z{I}$ exactly?</span></strong>
+    <p><span lang="ar">$\int_{S_2}\X{\mathbf D}\cdot d\mathbf S$ هو الفيض الكهربائي الطالع من اللوح، ومن جاوس يساوي شحنة اللوح $Q$. فـ $\X{I_d}=dQ/dt$، وهذا بالضبط التيار اللي يشحن اللوح. نفس التيار، بس في السلك اسمه توصيل وبين اللوحين اسمه إزاحة.</span><span lang="en">$\int_{S_2}\X{\mathbf D}\cdot d\mathbf S$ is the electric flux leaving the plate, which by Gauss equals the plate charge $Q$. So $\X{I_d}=dQ/dt$, exactly the current charging the plate. Same current: in the wire it is conduction, between the plates it is displacement.</span></p>
+  </div>
+</section>
+
+<!-- ================= المثال ================= -->
+<section class="card" id="ex" data-nav="المثال|Example">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">تيار الإزاحة في مكثف لوحين</span><span lang="en">Displacement current in a parallel-plate capacitor</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة · السلايدات 10–11</span><span lang="en">Lecture example · slides 10–11</span></span><span class="tag ltr">Sadiku 9.4</span></div>
+  <p><span lang="ar">مكثف لوحين متوازيين، مساحة اللوح <span dir="ltr">5 cm²</span> والمسافة بينهم <span dir="ltr">3 mm</span>، عليه جهد $V=50\sin10^3t\ \text{V}$. احسب تيار الإزاحة إذا $\varepsilon=2\varepsilon_0$.</span><span lang="en">A parallel-plate capacitor with plate area 5 cm² and plate separation 3 mm has a voltage $V=50\sin10^3t\ \text{V}$ applied. Calculate the displacement current assuming $\varepsilon=2\varepsilon_0$.</span></p>
+  <div class="map"><span class="x">S = 5×10⁻⁴ m²</span><span class="x">d = 3×10⁻³ m</span><span class="x">ε = 2ε₀</span><span class="x">ω = 10³ rad/s</span></div>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">المجال بين اللوحين</span><span lang="en">The field between the plates</span></h4>
+      <div class="m">\[\X{D}=\varepsilon E=\varepsilon\frac{V}{d}\]</div>
+      <p class="why"><span lang="ar">بين لوحين متوازيين المجال منتظم: $E=V/d$. و $\X{D}=\varepsilon E$.</span><span lang="en">Between parallel plates the field is uniform: $E=V/d$, and $\X{D}=\varepsilon E$.</span></p></li>
+    <li class="step"><h4><span lang="ar">اشتق مع الزمن</span><span lang="en">Differentiate in time</span></h4>
+      <div class="m">\[\begin{aligned}\X{J_d}&=\frac{\partial\X{D}}{\partial t}=\frac{\varepsilon}{d}\frac{dV}{dt}\\&=\frac{\varepsilon}{d}\,(50\times10^3)\cos10^3t\end{aligned}\]</div>
+      <p class="why"><span lang="ar">مشتقة $\sin10^3t$ هي $10^3\cos10^3t$. لاحظ: الجيب صار جيب تمام، يعني $\X{J_d}$ يسبق $V$ بـ 90°.</span><span lang="en">The derivative of $\sin10^3t$ is $10^3\cos10^3t$. Note the sine became a cosine: $\X{J_d}$ leads $V$ by 90°.</span></p></li>
+    <li class="step"><h4><span lang="ar">عوّض الأرقام</span><span lang="en">Plug in the numbers</span></h4>
+      <div class="m wide">\[\X{J_d}=\frac{2\times\frac{10^{-9}}{36\pi}}{3\times10^{-3}}\times50\times10^3\cos10^3t=2.947\times10^{-4}\cos10^3t\ \ \text{A/m}^2\]</div>
+      <div class="m narrow">\[\begin{aligned}\X{J_d}&=\frac{2\times\frac{10^{-9}}{36\pi}}{3\times10^{-3}}\times50\times10^3\cos10^3t\\&=2.947\times10^{-4}\cos10^3t\ \ \text{A/m}^2\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\varepsilon_0=10^{-9}/36\pi\approx8.84\times10^{-12}\ \text{F/m}$ (التقريب اللي يستخدمه الكتاب).</span><span lang="en">$\varepsilon_0=10^{-9}/36\pi\approx8.84\times10^{-12}\ \text{F/m}$ (the textbook's approximation).</span></p></li>
+    <li class="step"><h4><span lang="ar">اضرب في المساحة</span><span lang="en">Multiply by the area</span></h4>
+      <div class="m">\[\begin{aligned}\X{I_d}&=\X{J_d}\,S\\&=2.947\times10^{-4}\cos10^3t\\&\quad\times5\times10^{-4}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\X{J_d}$ منتظم وعمودي على اللوح، فالتكامل يصير ضرب بس.</span><span lang="en">$\X{J_d}$ is uniform and normal to the plate, so the integral is just a product.</span></p></li>
+    <li class="step final"><div class="result">$\X{I_d}=147.4\cos10^3t\ \ \text{nA}$</div>
+      <p class="sanity"><span lang="ar">السلايد 11 يتأكد بتيار التوصيل في السلك: $C=\varepsilon S/d=2.947\ \text{pF}$، و $\Z{I}=C\,dV/dt$ $=2.947\times10^{-12}\times5\times10^4\cos10^3t$ $=147.4\cos10^3t\ \text{nA}$ ✓. نفس الرقم بالضبط، زي ما قلنا في قسم المكثف.</span><span lang="en">Slide 11 checks it with the conduction current in the wire: $C=\varepsilon S/d=2.947\ \text{pF}$ and $\Z{I}=C\,dV/dt$ $=2.947\times10^{-12}\times5\times10^4\cos10^3t$ $=147.4\cos10^3t\ \text{nA}$ ✓. Exactly the same, as the capacitor section predicted.</span></p></li>
+  </ol>
+  <figure class="wv" id="ex-plot">
+    <div class="wv-head"><div class="wv-title"><span lang="ar">الجهد وتيار الإزاحة مع الزمن (كل واحد على أقصى قيمته)</span><span lang="en">Voltage and displacement current versus time (each over its peak)</span></div>
+      <div class="legend"><span><i class="c-k"></i>$V/50$</span><span><i class="c-e"></i>$\X{I_d}/147.4\,\text{nA}$</span></div></div>
+    <div class="wv-plot"></div>
+  </figure>
+</section>
+
+<!-- ================= 05 معادلات ماكسويل ================= -->
+<section class="card" id="maxwell" data-num="05" data-nav="معادلات ماكسويل|Maxwell's eqs">
+  <h2><span lang="ar">معادلات ماكسويل بشكلها النهائي</span><span lang="en">Maxwell's equations in final form</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 12–13 · أي مجال عشان يكون كهرومغناطيسي لازم يحقق الأربع كلها</span><span lang="en">Slides 12–13 · to qualify as an EM field, a field must satisfy all four</span></p>
+  <p><span lang="ar">هذي الأربع تلخّص كل قوانين الكهرومغناطيسية المعروفة. كل وحدة لها صيغة نقطية (تفاضلية) وصيغة تكاملية، والتحويل بينهم بنظرية الـ divergence (للسطح المغلق) أو نظرية ستوكس (للحلقة).</span><span lang="en">These four summarize every known law of electromagnetism. Each has a point (differential) form and an integral form, linked by the divergence theorem (closed surface) or Stokes's theorem (loop).</span></p>
+  <div class="eq-grid">
+    <div class="eq-box"><h3><span class="eq-n">1</span><span lang="ar">قانون جاوس</span><span lang="en">Gauss's law</span></h3>
+      <div class="m">\[\nabla\cdot\X{\mathbf D}=\rho_v\]</div><div class="m">\[\oint_S\X{\mathbf D}\cdot d\mathbf S=\int_v\rho_v\,dv\]</div>
+      <p><span lang="ar">الفيض الكهربائي الطالع من سطح مغلق = الشحنة اللي جوّاه. خطوط $\X{\mathbf D}$ تبدأ وتنتهي على الشحنات.</span><span lang="en">The electric flux leaving a closed surface = the charge inside. Lines of $\X{\mathbf D}$ start and end on charges.</span></p></div>
+    <div class="eq-box"><h3><span class="eq-n">2</span><span lang="ar">ما فيه قطب مغناطيسي منفرد</span><span lang="en">No magnetic monopoles</span></h3>
+      <div class="m">\[\nabla\cdot\mathbf B=0\]</div><div class="m">\[\oint_S\mathbf B\cdot d\mathbf S=0\]</div>
+      <p><span lang="ar">اللي يدخل من الفيض المغناطيسي يطلع. خطوط $\mathbf B$ مغلقة دايماً، وما فيه "شحنة مغناطيسية".</span><span lang="en">Whatever magnetic flux enters also leaves. Lines of $\mathbf B$ are always closed; there is no "magnetic charge".</span></p></div>
+    <div class="eq-box"><h3><span class="eq-n">3</span><span lang="ar">قانون فاراداي</span><span lang="en">Faraday's law</span></h3>
+      <div class="m">\[\nabla\times\X{\mathbf E}=-\frac{\partial\mathbf B}{\partial t}\]</div><div class="m">\[\oint_L\X{\mathbf E}\cdot d\mathbf l=-\frac{d}{dt}\int_S\mathbf B\cdot d\mathbf S\]</div>
+      <p><span lang="ar">$\mathbf B$ المتغير يولّد $\X{\mathbf E}$ يدور حوله (المحاضرة 3).</span><span lang="en">A changing $\mathbf B$ produces an $\X{\mathbf E}$ that circulates around it (Lecture 3).</span></p></div>
+    <div class="eq-box"><h3><span class="eq-n">4</span><span lang="ar">قانون أمبير-ماكسويل</span><span lang="en">Ampère–Maxwell law</span></h3>
+      <div class="m">\[\nabla\times\Y{\mathbf H}=\Z{\mathbf J}+\frac{\partial\X{\mathbf D}}{\partial t}\]</div><div class="m">\[\oint_L\Y{\mathbf H}\cdot d\mathbf l=\int_S\Big(\Z{\mathbf J}+\frac{\partial\X{\mathbf D}}{\partial t}\Big)\cdot d\mathbf S\]</div>
+      <p><span lang="ar">التيار، والمجال الكهربائي المتغير، الاثنين يولّدون $\Y{\mathbf H}$ يدور حولهم (هذي المحاضرة).</span><span lang="en">Both current and a changing electric field produce an $\Y{\mathbf H}$ circulating around them (this lecture).</span></p></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 لاحظ التناظر:</span><span lang="en">🔑 Notice the symmetry:</span></strong>
+    <p><span lang="ar">(3) و (4) شكلهم متشابه: $\mathbf B$ المتغير يولّد $\X{\mathbf E}$، و $\X{\mathbf D}$ المتغير يولّد $\Y{\mathbf H}$. وفي الفراغ ($\Z{\mathbf J}=0$، $\rho_v=0$) يصيرون متناظرين تقريباً تماماً، وهذا اللي يخلّي الموجة ممكنة. والفرق الوحيد اللي يكسر التناظر: فيه شحنات كهربائية ($\rho_v$ و $\Z{\mathbf J}$)، بس ما فيه شحنات مغناطيسية.</span><span lang="en">(3) and (4) look alike: a changing $\mathbf B$ produces $\X{\mathbf E}$, and a changing $\X{\mathbf D}$ produces $\Y{\mathbf H}$. In free space ($\Z{\mathbf J}=0$, $\rho_v=0$) they become almost perfectly symmetric, which is what makes waves possible. The only thing that breaks the symmetry: electric charges exist ($\rho_v$ and $\Z{\mathbf J}$) but magnetic charges don't.</span></p>
+  </div>
+</section>
+
+<!-- ================= 06 العلاقات المساعدة ================= -->
+<section class="card" id="extra" data-num="06" data-nav="لورنتز والعلاقات|Lorentz &amp; relations">
+  <h2><span lang="ar">اللي يكمّل المعادلات الأربع</span><span lang="en">What completes the four equations</span></h2>
+  <p class="sub"><span lang="ar">السلايد 14 · القوة، وحفظ الشحنة، وخصائص الوسط</span><span lang="en">Slide 14 · the force, charge conservation and the medium</span></p>
+  <p><span lang="ar">المعادلات الأربع تقول لك كيف المجالات تتولّد، بس ما تقول وش تسوي المجالات بالشحنات، ولا كيف المادة تتصرف. عشان كذا نضيف:</span><span lang="en">The four equations tell you how fields are produced, but not what fields do to charges, nor how a material responds. So we add:</span></p>
+  <div class="eq-grid">
+    <div class="eq-box"><h3><span lang="ar">قوة لورنتز</span><span lang="en">Lorentz force</span></h3>
+      <div class="m">\[\mathbf F=Q(\X{\mathbf E}+\mathbf u\times\mathbf B)\]</div>
+      <p><span lang="ar">القوة على شحنة $Q$ تمشي بسرعة $\mathbf u$: جزء كهربائي يدفعها مع $\X{\mathbf E}$، وجزء مغناطيسي عمودي على حركتها.</span><span lang="en">The force on a charge $Q$ moving at velocity $\mathbf u$: an electric part along $\X{\mathbf E}$, and a magnetic part perpendicular to its motion.</span></p></div>
+    <div class="eq-box"><h3><span lang="ar">معادلة الاستمرارية</span><span lang="en">Continuity equation</span></h3>
+      <div class="m">\[\nabla\cdot\Z{\mathbf J}=-\frac{\partial\rho_v}{\partial t}\]</div>
+      <p><span lang="ar">حفظ الشحنة. وهي أصلاً تطلع من (1) و (4): خذ divergence لـ (4) وعوّض (1).</span><span lang="en">Charge conservation. It actually follows from (1) and (4): take the divergence of (4) and substitute (1).</span></p></div>
+    <div class="eq-box"><h3><span lang="ar">العلاقات المكوّنة</span><span lang="en">Constitutive relations</span></h3>
+      <div class="m">\[\X{\mathbf D}=\varepsilon\X{\mathbf E},\qquad\mathbf B=\mu\Y{\mathbf H}\]</div><div class="m">\[\Z{\mathbf J}=\sigma\X{\mathbf E}+\rho_v\mathbf u\]</div>
+      <p><span lang="ar">تصلح لوسط خطّي ومتجانس ومتماثل الاتجاهات (linear, homogeneous, isotropic)، يعني $\sigma$ و $\varepsilon$ و $\mu$ أرقام ثابتة. والحد $\rho_v\mathbf u$ تيار الحمل (شحنات تتحرك في الفراغ، مثل شعاع إلكترونات).</span><span lang="en">Valid for a linear, homogeneous and isotropic medium, where $\sigma$, $\varepsilon$ and $\mu$ are constants. The $\rho_v\mathbf u$ term is the convection current (charge moving through space, like an electron beam).</span></p></div>
+  </div>
+</section>
+
+<!-- ================= 07 الشروط الحدية ================= -->
+<section class="card" id="bc" data-num="07" data-nav="الشروط الحدية|Boundaries">
+  <h2><span lang="ar">الشروط الحدية: نفسها حتى لو المجالات متغيرة</span><span lang="en">Boundary conditions: unchanged for time-varying fields</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 15–16 · $\mathbf a_n$ متجه وحدة عمودي على الحد</span><span lang="en">Slides 15–16 · $\mathbf a_n$ is the unit normal to the boundary</span></p>
+  <p><span lang="ar">نفس الشروط اللي درستها في الكهرومغناطيسية 1 للمجالات الثابتة تبقى صحيحة. القاعدة سهلة: المركّبة <b>المماسية</b> (t) تجي من معادلات الـ curl، والمركّبة <b>العمودية</b> (n) تجي من معادلات الـ divergence.</span><span lang="en">The same conditions you learned in Electromagnetics 1 for static fields stay valid. The rule is simple: the <b>tangential</b> (t) components come from the curl equations, and the <b>normal</b> (n) components come from the divergence equations.</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th><span lang="ar">بين وسطين عاديين</span><span lang="en">Between two media</span></th><th><span lang="ar">الوسط 2 موصل مثالي ($\sigma=\infty$)</span><span lang="en">Medium 2 a perfect conductor ($\sigma=\infty$)</span></th></tr></thead>
+    <tbody>
+      <tr><th>$\X{\mathbf E}$</th><td>$E_{1t}=E_{2t}$</td><td>$E_{1t}=0$ <span lang="ar">(يعني $\mathbf a_n\times\X{\mathbf E_1}=0$)</span><span lang="en">(i.e. $\mathbf a_n\times\X{\mathbf E_1}=0$)</span></td></tr>
+      <tr><th>$\Y{\mathbf H}$</th><td>$(\Y{\mathbf H_1}-\Y{\mathbf H_2})\times\mathbf a_{n12}=\mathbf K$</td><td>$\Y{\mathbf H_1}\times\mathbf a_{n12}=\mathbf K$ <span lang="ar">(تيار سطحي)</span><span lang="en">(surface current)</span></td></tr>
+      <tr><th>$\X{\mathbf D}$</th><td>$D_{1n}-D_{2n}=\rho_s$</td><td>$D_{1n}=\rho_s$</td></tr>
+      <tr><th>$\mathbf B$</th><td>$B_{1n}=B_{2n}$</td><td>$B_{1n}=0$</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key"><strong><span lang="ar">🔑 الموصل المثالي من جوّا: كل شي صفر</span><span lang="en">🔑 Inside a perfect conductor: everything is zero</span></strong>
+    <p><span lang="ar">لو $\sigma=\infty$ و $\Z{\mathbf J}=\sigma\X{\mathbf E}$ محدود، لازم $\X{\mathbf E}=0$ جوّاه. ومن فاراداي $\partial\mathbf B/\partial t=0$، فما فيه مجال متغير جوّاه: $\X{\mathbf E}=0$ و $\Y{\mathbf H}=0$ و $\Z{\mathbf J}=0$. عشان كذا الشروط في العمود الثالث هي نفس الأول بس مع "الوسط 2 = صفر". الشحنة والتيار يقعدون على السطح بس ($\rho_s$ و $\mathbf K$).</span><span lang="en">If $\sigma=\infty$ and $\Z{\mathbf J}=\sigma\X{\mathbf E}$ stays finite, then $\X{\mathbf E}=0$ inside. Faraday then gives $\partial\mathbf B/\partial t=0$, so no time-varying field survives inside: $\X{\mathbf E}=0$, $\Y{\mathbf H}=0$, $\Z{\mathbf J}=0$. That's why the third column is just the first with "medium 2 = zero". Charge and current sit only on the surface ($\rho_s$ and $\mathbf K$).</span></p>
+  </div>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2><span lang="ar">طريقة حل مسائل تيار الإزاحة</span><span lang="en">How to solve displacement-current problems</span></h2>
+  <p class="sub"><span lang="ar">ثلاث خطوات تكفي لأغلب المسائل</span><span lang="en">Three steps cover most problems</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">طلّع $\X{\mathbf D}$</span><span lang="en">Get $\X{\mathbf D}$</span></b><span class="why"><span lang="ar">$\X{\mathbf D}=\varepsilon\X{\mathbf E}$، و $\varepsilon=\varepsilon_r\varepsilon_0$. في المكثف $E=V/d$.</span><span lang="en">$\X{\mathbf D}=\varepsilon\X{\mathbf E}$, with $\varepsilon=\varepsilon_r\varepsilon_0$. In a capacitor $E=V/d$.</span></span></li>
+    <li><b><span lang="ar">اشتق مع الزمن</span><span lang="en">Differentiate in time</span></b><span class="why"><span lang="ar">$\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$. المشتقة تضرب السعة في $\omega$ وتقلب $\sin$ إلى $\cos$ (و $\cos$ إلى $-\sin$).</span><span lang="en">$\X{\mathbf J_d}=\partial\X{\mathbf D}/\partial t$. The derivative multiplies the amplitude by $\omega$ and turns $\sin$ into $\cos$ (and $\cos$ into $-\sin$).</span></span></li>
+    <li><b><span lang="ar">التيار = الكثافة × المساحة</span><span lang="en">Current = density × area</span></b><span class="why"><span lang="ar">$\X{I_d}=\X{J_d}S$ لو منتظم. وتأكد: في المكثف لازم يطلع $\X{I_d}=C\,dV/dt$. ولو يسألك "نهمله ولا لا؟" قارن $\omega\varepsilon$ مع $\sigma$.</span><span lang="en">$\X{I_d}=\X{J_d}S$ if uniform. Check: in a capacitor it must equal $C\,dV/dt$. If asked "can we neglect it?", compare $\omega\varepsilon$ with $\sigma$.</span></span></li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين</span><span lang="en">Practice</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل. استخدم $\varepsilon_0=10^{-9}/36\pi$</span><span lang="en">Solve it yourself, type the number and check, then open the solution. Use $\varepsilon_0=10^{-9}/36\pi$</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · كثافة تيار الإزاحة</span><span lang="en">Exercise A · displacement current density</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">في وسط $\varepsilon_r=4$ المجال $\mathbf E=20\sin(10^9t)\,\mathbf a_x\ \text{V/m}$. أوجد سعة $\X{J_d}$ بـ <span dir="ltr">A/m²</span>.</span><span lang="en">In a medium with $\varepsilon_r=4$, $\mathbf E=20\sin(10^9t)\,\mathbf a_x\ \text{V/m}$. Find the amplitude of $\X{J_d}$ in A/m².</span></p>
+    <div class="check" data-answer="0.7074"></div>
+    <details class="hint"><p><span lang="ar">$\X{J_d}=\varepsilon\,\partial E/\partial t$، والمشتقة تطلّع $10^9$.</span><span lang="en">$\X{J_d}=\varepsilon\,\partial E/\partial t$; the derivative brings out $10^9$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">اشتق</span><span lang="en">Differentiate</span></h4><div class="m">\[\begin{aligned}\X{J_d}&=\varepsilon\frac{\partial E}{\partial t}\\&=4\varepsilon_0\times20\times10^9\cos10^9t\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4><div class="m">\[\begin{aligned}&4\times\frac{10^{-9}}{36\pi}\times2\times10^{10}\\&=\frac{80}{36\pi}=0.7074\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$\X{\mathbf J_d}=0.7074\cos(10^9t)\,\mathbf a_x\ \text{A/m}^2$</div><p class="sanity"><span lang="ar">نفس اتجاه $\mathbf E$ ($\mathbf a_x$) لأن $\varepsilon$ رقم ثابت، والطور سبق بـ 90° ✓.</span><span lang="en">Same direction as $\mathbf E$ ($\mathbf a_x$) since $\varepsilon$ is a scalar, and the phase leads by 90° ✓.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · مكثف</span><span lang="en">Exercise B · capacitor</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">مكثف لوحين: المساحة <span dir="ltr">10 cm²</span>، والمسافة <span dir="ltr">2 mm</span>، و $\varepsilon_r=4$، والجهد $V=100\sin10^4t\ \text{V}$. أوجد سعة $\X{I_d}$ بالميكروأمبير (µA).</span><span lang="en">A parallel-plate capacitor: area 10 cm², separation 2 mm, $\varepsilon_r=4$, voltage $V=100\sin10^4t\ \text{V}$. Find the amplitude of $\X{I_d}$ in µA.</span></p>
+    <div class="check" data-answer="17.68"></div>
+    <details class="hint"><p><span lang="ar">أسرع طريق: $\X{I_d}=C\,dV/dt$ مع $C=\varepsilon S/d$.</span><span lang="en">Fastest route: $\X{I_d}=C\,dV/dt$ with $C=\varepsilon S/d$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">السعة الكهربائية</span><span lang="en">The capacitance</span></h4><div class="m">\[\begin{aligned}C&=\frac{\varepsilon S}{d}=\frac{4\times\frac{10^{-9}}{36\pi}\times10^{-3}}{2\times10^{-3}}\\&=17.68\ \text{pF}\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">التيار</span><span lang="en">The current</span></h4><div class="m">\[\begin{aligned}\X{I_d}&=C\frac{dV}{dt}\\&=17.68\times10^{-12}\\&\quad\times10^6\cos10^4t\end{aligned}\]</div><p class="why"><span lang="ar">$dV/dt=100\times10^4\cos10^4t$ $=10^6\cos10^4t$.</span><span lang="en">$dV/dt=100\times10^4\cos10^4t$ $=10^6\cos10^4t$.</span></p></li>
+      <li class="step final"><div class="result">$\X{I_d}=17.68\cos10^4t\ \ \mu\text{A}$</div><p class="sanity"><span lang="ar">بطريقة الكثافة: $\X{J_d}=(\varepsilon/d)\,dV/dt=0.01768$ ضرب $S=10^{-3}$ يعطي نفس الرقم ✓.</span><span lang="en">Via the density: $\X{J_d}=(\varepsilon/d)\,dV/dt=0.01768$ times $S=10^{-3}$ gives the same ✓.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · متى يتساوون؟</span><span lang="en">Exercise C · when are they equal?</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">ماء البحر: $\sigma=4\ \text{S/m}$ و $\varepsilon_r=81$. عند أي تردد (بالميغاهيرتز MHz) يصير $|\X{\mathbf J_d}|=|\Z{\mathbf J}|$؟</span><span lang="en">Seawater: $\sigma=4\ \text{S/m}$ and $\varepsilon_r=81$. At what frequency (in MHz) is $|\X{\mathbf J_d}|=|\Z{\mathbf J}|$?</span></p>
+    <div class="check" data-answer="888.9"></div>
+    <details class="hint"><p><span lang="ar">$\omega\varepsilon=\sigma$، وبعدين $f=\omega/2\pi$.</span><span lang="en">$\omega\varepsilon=\sigma$, then $f=\omega/2\pi$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">ساوي الاثنين</span><span lang="en">Set them equal</span></h4><div class="m">\[\begin{aligned}\omega\varepsilon&=\sigma\\ \Rightarrow\ f&=\frac{\sigma}{2\pi\varepsilon_r\varepsilon_0}\\&=\frac{4}{2\pi\times81\times\frac{10^{-9}}{36\pi}}\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$f=\dfrac{4\times18}{81}\times10^9=888.9\ \text{MHz}$</div><p class="sanity"><span lang="ar">تحت هالتردد ماء البحر يتصرف كموصل، وفوقه كعازل. وهذا اللي تشوفه في رسمة القسم 03 ✓.</span><span lang="en">Below this frequency seawater behaves like a conductor, above it like a dielectric, as the section 03 chart shows ✓.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء الشائعة ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء الشائعة</span><span lang="en">Common mistakes</span></h2>
+  <p class="sub"><span lang="ar">كل واحد منها يضيّع درجات في الاختبار</span><span lang="en">Each of these costs marks in the exam</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان المشتقة</span><span lang="en">Forgetting the derivative</span></div>
+    <div class="pair"><div class="no"><div class="mm">$J_d=\varepsilon E$</div><span lang="ar">هذا $\X{D}$ مو $\X{J_d}$.</span><span lang="en">That is $\X{D}$, not $\X{J_d}$.</span></div><div class="yes"><div class="mm">$J_d=\varepsilon\,\partial E/\partial t$</div><span lang="ar">تطلع $\omega$ وينقلب الجيب.</span><span lang="en">An $\omega$ appears and the sine flips.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">إبقاء $\sin$ بعد الاشتقاق</span><span lang="en">Keeping $\sin$ after differentiating</span></div>
+    <div class="pair"><div class="no"><div class="mm">$147.4\sin10^3t\ \text{nA}$</div><span lang="ar">الرقم صح والطور غلط.</span><span lang="en">Right number, wrong phase.</span></div><div class="yes"><div class="mm">$147.4\cos10^3t\ \text{nA}$</div><span lang="ar">$\frac{d}{dt}\sin=\cos$: يسبق بـ 90°.</span><span lang="en">$\frac{d}{dt}\sin=\cos$: it leads by 90°.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان $\varepsilon_r$ أو تحويل الوحدات</span><span lang="en">Forgetting $\varepsilon_r$ or unit conversion</span></div>
+    <div class="pair"><div class="no"><div class="mm">$S=5,\ d=3$</div><span lang="ar">سنتي وملي مو متر.</span><span lang="en">cm² and mm are not SI.</span></div><div class="yes"><div class="mm">$S=5\times10^{-4},\ d=3\times10^{-3}$</div><span lang="ar"><span dir="ltr">1 cm² = 10⁻⁴ m²</span>.</span><span lang="en">1 cm² = 10⁻⁴ m².</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">"تيار الإزاحة شحنات تعبر بين اللوحين"</span><span lang="en">"Displacement current is charge crossing the gap"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\Z{\mathbf J}\neq0$ <span lang="ar">بين اللوحين</span><span lang="en">in the gap</span></div><span lang="ar">ما فيه شي يعبر العازل.</span><span lang="en">Nothing crosses the dielectric.</span></div><div class="yes"><div class="mm">$\Z{\mathbf J}=0,\ \X{\mathbf J_d}\neq0$</div><span lang="ar">المجال $\X{\mathbf D}$ هو اللي يتغير.</span><span lang="en">It is $\X{\mathbf D}$ that changes.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">إشارة فاراداي</span><span lang="en">The sign in Faraday's law</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\nabla\times\mathbf E=+\partial\mathbf B/\partial t$</div><span lang="ar">نسيت قانون لنز.</span><span lang="en">You forgot Lenz's law.</span></div><div class="yes"><div class="mm">$\nabla\times\mathbf E=-\partial\mathbf B/\partial t$</div><span lang="ar">بس أمبير-ماكسويل إشارته موجبة.</span><span lang="en">Only Ampère–Maxwell has a plus sign.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">7 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">7 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="3">
+      <p><span lang="ar">ليش قانون أمبير القديم $\nabla\times\mathbf H=\mathbf J$ غلط للمجالات المتغيرة؟</span><span lang="en">Why is the old Ampère's law $\nabla\times\mathbf H=\mathbf J$ wrong for time-varying fields?</span></p>
+      <button><span lang="ar">لأنه يناقض قانون جاوس</span><span lang="en">It contradicts Gauss's law</span></button><button><span lang="ar">لأن $\mathbf H$ ما له curl</span><span lang="en">Because $\mathbf H$ has no curl</span></button><button><span lang="ar">لأنه يعطي $\nabla\cdot\mathbf J=0$ ويناقض حفظ الشحنة</span><span lang="en">It gives $\nabla\cdot\mathbf J=0$, contradicting charge conservation</span></button><button><span lang="ar">لأنه يناقض قانون فاراداي</span><span lang="en">It contradicts Faraday's law</span></button>
+      <p class="q-why"><span lang="ar">divergence الـ curl صفر ← $\nabla\cdot\mathbf J=0$، بس الاستمرارية تقول $-\partial\rho_v/\partial t$.</span><span lang="en">The divergence of a curl is zero → $\nabla\cdot\mathbf J=0$, but continuity says $-\partial\rho_v/\partial t$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">تيار الإزاحة يساوي:</span><span lang="en">The displacement current density equals:</span></p>
+      <button>$\sigma\mathbf E$</button><button>$\partial\mathbf D/\partial t$</button><button>$\partial\mathbf B/\partial t$</button><button>$\rho_v\mathbf u$</button>
+      <p class="q-why"><span lang="ar">$\sigma\mathbf E$ تيار التوصيل، و $\rho_v\mathbf u$ تيار الحمل.</span><span lang="en">$\sigma\mathbf E$ is the conduction current and $\rho_v\mathbf u$ the convection current.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">في سلك نحاس عند <span dir="ltr">60 Hz</span>:</span><span lang="en">In a copper wire at 60 Hz:</span></p>
+      <button><span lang="ar">$J_d$ نهمله تماماً</span><span lang="en">$J_d$ is completely negligible</span></button><button><span lang="ar">$J_d$ يساوي $J$</span><span lang="en">$J_d$ equals $J$</span></button><button><span lang="ar">$J_d$ أكبر من $J$</span><span lang="en">$J_d$ exceeds $J$</span></button><button><span lang="ar">$J=0$</span><span lang="en">$J=0$</span></button>
+      <p class="q-why"><span lang="ar">$\omega\varepsilon/\sigma\approx10^{-16}$. جرّبها في رسمة القسم 03.</span><span lang="en">$\omega\varepsilon/\sigma\approx10^{-16}$. Try it on the section 03 chart.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">في مثال المكثف، التيار اللي يعبر السطح $S_2$ (بين اللوحين) مع تصليح ماكسويل:</span><span lang="en">In the capacitor example, the current through surface $S_2$ (between the plates) with Maxwell's fix:</span></p>
+      <button>0</button><button>$I/2$</button><button>$2I$</button><button><span lang="ar">$I$ (تيار إزاحة)</span><span lang="en">$I$ (displacement current)</span></button>
+      <p class="q-why"><span lang="ar">$I_d=dQ/dt=I$. نفس التيار في السطحين، والفرق نوعه بس.</span><span lang="en">$I_d=dQ/dt=I$. The same current through both surfaces; only its type differs.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">أي معادلة تعني إن خطوط $\mathbf B$ مغلقة دايماً؟</span><span lang="en">Which equation says $\mathbf B$ lines are always closed?</span></p>
+      <button>$\nabla\cdot\mathbf D=\rho_v$</button><button>$\nabla\cdot\mathbf B=0$</button><button>$\nabla\times\mathbf E=-\partial\mathbf B/\partial t$</button><button>$\nabla\cdot\mathbf J=-\partial\rho_v/\partial t$</button>
+      <p class="q-why"><span lang="ar">ما فيه شحنة مغناطيسية تبدأ منها أو تنتهي عندها الخطوط.</span><span lang="en">There is no magnetic charge for the lines to start or end on.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">داخل موصل مثالي ($\sigma=\infty$) مع مجال متغير:</span><span lang="en">Inside a perfect conductor ($\sigma=\infty$) with a time-varying field:</span></p>
+      <button><span lang="ar">$\mathbf E=0$ بس $\mathbf H\neq0$</span><span lang="en">$\mathbf E=0$ but $\mathbf H\neq0$</span></button><button><span lang="ar">$\mathbf J$ لا نهائي</span><span lang="en">$\mathbf J$ is infinite</span></button><button>$\mathbf E=0,\ \mathbf H=0,\ \mathbf J=0$</button><button><span lang="ar">$\mathbf E$ مماسي فقط</span><span lang="en">$\mathbf E$ is tangential only</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf J=\sigma\mathbf E$ محدود ← $\mathbf E=0$، ومن فاراداي ما يبقى $\mathbf H$ متغير.</span><span lang="en">Finite $\mathbf J=\sigma\mathbf E$ → $\mathbf E=0$, and Faraday then leaves no time-varying $\mathbf H$.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">عند سطح موصل مثالي، أي مركّبة لازم تكون صفر؟</span><span lang="en">At the surface of a perfect conductor, which component must vanish?</span></p>
+      <button><span lang="ar">$E$ المماسية</span><span lang="en">Tangential $E$</span></button><button><span lang="ar">$D$ العمودية</span><span lang="en">Normal $D$</span></button><button><span lang="ar">$H$ المماسية</span><span lang="en">Tangential $H$</span></button><button><span lang="ar">كلهم</span><span lang="en">All of them</span></button>
+      <p class="q-why"><span lang="ar">$E_{1t}=0$ و $B_{1n}=0$. أما $D_n=\rho_s$ و $H_t=K$ فما يلزم يكونون صفر.</span><span lang="en">$E_{1t}=0$ and $B_{1n}=0$. But $D_n=\rho_s$ and $H_t=K$ need not vanish.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب، للقوانين اللي لازم تنحفظ</span><span lang="en">Click a card to flip it, for the formulas you must memorize</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">قانون أمبير-ماكسويل</span><span lang="en">Ampère–Maxwell law</span></div><div>$\nabla\times\mathbf H=\mathbf J+\dfrac{\partial\mathbf D}{\partial t}$</div></div>
+    <div class="flash"><div><span lang="ar">كثافة تيار الإزاحة</span><span lang="en">Displacement current density</span></div><div>$\mathbf J_d=\dfrac{\partial\mathbf D}{\partial t}$</div></div>
+    <div class="flash"><div><span lang="ar">تيار الإزاحة</span><span lang="en">Displacement current</span></div><div>$I_d=\displaystyle\int\mathbf J_d\cdot d\mathbf S=\frac{d}{dt}\int\mathbf D\cdot d\mathbf S$</div></div>
+    <div class="flash"><div><span lang="ar">النسبة $J_d/J$</span><span lang="en">The ratio $J_d/J$</span></div><div>$\dfrac{|\mathbf J_d|}{|\mathbf J|}=\dfrac{\omega\varepsilon}{\sigma}$</div></div>
+    <div class="flash"><div><span lang="ar">جاوس + لا قطب منفرد</span><span lang="en">Gauss + no monopoles</span></div><div>$\nabla\cdot\mathbf D=\rho_v,\qquad\nabla\cdot\mathbf B=0$</div></div>
+    <div class="flash"><div><span lang="ar">فاراداي</span><span lang="en">Faraday</span></div><div>$\nabla\times\mathbf E=-\dfrac{\partial\mathbf B}{\partial t}$</div></div>
+    <div class="flash"><div><span lang="ar">قوة لورنتز</span><span lang="en">Lorentz force</span></div><div>$\mathbf F=Q(\mathbf E+\mathbf u\times\mathbf B)$</div></div>
+    <div class="flash"><div><span lang="ar">العلاقات المكوّنة</span><span lang="en">Constitutive relations</span></div><div>$\mathbf D=\varepsilon\mathbf E,\ \ \mathbf B=\mu\mathbf H,\ \ \mathbf J=\sigma\mathbf E+\rho_v\mathbf u$</div></div>
+    <div class="flash"><div><span lang="ar">الشروط الحدية</span><span lang="en">Boundary conditions</span></div><div>$E_{1t}=E_{2t},\ \ B_{1n}=B_{2n}$<br>$D_{1n}-D_{2n}=\rho_s,\ \ (\mathbf H_1-\mathbf H_2)\times\mathbf a_{n12}=\mathbf K$</div></div>
+    <div class="flash"><div><span lang="ar">الموصل المثالي</span><span lang="en">Perfect conductor</span></div><div>$\mathbf E=\mathbf H=\mathbf J=0$ <span lang="ar">جوّاه</span><span lang="en">inside</span>, $E_t=0,\ B_n=0$</div></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const { $, $$, L, TL, N, TAU, sig, p10, chart, player, grid, path, P, axName, arrow, bracket } = EM;
+
+  /* ---------- 03: النسبة Jd/J مع التردد ---------- */
+  const E0 = 8.854e-12;
+  const MATS = [
+    { c: 'c-a', ar: 'نحاس', en: 'copper', s: 5.8e7, er: 1 },
+    { c: 'c-e', ar: 'ماء البحر', en: 'seawater', s: 4, er: 81 },
+    { c: 'c-h', ar: 'تربة رطبة', en: 'wet soil', s: 1e-2, er: 10 }
+  ];
+  const ratio = (m, f) => TAU * f * m.er * E0 / m.s;
+  const fF = f => f >= 1e9 ? sig(f / 1e9) + ' GHz' : f >= 1e6 ? sig(f / 1e6) + ' MHz' : f >= 1e3 ? sig(f / 1e3) + ' kHz' : sig(f) + ' Hz';
+  const rT = [[1e-18, '10⁻¹⁸'], [1e-12, '10⁻¹²'], [1e-6, '10⁻⁶'], [1, '1'], [1e6, '10⁶']];
+  const fT = [[1, '1 Hz'], [1e3, '1 kHz'], [1e6, '1 MHz'], [1e9, '1 GHz'], [1e11, '100 GHz', 'end']];
+  chart($('#ratio .wv-plot'), {
+    label: 'Ratio of displacement to conduction current density versus frequency for copper, seawater and wet soil, on log axes, with the ratio-equals-one line marked',
+    h: W => W < 520 ? 250 : 270, pad: () => ({ l: 46, r: 14, t: 16, b: 30 }), x: [1, 1e11], y: [1e-18, 1e6], xlog: true, ylog: true, start: 1e8,
+    st: s => {
+      const y1 = s.Y(1).toFixed(1);
+      return grid(s, { yt: rT, xt: fT, xgrid: true, ylog: true }) +
+        `<line class="mark" x1="${s.pl}" x2="${s.W - s.pr}" y1="${y1}" y2="${y1}"/>` +
+        `<text class="acc" x="${s.pl + 6}" y="${(+y1 - 6).toFixed(1)}">J<tspan dy="3" font-size="8.5">d</tspan><tspan dy="-3"> = J</tspan></text>` +
+        `<text class="tick" x="${s.pl + 6}" y="${s.pt + 12}">${TL('↑ الإزاحة تغلب', '↑ displacement wins')}</text>` +
+        `<text class="tick" x="${s.W - s.pr - 6}" y="${s.H - s.pb - 8}" text-anchor="end">${TL('التوصيل يغلب ↓', 'conduction wins ↓')}</text>` +
+        MATS.map(m => P('ln ' + m.c, path(f => ratio(m, f), 1, 1e11, 2, s.X, s.Y, true))).join('');
+    },
+    hover: (f, s) => ({ hd: fF(f), rows: MATS.map(m => {
+      const r = ratio(m, f);
+      return { c: m.c, k: L(m.ar, m.en), v: sig(r, 2) + (r > 10 ? ' ▲' : r < 0.1 ? ' ▼' : ' ≈') };
+    }), pts: MATS.map(m => ({ c: m.c, y: s.Y(Math.min(1e6, Math.max(1e-18, ratio(m, f)))) })) })
+  });
+
+  /* ---------- 04: مختبر المكثف ---------- */
+  const CP = { ph: 0, s: 1, mx: true };
+  const geo = s => {
+    const W = s.W, yT = 104, yB = s.H - 26, xc = Math.round(W * 0.66), x0 = Math.round(W * 0.3), g = 15;
+    return { W, yT, yB, xc, x0, g, xl: 22, xr: W - 22, xs: Math.round(W * 0.48) };
+  };
+  // مسار السلك من اللوح الأيسر، يلف على الدائرة، لين اللوح الأيمن
+  const wirePts = G => [[G.xc - G.g, G.yT], [G.xl, G.yT], [G.xl, G.yB], [G.xr, G.yB], [G.xr, G.yT], [G.xc + G.g, G.yT]];
+  const along = (pts, u) => {
+    for (let i = 1; i < pts.length; i++) {
+      const [ax, ay] = pts[i - 1], [bx, by] = pts[i], l = Math.hypot(bx - ax, by - ay);
+      if (u <= l) return [ax + (bx - ax) * u / l, ay + (by - ay) * u / l];
+      u -= l;
+    }
+    return null;
+  };
+  const balloon = G => {
+    const { x0, xc, yT } = G, m = x0 + (xc - x0) * 0.55;
+    return `M${x0} ${yT - 40}C${m} ${yT - 66} ${xc - 6} ${yT - 74} ${xc} ${yT - 34}L${xc} ${yT + 34}C${xc - 6} ${yT + 74} ${m} ${yT + 66} ${x0} ${yT + 40}A10 40 0 0 1 ${x0} ${yT - 40}Z`;
+  };
+  const cap = chart($('#cap-lab .wv-plot'), {
+    label: 'Capacitor circuit with an AC source, a closed loop L around the wire, the flat surface S1 through the wire and the balloon surface S2 passing between the plates',
+    h: () => 236, pad: () => ({ l: 0, r: 0, t: 0, b: 0 }), x: [0, 1],
+    st: s => {
+      const G = geo(s), { xc, g, yT, yB, xs } = G;
+      return `<path class="ln c-k thin" d="M${xc - g} ${yT}H${G.xl}V${yB}H${xs - 17}M${xs + 17} ${yB}H${G.xr}V${yT}H${xc + g}"/>` +
+        `<line class="ln c-k" style="stroke-width:4" x1="${xc - g}" x2="${xc - g}" y1="${yT - 30}" y2="${yT + 30}"/>` +
+        `<line class="ln c-k" style="stroke-width:4" x1="${xc + g}" x2="${xc + g}" y1="${yT - 30}" y2="${yT + 30}"/>` +
+        `<circle class="node" cx="${xs}" cy="${yB}" r="17"/>` +
+        P('ln c-k thin', `M${xs - 10} ${yB}C${xs - 6} ${yB - 10} ${xs - 2} ${yB - 10} ${xs} ${yB}S${xs + 6} ${yB + 10} ${xs + 10} ${yB}`) +
+        `<text class="tick" x="${xs}" y="${yB - 24}" text-anchor="middle">V(t)</text>` +
+        `<text class="tick" x="${xc + g + 8}" y="${yT + 46}">C</text>`;
+    },
+    dy: s => {
+      const G = geo(s), { xc, x0, g, yT } = G, ph = CP.ph, i = Math.cos(ph), q = Math.sin(ph);
+      const on1 = CP.s === 1, on2 = CP.s === 2;
+      let o = `<path class="${on2 ? 'tintp' : 'band'}" d="${balloon(G)}"/>` +
+        `<ellipse class="${on1 ? 'tintp' : 'band'}" cx="${x0}" cy="${yT}" rx="10" ry="40"/>`;
+      o += `<text class="${on2 ? 'acc' : 'tick'}" x="${Math.round(x0 + (xc - x0) * 0.5)}" y="${yT - 62}" text-anchor="middle">S₂</text>` +
+        `<text class="${on1 ? 'acc' : 'tick'}" x="${x0 - 16}" y="${yT - 30}" text-anchor="end">S₁</text>`;
+      // الحلقة L
+      o += `<ellipse class="ln c-h" cx="${x0}" cy="${yT}" rx="10" ry="40" style="fill:none"/>` + arrow(x0 - 3, yT + 40, x0 + 6, yT + 39, 'c-h') +
+        `<text class="lbl" x="${x0 + 14}" y="${yT + 52}" style="fill:var(--w-h)">L</text>`;
+      // الشحنات في السلك: تتذبذب، وسرعتها = التيار
+      const pts = wirePts(G); let len = 0;
+      for (let k = 1; k < pts.length; k++) len += Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]);
+      const sh = -16 * q;
+      for (let u = 13; u < len; u += 26) { const p = along(pts, u + sh); if (p && u + sh > 2 && u + sh < len - 2) o += `<circle class="dot c-a" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.2"/>`; }
+      // Jd بين اللوحين
+      const al = (2 * g - 10) * i;
+      [-18, 0, 18].forEach(dy => { o += arrow(xc - al / 2, yT + dy, xc + al / 2, yT + dy, 'c-e'); });
+      o += `<text class="lbl" x="${xc}" y="${yT + 48}" text-anchor="middle" style="fill:var(--w-e)">J<tspan dy="3" font-size="8.5">d</tspan></text>`;
+      // شحنة اللوحين
+      const a = Math.min(1, Math.abs(q) * 1.4).toFixed(2), sp = q >= 0 ? '+' : '−', sn = q >= 0 ? '−' : '+';
+      o += `<text class="big" x="${xc - g - 10}" y="${yT - 34}" text-anchor="middle" opacity="${a}">${sp}</text>` +
+        `<text class="big" x="${xc + g + 10}" y="${yT - 34}" text-anchor="middle" opacity="${a}">${sn}</text>`;
+      return o;
+    }
+  });
+  (function () {
+    const lab = $('#cap-lab'); if (!lab || !cap) return;
+    const rng = $('input[type=range]', lab), rv = $('.rv', lab), out = k => $(`[data-o="${k}"]`, lab);
+    const ss = $$('[data-s]', lab), ms = $$('[data-mx]', lab);
+    const sync = () => {
+      const d = Math.round(CP.ph * 360 / TAU) % 360, i = Math.cos(CP.ph), iv = N(i) + ' I₀';
+      rng.value = d; rv.textContent = `ωt = ${d}°`;
+      ss.forEach(b => { const on = +b.dataset.s === CP.s; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      ms.forEach(b => { const on = !!+b.dataset.mx === CP.mx; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      out('i').textContent = `I = ${iv}`;
+      out('s1').innerHTML = `∮H·dl = I = ${iv}`;
+      out('s2').innerHTML = CP.mx ? `∮H·dl = I<sub>d</sub> = ${iv}` : `∮H·dl = 0 <span lang="ar">(J = 0)</span><span lang="en">(J = 0)</span>`;
+      const ok = CP.mx || Math.abs(i) < 0.005;
+      out('v').innerHTML = ok ? L('✓ السطحين نفس الجواب', '✓ Both surfaces agree') : L('✗ تناقض: نفس L وجوابين', '✗ Contradiction: same L, two answers');
+      out('v').style.color = ok ? 'var(--good)' : 'var(--bad)'; out('v').parentElement.classList.toggle('hl', ok);
+      cap.drawDyn();
+    };
+    const anim = player($('[data-play]', lab), lab, dt => { CP.ph = (CP.ph + dt * 1.6) % TAU; sync(); }, true);
+    rng.addEventListener('input', () => { CP.ph = +rng.value * TAU / 360; anim.stop(); sync(); });
+    ss.forEach(b => b.addEventListener('click', () => { CP.s = +b.dataset.s; sync(); }));
+    ms.forEach(b => b.addEventListener('click', () => { CP.mx = !!+b.dataset.mx; sync(); }));
+    sync();
+  })();
+
+  /* ---------- المثال: V و Id مع الزمن ---------- */
+  const tT = [[0, '0'], [Math.PI / 2, 'T/4'], [Math.PI, 'T/2'], [TAU, 'T'], [2 * TAU, '2T', 'end']];
+  chart($('#ex-plot .wv-plot'), {
+    label: 'Applied voltage and displacement current over two periods, each normalized to its peak; the current peaks a quarter period before the voltage',
+    h: () => 210, pad: () => ({ l: 34, r: 20, t: 30, b: 30 }), x: [0, 2 * TAU], y: [-1.15, 1.15], start: 1,
+    st: s => grid(s, { yt: [[1, '1'], [0, '0'], [-1, '−1']], xt: tT, xgrid: true }) + axName(s, 't') +
+      P('ln c-k', path(Math.sin, 0, 2 * TAU, 200, s.X, s.Y)) + P('ln c-e', path(Math.cos, 0, 2 * TAU, 200, s.X, s.Y)) +
+      bracket(s, 0, Math.PI / 2, s.pt - 8, '90°'),
+    hover: (x, s) => ({ hd: `t = ${N(x, 2)} ms`, rows: [
+      { c: 'c-k', k: 'V', v: N(50 * Math.sin(x), 1) + ' V' },
+      { c: 'c-e', k: 'I<sub>d</sub>', v: N(147.4 * Math.cos(x), 1) + ' nA' }],
+      pts: [{ c: 'c-k', y: s.Y(Math.sin(x)) }, { c: 'c-e', y: s.Y(Math.cos(x)) }] })
+  });
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

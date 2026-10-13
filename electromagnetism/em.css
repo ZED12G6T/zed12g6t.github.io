@@ -133,3 +133,11 @@
     .funnel .f-arrow { flex-direction: row; gap: 8px; padding: 5px 0; }
     .funnel .f-arrow::after { content: '\2193'; }
   }
+
+  /* شبكة معادلات: صندوق لكل قانون (المحاضرة 4) */
+  .eq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 12px; margin: 14px 0; }
+  .eq-box { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; background: var(--surface-2); min-width: 0; }
+  .eq-box h3 { font: 600 .98rem var(--f-head); margin: 0 0 4px; display: flex; align-items: center; gap: 8px; }
+  .eq-box .eq-n { font: 700 .75rem var(--f-mono); color: var(--accent); border: 1px solid currentColor; border-radius: 999px; width: 22px; height: 22px; display: inline-grid; place-items: center; flex: none; }
+  .eq-box p { font-size: .9rem; color: var(--ink-2); margin: 4px 0 0; }
+  .eq-box .m { overflow-x: auto; }
