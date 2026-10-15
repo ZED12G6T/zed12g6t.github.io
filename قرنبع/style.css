@@ -1,0 +1,103 @@
+/* قرنبع — ستايل هادي على طريقة Tiny Glade: سما باستيل، ورق أبيض دافي، وخط النسخ. */
+:root {
+  --sky-top: #8fc0e3;
+  --sky-mid: #c9e2ef;
+  --sky-low: #f7e9cf;
+  --paper: #fffaf0;
+  --ink: #3f3a33;
+  --ink-soft: #7a6f60;
+  --leaf: #6f9a4f;
+  --roof: #5b7fa6;
+  --shadow: 0 10px 30px rgba(60, 50, 30, .18), 0 2px 6px rgba(60, 50, 30, .12);
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  overflow: hidden;
+  color: var(--ink);
+  background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%);
+  font-family: 'Naskh Swash', serif;
+  -webkit-tap-highlight-color: transparent;
+}
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#scene.dragging { cursor: grabbing; }
+.sun {
+  position: fixed; top: -18vmin; left: 8vw; width: 60vmin; height: 60vmin; pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 244, 214, .85) 0%, rgba(255, 236, 196, .35) 35%, rgba(255, 236, 196, 0) 70%);
+}
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* الشعار: أبيض بحافة ناعمة مثل شعار اللعبة */
+.logo {
+  margin: 0; font-weight: 400; line-height: 1; color: #fff;
+  font-size: clamp(64px, 16vmin, 150px);
+  text-shadow: 0 0 2px rgba(50, 60, 70, .55), 0 2px 0 rgba(50, 60, 70, .35), 0 6px 22px rgba(40, 60, 80, .35);
+}
+.logo.small { font-size: 40px; }
+
+/* بوابة كلمة السر */
+.gate {
+  position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 24px 16px 18vh;
+  justify-content: flex-start; padding-top: max(22vh, 90px); text-align: center;
+  transition: opacity .9s ease, transform .9s ease;
+}
+.gate.out { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+.tag { margin: 0 0 18px; font-size: 22px; color: #fff; text-shadow: 0 1px 6px rgba(40, 60, 80, .45); }
+.lock {
+  display: flex; align-items: center; gap: 6px; padding: 6px;
+  width: min(360px, 100%); background: var(--paper); border-radius: 999px; box-shadow: var(--shadow);
+}
+.lock input {
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink);
+  font: inherit; font-size: 20px; padding: 10px 16px; text-align: center; letter-spacing: .04em;
+}
+.lock input::placeholder { color: #b3a894; letter-spacing: 0; }
+.lock button {
+  border: 0; border-radius: 999px; padding: 10px 22px; font: inherit; font-size: 20px; cursor: pointer;
+  color: #fff; background: var(--leaf); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15);
+  transition: transform .15s ease, background .2s ease;
+}
+.lock button:hover { background: #5f8a41; }
+.lock button:active { transform: translateY(1px); }
+.lock:focus-within { outline: 3px solid rgba(255, 255, 255, .8); outline-offset: 3px; }
+.lock.shake { animation: shake .45s ease; }
+@keyframes shake { 20%, 60% { transform: translateX(-9px); } 40%, 80% { transform: translateX(9px); } }
+.msg { min-height: 1.5em; margin: 6px 0 0; font-size: 18px; color: #fff; }
+.msg:not(:empty) { padding: 4px 16px; border-radius: 999px; background: rgba(160, 80, 60, .85); box-shadow: var(--shadow); }
+
+/* بعد الدخول */
+.inside { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease .5s; }
+.inside.on { opacity: 1; }
+.inside > * { pointer-events: auto; }
+.top {
+  position: absolute; top: 0; inset-inline: 0; display: flex; align-items: center; justify-content: space-between;
+  padding: max(14px, env(safe-area-inset-top)) 18px 0;
+}
+.relock {
+  border: 0; border-radius: 999px; padding: 8px 18px; font: inherit; font-size: 17px; cursor: pointer;
+  color: var(--ink); background: var(--paper); box-shadow: var(--shadow);
+}
+.welcome {
+  position: absolute; bottom: max(70px, calc(env(safe-area-inset-bottom) + 56px)); inset-inline: 16px; margin: auto;
+  width: fit-content; max-width: calc(100% - 32px); padding: 14px 26px 16px; text-align: center;
+  background: var(--paper); border-radius: 22px; box-shadow: var(--shadow);
+}
+.welcome h2 { margin: 0; font-weight: 400; font-size: 30px; color: var(--roof); }
+.welcome p { margin: 4px 0 0; font-size: 18px; color: var(--ink-soft); }
+.hint, .credit {
+  position: absolute; margin: 0; font-size: 14px; color: rgba(70, 60, 45, .75); pointer-events: none;
+}
+.hint { bottom: max(24px, env(safe-area-inset-bottom)); inset-inline: 0; text-align: center; }
+.credit { bottom: max(6px, env(safe-area-inset-bottom)); inset-inline-start: 12px; font-size: 11px; pointer-events: auto; }
+.credit a { color: inherit; }
+
+@media (max-width: 520px) {
+  .welcome h2 { font-size: 26px; }
+  .welcome p { font-size: 16px; }
+  .hint { bottom: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate, .inside { transition: none; }
+  .lock.shake { animation: none; }
+}

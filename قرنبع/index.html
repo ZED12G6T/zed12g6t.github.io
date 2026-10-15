@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#a9cfe6">
+<title>قرنبع</title>
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{ "imports": { "three": "../lib/three/three.module.min.js" } }</script>
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<canvas id="scene" aria-hidden="true"></canvas>
+<div class="sun" aria-hidden="true"></div>
+
+<main class="gate" id="gate">
+  <h1 class="logo">قرنبع</h1>
+  <p class="tag">مكاني الصغير</p>
+  <form class="lock" id="lock" autocomplete="off">
+    <label for="pw" class="sr">كلمة السر</label>
+    <input id="pw" type="password" placeholder="كلمة السر" autocomplete="current-password" spellcheck="false" required>
+    <button type="submit" aria-label="ادخل">ادخل</button>
+  </form>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
+
+<section class="inside" id="inside" hidden>
+  <header class="top">
+    <h1 class="logo small">قرنبع</h1>
+    <button class="relock" id="relock" type="button">اقفل</button>
+  </header>
+  <div class="welcome">
+    <h2>حياك في قرنبع</h2>
+    <p>هذي قريتك، والأقسام بتنبني هنا قريب</p>
+  </div>
+  <p class="hint">اسحب عشان تلف القرية</p>
+  <p class="credit">المجسمات من <a href="https://kaylousberg.com/game-assets/medieval-hexagon" target="_blank" rel="noopener">KayKit</a> (CC0)</p>
+</section>
+</body>
+</html>
