@@ -20,111 +20,69 @@
   "personal": {
    "name": "شخصي",
    "color": "#8a6fa8"
+  },
+  "reports": {
+   "name": "تقارير هندسية",
+   "color": "#4f8a8b"
+  },
+  "unknown": {
+   "name": "مادة غير محددة",
+   "color": "#8b8172"
   }
  },
  "tasks": [
   {
-   "date": "2026-10-11",
-   "title": "واجب ٣",
-   "course": "vectors",
-   "type": "homework",
-   "time": "23:59",
-   "example": true
-  },
-  {
-   "date": "2026-10-14",
-   "title": "كويز ٢",
-   "course": "electromagnetism",
-   "type": "quiz",
-   "time": "10:00",
-   "example": true
-  },
-  {
    "date": "2026-10-18",
-   "title": "تقرير المعمل ٤",
-   "course": "circuits2",
-   "type": "lab",
-   "time": "12:00",
-   "example": true
+   "title": "كويز المتجهات",
+   "course": "vectors",
+   "type": "quiz",
+   "note": "من محاضرة ٥ إلى ٨"
   },
   {
    "date": "2026-10-19",
-   "title": "واجب ٤",
-   "course": "vectors",
-   "type": "homework",
-   "time": "23:59",
-   "example": true
+   "title": "كويز تحليل الدوائر ٢",
+   "course": "circuits2",
+   "type": "quiz"
+  },
+  {
+   "date": "2026-10-19",
+   "title": "اختبار تقارير هندسية",
+   "course": "reports",
+   "type": "exam",
+   "note": "الموعد مو مؤكد"
   },
   {
    "date": "2026-10-21",
-   "title": "عرض الحالة الأخلاقية",
-   "course": "ethics",
-   "type": "presentation",
-   "time": "09:00",
-   "example": true
-  },
-  {
-   "date": "2026-10-22",
-   "title": "اختبار نصفي",
-   "course": "electromagnetism",
-   "type": "exam",
-   "time": "08:00",
-   "example": true
-  },
-  {
-   "date": "2026-10-22",
-   "title": "مراجعة الفصل ٥",
+   "title": "آخر يوم لتسليم واجب المتجهات",
    "course": "vectors",
-   "type": "other",
-   "example": true
+   "type": "homework"
   },
   {
-   "date": "2026-10-26",
-   "title": "كويز ٣",
-   "course": "circuits2",
-   "type": "quiz",
-   "time": "11:00",
-   "example": true
+   "date": "2026-10-21",
+   "title": "الدكتور غير متواجد",
+   "course": "ethics",
+   "type": "other",
+   "note": "احتمال تكون المحاضرة عن بعد"
+  },
+  {
+   "date": "2026-10-22",
+   "title": "مد تيرم",
+   "course": "unknown",
+   "type": "exam",
+   "time": "08:30",
+   "note": "شابتر ٣، و٤.١، و٤.٢"
   },
   {
    "date": "2026-10-28",
-   "title": "تسليم المشروع",
-   "course": "circuits2",
-   "type": "project",
-   "time": "23:59",
-   "example": true
-  },
-  {
-   "date": "2026-10-29",
-   "title": "اختبار نصفي",
-   "course": "vectors",
-   "type": "exam",
-   "time": "10:00",
-   "example": true
-  },
-  {
-   "date": "2026-11-02",
-   "title": "واجب ٥",
-   "course": "electromagnetism",
-   "type": "homework",
-   "time": "23:59",
-   "example": true
-  },
-  {
-   "date": "2026-11-05",
-   "title": "مقال قصير",
+   "title": "مد تيرم أخلاقيات المهنة",
    "course": "ethics",
-   "type": "homework",
-   "time": "23:59",
-   "example": true
+   "type": "exam"
   },
   {
-   "date": "2026-10-17",
-   "title": "موعد الحلاق",
-   "course": "personal",
-   "type": "other",
-   "time": "19:30",
-   "example": true
+   "date": "2026-11-04",
+   "title": "تقديم العرض التقديمي",
+   "course": "ethics",
+   "type": "presentation"
   }
  ]
 }
