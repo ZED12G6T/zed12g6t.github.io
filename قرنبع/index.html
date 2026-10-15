@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#a9cfe6">
+<meta name="theme-color" content="#0b1530">
 <title>قرنبع</title>
 <link rel="stylesheet" href="../fonts.css">
 <link rel="stylesheet" href="style.css">
@@ -12,16 +12,23 @@
 <script type="module" src="main.js"></script>
 </head>
 <body>
+<div class="sky sky-night" aria-hidden="true"></div>
+<div class="sky sky-day" aria-hidden="true"><div class="sun"></div></div>
 <canvas id="scene" aria-hidden="true"></canvas>
-<div class="sun" aria-hidden="true"></div>
+<canvas id="bolt" aria-hidden="true"></canvas>
+<div id="flash" aria-hidden="true"></div>
 
 <main class="gate" id="gate">
+  <button class="sound" id="sound" type="button" aria-pressed="true" aria-label="اطفي صوت الرعد">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="wave" d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="mute" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+  </button>
   <h1 class="logo">قرنبع</h1>
-  <p class="tag">مكاني الصغير</p>
   <form class="lock" id="lock" autocomplete="off">
     <label for="pw" class="sr">كلمة السر</label>
     <input id="pw" type="password" placeholder="كلمة السر" autocomplete="current-password" spellcheck="false" required>
-    <button type="submit" aria-label="ادخل">ادخل</button>
+    <button type="submit" class="enter" aria-label="ادخل">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5 9 12l5.5 5.5"/></svg>
+    </button>
   </form>
   <p class="msg" id="msg" role="status" aria-live="polite"></p>
 </main>
@@ -33,9 +40,9 @@
   </header>
   <div class="welcome">
     <h2>حياك في قرنبع</h2>
-    <p>هذي قريتك، والأقسام بتنبني هنا قريب</p>
+    <p>هذي أراضيك، والأقسام بتنبني هنا قريب</p>
   </div>
-  <p class="hint">اسحب عشان تلف القرية</p>
+  <p class="hint">اسحب عشان تلف الجزر</p>
   <p class="credit">المجسمات من <a href="https://kaylousberg.com/game-assets/medieval-hexagon" target="_blank" rel="noopener">KayKit</a> (CC0)</p>
 </section>
 </body>

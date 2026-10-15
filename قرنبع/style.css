@@ -1,73 +1,108 @@
-/* قرنبع — ستايل هادي على طريقة Tiny Glade: سما باستيل، ورق أبيض دافي، وخط النسخ. */
+/* قرنبع — البوابة ليل وعاصفة، وبعد الدخول نهار باستيل على طريقة Tiny Glade. الخط: النسخ من ../fonts.css */
 :root {
+  --night-top: #040915;
+  --night-mid: #0b1530;
+  --night-low: #15254a;
+  --moon: #f3e3a8;
+  --moon-deep: #d9b45c;
   --sky-top: #8fc0e3;
   --sky-mid: #c9e2ef;
   --sky-low: #f7e9cf;
   --paper: #fffaf0;
   --ink: #3f3a33;
   --ink-soft: #7a6f60;
-  --leaf: #6f9a4f;
   --roof: #5b7fa6;
   --shadow: 0 10px 30px rgba(60, 50, 30, .18), 0 2px 6px rgba(60, 50, 30, .12);
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; }
 body {
   overflow: hidden;
-  color: var(--ink);
-  background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%);
+  color: #fff;
+  background: var(--night-mid);
   font-family: 'Naskh Swash', serif;
   -webkit-tap-highlight-color: transparent;
 }
-#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
-#scene.dragging { cursor: grabbing; }
+.sky { position: fixed; inset: 0; pointer-events: none; transition: opacity 1.2s ease; }
+.sky-night { background: linear-gradient(to bottom, var(--night-top) 0%, var(--night-mid) 55%, var(--night-low) 100%); }
+.sky-day { opacity: 0; background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%); }
+body.day .sky-day { opacity: 1; }
+body.day { color-scheme: light; color: var(--ink); }
 .sun {
-  position: fixed; top: -18vmin; left: 8vw; width: 60vmin; height: 60vmin; pointer-events: none;
+  position: absolute; top: -18vmin; left: 8vw; width: 60vmin; height: 60vmin;
   background: radial-gradient(circle, rgba(255, 244, 214, .85) 0%, rgba(255, 236, 196, .35) 35%, rgba(255, 236, 196, 0) 70%);
 }
+#scene { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+body.day #scene { cursor: grab; }
+body.day #scene.dragging { cursor: grabbing; }
+#bolt { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; }
+#flash { position: fixed; inset: 0; background: #eef2ff; opacity: 0; pointer-events: none; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 /* الشعار: أبيض بحافة ناعمة مثل شعار اللعبة */
 .logo {
   margin: 0; font-weight: 400; line-height: 1; color: #fff;
-  font-size: clamp(64px, 16vmin, 150px);
-  text-shadow: 0 0 2px rgba(50, 60, 70, .55), 0 2px 0 rgba(50, 60, 70, .35), 0 6px 22px rgba(40, 60, 80, .35);
+  font-size: clamp(72px, 17vmin, 160px);
+  text-shadow: 0 0 2px rgba(20, 30, 60, .7), 0 3px 0 rgba(20, 30, 60, .45), 0 0 40px rgba(170, 190, 255, .35);
 }
-.logo.small { font-size: 40px; }
+.logo.small { font-size: 40px; text-shadow: 0 0 2px rgba(50, 60, 70, .55), 0 2px 0 rgba(50, 60, 70, .35), 0 6px 22px rgba(40, 60, 80, .35); }
 
 /* بوابة كلمة السر */
 .gate {
-  position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 10px; padding: 24px 16px 18vh;
-  justify-content: flex-start; padding-top: max(22vh, 90px); text-align: center;
-  transition: opacity .9s ease, transform .9s ease;
+  position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 22px; padding: max(24vh, 110px) max(16px, env(safe-area-inset-right)) 24px max(16px, env(safe-area-inset-left));
+  text-align: center; pointer-events: none;
+  transition: opacity .5s ease;
 }
-.gate.out { opacity: 0; transform: translateY(-20px); pointer-events: none; }
-.tag { margin: 0 0 18px; font-size: 22px; color: #fff; text-shadow: 0 1px 6px rgba(40, 60, 80, .45); }
+.gate > * { pointer-events: auto; }
+.gate.out { opacity: 0; }
+.gate.out * { pointer-events: none; }
 .lock {
-  display: flex; align-items: center; gap: 6px; padding: 6px;
-  width: min(360px, 100%); background: var(--paper); border-radius: 999px; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 6px;
+  width: min(380px, 100%);
+  background: rgba(10, 18, 40, .55);
+  border: 1px solid rgba(200, 215, 255, .28);
+  border-radius: 999px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .08);
 }
 .lock input {
-  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink);
-  font: inherit; font-size: 20px; padding: 10px 16px; text-align: center; letter-spacing: .04em;
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: #f2f5ff;
+  font: inherit; font-size: 20px; padding: 10px 18px; letter-spacing: .04em;
 }
-.lock input::placeholder { color: #b3a894; letter-spacing: 0; }
-.lock button {
-  border: 0; border-radius: 999px; padding: 10px 22px; font: inherit; font-size: 20px; cursor: pointer;
-  color: #fff; background: var(--leaf); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15);
-  transition: transform .15s ease, background .2s ease;
+.lock input::placeholder { color: rgba(205, 215, 245, .55); letter-spacing: 0; }
+.lock:focus-within { border-color: rgba(243, 227, 168, .7); box-shadow: 0 12px 40px rgba(0, 0, 0, .35), 0 0 0 4px rgba(243, 227, 168, .15); }
+/* زر الدخول: قمر صغير فيه سهم */
+.enter {
+  flex: none; display: grid; place-items: center; width: 50px; height: 50px; padding: 0; border: 0; border-radius: 50%;
+  cursor: pointer; color: #2a2210;
+  background: radial-gradient(circle at 35% 30%, #fff8dc 0%, var(--moon) 45%, var(--moon-deep) 100%);
+  box-shadow: 0 0 0 3px rgba(243, 227, 168, .18), 0 0 26px rgba(243, 227, 168, .45);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.lock button:hover { background: #5f8a41; }
-.lock button:active { transform: translateY(1px); }
-.lock:focus-within { outline: 3px solid rgba(255, 255, 255, .8); outline-offset: 3px; }
+.enter svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .2s ease; }
+.enter:hover, .enter:focus-visible { box-shadow: 0 0 0 5px rgba(243, 227, 168, .25), 0 0 40px rgba(243, 227, 168, .7); outline: 0; }
+.enter:hover svg { transform: translateX(-3px); }
+.enter:active { transform: scale(.94); }
 .lock.shake { animation: shake .45s ease; }
 @keyframes shake { 20%, 60% { transform: translateX(-9px); } 40%, 80% { transform: translateX(9px); } }
-.msg { min-height: 1.5em; margin: 6px 0 0; font-size: 18px; color: #fff; }
-.msg:not(:empty) { padding: 4px 16px; border-radius: 999px; background: rgba(160, 80, 60, .85); box-shadow: var(--shadow); }
+.msg { min-height: 1.5em; margin: -8px 0 0; font-size: 18px; color: #fff; }
+.msg:not(:empty) { padding: 4px 16px; border-radius: 999px; background: rgba(150, 50, 50, .75); }
+
+.sound {
+  position: absolute; top: max(14px, env(safe-area-inset-top)); left: max(14px, env(safe-area-inset-left));
+  width: 42px; height: 42px; padding: 9px; border-radius: 50%; cursor: pointer;
+  color: #dfe6ff; background: rgba(10, 18, 40, .5); border: 1px solid rgba(200, 215, 255, .25);
+}
+.sound svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sound .spk { fill: currentColor; stroke: none; }
+.sound .mute { display: none; }
+.sound.off .wave { display: none; }
+.sound.off .mute { display: inline; }
+.sound:focus-visible { outline: 2px solid var(--moon); outline-offset: 2px; }
 
 /* بعد الدخول */
-.inside { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease .5s; }
+.inside { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1.2s ease .6s; }
 .inside.on { opacity: 1; }
 .inside > * { pointer-events: auto; }
 .top {
@@ -85,9 +120,7 @@ body {
 }
 .welcome h2 { margin: 0; font-weight: 400; font-size: 30px; color: var(--roof); }
 .welcome p { margin: 4px 0 0; font-size: 18px; color: var(--ink-soft); }
-.hint, .credit {
-  position: absolute; margin: 0; font-size: 14px; color: rgba(70, 60, 45, .75); pointer-events: none;
-}
+.hint, .credit { position: absolute; margin: 0; font-size: 14px; color: rgba(70, 60, 45, .75); pointer-events: none; }
 .hint { bottom: max(24px, env(safe-area-inset-bottom)); inset-inline: 0; text-align: center; }
 .credit { bottom: max(6px, env(safe-area-inset-bottom)); inset-inline-start: 12px; font-size: 11px; pointer-events: auto; }
 .credit a { color: inherit; }
@@ -98,6 +131,6 @@ body {
   .hint { bottom: 26px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .gate, .inside { transition: none; }
+  .gate, .inside, .sky { transition: none; }
   .lock.shake { animation: none; }
 }
