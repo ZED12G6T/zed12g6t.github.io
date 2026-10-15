@@ -1,10 +1,16 @@
-// main.js — قرنبع: بوابة ليل فيها غيوم وبحر وقمر وبرق ورعد، وبعد كلمة السر جزر طايرة على طريقة Tiny Glade.
-// المجسمات جاهزة من KayKit Medieval Hexagon Pack (CC0) في assets/village.glb، بس ألوان العشب والشجر والموية والسقوف معدلة.
+// main.js — قرنبع: بوابة ليل عاصف فوق بحر حقيقي يعكس القمر والغيوم والبرق، وبعد كلمة السر جزر طايرة على طريقة Tiny Glade وجدول الشهر.
+// المواد الجاهزة:
+//   assets/village.glb  مجسمات KayKit Medieval Hexagon Pack (CC0)، ألوانها معدلة شوي.
+//   assets/tex/moon.jpg  خريطة سطح القمر من أمثلة three.js.
+//   assets/tex/waternormals.jpg  و ../lib/three/objects/Water.js  البحر العاكس من أمثلة three.js (MIT).
+//   assets/tex/cloud.png  نفثة دخان/سحاب من opengameart عبر أمثلة three.js.
 // كلمة السر ما تنحفظ هنا: نقارن بصمتها (SHA-256) بس. هذا قفل خفيف، مو حماية حقيقية.
 // صوت الرعد مولّد بالمتصفح (Web Audio)، ويشتغل بعد أول لمسة أو ضغطة زر.
 import * as THREE from 'three';
 import { GLTFLoader } from '../lib/three/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from '../lib/three/libs/meshopt_decoder.module.js';
+import { Water } from '../lib/three/objects/Water.js';
+import { startCalendar } from './calendar.js';
 
 const PASS_HASH = '04b5575d8b2d8d0f796974a6271fee6b8e2f3176eddf5909f0a394ea8a6e9226';
 const KEY = 'qurnba-open';
@@ -13,7 +19,7 @@ const isSmall = Math.min(innerWidth, innerHeight) < 700 || matchMedia('(pointer:
 
 const $ = (id) => document.getElementById(id);
 const gate = $('gate'), inside = $('inside'), form = $('lock'), input = $('pw'), msg = $('msg');
-const flashEl = $('flash'), boltCanvas = $('bolt'), soundBtn = $('sound');
+const flashEl = $('flash'), soundBtn = $('sound');
 
 function loadModel(loader, onModel) {
   loader.load('assets/village.glb', onModel, undefined, (e) => console.warn('village.glb', e));
@@ -32,11 +38,13 @@ const store = {
 
 let world = null; // يتعبّى لما يشتغل WebGL
 let mode = 'night';
+let calendarStarted = false;
 
 function open(instant) {
   mode = 'day';
   gate.classList.add('out');
   inside.hidden = false;
+  if (!calendarStarted) { calendarStarted = true; startCalendar($('calendar')); }
   const show = () => {
     document.body.classList.add('day');
     world && world.setMode('day');
@@ -135,8 +143,7 @@ function thunder(power, delay) {
   const peak = 0.25 + power * 0.65;
   g.gain.setValueAtTime(0.0001, t);
   g.gain.exponentialRampToValueAtTime(peak, t + 0.04 + (1 - power) * 0.35);
-  // تموجات الرعد وهو يتدحرج
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 4; i++) { // تموجات الرعد وهو يتدحرج
     const at = t + 0.4 + i * (dur / 5) * (0.7 + Math.random() * 0.5);
     g.gain.exponentialRampToValueAtTime(peak * (0.35 + Math.random() * 0.4) / i, at);
   }
@@ -157,48 +164,13 @@ function thunder(power, delay) {
   }
 }
 
-// ---------------------------------------------------------------- خط البرق (رسم ثنائي فوق المشهد)
-const bctx = boltCanvas.getContext('2d');
-function sizeBolt() {
-  const r = Math.min(devicePixelRatio, 1.5);
-  boltCanvas.width = innerWidth * r; boltCanvas.height = innerHeight * r;
-  bctx.setTransform(r, 0, 0, r, 0, 0);
-}
-sizeBolt();
-addEventListener('resize', sizeBolt);
-function drawBolt() {
-  const w = innerWidth, h = innerHeight;
-  bctx.clearRect(0, 0, w, h);
-  const branch = (x, y, len, width, depth) => {
-    bctx.beginPath(); bctx.moveTo(x, y);
-    const steps = 10 + Math.floor(Math.random() * 6);
-    const pts = [];
-    for (let i = 0; i < steps; i++) {
-      x += (Math.random() - 0.5) * len * 0.22; y += len / steps;
-      bctx.lineTo(x, y); pts.push([x, y]);
-    }
-    bctx.lineWidth = width; bctx.stroke();
-    if (depth > 0) for (let i = 0; i < 2; i++) {
-      const p = pts[2 + Math.floor(Math.random() * (pts.length - 4))];
-      if (p) branch(p[0], p[1], len * 0.4, width * 0.5, depth - 1);
-    }
-  };
-  bctx.strokeStyle = 'rgba(232, 238, 255, .95)';
-  bctx.shadowColor = 'rgba(150, 180, 255, .9)';
-  bctx.shadowBlur = 22;
-  bctx.lineJoin = 'round';
-  const x0 = w * (0.12 + Math.random() * 0.76);
-  branch(x0, h * 0.02, h * (0.35 + Math.random() * 0.2), 2.6, 2);
-}
-function clearBolt() { bctx.clearRect(0, 0, innerWidth, innerHeight); }
-
 // ---------------------------------------------------------------- المشهد
 if (store.get(KEY) === PASS_HASH) open(true); else input.focus();
 
 const canvas = $('scene');
 let renderer;
 try {
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: !isSmall, alpha: true, powerPreference: 'low-power' });
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: !isSmall, alpha: true, powerPreference: 'high-performance' });
 } catch { /* بدون WebGL تبقى السما من CSS والبوابة تشتغل عادي */ }
 if (renderer) world = startScene();
 
@@ -211,90 +183,223 @@ function startScene() {
   renderer.shadowMap.autoUpdate = false; // الجزر ثابتة، الظل يترسم مرة وحدة
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x0d1834, 40, 150);
-  const camera = new THREE.PerspectiveCamera(40, 1, 0.5, 400);
+  scene.fog = new THREE.Fog(0x070d1c, 300, 1500);
+  const camera = new THREE.PerspectiveCamera(42, 1, 1, 3000);
   const deg = (d) => d * Math.PI / 180;
   const R = (a, b) => a + (b - a) * Math.random();
+  const texLoader = new THREE.TextureLoader();
 
   const night = new THREE.Group(), day = new THREE.Group();
   scene.add(night, day);
 
-  // ------------------------------------------------ الليل
-  night.add(new THREE.HemisphereLight(0x3a4c80, 0x05070f, 1.1));
-  const moonLight = new THREE.DirectionalLight(0xc3d0ff, 1.8);
-  moonLight.position.set(-40, 40, -60);
-  night.add(moonLight);
-  const flashLight = new THREE.PointLight(0xd8e2ff, 0, 140, 0);
-  night.add(flashLight);
+  // ================================================= الليل
+  const CAM_NIGHT = new THREE.Vector3(0, 10, 80);
+  const MOON = new THREE.Vector3(-420, 245, -1000);
 
-  const MOON = new THREE.Vector3(-62, 34, -150);
-  function moonTexture() {
+  // القمر: كرة عليها خريطة سطح القمر الحقيقية، وهالة ناعمة وراها
+  const moonTex = texLoader.load('assets/tex/moon.jpg');
+  moonTex.colorSpace = THREE.SRGBColorSpace;
+  const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(58, 48, 32),
+    new THREE.MeshBasicMaterial({ map: moonTex, color: new THREE.Color(0xfff3d6).multiplyScalar(1.3), fog: false, toneMapped: false }),
+  );
+  moon.position.copy(MOON);
+  moon.rotation.y = deg(-90);
+  night.add(moon);
+  function haloTexture() {
     const c = document.createElement('canvas'); c.width = c.height = 256;
     const x = c.getContext('2d');
-    const g = x.createRadialGradient(118, 112, 10, 128, 128, 120);
-    g.addColorStop(0, '#fffbea'); g.addColorStop(0.75, '#f1ead2'); g.addColorStop(1, '#d9d2bb');
-    x.fillStyle = g; x.beginPath(); x.arc(128, 128, 120, 0, Math.PI * 2); x.fill();
-    x.fillStyle = 'rgba(150, 145, 130, .22)';
-    for (const [cx, cy, r] of [[90, 100, 26], [160, 80, 14], [150, 160, 30], [100, 170, 12], [185, 130, 10], [70, 140, 9]]) {
-      x.beginPath(); x.arc(cx, cy, r, 0, Math.PI * 2); x.fill();
-    }
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
-  }
-  function glowTexture() {
-    const c = document.createElement('canvas'); c.width = c.height = 128;
-    const x = c.getContext('2d');
-    const g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
-    g.addColorStop(0, 'rgba(220,230,255,.55)'); g.addColorStop(0.35, 'rgba(170,190,255,.18)'); g.addColorStop(1, 'rgba(150,170,255,0)');
-    x.fillStyle = g; x.fillRect(0, 0, 128, 128);
+    const g = x.createRadialGradient(128, 128, 0, 128, 128, 128);
+    g.addColorStop(0, 'rgba(255,248,225,.75)'); g.addColorStop(0.18, 'rgba(225,230,255,.35)');
+    g.addColorStop(0.45, 'rgba(150,170,230,.10)'); g.addColorStop(1, 'rgba(120,140,220,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
     return new THREE.CanvasTexture(c);
   }
-  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture(), fog: false, depthWrite: false, transparent: true, blending: THREE.AdditiveBlending }));
-  glow.position.copy(MOON); glow.scale.setScalar(130); glow.renderOrder = -2;
-  const moon = new THREE.Sprite(new THREE.SpriteMaterial({ map: moonTexture(), fog: false, transparent: true, toneMapped: false }));
-  moon.position.copy(MOON); moon.scale.setScalar(30); moon.renderOrder = -1;
-  night.add(glow, moon);
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: haloTexture(), fog: false, depthWrite: false, transparent: true, blending: THREE.AdditiveBlending, toneMapped: false }));
+  halo.position.copy(MOON).add(new THREE.Vector3(0, 0, -60));
+  halo.scale.setScalar(620);
+  night.add(halo);
 
-  // نجوم
+  // نجوم قليلة في فتحات الغيوم
   {
-    const n = isSmall ? 350 : 700, pos = new Float32Array(n * 3);
+    const n = isSmall ? 250 : 500, pos = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) {
-      const a = Math.random() * Math.PI * 2, e = deg(R(4, 70)), r = 300;
+      const a = R(-2.2, -0.9), e = deg(R(12, 60)), r = 1400;
       pos[i * 3] = Math.cos(a) * Math.cos(e) * r; pos[i * 3 + 1] = Math.sin(e) * r; pos[i * 3 + 2] = Math.sin(a) * Math.cos(e) * r;
     }
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    night.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xdfe6ff, size: 1.6, sizeAttenuation: false, fog: false, transparent: true, opacity: 0.85 })));
+    night.add(new THREE.Points(g, new THREE.PointsMaterial({ color: 0xdfe6ff, size: 1.4, sizeAttenuation: false, fog: false, transparent: true, opacity: 0.7 })));
   }
 
-  // البحر: موج بسيط وطريق لمعة القمر عليه
-  const seaMat = new THREE.ShaderMaterial({
-    uniforms: { time: { value: 0 }, flash: { value: 0 }, moon: { value: new THREE.Vector2(MOON.x, MOON.z) }, cam: { value: new THREE.Vector2() } },
-    vertexShader: `varying vec3 wp; void main(){ vec4 w = modelMatrix * vec4(position,1.); wp = w.xyz; gl_Position = projectionMatrix * viewMatrix * w; }`,
-    fragmentShader: `
-      uniform float time, flash; uniform vec2 moon, cam; varying vec3 wp;
+  // البحر: Water من أمثلة three.js، يعكس القمر والغيوم والبرق
+  const moonDir = MOON.clone().sub(CAM_NIGHT).normalize();
+  const waterNormals = texLoader.load('assets/tex/waternormals.jpg', (t) => { t.wrapS = t.wrapT = THREE.RepeatWrapping; });
+  const water = new Water(new THREE.PlaneGeometry(4000, 4000), {
+    textureWidth: isSmall ? 256 : 512, textureHeight: isSmall ? 256 : 512,
+    waterNormals, sunDirection: moonDir, sunColor: 0x9aa4c4, waterColor: 0x01040b,
+    distortionScale: 3.4, fog: true,
+  });
+  // الأصل يضيف رمادي ثابت للانعكاس، يناسب النهار؛ بالليل نخليه شبه أسود
+  water.material.fragmentShader = water.material.fragmentShader.replace('vec3( 0.1 ) + reflectionSample * 0.9', 'vec3( 0.003 ) + reflectionSample * 0.75');
+  water.rotation.x = -Math.PI / 2;
+  water.material.uniforms.size.value = 1.6;
+  night.add(water);
+
+  // غيوم العاصفة: مئات النفثات المصورة في رسمة وحدة (InstancedBufferGeometry)
+  const cloudTex = texLoader.load('assets/tex/cloud.png');
+  const cloudMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: {
+      map: { value: cloudTex }, time: { value: 0 },
+      flash: { value: 0 }, flashPos: { value: new THREE.Vector3() },
+      fogColor: { value: new THREE.Color(0x070d1c) }, fogNear: { value: 300 }, fogFar: { value: 1500 },
+    },
+    vertexShader: `
+      attribute vec3 iOffset; attribute vec4 iData; // scale, rotation, shade, drift
+      uniform float time;
+      varying vec2 vUv; varying float vShade; varying vec3 vWorld; varying float vDepth;
       void main(){
-        vec2 rel = wp.xz - cam; float dist = length(rel);
-        vec2 dir = normalize(moon - cam);
-        float along = dot(rel, dir); float side = abs(rel.x*dir.y - rel.y*dir.x);
-        float w1 = sin(wp.x*.55 + time*.9) * sin(wp.z*.8 - time*1.1);
-        float w2 = sin((wp.x + wp.z)*1.7 + time*1.6) * .5 + sin(wp.x*3.1 - wp.z*2.3 - time*2.2) * .35;
-        float n = w1 + w2;
-        vec3 deep = vec3(.02,.045,.10), near = vec3(.05,.10,.20);
-        vec3 col = mix(near, deep, smoothstep(10., 120., dist));
-        col += vec3(.03,.05,.09) * smoothstep(.2, 1.2, n);
-        float path = smoothstep(2. + along*.09, 0., side) * step(0., along);
-        col += vec3(.85,.88,1.) * path * smoothstep(.55, 1.3, n) * .9;
-        col += vec3(.25,.3,.45) * path * .18;
-        col += vec3(.35,.4,.6) * flash * .35;
-        float fog = smoothstep(40., 170., dist);
-        col = mix(col, vec3(.051,.094,.204), fog);
-        gl_FragColor = vec4(col, 1.);
+        vUv = uv; vShade = iData.z;
+        vec3 w = iOffset; w.x += time * iData.w;
+        vWorld = w;
+        vec4 mv = viewMatrix * vec4(w, 1.);
+        float c = cos(iData.y), s = sin(iData.y);
+        mv.xy += mat2(c, -s, s, c) * position.xy * iData.x;
+        vDepth = -mv.z;
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader: `
+      uniform sampler2D map; uniform float flash; uniform vec3 flashPos;
+      uniform vec3 fogColor; uniform float fogNear, fogFar;
+      varying vec2 vUv; varying float vShade; varying vec3 vWorld; varying float vDepth;
+      void main(){
+        vec4 t = texture2D(map, vUv);
+        float lum = dot(t.rgb, vec3(.333));
+        float a = t.a * .62;
+        if (a < .01) discard;
+        vec3 dark = vec3(.03, .045, .09), lit = vec3(.42, .47, .64);
+        vec3 col = mix(dark, lit, vShade) * mix(.5, 1.2, lum) * mix(.55, 1.35, smoothstep(.1, .95, vUv.y));
+        float d = distance(vWorld, flashPos);
+        float f = flash * exp(-d * d / 52000.);
+        col += vec3(.80, .84, 1.) * f * (.35 + lum);
+        col = mix(col, fogColor, smoothstep(fogNear, fogFar, vDepth) * .85);
+        gl_FragColor = vec4(col, a);
       }`,
   });
-  const sea = new THREE.Mesh(new THREE.PlaneGeometry(600, 600), seaMat);
-  sea.rotation.x = -Math.PI / 2; sea.position.y = -5;
-  night.add(sea);
+  {
+    const puffs = [];
+    const dir = new THREE.Vector3();
+    const add = (x, y, z, s, shadeBoost = 0) => {
+      const p = new THREE.Vector3(x, y, z);
+      dir.copy(p).sub(CAM_NIGHT).normalize();
+      const ang = Math.acos(Math.min(1, dir.dot(moonDir)));
+      const puffAng = Math.atan(s * 0.5 / p.distanceTo(CAM_NIGHT));
+      if (ang < deg(4.5) + puffAng * 0.75) return; // نخلي فتحة قدام القمر
+      const nearMoon = Math.max(0, 1 - ang / deg(22));
+      const shade = Math.min(1, R(0.08, 0.32) + nearMoon * nearMoon * 0.75 + shadeBoost);
+      puffs.push({ p, s, rot: R(0, 6.28), shade, drift: R(1.5, 4) });
+    };
+    const k = isSmall ? 0.6 : 1;
+    for (let i = 0; i < 170 * k; i++) add(R(-1300, 1300), R(-10, 160) + R(0, 1) ** 3 * 160, R(-1100, -650), R(160, 320)); // جدار العاصفة على الأفق
+    for (let i = 0; i < 70 * k; i++) add(R(-700, 700), R(60, 200), R(-600, -260), R(110, 210)); // طبقة وسطى أقرب
+    for (let i = 0; i < 50 * k; i++) add(R(-500, 500), R(180, 260), R(-500, -80), R(160, 260), -0.05); // سقف غيم فوق الكاميرا
+    for (let i = 0; i < 26 * k; i++) add(R(-600, 600), R(2, 30), R(-900, -300), R(120, 220), 0.05); // ضباب منخفض فوق الموج
+    // ترتيب من البعيد للقريب عشان الشفافية تطلع صح
+    puffs.sort((a, b) => b.p.distanceTo(CAM_NIGHT) - a.p.distanceTo(CAM_NIGHT));
+    const base = new THREE.PlaneGeometry(1, 1);
+    const geo = new THREE.InstancedBufferGeometry();
+    geo.index = base.index;
+    geo.setAttribute('position', base.attributes.position);
+    geo.setAttribute('uv', base.attributes.uv);
+    const off = new Float32Array(puffs.length * 3), data = new Float32Array(puffs.length * 4);
+    puffs.forEach((c, i) => {
+      off.set([c.p.x, c.p.y, c.p.z], i * 3);
+      data.set([c.s, c.rot, c.shade, c.drift], i * 4);
+    });
+    geo.setAttribute('iOffset', new THREE.InstancedBufferAttribute(off, 3));
+    geo.setAttribute('iData', new THREE.InstancedBufferAttribute(data, 4));
+    geo.instanceCount = puffs.length;
+    const clouds = new THREE.Mesh(geo, cloudMat);
+    clouds.frustumCulled = false;
+    clouds.renderOrder = 2;
+    night.add(clouds);
+  }
 
-  // ------------------------------------------------ النهار
+  // البرق: شريط متعرج يتوهج، بين طبقات الغيم، والبحر يعكسه
+  const boltMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, toneMapped: false,
+    uniforms: { glow: { value: 0 } },
+    vertexShader: `attribute float side; varying float vSide; void main(){ vSide = side; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }`,
+    fragmentShader: `uniform float glow; varying float vSide;
+      void main(){ float d = abs(vSide); float core = smoothstep(.22, .0, d); float soft = pow(1. - d, 3.);
+        vec3 c = vec3(.75,.82,1.) * soft * .55 + vec3(1.) * core; gl_FragColor = vec4(c * glow, 1.); }`,
+  });
+  const bolt = new THREE.Mesh(new THREE.BufferGeometry(), boltMat);
+  bolt.frustumCulled = false; bolt.renderOrder = 1; bolt.visible = false;
+  night.add(bolt);
+  function makeBolt(top, bottomY) {
+    const pos = [], side = [], idx = [];
+    const ribbon = (pts, width) => {
+      const start = pos.length / 3;
+      pts.forEach((p, i) => {
+        const q = pts[Math.min(i + 1, pts.length - 1)], o = pts[Math.max(i - 1, 0)];
+        const dx = q.x - o.x, dy = q.y - o.y, len = Math.hypot(dx, dy) || 1;
+        const nx = -dy / len * width, ny = dx / len * width;
+        pos.push(p.x + nx, p.y + ny, p.z, p.x - nx, p.y - ny, p.z);
+        side.push(1, -1);
+        if (i > 0) { const a = start + (i - 1) * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
+      });
+    };
+    const walk = (from, toY, width, depth) => {
+      const pts = [from.clone()];
+      const steps = 18;
+      const dy = (toY - from.y) / steps;
+      let p = from.clone();
+      for (let i = 0; i < steps; i++) {
+        p = p.clone(); p.y += dy; p.x += R(-1, 1) * Math.abs(dy) * 0.7;
+        pts.push(p);
+      }
+      ribbon(pts, width);
+      if (depth > 0) for (let b = 0; b < 2; b++) {
+        const s = pts[3 + Math.floor(Math.random() * (pts.length - 8))];
+        if (s) walk(s, s.y - (s.y - toY) * R(0.25, 0.5), width * 0.55, depth - 1);
+      }
+    };
+    walk(top, bottomY, 6, 2);
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('side', new THREE.Float32BufferAttribute(side, 1));
+    g.setIndex(idx);
+    bolt.geometry.dispose();
+    bolt.geometry = g;
+  }
+
+  // مطر خفيف قدام الكاميرا
+  const rainMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: { time: { value: 0 }, flash: { value: 0 } },
+    vertexShader: `attribute float tip; uniform float time; varying float vTip;
+      void main(){ vec3 p = position; p.y = mod(p.y - time * 55., 90.) - 12.; p.x += p.y * .1;
+        p.y += tip * 2.6; p.x += tip * .26; vTip = tip; gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.); }`,
+    fragmentShader: `uniform float flash; varying float vTip;
+      void main(){ gl_FragColor = vec4(vec3(.62,.68,.85) + flash * .4, (.16 + flash * .25) * (1. - vTip * .6)); }`,
+  });
+  {
+    const n = isSmall ? 500 : 1100, pos = new Float32Array(n * 6), tip = new Float32Array(n * 2);
+    for (let i = 0; i < n; i++) {
+      const x = R(-70, 70), y = R(0, 90), z = R(-90, 60);
+      pos.set([x, y, z, x, y, z], i * 6); tip.set([0, 1], i * 2);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    g.setAttribute('tip', new THREE.BufferAttribute(tip, 1));
+    const rain = new THREE.LineSegments(g, rainMat);
+    rain.frustumCulled = false;
+    rain.position.copy(CAM_NIGHT).add(new THREE.Vector3(0, -10, -40));
+    night.add(rain);
+  }
+
+  // ================================================= النهار
   const hemiDay = new THREE.HemisphereLight(0xcfe6ff, 0x8a9a5b, 1.25);
   const sun = new THREE.DirectionalLight(0xffe2b5, 2.6);
   sun.position.set(-14, 20, 10);
@@ -308,7 +413,7 @@ function startScene() {
   const lands = new THREE.Group();
   day.add(lands);
   const spinners = [];
-  const cloudSets = [];
+  let dayClouds = null;
 
   const loader = new GLTFLoader();
   loader.setMeshoptDecoder(MeshoptDecoder);
@@ -316,7 +421,7 @@ function startScene() {
     const parts = {};
     gltf.scenes.forEach((s) => { const root = s.children[0]; if (root) { s.updateMatrixWorld(true); parts[root.name] = root; } });
     buildLands(parts);
-    buildClouds(parts);
+    buildDayClouds(parts);
     renderer.shadowMap.needsUpdate = true;
   });
 
@@ -340,65 +445,41 @@ function startScene() {
     return geo;
   }
 
-  function buildClouds(P) {
+  function buildDayClouds(P) {
     const big = P.cloud_big && baked(P.cloud_big), small = P.cloud_small && baked(P.cloud_small);
     if (!big || !small) return;
-    const make = (parent, mat, list) => {
-      for (const geo of [big, small]) {
-        const mine = list.filter((c) => c.big === (geo === big));
-        const im = new THREE.InstancedMesh(geo, mat, mine.length);
-        im.frustumCulled = false;
-        parent.add(im);
-        cloudSets.push({ im, list: mine, parent });
-      }
-    };
-    // ليل: بحر غيوم بين الكاميرا والقمر
-    const nightMat = new THREE.MeshLambertMaterial({ color: 0x8792bb, emissive: 0x18213f });
-    const nl = [];
-    const n = isSmall ? 70 : 110;
-    for (let i = 0; i < n; i++) {
-      const z = R(-140, -6), spread = 25 + (-z) * 0.9, far = Math.min(1, -z / 120);
-      nl.push({ big: Math.random() < 0.6, x: R(-spread, spread), y: R(-2.5, 1.5) + far * R(0, 7), z, s: R(1.4, 3.2) * (1 + far * 1.6), r: R(0, 6.28), v: R(0.15, 0.45) });
-    }
-    // طبقة قريبة تحت الكاميرا تأطر الشاشة من تحت
-    for (let i = 0; i < 7; i++) nl.push({ big: true, x: R(-24, 24), y: R(-5.5, -4), z: R(6, 16), s: R(2, 3.2), r: R(0, 6.28), v: R(0.2, 0.4) });
-    make(night, nightMat, nl);
-
-    // نهار: سحاب أبيض دافي حول الجزر وتحتها
-    const dayMat = new THREE.MeshLambertMaterial({ color: 0xffffff, emissive: 0xf4ead9, emissiveIntensity: 0.55 });
-    const dl = [];
-    // بحر سحاب تحت الجزر، وشوية سحاب بعيد ورا
-    for (let i = 0; i < 30; i++) {
+    const mat = new THREE.MeshLambertMaterial({ color: 0xffffff, emissive: 0xf4ead9, emissiveIntensity: 0.55 });
+    const list = [];
+    for (let i = 0; i < 30; i++) { // بحر سحاب تحت الجزر
       const a = R(0, 6.28), rad = R(4, 34);
-      dl.push({ big: Math.random() < 0.6, x: Math.cos(a) * rad, y: R(-10, -6), z: Math.sin(a) * rad, s: R(1.6, 3), r: R(0, 6.28), v: R(0.1, 0.3) });
+      list.push({ big: Math.random() < 0.6, x: Math.cos(a) * rad, y: R(-10, -6), z: Math.sin(a) * rad, s: R(1.6, 3), r: R(0, 6.28), v: R(0.1, 0.3) });
     }
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) { // سحاب بعيد ورا
       const a = R(0, 6.28), rad = R(26, 45);
-      dl.push({ big: Math.random() < 0.5, x: Math.cos(a) * rad, y: R(-2, 7), z: Math.sin(a) * rad, s: R(1.2, 2.2), r: R(0, 6.28), v: R(0.1, 0.3) });
+      list.push({ big: Math.random() < 0.5, x: Math.cos(a) * rad, y: R(-2, 7), z: Math.sin(a) * rad, s: R(1.2, 2.2), r: R(0, 6.28), v: R(0.1, 0.3) });
     }
-    make(day, dayMat, dl);
-    placeClouds(0, true);
+    dayClouds = [];
+    for (const geo of [big, small]) {
+      const mine = list.filter((c) => c.big === (geo === big));
+      const im = new THREE.InstancedMesh(geo, mat, mine.length);
+      day.add(im);
+      dayClouds.push({ im, list: mine });
+    }
+    placeDayClouds(0);
   }
   const tmp = new THREE.Object3D();
-  function placeClouds(time, all) {
-    for (const set of cloudSets) {
-      if (!all && !set.parent.visible) continue;
-      const nightSet = set.parent === night;
+  function placeDayClouds(time) {
+    if (!dayClouds) return;
+    for (const set of dayClouds) {
       set.list.forEach((c, i) => {
-        let x;
-        if (nightSet) {
-          const span = 60 + (-c.z) * 1.8;
-          x = c.x + time * c.v;
-          x = ((x + span) % (2 * span) + 2 * span) % (2 * span) - span;
-        } else x = c.x + Math.sin(time * 0.05 * c.v + c.r) * 2;
-        tmp.position.set(x, c.y, c.z); tmp.rotation.set(0, c.r, 0); tmp.scale.setScalar(c.s);
+        tmp.position.set(c.x + Math.sin(time * 0.05 * c.v + c.r) * 2, c.y, c.z);
+        tmp.rotation.set(0, c.r, 0); tmp.scale.setScalar(c.s);
         tmp.updateMatrix(); set.im.setMatrixAt(i, tmp.matrix);
       });
       set.im.instanceMatrix.needsUpdate = true;
     }
   }
 
-  // ------------------------------------------------ الجزر
   const SQ3 = Math.sqrt(3);
   const at = (q, r) => new THREE.Vector3(2 * q + r, 0, SQ3 * r);
   function put(P, parent, name, q, r, opt = {}) {
@@ -460,29 +541,25 @@ function startScene() {
     add('waterlily_A', 1, 1, { dz: .1, shadow: false }); add('waterlily_A', -3, 1, { dx: .3, rot: 50, shadow: false });
     add('waterplant_A', 2, 1, { dx: .5, dz: -.4, shadow: false });
 
-    // جزيرة غابة فيها بيت صغير
-    const a = isle(-14.5, -2, -5, 20);
+    const a = isle(-14.5, -2, -5, 20); // جزيرة غابة فيها بيت صغير
     RING1.forEach(([q, r]) => put(P, a, 'hex_grass', q, r));
     put(P, a, 'building_home_A_red', 0, 0, { rot: 150 });
     put(P, a, 'trees_A_medium', -1, 0); put(P, a, 'trees_B_medium', 0, 1, { rot: 50 }); put(P, a, 'trees_A_small', -1, 1);
     put(P, a, 'tree_single_B', 1, 0, { dx: .3 }); put(P, a, 'trees_B_small', 1, -1); put(P, a, 'rock_single_A', 0, -1, { dx: .3 });
     put(P, a, 'sack', 0, 0, { dx: .6, dz: .5 });
 
-    // جزيرة حقل وبير
-    const b = isle(13.5, 1, -9, -15);
+    const b = isle(13.5, 1, -9, -15); // جزيرة حقل وبير
     [[0, 0], [1, 0], [0, 1], [1, -1], [-1, 1]].forEach(([q, r]) => put(P, b, 'hex_grass', q, r));
     put(P, b, 'building_grain', 1, 0); put(P, b, 'building_grain', 1, -1);
     put(P, b, 'building_well_blue', 0, 0, { rot: 30 });
     put(P, b, 'tree_single_A', 0, 1, { dx: -.3 }); put(P, b, 'trees_A_small', -1, 1, { rot: 80 });
     put(P, b, 'fence_wood_straight', 0, 0, { rot: 180 }); put(P, b, 'barrel', 0, 1, { dx: .5, dz: .3 });
 
-    // جزيرة بعيدة فيها شجر
-    const c = isle(-4, 3.5, -17, 40);
+    const c = isle(-4, 3.5, -17, 40); // جزيرة بعيدة فيها شجر
     [[0, 0], [1, 0], [0, 1]].forEach(([q, r]) => put(P, c, 'hex_grass', q, r));
     put(P, c, 'trees_B_medium', 0, 0); put(P, c, 'trees_A_small', 1, 0, { rot: 30 }); put(P, c, 'tree_single_A', 0, 1);
 
-    // جزر صغيرة: بلاطة وحدة أو ثنتين
-    const d = isle(10.5, -3, 6, 0);
+    const d = isle(10.5, -3, 6, 0); // جزر صغيرة
     put(P, d, 'hex_grass', 0, 0); put(P, d, 'tree_single_B', 0, 0, { dx: -.2 }); put(P, d, 'rock_single_C', 0, 0, { dx: .5, dz: .3 });
     const e = isle(-11, -4.5, 7, 10);
     [[0, 0], [1, 0]].forEach(([q, r]) => put(P, e, 'hex_grass', q, r));
@@ -494,16 +571,20 @@ function startScene() {
     });
   }
 
-  // ------------------------------------------------ البرق
-  let flash = 0, strikeT = -1, nextStrike = 1.5, flicker = [];
+  // ================================================= البرق
+  let flash = 0, strikeT = -1, nextStrike = 1.2, flicker = [];
   function strike(t) {
     const near = Math.random();
-    flicker = near > 0.5 ? [[0, 1], [0.07, 0.25], [0.13, 0.9], [0.24, 0.15], [0.32, 0.6], [0.6, 0]] : [[0, 0.7], [0.1, 0.1], [0.18, 0.45], [0.45, 0]];
+    flicker = near > 0.45
+      ? [[0, 1], [0.06, 0.2], [0.12, 0.95], [0.22, 0.3], [0.3, 0.7], [0.62, 0]]
+      : [[0, 0.65], [0.09, 0.1], [0.17, 0.5], [0.42, 0]];
     strikeT = t;
-    flashLight.position.set(R(-50, 40), R(4, 12), R(-90, -20));
-    if (near > 0.35) drawBolt();
-    thunder(0.3 + near * 0.7, 0.25 + (1 - near) * 2);
-    nextStrike = t + R(3.5, 9);
+    const x = R(-700, 700), z = R(-950, -450), y = R(160, 230);
+    cloudMat.uniforms.flashPos.value.set(x, y - 40, z);
+    bolt.visible = near > 0.3;
+    if (bolt.visible) makeBolt(new THREE.Vector3(x, y, z), 0);
+    thunder(0.3 + near * 0.7, 0.25 + (1 - near) * 2.2);
+    nextStrike = t + R(3.5, 8.5);
   }
   function flashAt(t) {
     if (strikeT < 0) return 0;
@@ -515,17 +596,24 @@ function startScene() {
     return 0;
   }
 
-  // ------------------------------------------------ تبديل ليل ونهار
+  // ================================================= تبديل ليل ونهار
   function setMode(m) {
     const isDay = m === 'day';
     night.visible = !isDay; day.visible = isDay;
-    if (isDay) { scene.fog.color.set(0xf3e6cf); scene.fog.near = 40; scene.fog.far = 110; renderer.shadowMap.needsUpdate = true; }
-    else { scene.fog.color.set(0x0d1834); scene.fog.near = 40; scene.fog.far = 150; }
-    clearBolt(); flash = 0;
+    renderer.toneMappingExposure = isDay ? 1.05 : 0.8;
+    if (isDay) {
+      scene.fog.color.set(0xf3e6cf); scene.fog.near = 40; scene.fog.far = 110;
+      camera.near = 0.5; camera.far = 300; renderer.shadowMap.needsUpdate = true;
+    } else {
+      scene.fog.color.set(0x070d1c); scene.fog.near = 300; scene.fog.far = 1500;
+      camera.near = 1; camera.far = 3000; camera.clearViewOffset();
+    }
+    camera.updateProjectionMatrix();
+    flash = 0;
   }
   setMode(mode);
 
-  // ------------------------------------------------ كاميرا وسحب
+  // ================================================= كاميرا وسحب
   let yaw = deg(-20), yawVel = 0, dragging = false, lastX = 0, idle = 0;
   canvas.addEventListener('pointerdown', (e) => {
     if (mode !== 'day') return;
@@ -540,9 +628,21 @@ function startScene() {
   canvas.addEventListener('pointerup', end);
   canvas.addEventListener('pointercancel', end);
 
+  // بالنهار الجدول ياخذ جزء من الشاشة، فنزيح مركز الصورة عشان الجزر تبان في الباقي
+  function frameDay() {
+    const w = innerWidth, h = innerHeight;
+    if (w >= 900) {
+      const panel = Math.min(660, w * 0.54) + 32;
+      camera.setViewOffset(w, h, panel / 2, 0, w, h); // RTL: الجدول يمين والجزر يسار
+    } else {
+      camera.setViewOffset(w, h, 0, h * 0.3, w, h); // الجوال: الجزر فوق والجدول تحت
+    }
+  }
+
   function resize() {
     renderer.setSize(innerWidth, innerHeight, false);
     camera.aspect = innerWidth / innerHeight;
+    if (mode === 'day') frameDay(); else camera.clearViewOffset();
     camera.updateProjectionMatrix();
   }
   addEventListener('resize', resize);
@@ -550,7 +650,7 @@ function startScene() {
 
   const clock = new THREE.Clock();
   const frameGap = isSmall ? 1 / 30 : 0;
-  let acc = 0, time = 0;
+  let acc = 0, time = 0, lastMode = '';
 
   function frame() {
     acc += Math.min(clock.getDelta(), 0.1);
@@ -558,37 +658,38 @@ function startScene() {
     const step = acc; acc = 0;
     time += step;
     const portrait = camera.aspect < 0.8;
+    if (mode !== lastMode) { lastMode = mode; resize(); }
 
     if (mode === 'night') {
-      camera.fov = portrait ? 62 : 45;
+      camera.fov = portrait ? 64 : 42;
       camera.updateProjectionMatrix();
-      const sway = reduceMotion ? 0 : Math.sin(time * 0.07) * 1.5;
-      camera.position.set(sway, 3, 30);
-      camera.lookAt((portrait ? -24 : -6) + sway * 0.3, portrait ? 8 : 4, -100);
+      const sway = reduceMotion ? 0 : Math.sin(time * 0.08) * 3;
+      camera.position.set(CAM_NIGHT.x + sway, CAM_NIGHT.y + (reduceMotion ? 0 : Math.sin(time * 0.5) * 0.6), CAM_NIGHT.z);
+      camera.lookAt(portrait ? -360 : -60, portrait ? -110 : 110, -900);
       if (!reduceMotion && time > nextStrike) strike(time);
       flash = flashAt(time);
-      if (strikeT >= 0 && time - strikeT > 0.25) clearBolt();
-      flashLight.intensity = flash * 9;
-      seaMat.uniforms.flash.value = flash;
-      seaMat.uniforms.time.value = time;
-      seaMat.uniforms.cam.value.set(camera.position.x, camera.position.z);
-      if (!gate.classList.contains('out')) flashEl.style.opacity = String(flash * 0.16);
+      cloudMat.uniforms.flash.value = flash;
+      cloudMat.uniforms.time.value = reduceMotion ? 0 : time;
+      boltMat.uniforms.glow.value = Math.min(1, flash * 1.4);
+      if (flash <= 0.001) bolt.visible = false;
+      rainMat.uniforms.time.value = time;
+      rainMat.uniforms.flash.value = flash;
+      water.material.uniforms.time.value = time * 0.6;
+      if (!gate.classList.contains('out')) flashEl.style.opacity = String(flash * 0.12);
     } else {
-      camera.fov = portrait ? 48 : 36;
+      camera.fov = portrait ? 50 : 34;
       camera.updateProjectionMatrix();
       if (!dragging) {
         idle += step;
         yawVel *= Math.pow(0.04, step);
         yaw += yawVel + (reduceMotion ? 0 : step * 0.04 * Math.min(1, idle / 2));
       }
-      const fit = (w) => w / (Math.tan(camera.fov * Math.PI / 360) * camera.aspect);
-      const dist = Math.max(27, fit(6.6));
+      const dist = portrait ? 46 : 33;
       const bob = reduceMotion ? 0 : Math.sin(time * 0.6) * 0.25;
-      camera.position.set(Math.sin(yaw) * dist, 13 + bob, Math.cos(yaw) * dist);
-      camera.lookAt(0, portrait ? 1.6 : -0.8, 0);
-      if (!reduceMotion) for (const [o, axis, speed] of spinners) o.rotation[axis] += speed * step;
+      camera.position.set(Math.sin(yaw) * dist, 15 + bob, Math.cos(yaw) * dist);
+      camera.lookAt(0, -1, 0);
+      if (!reduceMotion) { for (const [o, axis, speed] of spinners) o.rotation[axis] += speed * step; placeDayClouds(time); }
     }
-    if (!reduceMotion) placeClouds(time);
     renderer.render(scene, camera);
   }
 

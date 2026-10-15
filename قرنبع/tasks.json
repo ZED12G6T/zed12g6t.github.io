@@ -1,0 +1,130 @@
+{
+ "_note": "مهام قرنبع. كل مهمة: date (YYYY-MM-DD)، title، course (مفتاح من courses)، type (exam/quiz/homework/project/lab/presentation/other)، time اختياري، note اختياري. شيل example لما تكون المهمة حقيقية.",
+ "courses": {
+  "vectors": {
+   "name": "المتجهات",
+   "color": "#5b7fa6"
+  },
+  "electromagnetism": {
+   "name": "الكهرومغناطيسية",
+   "color": "#c98a2e"
+  },
+  "ethics": {
+   "name": "أخلاقيات المهنة",
+   "color": "#5f8f44"
+  },
+  "circuits2": {
+   "name": "الدوائر ٢",
+   "color": "#bf6450"
+  },
+  "personal": {
+   "name": "شخصي",
+   "color": "#8a6fa8"
+  }
+ },
+ "tasks": [
+  {
+   "date": "2026-10-11",
+   "title": "واجب ٣",
+   "course": "vectors",
+   "type": "homework",
+   "time": "23:59",
+   "example": true
+  },
+  {
+   "date": "2026-10-14",
+   "title": "كويز ٢",
+   "course": "electromagnetism",
+   "type": "quiz",
+   "time": "10:00",
+   "example": true
+  },
+  {
+   "date": "2026-10-18",
+   "title": "تقرير المعمل ٤",
+   "course": "circuits2",
+   "type": "lab",
+   "time": "12:00",
+   "example": true
+  },
+  {
+   "date": "2026-10-19",
+   "title": "واجب ٤",
+   "course": "vectors",
+   "type": "homework",
+   "time": "23:59",
+   "example": true
+  },
+  {
+   "date": "2026-10-21",
+   "title": "عرض الحالة الأخلاقية",
+   "course": "ethics",
+   "type": "presentation",
+   "time": "09:00",
+   "example": true
+  },
+  {
+   "date": "2026-10-22",
+   "title": "اختبار نصفي",
+   "course": "electromagnetism",
+   "type": "exam",
+   "time": "08:00",
+   "example": true
+  },
+  {
+   "date": "2026-10-22",
+   "title": "مراجعة الفصل ٥",
+   "course": "vectors",
+   "type": "other",
+   "example": true
+  },
+  {
+   "date": "2026-10-26",
+   "title": "كويز ٣",
+   "course": "circuits2",
+   "type": "quiz",
+   "time": "11:00",
+   "example": true
+  },
+  {
+   "date": "2026-10-28",
+   "title": "تسليم المشروع",
+   "course": "circuits2",
+   "type": "project",
+   "time": "23:59",
+   "example": true
+  },
+  {
+   "date": "2026-10-29",
+   "title": "اختبار نصفي",
+   "course": "vectors",
+   "type": "exam",
+   "time": "10:00",
+   "example": true
+  },
+  {
+   "date": "2026-11-02",
+   "title": "واجب ٥",
+   "course": "electromagnetism",
+   "type": "homework",
+   "time": "23:59",
+   "example": true
+  },
+  {
+   "date": "2026-11-05",
+   "title": "مقال قصير",
+   "course": "ethics",
+   "type": "homework",
+   "time": "23:59",
+   "example": true
+  },
+  {
+   "date": "2026-10-17",
+   "title": "موعد الحلاق",
+   "course": "personal",
+   "type": "other",
+   "time": "19:30",
+   "example": true
+  }
+ ]
+}
