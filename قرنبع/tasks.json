@@ -1,0 +1,88 @@
+{
+ "_note": "مهام قرنبع. كل مهمة: date (YYYY-MM-DD)، title، course (مفتاح من courses)، type (exam/quiz/homework/project/lab/presentation/other)، time اختياري، note اختياري. شيل example لما تكون المهمة حقيقية.",
+ "courses": {
+  "vectors": {
+   "name": "المتجهات",
+   "color": "#5b7fa6"
+  },
+  "electromagnetism": {
+   "name": "الكهرومغناطيسية",
+   "color": "#c98a2e"
+  },
+  "ethics": {
+   "name": "أخلاقيات المهنة",
+   "color": "#5f8f44"
+  },
+  "circuits2": {
+   "name": "الدوائر ٢",
+   "color": "#bf6450"
+  },
+  "personal": {
+   "name": "شخصي",
+   "color": "#8a6fa8"
+  },
+  "reports": {
+   "name": "تقارير هندسية",
+   "color": "#4f8a8b"
+  },
+  "unknown": {
+   "name": "مادة غير محددة",
+   "color": "#8b8172"
+  }
+ },
+ "tasks": [
+  {
+   "date": "2026-10-18",
+   "title": "كويز المتجهات",
+   "course": "vectors",
+   "type": "quiz",
+   "note": "من محاضرة ٥ إلى ٨"
+  },
+  {
+   "date": "2026-10-19",
+   "title": "كويز تحليل الدوائر ٢",
+   "course": "circuits2",
+   "type": "quiz"
+  },
+  {
+   "date": "2026-10-19",
+   "title": "اختبار تقارير هندسية",
+   "course": "reports",
+   "type": "exam",
+   "note": "الموعد مو مؤكد"
+  },
+  {
+   "date": "2026-10-21",
+   "title": "آخر يوم لتسليم واجب المتجهات",
+   "course": "vectors",
+   "type": "homework"
+  },
+  {
+   "date": "2026-10-21",
+   "title": "الدكتور غير متواجد",
+   "course": "ethics",
+   "type": "other",
+   "note": "احتمال تكون المحاضرة عن بعد"
+  },
+  {
+   "date": "2026-10-22",
+   "title": "مد تيرم",
+   "course": "unknown",
+   "type": "exam",
+   "time": "08:30",
+   "note": "شابتر ٣، و٤.١، و٤.٢"
+  },
+  {
+   "date": "2026-10-28",
+   "title": "مد تيرم أخلاقيات المهنة",
+   "course": "ethics",
+   "type": "exam"
+  },
+  {
+   "date": "2026-11-04",
+   "title": "تقديم العرض التقديمي",
+   "course": "ethics",
+   "type": "presentation"
+  }
+ ]
+}
