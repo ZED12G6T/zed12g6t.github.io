@@ -20,8 +20,7 @@ function renderNavigation() {
   // لو المستخدم جاي من الرابط المنفصل /em/ يرجعه "فهرس المادة" له بدل فهرس الموقع
   let emOnly = false;
   try { emOnly = localStorage.getItem("em-only") === "1"; } catch (e) {}
-  // ومحاضرة 1 و2 مخفية مؤقتاً من الرابط المنفصل
-  const list = emOnly ? lectures.filter(l => l.url !== "lecture1.html" && l.url !== "lecture2.html") : lectures;
+  const list = lectures.slice();
   if (emOnly) list[0] = { name: lectures[0].name, url: "../em/" };
 
   select.innerHTML = list.map(lec => `
