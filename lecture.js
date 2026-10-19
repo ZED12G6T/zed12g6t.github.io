@@ -71,11 +71,13 @@
     const main = document.querySelector('main') || document.body;
     const secs = $$('main section[data-nav]');
     const arOnly = root.hasAttribute('data-ar-only');
+    let emOnly = false;   // جاي من الرابط المنفصل /em/ : الشعار يرجع له بدل الرئيسية
+    try { emOnly = sessionStorage.getItem('em-only') === '1'; } catch (e) {}
     const pills = secs.map(s => `<a href="#${s.id}">${pipe(s.dataset.nav)}</a>`).join('');
     main.insertAdjacentHTML('beforebegin', `
 <div id="progress"><i></i></div>
 <header class="topbar">
-  <div class="brand"><a href="../" style="color:inherit;text-decoration:none">${L('ملخصات المحاضرات ·', 'Lecture summaries ·')}</a> <b>${root.dataset.topic || ''}</b></div>
+  <div class="brand"><a href="${emOnly ? '../em/' : '../'}" style="color:inherit;text-decoration:none">${L('ملخصات المحاضرات ·', 'Lecture summaries ·')}</a> <b>${root.dataset.topic || ''}</b></div>
   <div class="tb-actions">
     ${arOnly ? '' : '<button class="icon-btn" id="lang-btn" title="Language / اللغة">EN</button>'}
     <button class="icon-btn" id="theme-btn" title="المظهر / Theme">☾</button>
