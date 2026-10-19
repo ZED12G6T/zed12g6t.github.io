@@ -1,0 +1,61 @@
+/* =====================================================================
+   em-index.css — فهرس الكهرومغناطيسية (em/ و electromagnetism/).
+   خلفية فيها مجال ثنائي القطب مرسوم بالكانفس (em-index.js)، وفوقها بطاقات المحاضرات.
+   الألوان كلها متغيرات، والثيم المختار يغيّرها من em-index.js.
+   ===================================================================== */
+
+:root {
+  --bg: #fdfaf0; --bg-2: #fff3cc; --ink: #1f1c14; --dim: #6f6858; --acc: #9a6a00;
+  --line: rgba(154,106,0,.22); --glass: rgba(255,252,240,.75); --fill: #f7cf3d; --on: #1f1c14;
+  --soft: rgba(247,207,61,.22); --card: #ffffff;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); direction: rtl; font-size: 15.5px; line-height: 1.75; transition: background .4s; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 1px solid var(--acc); outline-offset: 3px; }
+.en-name { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; }
+
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; display: block; background: radial-gradient(ellipse at 30% 50%, var(--bg-2), var(--bg) 65%); }
+
+.page { position: relative; z-index: 1; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 72px max(16px, env(safe-area-inset-left, 0px)); }
+.wrap { max-width: 1120px; margin: 0 auto; }
+
+/* ================= الشريط العلوي واختيار الثيم ================= */
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; }
+.brand { font-size: 1.05rem; }
+.brand .en-name { font-size: .72rem; color: var(--dim); margin-right: 10px; } /* margin-right لأن الاسم الإنجليزي اتجاهه ltr */
+.pick { display: flex; flex-wrap: wrap; flex-basis: 100%; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 18px; padding: 3px; background: var(--glass); }
+.pick .grp { font-size: .78rem; color: var(--dim); padding-inline: 8px 2px; }
+.pick .grp:not(:first-child) { border-inline-start: 1px solid var(--line); margin-inline-start: 6px; padding-inline-start: 12px; }
+.pick button { font: inherit; font-size: .88rem; color: var(--dim); background: none; border: 0; border-radius: 999px; padding: 3px 12px; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; }
+.pick button[aria-pressed="true"] { background: var(--fill); color: var(--on); }
+.pick i { width: 12px; height: 12px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+
+/* ================= العنوان (الرسمة جنبه على اليسار) ================= */
+.hero { max-width: 520px; min-height: min(62vh, 500px); padding-block: 24px 34px; display: flex; flex-direction: column; justify-content: center; }
+.hero > .en-name { color: var(--acc); font-size: .74rem; letter-spacing: .22em; }
+.hero h1 { margin: 6px 0 8px; font-weight: 400; font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1.25; text-wrap: balance; }
+.hero p { margin: 0; color: var(--dim); font-size: 1.08rem; max-width: 40ch; }
+.obj-name { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; color: var(--dim); font-size: .95rem; }
+.obj-name b { font-weight: 400; color: var(--acc); }
+.obj-name .en-name { font-size: .7rem; letter-spacing: .08em; }
+
+/* ================= بطاقات المحاضرات (خلفيتها مقفولة عشان ما تمر خطوط الرسمة على الأسماء) ================= */
+.list { display: flex; flex-direction: column; gap: 10px; position: relative; }
+.lec { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 20px rgba(0,0,0,.04); transition: border-color .2s, transform .2s; }
+.lec:hover { border-color: var(--fill); transform: translateY(-1px); }
+.lec .n { font-size: .78rem; background: var(--soft); color: var(--acc); padding: 3px 9px; border-radius: 8px; font-variant-numeric: tabular-nums; }
+.lec .t { min-width: 0; display: grid; }
+.lec b { font-weight: 400; font-size: 1.12rem; line-height: 1.6; }
+.lec .t .en-name { font-size: .72rem; color: var(--dim); justify-self: start; text-align: right; }
+
+@media (max-width: 760px) {
+  .hero { padding-block: 34vh 22px; min-height: 0; }
+  .obj-name .en-name { display: none; }
+  .pick { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; border-radius: 999px; }
+  .pick::-webkit-scrollbar { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { body, .lec { transition: none; } }
