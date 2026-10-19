@@ -1,19 +1,18 @@
 /* =====================================================================
    em-index.css — فهرس الكهرومغناطيسية (em/ و electromagnetism/).
    خلفية فيها مجال ثنائي القطب مرسوم بالكانفس (em-index.js)، وفوقها بطاقات المحاضرات.
-   الألوان كلها متغيرات، والثيم المختار يغيّرها من em-index.js.
+   الثيم ثابت: فحمي وبرتقالي (اختيار مجاهد).
    ===================================================================== */
 
 :root {
-  --bg: #fdfaf0; --bg-2: #fff3cc; --ink: #1f1c14; --dim: #6f6858; --acc: #9a6a00;
-  --line: rgba(154,106,0,.22); --glass: rgba(255,252,240,.75); --fill: #f7cf3d; --on: #1f1c14;
-  --soft: rgba(247,207,61,.22); --card: #ffffff;
+  --bg: #111111; --bg-2: #232120; --ink: #f2efe8; --dim: #a19b91; --acc: #ff9d4d;
+  --line: rgba(225,222,215,.22); --fill: #ff8a3d; --soft: rgba(255,150,70,.2); --card: #232120;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
-  color-scheme: light;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html, body { min-height: 100%; }
-body { margin: 0; background: var(--bg); color: var(--ink); direction: rtl; font-size: 15.5px; line-height: 1.75; transition: background .4s; }
+body { margin: 0; background: var(--bg); color: var(--ink); direction: rtl; font-size: 15.5px; line-height: 1.75; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 1px solid var(--acc); outline-offset: 3px; }
 .en-name { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; }
@@ -23,16 +22,10 @@ a { color: inherit; text-decoration: none; }
 .page { position: relative; z-index: 1; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 72px max(16px, env(safe-area-inset-left, 0px)); }
 .wrap { max-width: 1120px; margin: 0 auto; }
 
-/* ================= الشريط العلوي واختيار الثيم ================= */
+/* ================= الشريط العلوي ================= */
 .top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; }
 .brand { font-size: 1.05rem; }
 .brand .en-name { font-size: .72rem; color: var(--dim); margin-right: 10px; } /* margin-right لأن الاسم الإنجليزي اتجاهه ltr */
-.pick { display: flex; flex-wrap: wrap; flex-basis: 100%; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 18px; padding: 3px; background: var(--glass); }
-.pick .grp { font-size: .78rem; color: var(--dim); padding-inline: 8px 2px; }
-.pick .grp:not(:first-child) { border-inline-start: 1px solid var(--line); margin-inline-start: 6px; padding-inline-start: 12px; }
-.pick button { font: inherit; font-size: .88rem; color: var(--dim); background: none; border: 0; border-radius: 999px; padding: 3px 12px; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; }
-.pick button[aria-pressed="true"] { background: var(--fill); color: var(--on); }
-.pick i { width: 12px; height: 12px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
 
 /* ================= العنوان (الرسمة جنبه على اليسار) ================= */
 .hero { max-width: 520px; min-height: min(62vh, 500px); padding-block: 24px 34px; display: flex; flex-direction: column; justify-content: center; }
@@ -55,7 +48,5 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 760px) {
   .hero { padding-block: 34vh 22px; min-height: 0; }
   .obj-name .en-name { display: none; }
-  .pick { flex-wrap: nowrap; overflow-x: auto; max-width: 100%; scrollbar-width: none; border-radius: 999px; }
-  .pick::-webkit-scrollbar { display: none; }
 }
-@media (prefers-reduced-motion: reduce) { body, .lec { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .lec { transition: none; } }
