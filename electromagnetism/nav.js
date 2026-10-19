@@ -1,12 +1,12 @@
 // قائمة محاضرات الكهرومغناطيسية - عند إضافة محاضرة جديدة تضيف سطر هنا فقط
 const lectures = [
   { name: "🏠 فهرس المادة", url: "index.html" },
-  { name: "ملخص المحاضرة 1", url: "lecture1.html" },
-  { name: "ملخص المحاضرة 2", url: "lecture2.html" },
-  { name: "ملخص المحاضرة 3", url: "lecture3.html" },
+  { name: "المحاضرة 1", url: "lecture1.html" },
+  { name: "المحاضرة 2", url: "lecture2.html" },
+  { name: "المحاضرة 3", url: "lecture3.html" },
   { name: "المحاضرة 4 الجزء الأول", url: "lecture4-1.html" },
   { name: "المحاضرة 4 الجزء الثاني", url: "lecture4-2.html" },
-  { name: "ملخص المحاضرة 5", url: "lecture5.html" }
+  { name: "المحاضرة 5", url: "lecture5.html" }
 ];
 
 function renderNavigation() {
