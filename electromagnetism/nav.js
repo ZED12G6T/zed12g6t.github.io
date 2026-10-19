@@ -19,10 +19,12 @@ function renderNavigation() {
 
   // لو المستخدم جاي من الرابط المنفصل /em/ يرجعه "فهرس المادة" له بدل فهرس الموقع
   let emOnly = false;
-  try { emOnly = sessionStorage.getItem("em-only") === "1"; } catch (e) {}
-  if (emOnly) lectures[0].url = "../em/";
+  try { emOnly = localStorage.getItem("em-only") === "1"; } catch (e) {}
+  // ومحاضرة 1 و2 مخفية مؤقتاً من الرابط المنفصل
+  const list = emOnly ? lectures.filter(l => l.url !== "lecture1.html" && l.url !== "lecture2.html") : lectures;
+  if (emOnly) list[0] = { name: lectures[0].name, url: "../em/" };
 
-  select.innerHTML = lectures.map(lec => `
+  select.innerHTML = list.map(lec => `
     <option value="${lec.url}" ${currentPath === lec.url ? 'selected' : ''}>
       ${lec.name}
     </option>

@@ -1,6 +1,8 @@
 // site.js — زر الوضع الليلي في الصفحة الرئيسية وفهارس المواد. يحفظ نفس الاختيار اللي تحفظه صفحات المحاضرات.
 (function () {
   var root = document.documentElement, KEY = 'lec-theme';
+  // أي فهرس من الموقع الرئيسي يلغي وضع رابط الكهرو المنفصل (/em/ يرجعه بعد هالسطر)
+  try { localStorage.removeItem('em-only'); } catch (e) {}
   try { var t = localStorage.getItem(KEY); if (t === 'light' || t === 'dark') root.setAttribute('data-theme', t); } catch (e) {}
   document.addEventListener('DOMContentLoaded', function () {
     var b = document.getElementById('theme-btn');
