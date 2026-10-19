@@ -1,295 +1,424 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-topic="Magnetic Forces, Materials &amp; Devices" data-title-en="Lecture 2 Summary - Magnetic Forces, Materials &amp; Devices">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ملخص المحاضرة 2 — القوى والمواد المغناطيسية (Ch 8)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-<script>window.MathJax={tex:{inlineMath:[['$','$']],displayMath:[['\\[','\\]'],['$$','$$']]}};</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-<style>
-:root{--bg:#07110e;--bg-inset:#0c1d18;--ink-primary:#e8f5ef;--ink-secondary:#93b5a8;--trace-cos:#3dff92;--trace-sin:#4cc9f0;--accent-assess:#ffb703;--accent-practice:#c792ff;--accent-identity:#ff8fab;--trace-alert:#ff5d5d;--border-soft:rgba(90,255,180,.22)}
-body.light{--bg:#f3f8f5;--bg-inset:#e4efe9;--ink-primary:#10241c;--ink-secondary:#476357;--trace-cos:#0a8f4a;--trace-sin:#0a78a8;--accent-assess:#a86500;--accent-practice:#7a3fc4;--accent-identity:#c2385f;--trace-alert:#c62828;--border-soft:rgba(10,90,60,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{margin:0;background:var(--bg);color:var(--ink-primary);font:400 1rem/1.9 'IBM Plex Sans Arabic',sans-serif}
-main{max-width:860px;margin:auto;padding:0 14px 90px}a{color:var(--trace-sin)}
-:focus-visible{outline:2px solid var(--accent-assess);outline-offset:2px}
-#prog{position:fixed;top:0;right:0;height:3px;width:0;background:var(--trace-cos);z-index:50}
-.bezel{position:sticky;top:0;z-index:40;display:flex;gap:10px;justify-content:space-between;align-items:center;padding:8px 14px;background:var(--bg-inset);border-bottom:1px solid var(--border-soft)}
-.channel-select,.btn,.opt,.cp,#theme{font:inherit;color:var(--ink-primary);background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:6px 12px;cursor:pointer}
-.btn:hover,.opt:hover,#theme:hover,.cp:hover{border-color:var(--trace-cos)}
-.btn.primary{background:var(--trace-cos);color:#04120b;border-color:var(--trace-cos);font-weight:700}.btn.primary:hover{filter:brightness(1.1)}
-.pill-row{display:flex;gap:8px;overflow-x:auto;padding:12px 0}
-.pill{white-space:nowrap;padding:2px 12px;border:1px solid var(--border-soft);border-radius:99px;text-decoration:none;color:var(--ink-secondary);font-size:.9rem}
-.hero h1{font-size:clamp(1.6rem,4.5vw,2.4rem);line-height:1.35;margin:.4em 0}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{font:600 .8rem 'IBM Plex Mono',monospace;color:var(--trace-cos);border:1px solid var(--border-soft);padding:2px 10px;border-radius:6px;direction:ltr}
-.scope-screen{background:var(--bg-inset);border:1px solid var(--border-soft);border-radius:12px;margin:16px 0 0;padding:8px}
-.scope-screen svg{direction:ltr;width:100%;height:auto;display:block;max-height:260px}
-.orb{transform-origin:180px 100px;animation:spin 7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.85rem;color:var(--ink-secondary);padding:6px 8px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:6px}
-.panel{background:var(--bg-inset);border:1px solid var(--border-soft);border-radius:12px;padding:16px 18px 6px;margin:20px 0}
-.reveal{transition:opacity .5s,transform .5s}.js .reveal:not(.in){opacity:0;transform:translateY(10px)}
-.panel-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.panel-head h2{margin:0;font-size:1.25rem}
-.num{font:700 .95rem 'IBM Plex Mono',monospace;color:var(--bg);background:var(--trace-cos);border-radius:6px;padding:0 8px}
-.sym{font:600 .8rem 'IBM Plex Mono',monospace;color:var(--accent-identity);direction:ltr}
-.math-block{position:relative;direction:ltr;text-align:center;overflow-x:auto;margin:10px 0;padding:18px 8px 8px;background:var(--bg);border-radius:8px}
-.cp{position:absolute;top:2px;left:2px;font-size:.7rem;padding:0 8px}
-.result-box,.question-box{background:var(--bg);padding:8px 14px;border-radius:8px;margin:10px 0}
-.result-box{border-inline-start:4px solid var(--trace-cos)}.question-box{border-inline-start:4px solid var(--accent-assess)}.cw .question-box{border-color:var(--accent-practice)}
-.trigger{display:block;width:100%;text-align:start;font:inherit;font-weight:600;color:var(--accent-assess);background:none;border:1px dashed var(--border-soft);border-radius:8px;padding:6px 12px;cursor:pointer}
-.cw .trigger{color:var(--accent-practice)}.trigger::before{content:'▸ '}.trigger[aria-expanded=true]::before{content:'▾ '}.trigger-body{padding:8px 12px 2px;margin-bottom:8px}
-.ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:8px 0}.ctl label{font-size:.85rem;color:var(--ink-secondary);direction:ltr}.ctl input{accent-color:var(--trace-cos)}
-.cv{position:relative}#tq-canvas{display:block;width:100%;height:280px;background:var(--bg);border:1px solid var(--border-soft);border-radius:10px}
-.readout{position:absolute;top:8px;left:10px;direction:ltr;text-align:left;font:600 .8rem 'IBM Plex Mono',monospace;color:var(--trace-cos);pointer-events:none}
-@media(max-width:600px){#tq-canvas{height:230px}}
-table{width:100%;border-collapse:collapse;margin:8px 0}th,td{border:1px solid var(--border-soft);padding:6px 10px;text-align:center}
-.mistake-list{list-style:none;padding:0}.mistake-list li{margin:8px 0}
-.mk{font:700 .75rem 'IBM Plex Sans Arabic',sans-serif;background:var(--trace-alert);color:#fff;border-radius:5px;padding:1px 8px;margin-inline-end:8px}
-.qz{margin:14px 0}.opt{display:block;width:100%;text-align:start;margin:6px 0}
-.opt.ok{border-color:var(--trace-cos);background:rgba(61,255,146,.16)}.opt.bad{border-color:var(--trace-alert);background:rgba(255,93,93,.16)}.fb{color:var(--ink-secondary);min-height:1.6em;margin:4px 0}
-#flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:10px 0}
-.flash{font:inherit;color:var(--ink-primary);background:var(--bg);border:1px solid var(--border-soft);border-radius:10px;min-height:110px;padding:10px;cursor:pointer}
-.flash .bk{display:none;color:var(--trace-cos)}.flash.flip .bk{display:block}.flash.flip .ft{display:none}
-#toc-fab{position:fixed;bottom:18px;left:18px;z-index:45;width:48px;height:48px;border-radius:50%;font-size:1.25rem;padding:0}
-.toc{position:fixed;top:0;right:0;z-index:60;height:100%;width:250px;padding:60px 14px;overflow-y:auto;background:var(--bg-inset);border-inline-start:1px solid var(--border-soft);transform:translateX(105%);visibility:hidden;transition:transform .25s,visibility .25s}
-.toc.open{transform:none;visibility:visible}.toc a{display:block;padding:4px 8px;color:var(--ink-secondary);text-decoration:none;border-radius:6px}.toc a.act{color:var(--trace-cos);background:var(--bg)}
-footer{text-align:center;color:var(--ink-secondary);padding:20px 0}
-@media print{.bezel,#toc-fab,.toc,#prog,.ctl,.pill-row,footer .btn{display:none}.js .reveal:not(.in){opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.orb{animation:none}}
-.m{display:inline-block;direction:ltr;unicode-bidi:isolate;background:var(--bg);border:1px solid var(--border-soft);border-radius:6px;padding:0 6px;margin:0 2px;line-height:1.7;white-space:nowrap;font-size:.95em}
-.m mjx-container{margin:0!important}.m sub{font-size:.7em}
-.u{font:600 .8rem 'IBM Plex Mono',monospace;color:var(--ink-secondary)}
-.symgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0 14px}
-.sk{display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--border-soft);border-radius:8px;padding:6px 10px}
-.sk .m{border:0;background:var(--bg-inset);min-width:46px;text-align:center}.sk>span:nth-child(2){flex:1}
-.tools{display:flex;gap:8px}html[dir=ltr] #prog{right:auto;left:0}
-body{overflow-x:clip}table{display:block;max-width:100%;overflow-x:auto}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 2 - القوى والمواد والأجهزة المغناطيسية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
 <link rel="stylesheet" href="../fonts.css">
 </head>
 <body>
-<div id="prog"></div>
-<header class="bezel">
-<span class="tools"><button id="theme" aria-pressed="false" aria-label="تبديل الوضع الليلي/النهاري">🌙</button><button id="lang" class="btn" aria-label="Translate to English">EN</button></span>
-<select id="lecture-select" class="channel-select" aria-label="اختيار المحاضرة" onchange="if (this.value) window.location.href = this.value;">
-    <!-- يتم توليد القائمة تلقائياً عبر nav.js — لا تكتب أي <option> هنا يدوياً -->
-</select>
-</header>
-<button id="toc-fab" class="btn" aria-expanded="false" aria-controls="toc" aria-label="فهرس الأقسام">☰</button>
-<nav id="toc" class="toc" aria-label="فهرس الأقسام"></nav>
-<main>
-<nav id="pills" class="pill-row" aria-label="تنقل سريع"></nav>
+<main class="wrap">
 
-<section class="hero">
-<span class="chip">EENG1279 · Ch 8</span>
-<h1 data-en="Magnetic Forces, Materials and Devices">القوى والمواد والأجهزة المغناطيسية</h1>
-<p data-en="This lecture covers the force a magnetic field <span class='m'>$\mathbf B$</span> exerts on charges, currents and loops, then how materials behave inside it, and finally inductance and magnetic energy.">نتعرّف في هذه المحاضرة على القوة التي يؤثّر بها المجال المغناطيسي <span class='m'>$\mathbf B$</span> في الشحنات والتيارات والحلقات، ثم نرى كيف تتصرّف المواد داخله، ونتناول المحاثة والطاقة المغناطيسية.</p>
-<div class="chips"><span class="chip">Lorentz</span><span class="chip">Torque</span><span class="chip">Magnetization</span><span class="chip">Inductance</span></div>
-<div class="scope-screen">
-<svg viewBox="0 0 360 200" role="img" aria-label="شحنة موجبة تدور في دائرة داخل مجال مغناطيسي خارج من الصفحة؛ السرعة مماسية والقوة المغناطيسية نحو المركز">
-<defs>
-<pattern id="bp" width="60" height="50" patternUnits="userSpaceOnUse"><circle cx="30" cy="25" r="5" fill="none" stroke="var(--trace-sin)" stroke-width="1"/><circle cx="30" cy="25" r="1.6" fill="var(--trace-sin)"/></pattern>
-<marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--trace-cos)"/></marker>
-<marker id="ay" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent-assess)"/></marker>
-</defs>
-<rect width="360" height="200" fill="url(#bp)" opacity=".55"/>
-<circle cx="180" cy="100" r="60" fill="none" stroke="var(--ink-secondary)" stroke-dasharray="4 4"/>
-<g class="orb"><line x1="240" y1="100" x2="240" y2="142" stroke="var(--trace-cos)" stroke-width="3" marker-end="url(#ag)"/><line x1="240" y1="100" x2="196" y2="100" stroke="var(--accent-assess)" stroke-width="3" marker-end="url(#ay)"/><circle cx="240" cy="100" r="8" fill="var(--trace-alert)"/><text x="240" y="104" text-anchor="middle" font-size="12" fill="#fff">+</text></g>
-</svg>
-<div class="legend"><span><i style="background:var(--trace-alert)"></i><bdi data-en="Positive charge <span class='m'>Q</span>">شحنة موجبة <span class='m'>Q</span></bdi></span><span><i style="background:var(--trace-cos)"></i><bdi data-en="Velocity <span class='m'>u</span>">السرعة <span class='m'>u</span></bdi></span><span><i style="background:var(--accent-assess)"></i><bdi data-en="Force <span class='m'>F<sub>m</sub></span> toward the center">القوة <span class='m'>F<sub>m</sub></span> نحو المركز</bdi></span><span><i style="background:var(--trace-sin)"></i><bdi data-en="Field <span class='m'>B</span> out of the page ⊙">المجال <span class='m'>B</span> خارج الصفحة ⊙</bdi></span></div>
-</div>
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 2 · كهرومغناطيسية (2) · الفصل 8</span><span lang="en">LECTURE 2 · ELECTROMAGNETICS (2) · CH 8</span></p>
+  <h1><span><span lang="ar">القوى والمواد والأجهزة المغناطيسية</span><span lang="en">Magnetic Forces, Materials &amp; Devices</span></span> <span class="h1-math ltr">$\mathbf T=\mathbf m\times\mathbf B$</span></h1>
+  <p class="lead">
+    <span lang="ar">نبدأ من القوة اللي يأثر فيها $\Y{\mathbf B}$ على الشحنات والتيارات (مراجعة سريعة للمحاضرة 1)، وبعدين نشوف كيف هالقوة <b>تلف</b> حلقة تيار وهذا أساس المحرك. بعدها ندخل جوّا المادة: الذرات نفسها حلقات تيار صغيرة، ومنها تطلع المغنطة وتصنيف المواد. ونختم بالمحاثة والطاقة المغناطيسية.</span>
+    <span lang="en">We start from the force $\Y{\mathbf B}$ exerts on charges and currents (a quick review of Lecture 1), then see how that force <b>turns</b> a current loop, which is the basis of the motor. Next we go inside matter: atoms are tiny current loops themselves, which gives magnetization and the classification of materials. We finish with inductance and magnetic energy.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · <span lang="ar">المجال الكهربائي</span><span lang="en">electric field</span></span><span class="y">B · H · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">u · I · m · <span lang="ar">الحركة والتيار والعزم</span><span lang="en">motion, current &amp; moment</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">$\Y{\mathbf B}$ يأثر بس على شحنة تتحرك أو تيار: $Q\Z{\mathbf u}\times\Y{\mathbf B}$ و $I\,d\Z{\mathbf l}\times\Y{\mathbf B}$. القوة عمودية على الحركة، فما تبذل شغل.</span><span lang="en">$\Y{\mathbf B}$ acts only on moving charge or current: $Q\Z{\mathbf u}\times\Y{\mathbf B}$ and $I\,d\Z{\mathbf l}\times\Y{\mathbf B}$. The force is perpendicular to the motion, so it does no work.</span></li>
+      <li><span lang="ar">حلقة تيار في مجال منتظم: محصلة القوة صفر، بس فيه <b>عزم</b> $\mathbf T=\Z{\mathbf m}\times\Y{\mathbf B}$ مع $\Z{\mathbf m}=IS\,\mathbf a_n$. يصفر لما $\Z{\mathbf m}\parallel\Y{\mathbf B}$ وأقصاه عند 90°.</span><span lang="en">A current loop in a uniform field: zero net force but a <b>torque</b> $\mathbf T=\Z{\mathbf m}\times\Y{\mathbf B}$ with $\Z{\mathbf m}=IS\,\mathbf a_n$. It vanishes when $\Z{\mathbf m}\parallel\Y{\mathbf B}$ and peaks at 90°.</span></li>
+      <li><span lang="ar">في المواد: $\Y{\mathbf B}=\mu_0(\Y{\mathbf H}+\mathbf M)$ و $\mu_r=1+\chi_m$. والمحاثة $L=\lambda/I$ تخزّن طاقة $W_m=\tfrac12LI^2$.</span><span lang="en">In materials: $\Y{\mathbf B}=\mu_0(\Y{\mathbf H}+\mathbf M)$ and $\mu_r=1+\chi_m$. Inductance $L=\lambda/I$ stores energy $W_m=\tfrac12LI^2$.</span></li>
+    </ol>
+  </div>
 </section>
 
-<section class="panel reveal" id="core"><div class="panel-head"><span class="sym">Fm ⟂ u</span><h2 data-en="Key idea">الخلاصة الذهنية</h2></div>
-<p data-en="A magnetic field acts only on a <b>moving charge</b>, and its force is always perpendicular to the motion, so it <b>changes direction but not energy</b>. The force appears in three cases: a moving charge, a current element in an external field, and two current elements. Then we move on to magnetization in materials and inductance.">المجال المغناطيسي لا يؤثّر إلا في <b>شحنة متحرّكة</b>، وقوّته عمودية دائماً على اتجاه الحركة، فهي <b>تغيّر الاتجاه ولا تغيّر الطاقة</b>. وللقوة ثلاث حالات: شحنة متحرّكة، وعنصر تيار داخل مجال خارجي، وعنصران تياريان متجاوران. بعد ذلك ننتقل إلى المغنطة في المواد ثم المحاثة.</p></section>
+<!-- ================= الرموز ================= -->
+<section class="card" id="sym" data-num="📖" data-nav="📖 الرموز|📖 Symbols">
+  <h2><span lang="ar">مفتاح الرموز</span><span lang="en">Symbol key</span></h2>
+  <p class="sub"><span lang="ar">كل رمز في المحاضرة ووحدته</span><span lang="en">Every symbol in the lecture and its unit</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">الرمز</span><span lang="en">Symbol</span></th><th><span lang="ar">الاسم</span><span lang="en">Name</span></th><th><span lang="ar">الوحدة</span><span lang="en">Unit</span></th></tr></thead>
+    <tbody>
+      <tr><td>$\mathbf F_m$</td><td><span lang="ar">القوة المغناطيسية</span><span lang="en">Magnetic force</span></td><td class="ltr">N</td></tr>
+      <tr><td>$\Z{\mathbf u}$</td><td><span lang="ar">سرعة الشحنة</span><span lang="en">Charge velocity</span></td><td class="ltr">m/s</td></tr>
+      <tr><td>$\Y{\mathbf B}$</td><td><span lang="ar">كثافة الفيض المغناطيسي</span><span lang="en">Magnetic flux density</span></td><td class="ltr">Wb/m² = T</td></tr>
+      <tr><td>$\Y{\mathbf H}$</td><td><span lang="ar">شدة المجال المغناطيسي</span><span lang="en">Magnetic field intensity</span></td><td class="ltr">A/m</td></tr>
+      <tr><td>$I\,d\Z{\mathbf l}$</td><td><span lang="ar">عنصر التيار</span><span lang="en">Current element</span></td><td class="ltr">A·m</td></tr>
+      <tr><td>$\Z{\mathbf m}$</td><td><span lang="ar">العزم ثنائي القطب المغناطيسي</span><span lang="en">Magnetic dipole moment</span></td><td class="ltr">A·m²</td></tr>
+      <tr><td>$T$</td><td><span lang="ar">العزم الميكانيكي (عزم الدوران)</span><span lang="en">Torque</span></td><td class="ltr">N·m</td></tr>
+      <tr><td>$\mathbf M$</td><td><span lang="ar">المغنطة</span><span lang="en">Magnetization</span></td><td class="ltr">A/m</td></tr>
+      <tr><td>$\chi_m$ , $\mu_r$</td><td><span lang="ar">القابلية المغناطيسية والنفاذية النسبية</span><span lang="en">Susceptibility and relative permeability</span></td><td><span lang="ar">بدون وحدة</span><span lang="en">dimensionless</span></td></tr>
+      <tr><td>$\lambda$</td><td><span lang="ar">ترابط الفيض</span><span lang="en">Flux linkage</span></td><td class="ltr">Wb</td></tr>
+      <tr><td>$L$ , $M_{12}$</td><td><span lang="ar">المحاثة الذاتية والمتبادلة</span><span lang="en">Self and mutual inductance</span></td><td class="ltr">H = Wb/A</td></tr>
+      <tr><td>$W_m$</td><td><span lang="ar">الطاقة المغناطيسية</span><span lang="en">Magnetic energy</span></td><td class="ltr">J</td></tr>
+    </tbody>
+  </table></div>
+</section>
 
-<section class="panel reveal" id="sym"><div class="panel-head"><span class="sym">Symbols</span><h2 data-en="Symbol key">مفتاح الرموز</h2></div><div class="symgrid" id="sym-grid"></div></section>
+<!-- ================= 01 الشحنة ================= -->
+<section class="card" id="s1" data-num="01" data-nav="شحنة متحركة|Moving charge">
+  <h2><span lang="ar">القوة على شحنة متحركة</span><span lang="en">Force on a moving charge</span></h2>
+  <p class="sub"><span lang="ar">مراجعة الجزء A من المحاضرة 1</span><span lang="en">Review of Part A from Lecture 1</span></p>
+  <p><span lang="ar">القوة الكهربائية $\mathbf F_e=Q\X{\mathbf E}$ تأثر في أي شحنة وتقدر تبذل شغل. أما المغناطيسية فتعتمد على سرعة الشحنة، وعمودية على $\Z{\mathbf u}$ وعلى $\Y{\mathbf B}$ مع بعض:</span><span lang="en">The electric force $\mathbf F_e=Q\X{\mathbf E}$ acts on any charge and can do work. The magnetic force depends on the charge's velocity and is perpendicular to both $\Z{\mathbf u}$ and $\Y{\mathbf B}$:</span></p>
+  <div class="m">\[\mathbf F_m=Q\,\Z{\mathbf u}\times\Y{\mathbf B}\]</div>
+  <div class="m big">\[\mathbf F=Q\big(\X{\mathbf E}+\Z{\mathbf u}\times\Y{\mathbf B}\big)\]</div>
+  <p class="why"><span lang="ar">الثانية اسمها <b>معادلة لورنتز</b>. وبما إن $\mathbf F_m\cdot d\mathbf l=0$، القوة المغناطيسية ما تبذل شغل ولا تزيد الطاقة الحركية.</span><span lang="en">The second is the <b>Lorentz force equation</b>. Since $\mathbf F_m\cdot d\mathbf l=0$, the magnetic force does no work and cannot raise the kinetic energy.</span></p>
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">سرعة ثابتة</span><span lang="en">Constant velocity</span></h2></div>
+  <p><span lang="ar">شحنة تتحرك بسرعة $4\,\mathbf a_x\ \text{m/s}$ في منطقة فيها $\X{\mathbf E}=20\,\mathbf a_y\ \text{V/m}$ و $\Y{\mathbf B}=B_0\,\mathbf a_z\ \text{Wb/m}^2$. أوجد $B_0$ اللي تبقي السرعة ثابتة.</span><span lang="en">A charge moves at $4\,\mathbf a_x\ \text{m/s}$ in a region where $\X{\mathbf E}=20\,\mathbf a_y\ \text{V/m}$ and $\Y{\mathbf B}=B_0\,\mathbf a_z\ \text{Wb/m}^2$. Find $B_0$ so that the velocity stays constant.</span></p>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">محصلة القوى صفر</span><span lang="en">Net force is zero</span></h4>
+      <div class="m">\[\begin{aligned}0&=Q\big(20\,\mathbf a_y+4\,\mathbf a_x\times B_0\,\mathbf a_z\big)\\&=Q\big(20-4B_0\big)\,\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">سرعة ثابتة = تسارع صفر. و $\mathbf a_x\times\mathbf a_z=-\mathbf a_y$.</span><span lang="en">Constant velocity = zero acceleration, and $\mathbf a_x\times\mathbf a_z=-\mathbf a_y$.</span></p></li>
+    <li class="step final"><div class="result">$B_0=5\ \text{Wb/m}^2$</div>
+      <p class="sanity"><span lang="ar">هذا مبدأ <b>مرشّح السرعة</b>: الشحنة تعدّي بدون انحراف لما $u=E/B$ و $\X{\mathbf E}$ و $\Y{\mathbf B}$ و $\Z{\mathbf u}$ متعامدين ✓. فيه مختبر تفاعلي له في <a href="lecture1.html#lab">المحاضرة 1</a>.</span><span lang="en">This is the <b>velocity filter</b>: the charge passes undeflected when $u=E/B$ with $\X{\mathbf E}$, $\Y{\mathbf B}$ and $\Z{\mathbf u}$ mutually perpendicular ✓. There is an interactive lab for it in <a href="lecture1.html#lab">Lecture 1</a>.</span></p></li>
+  </ol>
+</section>
 
-<section class="panel reveal lab" id="lab"><div class="panel-head"><span class="sym">T=BIS·sinα</span><h2 data-en="Lab: torque on a current loop">مختبر: عزم حلقة تيار</h2></div>
-<div class="ctl"><label>α <input type="range" id="tq-a" min="0" max="180" value="60"></label><label>I <input type="range" id="tq-i" min="1" max="10" value="5"></label><label>B <input type="range" id="tq-b" min="1" max="10" value="4"></label><button class="btn primary" id="tq-play">تشغيل</button><button class="btn" id="tq-reset" data-en="Reset">إعادة</button></div>
-<div class="cv"><canvas id="tq-canvas" role="img" aria-label="مقطع حلقة تيار في مجال منتظم ومنحنى العزم مقابل الزاوية"></canvas><div class="readout" id="tq-out"></div></div>
-<div class="legend"><span><i style="background:var(--trace-sin)"></i>B</span><span><i style="background:var(--trace-cos)"></i><bdi data-en="Normal <span class='m'>a<sub>n</sub></span> (direction of <span class='m'>m</span>)">العمودي <span class='m'>a<sub>n</sub></span> (اتجاه <span class='m'>m</span>)</bdi></span><span><i style="background:var(--accent-assess)"></i><bdi data-en="Loop and forces <span class='m'>F<sub>o</sub></span>">الحلقة والقوتان <span class='m'>F<sub>o</sub></span></bdi></span></div>
-<p data-en="Move the angle <span class='m'>$\alpha$</span> and watch the curve: torque is zero at <span class='m'>$0^\circ$</span> (stable equilibrium) and at <span class='m'>$180^\circ$</span>, and maximum at <span class='m'>$90^\circ$</span> when the loop plane is parallel to <span class='m'>$\mathbf B$</span>. Doubling <span class='m'>$I$</span> or <span class='m'>$B$</span> doubles the torque. (Fixed area: <span class='m'>$S=0.02\ \text{m}^2$</span>)">حرّك الزاوية <span class='m'>$\alpha$</span> وراقب المنحنى: العزم صفر عند <span class='m'>$0^\circ$</span> (اتزان مستقر) وعند <span class='m'>$180^\circ$</span>، ويبلغ أقصاه عند <span class='m'>$90^\circ$</span> حين يوازي مستوى الحلقة المجال <span class='m'>$\mathbf B$</span>. ومضاعفة <span class='m'>$I$</span> أو <span class='m'>$B$</span> تضاعف العزم. (المساحة ثابتة: <span class='m'>$S=0.02\ \text{m}^2$</span>)</p></section>
+<!-- ================= 02 عنصر تيار ================= -->
+<section class="card" id="s2" data-num="02" data-nav="عنصر تيار|Current element">
+  <h2><span lang="ar">القوة على عنصر تيار</span><span lang="en">Force on a current element</span></h2>
+  <p class="sub"><span lang="ar">نبدّل $Q\Z{\mathbf u}$ بعنصر التيار</span><span lang="en">Swap $Q\Z{\mathbf u}$ for the current element</span></p>
+  <p><span lang="ar">عنصر التيار يكافئ شحنة تتحرك، سواء كان تيار خطي أو سطحي أو حجمي:</span><span lang="en">A current element is equivalent to a moving charge, whether the current is a line, surface or volume current:</span></p>
+  <div class="m">\[I\,d\Z{\mathbf l}=\mathbf K\,dS=\mathbf J\,dv=dQ\,\Z{\mathbf u}\]</div>
+  <p><span lang="ar">فنحطه مكان $Q\Z{\mathbf u}$ في قانون القوة:</span><span lang="en">So we put it in place of $Q\Z{\mathbf u}$ in the force law:</span></p>
+  <div class="m">\[d\mathbf F=I\,d\Z{\mathbf l}\times\Y{\mathbf B}\qquad\mathbf F=\oint_L I\,d\Z{\mathbf l}\times\Y{\mathbf B}\]</div>
+  <div class="m">\[d\mathbf F=\mathbf K\,dS\times\Y{\mathbf B}\quad\text{or}\quad d\mathbf F=\mathbf J\,dv\times\Y{\mathbf B}\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 المجال لازم يكون خارجي</span><span lang="en">🔑 The field must be external</span></strong>
+    <p><span lang="ar">المجال اللي يطلّعه العنصر ما يأثر في العنصر نفسه، فالـ $\Y{\mathbf B}$ اللي في القانون جاي من مصدر ثاني. ومن هنا نقدر نعرّف $\Y{\mathbf B}$ بأنه القوة على وحدة عنصر التيار.</span><span lang="en">An element's own field exerts no force on itself, so the $\Y{\mathbf B}$ in the law comes from another source. This also lets us define $\Y{\mathbf B}$ as the force per unit current element.</span></p>
+  </div>
+</section>
 
-<section class="panel reveal" id="s1"><div class="panel-head"><span class="num">01</span><span class="sym">F=Qu×B</span><h2 data-en="Force on a moving charge">القوة على شحنة متحركة</h2></div>
-<p data-en="The electric force on a charge <span class='m'>$Q$</span> is <span class='m'>$\mathbf F_e=Q\mathbf E$</span>, and it can do work. The magnetic force depends on the charge velocity and is perpendicular to both <span class='m'>$\mathbf u$</span> and <span class='m'>$\mathbf B$</span>:">القوة الكهربائية على شحنة <span class='m'>$Q$</span> هي <span class='m'>$\mathbf F_e=Q\mathbf E$</span>، وهي قادرة على بذل شغل. أما القوة المغناطيسية فتعتمد على سرعة الشحنة وتكون عمودية على <span class='m'>$\mathbf u$</span> وعلى <span class='m'>$\mathbf B$</span> معاً:</p>
-<div class="math-block">\[\mathbf F_m=Q\,\mathbf u\times\mathbf B\qquad \mathbf F=Q(\mathbf E+\mathbf u\times\mathbf B)\quad\text{Lorentz}\]</div>
-<p data-en="Since <span class='m'>$\mathbf F_m\cdot d\mathbf l=0$</span>, the magnetic force <b>does no work</b> and cannot increase the kinetic energy of the charge.">بما أن <span class='m'>$\mathbf F_m\cdot d\mathbf l=0$</span> فالقوة المغناطيسية <b>لا تبذل شغلاً</b> ولا تزيد الطاقة الحركية للشحنة.</p>
-<div class="question-box" data-en="A charge moves with velocity <span class='m'>$4\,\mathbf a_x\ \text{m/s}$</span> in a region where <span class='m'>$\mathbf E=20\,\mathbf a_y\ \text{V/m}$</span> and <span class='m'>$\mathbf B=B_o\,\mathbf a_z\ \text{Wb/m}^2$</span>. Find <span class='m'>$B_o$</span> so that the velocity stays constant.">شحنة تتحرك بسرعة <span class='m'>$4\,\mathbf a_x\ \text{m/s}$</span> في منطقة فيها <span class='m'>$\mathbf E=20\,\mathbf a_y\ \text{V/m}$</span> و <span class='m'>$\mathbf B=B_o\,\mathbf a_z\ \text{Wb/m}^2$</span>. أوجد قيمة <span class='m'>$B_o$</span> التي تُبقي سرعة الشحنة ثابتة.</div>
-<button class="trigger" aria-expanded="false" data-en="Show solution">اعرض الحل</button><div class="trigger-body" hidden>
-<p data-en="Constant velocity means zero acceleration, so the net force is zero:">السرعة الثابتة تعني أن التسارع صفر، أي أن القوة الكلية صفر:</p>
-<div class="math-block">\[0=Q(20\mathbf a_y+4\mathbf a_x\times B_o\mathbf a_z)=Q(20-4B_o)\mathbf a_y\]</div>
-<div class="result-box" data-en="Result: <span class='m'>$B_o=5\ \text{Wb/m}^2$</span>. This is the <b>velocity filter</b> principle: a charge passes undeflected when <span class='m'>$u=E/B$</span> with <span class='m'>$\mathbf E$</span>, <span class='m'>$\mathbf B$</span> and <span class='m'>$\mathbf u$</span> mutually perpendicular.">النتيجة: <span class='m'>$B_o=5\ \text{Wb/m}^2$</span>. وهذا هو مبدأ <b>مرشّح السرعة</b>: تمرّ الشحنة دون انحراف حين <span class='m'>$u=E/B$</span> مع تعامد <span class='m'>$\mathbf E$</span> و <span class='m'>$\mathbf B$</span> و <span class='m'>$\mathbf u$</span>.</div></div></section>
+<!-- ================= 03 عنصرين ================= -->
+<section class="card" id="s3" data-num="03" data-nav="عنصرين تيار|Two elements">
+  <h2><span lang="ar">القوة بين عنصرين تيار</span><span lang="en">Force between two current elements</span></h2>
+  <p class="sub"><span lang="ar">بيو-سافار + قانون القوة</span><span lang="en">Biot–Savart + the force law</span></p>
+  <p><span lang="ar">العنصر $I_1\,d\Z{\mathbf l_1}$ يتأثر بالمجال $d\Y{\mathbf B_2}$ اللي يطلّعه العنصر $I_2\,d\Z{\mathbf l_2}$:</span><span lang="en">The element $I_1\,d\Z{\mathbf l_1}$ feels the field $d\Y{\mathbf B_2}$ produced by the element $I_2\,d\Z{\mathbf l_2}$:</span></p>
+  <div class="m">\[d(d\mathbf F_1)=\frac{\mu_0\,I_1\,d\Z{\mathbf l_1}\times\big(I_2\,d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}\big)}{4\pi R_{21}^2}\]</div>
+  <div class="m wide">\[\mathbf F_1=\frac{\mu_0 I_1 I_2}{4\pi}\oint_{L_1}\oint_{L_2}\frac{d\Z{\mathbf l_1}\times\big(d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}\big)}{R_{21}^2}\]</div>
+  <div class="m narrow">\[\begin{aligned}\mathbf F_1&=\frac{\mu_0 I_1 I_2}{4\pi}\\&\times\oint_{L_1}\oint_{L_2}\frac{d\Z{\mathbf l_1}\times\big(d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}\big)}{R_{21}^2}\end{aligned}\]</div>
+  <p><span lang="ar">القانون يشبه قانون كولوم للشحنات الساكنة، ويتحقق فيه $\mathbf F_2=-\mathbf F_1$: الفعل ورد الفعل متساويين ومتعاكسين (نيوتن الثالث).</span><span lang="en">The law mirrors Coulomb's law for charges at rest, and $\mathbf F_2=-\mathbf F_1$ holds: action and reaction are equal and opposite (Newton's third law).</span></p>
+</section>
 
-<section class="panel reveal" id="s2"><div class="panel-head"><span class="num">02</span><span class="sym">dF=Idl×B</span><h2 data-en="Force on a current element">القوة على عنصر تيار</h2></div>
-<p data-en="A current element is equivalent to a moving charge, since <span class='m'>$I\,d\mathbf l=\mathbf K\,dS=\mathbf J\,dv=dQ\,\mathbf u$</span>. So we replace <span class='m'>$Q\mathbf u$</span> with <span class='m'>$I\,d\mathbf l$</span> in the force law:">عنصر التيار يكافئ شحنة متحركة، إذ إن <span class='m'>$I\,d\mathbf l=\mathbf K\,dS=\mathbf J\,dv=dQ\,\mathbf u$</span>. لذا نضع <span class='m'>$I\,d\mathbf l$</span> مكان <span class='m'>$Q\mathbf u$</span> في قانون القوة:</p>
-<div class="math-block">\[d\mathbf F=I\,d\mathbf l\times\mathbf B\qquad \mathbf F=\oint_L I\,d\mathbf l\times\mathbf B\]</div>
-<div class="math-block">\[d\mathbf F=\mathbf K\,dS\times\mathbf B\quad\text{or}\quad d\mathbf F=\mathbf J\,dv\times\mathbf B\]</div>
-<p data-en="A current element's own field exerts no force on itself, so the acting <span class='m'>$\mathbf B$</span> comes from another element (an <b>external</b> field). <span class='m'>$\mathbf B$</span> can be defined as the force per unit current element.">المجال الذي ينتجه العنصر لا يؤثّر في العنصر نفسه، فالمجال <span class='m'>$\mathbf B$</span> المؤثّر مصدره عنصر آخر (مجال <b>خارجي</b>). ويمكن تعريف <span class='m'>$\mathbf B$</span> بأنه القوة المؤثرة على وحدة عنصر التيار.</p></section>
+<!-- ================= 04 العزم ================= -->
+<section class="card" id="s4" data-num="04" data-nav="العزم|Torque">
+  <h2><span lang="ar">العزم على حلقة تيار والعزم ثنائي القطب</span><span lang="en">Torque on a current loop and the dipole moment</span></h2>
+  <p class="sub"><span lang="ar">محصلة القوة صفر، بس الحلقة تلف: هذا أساس المحرك</span><span lang="en">Zero net force, yet the loop turns: the basis of the motor</span></p>
+  <p><span lang="ar">نحط حلقة مستطيلة (طولها $\ell$ وعرضها $w$) في مجال منتظم. الضلعين اللي يوازون المجال ما عليهم قوة. والضلعين الثانيين عليهم قوتين متساويتين ومتعاكستين، مقدار كل وحدة $|\mathbf F_0|=IB\ell$، فالمحصلة $\mathbf F_0-\mathbf F_0=0$. بس القوتين على خطين مختلفين، فيكوّنون <b>مزدوجة</b> تلف الحلقة.</span><span lang="en">Put a rectangular loop (length $\ell$, width $w$) in a uniform field. The sides parallel to the field feel no force. The other two feel equal and opposite forces of magnitude $|\mathbf F_0|=IB\ell$, so the net force is $\mathbf F_0-\mathbf F_0=0$. But the two forces act along different lines, forming a <b>couple</b> that turns the loop.</span></p>
+  <p><span lang="ar">إذا العمودي على الحلقة $\mathbf a_n$ يصنع زاوية $\alpha$ مع $\Y{\mathbf B}$، ذراع المزدوجة $w\sin\alpha$ والعزم:</span><span lang="en">If the loop normal $\mathbf a_n$ makes an angle $\alpha$ with $\Y{\mathbf B}$, the couple's arm is $w\sin\alpha$ and the torque is:</span></p>
+  <div class="m">\[\begin{aligned}T&=BI\ell\,w\sin\alpha\\&=BIS\sin\alpha\end{aligned}\]</div>
+  <p><span lang="ar">ونعرّف <b>العزم ثنائي القطب المغناطيسي</b> للحلقة، فيصير القانون حاصل ضرب اتجاهي قصير:</span><span lang="en">Define the loop's <b>magnetic dipole moment</b>, and the law becomes a short cross product:</span></p>
+  <div class="m big">\[\Z{\mathbf m}=IS\,\mathbf a_n\qquad\mathbf T=\Z{\mathbf m}\times\Y{\mathbf B}\]</div>
+  <p class="why"><span lang="ar">اتجاه $\mathbf a_n$ بقاعدة اليد اليمنى: الأصابع مع التيار، والإبهام يعطي $\mathbf a_n$. والقانون صحيح بس إذا المجال <b>منتظم</b>.</span><span lang="en">The direction of $\mathbf a_n$ follows the right-hand rule: fingers along the current, thumb gives $\mathbf a_n$. The law holds only in a <b>uniform</b> field.</span></p>
 
-<section class="panel reveal" id="s3"><div class="panel-head"><span class="num">03</span><span class="sym">F2=−F1</span><h2 data-en="Force between two current elements">القوة بين عنصرين تياريين</h2></div>
-<p data-en="The element <span class='m'>$I_1\,d\mathbf l_1$</span> is acted on by the field <span class='m'>$d\mathbf B_2$</span> produced by <span class='m'>$I_2\,d\mathbf l_2$</span>, according to the Biot–Savart law:">يتأثر العنصر <span class='m'>$I_1\,d\mathbf l_1$</span> بالمجال <span class='m'>$d\mathbf B_2$</span> الذي ينتجه العنصر <span class='m'>$I_2\,d\mathbf l_2$</span> وفق قانون بيو–سافار:</p>
-<div class="math-block small">\[d(d\mathbf F_1)=\frac{\mu_o I_1\,d\mathbf l_1\times(I_2\,d\mathbf l_2\times\mathbf a_{R_{21}})}{4\pi R_{21}^2}\]</div>
-<div class="math-block small">\[\mathbf F_1=\frac{\mu_oI_1I_2}{4\pi}\oint_{L_1}\oint_{L_2}\frac{d\mathbf l_1\times(d\mathbf l_2\times\mathbf a_{R_{21}})}{R_{21}^2}\]</div>
-<p data-en="This law is analogous to Coulomb's law for stationary charges, and <span class='m'>$\mathbf F_2=-\mathbf F_1$</span> holds: action and reaction are equal and opposite (Newton's third law).">يشبه هذا القانون قانون كولوم للشحنات الساكنة، وتتحقق العلاقة <span class='m'>$\mathbf F_2=-\mathbf F_1$</span>، أي أن الفعل ورد الفعل متساويان ومتعاكسان (قانون نيوتن الثالث).</p></section>
+  <div class="wlab" id="tq-lab">
+    <div class="lab-controls">
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label>α · <span class="rv" data-r="a">60°</span></label><input type="range" data-k="a" min="0" max="180" step="1" value="60" aria-label="alpha in degrees"></div>
+      <div class="field"><label>I · <span class="rv" data-r="i">5 A</span></label><input type="range" data-k="i" min="1" max="10" step="1" value="5" aria-label="current in amperes"></div>
+      <div class="field"><label>B · <span class="rv" data-r="b">0.4 T</span></label><input type="range" data-k="b" min="0.1" max="1" step="0.1" value="0.4" aria-label="B in tesla"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">مقطع الحلقة من الجنب (المساحة $S=0.02\ \text{m}^2$)</span><span lang="en">Side view of the loop (area $S=0.02\ \text{m}^2$)</span></div>
+        <div class="legend"><span><i class="c-h"></i>$\Y{\mathbf B}$</span><span><i class="c-p"></i>$\mathbf a_n$ ($\Z{\mathbf m}$)</span><span><i class="c-a"></i><span lang="ar">الحلقة</span><span lang="en">loop</span></span><span><i class="c-e"></i>$\mathbf F_0$</span></div></div>
+      <div class="wv-plot" id="tq-side"></div>
+    </figure>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">العزم مقابل الزاوية (اضغط على الرسمة تغيّر α)</span><span lang="en">Torque versus angle (click the chart to set α)</span></div>
+        <div class="legend"><span><i class="c-a"></i>$T=BIS\sin\alpha$</span></div></div>
+      <div class="wv-plot" id="tq-curve"></div>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">m = IS</span><span class="v" data-o="m"></span></div>
+      <div><span class="k">T</span><span class="v" data-o="t"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">الحالة</span><span lang="en">State</span></span><span class="v" data-o="v"></span></div>
+    </div>
+  </div>
+  <p><span lang="ar">لاحظ: العزم صفر عند $0^\circ$ (اتزان مستقر، $\Z{\mathbf m}$ مع $\Y{\mathbf B}$) وعند $180^\circ$ (اتزان غير مستقر)، وأقصاه عند $90^\circ$ لما مستوى الحلقة يوازي $\Y{\mathbf B}$. ولو ضاعفت $I$ أو $B$ يتضاعف العزم. شغّل الحركة وشوف الحلقة تلف لين ترتاح عند $0^\circ$.</span><span lang="en">Notice: the torque is zero at $0^\circ$ (stable equilibrium, $\Z{\mathbf m}$ along $\Y{\mathbf B}$) and at $180^\circ$ (unstable equilibrium), and maximum at $90^\circ$ when the loop plane is parallel to $\Y{\mathbf B}$. Doubling $I$ or $B$ doubles the torque. Press play and watch the loop swing until it settles at $0^\circ$.</span></p>
+</section>
 
-<section class="panel reveal" id="s4"><div class="panel-head"><span class="num">04</span><span class="sym">T=m×B</span><h2 data-en="Torque and magnetic dipole moment">العزم والعزم ثنائي القطب</h2></div>
-<p data-en="Place a rectangular loop in a uniform field. The sides parallel to the field feel no force; the other two feel equal and opposite forces of magnitude <span class='m'>$|\mathbf F_o|=IB\ell$</span>, so the net force is zero (<span class='m'>$\mathbf F=\mathbf F_o-\mathbf F_o=0$</span>). But they act at different points and form a <b>couple</b> that turns the loop. If the loop normal makes an angle <span class='m'>$\alpha$</span> with <span class='m'>$\mathbf B$</span>, the torque is:">نضع حلقة مستطيلة في مجال منتظم. الضلعان الموازيان للمجال لا تؤثر فيهما قوة، وعلى الضلعين الآخرين قوتان متساويتان ومتعاكستان مقدار كلٍّ منهما <span class='m'>$|\mathbf F_o|=IB\ell$</span>، فمحصلتهما صفر (<span class='m'>$\mathbf F=\mathbf F_o-\mathbf F_o=0$</span>). لكنهما تؤثران في نقطتين مختلفتين فتكوّنان <b>مزدوجة</b> تدير الحلقة. وإذا صنع عمود الحلقة زاوية <span class='m'>$\alpha$</span> مع <span class='m'>$\mathbf B$</span> كان العزم:</p>
-<div class="math-block">\[T=BI\ell w\sin\alpha=BIS\sin\alpha\qquad \mathbf m=IS\,\mathbf a_n\qquad \mathbf T=\mathbf m\times\mathbf B\]</div>
-<p data-en="The direction of <span class='m'>$\mathbf a_n$</span> follows the right-hand rule: fingers along the current, thumb along <span class='m'>$\mathbf a_n$</span>. The loop is in equilibrium when <span class='m'>$\mathbf m\parallel\mathbf B$</span> and the torque vanishes. The law holds only if the field is <b>uniform</b>.">يُحدَّد اتجاه <span class='m'>$\mathbf a_n$</span> بقاعدة اليد اليمنى: الأصابع مع اتجاه التيار والإبهام نحو <span class='m'>$\mathbf a_n$</span>. وتكون الحلقة في حالة اتزان عندما يتوازى <span class='m'>$\mathbf m$</span> مع <span class='m'>$\mathbf B$</span> فينعدم العزم. والقانون صحيح بشرط أن يكون المجال <b>منتظماً</b>.</p></section>
+<!-- ================= 05 المغنطة ================= -->
+<section class="card" id="s5" data-num="05" data-nav="المغنطة|Magnetization">
+  <h2><span lang="ar">المغنطة في المواد</span><span lang="en">Magnetization in materials</span></h2>
+  <p class="sub"><span lang="ar">كل ذرة حلقة تيار صغيرة</span><span lang="en">Every atom is a tiny current loop</span></p>
+  <p><span lang="ar">إلكترونات الذرة تدور حوالين النواة وحوالين نفسها، فكل ذرة تصير مثل حلقة تيار صغيرة عزمها $\Z{\mathbf m}=I_bS\,\mathbf a_n$. بدون مجال خارجي الاتجاهات عشوائية ومجموع العزوم صفر. ولما نحط مجال، العزوم تصطف ويطلع عزم صافي.</span><span lang="en">Atomic electrons orbit the nucleus and spin, so each atom acts like a tiny current loop with moment $\Z{\mathbf m}=I_bS\,\mathbf a_n$. Without an external field the orientations are random and the moments add to zero. Apply a field and they line up, leaving a net moment.</span></p>
+  <p><span lang="ar"><b>المغنطة</b> $\mathbf M$ هي العزم ثنائي القطب لكل وحدة حجم (وحدتها <span dir="ltr">A/m</span>). والعزوم المصطفة تتصرف كأنها تيارات مقيّدة (bound):</span><span lang="en"><b>Magnetization</b> $\mathbf M$ is the dipole moment per unit volume (unit A/m). The aligned moments behave like bound currents:</span></p>
+  <div class="m">\[\mathbf J_b=\nabla\times\mathbf M\qquad\mathbf K_b=\mathbf M\times\mathbf a_n\]</div>
+  <div class="m big">\[\Y{\mathbf B}=\mu_0\big(\Y{\mathbf H}+\mathbf M\big)\]</div>
+  <p><span lang="ar">وللمواد الخطية المغنطة تتناسب مع $\Y{\mathbf H}$:</span><span lang="en">For linear materials the magnetization is proportional to $\Y{\mathbf H}$:</span></p>
+  <div class="m">\[\begin{aligned}\mathbf M&=\chi_m\Y{\mathbf H}\\ \mu_r&=1+\chi_m=\frac{\mu}{\mu_0}\\ \Y{\mathbf B}&=\mu_0\mu_r\Y{\mathbf H}\end{aligned}\]</div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ متى تستخدم أي علاقة؟</span><span lang="en">⚠️ Which relation when?</span></strong>
+    <p><span lang="ar">$\Y{\mathbf B}=\mu_0(\Y{\mathbf H}+\mathbf M)$ صحيحة لكل المواد. أما $\mathbf M=\chi_m\Y{\mathbf H}$ فللمواد الخطية بس. وفي الفراغ $\mathbf M=0$.</span><span lang="en">$\Y{\mathbf B}=\mu_0(\Y{\mathbf H}+\mathbf M)$ holds for all materials, while $\mathbf M=\chi_m\Y{\mathbf H}$ holds for linear materials only. In free space $\mathbf M=0$.</span></p>
+  </div>
+</section>
 
-<section class="panel reveal" id="s5"><div class="panel-head"><span class="num">05</span><span class="sym">B=μo(H+M)</span><h2 data-en="Magnetization in materials">المغنطة في المواد</h2></div>
-<p data-en="Atomic electrons orbit the nucleus and spin, forming tiny current loops with moment <span class='m'>$\mathbf m=I_bS\,\mathbf a_n$</span>. Without an external field the orientations are random and the moments sum to zero; with a field they align and a net moment appears. The <b>magnetization</b> <span class='m'>$\mathbf M$</span> (in <span class='m'>$\text{A/m}$</span>) is the dipole moment per unit volume.">تدور إلكترونات الذرة حول النواة وحول نفسها، فيتكوّن ما يشبه حلقات تيار صغيرة عزم كلٍّ منها <span class='m'>$\mathbf m=I_bS\,\mathbf a_n$</span>. وبغياب المجال الخارجي تكون الاتجاهات عشوائية ومجموع العزوم صفراً، أما مع وجوده فتصطف العزوم ويظهر عزم صافٍ. و<b>المغنطة</b> <span class='m'>$\mathbf M$</span> (بوحدة <span class='m'>$\text{A/m}$</span>) هي العزم ثنائي القطب لكل وحدة حجم.</p>
-<div class="math-block">\[\mathbf J_b=\nabla\times\mathbf M\quad \mathbf K_b=\mathbf M\times\mathbf a_n\quad \mathbf B=\mu_o(\mathbf H+\mathbf M)\]</div>
-<div class="math-block">\[\mathbf M=\chi_m\mathbf H\quad \mu_r=1+\chi_m=\frac{\mu}{\mu_o}\quad \mathbf B=\mu_o\mu_r\mathbf H\]</div>
-<p data-en="The relation <span class='m'>$\mathbf B=\mu_o(\mathbf H+\mathbf M)$</span> holds for all materials, while <span class='m'>$\mathbf M=\chi_m\mathbf H$</span> holds for linear materials only. In free space <span class='m'>$\mathbf M=0$</span>.">العلاقة <span class='m'>$\mathbf B=\mu_o(\mathbf H+\mathbf M)$</span> صحيحة لجميع المواد، أما <span class='m'>$\mathbf M=\chi_m\mathbf H$</span> فللمواد الخطية فقط. وفي الفراغ <span class='m'>$\mathbf M=0$</span>.</p>
-<div class="question-box" data-en="Example 8.7: an infinite slab occupies <span class='m'>$0\le z\le2\ \text{m}$</span> with <span class='m'>$\mu_r=2.5$</span>, and inside it <span class='m'>$\mathbf B=10y\,\mathbf a_x-5x\,\mathbf a_y\ \text{mWb/m}^2$</span>. Find: <span class='m'>(a)</span> <span class='m'>$\mathbf J$</span> , <span class='m'>(b)</span> <span class='m'>$\mathbf J_b$</span> , <span class='m'>(c)</span> <span class='m'>$\mathbf M$</span> , <span class='m'>(d)</span> <span class='m'>$\mathbf K_b$</span> at <span class='m'>$z=0$</span>.">مثال 8.7: شريحة لا نهائية تشغل المنطقة <span class='m'>$0\le z\le2\ \text{m}$</span> ومادتها <span class='m'>$\mu_r=2.5$</span>، والمجال داخلها <span class='m'>$\mathbf B=10y\,\mathbf a_x-5x\,\mathbf a_y\ \text{mWb/m}^2$</span>. أوجد: <span class='m'>(a)</span> <span class='m'>$\mathbf J$</span> ، <span class='m'>(b)</span> <span class='m'>$\mathbf J_b$</span> ، <span class='m'>(c)</span> <span class='m'>$\mathbf M$</span> ، <span class='m'>(d)</span> <span class='m'>$\mathbf K_b$</span> عند <span class='m'>$z=0$</span>.</div>
-<button class="trigger" aria-expanded="false" data-en="Show solution">اعرض الحل</button><div class="trigger-body" hidden>
-<div class="math-block">\[\begin{aligned}
-\text{(a)}\ \mathbf J&=\nabla\times\tfrac{\mathbf B}{\mu_o\mu_r}=\tfrac{10^6}{\pi}(-5-10)10^{-3}\mathbf a_z=-4.775\,\mathbf a_z\ \text{kA/m}^2\\
-\text{(b)}\ \mathbf J_b&=\chi_m\mathbf J=(\mu_r-1)\mathbf J=-7.163\,\mathbf a_z\ \text{kA/m}^2\\
-\text{(c)}\ \mathbf M&=\chi_m\tfrac{\mathbf B}{\mu_o\mu_r}=4.775y\,\mathbf a_x-2.387x\,\mathbf a_y\ \text{kA/m}\\
-\text{(d)}\ \mathbf K_b&=\mathbf M\times(-\mathbf a_z)=2.387x\,\mathbf a_x+4.775y\,\mathbf a_y\ \text{kA/m}
-\end{aligned}\]</div>
-<div class="result-box" data-en="In <span class='m'>(d)</span>: <span class='m'>$z=0$</span> is the lower face of the slab, so <span class='m'>$\mathbf a_n=-\mathbf a_z$</span>. In <span class='m'>(b)</span>: <span class='m'>$\chi_m=\mu_r-1=1.5$</span>.">في الفرع <span class='m'>(d)</span>: الوجه <span class='m'>$z=0$</span> هو الوجه السفلي للشريحة، لذا <span class='m'>$\mathbf a_n=-\mathbf a_z$</span>. وفي الفرع <span class='m'>(b)</span>: <span class='m'>$\chi_m=\mu_r-1=1.5$</span>.</div></div></section>
+<!-- ================= مثال 8.7 ================= -->
+<section class="card" id="ex87" data-nav="مثال 8.7|Example 8.7">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">شريحة مغناطيسية لا نهائية</span><span lang="en">An infinite magnetic slab</span></h2></div>
+  <div class="tags"><span class="tag ltr">Sadiku 8.7</span></div>
+  <p><span lang="ar">شريحة لا نهائية تشغل $0\le z\le2\ \text{m}$ ومادتها $\mu_r=2.5$، والمجال داخلها $\Y{\mathbf B}=10y\,\mathbf a_x-5x\,\mathbf a_y\ \text{mWb/m}^2$. أوجد: (a) $\mathbf J$ ، (b) $\mathbf J_b$ ، (c) $\mathbf M$ ، (d) $\mathbf K_b$ عند $z=0$.</span><span lang="en">An infinite slab occupies $0\le z\le2\ \text{m}$ with $\mu_r=2.5$, and inside it $\Y{\mathbf B}=10y\,\mathbf a_x-5x\,\mathbf a_y\ \text{mWb/m}^2$. Find: (a) $\mathbf J$, (b) $\mathbf J_b$, (c) $\mathbf M$, (d) $\mathbf K_b$ at $z=0$.</span></p>
+  <div class="map"><span class="y">μr = 2.5</span><span>χm = 1.5</span><span class="y">B = 10y aₓ − 5x a_y mWb/m²</span></div>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">(a) التيار الحر $\mathbf J$</span><span lang="en">(a) The free current $\mathbf J$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf J&=\nabla\times\Y{\mathbf H}=\frac{1}{\mu_0\mu_r}\nabla\times\Y{\mathbf B}\\&=\frac{10^6}{\pi}\,(-5-10)\times10^{-3}\,\mathbf a_z\\&=-4.775\,\mathbf a_z\ \text{kA/m}^2\end{aligned}\]</div>
+      <p class="why"><span lang="ar">مركبة $z$ للـ curl: $\partial B_y/\partial x-\partial B_x/\partial y=-5-10$. و $\mu_0\mu_r=4\pi\times10^{-7}\times2.5=\pi\times10^{-6}$.</span><span lang="en">The $z$ component of the curl: $\partial B_y/\partial x-\partial B_x/\partial y=-5-10$. And $\mu_0\mu_r=4\pi\times10^{-7}\times2.5=\pi\times10^{-6}$.</span></p></li>
+    <li class="step"><h4><span lang="ar">(b) التيار المقيّد $\mathbf J_b$</span><span lang="en">(b) The bound current $\mathbf J_b$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf J_b&=\chi_m\mathbf J=(\mu_r-1)\,\mathbf J\\&=-7.163\,\mathbf a_z\ \text{kA/m}^2\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\mathbf J_b=\nabla\times\mathbf M=\nabla\times(\chi_m\Y{\mathbf H})=\chi_m\mathbf J$، و $\chi_m=1.5$.</span><span lang="en">$\mathbf J_b=\nabla\times\mathbf M=\nabla\times(\chi_m\Y{\mathbf H})=\chi_m\mathbf J$, with $\chi_m=1.5$.</span></p></li>
+    <li class="step"><h4><span lang="ar">(c) المغنطة $\mathbf M$</span><span lang="en">(c) The magnetization $\mathbf M$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf M&=\chi_m\frac{\Y{\mathbf B}}{\mu_0\mu_r}\\&=4.775y\,\mathbf a_x-2.387x\,\mathbf a_y\ \text{kA/m}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$1.5\times\dfrac{10^6}{\pi}\times10\times10^{-3}=4775$ و $1.5\times\dfrac{10^6}{\pi}\times5\times10^{-3}=2387$.</span><span lang="en">$1.5\times\dfrac{10^6}{\pi}\times10\times10^{-3}=4775$ and $1.5\times\dfrac{10^6}{\pi}\times5\times10^{-3}=2387$.</span></p></li>
+    <li class="step"><h4><span lang="ar">(d) التيار السطحي $\mathbf K_b$ عند $z=0$</span><span lang="en">(d) The surface current $\mathbf K_b$ at $z=0$</span></h4>
+      <div class="m">\[\begin{aligned}\mathbf K_b&=\mathbf M\times(-\mathbf a_z)\\&=2.387x\,\mathbf a_x+4.775y\,\mathbf a_y\ \text{kA/m}\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$z=0$ هو الوجه <b>السفلي</b> للشريحة، فالعمودي الطالع من المادة $\mathbf a_n=-\mathbf a_z$. و $\mathbf a_x\times(-\mathbf a_z)=\mathbf a_y$ و $\mathbf a_y\times(-\mathbf a_z)=-\mathbf a_x$.</span><span lang="en">$z=0$ is the slab's <b>lower</b> face, so the outward normal is $\mathbf a_n=-\mathbf a_z$. Also $\mathbf a_x\times(-\mathbf a_z)=\mathbf a_y$ and $\mathbf a_y\times(-\mathbf a_z)=-\mathbf a_x$.</span></p></li>
+    <li class="step final"><div class="result">$\mathbf J_b=1.5\,\mathbf J$ <span lang="ar">و</span><span lang="en">and</span> $\mathbf K_b=\mathbf M\times\mathbf a_n$</div>
+      <p class="sanity"><span lang="ar">التيار المقيّد أكبر من الحر لأن $\chi_m>1$ هنا، ونفس الاتجاه $-\mathbf a_z$ ✓.</span><span lang="en">The bound current exceeds the free one because $\chi_m>1$ here, and it points the same way, $-\mathbf a_z$ ✓.</span></p></li>
+  </ol>
+</section>
 
-<section class="panel reveal" id="s6"><div class="panel-head"><span class="num">06</span><span class="sym">χm , μr</span><h2 data-en="Classification of materials">تصنيف المواد</h2></div>
-<table><tr><th data-en="Type">النوع</th><th><span class='m'>$\chi_m$</span></th><th><span class='m'>$\mu_r$</span></th><th data-en="Behavior">السلوك</th></tr>
-<tr><td data-en="Diamagnetic">ديامغناطيسية</td><td><span class='m'>$<0$</span></td><td><span class='m'>$\lesssim1$</span></td><td data-en="Linear">خطي</td></tr>
-<tr><td data-en="Paramagnetic">بارامغناطيسية</td><td><span class='m'>$>0$</span></td><td><span class='m'>$\gtrsim1$</span></td><td data-en="Linear">خطي</td></tr>
-<tr><td data-en="Ferromagnetic">فيرومغناطيسية</td><td><span class='m'>$\gg0$</span></td><td><span class='m'>$\gg1$</span></td><td data-en="Nonlinear">غير خطي</td></tr></table>
-<p data-en="A <b>nonmagnetic</b> material has <span class='m'>$\chi_m=0$</span> (that is <span class='m'>$\mu_r=1$</span>), such as free space and air.">المادة <b>غير المغناطيسية</b> هي التي <span class='m'>$\chi_m=0$</span> (أي <span class='m'>$\mu_r=1$</span>) كالفراغ والهواء.</p></section>
+<!-- ================= 06 تصنيف المواد ================= -->
+<section class="card" id="s6" data-num="06" data-nav="تصنيف المواد|Materials">
+  <h2><span lang="ar">تصنيف المواد المغناطيسية</span><span lang="en">Classification of magnetic materials</span></h2>
+  <p class="sub"><span lang="ar">إشارة وحجم $\chi_m$ يحددون النوع</span><span lang="en">The sign and size of $\chi_m$ decide the type</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">النوع</span><span lang="en">Type</span></th><th>$\chi_m$</th><th>$\mu_r$</th><th><span lang="ar">السلوك</span><span lang="en">Behavior</span></th></tr></thead>
+    <tbody>
+      <tr><td><span lang="ar">ديامغناطيسية</span><span lang="en">Diamagnetic</span></td><td>$<0$</td><td>$\lesssim1$</td><td><span lang="ar">خطي</span><span lang="en">Linear</span></td></tr>
+      <tr><td><span lang="ar">بارامغناطيسية</span><span lang="en">Paramagnetic</span></td><td>$>0$</td><td>$\gtrsim1$</td><td><span lang="ar">خطي</span><span lang="en">Linear</span></td></tr>
+      <tr><td><span lang="ar">فيرومغناطيسية</span><span lang="en">Ferromagnetic</span></td><td>$\gg0$</td><td>$\gg1$</td><td><span lang="ar">غير خطي</span><span lang="en">Nonlinear</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><span lang="ar">المادة <b>غير المغناطيسية</b> هي اللي $\chi_m=0$ (يعني $\mu_r=1$) مثل الفراغ والهواء.</span><span lang="en">A <b>nonmagnetic</b> material has $\chi_m=0$ (that is $\mu_r=1$), such as free space and air.</span></p>
+</section>
 
-<section class="panel reveal" id="s7"><div class="panel-head"><span class="num">07</span><span class="sym">L=λ/I</span><h2 data-en="Inductance and magnetic energy">المحاثة والطاقة المغناطيسية</h2></div>
-<div class="math-block">\[\lambda=N\Psi\quad L=\frac{\lambda}{I}=\frac{N\Psi}{I}\ (\text{H}=\text{Wb/A})\quad W_m=\tfrac12LI^2\quad L=\frac{2W_m}{I^2}\]</div>
-<p data-en="Inductance depends on the geometry of the circuit and measures its ability to store magnetic energy. For two circuits:">المحاثة خاصية تعتمد على الشكل الهندسي للدائرة، وهي مقياس لقدرتها على تخزين الطاقة المغناطيسية. وعند وجود دائرتين:</p>
-<div class="math-block">\[M_{12}=\frac{\lambda_{12}}{I_2}=\frac{N_1\Psi_{12}}{I_2}\quad M_{12}=M_{21}\ (\text{linear})\]</div>
-<div class="math-block small">\[W_m=\tfrac12L_1I_1^2+\tfrac12L_2I_2^2\pm M_{12}I_1I_2\qquad W_m=\tfrac12\int_v\mathbf B\cdot\mathbf H\,dv=\tfrac12\int_v\mu H^2dv\]</div>
-<p data-en="The total inductance is <span class='m'>$L=L_{in}+L_{ext}$</span> and it satisfies <span class='m'>$L_{ext}C=\mu\varepsilon$</span>. Mutual inductance is the basis of transformers; do not confuse it with the magnetization <span class='m'>$\mathbf M$</span>.">تُكتب المحاثة الكلية <span class='m'>$L=L_{in}+L_{ext}$</span> وتحقق <span class='m'>$L_{ext}C=\mu\varepsilon$</span>. والمحاثة المتبادلة أساس عمل المحوّلات، ولا تُخلط بالمغنطة <span class='m'>$\mathbf M$</span>.</p></section>
+<!-- ================= 07 المحاثة ================= -->
+<section class="card" id="s7" data-num="07" data-nav="المحاثة|Inductance">
+  <h2><span lang="ar">المحاثة والطاقة المغناطيسية</span><span lang="en">Inductance and magnetic energy</span></h2>
+  <p class="sub"><span lang="ar">قد إيش الدائرة تقدر تخزّن طاقة في مجالها المغناطيسي</span><span lang="en">How much energy a circuit can store in its magnetic field</span></p>
+  <p><span lang="ar">ملف فيه $N$ لفة، وكل لفة يعبرها فيض $\Psi$. ترابط الفيض $\lambda=N\Psi$، والمحاثة هي ترابط الفيض لكل أمبير:</span><span lang="en">A coil has $N$ turns, each linked by flux $\Psi$. The flux linkage is $\lambda=N\Psi$, and the inductance is the flux linkage per ampere:</span></p>
+  <div class="m big">\[L=\frac{\lambda}{I}=\frac{N\Psi}{I}\quad(\text{H}=\text{Wb/A})\]</div>
+  <div class="m">\[W_m=\tfrac12LI^2\qquad L=\frac{2W_m}{I^2}\]</div>
+  <p><span lang="ar">المحاثة تعتمد على شكل الدائرة الهندسي بس، مو على التيار. ولو عندنا دائرتين، المحاثة المتبادلة:</span><span lang="en">Inductance depends only on the circuit's geometry, not on the current. With two circuits, the mutual inductance is:</span></p>
+  <div class="m">\[M_{12}=\frac{\lambda_{12}}{I_2}=\frac{N_1\Psi_{12}}{I_2}\qquad M_{12}=M_{21}\]</div>
+  <p class="why"><span lang="ar">$M_{12}=M_{21}$ للأوساط الخطية.</span><span lang="en">$M_{12}=M_{21}$ in linear media.</span></p>
+  <div class="m">\[\begin{aligned}W_m&=\tfrac12L_1I_1^2+\tfrac12L_2I_2^2\\&\quad\pm M_{12}I_1I_2\end{aligned}\]</div>
+  <p><span lang="ar">والطاقة نقدر نحسبها كمان من المجال نفسه، بالتكامل على الحجم:</span><span lang="en">The energy can also be computed from the field itself, integrating over the volume:</span></p>
+  <div class="m">\[W_m=\tfrac12\int_v\Y{\mathbf B}\cdot\Y{\mathbf H}\,dv=\tfrac12\int_v\mu H^2\,dv\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 ملاحظات سريعة</span><span lang="en">🔑 Quick notes</span></strong>
+    <p><span lang="ar">المحاثة الكلية $L=L_{in}+L_{ext}$، وللخطوط $L_{ext}C=\mu\varepsilon$. والمحاثة المتبادلة أساس شغل المحوّلات. لا تخلط بين $M_{12}$ (بالهنري) والمغنطة $\mathbf M$ (بـ <span dir="ltr">A/m</span>).</span><span lang="en">The total inductance is $L=L_{in}+L_{ext}$, and for lines $L_{ext}C=\mu\varepsilon$. Mutual inductance is how transformers work. Don't confuse $M_{12}$ (in henries) with the magnetization $\mathbf M$ (in A/m).</span></p>
+  </div>
+</section>
 
-<section class="panel reveal cw" id="cw"><div class="panel-head"><span class="sym">Classwork</span><h2 data-en="Practice problems">تمارين تدريبية</h2></div>
-<div class="question-box" data-en="1) A charge moves with velocity <span class='m'>$5\,\mathbf a_x\ \text{m/s}$</span> where <span class='m'>$\mathbf E=45\,\mathbf a_y\ \text{V/m}$</span>. Find <span class='m'>$B_o$</span> in <span class='m'>$\mathbf B=B_o\,\mathbf a_z$</span> so that the velocity stays constant.">1) تتحرك شحنة بسرعة <span class='m'>$5\,\mathbf a_x\ \text{m/s}$</span> في منطقة <span class='m'>$\mathbf E=45\,\mathbf a_y\ \text{V/m}$</span>. أوجد <span class='m'>$B_o$</span> في <span class='m'>$\mathbf B=B_o\,\mathbf a_z$</span> لتبقى السرعة ثابتة.</div>
-<button class="trigger" aria-expanded="false" data-en="Answer">الإجابة</button><div class="trigger-body" hidden data-en="Net force is zero: <span class='m'>$45-5B_o=0$</span> , so <span class='m'>$B_o=E/u=9\ \text{Wb/m}^2$</span>.">القوة الكلية تساوي صفراً: <span class='m'>$45-5B_o=0$</span> ، ومنه <span class='m'>$B_o=E/u=9\ \text{Wb/m}^2$</span>.</div>
-<div class="question-box" data-en="2) A loop of area <span class='m'>$S=0.02\ \text{m}^2$</span> carries <span class='m'>$I=5\ \text{A}$</span> in a uniform field <span class='m'>$B=0.4\ \text{T}$</span>, and its normal makes <span class='m'>$30^\circ$</span> with <span class='m'>$\mathbf B$</span>. Find the torque on it.">2) حلقة مساحتها <span class='m'>$S=0.02\ \text{m}^2$</span> يمرّ فيها تيار <span class='m'>$I=5\ \text{A}$</span> داخل مجال منتظم <span class='m'>$B=0.4\ \text{T}$</span>، والزاوية بين عمودها و <span class='m'>$\mathbf B$</span> تساوي <span class='m'>$30^\circ$</span>. أوجد العزم المؤثر عليها.</div>
-<button class="trigger" aria-expanded="false" data-en="Answer">الإجابة</button><div class="trigger-body" hidden data-en="Torque <span class='m'>$T=BIS\sin\alpha=0.4\times5\times0.02\times0.5=0.02\ \text{N·m}$</span>.">العزم <span class='m'>$T=BIS\sin\alpha=0.4\times5\times0.02\times0.5=0.02\ \text{N·m}$</span>.</div>
-<div class="question-box" data-en="3) A coil has <span class='m'>$N=200$</span> turns, and a flux <span class='m'>$\Psi=2\ \text{mWb}$</span> links each turn when <span class='m'>$I=4\ \text{A}$</span>. Find the inductance <span class='m'>$L$</span> and the energy <span class='m'>$W_m$</span>.">3) ملف عدد لفاته <span class='m'>$N=200$</span>، ويخترق كل لفة فيضٌ <span class='m'>$\Psi=2\ \text{mWb}$</span> عندما يمرّ فيه تيار <span class='m'>$I=4\ \text{A}$</span>. أوجد المحاثة <span class='m'>$L$</span> والطاقة <span class='m'>$W_m$</span>.</div>
-<button class="trigger" aria-expanded="false" data-en="Answer">الإجابة</button><div class="trigger-body" hidden data-en="<span class='m'>$L=\dfrac{N\Psi}{I}=\dfrac{200\times2\times10^{-3}}{4}=0.1\ \text{H}$</span> , and <span class='m'>$W_m=\tfrac12LI^2=0.8\ \text{J}$</span>."><span class='m'>$L=\dfrac{N\Psi}{I}=\dfrac{200\times2\times10^{-3}}{4}=0.1\ \text{H}$</span> ، والطاقة <span class='m'>$W_m=\tfrac12LI^2=0.8\ \text{J}$</span>.</div></section>
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين</span><span lang="en">Practice</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
 
-<section class="panel reveal" id="mist"><div class="panel-head"><span class="sym">Pitfalls</span><h2 data-en="Common mistakes">الأخطاء الشائعة</h2></div>
-<ul class="mistake-list">
-<li data-en="Thinking the magnetic force raises kinetic energy. Correct: <span class='m'>$\mathbf F_m\cdot d\mathbf l=0$</span>, so there is no work."><span class="mk" data-en="Wrong">خطأ</span>ظنّ أن القوة المغناطيسية ترفع الطاقة الحركية. الصحيح: <span class='m'>$\mathbf F_m\cdot d\mathbf l=0$</span> فلا يوجد شغل.</li>
-<li data-en="Thinking torque is largest at <span class='m'>$\alpha=0$</span>. Correct: it is zero (equilibrium), and maximum at <span class='m'>$90^\circ$</span>."><span class="mk" data-en="Wrong">خطأ</span>ظنّ أن العزم أكبر ما يكون عند <span class='m'>$\alpha=0$</span>. الصحيح: يساوي صفراً (اتزان)، وأقصاه عند <span class='m'>$90^\circ$</span>.</li>
-<li data-en="Confusing magnetization <span class='m'>$\mathbf M$</span> (unit <span class='m'>$\text{A/m}$</span>) with mutual inductance <span class='m'>$M_{12}$</span> (unit <span class='m'>$\text{H}$</span>)."><span class="mk" data-en="Wrong">خطأ</span>الخلط بين المغنطة <span class='m'>$\mathbf M$</span> (وحدتها <span class='m'>$\text{A/m}$</span>) والمحاثة المتبادلة <span class='m'>$M_{12}$</span> (وحدتها <span class='m'>$\text{H}$</span>).</li>
-<li data-en="Ignoring the direction of <span class='m'>$\mathbf a_n$</span> when finding <span class='m'>$\mathbf K_b$</span>: on the lower face <span class='m'>$\mathbf a_n=-\mathbf a_z$</span> and the sign flips."><span class="mk" data-en="Wrong">خطأ</span>إهمال اتجاه <span class='m'>$\mathbf a_n$</span> عند حساب <span class='m'>$\mathbf K_b$</span>؛ فعلى الوجه السفلي <span class='m'>$\mathbf a_n=-\mathbf a_z$</span> وتنقلب الإشارة.</li>
-<li data-en="Taking <span class='m'>$\mu_r=\chi_m$</span>. Correct: <span class='m'>$\mu_r=1+\chi_m$</span>."><span class="mk" data-en="Wrong">خطأ</span>اعتبار <span class='m'>$\mu_r=\chi_m$</span>. الصحيح: <span class='m'>$\mu_r=1+\chi_m$</span>.</li></ul></section>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · سرعة ثابتة</span><span lang="en">Exercise A · constant velocity</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">شحنة تتحرك بسرعة $5\,\mathbf a_x\ \text{m/s}$ في منطقة $\X{\mathbf E}=45\,\mathbf a_y\ \text{V/m}$. أوجد $B_0$ في $\Y{\mathbf B}=B_0\,\mathbf a_z$ بالـ <span dir="ltr">Wb/m²</span> عشان تبقى السرعة ثابتة.</span><span lang="en">A charge moves at $5\,\mathbf a_x\ \text{m/s}$ where $\X{\mathbf E}=45\,\mathbf a_y\ \text{V/m}$. Find $B_0$ in $\Y{\mathbf B}=B_0\,\mathbf a_z$, in Wb/m², so the velocity stays constant.</span></p>
+    <div class="check" data-answer="9"></div>
+    <details class="hint"><p><span lang="ar">محصلة القوى صفر: $B_0=E/u$.</span><span lang="en">Net force zero: $B_0=E/u$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">محصلة القوى</span><span lang="en">Net force</span></h4><div class="m">\[0=Q\big(45-5B_0\big)\,\mathbf a_y\]</div></li>
+      <li class="step final"><div class="result">$B_0=E/u=9\ \text{Wb/m}^2$</div></li>
+    </ol>
+  </div>
 
-<section class="panel reveal" id="quiz"><div class="panel-head"><span class="sym">Quiz</span><h2 data-en="Test yourself">اختبر نفسك</h2></div><div id="quiz-container"></div></section>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · عزم حلقة</span><span lang="en">Exercise B · loop torque</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">حلقة مساحتها $S=0.02\ \text{m}^2$ فيها تيار $I=5\ \text{A}$ داخل مجال منتظم $B=0.4\ \text{T}$، والزاوية بين عمودها و $\Y{\mathbf B}$ تساوي $30^\circ$. أوجد العزم بالـ <span dir="ltr">N·m</span>.</span><span lang="en">A loop of area $S=0.02\ \text{m}^2$ carries $I=5\ \text{A}$ in a uniform field $B=0.4\ \text{T}$, and its normal makes $30^\circ$ with $\Y{\mathbf B}$. Find the torque in N·m.</span></p>
+    <div class="check" data-answer="0.02"></div>
+    <details class="hint"><p><span lang="ar">$T=BIS\sin\alpha$، وجرّب الأرقام في المختبر فوق.</span><span lang="en">$T=BIS\sin\alpha$; try the numbers in the lab above.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4><div class="m">\[\begin{aligned}T&=BIS\sin\alpha\\&=0.4\times5\times0.02\times0.5\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$T=0.02\ \text{N·m}$</div><p class="sanity"><span lang="ar">نص القيمة القصوى $0.04$ لأن $\sin30^\circ=0.5$ ✓.</span><span lang="en">Half the maximum of $0.04$, since $\sin30^\circ=0.5$ ✓.</span></p></li>
+    </ol>
+  </div>
 
-<section class="panel reveal" id="flash"><div class="panel-head"><span class="sym">Flashcards</span><h2 data-en="Review cards">بطاقات المراجعة</h2><button class="btn" id="shuffle" data-en="Shuffle">خلط</button></div><div id="flash-grid"></div></section>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · محاثة وطاقة</span><span lang="en">Exercise C · inductance and energy</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">ملف فيه $N=200$ لفة، وكل لفة يعبرها فيض $\Psi=2\ \text{mWb}$ لما يمر فيه تيار $I=4\ \text{A}$. أوجد الطاقة المخزنة $W_m$ بالجول.</span><span lang="en">A coil has $N=200$ turns, and a flux $\Psi=2\ \text{mWb}$ links each turn when $I=4\ \text{A}$. Find the stored energy $W_m$ in joules.</span></p>
+    <div class="check" data-answer="0.8"></div>
+    <details class="hint"><p><span lang="ar">طلّع $L=N\Psi/I$ أول، وبعدين $W_m=\tfrac12LI^2$.</span><span lang="en">Get $L=N\Psi/I$ first, then $W_m=\tfrac12LI^2$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">المحاثة</span><span lang="en">The inductance</span></h4><div class="m">\[\begin{aligned}L&=\frac{N\Psi}{I}=\frac{200\times2\times10^{-3}}{4}\\&=0.1\ \text{H}\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$W_m=\tfrac12\times0.1\times4^2$<br>$=0.8\ \text{J}$</div><p class="sanity"><span lang="ar">أو مباشرة: $W_m=\tfrac12\lambda I=\tfrac12\times0.4\times4=0.8$ ✓.</span><span lang="en">Or directly: $W_m=\tfrac12\lambda I=\tfrac12\times0.4\times4=0.8$ ✓.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء الشائعة ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء الشائعة</span><span lang="en">Common mistakes</span></h2>
+  <p class="sub"><span lang="ar">كل واحد منها يضيّع درجات في الاختبار</span><span lang="en">Each of these costs marks in the exam</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">"القوة المغناطيسية تزيد الطاقة الحركية"</span><span lang="en">"The magnetic force raises kinetic energy"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$W_m\neq0$</div><span lang="ar">القوة عمودية على الحركة.</span><span lang="en">The force is perpendicular to the motion.</span></div><div class="yes"><div class="mm">$\mathbf F_m\cdot d\mathbf l=0$</div><span lang="ar">ما فيه شغل.</span><span lang="en">No work at all.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">العزم الأقصى عند $\alpha=0$</span><span lang="en">Maximum torque at $\alpha=0$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$T_{max}$ @ $0^\circ$</div><span lang="ar">هنا اتزان.</span><span lang="en">That is equilibrium.</span></div><div class="yes"><div class="mm">$T_{max}$ @ $90^\circ$</div><span lang="ar">وعند $0^\circ$ يساوي صفر.</span><span lang="en">At $0^\circ$ it is zero.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">الخلط بين $\mathbf M$ و $M_{12}$</span><span lang="en">Mixing up $\mathbf M$ and $M_{12}$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf M=M_{12}$</div><span lang="ar">شيئين مختلفين تماماً.</span><span lang="en">Two different things.</span></div><div class="yes"><div class="mm">$\mathbf M\ [\text{A/m}],\ M_{12}\ [\text{H}]$</div><span lang="ar">مغنطة ومحاثة متبادلة.</span><span lang="en">Magnetization vs mutual inductance.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">اتجاه $\mathbf a_n$ في $\mathbf K_b$</span><span lang="en">The direction of $\mathbf a_n$ in $\mathbf K_b$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf a_n=+\mathbf a_z$ @ $z=0$</div><span lang="ar">هذا الوجه السفلي.</span><span lang="en">That is the lower face.</span></div><div class="yes"><div class="mm">$\mathbf a_n=-\mathbf a_z$</div><span lang="ar">العمودي طالع من المادة.</span><span lang="en">The normal points out of the material.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">$\mu_r$ و $\chi_m$</span><span lang="en">$\mu_r$ versus $\chi_m$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mu_r=\chi_m$</div><span lang="ar">نسيت الواحد.</span><span lang="en">You forgot the one.</span></div><div class="yes"><div class="mm">$\mu_r=1+\chi_m$</div><span lang="ar">في الفراغ $\chi_m=0$ و $\mu_r=1$.</span><span lang="en">In vacuum $\chi_m=0$ and $\mu_r=1$.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">6 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">6 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">وش تسوي القوة المغناطيسية في شحنة تتحرك؟</span><span lang="en">What does the magnetic force do to a moving charge?</span></p>
+      <button><span lang="ar">ترفع طاقتها الحركية</span><span lang="en">Raises its kinetic energy</span></button><button><span lang="ar">تغيّر اتجاهها بدون شغل</span><span lang="en">Changes its direction without doing work</span></button><button><span lang="ar">تبطّئها دايماً</span><span lang="en">Always slows it down</span></button>
+      <p class="q-why"><span lang="ar">عمودية على الحركة: $\mathbf F_m\cdot d\mathbf l=0$.</span><span lang="en">Perpendicular to the motion: $\mathbf F_m\cdot d\mathbf l=0$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">في مرشّح سرعة $E=100\ \text{V/m}$ و $B=0.5\ \text{T}$. أي سرعة تعدّي بدون انحراف؟</span><span lang="en">In a velocity filter $E=100\ \text{V/m}$ and $B=0.5\ \text{T}$. Which speed passes undeflected?</span></p>
+      <button><span dir="ltr">50 m/s</span></button><button><span dir="ltr">200 m/s</span></button><button><span dir="ltr">20 m/s</span></button>
+      <p class="q-why">$u=E/B=100/0.5=200\ \text{m/s}$.</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">حلقة $I=2\ \text{A}$ و $S=0.01\ \text{m}^2$ في $B=0.5\ \text{T}$ و $\alpha=90^\circ$. كم العزم؟</span><span lang="en">A loop with $I=2\ \text{A}$, $S=0.01\ \text{m}^2$ in $B=0.5\ \text{T}$ at $\alpha=90^\circ$. What is the torque?</span></p>
+      <button><span dir="ltr">0.01 N·m</span></button><button><span dir="ltr">0.1 N·m</span></button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button>
+      <p class="q-why">$T=BIS\sin\alpha=0.5\times2\times0.01\times1=0.01$.</p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">مادة $\mu_r=6$. كم $\chi_m$؟</span><span lang="en">A material has $\mu_r=6$. What is $\chi_m$?</span></p>
+      <button>7</button><button>5</button><button>6</button>
+      <p class="q-why">$\mu_r=1+\chi_m\Rightarrow\chi_m=5$.</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">محث $L=0.2\ \text{H}$ فيه تيار <span dir="ltr">3 A</span>. كم الطاقة المخزنة؟</span><span lang="en">An inductor $L=0.2\ \text{H}$ carries 3 A. What energy is stored?</span></p>
+      <button><span dir="ltr">0.9 J</span></button><button><span dir="ltr">1.8 J</span></button><button><span dir="ltr">0.6 J</span></button>
+      <p class="q-why">$W_m=\tfrac12LI^2=\tfrac12\times0.2\times9=0.9$.</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">أي مادة قابليتها $\chi_m$ سالبة؟</span><span lang="en">Which material has a negative susceptibility $\chi_m$?</span></p>
+      <button><span lang="ar">ديامغناطيسية</span><span lang="en">Diamagnetic</span></button><button><span lang="ar">بارامغناطيسية</span><span lang="en">Paramagnetic</span></button><button><span lang="ar">فيرومغناطيسية</span><span lang="en">Ferromagnetic</span></button>
+      <p class="q-why"><span lang="ar">الديامغناطيسية: $\chi_m<0$ و $\mu_r\lesssim1$.</span><span lang="en">Diamagnetic: $\chi_m<0$ and $\mu_r\lesssim1$.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب، للقوانين اللي لازم تنحفظ</span><span lang="en">Click a card to flip it, for the formulas you must memorize</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">القوة على شحنة متحركة</span><span lang="en">Force on a moving charge</span></div><div>$\mathbf F_m=Q\,\mathbf u\times\mathbf B$</div></div>
+    <div class="flash"><div><span lang="ar">معادلة لورنتز</span><span lang="en">Lorentz force</span></div><div>$\mathbf F=Q(\mathbf E+\mathbf u\times\mathbf B)$</div></div>
+    <div class="flash"><div><span lang="ar">شرط مرشّح السرعة</span><span lang="en">Velocity-filter condition</span></div><div>$u=E/B$</div></div>
+    <div class="flash"><div><span lang="ar">القوة على عنصر تيار</span><span lang="en">Force on a current element</span></div><div>$d\mathbf F=I\,d\mathbf l\times\mathbf B$</div></div>
+    <div class="flash"><div><span lang="ar">عزم حلقة تيار</span><span lang="en">Torque on a current loop</span></div><div>$T=BIS\sin\alpha,\ \ \mathbf T=\mathbf m\times\mathbf B$</div></div>
+    <div class="flash"><div><span lang="ar">العزم ثنائي القطب</span><span lang="en">Magnetic dipole moment</span></div><div>$\mathbf m=IS\,\mathbf a_n$</div></div>
+    <div class="flash"><div><span lang="ar">التيارات المقيّدة</span><span lang="en">Bound currents</span></div><div>$\mathbf J_b=\nabla\times\mathbf M,\ \ \mathbf K_b=\mathbf M\times\mathbf a_n$</div></div>
+    <div class="flash"><div><span lang="ar">العلاقة بين B و H و M</span><span lang="en">Relating B, H and M</span></div><div>$\mathbf B=\mu_0(\mathbf H+\mathbf M),\ \ \mu_r=1+\chi_m$</div></div>
+    <div class="flash"><div><span lang="ar">المحاثة والطاقة</span><span lang="en">Inductance and energy</span></div><div>$L=\lambda/I,\ \ W_m=\tfrac12LI^2$</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">➡️ المحاضرة الجاية</span><span lang="en">➡️ Next lecture</span></strong>
+    <p><span lang="ar">كمّل في <a href="lecture3.html">المحاضرة 3: قانون فاراداي والجهد المستحث</a>، نشوف فيها كيف المجال المغناطيسي المتغير يطلّع جهد.</span><span lang="en">Continue with <a href="lecture3.html">Lecture 3: Faraday's law and induced emf</a>, where a changing magnetic field produces a voltage.</span></p>
+  </div>
+</section>
+
 </main>
-<footer><button class="btn primary" onclick="window.print()" data-en="Print summary">طباعة الملخص</button><p data-en="<span class='m'>EENG1279</span> — Dr. Ahmed Salah Shalaby — Al-Baha University"><span class='m'>EENG1279</span> — د. أحمد صلاح شلبي — جامعة الباحة</p></footer>
 
 <script>
-const L=(a,e)=>lang==='en'?e:a,tr=x=>Array.isArray(x)?x[lang==='en'?1:0]:x;let lang='ar';
-const bx=t=>t.replace(/\$[^$]+\$/g,m=>`<span class="m">${m}</span>`),wr=t=>/[\u0600-\u06FF]/.test(t)?t:`<span class="m">${t}</span>`;
-const secs=[['core','الخلاصة','Summary'],['sym','الرموز','Symbols'],['lab','المختبر','Lab'],['s1','01 شحنة','01 Charge'],['s2','02 عنصر تيار','02 Current element'],['s3','03 عنصران','03 Two elements'],['s4','04 العزم','04 Torque'],['s5','05 المغنطة','05 Magnetization'],['s6','06 المواد','06 Materials'],['s7','07 المحاثة','07 Inductance'],['cw','تمارين','Practice'],['mist','أخطاء','Mistakes'],['quiz','اختبر نفسك','Quiz'],['flash','بطاقات','Cards']];
-const symData=[['\\mathbf F_m','القوة المغناطيسية','Magnetic force','N'],['Q','الشحنة الكهربائية','Electric charge','C'],['\\mathbf u','سرعة الشحنة','Charge velocity','m/s'],['\\mathbf B','كثافة الفيض المغناطيسي','Magnetic flux density','Wb/m²'],['\\mathbf E','شدة المجال الكهربائي','Electric field intensity','V/m'],['I\\,d\\mathbf l','عنصر التيار','Current element','A·m'],['\\mathbf m','العزم ثنائي القطب','Dipole moment','A·m²'],['T','العزم الميكانيكي','Torque','N·m'],['\\mathbf M','المغنطة','Magnetization','A/m'],['\\mathbf H','شدة المجال المغناطيسي','Magnetic field intensity','A/m'],['\\chi_m','القابلية المغناطيسية','Magnetic susceptibility','—'],['\\mu_r','النفاذية النسبية','Relative permeability','—'],['L','المحاثة الذاتية','Self-inductance','H'],['\\lambda','ترابط الفيض','Flux linkage','Wb'],['W_m','الطاقة المغناطيسية','Magnetic energy','J']];
-const quizData=[
-{q:['ماذا تفعل القوة المغناطيسية بشحنة متحركة؟','What does the magnetic force do to a moving charge?'],o:[['ترفع طاقتها الحركية','Raises its kinetic energy'],['تغيّر اتجاهها دون بذل شغل','Changes its direction without doing work'],['تبطئها دائماً','Always slows it down']],a:1,f:['لأنها عمودية على اتجاه الحركة، أي أن','Because it is perpendicular to the motion:'],e:'Fm · dl = 0'},
-{q:['في مرشّح السرعة: $E=100\\ \\text{V/m}$ و $B=0.5\\ \\text{T}$. ما السرعة التي تمرّ دون انحراف؟','In a velocity filter $E=100\\ \\text{V/m}$ and $B=0.5\\ \\text{T}$. Which speed passes undeflected?'],o:['50 m/s','200 m/s','20 m/s'],a:1,f:['تمرّ الشحنة دون انحراف حين','A charge passes undeflected when'],e:'u = E/B = 100/0.5 = 200 m/s'},
-{q:['حلقة فيها $I=2\\ \\text{A}$ ومساحتها $S=0.01\\ \\text{m}^2$ في مجال $B=0.5\\ \\text{T}$ وبزاوية $\\alpha=90^\\circ$. ما العزم؟','A loop has $I=2\\ \\text{A}$, $S=0.01\\ \\text{m}^2$, in $B=0.5\\ \\text{T}$ with $\\alpha=90^\\circ$. What is the torque?'],o:['0.01 N·m','0.1 N·m',['صفر','Zero']],a:0,f:['نطبّق القانون:','Apply the law:'],e:'T = BIS sin α = 0.5×2×0.01×1 = 0.01 N·m'},
-{q:['مادة نفاذيتها النسبية $\\mu_r=6$. ما قيمة $\\chi_m$؟','A material has $\\mu_r=6$. What is $\\chi_m$?'],o:['7','5','6'],a:1,f:['لأن','Since'],e:'μr = 1 + χm ⇒ χm = 5'},
-{q:['محث $L=0.2\\ \\text{H}$ يمرّ فيه تيار $3\\ \\text{A}$. ما الطاقة المخزنة؟','An inductor $L=0.2\\ \\text{H}$ carries $3\\ \\text{A}$. What energy is stored?'],o:['0.9 J','1.8 J','0.6 J'],a:0,f:['الطاقة المخزنة:','Stored energy:'],e:'Wm = ½ L I² = ½×0.2×9 = 0.9 J'},
-{q:['أي المواد التالية قابليتها المغناطيسية $\\chi_m$ سالبة؟','Which material has a negative susceptibility $\\chi_m$?'],o:[['ديامغناطيسية','Diamagnetic'],['بارامغناطيسية','Paramagnetic'],['فيرومغناطيسية','Ferromagnetic']],a:0,f:['المواد الديامغناطيسية:','Diamagnetic materials:'],e:'χm &lt; 0 , μr ≲ 1'}];
-const flashData=[
-{f:['القوة على شحنة متحركة','Force on a moving charge'],b:'$\\mathbf F_m=Q\\mathbf u\\times\\mathbf B$'},
-{f:['معادلة لورنتز','Lorentz force equation'],b:'$\\mathbf F=Q(\\mathbf E+\\mathbf u\\times\\mathbf B)$'},
-{f:['شرط مرشّح السرعة','Velocity-filter condition'],b:'$u=E/B$'},
-{f:['القوة على عنصر تيار','Force on a current element'],b:'$d\\mathbf F=I\\,d\\mathbf l\\times\\mathbf B$'},
-{f:['عزم حلقة تيار','Torque on a current loop'],b:'$T=BIS\\sin\\alpha$ ، $\\mathbf T=\\mathbf m\\times\\mathbf B$'},
-{f:['العزم ثنائي القطب','Magnetic dipole moment'],b:'$\\mathbf m=IS\\,\\mathbf a_n$'},
-{f:['التيارات المقيَّدة','Bound currents'],b:'$\\mathbf J_b=\\nabla\\times\\mathbf M$ ، $\\mathbf K_b=\\mathbf M\\times\\mathbf a_n$'},
-{f:['العلاقة بين B و H و M','Relating B, H and M'],b:'$\\mathbf B=\\mu_o(\\mathbf H+\\mathbf M)$ ، $\\mu_r=1+\\chi_m$'},
-{f:['المحاثة والطاقة','Inductance and energy'],b:'$L=\\lambda/I$ ، $W_m=\\tfrac12LI^2$'}];
-const tq={a:60,i:5,b:.4,S:.02,run:false,dir:1};
-const $=id=>document.getElementById(id);
-function typeset(){try{if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise()}catch(e){}}
+(function () {
+  'use strict';
+  const { $, $$, L, N, chart, player, grid, path, P, axName, arrow } = EM;
 
-function initReveal(){const els=document.querySelectorAll('.reveal');if(!('IntersectionObserver' in window))return;document.documentElement.classList.add('js');
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.05});els.forEach(e=>io.observe(e));}
-function initNav(){$('pills').innerHTML=secs.map(s=>`<a class="pill" href="#${s[0]}">${L(s[1],s[2])}</a>`).join('');$('toc').innerHTML=secs.map(s=>`<a href="#${s[0]}">${L(s[1],s[2])}</a>`).join('');}
-function initToc(){const fab=$('toc-fab'),dr=$('toc');fab.onclick=()=>{const o=dr.classList.toggle('open');fab.setAttribute('aria-expanded',o)};
- dr.addEventListener('click',e=>{if(e.target.closest('a')){dr.classList.remove('open');fab.setAttribute('aria-expanded','false')}});
- addEventListener('keydown',e=>{if(e.key==='Escape'){dr.classList.remove('open');fab.setAttribute('aria-expanded','false')}});
- if(!('IntersectionObserver' in window))return;
- const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)dr.querySelectorAll('a').forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-30% 0px -60% 0px'});
- document.querySelectorAll('.panel[id]').forEach(p=>io.observe(p));}
-function addCopyButtons(){document.querySelectorAll('.math-block').forEach(b=>{const t=b.textContent.replace(/^\s*\\\[|\\\]\s*$/g,'').trim();
- const btn=document.createElement('button');btn.className='cp';btn.textContent=L('نسخ TeX','Copy TeX');btn.setAttribute('aria-label','نسخ معادلة LaTeX');
- btn.onclick=()=>{navigator.clipboard.writeText(t).then(()=>{btn.textContent=L('تم ✓','Done ✓');setTimeout(()=>btn.textContent=L('نسخ TeX','Copy TeX'),1200)}).catch(()=>{})};b.appendChild(btn)});}
-function initMisc(){
- $('theme').onclick=function(){const l=document.body.classList.toggle('light');this.textContent=l?'☀️':'🌙';this.setAttribute('aria-pressed',l);tqDraw()};
- addEventListener('scroll',()=>{const h=document.documentElement,m=h.scrollHeight-h.clientHeight;$('prog').style.width=(m>0?h.scrollTop/m*100:0)+'%'},{passive:true});
- document.addEventListener('click',e=>{const t=e.target.closest('.trigger');if(!t)return;const o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));t.nextElementSibling.hidden=o});
- $('shuffle').onclick=shuffleFlash;}
+  /* ---------- 04: مختبر عزم الحلقة ---------- */
+  const S = 0.02, R = Math.PI / 180;
+  const TQ = { a: 60, i: 5, b: 0.4, w: 0 };
+  const torque = a => TQ.b * TQ.i * S * Math.sin(a * R);
 
-function initI18n(){document.querySelectorAll('[data-en]').forEach(e=>e.dataset.ar=e.innerHTML);
- $('lang').onclick=()=>setLang(lang==='ar'?'en':'ar');let v=null;try{v=localStorage.getItem('lang')}catch(e){}
- if(v==='en')setLang('en',true);}
-function setLang(l,init){lang=l;const h=document.documentElement;h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
- document.querySelectorAll('[data-en]').forEach(e=>e.innerHTML=l==='en'?e.dataset.en:e.dataset.ar);
- $('lang').textContent=l==='ar'?'EN':'عربي';$('lang').setAttribute('aria-label',l==='ar'?'Translate to English':'الترجمة إلى العربية');
- document.title=l==='ar'?'ملخص المحاضرة 2 — القوى والمواد المغناطيسية (Ch 8)':'Lecture 2 Summary — Magnetic Forces and Materials (Ch 8)';
- try{localStorage.setItem('lang',l)}catch(e){}
- if(init)return;
- document.querySelectorAll('.cp').forEach(b=>b.textContent=L('نسخ TeX','Copy TeX'));
- initNav();renderSyms();renderQuiz();renderFlashcards();$('tq-play').textContent=tq.run?L('إيقاف','Stop'):L('تشغيل','Play');tqDraw();
- try{if(window.MathJax&&MathJax.typesetClear)MathJax.typesetClear()}catch(e){}typeset();}
-function renderSyms(){const g=$('sym-grid');if(!g)return;
- g.innerHTML=symData.map(x=>`<div class="sk"><span class="m">$${x[0]}$</span><span>${L(x[1],x[2])}</span><span class="m u">${x[3]}</span></div>`).join('');typeset();}
-function renderQuiz(){const box=$('quiz-container');if(!box)return;box.innerHTML='';
- quizData.forEach((it,i)=>{const d=document.createElement('div');d.className='qz';d.innerHTML=`<p><b>${i+1}.</b> ${bx(tr(it.q))}</p>`;
-  const fb=document.createElement('p');fb.className='fb';fb.setAttribute('aria-live','polite');
-  it.o.forEach((t,j)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=wr(tr(t));
-   b.onclick=()=>{const all=d.querySelectorAll('.opt');all.forEach(e=>e.disabled=true);b.classList.add(j===it.a?'ok':'bad');all[it.a].classList.add('ok');
-    fb.innerHTML=(j===it.a?'✔ '+L('صحيح.','Correct.'):'✘ '+L('غير صحيح.','Incorrect.'))+' '+tr(it.f)+` <span class="m">${it.e}</span>`};d.appendChild(b)});
-  d.appendChild(fb);box.appendChild(d)});typeset();}
-function renderFlashcards(){const g=$('flash-grid');if(!g)return;
- g.innerHTML=flashData.map((c,i)=>`<button class="flash" aria-label="بطاقة ${i+1}: اضغط للقلب"><span class="ft">${tr(c.f)}</span><span class="bk">${bx(c.b)}</span></button>`).join('');
- g.querySelectorAll('.flash').forEach(b=>b.onclick=()=>b.classList.toggle('flip'));typeset();}
-function shuffleFlash(){for(let i=flashData.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[flashData[i],flashData[j]]=[flashData[j],flashData[i]]}renderFlashcards();}
+  // مقطع جانبي: B أفقي، الحلقة خط عرضه w، والعمودي a_n بزاوية α عن B
+  const side = chart($('#tq-side'), {
+    label: 'Side view of a current loop in a uniform horizontal field; the loop normal makes angle alpha with B, and two opposite forces on its edges form a couple',
+    h: () => 210, pad: () => ({ l: 0, r: 0, t: 0, b: 0 }), x: [0, 1],
+    st: s => {
+      let o = '';
+      for (let y = 26; y < s.H - 10; y += 40) o += `<g opacity=".4">${arrow(14, y, s.W - 14, y, 'c-h')}</g>`;
+      o += `<text class="lbl" x="${s.W - 18}" y="18" text-anchor="end" style="fill:var(--w-h)">B</text>`;
+      return o;
+    },
+    dy: s => {
+      const cx = s.W / 2, cy = s.H / 2, r = 70, a = TQ.a * R;
+      const nx = Math.cos(a), ny = Math.sin(a);           // a_n (y لفوق)
+      const dx = Math.sin(a), dy = -Math.cos(a);           // اتجاه مقطع الحلقة
+      const px = cx + r * dx, py = cy - r * dy, mx = cx - r * dx, my = cy + r * dy;   // الطرفين في SVG
+      const f = 26 + 40 * (TQ.i * TQ.b) / 10;
+      let o = `<line class="ln c-a" style="stroke-width:5" x1="${mx.toFixed(1)}" y1="${my.toFixed(1)}" x2="${px.toFixed(1)}" y2="${py.toFixed(1)}"/>`;
+      o += arrow(cx, cy, cx + 62 * nx, cy - 62 * ny, 'c-p') + `<text class="lbl" x="${(cx + 76 * nx).toFixed(1)}" y="${(cy - 76 * ny + 4).toFixed(1)}" text-anchor="middle" style="fill:var(--accent)">aₙ</text>`;
+      // الطرف P+: تيار داخل ⊗ وقوة لتحت، والطرف P−: تيار طالع ⊙ وقوة لفوق
+      o += arrow(px, py, px, py + f, 'c-e') + arrow(mx, my, mx, my - f, 'c-e');
+      o += `<g><circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="9" style="fill:var(--surface-2);stroke:var(--w-a);stroke-width:2"/><path d="M${(px - 5).toFixed(1)} ${(py - 5).toFixed(1)}l10 10m0-10l-10 10" style="stroke:var(--w-a);stroke-width:2"/></g>`;
+      o += `<g><circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="9" style="fill:var(--surface-2);stroke:var(--w-a);stroke-width:2"/><circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="2.6" style="fill:var(--w-a)"/></g>`;
+      // قوس الزاوية α بين B و a_n
+      if (TQ.a > 2) {
+        const ra = 30, large = TQ.a > 180 ? 1 : 0;
+        o += `<path class="bracket" style="fill:none" d="M${cx + ra} ${cy}A${ra} ${ra} 0 ${large} 0 ${(cx + ra * nx).toFixed(1)} ${(cy - ra * ny).toFixed(1)}"/>` +
+          `<text class="lbl" x="${(cx + 44 * Math.cos(a / 2)).toFixed(1)}" y="${(cy - 44 * Math.sin(a / 2) + 4).toFixed(1)}" text-anchor="middle">α</text>`;
+      }
+      return o;
+    }
+  });
 
-function arrow(x,a,b,c,d,col){x.strokeStyle=col;x.fillStyle=col;x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke();const t=Math.atan2(d-b,c-a);
- x.beginPath();x.moveTo(c,d);x.lineTo(c-9*Math.cos(t-.4),d-9*Math.sin(t-.4));x.lineTo(c-9*Math.cos(t+.4),d-9*Math.sin(t+.4));x.fill();}
-function tqDraw(){const c=$('tq-canvas');if(!c||!tq)return;
- const x=c.getContext('2d'),r=window.devicePixelRatio||1,W=c.width/r,H=c.height/r;if(!W||!H)return;
- x.setTransform(r,0,0,r,0,0);x.clearRect(0,0,W,H);
- const cs=getComputedStyle(document.body),v=n=>cs.getPropertyValue(n).trim(),sn=v('--trace-sin'),gn=v('--trace-cos'),am=v('--accent-assess'),ink=v('--ink-secondary');
- const a=tq.a*Math.PI/180,cx=W*.27,cy=H/2,R=Math.min(W*.2,H*.34),ux=Math.sin(a)*R,uy=Math.cos(a)*R,T=tq.b*tq.i*tq.S*Math.sin(a);
- x.font='13px "IBM Plex Mono",monospace';x.lineWidth=1.5;
- for(let k=-2;k<=2;k++)arrow(x,cx-R*1.45,cy+k*R*.5,cx+R*1.45,cy+k*R*.5,sn);
- x.fillStyle=sn;x.fillText('B',cx+R*1.5,cy-R*.55);
- x.strokeStyle=am;x.lineWidth=5;x.lineCap='round';x.beginPath();x.moveTo(cx-ux,cy-uy);x.lineTo(cx+ux,cy+uy);x.stroke();x.lineWidth=2;
- if(T>1e-6){arrow(x,cx+ux,cy+uy,cx+ux,cy+uy+R*.6,am);arrow(x,cx-ux,cy-uy,cx-ux,cy-uy-R*.6,am)}
- arrow(x,cx,cy,cx+Math.cos(a)*R*.9,cy-Math.sin(a)*R*.9,gn);x.fillStyle=gn;x.fillText('an',cx+Math.cos(a)*R*.95,cy-Math.sin(a)*R*.95-6);
- x.strokeStyle=ink;x.beginPath();x.arc(cx,cy,R*.35,-a,0);x.stroke();x.fillStyle=ink;x.fillText('α',cx+R*.4,cy-6);
- const px=W*.58,pw=W*.36,py=H*.8,ph=H*.55;x.strokeStyle=ink;x.beginPath();x.moveTo(px,py-ph-8);x.lineTo(px,py);x.lineTo(px+pw+6,py);x.stroke();
- x.fillStyle=ink;x.fillText('0',px-4,py+16);x.fillText('90°',px+pw/2-12,py+16);x.fillText('180°',px+pw-14,py+16);x.fillText('T',px-14,py-ph);
- x.strokeStyle=sn;x.lineWidth=2;x.beginPath();for(let d=0;d<=180;d+=3){const X=px+pw*d/180,Y=py-ph*(tq.b*tq.i*tq.S*Math.sin(d*Math.PI/180))/.2;d?x.lineTo(X,Y):x.moveTo(X,Y)}x.stroke();
- x.fillStyle=gn;x.beginPath();x.arc(px+pw*tq.a/180,py-ph*T/.2,6,0,7);x.fill();
- const o=$('tq-out');if(o)o.innerHTML=`α=${tq.a}° · m=${(tq.i*tq.S).toFixed(2)} A·m²<br>T=${T.toFixed(4)} N·m`;}
-function tqResize(){const c=$('tq-canvas');if(!c)return;const r=window.devicePixelRatio||1;c.width=Math.round(c.clientWidth*r);c.height=Math.round(c.clientHeight*r);tqDraw();}
-function tqLoop(){if(!tq.run)return;tq.a=Math.max(0,Math.min(180,tq.a+tq.dir));if(tq.a>=180||tq.a<=0)tq.dir*=-1;$('tq-a').value=tq.a;tqDraw();requestAnimationFrame(tqLoop)}
-function initLab(){if(!$('tq-canvas'))return;$('tq-play').textContent=L('تشغيل','Play');
- const sync=()=>{tq.a=+$('tq-a').value;tq.i=+$('tq-i').value;tq.b=+$('tq-b').value/10;tqDraw()};
- ['tq-a','tq-i','tq-b'].forEach(id=>$(id).addEventListener('input',sync));
- $('tq-play').onclick=()=>{tq.run=!tq.run;$('tq-play').textContent=tq.run?L('إيقاف','Stop'):L('تشغيل','Play');if(tq.run)tqLoop()};
- $('tq-reset').onclick=()=>{tq.run=false;$('tq-play').textContent=L('تشغيل','Play');$('tq-a').value=60;$('tq-i').value=5;$('tq-b').value=4;sync()};
- addEventListener('resize',tqResize);tqResize();}
+  const NICE = [0.01, 0.02, 0.05, 0.1, 0.2, 0.25];
+  const yMax = () => NICE.find(v => v >= TQ.b * TQ.i * S * 1.1) || 0.25;
+  const CO = {
+    label: 'Torque versus angle alpha from 0 to 180 degrees: a sine arch that is zero at both ends and maximum at 90 degrees, with a marker at the current angle',
+    h: () => 190, pad: () => ({ l: 46, r: 22, t: 14, b: 30 }), x: [0, 180], y: [0, yMax()], start: 90,
+    st: s => grid(s, { yt: [0, 0.5, 1].map(k => [k * CO.y[1], k ? String(+(k * CO.y[1]).toFixed(3)) : '0']), xt: [[0, '0°'], [45, '45°'], [90, '90°'], [135, '135°'], [180, '180°', 'end']], xgrid: true }) + axName(s, 'α'),
+    dy: s => {
+      const t = torque(TQ.a);
+      return P('ln c-a', path(torque, 0, 180, 120, s.X, s.Y)) +
+        `<line class="mark" x1="${s.X(TQ.a).toFixed(1)}" x2="${s.X(TQ.a).toFixed(1)}" y1="${s.pt}" y2="${s.H - s.pb}"/>` +
+        `<circle class="dot c-a" cx="${s.X(TQ.a).toFixed(1)}" cy="${s.Y(t).toFixed(1)}" r="5.5"/>`;
+    },
+    hover: (a, s) => ({ hd: `α = ${Math.round(a)}°`, rows: [{ c: 'c-a', k: 'T', v: N(torque(a), 3) + ' N·m' }], pts: [{ c: 'c-a', y: s.Y(torque(a)) }] }),
+    click: a => { TQ.a = Math.round(a); TQ.w = 0; anim.stop(); sync(); }
+  };
+  const curve = chart($('#tq-curve'), CO);
 
-[initI18n,initReveal,initNav,initToc,addCopyButtons,initMisc,initLab,renderSyms,renderQuiz,renderFlashcards].forEach(f=>{try{f()}catch(e){console.error(f.name,e)}});
+  const lab = $('#tq-lab'), out = k => $(`[data-o="${k}"]`, lab);
+  function sync() {
+    $$('input[type=range]', lab).forEach(r => { r.value = TQ[r.dataset.k]; });
+    $('[data-r="a"]', lab).textContent = Math.round(TQ.a) + '°';
+    $('[data-r="i"]', lab).textContent = TQ.i + ' A';
+    $('[data-r="b"]', lab).textContent = N(TQ.b, 1) + ' T';
+    const t = torque(TQ.a), a = Math.round(TQ.a);
+    out('m').textContent = N(TQ.i * S, 2) + ' A·m²';
+    out('t').textContent = N(t, 3) + ' N·m';
+    out('v').parentElement.classList.toggle('hl', a === 0 || a === 180);
+    out('v').innerHTML = a === 0 ? L('اتزان مستقر (m ∥ B)', 'Stable equilibrium (m ∥ B)')
+      : a === 180 ? L('اتزان غير مستقر', 'Unstable equilibrium')
+      : a === 90 ? L('أقصى عزم', 'Maximum torque') : L('الحلقة تلف نحو 0°', 'The loop turns toward 0°');
+    side && side.drawDyn();
+    if (curve) { const y = yMax(); if (y !== CO.y[1]) { CO.y = [0, y]; curve.draw(); } else curve.drawDyn(); }
+  }
+  // الحركة: العزم يدوّر الحلقة نحو 0° مع تخميد، فتتأرجح وترتاح
+  const anim = player($('[data-play]', lab), lab, dt => {
+    if (TQ.a < 1 && Math.abs(TQ.w) < 2) { TQ.a = 120; TQ.w = 0; }
+    TQ.w += (-300 * Math.sin(TQ.a * R) * TQ.b * TQ.i / 2 - TQ.w) * dt;
+    TQ.a = Math.min(180, Math.max(0, TQ.a + TQ.w * dt));
+    sync();
+  }, false);
+  $$('input[type=range]', lab).forEach(r => r.addEventListener('input', () => { TQ[r.dataset.k] = +r.value; if (r.dataset.k === 'a') { TQ.w = 0; anim.stop(); } sync(); }));
+  sync();
+})();
 </script>
 <script src="nav.js"></script>
 </body>

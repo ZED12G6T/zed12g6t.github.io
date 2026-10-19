@@ -1,587 +1,323 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-topic="Magnetic Forces: Parts A, B, C" data-title-en="Lecture 1 Summary - Magnetic Forces (Parts A, B, C)">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص المحاضرة 1 - الكهرومغناطيسية (2)</title>
-    <!-- MathJax 3 Integration -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-
-        :root {
-            --bg-primary: #0f172a;        /* خلفية الصفحة الداكنة الأساسية */
-            --card-bg: rgba(22, 30, 46, 0.85); /* خلفية البطاقات الزجاجية */
-            --accent-cyan: #38bdf8;       /* اللون السماوي للعناوين والرموز البارزة */
-            --accent-green: #22c55e;      /* اللون الأخضر المضيء للنتائج والتنبيهات */
-            --text-primary: #f3f4f6;      /* لون النصوص الأساسي */
-            --border-color: rgba(255, 255, 255, 0.08); /* لون الحدود الناعمة */
-            --math-bg: #030712;           /* خلفية الرياضيات والقوائم المنسدلة */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.8;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* خلفية النقاط الدقيقة */
-        .bg-dots {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 24px 24px;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* لوحة الرموز التفاعلية */
-        #math-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        /* الحاوية الرئيسية */
-        .main-wrapper {
-            position: relative;
-            z-index: 2;
-            max-width: 960px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        /* البطاقات */
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        /* العناوين */
-        h1 {
-            color: var(--accent-cyan);
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--accent-cyan);
-            border-radius: 2px;
-        }
-
-        h2 {
-            color: var(--accent-cyan);
-            font-size: 1.4rem;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border-right: 4px solid var(--accent-cyan);
-            padding-right: 10px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        /* القوائم */
-        ul {
-            list-style-type: square;
-            padding-right: 25px;
-            margin-bottom: 15px;
-        }
-
-        ol {
-            list-style-type: decimal;
-            padding-right: 25px;
-            margin-bottom: 15px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        /* صناديق المعادلات */
-        .math-block {
-            background-color: rgba(15, 23, 42, 0.6);
-            border-right: 4px solid var(--accent-cyan);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            direction: ltr;
-            text-align: center;
-            overflow-x: auto;
-        }
-
-        /* خاصية الستارة التفاعلية للحلول والواجبات */
-        .question-box {
-            background: rgba(56, 189, 248, 0.05);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .curtain-container {
-            position: relative;
-            margin-top: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px dashed var(--accent-cyan);
-            padding: 15px;
-            background: var(--math-bg);
-        }
-
-        .curtain-content {
-            filter: blur(14px);
-            transition: filter 0.4s ease, opacity 0.4s ease;
-            opacity: 0.2;
-            user-select: none;
-        }
-
-        .curtain-hint {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--accent-cyan);
-            font-weight: 700;
-            font-size: 1.1rem;
-            text-align: center;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            background: rgba(15, 23, 42, 0.9);
-            padding: 10px 20px;
-            border-radius: 20px;
-            border: 1px solid var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            animation: glowing-bg 2s infinite alternate;
-        }
-
-        @keyframes glowing-bg {
-            0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.2); }
-            100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
-        }
-
-        .curtain-container.revealed .curtain-content {
-            filter: blur(0);
-            opacity: 1;
-            user-select: text;
-        }
-
-        .curtain-container.revealed .curtain-hint {
-            opacity: 0;
-        }
-
-        /* الجداول */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: rgba(3, 7, 18, 0.4);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        th {
-            background-color: rgba(56, 189, 248, 0.15);
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
-
-        tr:hover {
-            background-color: rgba(255, 255, 255, 0.03);
-        }
-
-        .highlight-green {
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        /* الاستجابة للشاشات الصغيرة */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .card {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 1.6rem;
-            }
-            h2 {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 1 - القوى المغناطيسية (الأجزاء A و B و C)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
 <link rel="stylesheet" href="../fonts.css">
 </head>
 <body>
+<main class="wrap">
 
-    <!-- خلفية النقاط الدقيقة -->
-    <div class="bg-dots"></div>
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 1 · كهرومغناطيسية (2) · الفصل 8 (8.2)</span><span lang="en">LECTURE 1 · ELECTROMAGNETICS (2) · CH 8.2</span></p>
+  <h1><span><span lang="ar">القوى المغناطيسية: الأجزاء A و B و C</span><span lang="en">Magnetic Forces: Parts A, B, C</span></span> <span class="h1-math ltr">$\mathbf F=Q(\mathbf E+\mathbf u\times\mathbf B)$</span></h1>
+  <p class="lead">
+    <span lang="ar">في الكهرومغناطيسية 1 حسبنا المجال $\Y{\mathbf B}$ اللي يطلّعه التيار. الحين نسأل العكس: وش يسوي $\Y{\mathbf B}$ في شحنة أو سلك موجود فيه؟ عندنا ثلاث حالات: شحنة تتحرك (A)، وعنصر تيار في سلك (B)، وعنصرين تيار يأثرون في بعض (C).</span>
+    <span lang="en">In Electromagnetics 1 we computed the field $\Y{\mathbf B}$ produced by a current. Now we ask the reverse: what does $\Y{\mathbf B}$ do to a charge or a wire sitting in it? There are three cases: a moving charge (A), a current element in a wire (B), and two current elements acting on each other (C).</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · <span lang="ar">المجال الكهربائي</span><span lang="en">electric field</span></span><span class="y">B · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">u · I dl · <span lang="ar">الحركة والتيار</span><span lang="en">motion &amp; current</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">المجال الكهربائي يدف أي شحنة: $Q\X{\mathbf E}$. أما المغناطيسي فما يأثر إلا في شحنة <b>تتحرك</b>: $Q\,\Z{\mathbf u}\times\Y{\mathbf B}$. ومجموعهم قوة لورنتز.</span><span lang="en">The electric field pushes any charge: $Q\X{\mathbf E}$. The magnetic field acts only on a <b>moving</b> charge: $Q\,\Z{\mathbf u}\times\Y{\mathbf B}$. Their sum is the Lorentz force.</span></li>
+      <li><span lang="ar">القوة المغناطيسية عمودية دايماً على الحركة، فهي تلف الشحنة بس <b>ما تبذل شغل</b> وطاقتها الحركية ما تتغير.</span><span lang="en">The magnetic force is always perpendicular to the motion, so it turns the charge but <b>does no work</b>; its kinetic energy stays the same.</span></li>
+      <li><span lang="ar">التيار شحنات تتحرك، فنبدّل $Q\Z{\mathbf u}$ بـ $I\,d\Z{\mathbf l}$ ونطلع القوة على السلك. ولو سلكين، كل واحد يدف الثاني بنفس القوة وعكس الاتجاه (نيوتن الثالث).</span><span lang="en">A current is moving charge, so we swap $Q\Z{\mathbf u}$ for $I\,d\Z{\mathbf l}$ to get the force on a wire. With two wires, each pushes the other with an equal and opposite force (Newton's third law).</span></li>
+    </ol>
+  </div>
+</section>
 
-    <!-- لوحة الرموز التفاعلية -->
-    <canvas id="math-canvas"></canvas>
+<!-- ================= المفردات ================= -->
+<section class="card" id="words" data-num="📖" data-nav="📖 المفردات|📖 Key terms">
+  <h2><span lang="ar">الكلمات المحورية والوحدات</span><span lang="en">Key terms and units</span></h2>
+  <p class="sub"><span lang="ar">مرجع سريع، وهذي الكلمات تجيك في نص السؤال</span><span lang="en">A quick reference; these are the words that show up in exam questions</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">المصطلح</span><span lang="en">Term</span></th><th><span lang="ar">المعنى</span><span lang="en">Meaning</span></th><th><span lang="ar">ليش مهم؟</span><span lang="en">Why it matters</span></th><th><span lang="ar">الوحدة</span><span lang="en">Unit</span></th></tr></thead>
+    <tbody>
+      <tr><td class="ltr">Stationary charge</td><td><span lang="ar">شحنة ساكنة</span><span lang="en">a charge at rest</span></td><td><span lang="ar">ما يأثر فيها $\Y{\mathbf B}$ أبداً لأن $\Z{\mathbf u}=0$</span><span lang="en">$\Y{\mathbf B}$ never acts on it, since $\Z{\mathbf u}=0$</span></td><td class="ltr">C</td></tr>
+      <tr><td class="ltr">Moving charge</td><td><span lang="ar">شحنة متحركة</span><span lang="en">a charge in motion</span></td><td><span lang="ar">الوحيدة اللي يدفها المجال المغناطيسي</span><span lang="en">the only kind the magnetic field pushes</span></td><td class="ltr">C</td></tr>
+      <tr><td class="ltr">Uniform velocity</td><td><span lang="ar">سرعة منتظمة (ثابتة مقدار واتجاه)</span><span lang="en">constant speed and direction</span></td><td><span lang="ar">معناها إن محصلة القوى صفر $\mathbf F=0$</span><span lang="en">it means the net force is zero, $\mathbf F=0$</span></td><td class="ltr">m/s</td></tr>
+      <tr><td class="ltr">Perpendicular</td><td><span lang="ar">عمودي</span><span lang="en">at right angles</span></td><td><span lang="ar">$\mathbf F_m$ تصنع 90° مع $\Z{\mathbf u}$ ومع $\Y{\mathbf B}$</span><span lang="en">$\mathbf F_m$ is at 90° to both $\Z{\mathbf u}$ and $\Y{\mathbf B}$</span></td><td>—</td></tr>
+      <tr><td class="ltr">Current element</td><td><span lang="ar">عنصر تيار $I\,d\Z{\mathbf l}$</span><span lang="en">current element $I\,d\Z{\mathbf l}$</span></td><td><span lang="ar">جزء صغير من سلك فيه تيار</span><span lang="en">a tiny piece of a current-carrying wire</span></td><td class="ltr">A·m</td></tr>
+      <tr><td class="ltr">Magnetic flux density $\Y{\mathbf B}$</td><td><span lang="ar">كثافة الفيض المغناطيسي</span><span lang="en">magnetic flux density</span></td><td><span lang="ar">شدة المجال المغناطيسي في المكان</span><span lang="en">how strong the magnetic field is at a point</span></td><td class="ltr">T = Wb/m²</td></tr>
+      <tr><td class="ltr">Permeability $\mu$</td><td><span lang="ar">النفاذية المغناطيسية</span><span lang="en">permeability</span></td><td><span lang="ar">قد إيش المادة تسمح لخطوط المجال تمر فيها</span><span lang="en">how readily a material lets field lines through</span></td><td class="ltr">H/m</td></tr>
+      <tr><td class="ltr">Magnetization $\mathbf M$</td><td><span lang="ar">التمغنط</span><span lang="en">magnetization</span></td><td><span lang="ar">قد إيش عزوم الذرات اصطفت مع المجال (المحاضرة 2)</span><span lang="en">how far the atomic moments line up with the field (Lecture 2)</span></td><td class="ltr">A/m</td></tr>
+    </tbody>
+  </table></div>
+</section>
 
-    <!-- الحاوية الرئيسية -->
-    <div class="main-wrapper">
+<!-- ================= A: الشحنة ================= -->
+<section class="card" id="partA" data-num="A" data-nav="A · شحنة متحركة|A · Moving charge">
+  <h2><span lang="ar">الجزء A: القوة على جسيم مشحون</span><span lang="en">Part A: Force on a charged particle</span></h2>
+  <p class="sub"><span lang="ar">قوتين: وحدة من $\X{\mathbf E}$ ووحدة من $\Y{\mathbf B}$</span><span lang="en">Two forces: one from $\X{\mathbf E}$ and one from $\Y{\mathbf B}$</span></p>
+  <p><span lang="ar">القوة الكهربائية تأثر في الشحنة سواء كانت ساكنة أو تتحرك:</span><span lang="en">The electric force acts on the charge whether it is at rest or moving:</span></p>
+  <div class="m">\[\mathbf F_e=Q\,\X{\mathbf E}\]</div>
+  <p><span lang="ar">أما القوة المغناطيسية فتطلع <b>بس</b> إذا الشحنة تتحرك بسرعة $\Z{\mathbf u}$، واتجاهها عمودي على $\Z{\mathbf u}$ وعلى $\Y{\mathbf B}$ مع بعض (حاصل ضرب اتجاهي):</span><span lang="en">The magnetic force appears <b>only</b> when the charge moves with velocity $\Z{\mathbf u}$, and it points perpendicular to both $\Z{\mathbf u}$ and $\Y{\mathbf B}$ (a cross product):</span></p>
+  <div class="m">\[\mathbf F_m=Q\,\Z{\mathbf u}\times\Y{\mathbf B}\]</div>
+  <p><span lang="ar">ولو المجالين موجودين، القوة الكلية هي <b>قوة لورنتز</b>:</span><span lang="en">With both fields present, the total force is the <b>Lorentz force</b>:</span></p>
+  <div class="m big">\[\mathbf F=Q\big(\X{\mathbf E}+\Z{\mathbf u}\times\Y{\mathbf B}\big)\]</div>
+  <div class="callout key"><strong><span lang="ar">🔑 ملاحظة ذهبية: $\mathbf F_m$ ما تبذل شغل</span><span lang="en">🔑 Golden note: $\mathbf F_m$ does no work</span></strong>
+    <p><span lang="ar">الشغل $dW=\mathbf F_m\cdot d\mathbf l$، و $d\mathbf l$ في نفس اتجاه $\Z{\mathbf u}$. وبما إن $\mathbf F_m\perp\Z{\mathbf u}$ يطلع الضرب النقطي صفر. يعني المجال المغناطيسي يغيّر <b>اتجاه</b> الشحنة بس، وسرعتها وطاقتها الحركية تبقى ثابتة.</span><span lang="en">The work is $dW=\mathbf F_m\cdot d\mathbf l$, and $d\mathbf l$ points along $\Z{\mathbf u}$. Since $\mathbf F_m\perp\Z{\mathbf u}$ the dot product is zero. So the magnetic field changes only the charge's <b>direction</b>; its speed and kinetic energy stay constant.</span></p>
+  </div>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th><span lang="ar">القوة الكهربائية</span><span lang="en">Electric force</span></th><th><span lang="ar">القوة المغناطيسية</span><span lang="en">Magnetic force</span></th></tr></thead>
+    <tbody>
+      <tr><th><span lang="ar">القانون</span><span lang="en">Law</span></th><td>$Q\X{\mathbf E}$</td><td>$Q\,\Z{\mathbf u}\times\Y{\mathbf B}$</td></tr>
+      <tr><th><span lang="ar">على شحنة ساكنة؟</span><span lang="en">On a charge at rest?</span></th><td><span lang="ar">إيه</span><span lang="en">Yes</span></td><td><span lang="ar">لا</span><span lang="en">No</span></td></tr>
+      <tr><th><span lang="ar">اتجاهها</span><span lang="en">Direction</span></th><td><span lang="ar">مع $\X{\mathbf E}$</span><span lang="en">along $\X{\mathbf E}$</span></td><td><span lang="ar">عمودية على $\Z{\mathbf u}$ و $\Y{\mathbf B}$</span><span lang="en">perpendicular to $\Z{\mathbf u}$ and $\Y{\mathbf B}$</span></td></tr>
+      <tr><th><span lang="ar">تبذل شغل؟</span><span lang="en">Does work?</span></th><td><span lang="ar">إيه</span><span lang="en">Yes</span></td><td><span lang="ar">لا أبداً</span><span lang="en">Never</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
 
-        <!-- قائمة التنقل السريع بين المحاضرات -->
-        <div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 20px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
-          <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
-            📚 الانتقال السريع للمحاضرات:
-          </label>
-          <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
-            <!-- يتم توليد القائمة تلقائياً عبر nav.js -->
-          </select>
-        </div>
-
-        <!-- بطاقة الكلمات المحورية والوحدات -->
-        <div class="card">
-            <h2>الكلمات المحورية والوحدات (مرجع سريع)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>الكلمة الفيزيائية</th>
-                        <th>المعنى المحوري</th>
-                        <th>الأهمية والسبب</th>
-                        <th>الوحدة الأساسية</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Stationary Charge</strong></td>
-                        <td>شحنة ساكنة</td>
-                        <td>لا تتأثر بالمجال المغناطيسي أبداً (\(\mathbf{u} = 0\)).</td>
-                        <td>Coulomb (C)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Moving Charge</strong></td>
-                        <td>شحنة متحركة</td>
-                        <td>هي الشحنة الوحيدة التي يتدخل المجال المغناطيسي ليدفعها.</td>
-                        <td>Coulomb (C)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Perpendicular</strong></td>
-                        <td>عمودي</td>
-                        <td>اتجاه القوة المغناطيسية يصنع دائماً زاوية \(90^\circ\) مع السرعة والمجال.</td>
-                        <td>—</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Current Element</strong></td>
-                        <td>عنصر تيار</td>
-                        <td>يعبر عن التيار المار في جزء صغير من السلك (\(I\,d\mathbf{l}\)).</td>
-                        <td>\(\text{Ampere} \cdot \text{Meter}\)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Magnetic Flux Density (\(\mathbf{B}\))</strong></td>
-                        <td>كثافة الفيض المغناطيسي</td>
-                        <td>تعبر عن شدة المجال المغناطيسي المحيط بالأقسام أو الشحنات.</td>
-                        <td><strong>Tesla (T)</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Permeability (\(\mu\))</strong></td>
-                        <td>النفاذية المغناطيسية</td>
-                        <td>مدى تقبل أو سماحية المادة لمرور خطوط المجال المغناطيسي من خلالها.</td>
-                        <td>Henry/meter (\(\text{H/m}\))</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Magnetization (\(\mathbf{M}\))</strong></td>
-                        <td>التمغنط</td>
-                        <td>مقياس لمدى محاذاة عزو الذرات الداخلية عند تأثير مجال خارجي.</td>
-                        <td>A/m</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- بطاقة التلخيص الشامل للأجزاء A, B, C -->
-        <div class="card">
-            <h1>التلخيص الشامل للأجزاء (A, B, C)</h1>
-            
-            <h2>Part A: Force on a Charged Particle (القوة على جسيم مشحون)</h2>
-            <ul>
-                <li><strong>القوة الكهربائية:</strong> تؤثر على الشحنة الساكنة والمتحركة:</li>
-            </ul>
-            <div class="math-block">
-                $$\mathbf{F}_e = Q\mathbf{E}$$
-            </div>
-            <ul>
-                <li><strong>القوة المغناطيسية:</strong> تؤثر <strong>فقط</strong> إذا تحرك الجسيم بسرعة (\(\mathbf{u}\)):</li>
-            </ul>
-            <div class="math-block">
-                $$\mathbf{F}_m = Q(\mathbf{u} \times \mathbf{B})$$
-            </div>
-            <ul>
-                <li><strong>قوة لورنتز الكلية:</strong> محصلة القوتين معاً في حال وجود المجالين:</li>
-            </ul>
-            <div class="math-block">
-                $$\mathbf{F} = Q(\mathbf{E} + \mathbf{u} \times \mathbf{B})$$
-            </div>
-            <ul>
-                <li><strong>ملاحظة ذهبية:</strong> القوة المغناطيسية \(\mathbf{F}_m\) عمودية دائماً على اتجاه الحركة، ولذلك <strong>لا تبذل شغلاً</strong> وطاقة الجسيم الحركية تظل ثابتة.</li>
-            </ul>
-
-            <h2>Part B: Force on a Current Element (القوة على عنصر تيار)</h2>
-            <ul>
-                <li>بما أن التيار شحنات متحركة، تم استبدال الشحنة والسرعة بعنصر التيار في الأسلاك (\(dQ\,\mathbf{u} = I\,d\mathbf{l}\)).</li>
-                <li>القوة التفاضلية على جزء صغير من السلك:</li>
-            </ul>
-            <div class="math-block">
-                $$d\mathbf{F} = I\,d\mathbf{l} \times \mathbf{B}$$
-            </div>
-            <ul>
-                <li>القوة الكلية على سلك مغلق كامل:</li>
-            </ul>
-            <div class="math-block">
-                $$\mathbf{F} = \oint_L I\,d\mathbf{l} \times \mathbf{B}$$
-            </div>
-
-            <h2>Part C: Force between Two Current Elements (القوة بين عنصري تيار)</h2>
-            <ul>
-                <li>عند وجود سلكين متجاورين، يؤثر كل منهما على الآخر بقوة متبادلة، حيث ينتج السلك الثاني مجالاً (\(d\mathbf{B}_2\)) يحسب بقانون (بيو-سافار) ليؤثر على السلك الأول:</li>
-            </ul>
-            <div class="math-block">
-                $$d(d\mathbf{F}_1) = I_1 d\mathbf{l}_1 \times d\mathbf{B}_2$$
-            </div>
-            <ul>
-                <li>القانون العام والشامل للحساب بين حلقتبن:</li>
-            </ul>
-            <div class="math-block">
-                $$\mathbf{F}_1 = \frac{\mu_0 I_1 I_2}{4\pi} \oint_{L_1} \oint_{L_2} \frac{d\mathbf{l}_1 \times (d\mathbf{l}_2 \times \mathbf{a}_{R21})}{R_{21}^2}$$
-            </div>
-            <ul>
-                <li>تحقق القوة قانون نيوتن الثالث: \(\mathbf{F}_2 = -\mathbf{F}_1\).</li>
-            </ul>
-        </div>
-
-        <!-- بطاقة المفردات الفيزيائية المحورية في السؤال -->
-        <div class="card">
-            <h2>المفردات الفيزيائية المحورية في السؤال</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>الكلمة في السؤال</th>
-                        <th>المعنى والسبب الفيزيائي</th>
-                        <th>الوحدة الأساسية</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Uniform velocity</strong></td>
-                        <td>سرعة منتظمة (ثابتة المقدار والاتجاه)، وتعني ميكانيكياً أن المحصلة الكلية لجميع القوى المؤثرة تساوي صفر (\(\mathbf{F} = 0\)).</td>
-                        <td>m/s</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Charged particle</strong></td>
-                        <td>جسيم مشحون؛ هو الجسيم الذي يتأثر بالمجال الكهربائي دائماً، ويتأثر بالمغناطيسي فقط أثناء حركة.</td>
-                        <td>Coulomb (C)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Electric field</strong></td>
-                        <td>المجال الكهربائي (\(\mathbf{E}\)).</td>
-                        <td>V/m</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Magnetic field</strong></td>
-                        <td>المجال المغناطيسي (\(\mathbf{B}\)).</td>
-                        <td>Tesla (T)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- بطاقة المثال الأخير الحل التفيصلي والتنفيذي -->
-        <div class="card">
-            <h2>مثال المحاضرة الأخير (Example - Solution)</h2>
-            
-            <div class="question-box">
-                <p><strong>نص السؤال الأصلي:</strong></p>
-                <p dir="ltr" style="text-align: left; font-family: monospace;">A charged particle moves with a uniform velocity \(4\mathbf{a}_x \text{ m/s}\) in a region where \(\mathbf{E} = 20\mathbf{a}_y \text{ V/m}\) and \(\mathbf{B} = B_0\mathbf{a}_z \text{ Tesla (T)}\). Determine \(B_0\) such that the velocity of the particle remains constant.</p>
-                
-                <p style="margin-top: 15px;"><strong>ترجمة السؤال:</strong></p>
-                <p>"يتحرك جسيم مشحون بسرعة منتظمة قيمتها \(4\mathbf{a}_x \text{ m/s}\) في منطقة يتواجد بها مجال كهربائي \(\mathbf{E} = 20\mathbf{a}_y \text{ V/m}\) ومجال مغناطيسي \(\mathbf{B} = B_0\mathbf{a}_z \text{ Tesla (T)}\). حدد قيمة \(B_0\) التي تجعل سرعة الجسيم تظل ثابتة."</p>
-
-                <div class="curtain-container" onclick="this.classList.toggle('revealed')">
-                    <div class="curtain-hint">اضغط هنا لإظهار الحل الرياضي المباشر والتنفيذي</div>
-                    <div class="curtain-content">
-                        <p><strong>الحل الرياضي المباشر والتنفيذي (Solution):</strong></p>
-                        
-                        <p><strong>1. الشرط الفيزيائي (سرعة ثابتة):</strong></p>
-                        <p>بما أن السرعة ثابتة، فإن القوة الكهربائية تُلغي القوة المغناطيسية تماماً (متساويتان في المقدار ومتعاكستان في الاتجاه):</p>
-                        <div class="math-block">
-                            $$\mathbf{F}_e = -\mathbf{F}_m$$
-                        </div>
-                        <div class="math-block">
-                            $$Q\mathbf{E} = -Q(\mathbf{u} \times \mathbf{B})$$
-                        </div>
-
-                        <p><strong>2. تبسيط المعادلة بميكانيكية المقادير:</strong></p>
-                        <p>ببحذف الشحنة \(Q\) من الطرفين (لأن قيمتها لا تؤثر على شرط التوازن)، وأخذ المقادير مباشرة نظراً للتعامد:</p>
-                        <div class="math-block">
-                            $$E = u \cdot B_0$$
-                        </div>
-
-                        <p><strong>3. التعويض بالأرقام المعطاة:</strong></p>
-                        <ul>
-                            <li>شدة المجال الكهربائي \(E = 20\)</li>
-                            <li>مقدار السرعة \(u = 4\)</li>
-                        </ul>
-                        <div class="math-block">
-                            $$20 = 4 \times B_0$$
-                        </div>
-
-                        <p><strong>4. إيجاد الناتج النهائي:</strong></p>
-                        <div class="math-block">
-                            $$B_0 = \frac{20}{4} = 5 \text{ Tesla (T)}$$
-                        </div>
-                        
-                        <p class="highlight-green" style="text-align: center; margin-top: 15px;">النتيجة النهائية: قيمة كثافة الفيض المغناطيسي \(B_0 = 5 \text{ Tesla (T)}\).</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+<!-- ================= مختبر مرشّح السرعة ================= -->
+<section class="card" id="lab" data-num="🧪" data-nav="🧪 المختبر|🧪 Lab">
+  <h2><span lang="ar">مختبر: مرشّح السرعة</span><span lang="en">Lab: the velocity filter</span></h2>
+  <p class="sub"><span lang="ar">نفس أرقام مثال المحاضرة: $\Z{\mathbf u}=4\,\mathbf a_x$ و $\X{\mathbf E}=20\,\mathbf a_y$ و $\Y{\mathbf B}=B_0\,\mathbf a_z$</span><span lang="en">The same numbers as the lecture example: $\Z{\mathbf u}=4\,\mathbf a_x$, $\X{\mathbf E}=20\,\mathbf a_y$, $\Y{\mathbf B}=B_0\,\mathbf a_z$</span></p>
+  <p><span lang="ar">$\X{\mathbf E}$ يدف الشحنة لفوق، و $\Z{\mathbf u}\times\Y{\mathbf B}$ يدفها لتحت. حرّك $B_0$ ولاحظ: متى تمشي الشحنة على خط مستقيم؟</span><span lang="en">$\X{\mathbf E}$ pushes the charge up and $\Z{\mathbf u}\times\Y{\mathbf B}$ pushes it down. Move $B_0$ and watch: when does the charge go straight?</span></p>
+  <div class="wlab" id="vf-lab">
+    <div class="lab-controls">
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label>$B_0$ · <span class="rv">5.0 T</span></label><input type="range" min="0" max="10" step="0.1" value="2" aria-label="B0 in tesla"></div>
     </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">الشحنة بين لوحين، و $\Y{\mathbf B}$ طالع من الصفحة ⊙</span><span lang="en">The charge between two plates, with $\Y{\mathbf B}$ out of the page ⊙</span></div>
+        <div class="legend"><span><i class="c-e"></i>$\mathbf F_e=Q\X{\mathbf E}$</span><span><i class="c-h"></i>$\mathbf F_m=Q\,\Z{\mathbf u}\times\Y{\mathbf B}$</span><span><i class="c-a"></i><span lang="ar">مسار الشحنة</span><span lang="en">charge path</span></span></div></div>
+      <div class="wv-plot"></div>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">F<sub>e</sub> / Q</span><span class="v" data-o="e"></span></div>
+      <div><span class="k">F<sub>m</sub> / Q</span><span class="v" data-o="m"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">النتيجة</span><span lang="en">Verdict</span></span><span class="v" data-o="v"></span></div>
+    </div>
+  </div>
+  <p><span lang="ar">عند $B_0=5\ \text{T}$ بالضبط القوتين يلغون بعض والشحنة تعدّي بدون انحراف. هذا هو <b>مرشّح السرعة</b>: يعدّي بس الشحنات اللي سرعتها $u=E/B$.</span><span lang="en">At exactly $B_0=5\ \text{T}$ the two forces cancel and the charge passes undeflected. This is the <b>velocity filter</b>: it lets through only charges with speed $u=E/B$.</span></p>
+</section>
 
-    <!-- كود لوحة الرموز التفاعلية (Math Canvas interaction) -->
-    <script>
-        const canvas = document.getElementById('math-canvas');
-        const ctx = canvas.getContext('2d');
+<!-- ================= B: عنصر التيار ================= -->
+<section class="card" id="partB" data-num="B" data-nav="B · عنصر تيار|B · Current element">
+  <h2><span lang="ar">الجزء B: القوة على عنصر تيار</span><span lang="en">Part B: Force on a current element</span></h2>
+  <p class="sub"><span lang="ar">التيار = شحنات تتحرك، فنفس القانون يشتغل</span><span lang="en">Current is moving charge, so the same law applies</span></p>
+  <p><span lang="ar">جزء صغير من سلك فيه تيار يكافئ شحنة صغيرة تتحرك، لأن:</span><span lang="en">A small piece of current-carrying wire is equivalent to a small moving charge, because:</span></p>
+  <div class="m">\[I\,d\Z{\mathbf l}=dQ\,\Z{\mathbf u}\]</div>
+  <p><span lang="ar">فنحط $I\,d\Z{\mathbf l}$ مكان $Q\Z{\mathbf u}$ في قانون القوة المغناطيسية، وتطلع القوة على الجزء الصغير:</span><span lang="en">So we put $I\,d\Z{\mathbf l}$ in place of $Q\Z{\mathbf u}$ in the magnetic force law, which gives the force on the small piece:</span></p>
+  <div class="m">\[d\mathbf F=I\,d\Z{\mathbf l}\times\Y{\mathbf B}\]</div>
+  <p><span lang="ar">وللقوة الكلية على حلقة مغلقة $L$ نجمع (نكامل) على كل الأجزاء:</span><span lang="en">For the total force on a closed loop $L$ we add up (integrate) over all the pieces:</span></p>
+  <div class="m big">\[\mathbf F=\oint_L I\,d\Z{\mathbf l}\times\Y{\mathbf B}\]</div>
+  <div class="callout"><strong><span lang="ar">💡 سلك مستقيم في مجال منتظم</span><span lang="en">💡 A straight wire in a uniform field</span></strong>
+    <p><span lang="ar">لو السلك مستقيم طوله $\ell$ و $\Y{\mathbf B}$ ثابت، التكامل يصير ضرب بس: $\mathbf F=I\,\Z{\boldsymbol\ell}\times\Y{\mathbf B}$، ومقدارها $F=I\ell B\sin\theta$ حيث $\theta$ الزاوية بين السلك والمجال.</span><span lang="en">If the wire is straight with length $\ell$ and $\Y{\mathbf B}$ is constant, the integral is just a product: $\mathbf F=I\,\Z{\boldsymbol\ell}\times\Y{\mathbf B}$, with magnitude $F=I\ell B\sin\theta$, where $\theta$ is the angle between wire and field.</span></p>
+  </div>
+</section>
 
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+<!-- ================= C: عنصرين ================= -->
+<section class="card" id="partC" data-num="C" data-nav="C · عنصرين|C · Two elements">
+  <h2><span lang="ar">الجزء C: القوة بين عنصرين تيار</span><span lang="en">Part C: Force between two current elements</span></h2>
+  <p class="sub"><span lang="ar">سلك يطلّع مجال، والمجال يدف السلك الثاني</span><span lang="en">One wire makes a field, and that field pushes the other wire</span></p>
+  <p><span lang="ar">لو عندنا سلكين جنب بعض، العنصر $I_2\,d\Z{\mathbf l_2}$ يطلّع مجال $d\Y{\mathbf B_2}$ (بقانون بيو-سافار)، وهذا المجال يأثر في العنصر الأول:</span><span lang="en">With two wires side by side, the element $I_2\,d\Z{\mathbf l_2}$ produces a field $d\Y{\mathbf B_2}$ (by the Biot–Savart law), and that field acts on the first element:</span></p>
+  <div class="m">\[d(d\mathbf F_1)=I_1\,d\Z{\mathbf l_1}\times d\Y{\mathbf B_2}\]</div>
+  <div class="m">\[d\Y{\mathbf B_2}=\frac{\mu_0\,I_2\,d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}}{4\pi R_{21}^2}\]</div>
+  <p><span lang="ar">نعوّض ونكامل على الحلقتين، فيطلع القانون العام للقوة بين حلقتين:</span><span lang="en">Substitute and integrate over both loops to get the general law for the force between two loops:</span></p>
+  <div class="m wide">\[\mathbf F_1=\frac{\mu_0 I_1 I_2}{4\pi}\oint_{L_1}\oint_{L_2}\frac{d\Z{\mathbf l_1}\times\big(d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}\big)}{R_{21}^2}\]</div>
+  <div class="m narrow">\[\begin{aligned}\mathbf F_1&=\frac{\mu_0 I_1 I_2}{4\pi}\\&\times\oint_{L_1}\oint_{L_2}\frac{d\Z{\mathbf l_1}\times\big(d\Z{\mathbf l_2}\times\mathbf a_{R_{21}}\big)}{R_{21}^2}\end{aligned}\]</div>
+  <p class="why"><span lang="ar">$\mathbf a_{R_{21}}$ متجه وحدة من العنصر 2 للعنصر 1، و $R_{21}$ المسافة بينهم.</span><span lang="en">$\mathbf a_{R_{21}}$ is the unit vector from element 2 to element 1, and $R_{21}$ is the distance between them.</span></p>
+  <div class="callout key"><strong><span lang="ar">🔑 نيوتن الثالث</span><span lang="en">🔑 Newton's third law</span></strong>
+    <p><span lang="ar">القوة على الحلقة 2 من الحلقة 1 تساوي نفس المقدار وعكس الاتجاه: $\mathbf F_2=-\mathbf F_1$. والقانون يشبه قانون كولوم بين شحنتين ساكنتين، بس هنا بين تيارين.</span><span lang="en">The force on loop 2 from loop 1 has the same size and the opposite direction: $\mathbf F_2=-\mathbf F_1$. The law mirrors Coulomb's law between two charges at rest, only here it is between two currents.</span></p>
+  </div>
+</section>
 
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
+<!-- ================= المثال ================= -->
+<section class="card" id="ex" data-nav="المثال|Example">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال</span><span lang="en">Example</span></span><h2><span lang="ar">قيمة $B_0$ اللي تخلي السرعة ثابتة</span><span lang="en">The $B_0$ that keeps the velocity constant</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة الأخير</span><span lang="en">Last lecture example</span></span></div>
+  <p class="ltr" dir="ltr">A charged particle moves with a uniform velocity $4\,\mathbf a_x\ \text{m/s}$ in a region where $\mathbf E=20\,\mathbf a_y\ \text{V/m}$ and $\mathbf B=B_0\,\mathbf a_z\ \text{T}$. Determine $B_0$ such that the velocity of the particle remains constant.</p>
+  <p><span lang="ar">الترجمة: جسيم مشحون يتحرك بسرعة منتظمة $4\,\mathbf a_x\ \text{m/s}$ في منطقة فيها $\X{\mathbf E}=20\,\mathbf a_y\ \text{V/m}$ و $\Y{\mathbf B}=B_0\,\mathbf a_z\ \text{T}$. أوجد $B_0$ اللي تخلي سرعة الجسيم ثابتة.</span></p>
+  <div class="map"><span class="z">u = 4 aₓ m/s</span><span class="x">E = 20 a_y V/m</span><span class="y">B = B₀ a_z T</span></div>
+  <ol class="solve">
+    <li class="step"><h4><span lang="ar">الشرط الفيزيائي</span><span lang="en">The physical condition</span></h4>
+      <div class="m">\[\mathbf F=Q\big(\X{\mathbf E}+\Z{\mathbf u}\times\Y{\mathbf B}\big)=0\]</div>
+      <p class="why"><span lang="ar">سرعة ثابتة = تسارع صفر = محصلة القوى صفر. يعني القوة الكهربائية تلغي المغناطيسية بالضبط.</span><span lang="en">Constant velocity = zero acceleration = zero net force. The electric force exactly cancels the magnetic one.</span></p></li>
+    <li class="step"><h4><span lang="ar">احسب الضرب الاتجاهي</span><span lang="en">Work out the cross product</span></h4>
+      <div class="m">\[\begin{aligned}\Z{\mathbf u}\times\Y{\mathbf B}&=4\,\mathbf a_x\times B_0\,\mathbf a_z\\&=-4B_0\,\mathbf a_y\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$\mathbf a_x\times\mathbf a_z=-\mathbf a_y$ (الترتيب الدوري $x\to y\to z$ يعطي موجب، والعكس سالب).</span><span lang="en">$\mathbf a_x\times\mathbf a_z=-\mathbf a_y$ (the cyclic order $x\to y\to z$ gives plus, the reverse gives minus).</span></p></li>
+    <li class="step"><h4><span lang="ar">عوّض واحذف $Q$</span><span lang="en">Substitute and cancel $Q$</span></h4>
+      <div class="m">\[\begin{aligned}0&=Q\big(20-4B_0\big)\,\mathbf a_y\\ \Rightarrow\ 20&=4B_0\end{aligned}\]</div>
+      <p class="why"><span lang="ar">$Q$ ينحذف من الطرفين، يعني الجواب ما يعتمد على قيمة الشحنة ولا إشارتها.</span><span lang="en">$Q$ cancels, so the answer does not depend on the charge's size or sign.</span></p></li>
+    <li class="step final"><div class="result">$B_0=\dfrac{20}{4}=5\ \text{T}$</div>
+      <p class="sanity"><span lang="ar">نفس قانون مرشّح السرعة: $B=E/u=20/4$ ✓. جرّبها في المختبر فوق: عند <span dir="ltr">5 T</span> الخط مستقيم.</span><span lang="en">The same as the velocity-filter rule $B=E/u=20/4$ ✓. Try it in the lab above: at 5 T the path is straight.</span></p></li>
+  </ol>
+</section>
 
-        const symbols = ['∇f', 'Dₐf', '∂f/∂x', '∫∫∫ dV', 'n=∇f/|∇f|', 'F=Qu×B', 'Fe=QE', 'dF=Idl×B', 'F2=-F1', 'B₀=5T'];
-        const particles = [];
-        const numParticles = 35;
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين</span><span lang="en">Practice</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
 
-        let mouse = {
-            x: null,
-            y: null,
-            radius: 150
-        };
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · مرشّح سرعة</span><span lang="en">Exercise A · velocity filter</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">شحنة تتحرك بسرعة $5\,\mathbf a_x\ \text{m/s}$ في منطقة فيها $\X{\mathbf E}=45\,\mathbf a_y\ \text{V/m}$ و $\Y{\mathbf B}=B_0\,\mathbf a_z$. أوجد $B_0$ بالتسلا عشان تبقى السرعة ثابتة.</span><span lang="en">A charge moves at $5\,\mathbf a_x\ \text{m/s}$ where $\X{\mathbf E}=45\,\mathbf a_y\ \text{V/m}$ and $\Y{\mathbf B}=B_0\,\mathbf a_z$. Find $B_0$ in tesla so the velocity stays constant.</span></p>
+    <div class="check" data-answer="9"></div>
+    <details class="hint"><p><span lang="ar">نفس المثال بالضبط: $B_0=E/u$.</span><span lang="en">Exactly like the example: $B_0=E/u$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">محصلة القوى صفر</span><span lang="en">Net force is zero</span></h4><div class="m">\[\begin{aligned}0&=Q\big(45-5B_0\big)\,\mathbf a_y\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$B_0=45/5=9\ \text{T}$</div><p class="sanity"><span lang="ar">كل ما زادت السرعة احتجنا مجال أقل ✓.</span><span lang="en">The faster the charge, the smaller the field needed ✓.</span></p></li>
+    </ol>
+  </div>
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · سلك في مجال</span><span lang="en">Exercise B · a wire in a field</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">سلك مستقيم طوله <span dir="ltr">2 m</span> على المحور $z$ فيه تيار <span dir="ltr">3 A</span> باتجاه $\mathbf a_z$، داخل مجال منتظم $\Y{\mathbf B}=0.5\,\mathbf a_x\ \text{T}$. أوجد مقدار القوة بالنيوتن.</span><span lang="en">A straight 2 m wire along the $z$ axis carries 3 A in the $\mathbf a_z$ direction, inside a uniform field $\Y{\mathbf B}=0.5\,\mathbf a_x\ \text{T}$. Find the force magnitude in newtons.</span></p>
+    <div class="check" data-answer="3"></div>
+    <details class="hint"><p><span lang="ar">$\mathbf F=I\,\Z{\boldsymbol\ell}\times\Y{\mathbf B}$، والسلك عمودي على المجال.</span><span lang="en">$\mathbf F=I\,\Z{\boldsymbol\ell}\times\Y{\mathbf B}$, and the wire is perpendicular to the field.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الضرب الاتجاهي</span><span lang="en">The cross product</span></h4><div class="m">\[\begin{aligned}\mathbf F&=3\times2\,\mathbf a_z\times0.5\,\mathbf a_x\\&=3\,(\mathbf a_z\times\mathbf a_x)\end{aligned}\]</div><p class="why"><span lang="ar">$\mathbf a_z\times\mathbf a_x=\mathbf a_y$ (ترتيب دوري).</span><span lang="en">$\mathbf a_z\times\mathbf a_x=\mathbf a_y$ (cyclic order).</span></p></li>
+      <li class="step final"><div class="result">$\mathbf F=3\,\mathbf a_y\ \text{N}$</div><p class="sanity"><span lang="ar">بالمقدار: $I\ell B\sin90^\circ=3\times2\times0.5=3$ ✓، والاتجاه عمودي على السلك والمجال.</span><span lang="en">By magnitude: $I\ell B\sin90^\circ=3\times2\times0.5=3$ ✓, pointing perpendicular to both wire and field.</span></p></li>
+    </ol>
+  </div>
+</section>
 
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+<!-- ================= الأخطاء الشائعة ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2><span lang="ar">الأخطاء الشائعة</span><span lang="en">Common mistakes</span></h2>
+  <p class="sub"><span lang="ar">كل واحد منها يضيّع درجات في الاختبار</span><span lang="en">Each of these costs marks in the exam</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">"المجال المغناطيسي يسرّع الشحنة"</span><span lang="en">"The magnetic field speeds the charge up"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$W_m\neq0$</div><span lang="ar">القوة عمودية على الحركة.</span><span lang="en">The force is perpendicular to the motion.</span></div><div class="yes"><div class="mm">$\mathbf F_m\cdot d\mathbf l=0$</div><span lang="ar">يغيّر الاتجاه بس.</span><span lang="en">It only changes direction.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">إشارة الضرب الاتجاهي</span><span lang="en">The sign of the cross product</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf a_x\times\mathbf a_z=+\mathbf a_y$</div><span lang="ar">عكست الترتيب الدوري.</span><span lang="en">The cyclic order is reversed.</span></div><div class="yes"><div class="mm">$\mathbf a_x\times\mathbf a_z=-\mathbf a_y$</div><span lang="ar">$x\to y\to z$ موجب بس.</span><span lang="en">Only $x\to y\to z$ is positive.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">قوة مغناطيسية على شحنة ساكنة</span><span lang="en">A magnetic force on a charge at rest</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf F=Q\,\Y{\mathbf B}$</div><span lang="ar">ما فيه قانون كذا.</span><span lang="en">There is no such law.</span></div><div class="yes"><div class="mm">$\Z{\mathbf u}=0\Rightarrow\mathbf F_m=0$</div><span lang="ar">يبقى $Q\X{\mathbf E}$ بس.</span><span lang="en">Only $Q\X{\mathbf E}$ remains.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">ترتيب الضرب في $\mathbf F_m$</span><span lang="en">The order in $\mathbf F_m$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$Q\,\Y{\mathbf B}\times\Z{\mathbf u}$</div><span lang="ar">يقلب اتجاه القوة.</span><span lang="en">It flips the force.</span></div><div class="yes"><div class="mm">$Q\,\Z{\mathbf u}\times\Y{\mathbf B}$</div><span lang="ar">السرعة أول وبعدها المجال.</span><span lang="en">Velocity first, then field.</span></div></div>
+  </div>
+</section>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.text = symbols[Math.floor(Math.random() * symbols.length)];
-                this.fontSize = Math.floor(Math.random() * 8) + 14;
-                this.opacity = Math.random() * 0.10 + 0.15;
-            }
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">5 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">5 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">شحنة ساكنة داخل مجال مغناطيسي فقط. وش القوة عليها؟</span><span lang="en">A charge at rest sits in a magnetic field only. What force acts on it?</span></p>
+      <button>$Q\mathbf B$</button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button>$Q\mathbf E$</button><button><span lang="ar">لا نهائية</span><span lang="en">Infinite</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf u=0$ فـ $Q\,\mathbf u\times\mathbf B=0$.</span><span lang="en">$\mathbf u=0$, so $Q\,\mathbf u\times\mathbf B=0$.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">وش يسوي المجال المغناطيسي في طاقة الشحنة الحركية؟</span><span lang="en">What does the magnetic field do to a charge's kinetic energy?</span></p>
+      <button><span lang="ar">يزيدها</span><span lang="en">Raises it</span></button><button><span lang="ar">ينقصها</span><span lang="en">Lowers it</span></button><button><span lang="ar">ما يغيّرها</span><span lang="en">Leaves it unchanged</span></button><button><span lang="ar">يصفّرها</span><span lang="en">Makes it zero</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf F_m\perp\mathbf u$ فالشغل صفر.</span><span lang="en">$\mathbf F_m\perp\mathbf u$, so the work is zero.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">في مرشّح سرعة $E=100\ \text{V/m}$ و $B=0.5\ \text{T}$. أي سرعة تعدّي بدون انحراف؟</span><span lang="en">In a velocity filter $E=100\ \text{V/m}$ and $B=0.5\ \text{T}$. Which speed passes undeflected?</span></p>
+      <button><span dir="ltr">200 m/s</span></button><button><span dir="ltr">50 m/s</span></button><button><span dir="ltr">20 m/s</span></button><button><span dir="ltr">0.005 m/s</span></button>
+      <p class="q-why">$u=E/B=100/0.5=200$.</p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">القوة على عنصر تيار:</span><span lang="en">The force on a current element is:</span></p>
+      <button>$Q\,\mathbf E$</button><button>$\mathbf B\times I\,d\mathbf l$</button><button>$I\,d\mathbf l\cdot\mathbf B$</button><button>$I\,d\mathbf l\times\mathbf B$</button>
+      <p class="q-why"><span lang="ar">نبدّل $Q\mathbf u$ بـ $I\,d\mathbf l$، والترتيب مهم.</span><span lang="en">Swap $Q\mathbf u$ for $I\,d\mathbf l$; the order matters.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">لو $\mathbf F_1$ القوة على الحلقة 1 من الحلقة 2، فالقوة على الحلقة 2:</span><span lang="en">If $\mathbf F_1$ is the force on loop 1 from loop 2, the force on loop 2 is:</span></p>
+      <button>$\mathbf F_1$</button><button>$-\mathbf F_1$</button><button>$2\mathbf F_1$</button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button>
+      <p class="q-why"><span lang="ar">قانون نيوتن الثالث: فعل ورد فعل.</span><span lang="en">Newton's third law: action and reaction.</span></p>
+    </div>
+  </div>
+</section>
 
-            draw() {
-                ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`;
-                ctx.font = `${this.fontSize}px Tajawal, sans-serif`;
-                ctx.fillText(this.text, this.x, this.y);
-            }
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب، للقوانين اللي لازم تنحفظ</span><span lang="en">Click a card to flip it, for the formulas you must memorize</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">القوة الكهربائية</span><span lang="en">Electric force</span></div><div>$\mathbf F_e=Q\mathbf E$</div></div>
+    <div class="flash"><div><span lang="ar">القوة المغناطيسية</span><span lang="en">Magnetic force</span></div><div>$\mathbf F_m=Q\,\mathbf u\times\mathbf B$</div></div>
+    <div class="flash"><div><span lang="ar">قوة لورنتز</span><span lang="en">Lorentz force</span></div><div>$\mathbf F=Q(\mathbf E+\mathbf u\times\mathbf B)$</div></div>
+    <div class="flash"><div><span lang="ar">شرط مرشّح السرعة</span><span lang="en">Velocity-filter condition</span></div><div>$u=E/B$</div></div>
+    <div class="flash"><div><span lang="ar">عنصر التيار</span><span lang="en">Current element</span></div><div>$I\,d\mathbf l=dQ\,\mathbf u$</div></div>
+    <div class="flash"><div><span lang="ar">القوة على حلقة</span><span lang="en">Force on a loop</span></div><div>$\mathbf F=\oint_L I\,d\mathbf l\times\mathbf B$</div></div>
+    <div class="flash"><div><span lang="ar">بين حلقتين</span><span lang="en">Between two loops</span></div><div>$\mathbf F_2=-\mathbf F_1$</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">➡️ المحاضرة الجاية</span><span lang="en">➡️ Next lecture</span></strong>
+    <p><span lang="ar">كمّل في <a href="lecture2.html">المحاضرة 2: القوى والمواد والأجهزة المغناطيسية</a>، فيها العزم على حلقة تيار والمغنطة والمحاثة.</span><span lang="en">Continue with <a href="lecture2.html">Lecture 2: magnetic forces, materials and devices</a>, covering torque on a current loop, magnetization and inductance.</span></p>
+  </div>
+</section>
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
+</main>
 
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
+<script>
+(function () {
+  'use strict';
+  const { $, $$, L, TL, N, chart, player, arrow } = EM;
 
-                // Mouse interaction
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < mouse.radius) {
-                        let forceDirectionX = dx / distance;
-                        let forceDirectionY = dy / distance;
-                        let maxDistance = mouse.radius;
-                        let force = (maxDistance - distance) / maxDistance;
-                        let directionX = forceDirectionX * force * 5;
-                        let directionY = forceDirectionY * force * 5;
-
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    }
-                }
-            }
-        }
-
-        for (let i = 0; i < numParticles; i++) {
-            particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-
-        animate();
-    </script>
-    <script src="nav.js"></script>
+  /* ---------- مختبر مرشّح السرعة ---------- */
+  const VF = { b: 2, t: 0 };
+  const net = () => 20 - 4 * VF.b;                       // F/Q على a_y
+  const geo = s => { const yT = 30, yB = s.H - 30; return { yT, yB, yc: (yT + yB) / 2, x0: 26, x1: s.W - 26, dev: (yB - yT) / 2 - 10 }; };
+  // مسار الشحنة: انحراف يكبر مع مربع المسافة، ويوقف إذا ضرب اللوح
+  const trail = G => {
+    const k = G.dev / 20, pts = [];
+    for (let i = 0; i <= 80; i++) {
+      const u = i / 80, y = G.yc - k * net() * u * u;
+      pts.push([G.x0 + (G.x1 - G.x0) * u, y]);
+      if (y < G.yT + 4 || y > G.yB - 4) break;
+    }
+    return pts;
+  };
+  const vf = chart($('#vf-lab .wv-plot'), {
+    label: 'A positive charge moving right between two plates; the electric force points up, the magnetic force points down, and the path bends unless B0 equals 5 tesla',
+    h: () => 220, pad: () => ({ l: 0, r: 0, t: 0, b: 0 }), x: [0, 1],
+    st: s => {
+      const G = geo(s); let o = '';
+      o += `<line class="ln c-k" style="stroke-width:4" x1="${G.x0}" x2="${G.x1}" y1="${G.yT - 8}" y2="${G.yT - 8}"/>` +
+        `<line class="ln c-k" style="stroke-width:4" x1="${G.x0}" x2="${G.x1}" y1="${G.yB + 8}" y2="${G.yB + 8}"/>` +
+        `<text class="tick" x="${G.x1}" y="${G.yT - 14}" text-anchor="end">+</text><text class="tick" x="${G.x1}" y="${G.yB + 22}" text-anchor="end">−</text>`;
+      for (let x = G.x0 + 30; x < G.x1 - 10; x += 60)
+        for (let y = G.yT + 18; y < G.yB - 6; y += 46) o += `<g class="c-h" opacity=".45"><circle class="node" cx="${x}" cy="${y}" r="5" style="fill:none;stroke:var(--c)"/><circle cx="${x}" cy="${y}" r="1.6" style="fill:var(--c)"/></g>`;
+      o += `<line class="ln c-k thin" stroke-dasharray="4 4" x1="${G.x0}" x2="${G.x1}" y1="${G.yc}" y2="${G.yc}"/>`;
+      return o;
+    },
+    dy: s => {
+      const G = geo(s), pts = trail(G), n = Math.max(1, Math.round(VF.t * (pts.length - 1))), p = pts[Math.min(n, pts.length - 1)];
+      let o = `<path class="ln c-a" d="M${pts.slice(0, n + 1).map(q => q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join('L')}"/>`;
+      const fe = 20 * 2.4, fm = 4 * VF.b * 2.4;
+      o += `<circle class="dot c-a" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="8"/><text x="${p[0].toFixed(1)}" y="${(p[1] + 4).toFixed(1)}" text-anchor="middle" font-size="12" fill="#fff">+</text>`;
+      o += arrow(p[0], p[1] - 9, p[0], p[1] - 9 - fe, 'c-e');
+      if (fm > 2) o += arrow(p[0], p[1] + 9, p[0], p[1] + 9 + fm, 'c-h');
+      return o;
+    }
+  });
+  (function () {
+    const lab = $('#vf-lab'); if (!lab || !vf) return;
+    const rng = $('input[type=range]', lab), rv = $('.rv', lab), out = k => $(`[data-o="${k}"]`, lab);
+    const sync = () => {
+      rv.textContent = N(VF.b, 1) + ' T'; rng.value = VF.b;
+      const f = net();
+      out('e').innerHTML = '+20 a<sub>y</sub>';
+      out('m').innerHTML = (VF.b ? '−' + N(4 * VF.b, 1) : '0') + ' a<sub>y</sub>';
+      out('v').innerHTML = Math.abs(f) < 0.2 ? L('✓ خط مستقيم: القوتين يلغون بعض', '✓ Straight line: the forces cancel')
+        : f > 0 ? L('↑ ينحرف لفوق: E أقوى', '↑ Bends up: E wins') : L('↓ ينحرف لتحت: B أقوى', '↓ Bends down: B wins');
+      out('v').style.color = Math.abs(f) < 0.2 ? 'var(--good)' : 'var(--bad)'; out('v').parentElement.classList.toggle('hl', Math.abs(f) < 0.2);
+      vf.drawDyn();
+    };
+    const anim = player($('[data-play]', lab), lab, dt => { VF.t = (VF.t + dt * 0.45) % 1.15; if (VF.t > 1) VF.t = 0; vf.drawDyn(); }, true);
+    rng.addEventListener('input', () => { VF.b = +rng.value; VF.t = anim.on ? VF.t : 1; sync(); });
+    VF.t = 1; sync();
+  })();
+})();
+</script>
+<script src="nav.js"></script>
 </body>
 </html>
