@@ -72,7 +72,7 @@
     const secs = $$('main section[data-nav]');
     const arOnly = root.hasAttribute('data-ar-only');
     let emOnly = false;   // جاي من الرابط المنفصل /em/ : الشعار يرجع له بدل الرئيسية
-    try { emOnly = sessionStorage.getItem('em-only') === '1'; } catch (e) {}
+    try { emOnly = localStorage.getItem('em-only') === '1'; } catch (e) {}
     const pills = secs.map(s => `<a href="#${s.id}">${pipe(s.dataset.nav)}</a>`).join('');
     main.insertAdjacentHTML('beforebegin', `
 <div id="progress"><i></i></div>
