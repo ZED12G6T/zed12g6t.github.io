@@ -17,6 +17,11 @@ function renderNavigation() {
   let currentPath = window.location.pathname.split("/").pop();
   if (!currentPath) currentPath = "index.html";
 
+  // لو المستخدم جاي من الرابط المنفصل /em/ يرجعه "فهرس المادة" له بدل فهرس الموقع
+  let emOnly = false;
+  try { emOnly = sessionStorage.getItem("em-only") === "1"; } catch (e) {}
+  if (emOnly) lectures[0].url = "../em/";
+
   select.innerHTML = lectures.map(lec => `
     <option value="${lec.url}" ${currentPath === lec.url ? 'selected' : ''}>
       ${lec.name}
