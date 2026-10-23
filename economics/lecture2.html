@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="الاقتصاد الهندسي" data-title-en="Chapter 2 - Cost Concepts & Design Economics" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص الفصل 2 - مفاهيم التكلفة واقتصاديات التصميم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* مختبر الربح ومختبر التصميم: خاص بهذي الصفحة */
+  .econ-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fig .cost-line { stroke: var(--cz); stroke-width: 2.4; fill: none; }
+  .fig .rev-line { stroke: var(--cy); stroke-width: 2.4; fill: none; }
+  .fig .dem-line { stroke: var(--cy); stroke-width: 2.4; fill: none; }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">الفصل 2 · الاقتصاد الهندسي · <span class="ltr">Ch 2</span></p>
+  <h1><span>مفاهيم التكلفة واقتصاديات التصميم</span> <span class="h1-math ltr">$D^* = \frac{a - c_v}{2b}$</span></h1>
+  <p class="lead">قبل أي قرار هندسي فيه فلوس، لازم تعرف وش التكاليف اللي تفرق فعلاً، وكم تنتج عشان تطلع بأكبر ربح. هالفصل يحلل بدائل قصيرة المدى (سنة أو أقل)، فما ندخل القيمة الزمنية للنقود (Time value of money) بالحساب: الدولار اليوم يساوي الدولار بعد شهرين. وهذا بالضبط اللي بيتغير في الفصل 4.</p>
+  <div class="xyz-bar">
+    <span class="x">الطلب $D$</span><span class="y">السعر $p$ والإيراد $TR$</span><span class="z">التكلفة $C$</span>
+    <small>← نفس الألوان في القوانين والرسومات</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>التكاليف لها أسماء: ثابتة ومتغيرة، مباشرة وغير مباشرة، نقدية ودفترية. وأهمها التكلفة الغارقة (Sunk cost): صرفتها وخلاص، فلا تدخلها في أي قرار جاي.</li>
+      <li>لو السعر ينزل مع الطلب $p = a - bD$، الإيراد قطع مكافئ: أعلى إيراد عند $\hat D = \frac{a}{2b}$، وأعلى ربح عند $D^* = \frac{a - c_v}{2b}$، والربح موجب بس بين نقطتين التعادل.</li>
+      <li>في دراسة الاقتصاد الحاضر (سنة أو أقل): لو الإيرادات تختلف بين البدائل اختار الأعلى ربح، ولو ثابتة اختار الأقل تكلفة لكل وحدة سليمة.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 أنواع التكاليف ================= -->
+<section class="card" id="costs" data-num="01" data-nav="أنواع التكاليف|Cost types">
+  <h2>أنواع التكاليف (Cost categories)</h2>
+  <p class="sub">نفس التكلفة تقدر توصفها بأكثر من طريقة</p>
+
+  <p>هدف الفصل: نحلل بدائل قصيرة المدى، والوقت ما يفرق فيها. وأول خطوة إنك تعرف تسمي كل تكلفة. السلايدات تقسمها بطريقتين.</p>
+  <h3>حسب كمية الإنتاج</h3>
+  <div class="grid-3">
+    <div class="tile z"><div class="t-name">ثابتة (Fixed)</div><div class="t-math">$\Z{C_F}$</div><div class="t-desc">ما تتأثر لو زاد مستوى النشاط أو نقص. تدفعها حتى لو ما أنتجت شي.</div></div>
+    <div class="tile z"><div class="t-name">متغيرة (Variable)</div><div class="t-math">$\Z{C_V} = c_v\,\X{D}$</div><div class="t-desc">مجموعها يتغير مع كمية الإنتاج. و $c_v$ تكلفة الوحدة الوحدة.</div></div>
+    <div class="tile"><div class="t-name">إضافية (Incremental)</div><div class="t-math">$\Delta C$</div><div class="t-desc">التكلفة الزيادة اللي تجي لو رفعت الإنتاج وحدة (أو أكثر).</div></div>
+  </div>
+  <p>ومن الثابتة والمتغيرة تطلع التكلفة الكلية اللي بنستخدمها في كل الفصل:</p>
+  <div class="m">\[\Z{C_T} = \Z{C_F} + \Z{C_V} = \Z{C_F} + c_v\,\X{D}\]</div>
+  <h3>حسب ارتباطها بالمنتج</h3>
+  <div class="grid-3">
+    <div class="tile"><div class="t-name">مباشرة (Direct)</div><div class="t-desc">تقدر تقيسها وتنسبها لنشاط شغل معين.</div></div>
+    <div class="tile"><div class="t-name">غير مباشرة (Indirect)</div><div class="t-desc">صعب تنسبها لمنتج أو نشاط معين. وتسمى بعد Overhead أو Burden.</div></div>
+    <div class="tile"><div class="t-name">معيارية (Standard)</div><div class="t-desc">تكلفة الوحدة، تتحدد <b>مقدماً</b> قبل ما يبدأ الإنتاج أو تقديم الخدمة.</div></div>
+  </div>
+  <div class="callout"><strong>💡 أمثلة من عندي للتوضيح:</strong> في مصنع رشاشات، إيجار المصنع ثابت، والبلاستيك اللي داخل في كل رشاش متغير ومباشر، وراتب المحاسب غير مباشر لأنه يخدم كل المنتجات. ولو الإدارة قررت قبل بداية السنة إن الرشاش "المفروض" يكلف <span dir="ltr">\$15.50</span>، هذي تكلفة معيارية.</div>
+  <div class="callout key"><strong>🔑 التقسيمين مو ضد بعض:</strong> نفس التكلفة ممكن تكون متغيرة ومباشرة بنفس الوقت، مثل البلاستيك. التقسيم الأول يسأل "تتغير مع الكمية؟"، والثاني يسأل "أقدر أنسبها لمنتج معين؟".</div>
+</section>
+
+<!-- ================= 02 مصطلحات التكلفة ================= -->
+<section class="card" id="terms" data-num="02" data-nav="مصطلحات التكلفة|Terminology">
+  <h2>مصطلحات لازم تفرّق بينها</h2>
+  <p class="sub">نقدية ولا دفترية، وغارقة ولا فرصة ضايعة</p>
+
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">نقدية (Cash cost)</div><div class="t-desc">تكلفة فيها دفع فلوس فعلي.</div></div>
+    <div class="tile"><div class="t-name">دفترية (Book cost)</div><div class="t-desc">ما فيها دفع فلوس، بس تنعكس في النظام المحاسبي. (إضافة: أشهر مثال الإهلاك Depreciation.)</div></div>
+    <div class="tile hl"><div class="t-name">غارقة (Sunk cost)</div><div class="t-desc">صارت في الماضي، وما لها أي علاقة بتقديرات التكاليف والإيرادات المستقبلية لأي بديل.</div></div>
+    <div class="tile"><div class="t-name">الفرصة البديلة (Opportunity cost)</div><div class="t-desc">الميزة المالية اللي ضيعتها لأن مواردك محدودة. يعني تكلفة <b>أحسن فرصة رفضتها</b>.</div></div>
+    <div class="tile"><div class="t-name">دورة الحياة (Life-cycle cost)</div><div class="t-desc">مجموع كل التكاليف المرتبطة بالمنتج أو المنشأة أو النظام أو الخدمة طول عمره.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 الغارقة ما تدخل القرار:</strong> القرار يقارن المستقبل بس. لو صرفت <span dir="ltr">\$2,000</span> على تصميم وطلع ما ينفع، الألفين راحت سواء كملت أو غيرت. فالسؤال الصح: "من اليوم ورايح، أي بديل أوفر؟". (المثال من عندي.)</div>
+  <div class="callout warn"><strong>⚠️ الفرصة البديلة تكلفة حقيقية حتى لو ما دفعت كاش:</strong> لو عندك مستودع تستخدمه بنفسك، تكلفته عليك هي الإيجار اللي كان ممكن تاخذه لو أجرته. (مثال من عندي.)</div>
+  <div class="callout"><strong>💡 دورة الحياة:</strong> لا تقارن الأجهزة بسعر الشراء بس. مثال المحركين تحت (مثال 2) يوضحها: المحرك الأغلى بالشراء طلع الأرخص لما حسبنا الكهرباء والصيانة.</div>
+</section>
+
+<!-- ================= 03 السعر والطلب ================= -->
+<section class="card" id="demand" data-num="03" data-nav="السعر والطلب|p = a − bD">
+  <h2>علاقة السعر بالطلب (Price-demand)</h2>
+  <p class="sub">كل ما رفعت السعر، قل اللي يشترون</p>
+
+  <p>الطلب (Demand) على أي منتج مرتبط بسعره. والنموذج العام في الفصل خط مستقيم:</p>
+  <div class="m big">\[\Y{p} = a - b\,\X{D}\]</div>
+  <div class="grid-2">
+    <div class="tile y"><div class="t-name">السعر $\Y{p}$</div><div class="t-desc">سعر بيع الوحدة، بالدولار للوحدة.</div></div>
+    <div class="tile x"><div class="t-name">الطلب $\X{D}$</div><div class="t-desc">عدد الوحدات المباعة (بالشهر أو بالسنة حسب السؤال).</div></div>
+    <div class="tile"><div class="t-name">تقاطع محور السعر $a$</div><div class="t-desc">لو $D = 0$ يطلع $p = a$: يعني السعر اللي عنده محد يشتري.</div></div>
+    <div class="tile"><div class="t-name">الميل $b$</div><div class="t-desc">كم ينزل السعر مع كل وحدة زيادة في الطلب. و $a > 0$ و $b > 0$ ثوابت تعتمد على المنتج.</div></div>
+  </div>
+  <figure class="fig">
+    <svg viewBox="0 0 360 200" role="img" aria-label="خط مستقيم نازل: السعر p على المحور الرأسي والطلب D على الأفقي. يبدأ من a على محور السعر وينزل لين a على b على محور الطلب" style="max-width:380px">
+      <path class="ax" d="M50 170H340M50 170V15"/>
+      <text x="344" y="174">D</text><text x="46" y="12" text-anchor="end">p</text>
+      <path class="dem-line" d="M50 35L300 170"/>
+      <circle class="pt" cx="50" cy="35" r="4" style="stroke:var(--cy)"/>
+      <circle class="pt" cx="300" cy="170" r="4" style="stroke:var(--cy)"/>
+      <text class="lbl" x="42" y="39" text-anchor="end">a</text>
+      <text class="lbl" x="300" y="190" text-anchor="middle">a/b</text>
+      <text class="lbl yt" x="190" y="92">p = a − bD</text>
+    </svg>
+    <figcaption>العلاقة العامة بين السعر والطلب: كل ما زاد الطلب، نزل السعر اللي يقبله السوق.</figcaption>
+  </figure>
+  <h3>الإيراد الكلي (Total revenue)</h3>
+  <p>الإيراد = سعر الوحدة × عدد الوحدات المباعة (معادلة 2-4):</p>
+  <div class="m wide">\[\Y{TR} = \Y{p}\,\X{D} = (a - b\X{D})\,\X{D} = a\X{D} - b\X{D}^2, \qquad 0 \le \X{D} \le \frac{a}{b}\]</div>
+  <div class="m narrow">\[\begin{aligned}\Y{TR} &= \Y{p}\,\X{D} = (a - b\X{D})\,\X{D} \\ &= a\X{D} - b\X{D}^2 \\ 0 &\le \X{D} \le \tfrac{a}{b}\end{aligned}\]</div>
+  <p>ليش $D \le a/b$؟ لأن بعدها السعر $p = a - bD$ يصير سالب، وهذا ما له معنى.</p>
+  <div class="callout key"><strong>🔑 قطع مكافئ مقلوب:</strong> $TR$ يبدأ من صفر (ما بعت شي)، ويرجع صفر عند $D = a/b$ (السعر صار صفر). فأكيد بينهم قمة، وهي اللي نبيها في القسم الجاي.</div>
+</section>
+
+<!-- ================= 04 أعلى إيراد ================= -->
+<section class="card" id="maxrev" data-num="04" data-nav="أعلى إيراد|D̂">
+  <h2>الطلب اللي يعطي أعلى إيراد</h2>
+  <p class="sub">نشتق ونساوي بالصفر، مثل أي قمة في التفاضل</p>
+
+  <p>عند القمة ميل المنحنى صفر. فنشتق $TR$ بالنسبة لـ $D$:</p>
+  <div class="m">\[\frac{d\,\Y{TR}}{d\X{D}} = a - 2b\X{D} = 0 \quad\Rightarrow\quad \X{\hat D} = \frac{a}{2b}\quad \text{(eq. 2-6)}\]</div>
+  <p>وهي قمة مو قاع، لأن المشتقة الثانية $\frac{d^2TR}{dD^2} = -2b$ سالبة دايم. ولو عوضنا $\hat D$ في $TR$:</p>
+  <div class="m">\[\Y{TR}_{\max} = a\left(\frac{a}{2b}\right) - b\left(\frac{a}{2b}\right)^2 = \frac{a^2}{2b} - \frac{a^2}{4b} = \frac{a^2}{4b}\]</div>
+  <p>والسعر عند هالنقطة $p = a - b\cdot\frac{a}{2b} = \frac{a}{2}$، يعني نص أعلى سعر.</p>
+  <div class="callout warn"><strong>⚠️ أعلى إيراد ≠ أعلى ربح:</strong> الإيراد ما يحسب التكاليف أبداً. لو تبي أعلى ربح لازم تطرح التكلفة أول، وهذا القسم الجاي.</div>
+</section>
+
+<!-- ================= 05 أعلى ربح ================= -->
+<section class="card" id="profit" data-num="05" data-nav="أعلى ربح|D*">
+  <h2>أعلى ربح (Maximum profit)</h2>
+  <p class="sub">الربح = الإيراد − التكلفة الكلية</p>
+
+  <p>نطرح التكلفة الكلية $C_T = C_F + c_v D$ من الإيراد. انتبه إن القوس كله مطروح:</p>
+  <div class="m wide">\[\text{Profit} = (a\X{D} - b\X{D}^2) - (\Z{C_F} + c_v\X{D}) = a\X{D} - b\X{D}^2 - \Z{C_F} - c_v\X{D}\]</div>
+  <div class="m narrow">\[\begin{aligned}\text{Profit} &= (a\X{D} - b\X{D}^2) - (\Z{C_F} + c_v\X{D}) \\ &= a\X{D} - b\X{D}^2 - \Z{C_F} - c_v\X{D}\end{aligned}\]</div>
+  <p>ونرتبها حسب قوى $D$:</p>
+  <div class="m big wide">\[\text{Profit} = -b\X{D}^2 + (a - c_v)\X{D} - \Z{C_F}, \qquad 0 \le \X{D} \le \frac{a}{b}\]</div>
+  <div class="m big narrow">\[\begin{gathered}\text{Profit} = -b\X{D}^2 + (a - c_v)\X{D} - \Z{C_F} \\ 0 \le \X{D} \le \frac{a}{b}\end{gathered}\]</div>
+  <div class="callout warn"><strong>⚠️ غلطة مطبعية في السلايد:</strong> السلايد كاتب في السطر الثاني $aD - bD^2 - C_F + c_v D$، والصح $-\,c_v D$ لأن القوس $(C_F + c_v D)$ كله مطروح. والسطر اللي بعده $-bD^2 + (a - c_v)D - C_F$ صحيح.</div>
+  <p>نشتق ونساوي بالصفر:</p>
+  <div class="m">\[\frac{d(\text{Profit})}{d\X{D}} = a - c_v - 2b\X{D} = 0 \quad\Rightarrow\quad \X{D^*} = \frac{a - c_v}{2b}\]</div>
+  <p>والمشتقة الثانية $-2b < 0$، يعني قمة. وعشان يكون فيه طلب موجب لازم $a - c_v > 0$: أعلى سعر لازم يكون أكبر من تكلفة الوحدة، وإلا كل وحدة تبيعها خسارة.</p>
+  <div class="grid-2">
+    <div class="tile y"><div class="t-top">أعلى إيراد</div><div class="t-math">$\X{\hat D} = \dfrac{a}{2b}$</div><div class="t-desc">ما يشوف التكاليف.</div></div>
+    <div class="tile z"><div class="t-top">أعلى ربح</div><div class="t-math">$\X{D^*} = \dfrac{a - c_v}{2b}$</div><div class="t-desc">نفس القانون بس $a$ نقصت منها $c_v$.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 ليش $D^* &lt; \hat D$ دايم؟</strong> كل وحدة زيادة تكلفك $c_v$. فتوقف قبل قمة الإيراد، عند النقطة اللي الإيراد اللي تجيبه الوحدة الزيادة يساوي تكلفتها. والتكلفة الثابتة $C_F$ ما تأثر على $D^*$ أبداً (ما فيه $C_F$ في القانون)، بس تحدد هل الربح عنده موجب ولا لا.</div>
+</section>
+
+<!-- ================= 06 التعادل ================= -->
+<section class="card" id="breakeven" data-num="06" data-nav="نقطة التعادل|D′">
+  <h2>نقطة التعادل (Breakeven)</h2>
+  <p class="sub">الإيراد = التكلفة، يعني الربح صفر</p>
+
+  <p>التعادل لما <b>الإيراد الكلي = التكلفة الكلية</b>. يعني نساوي معادلة الربح بالصفر:</p>
+  <div class="m">\[-b\X{D}^2 + (a - c_v)\X{D} - \Z{C_F} = 0\]</div>
+  <p>معادلة تربيعية $AD^2 + BD + C = 0$ فيها $A = -b$ و $B = a - c_v$ و $C = -C_F$. والقانون العام يعطينا (معادلة 2-12):</p>
+  <div class="m big">\[\X{D'} = \frac{-(a - c_v) \pm \sqrt{(a - c_v)^2 - 4(-b)(-\Z{C_F})}}{2(-b)}\]</div>
+  <p>يطلع جذرين $D'_1 &lt; D'_2$. قبل $D'_1$ التكلفة الثابتة أكبر من اللي تكسبه فأنت خسران، وبعد $D'_2$ السعر نزل كثير فبعد خسران. والربح بس بينهم:</p>
+  <div class="m">\[D'_1 &lt; \X{D} &lt; D'_2 \quad\Rightarrow\quad \text{Profit} &gt; 0\]</div>
+  <div class="callout key"><strong>🔑 حيلة للتأكد (إضافة):</strong> القطع المكافئ متماثل، فـ $D^*$ يطلع بالضبط في نص نقطتين التعادل: $D^* = \frac{D'_1 + D'_2}{2}$. لو حسبت الثلاثة وما تحقق هذا، فيه غلط.</div>
+  <div class="callout warn"><strong>⚠️ المميز سالب؟</strong> لو $(a - c_v)^2 &lt; 4bC_F$، ما فيه جذور حقيقية. يعني ما فيه أي كمية تربح فيها، لأن التكلفة الثابتة كبيرة على هالسوق. (إضافة من الرياضيات.)</div>
+</section>
+
+<!-- ================= 07 المختبر ================= -->
+<section class="card" id="lab" data-num="07" data-nav="المختبر|Lab">
+  <h2>حرّك السعر والتكاليف وشوف الربح</h2>
+  <p class="sub">منحنى الإيراد وخط التكلفة على نفس الرسمة</p>
+
+  <div class="econ-lab" id="profitLab">
+    <h3>🎛️ ابدأ بمثال الرشاشات، وبعدين غيّر الأرقام</h3>
+    <p class="lab-note">الأخضر $TR = aD - bD^2$، والبرتقالي $C_T = C_F + c_v D$. المنطقة الخضراء بينهم هي الربح.</p>
+    <div class="seg"><button type="button" class="on" data-pre="ex1">مثال الرشاشات</button><button type="button" data-pre="t">تمارين الصفحة</button><button type="button" data-pre="no">تكلفة ثابتة كبيرة</button></div>
+    <div class="lab-controls">
+      <div class="field"><label>$a$ (\$)</label><input type="range" dir="ltr" id="aS" min="40" max="150" step="0.5"><span class="rv" id="aV"></span></div>
+      <div class="field"><label>$b$</label><input type="range" dir="ltr" id="bS" min="0.005" max="0.06" step="0.001"><span class="rv" id="bV"></span></div>
+      <div class="field"><label>$C_F$ (\$)</label><input type="range" dir="ltr" id="fS" min="0" max="120000" step="500"><span class="rv" id="fV"></span></div>
+      <div class="field"><label>$c_v$ (\$/unit)</label><input type="range" dir="ltr" id="cS" min="0" max="60" step="0.5"><span class="rv" id="cV"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 290" role="img" aria-label="منحنى الإيراد الكلي على شكل قوس، وخط التكلفة الكلية المستقيم، والمنطقة بين نقطتين التعادل مظللة بالأخضر، وخطوط متقطعة عند الطلب اللي يعطي أعلى ربح وأعلى إيراد">
+        <defs><clipPath id="plClip"><rect x="50" y="10" width="530" height="240"/></clipPath></defs>
+        <path class="ax" d="M50 250H585M50 250V8"/>
+        <text x="589" y="254">D</text><text x="46" y="8" text-anchor="end">USD</text>
+        <g clip-path="url(#plClip)">
+          <path class="area-good" id="plArea"/>
+          <path class="rev-line" id="plTR"/>
+          <path class="cost-line" id="plC"/>
+          <path class="guide" id="plDs"/>
+          <path class="guide" id="plDh" style="stroke-dasharray:2 4"/>
+        </g>
+        <circle class="pt" id="plB1" r="4.5" style="stroke:var(--ink)"/>
+        <circle class="pt" id="plB2" r="4.5" style="stroke:var(--ink)"/>
+        <text class="tick" id="plDsT" y="266" text-anchor="middle">D*</text>
+        <text class="tick" id="plDhT" y="280" text-anchor="middle">D̂</text>
+        <text class="tick" id="plMax" y="266" text-anchor="middle"></text>
+        <text class="lbl yt" id="plTRl">TR</text>
+        <text class="lbl zt" id="plCl">C</text>
+      </svg>
+      <figcaption>الخط المتقطع الطويل عند $D^*$ (أعلى ربح)، والمنقط عند $\hat D$ (أعلى إيراد). والدوائر نقطتين التعادل.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k">أعلى ربح عند $D^*$</span><span class="v tex2jax_ignore" id="rDs"></span></div>
+      <div class="hl"><span class="k">الربح عند $D^*$</span><span class="v tex2jax_ignore" id="rPr"></span></div>
+      <div><span class="k">مدى الربح $D'_1$ إلى $D'_2$</span><span class="v tex2jax_ignore" id="rBE"></span></div>
+      <div><span class="k">أعلى إيراد عند $\hat D$</span><span class="v tex2jax_ignore" id="rDh"></span></div>
+      <div><span class="k">$TR_{\max} = a^2/4b$</span><span class="v tex2jax_ignore" id="rTR"></span></div>
+      <div><span class="k">السعر عند $D^*$</span><span class="v tex2jax_ignore" id="rP"></span></div>
+    </div>
+    <p class="say" id="plSay"></p>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> حرّك $C_F$ بس. بتشوف الخط البرتقالي يطلع وينزل، و $D^*$ ما يتحرك أبداً، بس مدى الربح يضيق لين يختفي. وبعدين حرّك $c_v$: هنا $D^*$ يتحرك لليسار.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>رشاشات Acme</h2></div>
+  <div class="tags"><span class="tag">Pause and solve</span><span class="tag">أعلى ربح</span><span class="tag">نقطة التعادل</span></div>
+  <p>شركة Acme تصنع رشاشات ري (Sprinklers) غالية للملاعب. تكلفتها الثابتة $C_F = \$55{,}000$ بالشهر، والمتغيرة $c_v = \$15.50$ للوحدة، والسعر يمشي على $p = 87.50 - 0.02D$.</p>
+  <p>(أ) كم حجم الإنتاج الأمثل؟ وهل الشركة تربح عنده؟ (ب) وش مدى الطلب اللي فيه ربح؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">من معادلة السعر: $a = 87.50$ و $b = 0.02$. والتكاليف: $C_F = 55{,}000$ و $c_v = 15.50$. والتكلفة الثابتة بالشهر، فكل الطلبات اللي بتطلع بالوحدة <b>بالشهر</b>.</p>
+    </li>
+    <li class="step">
+      <h4>الحجم الأمثل</h4>
+      <p class="why">"الأمثل" يعني أعلى ربح، مو أعلى إيراد. فنستخدم $D^*$.</p>
+      <div class="m wide">\[\X{D^*} = \frac{a - c_v}{2b} = \frac{87.50 - 15.50}{2(0.02)} = \frac{72}{0.04} = 1800\ \text{units/month}\]</div>
+      <div class="m narrow">\[\begin{aligned}\X{D^*} &= \frac{a - c_v}{2b} = \frac{87.50 - 15.50}{2(0.02)} \\ &= \frac{72}{0.04} = 1800\ \text{units/month}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>تأكد إنها قمة</h4>
+      <p class="why">المشتقة الثانية سالبة، فهي أعلى ربح مو أقل ربح.</p>
+      <div class="m">\[\frac{d^2(\text{Profit})}{dD^2} = -2b = -0.04 &lt; 0\]</div>
+    </li>
+    <li class="step">
+      <h4>الربح عند 1800</h4>
+      <p class="why">نعوض في $\text{Profit} = -bD^2 + (a - c_v)D - C_F$، و $a - c_v = 72$.</p>
+      <div class="m wide">\[\text{Profit} = -0.02(1800)^2 + 72(1800) - 55{,}000 = -64{,}800 + 129{,}600 - 55{,}000 = \$9{,}800\]</div>
+      <div class="m narrow">\[\begin{aligned}\text{Profit} &= -0.02(1800)^2 + 72(1800) - 55{,}000 \\ &= -64{,}800 + 129{,}600 - 55{,}000 \\ &= \$9{,}800\ \text{per month}\end{aligned}\]</div>
+      <p class="why">موجب، يعني <b>إيه، الشركة تربح</b> عند هالحجم.</p>
+    </li>
+    <li class="step">
+      <h4>(ب) معادلة التعادل</h4>
+      <p class="why">نساوي الربح بالصفر وندخل القانون العام بـ $A = -0.02$ و $B = 72$ و $C = -55{,}000$.</p>
+      <div class="m">\[-0.02\X{D}^2 + 72\X{D} - 55{,}000 = 0\]</div>
+    </li>
+    <li class="step">
+      <h4>المميز (اللي تحت الجذر)</h4>
+      <p class="why">انتبه للإشارات: $-4(-0.02)(-55{,}000)$ فيها ثلاث سوالب، فتطلع سالبة.</p>
+      <div class="m wide">\[(a - c_v)^2 - 4(-b)(-C_F) = 72^2 - 4(0.02)(55{,}000) = 5184 - 4400 = 784,\qquad \sqrt{784} = 28\]</div>
+      <div class="m narrow">\[\begin{aligned}&72^2 - 4(0.02)(55{,}000) \\ &= 5184 - 4400 = 784 \\ &\sqrt{784} = 28\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>الجذرين</h4>
+      <p class="why">المقام $2(-b) = -0.04$ سالب، لا تنساه.</p>
+      <div class="m wide">\[D' = \frac{-72 \pm 28}{-0.04}\quad\Rightarrow\quad D'_1 = \frac{-44}{-0.04} = 1100,\qquad D'_2 = \frac{-100}{-0.04} = 2500\]</div>
+      <div class="m narrow">\[\begin{aligned}D' &= \frac{-72 \pm 28}{-0.04} \\ D'_1 &= \frac{-44}{-0.04} = 1100 \\ D'_2 &= \frac{-100}{-0.04} = 2500\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(أ)">$D^* = 1800\ \text{units},\ \ \text{Profit} = \$9{,}800$</div>
+      <div class="result" data-label="(ب)">$1100 &lt; D &lt; 2500$</div>
+      <p class="sanity">1800 بالضبط في نص 1100 و 2500 ✓. وبطريقة ثانية: السعر $87.50 - 0.02(1800) = \$51.50$، فالإيراد $51.50 \times 1800 = 92{,}700$ والتكلفة $55{,}000 + 15.50 \times 1800 = 82{,}900$، والفرق $9{,}800$ ✓. وكل الأرقام أقل من $a/b = 4375$ ✓.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 08 تحسين التصميم ================= -->
+<section class="card" id="design" data-num="08" data-nav="تحسين التصميم|Design">
+  <h2>تحسين التصميم بالتكلفة (Cost-driven design optimization)</h2>
+  <p class="sub">اختار قيمة متغير التصميم اللي تخلي التكلفة أقل ما يمكن</p>
+
+  <p>المهندس ما يصمم بس عشان الشي يشتغل، يصمم عشان يشتغل بأقل تكلفة. والسلايدات تقول إن هذا صار أساسي في سوق اليوم التنافسي. وبنركز على مسائل فيها <b>محرك تكلفة رئيسي واحد</b> (Single primary cost driver)، وتكون إما متصلة (Continuous) أو متقطعة (Discrete).</p>
+  <h3>مهمتين</h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">المهمة 1</div><div class="t-desc">أوجد القيمة المثلى لمتغير التصميم في بديل معين.</div></div>
+    <div class="tile"><div class="t-top">المهمة 2</div><div class="t-desc">اختار أفضل بديل، وكل بديل له قيمته المثلى الخاصة.</div></div>
+  </div>
+  <p>ونماذج التكلفة تنبني حول متغير التصميم $X$. والتحسين يمشي على أربع خطوات:</p>
+  <ol class="recipe">
+    <li><b>حدد متغير التصميم</b> اللي هو المحرك الرئيسي للتكلفة.</li>
+    <li><b>اكتب نموذج التكلفة</b> بدلالة هالمتغير.</li>
+    <li><b>متصلة؟ اشتق</b> عشان تلقى القيمة المثلى. <b>متقطعة؟</b> احسب التكلفة لمدى من قيم المتغير.</li>
+    <li><b>متصلة:</b> حل معادلة الخطوة 3. <b>متقطعة:</b> الأمثل هو القيمة اللي أعطت أقل تكلفة في الخطوة 3.</li>
+  </ol>
+  <h3>دالة التكلفة المبسطة</h3>
+  <div class="m big">\[\Z{\text{Cost}} = a\X{X} + \frac{b}{\X{X}} + k\]</div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">$a$</div><div class="t-desc">التكاليف اللي تزيد <b>مباشرة</b> مع $X$ (Directly varying).</div></div>
+    <div class="tile"><div class="t-name">$b$</div><div class="t-desc">التكاليف اللي تتغير <b>عكسياً</b>: كل ما زاد $X$ قلت (Indirectly varying).</div></div>
+    <div class="tile"><div class="t-name">$k$</div><div class="t-desc">التكاليف الثابتة، ما تتأثر بـ $X$.</div></div>
+    <div class="tile x"><div class="t-name">$\X{X}$</div><div class="t-desc">متغير التصميم نفسه (سماكة، سرعة، قطر...).</div></div>
+  </div>
+  <p>نطبق الخطوة 3 على الدالة (هذا الاشتقاق تطبيق مباشر للخطوات):</p>
+  <div class="m">\[\frac{d\,\Z{\text{Cost}}}{d\X{X}} = a - \frac{b}{\X{X}^2} = 0 \quad\Rightarrow\quad \X{X^*} = \sqrt{\frac{b}{a}}\]</div>
+  <p>والمشتقة الثانية $\frac{2b}{X^3} &gt; 0$ لأي $X$ موجب، يعني هذا <b>أقل</b> تكلفة.</p>
+  <div class="callout key"><strong>🔑 عند الأمثل الجزئين يتساوون (إضافة):</strong> لو عوضت $X^* = \sqrt{b/a}$ بيطلع $aX^* = \frac{b}{X^*} = \sqrt{ab}$. يعني أقل تكلفة لما التكلفة اللي تزيد تساوي اللي تنقص، و $\text{Cost}_{\min} = 2\sqrt{ab} + k$.</div>
+  <div class="callout"><strong>💡 مثال يقرّب الفكرة (من عندي):</strong> $X$ سماكة عازل حراري لأنبوب. تكلفة العازل تزيد مع السماكة ($aX$)، والطاقة الضايعة تقل كل ما زادت السماكة ($b/X$). فيه سماكة وسط تعطي أقل مجموع.</div>
+
+  <div class="econ-lab" id="designLab">
+    <h3>🎛️ شوف الموازنة بين الجزئين</h3>
+    <div class="lab-controls">
+      <div class="field"><label>$a$</label><input type="range" dir="ltr" id="daS" min="0.5" max="10" step="0.5" value="2"><span class="rv" id="daV"></span></div>
+      <div class="field"><label>$b$</label><input type="range" dir="ltr" id="dbS" min="100" max="2000" step="50" value="800"><span class="rv" id="dbV"></span></div>
+      <div class="field"><label>$k$</label><input type="range" dir="ltr" id="dkS" min="0" max="200" step="10" value="50"><span class="rv" id="dkV"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 260" role="img" aria-label="ثلاث منحنيات بدلالة X: خط aX طالع، ومنحنى b على X نازل، ومجموعهم مع k على شكل وادي، وخط متقطع عند أقل نقطة">
+        <defs><clipPath id="dlClip"><rect x="50" y="10" width="530" height="210"/></clipPath></defs>
+        <path class="ax" d="M50 220H585M50 220V8"/>
+        <text x="589" y="224">X</text><text x="46" y="8" text-anchor="end">USD</text>
+        <g clip-path="url(#dlClip)">
+          <path class="sk e1" id="dlA"/>
+          <path class="sk e2" id="dlB"/>
+          <path class="sk z" id="dlT"/>
+          <path class="guide" id="dlX"/>
+        </g>
+        <circle class="pt" id="dlP" r="5" style="stroke:var(--cz)"/>
+        <text class="tick" id="dlXT" y="236" text-anchor="middle">X*</text>
+        <text class="lbl" x="60" y="250" style="fill:var(--e1)">aX</text>
+        <text class="lbl" x="100" y="250" style="fill:var(--e2)">b/X</text>
+        <text class="lbl zt" x="150" y="250">Cost</text>
+      </svg>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k">$X^* = \sqrt{b/a}$</span><span class="v tex2jax_ignore" id="dX"></span></div>
+      <div class="hl"><span class="k">أقل تكلفة</span><span class="v tex2jax_ignore" id="dC"></span></div>
+      <div><span class="k">$aX^*$ و $b/X^*$</span><span class="v tex2jax_ignore" id="dE"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 الاقتصاد الحاضر ================= -->
+<section class="card" id="present" data-num="09" data-nav="الاقتصاد الحاضر|Present economy">
+  <h2>دراسات الاقتصاد الحاضر (Present economy studies)</h2>
+  <p class="sub">لما المقارنة على سنة أو أقل، نتجاهل القيمة الزمنية للنقود</p>
+
+  <p>لو البدائل تتقارن على مدة <b>سنة أو أقل</b>، أثر الفائدة صغير ونقدر نتجاهله. وعندها قاعدتين بس للاختيار:</p>
+  <div class="grid-2">
+    <div class="tile y"><div class="t-top">الإيرادات تختلف بين البدائل</div><div class="t-name">اختار الأعلى ربح</div><div class="t-desc">البديل اللي يعطي أعلى ربحية كلية للإنتاج <b>السليم</b> (Defect-free output).</div></div>
+    <div class="tile z"><div class="t-top">ما فيه إيرادات، أو ثابتة للكل</div><div class="t-name">اختار الأقل تكلفة</div><div class="t-desc">البديل اللي يعطي أقل تكلفة كلية <b>لكل وحدة سليمة</b> (Per defect-free unit).</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 ليش "سليمة"؟</strong> الوحدة المعيبة ما تنباع، فما تحسبها كإنتاج. يعني لو آلة رخيصة بس تطلع عيوب كثير، تكلفة الوحدة السليمة عندها ممكن تطلع أغلى.</div>
+  <div class="callout"><strong>💡 كيف تعرف أي قاعدة؟</strong> اسأل: هل البديلين يعطون نفس الخدمة؟ في مثال المحركين الجاي، المحركين يطلعون نفس الـ 75 hp لنفس الخلاط، فالإيراد واحد. يعني نقارن التكلفة بس.</div>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>المحرك الأوفر</h2></div>
+  <div class="tags"><span class="tag">Pause and solve</span><span class="tag">اقتصاد حاضر</span><span class="tag">أقل تكلفة</span></div>
+  <p>Acme Chemical تقارن محركين كهربائيين لخلاط. المحرك يطلع 75&nbsp;hp، ويشتغل 8 ساعات باليوم، 365 يوم، لمدة سنة (الصيانة في الوردية الثانية، فما فيه توقف)، وبعدها ما له قيمة. الكهرباء بـ <span dir="ltr">\$0.16</span> لكل kWh، و <span dir="ltr">1 hp = 0.746 kW</span>. أي محرك أوفر؟</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th></th><th>المحرك A</th><th>المحرك B</th></tr>
+      <tr><td>سعر الشراء</td><td class="n">\$3,200</td><td class="n">\$3,900</td></tr>
+      <tr><td>الصيانة السنوية</td><td class="n">\$250</td><td class="n">\$450</td></tr>
+      <tr><td>الكفاءة (Efficiency)</td><td class="n">75%</td><td class="n">85%</td></tr>
+    </table>
+  </div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">المدة سنة، فهي دراسة اقتصاد حاضر بدون فائدة. والمحركين يعطون نفس الخدمة، فالإيراد ثابت ونختار <b>الأقل تكلفة كلية</b>. والمحرك ما له قيمة بعد السنة، فسعر الشراء كله يدخل تكلفة.</p>
+    </li>
+    <li class="step">
+      <h4>ساعات التشغيل بالسنة</h4>
+      <div class="m">\[8\ \tfrac{\text{h}}{\text{day}} \times 365\ \text{days} = 2920\ \text{h}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة الخارجة بالكيلوواط</h4>
+      <p class="why">الـ 75 hp هي اللي يعطيها المحرك للخلاط (الخرج). نحولها لـ kW لأن الكهرباء تنحسب بالـ kWh.</p>
+      <div class="m">\[P_{\text{out}} = 75 \times 0.746 = 55.95\ \text{kW}\]</div>
+    </li>
+    <li class="step">
+      <h4>القدرة الداخلة (اللي تدفع فلوسها)</h4>
+      <p class="why">الكفاءة = الخرج ÷ الدخل. فالدخل = الخرج ÷ الكفاءة. والمحرك الأقل كفاءة يسحب كهرباء أكثر عشان يطلع نفس الـ 75 hp.</p>
+      <div class="m wide">\[P_{\text{in},A} = \frac{55.95}{0.75} = 74.60\ \text{kW},\qquad P_{\text{in},B} = \frac{55.95}{0.85} = 65.82\ \text{kW}\]</div>
+      <div class="m narrow">\[\begin{aligned}P_{\text{in},A} &= \frac{55.95}{0.75} = 74.60\ \text{kW} \\ P_{\text{in},B} &= \frac{55.95}{0.85} = 65.82\ \text{kW}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>تكلفة الكهرباء بالسنة</h4>
+      <p class="why">الطاقة = القدرة × الساعات، وبعدها × السعر.</p>
+      <div class="m wide">\[A:\ 74.60 \times 2920 = 217{,}832\ \text{kWh} \times 0.16 = \$34{,}853.12\]</div>
+      <div class="m wide">\[B:\ 65.82 \times 2920 = 192{,}204.7\ \text{kWh} \times 0.16 = \$30{,}752.75\]</div>
+      <div class="m narrow">\[\begin{aligned}A:&\ 74.60 \times 2920 = 217{,}832\ \text{kWh} \\ &\times 0.16 = \$34{,}853.12 \\[4pt] B:&\ 65.82 \times 2920 = 192{,}204.7\ \text{kWh} \\ &\times 0.16 = \$30{,}752.75\end{aligned}\]</div>
+      <p class="why">في B استخدمنا القسمة الكاملة $55.95/0.85 = 65.8235$ بدون تقريب، عشان كذا الرقم ما يطلع بالضبط $65.82 \times 2920$.</p>
+    </li>
+    <li class="step">
+      <h4>التكلفة الكلية لكل محرك</h4>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <tr><th></th><th>المحرك A</th><th>المحرك B</th></tr>
+          <tr><td>الشراء</td><td class="n">3,200.00</td><td class="n">3,900.00</td></tr>
+          <tr><td>الصيانة</td><td class="n">250.00</td><td class="n">450.00</td></tr>
+          <tr><td>الكهرباء</td><td class="n">34,853.12</td><td class="n">30,752.75</td></tr>
+          <tr class="sum"><td>المجموع</td><td class="n">\$38,303.12</td><td class="n">\$35,102.75</td></tr>
+        </table>
+      </div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="المحرك B">$\$35{,}102.75 &lt; \$38{,}303.12$</div>
+      <p class="sanity">يوفر $38{,}303.12 - 35{,}102.75 = \$3{,}200.37$ بالسنة.</p>
+      <p class="sanity">B أغلى بالشراء والصيانة بـ <span dir="ltr">\$900</span> بس، وكفاءته توفر <span dir="ltr">\$4,100</span> كهرباء ✓. ولاحظ إن الكهرباء حوالي 90% من التكلفة، فالكفاءة هي اللي تحسم، وهذا معنى تكلفة دورة الحياة.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2>طريقة حل مسائل الفصل</h2>
+  <p class="sub">ثلاث أنواع مسائل، ولكل نوع خطوات ثابتة</p>
+
+  <h3>(أ) سعر وطلب: أعلى ربح والتعادل</h3>
+  <ol class="recipe">
+    <li><b>طلّع الأربعة أرقام</b><span class="why">$a$ و $b$ من معادلة السعر، و $C_F$ و $c_v$ من التكاليف. وانتبه للوحدة: بالشهر ولا بالسنة.</span></li>
+    <li><b>أعلى ربح</b><span class="why">$D^* = \frac{a - c_v}{2b}$، ولو طلب أعلى إيراد $\hat D = \frac{a}{2b}$.</span></li>
+    <li><b>الربح عند $D^*$</b><span class="why">عوّض في $-bD^2 + (a - c_v)D - C_F$. لو طلع سالب، ما فيه أي كمية تربح فيها.</span></li>
+    <li><b>التعادل</b><span class="why">القانون العام بـ $A = -b$ و $B = a - c_v$ و $C = -C_F$، والربح بين الجذرين.</span></li>
+  </ol>
+  <h3>(ب) الاقتصاد الحاضر</h3>
+  <ol class="recipe">
+    <li><b>تأكد إن المدة سنة أو أقل</b><span class="why">عشان يحق لك تتجاهل الفائدة.</span></li>
+    <li><b>الإيراد يختلف؟</b><span class="why">إيه: قارن الربح. لا: قارن التكلفة (لكل وحدة سليمة لو فيه عيوب).</span></li>
+    <li><b>اجمع كل التكاليف لنفس المدة</b><span class="why">شراء + صيانة + تشغيل. وفي المحركات الدخل = الخرج ÷ الكفاءة.</span></li>
+  </ol>
+  <h3>(ج) تحسين التصميم $aX + b/X + k$</h3>
+  <ol class="recipe">
+    <li><b>طلّع $a$ و $b$ و $k$</b><span class="why">اللي يزيد مع $X$ هو $a$، واللي ينقص هو $b$.</span></li>
+    <li><b>الأمثل والتكلفة</b><span class="why">$X^* = \sqrt{b/a}$، و $\text{Cost}_{\min} = 2\sqrt{ab} + k$.</span></li>
+  </ol>
+  <div class="callout good"><strong>✅ افحص جوابك</strong>
+    <ul class="checks">
+      <li>$D^*$ لازم يطلع في نص $D'_1$ و $D'_2$ بالضبط.</li>
+      <li>$D^* &lt; \hat D$ دايم، لأن $c_v &gt; 0$.</li>
+      <li>كل الطلبات لازم تكون بين $0$ و $a/b$.</li>
+      <li>الربح عند $D^*$ نفسه لو حسبته من $TR - C_T$ بالأرقام.</li>
+      <li>في المحركات: القدرة الداخلة أكبر من الخارجة دايم.</li>
+      <li>في التصميم: $aX^* = b/X^*$ عند الأمثل.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس، وبدون فواصل الآلاف (يعني 2400 مو 2,400)</p>
+
+  <p>التمارين أ إلى ج على نفس المنتج: $p = 100 - 0.5D$، و $C_F = \$2{,}400$، و $c_v = \$20$ للوحدة. (تقدر تحطهم في المختبر من زر "تمارين الصفحة".)</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>كم الطلب اللي يعطي أعلى <b>إيراد</b>؟</p>
+    <div class="check" data-answer="100"></div>
+    <details class="hint"><p>الإيراد ما يشوف التكاليف، فلا تستخدم $c_v$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\hat D = \frac{a}{2b} = \frac{100}{2(0.5)}\]</div><div class="result">$\hat D = 100\ \text{units}$</div><p class="sanity">والإيراد عندها $\frac{a^2}{4b} = \frac{10{,}000}{2} = \$5{,}000$.</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>كم الطلب اللي يعطي أعلى <b>ربح</b>؟ وكم الربح عنده؟ (اكتب الربح بالدولار)</p>
+    <div class="check" data-answer="800"></div>
+    <details class="hint"><p>أول $D^* = \frac{a - c_v}{2b}$، وبعدين عوّض في $-bD^2 + (a - c_v)D - C_F$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>أعلى ربح</h4><div class="m">\[D^* = \frac{100 - 20}{2(0.5)} = \frac{80}{1} = 80\ \text{units}\]</div></li>
+      <li class="step"><h4>الربح</h4><div class="m wide">\[\text{Profit} = -0.5(80)^2 + 80(80) - 2400 = -3200 + 6400 - 2400\]</div><div class="m narrow">\[\begin{aligned}\text{Profit} &= -0.5(80)^2 + 80(80) - 2400 \\ &= -3200 + 6400 - 2400\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$D^* = 80,\quad \text{Profit} = \$800$</div><p class="sanity">$80 &lt; \hat D = 100$ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>من أي طلب تبدأ الشركة تربح؟ (اكتب نقطة التعادل الصغيرة $D'_1$)</p>
+    <div class="check" data-answer="40"></div>
+    <details class="hint"><p>$-0.5D^2 + 80D - 2400 = 0$. اضرب كل شي في $-2$ عشان تسهل: $D^2 - 160D + 4800 = 0$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>بسّط المعادلة</h4><div class="m">\[D^2 - 160D + 4800 = 0\]</div></li>
+      <li class="step"><h4>القانون العام</h4><div class="m wide">\[D' = \frac{160 \pm \sqrt{160^2 - 4(4800)}}{2} = \frac{160 \pm \sqrt{6400}}{2} = \frac{160 \pm 80}{2}\]</div><div class="m narrow">\[\begin{aligned}D' &= \frac{160 \pm \sqrt{25600 - 19200}}{2} \\ &= \frac{160 \pm 80}{2}\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$D'_1 = 40,\quad D'_2 = 120$</div><p class="sanity">الربح بين 40 و 120. ونصهم $\frac{40 + 120}{2} = 80 = D^*$ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>آلتين لمدة شهر، والإيراد نفسه. الآلة A تنتج 1000 وحدة، 5% منها معيبة، وتكلفتها الكلية <span dir="ltr">\$9,500</span>. الآلة B تنتج 1000 وحدة، 1% معيبة، وتكلفتها <span dir="ltr">\$9,702</span>. كم تكلفة الوحدة السليمة في الآلة الأوفر؟</p>
+    <div class="check" data-answer="9.8"></div>
+    <details class="hint"><p>اقسم التكلفة على عدد الوحدات <b>السليمة</b> بس، مو على 1000.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>الوحدات السليمة</h4><div class="m wide">\[A:\ 1000(0.95) = 950,\qquad B:\ 1000(0.99) = 990\]</div>
+      <li class="step"><h4>الوحدات السليمة</h4><div class="m narrow">\[\begin{aligned}A&:\ 1000(0.95) = 950 \\ B&:\ 1000(0.99) = 990\end{aligned}\]</div></li>
+      <li class="step"><h4>التكلفة لكل وحدة سليمة</h4><div class="m wide">\[A:\ \frac{9500}{950} = \$10.00,\qquad B:\ \frac{9702}{990} = \$9.80\]</div>
+      <li class="step"><h4>التكلفة لكل وحدة سليمة</h4><div class="m narrow">\[\begin{aligned}A&:\ \frac{9500}{950} = \$10.00 \\ B&:\ \frac{9702}{990} = \$9.80\end{aligned}\]</div></li>
+      <li class="step final"><div class="result" data-label="الآلة B">$\$9.80\ \text{per defect-free unit}$</div><p class="sanity">لو قسمت على 1000 كان طلعت A أرخص ($9.50$ مقابل $9.70$)، وهذا بالضبط الفخ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl hard">صعب</span></div>
+    <p>تكلفة تصميم $\text{Cost} = 2X + \frac{800}{X} + 50$. كم أقل تكلفة ممكنة؟</p>
+    <div class="check" data-answer="130"></div>
+    <details class="hint"><p>أوجد $X^*$ أول من $\sqrt{b/a}$، وعوّض.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>القيمة المثلى</h4><div class="m">\[X^* = \sqrt{\frac{800}{2}} = \sqrt{400} = 20\]</div></li>
+      <li class="step"><h4>عوّض</h4><div class="m wide">\[\text{Cost} = 2(20) + \frac{800}{20} + 50 = 40 + 40 + 50\]</div>
+      <li class="step"><h4>عوّض</h4><div class="m narrow">\[\begin{aligned}\text{Cost} &= 2(20) + \frac{800}{20} + 50 \\ &= 40 + 40 + 50\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$\text{Cost}_{\min} = 130$</div><p class="sanity">الجزئين $40 = 40$ متساويين عند الأمثل ✓، و $2\sqrt{2 \times 800} + 50 = 2(40) + 50 = 130$ ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">إشارة $c_v D$ في الربح</div>
+    <div class="pair"><div class="no">$aD - bD^2 - C_F + c_v D$ (مثل السلايد)</div><div class="yes">$aD - bD^2 - C_F - c_v D$، لأن التكلفة كلها مطروحة</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط أعلى إيراد بأعلى ربح</div>
+    <div class="pair"><div class="no">"الحجم الأمثل" $= \frac{a}{2b}$</div><div class="yes">الأمثل يعني أعلى ربح: $\frac{a - c_v}{2b}$</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى السالب في مقام القانون العام</div>
+    <div class="pair"><div class="no">$D' = \frac{-72 \pm 28}{0.04}$ ويطلع طلب سالب</div><div class="yes">المقام $2(-b) = -0.04$</div></div></div>
+  <div class="mk"><div class="mk-title">تدخل التكلفة الغارقة في القرار</div>
+    <div class="pair"><div class="no">"صرفنا عليه كثير، لازم نكمل"</div><div class="yes">اللي انصرف راح في كل البدائل، قارن اللي جاي بس</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب الكهرباء من القدرة الخارجة</div>
+    <div class="pair"><div class="no">$55.95 \times 0.75$ أو $55.95 \times 2920$ مباشرة</div><div class="yes">الدخل $= \frac{55.95}{0.75} = 74.6$ kW، وهو اللي تدفع فلوسه</div></div></div>
+  <div class="mk"><div class="mk-title">تقسم على كل الإنتاج بدل السليم</div>
+    <div class="pair"><div class="no">$\frac{9500}{1000} = 9.50$</div><div class="yes">$\frac{9500}{950} = 10.00$ لكل وحدة سليمة</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="3"><p>دفعت <span dir="ltr">\$5,000</span> السنة اللي فاتت على دراسة مشروع. الحين تقرر تكمل ولا لا. الـ <span dir="ltr">\$5,000</span>:</p>
+      <button>تكلفة فرصة بديلة</button><button>تكلفة متغيرة</button><button>تكلفة غارقة، ما تدخل القرار</button><button>تكلفة دورة حياة</button>
+      <p class="q-why">صارت في الماضي وما تتغير مهما قررت، فما لها علاقة بالمقارنة.</p></div>
+    <div class="q" data-answer="2"><p>راتب مدير المصنع اللي يشرف على كل خطوط الإنتاج يعتبر:</p>
+      <button>تكلفة مباشرة</button><button>تكلفة غير مباشرة (Overhead)</button><button>تكلفة معيارية</button><button>تكلفة غارقة</button>
+      <p class="q-why">صعب تنسبه لمنتج معين لأنه يخدم الكل.</p></div>
+    <div class="q" data-answer="4"><p>لو $p = a - bD$، الإيراد الكلي:</p>
+      <button>$a - bD$</button><button>$aD + bD^2$</button><button>$a - 2bD$</button><button>$aD - bD^2$</button>
+      <p class="q-why">$TR = pD = (a - bD)D$. و $a - 2bD$ هي مشتقته.</p></div>
+    <div class="q" data-answer="1"><p>لو زادت التكلفة الثابتة $C_F$، وش يصير لـ $D^*$؟</p>
+      <button>ما يتغير</button><button>يزيد</button><button>يقل</button><button>يصير صفر</button>
+      <p class="q-why">$D^* = \frac{a - c_v}{2b}$ ما فيه $C_F$. اللي يتغير هو مقدار الربح ومدى التعادل.</p></div>
+    <div class="q" data-answer="3"><p>نقطتين التعادل 1100 و 2500. أعلى ربح عند:</p>
+      <button>1100</button><button>2500</button><button>1800</button><button>ما نقدر نعرف</button>
+      <p class="q-why">القطع المكافئ متماثل، فالقمة في النص: $\frac{1100 + 2500}{2} = 1800$.</p></div>
+    <div class="q" data-answer="2"><p>في $\text{Cost} = aX + \frac{b}{X} + k$، القيمة المثلى:</p>
+      <button>$\frac{b}{a}$</button><button>$\sqrt{\frac{b}{a}}$</button><button>$\sqrt{\frac{a}{b}}$</button><button>$\sqrt{ab}$</button>
+      <p class="q-why">$a - \frac{b}{X^2} = 0$ يعطي $X^2 = \frac{b}{a}$.</p></div>
+    <div class="q" data-answer="4"><p>محرك كفاءته 80% ويطلع 10 kW. كم يسحب من الكهرباء؟</p>
+      <button><span dir="ltr">8 kW</span></button><button><span dir="ltr">10 kW</span></button><button><span dir="ltr">10.8 kW</span></button><button><span dir="ltr">12.5 kW</span></button>
+      <p class="q-why">الدخل = الخرج ÷ الكفاءة: $\frac{10}{0.8} = 12.5\ \text{kW}$.</p></div>
+    <div class="q" data-answer="1"><p>بديلين يعطون نفس الإيراد، والمدة 6 شهور. نختار:</p>
+      <button>الأقل تكلفة لكل وحدة سليمة</button><button>الأعلى إيراد</button><button>الأقل سعر شراء</button><button>نحسب القيمة الزمنية أول</button>
+      <p class="q-why">أقل من سنة فهي اقتصاد حاضر، والإيراد ثابت، فنقارن التكلفة الكلية (مو سعر الشراء بس).</p></div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>بطاقات المراجعة</h2>
+  <p class="sub">اضغط البطاقة وتنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>التكلفة الغارقة (Sunk cost)</div><div>صارت في الماضي، وما تدخل أي قرار جاي</div></div>
+    <div class="flash"><div>تكلفة الفرصة البديلة</div><div>قيمة أحسن فرصة رفضتها لأن مواردك محدودة</div></div>
+    <div class="flash"><div>السعر والطلب</div><div>$p = a - bD$</div></div>
+    <div class="flash"><div>الإيراد الكلي</div><div>$TR = aD - bD^2,\ \ 0 \le D \le \frac{a}{b}$</div></div>
+    <div class="flash"><div>أعلى إيراد</div><div>$\hat D = \dfrac{a}{2b},\quad TR_{\max} = \dfrac{a^2}{4b}$</div></div>
+    <div class="flash"><div>الربح</div><div>$-bD^2 + (a - c_v)D - C_F$</div></div>
+    <div class="flash"><div>أعلى ربح</div><div>$D^* = \dfrac{a - c_v}{2b}$</div></div>
+    <div class="flash"><div>نقطة التعادل</div><div>حل $-bD^2 + (a - c_v)D - C_F = 0$ بالقانون العام، والربح بين الجذرين</div></div>
+    <div class="flash"><div>تحسين التصميم $aX + \frac{b}{X} + k$</div><div>$X^* = \sqrt{\dfrac{b}{a}}$</div></div>
+    <div class="flash"><div>الاقتصاد الحاضر</div><div>سنة أو أقل: إيراد يختلف ← أعلى ربح، ثابت ← أقل تكلفة لكل وحدة سليمة</div></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* الفصل 2: مختبر الربح (القسم 07) ومختبر التصميم (القسم 08) */
+(function () {
+  const $ = id => document.getElementById(id);
+  const f1 = n => n.toFixed(1);
+  const money = n => (n < 0 ? '−$' : '$') + Math.abs(Math.round(n)).toLocaleString('en-US');
+  const num = n => Math.round(n).toLocaleString('en-US');
+  const say = (el, html) => { el.innerHTML = html; if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([el]).catch(() => {}); };
+
+  /* ---------- مختبر الربح ---------- */
+  const X0 = 50, X1 = 580, Y0 = 250, Y1 = 14;
+  const PRE = { ex1: [87.5, 0.02, 55000, 15.5], t: [100, 0.5, 2400, 20], no: [87.5, 0.02, 70000, 15.5] };
+  const sl = { a: $('aS'), b: $('bS'), f: $('fS'), c: $('cS') };
+  function setRanges(b) {                 // التمارين قيمها صغيرة، فنوسع مدى b و C_F لما نختارها
+    const small = b > 0.06;
+    sl.b.min = small ? 0.1 : 0.005; sl.b.max = small ? 1 : 0.06; sl.b.step = small ? 0.05 : 0.001;
+    sl.f.max = small ? 6000 : 120000; sl.f.step = small ? 100 : 500;
+  }
+  function profitLab() {
+    const a = +sl.a.value, b = +sl.b.value, CF = +sl.f.value, cv = +sl.c.value;
+    $('aV').textContent = a; $('bV').textContent = b; $('fV').textContent = num(CF); $('cV').textContent = cv;
+    const Dmax = a / b, TRmax = a * a / (4 * b);
+    const Ymax = Math.max(TRmax, CF * 1.05) * 1.15;
+    const sx = D => X0 + (X1 - X0) * D / Dmax, sy = y => Y0 - (Y0 - Y1) * y / Ymax;
+    let tr = '';
+    for (let k = 0; k <= 120; k++) { const D = Dmax * k / 120; tr += (k ? 'L' : 'M') + f1(sx(D)) + ' ' + f1(sy(a * D - b * D * D)); }
+    $('plTR').setAttribute('d', tr);
+    $('plC').setAttribute('d', `M${X0} ${f1(sy(CF))}L${X1} ${f1(sy(CF + cv * Dmax))}`);
+    $('plTRl').setAttribute('x', f1(sx(Dmax / 2) - 10)); $('plTRl').setAttribute('y', f1(sy(TRmax) - 8));
+    const cy = Math.max(Y1 + 12, Math.min(Y0 - 6, sy(CF + cv * Dmax * 0.92)));
+    $('plCl').setAttribute('x', f1(sx(Dmax * 0.92))); $('plCl').setAttribute('y', f1(cy - 8));
+    const Ds = (a - cv) / (2 * b), Dh = a / (2 * b);
+    const P = D => -b * D * D + (a - cv) * D - CF;
+    const disc = (a - cv) ** 2 - 4 * b * CF;
+    const ok = a > cv && disc > 0;
+    if (ok) {
+      const r = Math.sqrt(disc), D1 = ((a - cv) - r) / (2 * b), D2 = ((a - cv) + r) / (2 * b);
+      let top = '', bot = '';
+      for (let k = 0; k <= 60; k++) {
+        const D = D1 + (D2 - D1) * k / 60;
+        top += (k ? 'L' : 'M') + f1(sx(D)) + ' ' + f1(sy(a * D - b * D * D));
+        bot = 'L' + f1(sx(D)) + ' ' + f1(sy(CF + cv * D)) + bot;
+      }
+      $('plArea').setAttribute('d', top + bot + 'Z');
+      [[D1, 'plB1'], [D2, 'plB2']].forEach(([D, id]) => { $(id).setAttribute('cx', f1(sx(D))); $(id).setAttribute('cy', f1(sy(CF + cv * D))); $(id).style.display = ''; });
+      $('rBE').textContent = `${num(D1)} → ${num(D2)}`;
+    } else {
+      $('plArea').setAttribute('d', '');
+      $('plB1').style.display = $('plB2').style.display = 'none';
+      $('rBE').textContent = 'ما فيه';
+    }
+    const showDs = a > cv;
+    $('plDs').setAttribute('d', showDs ? `M${f1(sx(Ds))} ${Y0}V${Y1}` : '');
+    $('plDsT').setAttribute('x', f1(sx(Math.max(Ds, 0)))); $('plDsT').style.display = showDs ? '' : 'none';
+    $('plDh').setAttribute('d', `M${f1(sx(Dh))} ${Y0}V${Y1}`);
+    $('plDhT').setAttribute('x', f1(sx(Dh)));
+    $('plMax').setAttribute('x', X1); $('plMax').textContent = 'a/b = ' + num(Dmax);
+    $('rDs').textContent = showDs ? num(Ds) : '—';
+    $('rPr').textContent = showDs ? money(P(Ds)) : '—';
+    $('rDh').textContent = num(Dh);
+    $('rTR').textContent = money(TRmax);
+    $('rP').textContent = showDs ? '$' + (a - b * Ds).toFixed(2) : '—';
+    say($('plSay'), !showDs ? 'تكلفة الوحدة $c_v$ أكبر من أعلى سعر $a$: كل وحدة تبيعها خسارة.'
+      : ok ? `أعلى ربح عند $D^* = ${Math.round(Ds)}$، وهو بالضبط في نص نقطتين التعادل.`
+      : 'التكلفة الثابتة كبيرة: الخط البرتقالي فوق منحنى الإيراد كله، فما فيه أي كمية تربح فيها.');
+  }
+  function preset(key) {
+    const [a, b, f, c] = PRE[key]; setRanges(b);
+    sl.a.value = a; sl.b.value = b; sl.f.value = f; sl.c.value = c;
+    document.querySelectorAll('#profitLab [data-pre]').forEach(x => x.classList.toggle('on', x.dataset.pre === key));
+    profitLab();
+  }
+  document.querySelectorAll('#profitLab [data-pre]').forEach(x => x.addEventListener('click', () => preset(x.dataset.pre)));
+  Object.values(sl).forEach(s => s.addEventListener('input', () => {
+    document.querySelectorAll('#profitLab [data-pre]').forEach(x => x.classList.remove('on')); profitLab();
+  }));
+  preset('ex1');
+
+  /* ---------- مختبر التصميم ---------- */
+  const DX0 = 50, DX1 = 580, DY0 = 220, DY1 = 14;
+  function designLab() {
+    const a = +$('daS').value, b = +$('dbS').value, k = +$('dkS').value;
+    $('daV').textContent = a; $('dbV').textContent = b; $('dkV').textContent = k;
+    const Xs = Math.sqrt(b / a), Cmin = 2 * Math.sqrt(a * b) + k;
+    const Xmax = 3 * Xs, Ymax = Cmin * 2;
+    const sx = X => DX0 + (DX1 - DX0) * X / Xmax, sy = y => DY0 - (DY0 - DY1) * y / Ymax;
+    let pa = '', pb = '', pt = '';
+    for (let i = 1; i <= 150; i++) {
+      const X = Xmax * i / 150, c = i > 1 ? 'L' : 'M', x = f1(sx(X));
+      pa += c + x + ' ' + f1(sy(a * X)); pb += c + x + ' ' + f1(Math.max(-50, sy(b / X))); pt += c + x + ' ' + f1(Math.max(-50, sy(a * X + b / X + k)));
+    }
+    $('dlA').setAttribute('d', pa); $('dlB').setAttribute('d', pb); $('dlT').setAttribute('d', pt);
+    $('dlX').setAttribute('d', `M${f1(sx(Xs))} ${DY0}V${DY1}`);
+    $('dlP').setAttribute('cx', f1(sx(Xs))); $('dlP').setAttribute('cy', f1(sy(Cmin)));
+    $('dlXT').setAttribute('x', f1(sx(Xs)));
+    $('dX').textContent = (Math.round(Xs * 100) / 100).toString();
+    $('dC').textContent = (Math.round(Cmin * 100) / 100).toString();
+    $('dE').textContent = `${(a * Xs).toFixed(1)} = ${(b / Xs).toFixed(1)}`;
+  }
+  ['daS', 'dbS', 'dkS'].forEach(id => $(id).addEventListener('input', designLab));
+  designLab();
+})();
+</script>
+<script src="econ.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

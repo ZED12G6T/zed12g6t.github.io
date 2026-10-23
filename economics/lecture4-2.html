@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="الاقتصاد الهندسي" data-title-en="Chapter 4 (Part 2) - Gradients & Effective Interest" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص الفصل 4 (الجزء 2) - التدرجات والفائدة الفعالة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* مختبر الفائدة الفعالة: خاص بهذي الصفحة */
+  .econ-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fig .bar-e { fill: color-mix(in srgb, var(--cz) 30%, transparent); stroke: var(--cz); stroke-width: 1; }
+  .fig .bar-e.on { fill: color-mix(in srgb, var(--cz) 70%, transparent); }
+  .fig .r-line { stroke: var(--ink-3); stroke-width: 1.4; stroke-dasharray: 5 4; }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">الفصل 4 · الجزء 2 · الاقتصاد الهندسي · <span class="ltr">Ch 4</span></p>
+  <h1><span>التدرجات والفائدة الفعالة</span> <span class="h1-math ltr">$i = \left(1 + \tfrac{r}{M}\right)^M - 1$</span></h1>
+  <p class="lead">في الجزء 1 كانت الدفعات ثابتة وتبدأ من أول فترة، والفائدة ثابتة وسنوية. هنا نكسر هالافتراضات واحد واحد: دفعات تبدأ متأخرة، ودفعات تزيد بمقدار ثابت أو بنسبة ثابتة، وفائدة تتغير كل فترة، وفائدة تتركب أكثر من مرة في السنة.</p>
+  <div class="xyz-bar">
+    <span class="x">الحاضر $P$</span><span class="y">الدفعات $A$ و $G$</span><span class="z">المستقبل $F$ والفعالة $i$</span>
+    <small>← نفس ألوان الجزء 1</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>الدفعات المؤجلة: انقلها على مرحلتين، $P_0 = A(P/A, i, N - J)(P/F, i, J)$. والتدرج المنتظم $G$ يبدأ بصفر في الفترة 1، ونفصله: دفعة ثابتة + تدرج.</li>
+      <li>التدرج الهندسي يزيد بنسبة $\bar f$: $P = A_1\frac{1 - (P/F, i, N)(F/P, \bar f, N)}{i - \bar f}$، ولو $\bar f = i$ يصير $P = A_1 N/(1+i)$.</li>
+      <li>الاسمية $r$ مقسومة على $M$ هي فائدة الفترة، والفعالة السنوية $i = (1 + r/M)^M - 1$، وبالتركيب المستمر $i = e^r - 1$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 المؤجلة ================= -->
+<section class="card" id="deferred" data-num="01" data-nav="الدفعات المؤجلة|Deferred">
+  <h2>الدفعات المؤجلة (Deferred annuities)</h2>
+  <p class="sub">سلسلة منتظمة ما تبدأ إلا بعد فترة</p>
+
+  <p>الدفعة المؤجلة سلسلة منتظمة ما تبدأ إلا في وقت لاحق. لو مؤجلة $J$ فترة، أول دفعة تكون في <b>نهاية الفترة $J + 1$</b>.</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="7|0:-?:P_0:x|3:-?:P_J:x|4-7:1:A:y" data-ticks="0,1,…,J,J+1,J+2,…,N" role="img" aria-label="خط زمن: P0 عند 0، و PJ عند J، والدفعات A من J+1 إلى N"></svg>
+    <figcaption>الدفعات من $J + 1$ إلى $N$، يعني عددها $N - J$. والعامل $(P/A)$ يعطيك القيمة عند $J$، مو عند 0.</figcaption>
+  </figure>
+  <p>فالقيمة عند الزمن 0 تنحسب على مرحلتين:</p>
+  <ol class="recipe">
+    <li><b>للنقطة $J$:</b><span class="why">استخدم $(P/A, i\%, N - J)$ عشان تلقى قيمة السلسلة في نهاية الفترة $J$ (فيها $N - J$ دفعة).</span></li>
+    <li><b>للنقطة 0:</b><span class="why">استخدم $(P/F, i\%, J)$ عشان ترجع القيمة من $J$ للصفر.</span></li>
+  </ol>
+  <div class="m big">\[\X{P_0} = \Y{A}\,(P/A, i\%, N - J)\,(P/F, i\%, J)\]</div>
+  <div class="callout warn"><strong>⚠️ الفخ الأكبر:</strong> $(P/A)$ يحط القيمة <b>قبل أول دفعة بفترة</b>. أول دفعة عند $J + 1$، فالقيمة تطلع عند $J$، وترجعها $J$ فترة بس، مو $J + 1$.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>صيانة سيارة آيرين</h2></div>
+  <div class="tags"><span class="tag">Pause and solve</span><span class="tag">دفعة مؤجلة</span></div>
+  <p>آيرين اشترت سيارة رياضية جديدة، وتبي تحط فلوس على جنب لصيانتها. السيارة عليها ضمان شامل أول خمس سنين. وتتوقع تحتاج حوالي <span dir="ltr">\$2,000</span> بالسنة للصيانة من السنة 6 لين 10، وبعدها بتبيع السيارة. كم تحط اليوم في حساب بـ 8% بالسنة عشان يكفي مصاريف الصيانة؟</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="10|0:-5435?:P_0 = ?:x|6-10:2000:A = $2,000:y" data-i="i = 8%" role="img" aria-label="سهم P0 مجهول عند 0، وأسهم 2000 من السنة 6 إلى 10"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">الدفعات من السنة 6 لين 10، يعني أول دفعة عند $J + 1 = 6$، فـ $J = 5$. و $N = 10$، فعدد الدفعات $N - J = 5$. و $A = 2000$ و $i = 8\%$.</p>
+    </li>
+    <li class="step">
+      <h4>المرحلة 1: القيمة عند السنة 5</h4>
+      <p class="why">$(P/A, 8\%, 5) = 3.9927$، والقيمة تطلع قبل أول دفعة بسنة، يعني عند السنة 5.</p>
+      <div class="m wide">\[P_5 = 2000\,(P/A, 8\%, 5) = 2000\,(3.9927) = \$7{,}985.4\]</div>
+      <div class="m narrow">\[\begin{aligned}P_5 &= 2000\,(P/A, 8\%, 5) \\ &= 2000\,(3.9927) = \$7{,}985.4\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>المرحلة 2: رجّعها للصفر</h4>
+      <p class="why">من السنة 5 للصفر خمس سنين: $(P/F, 8\%, 5) = 0.6806$.</p>
+      <div class="m wide">\[\X{P_0} = 7{,}985.4\,(P/F, 8\%, 5) = 7{,}985.4\,(0.6806) = \$5{,}435\]</div>
+      <div class="m narrow">\[\begin{aligned}\X{P_0} &= 7{,}985.4\,(P/F, 8\%, 5) \\ &= 7{,}985.4\,(0.6806) = \$5{,}435\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$P_0 \approx \$5{,}435$</div>
+      <p class="sanity">بالقيم الدقيقة $\$5{,}434.74$ ✓. وتأكد بطريقة ثانية: رجّع كل دفعة لحالها $\sum_{k=6}^{10} 2000(1.08)^{-k} = 5{,}434.74$ ✓. وأقل بكثير من $5 \times 2000 = 10{,}000$ لأن الفلوس بتشتغل 5 سنين قبل أول سحب.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 02 التدرج المنتظم ================= -->
+<section class="card" id="gradient" data-num="02" data-nav="التدرج المنتظم|G">
+  <h2>التدرج المنتظم (Uniform gradient)</h2>
+  <p class="sub">الدفعة تزيد بمقدار ثابت $G$ كل فترة</p>
+
+  <p>أحياناً التدفقات تتغير بمقدار ثابت كل فترة، مثل صيانة تزيد <span dir="ltr">\$100</span> كل سنة. نمثلها بتدرج منتظم:</p>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>نهاية الفترة</th><th class="n">1</th><th class="n">2</th><th class="n">3</th><th class="n">…</th><th class="n">N</th></tr>
+      <tr><td>التدفق</td><td class="n">0</td><td class="n">G</td><td class="n">2G</td><td class="n">…</td><td class="n">(N−1)G</td></tr>
+    </table>
+  </div>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="5|0:-?:P = ?:x|2:1:G:y|3:2:2G:y|4:3::y|5:4:(N−1)G:y" data-ticks="0,1,2,3,…,N" role="img" aria-label="تدرج منتظم: صفر عند 1، و G عند 2، و 2G عند 3، لين N ناقص 1 ضرب G عند N"></svg>
+    <figcaption>لاحظ: الفترة 1 ما فيها شي، وأول $G$ في الفترة 2.</figcaption>
+  </figure>
+  <p>ومثل باقي الأنواع فيه قانون (معقد شوي) للقيمة الحالية، وعوامل في الجداول:</p>
+  <div class="m wide">\[(P/G, i\%, N) = \frac{1}{i}\left[\frac{(1+i)^N - 1}{i(1+i)^N} - \frac{N}{(1+i)^N}\right]\]</div>
+  <div class="m narrow">\[\begin{aligned}(P/G, i\%, N) = \frac{1}{i}\Bigg[&\frac{(1+i)^N - 1}{i(1+i)^N} \\ &- \frac{N}{(1+i)^N}\Bigg]\end{aligned}\]</div>
+  <p>وتقدر بعد تحوله لدفعة سنوية مكافئة أو قيمة مستقبلية:</p>
+  <div class="m">\[(A/G, i\%, N) = \frac{1}{i} - \frac{N}{(1+i)^N - 1}\]</div>
+  <div class="m">\[(F/G, i\%, N) = \frac{1}{i}(F/A, i\%, N) - \frac{N}{i}\]</div>
+  <div class="callout key"><strong>🔑 لاحظ الشكل:</strong> الحد الأول في $(P/G)$ هو نفسه $(P/A)$. يعني $(P/G) = \frac{1}{i}\big[(P/A) - N(P/F)\big]$، أسهل لو معك الجداول. (ترتيب من عندي لنفس القانون.)</div>
+  <h3>تدفق يبدأ بمبلغ ويزيد: افصله</h3>
+  <p>أغلب المسائل ما تبدأ بصفر، تبدأ بمبلغ $A_1$ ويزيد $G$ كل سنة. الحل: نفصلها لجزئين:</p>
+  <div class="m big">\[\text{cash flow} = \underbrace{A_1\ \text{every year}}_{\text{annuity}} + \underbrace{0,\ G,\ 2G,\ \dots}_{\text{gradient}}\]</div>
+  <div class="callout warn"><strong>⚠️ الدفعة الأساسية مو جزء من التدرج:</strong> لو التدفقات 2000، 3000، 4000، فالتدرج $G = 1000$ يبدأ من صفر، و 2000 دفعة ثابتة لحالها. لا تحط $G = 2000$.</div>
+  <div class="econ-lab factor-lab" data-i="8" data-n="4" data-rows="PA,PF,PG,AG"></div>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>الدفعة السنوية لتدرج</h2></div>
+  <div class="tags"><span class="tag">A/G</span><span class="tag">دفعة + تدرج</span></div>
+  <p>أوجد الدفعة السنوية المكافئة لهالتدفقات، بفائدة 8%:</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="4|1:2000:$2,000:y|2:3000:$3,000:y|3:4000:$4,000:y|4:5000:$5,000:y" data-i="i = 8%" role="img" aria-label="تدفقات 2000 و 3000 و 4000 و 5000 في نهاية السنين 1 إلى 4"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">تبدأ بـ 2000 وتزيد 1000 كل سنة، لمدة 4 سنين. فنفصلها: دفعة ثابتة 2000 + تدرج $G = 1000$.</p>
+    </li>
+    <li class="step">
+      <h4>افصل</h4>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <tr><th>نهاية السنة</th><th class="n">التدفق</th><th class="n">الدفعة الثابتة</th><th class="n">التدرج</th></tr>
+          <tr><td>1</td><td class="n">2,000</td><td class="n">2,000</td><td class="n">0</td></tr>
+          <tr><td>2</td><td class="n">3,000</td><td class="n">2,000</td><td class="n">1,000</td></tr>
+          <tr><td>3</td><td class="n">4,000</td><td class="n">2,000</td><td class="n">2,000</td></tr>
+          <tr><td>4</td><td class="n">5,000</td><td class="n">2,000</td><td class="n">3,000</td></tr>
+        </table>
+      </div>
+    </li>
+    <li class="step">
+      <h4>عامل التدرج</h4>
+      <div class="m wide">\[(A/G, 8\%, 4) = \frac{1}{0.08} - \frac{4}{(1.08)^4 - 1} = 12.5 - \frac{4}{0.36049} = 1.4040\]</div>
+      <div class="m narrow">\[\begin{aligned}(A/G, 8\%, 4) &= \frac{1}{0.08} - \frac{4}{(1.08)^4 - 1} \\ &= 12.5 - \frac{4}{0.36049} = 1.4040\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>اجمع الجزئين</h4>
+      <p class="why">الدفعة الثابتة هي $A$ أصلاً، والتدرج نحوله بـ $(A/G)$.</p>
+      <div class="m wide">\[\Y{A} = 2000 + 1000\,(A/G, 8\%, 4) = 2000 + 1000\,(1.4040) = \$3{,}404\]</div>
+      <div class="m narrow">\[\begin{aligned}\Y{A} &= 2000 + 1000\,(A/G, 8\%, 4) \\ &= 2000 + 1000\,(1.4040) = \$3{,}404\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$A \approx \$3{,}404$ per year</div>
+      <p class="sanity">بين أقل دفعة (2000) وأكبر وحدة (5000)، وأقل من المتوسط البسيط 3500 لأن الكبار متأخرين ✓. وتأكد: $P = \frac{2000}{1.08} + \frac{3000}{1.08^2} + \frac{4000}{1.08^3} + \frac{5000}{1.08^4} = 11{,}274.35$، و $11{,}274.35\,(A/P, 8\%, 4) = 11{,}274.35 \times 0.30192 = 3{,}404$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 03 التدرج الهندسي ================= -->
+<section class="card" id="geometric" data-num="03" data-nav="التدرج الهندسي|f̄">
+  <h2>التدرج الهندسي (Geometric gradient)</h2>
+  <p class="sub">الدفعة تزيد بنسبة ثابتة $\bar f$ كل فترة، مو بمقدار ثابت</p>
+
+  <p>لو التدفق يكبر بنسبة ثابتة $\bar f$ كل فترة (مثل إيرادات تزيد 20% كل سنة)، هذا تدرج هندسي. وكل دفعة هي اللي قبلها مضروبة في $(1 + \bar f)$:</p>
+  <div class="m">\[A_k = A_1(1 + \bar f)^{k-1},\qquad k = 1, 2, \dots, N\]</div>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="4|1:1000:$1,000:y|2:1200:$1,200:y|3:1440:$1,440:y|4:1728:$1,728:y" data-i="f = 20%" role="img" aria-label="أسهم تكبر بنسبة 20 بالمية: 1000 و 1200 و 1440 و 1728"></svg>
+    <figcaption>يبدأ في نهاية السنة 1، والنمو $\bar f = 20\%$: كل رقم = اللي قبله × 1.2، يعني 1,000 ثم 1,200 ثم 1,440 ثم 1,728.</figcaption>
+  </figure>
+  <p>القيمة الحالية لها حالتين:</p>
+  <div class="m wide">\[\X{P} = \frac{A_1\big[1 - (P/F, i\%, N)(F/P, \bar f\%, N)\big]}{i - \bar f},\qquad \bar f \ne i\]</div>
+  <div class="m narrow">\[\begin{aligned}\X{P} &= \frac{A_1\big[1 - (P/F, i\%, N)(F/P, \bar f\%, N)\big]}{i - \bar f} \\ &\bar f \ne i\end{aligned}\]</div>
+  <div class="m">\[\X{P} = A_1\,N\,(P/F, i\%, 1) = \frac{A_1 N}{1 + i},\qquad \bar f = i\]</div>
+  <p>و $A_1$ هي أول دفعة في السلسلة.</p>
+  <div class="callout warn"><strong>⚠️ غلطة مطبعية في السلايد:</strong> مقام القانون الأول مكتوب $1 - \bar f$، والصح $i - \bar f$ (هذا اللي في الكتاب). وتقدر تتأكد: لو $\bar f = 0$ لازم يرجع $P = A_1(P/A, i\%, N)$، وهذا يطلع بس لو المقام $i$. وبمثال 3 تحت لو حطيت $1 - \bar f$ يطلع جواب أصغر بـ 17 مرة.</div>
+  <div class="callout key"><strong>🔑 ليش $\bar f = i$ حالة خاصة؟</strong> كل دفعة تكبر بنفس النسبة اللي تتخصم فيها، فكل وحدة لما ترجعها للصفر تطلع $\frac{A_1}{1+i}$ بالضبط. فالمجموع $N$ مرات هالرقم. (والقانون الأول ينقسم على صفر هنا، عشان كذا لها قانون لحالها.)</div>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>إيرادات حبوب LoseIt</h2></div>
+  <div class="tags"><span class="tag">Pause and solve</span><span class="tag">تدرج هندسي</span></div>
+  <p>Acme Miracle متفائلة بحبوب التنحيف الجديدة LoseIt. الإيرادات هالسنة متوقعة <span dir="ltr">\$1.1</span> مليون، وتتوقع تزيد 15% بالسنة للخمس سنين الجاية. كم القيمة الحالية والدفعة السنوية المكافئة للإيرادات المتوقعة؟ الشركة تستخدم فائدة 20%.</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="5|1:1100000:$1.10M:y|2:1265000:$1.27M:y|3:1454750:$1.45M:y|4:1672963:$1.67M:y|5:1923907:$1.92M:y" data-i="i = 20%, f = 15%" role="img" aria-label="إيرادات تبدأ 1.1 مليون وتكبر 15 بالمية كل سنة لخمس سنين"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">$A_1 = 1{,}100{,}000$ (نعتبرها في نهاية السنة 1)، و $\bar f = 15\%$، و $i = 20\%$، و $N = 5$ سنين (افتراضنا: الخمس سنين كلها، وأولها 1.1 مليون). وبما إن $\bar f \ne i$ نستخدم القانون الأول.</p>
+    </li>
+    <li class="step">
+      <h4>العاملين</h4>
+      <div class="m wide">\[(P/F, 20\%, 5) = (1.20)^{-5} = 0.401878,\qquad (F/P, 15\%, 5) = (1.15)^5 = 2.011357\]</div>
+      <div class="m narrow">\[\begin{aligned}(P/F, 20\%, 5) &= (1.20)^{-5} = 0.401878 \\ (F/P, 15\%, 5) &= (1.15)^5 = 2.011357\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>اللي داخل القوس</h4>
+      <div class="m wide">\[1 - (0.401878)(2.011357) = 1 - \left(\tfrac{1.15}{1.20}\right)^5 = 1 - 0.808319 = 0.191681\]</div>
+      <div class="m narrow">\[\begin{aligned}&1 - (0.401878)(2.011357) \\ &= 1 - \left(\tfrac{1.15}{1.20}\right)^5 \\ &= 1 - 0.808319 = 0.191681\end{aligned}\]</div>
+      <p class="why">الضرب $(P/F)(F/P)$ هو $\left(\frac{1.15}{1.20}\right)^5$: كم يفرق النمو عن الخصم على 5 سنين.</p>
+    </li>
+    <li class="step">
+      <h4>القيمة الحالية</h4>
+      <div class="m wide">\[\X{P} = \frac{1{,}100{,}000\,(0.191681)}{0.20 - 0.15} \approx \frac{210{,}848.7}{0.05} = \$4{,}216{,}974\]</div>
+      <div class="m narrow">\[\begin{aligned}\X{P} &= \frac{1{,}100{,}000\,(0.191681)}{0.20 - 0.15} \\ &\approx \frac{210{,}848.7}{0.05} = \$4{,}216{,}974\end{aligned}\]</div>
+      <p class="why">الرقم فوق الكسر محسوب بالقيمة الدقيقة $0.1916807$. لو ضربت في $0.191681$ المقرّبة يطلع لك حوالي $\$4{,}216{,}982$، والفرق تقريب بس.</p>
+    </li>
+    <li class="step">
+      <h4>الدفعة السنوية المكافئة</h4>
+      <p class="why">نحول $P$ لسلسلة منتظمة على نفس الخمس سنين: $(A/P, 20\%, 5) = 0.334380$.</p>
+      <div class="m">\[\Y{A} = 4{,}216{,}974\,(0.334380) = \$1{,}410{,}071\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$P \approx \$4.217\text{M},\ \ A \approx \$1.410\text{M/yr}$</div>
+      <p class="sanity">تأكد بالجمع المباشر: $916{,}667 + 878{,}472 + 841{,}869 + 806{,}791 + 773{,}175 = 4{,}216{,}974$ ✓. و $A$ بين أول إيراد (1.1M) وآخر واحد (1.92M) ✓. (لو استخدمت جداول بأربع منازل بيطلع قريب، حوالي 4.216M.)</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 04 الفائدة المتغيرة ================= -->
+<section class="card" id="varying" data-num="04" data-nav="الفائدة المتغيرة|Varying i">
+  <h2>لما الفائدة تتغير مع الوقت</h2>
+  <p class="sub">ننقل الفلوس فترة فترة، وكل فترة بنسبتها</p>
+
+  <p>النسب كثير تتغير مع الوقت، مثل الرهن العقاري بفائدة متغيرة (Variable rate mortgage). وهنا ما ينفع عامل واحد مثل $(P/F, i, N)$، لأن $i$ مو ثابتة. فننقل التدفق فترة وحدة كل مرة، وكل فترة بنسبتها:</p>
+  <div class="m big">\[\X{P} = \frac{\Z{F_N}}{\prod_{k=1}^{N}(1 + i_k)}\]</div>
+  <p>و $i_k$ هي نسبة الفائدة للفترة رقم $k$. والرمز $\prod$ يعني ضرب: $(1 + i_1)(1 + i_2)\cdots(1 + i_N)$.</p>
+  <div class="callout key"><strong>🔑 نفس فكرة $(P/F)$:</strong> لو كل النسب متساوية، الضرب يصير $(1+i)^N$ ونرجع لـ $P = F(1+i)^{-N}$. يعني القانون هذا تعميم بسيط.</div>
+</section>
+
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>ثلاث نسب مختلفة</h2></div>
+  <div class="tags"><span class="tag">من السلايدات</span><span class="tag">فائدة متغيرة</span></div>
+  <p>تدفق <span dir="ltr">\$2,500</span> في المستقبل، والفائدة 8% في الفترة الأولى، و 10% في الثانية، و 11% في الثالثة. كم قيمته الحالية؟</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="3|0:-1896?:P = ?:x|3:2500:F = $2,500:z" data-i="i₁ = 8%, i₂ = 10%, i₃ = 11%" role="img" aria-label="سهم P مجهول عند 0 وسهم 2500 عند نهاية الفترة 3"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">ثلاث فترات بثلاث نسب. نرجع الـ 2500 فترة فترة: الفترة 3 بـ 11%، والثانية بـ 10%، والأولى بـ 8%. والترتيب في الضرب ما يفرق.</p>
+    </li>
+    <li class="step">
+      <h4>اكتبها بعوامل $P/F$ لفترة وحدة</h4>
+      <div class="m wide">\[P = 2500\,(P/F, 8\%, 1)(P/F, 10\%, 1)(P/F, 11\%, 1)\]</div>
+      <div class="m narrow">\[\begin{aligned}P = 2500\,&(P/F, 8\%, 1) \\ \times\,&(P/F, 10\%, 1) \\ \times\,&(P/F, 11\%, 1)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض</h4>
+      <div class="m">\[P = 2500\,(0.9259)(0.9091)(0.9009) = \$1{,}896\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$P \approx \$1{,}896$</div>
+      <p class="sanity">نفس الشي بالقسمة: $\frac{2500}{(1.08)(1.10)(1.11)} = \frac{2500}{1.31868} = 1{,}895.8$ ✓</p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ ملاحظة على السلايد:</strong> السلايد كاتب $F_4 = \$2{,}500$ بس الحساب فيه ثلاث نسب، يعني ثلاث فترات. فالأرقام تمشي لو التدفق في نهاية الفترة 3. لو فعلاً في نهاية الفترة 4، تحتاج نسبة رابعة $i_4$ وعامل رابع.</div>
+</section>
+
+<!-- ================= 05 الاسمية والفعالة ================= -->
+<section class="card" id="nominal" data-num="05" data-nav="الاسمية والفعالة|r vs i">
+  <h2>الفائدة الاسمية والفعالة (Nominal &amp; effective)</h2>
+  <p class="sub">الفائدة تتركب أكثر من مرة في السنة، فالفعلية أكبر من المكتوبة</p>
+
+  <p>في الغالب الفترة بين كل تركيب والثاني أقل من سنة: يومي، شهري، ربع سنوي. والنسبة السنوية المعلنة نسميها <b>اسمية (Nominal)</b> $r$. مثلاً 12% مركبة شهرياً يعني 1% (12%/12) كل شهر، والنسبة السنوية الفعلية تطلع أكبر شوي من 12%. وكل ما زاد التركيب، زادت الفائدة <b>الفعالة (Effective)</b>.</p>
+  <div class="m big">\[\Z{i} = \left(1 + \frac{r}{M}\right)^M - 1\]</div>
+  <div class="grid-3">
+    <div class="tile"><div class="t-name">$r$ الاسمية</div><div class="t-desc">النسبة السنوية المعلنة.</div></div>
+    <div class="tile"><div class="t-name">$M$</div><div class="t-desc">عدد مرات التركيب في السنة: 4 ربعي، 12 شهري، 365 يومي.</div></div>
+    <div class="tile z"><div class="t-name">$\Z{i}$ الفعالة</div><div class="t-desc">النسبة السنوية الحقيقية بعد التركيب.</div></div>
+  </div>
+  <div class="callout key"><strong>🔑 من وين جا القانون؟</strong> دولار واحد يتركب $M$ مرة بـ $r/M$ كل مرة، فيصير بعد سنة $(1 + r/M)^M$. اطرح الدولار الأصلي وتطلع الفائدة الفعالة. مثلاً 12% شهري: $(1.01)^{12} - 1 = 12.68\%$.</div>
+  <div class="callout warn"><strong>⚠️ أي نسبة تستخدم في العوامل؟</strong> لو الدفعات شهرية، استخدم نسبة الشهر $r/M$ مع $N$ بالشهور (مثل مضخة Acme في الجزء 1: 0.5% بالشهر يعني 6% اسمية، وفعالتها $(1.005)^{12} - 1 = 6.17\%$). ولو الدفعات سنوية والتركيب شهري، استخدم $i$ الفعالة السنوية.</div>
+
+  <div class="econ-lab" id="effLab">
+    <h3>🎛️ كم تفرق مرات التركيب؟</h3>
+    <div class="lab-controls">
+      <div class="field"><label>$r$ الاسمية (%)</label><input type="range" dir="ltr" id="eR" min="1" max="36" step="1" value="12"><span class="rv" id="eRv"></span></div>
+    </div>
+    <div class="seg" id="eM"><button type="button" data-m="1">سنوي 1</button><button type="button" data-m="2">نصف سنوي 2</button><button type="button" data-m="4">ربعي 4</button><button type="button" class="on" data-m="12">شهري 12</button><button type="button" data-m="52">أسبوعي 52</button><button type="button" data-m="365">يومي 365</button><button type="button" data-m="0">مستمر ∞</button></div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 220" role="img" aria-label="أعمدة للفائدة الفعالة لكل عدد مرات تركيب، من سنوي إلى مستمر، والخط المتقطع عند الاسمية">
+        <path class="ax" d="M40 190H535"/>
+        <g id="eBars"></g>
+        <path class="r-line" id="eLine"/>
+        <text class="tick" id="eLineT" x="540" text-anchor="start" direction="ltr"></text>
+      </svg>
+      <figcaption>الأعمدة: الفعالة لكل $M$ (المظلل الغامق هو المختار). الخط المتقطع: الاسمية $r$. لاحظ إن الزيادة تقل كل ما كبر $M$.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">فائدة الفترة $r/M$</span><span class="v tex2jax_ignore" id="eP"></span></div>
+      <div class="hl"><span class="k">الفعالة السنوية $i$</span><span class="v tex2jax_ignore" id="eI"></span></div>
+      <div><span class="k">الفرق عن الاسمية</span><span class="v tex2jax_ignore" id="eD"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= مثال 5 ================= -->
+<section class="card" id="ex5" data-nav="مثال 5|Ex 5">
+  <div class="ex-head"><span class="ex-badge">مثال 5</span><h2>18% مركبة ربع سنوياً</h2></div>
+  <div class="tags"><span class="tag">من السلايدات</span><span class="tag">الفعالة</span></div>
+  <p>كم الفائدة الفعالة لنسبة اسمية 18%، مركبة كل ربع سنة؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">$r = 0.18$، وربع سنوي يعني 4 مرات بالسنة: $M = 4$.</p>
+    </li>
+    <li class="step">
+      <h4>فائدة الربع</h4>
+      <div class="m">\[\frac{r}{M} = \frac{0.18}{4} = 0.045 = 4.5\%\ \text{per quarter}\]</div>
+    </li>
+    <li class="step">
+      <h4>الفعالة</h4>
+      <div class="m">\[i = (1 + 0.045)^4 - 1 = 1.19252 - 1 = 0.1925\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i = 19.25\%$</div>
+      <p class="sanity">أكبر من 18% ✓، والفرق 1.25% جاي من الفائدة على الفائدة داخل السنة.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 6 ================= -->
+<section class="card" id="ex6" data-nav="مثال 6|Ex 6">
+  <div class="ex-head"><span class="ex-badge">مثال 6</span><h2>7% مركبة شهرياً</h2></div>
+  <div class="tags"><span class="tag">من السلايدات</span><span class="tag">الفعالة</span></div>
+  <p>كم الفائدة الفعالة لنسبة اسمية 7%، مركبة كل شهر؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">$r = 0.07$ و $M = 12$.</p>
+    </li>
+    <li class="step">
+      <h4>فائدة الشهر</h4>
+      <div class="m">\[\frac{r}{M} = \frac{0.07}{12} = 0.005833\]</div>
+    </li>
+    <li class="step">
+      <h4>الفعالة</h4>
+      <div class="m">\[i = (1.005833)^{12} - 1 = 1.07229 - 1 = 0.0723\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i = 7.23\%$</div>
+      <p class="sanity">الفرق هنا 0.23% بس، أصغر من مثال 5، لأن النسبة نفسها أصغر ✓. يعني أثر التركيب يكبر مع كبر النسبة.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 06 التركيب المستمر ================= -->
+<section class="card" id="continuous" data-num="06" data-nav="التركيب المستمر|e^r">
+  <h2>التركيب المستمر (Continuous compounding)</h2>
+  <p class="sub">لو $M$ يكبر بلا نهاية</p>
+
+  <p>عادة الفائدة تتركب في نهاية فترات منفصلة. بس في أغلب الشركات الفلوس داخلة وطالعة طول الوقت، ولازم تنستخدم على طول. فنقدر نسمح للتركيب يصير بشكل مستمر طول الفترة. والسلايد يقول إن أثره مقارنة بالمنفصل صغير في أغلب الحالات.</p>
+  <p>نبدأ من قانون الفعالة، ونخلي $M$ يكبر:</p>
+  <div class="m">\[i = \left(1 + \frac{r}{M}\right)^M - 1 \quad\xrightarrow{\;M \to \infty\;}\quad \Z{i} = e^{r} - 1\]</div>
+  <p>ومنها تطلع العوامل بالتركيب المستمر (نكتب $\underline{r}$ عشان نفرقها عن المنفصلة):</p>
+  <div class="m">\[(P/F, \underline{r}\%, N) = e^{-rN}\]</div>
+  <div class="m">\[(F/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{r} - 1}\]</div>
+  <div class="m">\[(P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^{r} - 1)}\]</div>
+  <p>والباقي يطلع منها بالمقلوب: $(F/P) = e^{rN}$، و $(A/F) = 1/(F/A)$، و $(A/P) = 1/(P/A)$.</p>
+  <div class="callout key"><strong>🔑 نفس العوامل القديمة:</strong> لو عوضت $1 + i = e^r$ في أي عامل منفصل، يطلع لك العامل المستمر. مثلاً $(1+i)^{-N}$ تصير $e^{-rN}$. فما تحتاج تحفظ شي جديد. (ملاحظة من عندي.)</div>
+  <div class="callout"><strong>💡 كم الفرق؟</strong> بـ 12%: سنوي 12%، شهري 12.68%، يومي 12.747%، مستمر 12.750%. يعني من الشهري للمستمر أقل من عُشر بالمية. جربها في المختبر فوق.</div>
+</section>
+
+<!-- ================= 07 الإكسل ================= -->
+<section class="card" id="excel" data-num="07" data-nav="دوال الإكسل|Excel">
+  <h2>دوال الإكسل المالية</h2>
+  <p class="sub">كل عامل له دالة، وتحل لك $N$ و $i$ بدون استكمال</p>
+
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tr><th>تبي</th><th>الدالة</th></tr>
+      <tr><td>القيمة الحالية $P$</td><td><span class="ltr">= PV(i%, n, A, F)</span></td></tr>
+      <tr><td>القيمة المستقبلية $F$</td><td><span class="ltr">= FV(i%, n, A, P)</span></td></tr>
+      <tr><td>الدفعة المنتظمة $A$</td><td><span class="ltr">= PMT(i%, n, P, F)</span></td></tr>
+      <tr><td>عدد الفترات $n$</td><td><span class="ltr">= NPER(i%, A, P, F)</span></td></tr>
+      <tr><td>نسبة الفائدة $i$</td><td><span class="ltr">= RATE(n, A, P, F)</span></td></tr>
+      <tr><td>نسبة الفائدة $i$ (أي سلسلة)</td><td><span class="ltr">= IRR(first_cell:last_cell)</span></td></tr>
+      <tr><td>القيمة الحالية لأي سلسلة</td><td><span class="ltr">= NPV(i%, second_cell:last_cell) + first_cell</span></td></tr>
+    </table>
+  </div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name ltr">NPER(rate, pmt, pv)</div><div class="t-desc">عدد الدفعات بقيمة <span class="ltr">pmt</span> اللي تسدد مبلغ حاضر <span class="ltr">pv</span> بفائدة ثابتة <span class="ltr">rate</span>.</div></div>
+    <div class="tile"><div class="t-name ltr">RATE(nper, pmt, pv, fv)</div><div class="t-desc">نسبة الفائدة الثابتة لسلسلة <span class="ltr">pmt</span> مدتها <span class="ltr">nper</span> فترة، توصلها لقيمتها الحالية <span class="ltr">pv</span> أو المستقبلية <span class="ltr">fv</span>.</div></div>
+  </div>
+  <div class="callout warn"><strong>⚠️ الإشارات في الإكسل (إضافة):</strong> الإكسل يعتبر الفلوس اللي تستلمها موجبة واللي تدفعها سالبة، مثل مخطط التدفق. فلو حطيت <span class="ltr">pv = 5000</span> موجب، الدفعة تطلع سالبة <span class="ltr">−1,154.87</span>. وفي NPER و RATE لازم وحدة من القيم موجبة والثانية سالبة، وإلا يعطيك خطأ.</div>
+  <div class="callout"><strong>💡 أمثلة الجزء 1 بالإكسل:</strong> قرض Acme: <span class="ltr">NPER(7%, -8000, 100000) = 30.73</span> سنة. وعائد جيل: <span class="ltr">RATE(5, -1000, 0, 8000) = 23.69%</span>. نفس اللي طلع بالاستكمال.</div>
+</section>
+
+<!-- ================= مثال 7 ================= -->
+<section class="card" id="ex7" data-nav="مثال 7|Ex 7">
+  <div class="ex-head"><span class="ex-badge">مثال 7</span><h2>الدفعة بالإكسل</h2></div>
+  <div class="tags"><span class="tag">من السلايدات</span><span class="tag">PMT</span></div>
+  <p>التقديرات: $P = \$5{,}000$ و $n = 5$ سنين و $i = 5\%$ بالسنة. أوجد $A$ بالدولار في السنة.</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">تبي $A$ ومعطاك $P$: يعني الدالة PMT، أو العامل $(A/P, 5\%, 5)$ باليد.</p>
+    </li>
+    <li class="step">
+      <h4>بالإكسل</h4>
+      <p class="why">ما فيه $F$، فنتركها.</p>
+      <div class="m">\[= \text{PMT}(5\%,\ 5,\ 5000) \;\to\; 1154.87\]</div>
+    </li>
+    <li class="step">
+      <h4>تأكد باليد</h4>
+      <div class="m wide">\[(A/P, 5\%, 5) = \frac{0.05\,(1.05)^5}{(1.05)^5 - 1} = \frac{0.063814}{0.276282} = 0.23097\]</div>
+      <div class="m narrow">\[\begin{aligned}(A/P, 5\%, 5) &= \frac{0.05\,(1.05)^5}{(1.05)^5 - 1} \\ &= \frac{0.063814}{0.276282} = 0.23097\end{aligned}\]</div>
+      <div class="m">\[A = 5000\,(0.23097) = \$1{,}154.87\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$A = \$1{,}154.87$ per year</div>
+      <p class="sanity">الإكسل يعرضها سالبة لأنها فلوس طالعة مقابل الـ 5000 الداخلة ✓. و $5 \times 1154.87 = 5774$، أكثر من 5000 بالفوائد ✓.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2>طريقة حل مسائل الجزء 2</h2>
+  <p class="sub">حدد نوع السلسلة أول، وبعدين اختار الأداة</p>
+  <ol class="recipe">
+    <li><b>ارسم المخطط وحدد الشكل</b><span class="why">ثابتة متأخرة؟ تزيد بمقدار (G)؟ تزيد بنسبة ($\bar f$)؟ نسب متغيرة؟</span></li>
+    <li><b>وحّد الفائدة مع الفترة</b><span class="why">لو التركيب مو سنوي: فائدة الفترة $r/M$، أو الفعالة السنوية $(1 + r/M)^M - 1$ لو الدفعات سنوية.</span></li>
+    <li><b>مؤجلة؟</b><span class="why">عدّ الدفعات $N - J$، وانقل لـ $J$ بـ $(P/A)$، وبعدين للصفر بـ $(P/F, i, J)$.</span></li>
+    <li><b>تزيد بمقدار ثابت؟</b><span class="why">افصل: الأساس $A_1$ دفعة ثابتة، والزيادة $G$ تدرج يبدأ بصفر. واجمع $(P/A)$ مع $(P/G)$، أو $A_1 + G(A/G)$.</span></li>
+    <li><b>تزيد بنسبة؟</b><span class="why">قارن $\bar f$ مع $i$: مختلفين ← القانون بمقام $i - \bar f$، متساويين ← $A_1 N/(1+i)$.</span></li>
+  </ol>
+  <div class="callout good"><strong>✅ افحص جوابك</strong>
+    <ul class="checks">
+      <li>المؤجلة: الخصم الأخير $J$ فترة، مو $J + 1$.</li>
+      <li>التدرج: $G$ هو الفرق بين دفعتين، مو أول دفعة.</li>
+      <li>الدفعة المكافئة لتدرج لازم تطلع بين أصغر وأكبر دفعة.</li>
+      <li>الفعالة دايم $\ge$ الاسمية، وتساويها بس لو $M = 1$.</li>
+      <li>المستمرة أكبر شوي من أي تركيب منفصل بنفس $r$.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بدون فواصل الآلاف. النسب اكتبها بالمية (مثل 12.68)</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>كم الفائدة الفعالة لـ 12% اسمية مركبة شهرياً؟ (بالمية)</p>
+    <div class="check" data-answer="12.6825"></div>
+    <details class="hint"><p>$r/M = 1\%$ بالشهر، و $M = 12$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[i = (1.01)^{12} - 1 = 1.126825 - 1\]</div><div class="result">$i = 12.68\%$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>دفعات <span dir="ltr">\$1,000</span> في نهاية السنين 4 لين 8، بفائدة 10%. كم قيمتها اليوم؟</p>
+    <div class="check" data-answer="2848.07"></div>
+    <details class="hint"><p>أول دفعة عند 4، فـ $J = 3$. وعدد الدفعات $8 - 3 = 5$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>للنقطة 3</h4><div class="m wide">\[P_3 = 1000\,(P/A, 10\%, 5) = 1000\,(3.7908) = 3{,}790.79\]</div>
+      <li class="step"><h4>للنقطة 3</h4><div class="m narrow">\[\begin{aligned}P_3 &= 1000\,(P/A, 10\%, 5) \\ &= 1000\,(3.7908) = 3{,}790.79\end{aligned}\]</div></li>
+      <li class="step"><h4>للصفر</h4><div class="m wide">\[P_0 = 3{,}790.79\,(P/F, 10\%, 3) = 3{,}790.79\,(0.75131)\]</div>
+      <li class="step"><h4>للصفر</h4><div class="m narrow">\[\begin{aligned}P_0 &= 3{,}790.79\,(P/F, 10\%, 3) \\ &= 3{,}790.79\,(0.75131)\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$P_0 = \$2{,}848$</div><p class="sanity">لو خصمت 4 سنين بدل 3 بيطلع 2,589، وهذا الغلط المشهور.</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <p>تكاليف صيانة 500 و 600 و 700 و 800 و 900 دولار في نهاية السنين 1 لين 5، بفائدة 10%. كم الدفعة السنوية المكافئة؟</p>
+    <div class="check" data-answer="681.01"></div>
+    <details class="hint"><p>دفعة ثابتة 500 + تدرج $G = 100$. و $(A/G, 10\%, 5) = 1.8101$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>عامل التدرج</h4><div class="m wide">\[(A/G, 10\%, 5) = \frac{1}{0.10} - \frac{5}{(1.10)^5 - 1} = 10 - \frac{5}{0.61051} = 1.8101\]</div>
+      <li class="step"><h4>عامل التدرج</h4><div class="m narrow">\[\begin{aligned}(A/G, 10\%, 5) &= \frac{1}{0.10} - \frac{5}{(1.10)^5 - 1} \\ &= 10 - \frac{5}{0.61051} = 1.8101\end{aligned}\]</div></li>
+      <li class="step final"><div class="m">\[A = 500 + 100\,(1.8101)\]</div><div class="result">$A = \$681.01$ per year</div><p class="sanity">بين 500 و 900، وأقل من المتوسط 700 ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
+    <p>إيراد أول سنة <span dir="ltr">\$10,000</span> ويزيد 5% كل سنة لمدة 4 سنين، والفائدة 10%. كم القيمة الحالية؟</p>
+    <div class="check" data-answer="33958.58"></div>
+    <details class="hint"><p>$\bar f = 5\% \ne i = 10\%$. والضرب $(P/F, 10\%, 4)(F/P, 5\%, 4) = \left(\frac{1.05}{1.10}\right)^4$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>داخل القوس</h4><div class="m wide">\[1 - \left(\frac{1.05}{1.10}\right)^4 = 1 - 0.830207 = 0.169793\]</div>
+      <li class="step"><h4>داخل القوس</h4><div class="m narrow">\[\begin{aligned}1 - \left(\frac{1.05}{1.10}\right)^4 &= 1 - 0.830207 \\ &= 0.169793\end{aligned}\]</div></li>
+      <li class="step final"><div class="m">\[P = \frac{10{,}000\,(0.169793)}{0.10 - 0.05}\]</div><div class="result">$P = \$33{,}958.58$</div><p class="sanity">بالجمع المباشر: $\frac{10000}{1.1} + \frac{10500}{1.1^2} + \frac{11025}{1.1^3} + \frac{11576.25}{1.1^4} = 33{,}958.58$ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl hard">صعب</span></div>
+    <p>تبي تستلم <span dir="ltr">\$1,000</span> كل سنة لمدة 5 سنين، والفائدة 10% مركبة بشكل مستمر. كم تحط اليوم؟</p>
+    <div class="check" data-answer="3741.24"></div>
+    <details class="hint"><p>$(P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^r - 1)}$، و $e^{0.5} = 1.64872$ و $e^{0.1} = 1.10517$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>العامل المستمر</h4><div class="m wide">\[(P/A, \underline{10}\%, 5) = \frac{1.64872 - 1}{1.64872\,(0.10517)} = \frac{0.64872}{0.17340} = 3.7412\]</div>
+      <li class="step"><h4>العامل المستمر</h4><div class="m narrow">\[\begin{aligned}(P/A, \underline{10}\%, 5) &= \frac{1.64872 - 1}{1.64872\,(0.10517)} \\ &= \frac{0.64872}{0.17340} = 3.7412\end{aligned}\]</div></li>
+      <li class="step final"><div class="m">\[P = 1000\,(3.7412)\]</div><div class="result">$P = \$3{,}741.24$</div><p class="sanity">أقل شوي من المنفصل $1000\,(P/A, 10\%, 5) = 3{,}790.79$، لأن المستمر يعطي فائدة فعالة أكبر (10.52%) ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تخصم المؤجلة فترة زيادة</div>
+    <div class="pair"><div class="no">دفعات 6 لين 10: $(P/F, i, 6)$</div><div class="yes">$(P/A)$ يحطها عند 5، فـ $(P/F, i, 5)$</div></div></div>
+  <div class="mk"><div class="mk-title">تحط أول دفعة كتدرج</div>
+    <div class="pair"><div class="no">2000، 3000، 4000: $G = 2000$</div><div class="yes">$A_1 = 2000$ ثابتة، و $G = 1000$</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى إن التدرج يبدأ بصفر</div>
+    <div class="pair"><div class="no">أول $G$ عند الفترة 1</div><div class="yes">الفترة 1 صفر، وأول $G$ عند 2</div></div></div>
+  <div class="mk"><div class="mk-title">مقام التدرج الهندسي</div>
+    <div class="pair"><div class="no">$1 - \bar f$ (مثل السلايد)</div><div class="yes">$i - \bar f$</div></div></div>
+  <div class="mk"><div class="mk-title">تستخدم الاسمية كأنها فعالة</div>
+    <div class="pair"><div class="no">12% شهري ← $i = 12\%$ للدفعات السنوية</div><div class="yes">$i = (1.01)^{12} - 1 = 12.68\%$</div></div></div>
+  <div class="mk"><div class="mk-title">تقسم $r$ وتنسى تضرب $N$</div>
+    <div class="pair"><div class="no">قسط شهري: $i = 1\%$ و $N = 3$ سنين</div><div class="yes">$i = 1\%$ و $N = 36$ شهر</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>دفعات من نهاية السنة 4 لين 9. كم $J$ وكم عدد الدفعات؟</p>
+      <button>$J = 4$ و 6 دفعات</button><button>$J = 3$ و 6 دفعات</button><button>$J = 3$ و 5 دفعات</button><button>$J = 4$ و 5 دفعات</button>
+      <p class="q-why">أول دفعة عند $J + 1 = 4$ فـ $J = 3$، والعدد $N - J = 9 - 3 = 6$.</p></div>
+    <div class="q" data-answer="1"><p>في التدرج المنتظم القياسي، التدفق في نهاية الفترة 1:</p>
+      <button>صفر</button><button>$G$</button><button>$A_1$</button><button>$2G$</button>
+      <p class="q-why">الجدول: 0، G، 2G، ...، $(N-1)G$.</p></div>
+    <div class="q" data-answer="3"><p>تدفقات 800، 700، 600، 500. التدرج $G$:</p>
+      <button>100</button><button>800</button><button>$-100$</button><button>500</button>
+      <p class="q-why">تنقص 100 كل سنة، فالتدرج سالب: $A = 800 - 100(A/G)$. (إضافة: نفس القوانين تشتغل مع $G$ سالب.)</p></div>
+    <div class="q" data-answer="4"><p>تدرج هندسي فيه $\bar f = i = 8\%$، و $A_1 = 1000$ و $N = 5$. القيمة الحالية:</p>
+      <button>$5000$</button><button>$5000(1.08)$</button><button>القانون ينقسم على صفر، ما لها حل</button><button>$5000/1.08$</button>
+      <p class="q-why">$P = A_1 N/(1+i) = 5000/1.08 = 4{,}629.63$.</p></div>
+    <div class="q" data-answer="2"><p>نسبة اسمية $r = 12\%$ مركبة ربع سنوياً. كم فائدة الربع الواحد؟</p>
+      <button>12%</button><button>3%</button><button>4%</button><button>12.55%</button>
+      <p class="q-why">$r/M = 12\%/4 = 3\%$. و 12.55% هي الفعالة السنوية.</p></div>
+    <div class="q" data-answer="1"><p>بنفس $r$، أي تركيب يعطي أكبر فائدة فعالة؟</p>
+      <button>المستمر</button><button>اليومي</button><button>الشهري</button><button>السنوي</button>
+      <p class="q-why">كل ما زاد $M$ زادت الفعالة، والمستمر هو الحد الأعلى $e^r - 1$.</p></div>
+    <div class="q" data-answer="3"><p>$(P/F, \underline{r}\%, N)$ بالتركيب المستمر:</p>
+      <button>$(1 + r)^{-N}$</button><button>$e^{rN}$</button><button>$e^{-rN}$</button><button>$1 - e^{-r}$</button>
+      <p class="q-why">عوّض $1 + i = e^r$ في $(1+i)^{-N}$.</p></div>
+    <div class="q" data-answer="4"><p>تبي قسط قرض بالإكسل. الدالة:</p>
+      <button>NPV</button><button>RATE</button><button>FV</button><button>PMT</button>
+      <p class="q-why">PMT تعطي الدفعة المنتظمة $A$.</p></div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>بطاقات المراجعة</h2>
+  <p class="sub">اضغط البطاقة وتنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>الدفعة المؤجلة $J$ فترة</div><div>$P_0 = A(P/A, i, N - J)(P/F, i, J)$</div></div>
+    <div class="flash"><div>التدرج المنتظم</div><div>0، $G$، $2G$، ...، $(N-1)G$</div></div>
+    <div class="flash"><div>$(P/G, i\%, N)$</div><div>$\frac{1}{i}\left[(P/A) - N(P/F)\right]$</div></div>
+    <div class="flash"><div>$(A/G, i\%, N)$</div><div>$\dfrac{1}{i} - \dfrac{N}{(1+i)^N - 1}$</div></div>
+    <div class="flash"><div>التدرج الهندسي $\bar f \ne i$</div><div>$\dfrac{A_1[1 - (P/F, i, N)(F/P, \bar f, N)]}{i - \bar f}$</div></div>
+    <div class="flash"><div>التدرج الهندسي $\bar f = i$</div><div>$P = \dfrac{A_1 N}{1 + i}$</div></div>
+    <div class="flash"><div>فائدة متغيرة</div><div>$P = F_N \big/ \prod (1 + i_k)$</div></div>
+    <div class="flash"><div>الفعالة من الاسمية</div><div>$i = (1 + r/M)^M - 1$</div></div>
+    <div class="flash"><div>التركيب المستمر</div><div>$i = e^r - 1,\quad (P/F) = e^{-rN}$</div></div>
+    <div class="flash"><div>إكسل: $N$ و $i$</div><div><span class="ltr">NPER(rate, pmt, pv)</span> و <span class="ltr">RATE(nper, pmt, pv, fv)</span></div></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* الفصل 4 (2): مختبر الفائدة الفعالة (القسم 05) */
+(function () {
+  const $ = id => document.getElementById(id);
+  const MS = [1, 2, 4, 12, 52, 365, 0];                 // 0 = مستمر
+  const NAMES = ['1', '2', '4', '12', '52', '365', '∞'];
+  const eff = (r, M) => M ? Math.pow(1 + r / M, M) - 1 : Math.exp(r) - 1;
+  let sel = 12;
+  function draw() {
+    const r = +$('eR').value / 100;
+    $('eRv').textContent = $('eR').value + '%';
+    const top = eff(r, 0) * 1.08, sy = v => 190 - 160 * v / top, w = 495 / MS.length;
+    let h = '';
+    MS.forEach((M, k) => {
+      const v = eff(r, M), x = 44 + k * w + w * 0.18, y = sy(v);
+      h += `<rect class="bar-e${M === sel ? ' on' : ''}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(w * 0.64).toFixed(1)}" height="${(190 - y).toFixed(1)}"/>`;
+      h += `<text class="tick" x="${(x + w * 0.32).toFixed(1)}" y="${(y - 6).toFixed(1)}" text-anchor="middle">${(v * 100).toFixed(2)}%</text>`;
+      h += `<text class="tick" x="${(x + w * 0.32).toFixed(1)}" y="206" text-anchor="middle">M = ${NAMES[k]}</text>`;
+    });
+    $('eBars').innerHTML = h;
+    $('eLine').setAttribute('d', `M40 ${sy(r).toFixed(1)}H535`);
+    $('eLineT').setAttribute('y', (sy(r) + 4).toFixed(1)); $('eLineT').textContent = 'r = ' + $('eR').value + '%';
+    const i = eff(r, sel);
+    $('eP').textContent = sel ? (r / sel * 100).toFixed(4) + '%' : '→ 0 (مستمر)';
+    $('eI').textContent = (i * 100).toFixed(3) + '%';
+    $('eD').textContent = '+' + ((i - r) * 100).toFixed(3) + '%';
+  }
+  document.querySelectorAll('#eM [data-m]').forEach(b => b.addEventListener('click', () => {
+    sel = +b.dataset.m;
+    document.querySelectorAll('#eM [data-m]').forEach(x => x.classList.toggle('on', x === b));
+    draw();
+  }));
+  $('eR').addEventListener('input', draw);
+  draw();
+})();
+</script>
+<script src="econ.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>
