@@ -8,11 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<link rel="stylesheet" href="laws.css?v=2">
+<link rel="stylesheet" href="laws.css?v=3">
 <script src="../site.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-<script defer src="quiz.js?v=2"></script>
+<script defer src="quiz.js?v=3"></script>
 </head>
 <body class="quiz-page">
 <header class="lw-top">
@@ -47,6 +47,7 @@
     <li><span><b>قرر</b> القانون في بالك (وحلها في ورقة لو تبي).</span></li>
     <li><span>اضغط <b>💡 الجواب</b>: القانون وليش، والحل.</span></li>
     <li><span>قيّم نفسك <b>✓</b> أو <b>✗</b>، والعداد فوق يحسب.</span></li>
+    <li class="how-keys"><span>صعبة؟ راجع <a href="keys2.html">🔑 الكلمات المفتاحية</a> قبل.</span></li>
   </ol>
 </section>
 
@@ -56,6 +57,7 @@
     <button type="button" data-f="todo">ما قيّمتها</button>
     <button type="button" data-f="wrong">غلطت فيها</button>
   </div>
+  <a class="tool keys" href="keys2.html">🔑 <span>الكلمات المفتاحية</span></a>
   <button type="button" class="tool" id="tr-all" aria-pressed="false">🌐 <span>الترجمة دايم</span></button>
   <button type="button" class="tool" id="shuffle">🔀 <span>لخبط الترتيب</span></button>
   <button type="button" class="tool" id="reset">↺ <span>من جديد</span></button>
@@ -84,6 +86,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Two total costs at two output levels: the straight line C<sub>T</sub> = C<sub>F</sub> + c<sub>v</sub> D. The slope is c<sub>v</sub> and the intercept is C<sub>F</sub>.</p>
       <p class="ar tr">تكلفتين كليتين عند مستويين إنتاج: هذا الخط المستقيم <bdi dir="ltr" class=nw>C<sub>T</sub> = C<sub>F</sub> + c<sub>v</sub> D</bdi>. الميل هو <bdi dir="ltr" class=nw>c<sub>v</sub></bdi> والتقاطع هو <bdi dir="ltr" class=nw>C<sub>F</sub></bdi>.</p>
+      <a class="qz-keys" href="keys2.html#total-cost">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -120,6 +123,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The price per bolt hides the scrap. Divide by the share that is usable: cost per good unit.</p>
       <p class="ar tr">سعر الحبة يخبي الهدر. اقسم على النسبة اللي تنفع: تكلفة الوحدة السليمة.</p>
+      <a class="qz-keys" href="keys2.html#good-unit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -156,6 +160,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The energy-cost formula backwards: the budget gives the most input power allowed, and η = P<sub>out</sub> / P<sub>in</sub>.</p>
       <p class="ar tr">قانون تكلفة الطاقة بالعكس: الميزانية تعطي أكبر قدرة داخلة مسموحة، و η = <bdi dir="ltr" class=nw>P<sub>out</sub> / P<sub>in</sub></bdi>.</p>
+      <a class="qz-keys" href="keys2.html#motor">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -192,6 +197,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Make more money after costs' at two volumes: evaluate the profit equation at each D and compare.</p>
       <p class="ar tr">'تكسب أكثر بعد التكاليف' عند كميتين: احسب معادلة الربح عند كل <bdi dir="ltr" class=nw>D</bdi> وقارن.</p>
+      <a class="qz-keys" href="keys2.html#profit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -199,7 +205,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: No. Profit falls by 2,000 SAR (31,000 → 29,000).</p>
-      <p class="ar tr">الجواب: لا. الربح ينزل <bdi dir="ltr" class=nw>2,000</bdi> ريال (من <bdi dir="ltr" class=nw>31,000</bdi> لـ <bdi dir="ltr" class=nw>29,000)</bdi>.</p>
+      <p class="ar tr">الجواب: لا. الربح ينزل <bdi dir="ltr" class=nw>2,000</bdi> ريال (من <bdi dir="ltr" class=nw>31,000</bdi> لـ <bdi dir="ltr" class=nw>29,000</bdi>).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -228,6 +234,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Just cover its costs' = breakeven, Profit = 0. With a fixed price the equation is linear: D' = C<sub>F</sub>/(p − c<sub>v</sub>).</p>
       <p class="ar tr">'بس يغطي تكاليفه' = نقطة التعادل، الربح = <bdi dir="ltr" class=nw>0</bdi>. والسعر ثابت فالمعادلة خطية: <bdi dir="ltr" class=nw>D' = C<sub>F</sub>/(p − c<sub>v</sub>)</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -264,6 +271,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Most money at the door' and 'not profit' = maximum revenue, D̂ = a/2b.</p>
       <p class="ar tr">'أكثر فلوس عند الباب' و'مو الربح' = أعلى إيراد، <bdi dir="ltr" class=nw>D̂ = a/2b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -271,7 +279,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: 30 SAR a ticket (1,500 visitors, 45,000 SAR).</p>
-      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>30</bdi> ريال للتذكرة <bdi dir="ltr" class=nw>(1,500</bdi> زائر، <bdi dir="ltr" class=nw>45,000</bdi> ريال).</p>
+      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>30</bdi> ريال للتذكرة (<bdi dir="ltr" class=nw>1,500</bdi> زائر، <bdi dir="ltr" class=nw>45,000</bdi> ريال).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -300,6 +308,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Biggest profit' with a price-demand line and costs = D* = (a − c<sub>v</sub>)/2b.</p>
       <p class="ar tr">'أكبر ربح' مع خط سعر وطلب وتكاليف = <bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -320,7 +329,7 @@
   <header class="qz-h"><span class="qz-n">سؤال <b>8</b></span><span class="qz-st" aria-live="polite"></span></header>
   <div class="qz-q">
     <p class="en" dir="ltr" lang="en">Same product (p = 50 − 0.01D, c<sub>v</sub> = 10 SAR), but the <mark class="clue">fixed cost jumps to 45,000 SAR</mark>. Is there <mark class="clue">any sales volume at which the firm does not lose money</mark>?</p>
-    <p class="ar tr">نفس المنتج <bdi dir="ltr" class=nw>(p = 50 − 0.01D</bdi>، <bdi dir="ltr" class=nw>c<sub>v</sub> = 10</bdi> ريال)، بس <mark class="clue">التكلفة الثابتة قفزت لـ <bdi dir="ltr" class=nw>45,000</bdi> ريال</mark>. فيه <mark class="clue">أي كمية مبيعات ما تخسر فيها الشركة</mark>؟</p>
+    <p class="ar tr">نفس المنتج (<bdi dir="ltr" class=nw>p = 50 − 0.01D</bdi>، <bdi dir="ltr" class=nw>c<sub>v</sub> = 10</bdi> ريال)، بس <mark class="clue">التكلفة الثابتة قفزت لـ <bdi dir="ltr" class=nw>45,000</bdi> ريال</mark>. فيه <mark class="clue">أي كمية مبيعات ما تخسر فيها الشركة</mark>؟</p>
   </div>
   <div class="qz-btns">
     <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
@@ -336,6 +345,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Asking whether a no-loss volume exists = does Profit = 0 have real roots? Check the discriminant of the breakeven formula.</p>
       <p class="ar tr">السؤال هل فيه كمية بدون خسارة = هل للربح = <bdi dir="ltr" class=nw>0</bdi> جذور حقيقية؟ شوف المميز في قانون التعادل.</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -372,6 +382,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Comparing revenue at two volumes and finding the peak: TR = aD − bD² is a parabola with its top at D̂ = a/2b.</p>
       <p class="ar tr">مقارنة الإيراد عند كميتين ودور القمة: <bdi dir="ltr" class=nw>TR = aD − bD²</bdi> قطع مكافئ وقمته عند <bdi dir="ltr" class=nw>D̂ = a/2b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -379,7 +390,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: No: both give 200,000 SAR. Revenue peaks at 4,500 units (202,500 SAR).</p>
-      <p class="ar tr">الجواب: لا: الاثنين يعطون <bdi dir="ltr" class=nw>200,000</bdi> ريال. الإيراد أعلى شي عند <bdi dir="ltr" class=nw>4,500</bdi> وحدة <bdi dir="ltr" class=nw>(202,500</bdi> ريال).</p>
+      <p class="ar tr">الجواب: لا: الاثنين يعطون <bdi dir="ltr" class=nw>200,000</bdi> ريال. الإيراد أعلى شي عند <bdi dir="ltr" class=nw>4,500</bdi> وحدة (<bdi dir="ltr" class=nw>202,500</bdi> ريال).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -408,6 +419,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">One-year decision, equal revenue, different yields: lowest cost per good unit wins.</p>
       <p class="ar tr">قرار لسنة، والإيراد نفسه، ونسبة السليم تختلف: الأقل تكلفة للوحدة السليمة يفوز.</p>
+      <a class="qz-keys" href="keys2.html#good-unit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -415,7 +427,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: Plastic (1.22 vs 1.26 SAR per good piece).</p>
-      <p class="ar tr">الجواب: البلاستيك <bdi dir="ltr" class=nw>(1.22</bdi> مقابل <bdi dir="ltr" class=nw>1.26</bdi> ريال للقطعة السليمة).</p>
+      <p class="ar tr">الجواب: البلاستيك (<bdi dir="ltr" class=nw>1.22</bdi> مقابل <bdi dir="ltr" class=nw>1.26</bdi> ريال للقطعة السليمة).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -444,6 +456,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">It asks for the cost of one period: costs that do not change with output (rent, salaries) plus a cost per unit times the number of units.</p>
       <p class="ar tr">يسأل عن تكلفة فترة وحدة: تكاليف ما تتغير مع الإنتاج (إيجار، رواتب) زائد تكلفة لكل وحدة ضرب عدد الوحدات.</p>
+      <a class="qz-keys" href="keys2.html#total-cost">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -480,6 +493,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Make or lose money at a known volume: put D into the profit equation; a negative answer is a loss.</p>
       <p class="ar tr">تكسب أو تخسر عند كمية معروفة: عوّض <bdi dir="ltr" class=nw>D</bdi> في معادلة الربح، ولو طلع سالب فهي خسارة.</p>
+      <a class="qz-keys" href="keys2.html#profit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -516,6 +530,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Two (D, p) points on a straight line: that is p = a − bD. b is the drop in price per extra unit.</p>
       <p class="ar tr">نقطتين <bdi dir="ltr" class=nw>(D, p)</bdi> على خط مستقيم: هذي <bdi dir="ltr" class=nw>p = a − bD</bdi>. و <bdi dir="ltr" class=nw>b</bdi> هي كم ينزل السعر لكل وحدة زيادة.</p>
+      <a class="qz-keys" href="keys2.html#price-demand">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -552,6 +567,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">One design choice pushes one cost up (aX) and another down (b/X): minimize aX + b/X + k, X* = √(b/a).</p>
       <p class="ar tr">قرار تصميم واحد يرفع تكلفة <bdi dir="ltr" class=nw>(aX)</bdi> وينزل ثانية <bdi dir="ltr" class=nw>(b/X)</bdi>: أقل قيمة لـ <bdi dir="ltr" class=nw>aX + b/X + k</bdi> عند <bdi dir="ltr" class=nw>X* = √(b/a)</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#design">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -588,6 +604,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Same output, different scrap and cost: compare the cost of each good unit before and after.</p>
       <p class="ar tr">نفس الإنتاج، والهدر والتكلفة يختلفون: قارن تكلفة الوحدة السليمة قبل وبعد.</p>
+      <a class="qz-keys" href="keys2.html#good-unit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -624,6 +641,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Average cost = total cost ÷ units. First build C<sub>T</sub> from the fixed part and the per-unit part.</p>
       <p class="ar tr">متوسط التكلفة = التكلفة الكلية ÷ عدد الوحدات. أول شي ركّب <bdi dir="ltr" class=nw>C<sub>T</sub></bdi> من الجزء الثابت والجزء اللي لكل وحدة.</p>
+      <a class="qz-keys" href="keys2.html#total-cost">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -660,6 +678,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Same output, different efficiency: input power = hp × 0.746 / η, then energy cost = kW × hours × price.</p>
       <p class="ar tr">نفس الشغل وكفاءة مختلفة: القدرة الداخلة = حصان × <bdi dir="ltr" class=nw>0.746</bdi> / η، وبعدين تكلفة الطاقة = كيلوواط × ساعات × السعر.</p>
+      <a class="qz-keys" href="keys2.html#motor">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -696,6 +715,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Speed is the design variable; one cost rises with it and one falls: v* = √(b/a), then check the minimum cost.</p>
       <p class="ar tr">السرعة هي متغير التصميم، تكلفة تزيد معها وتكلفة تنقص: <bdi dir="ltr" class=nw>v* = √(b/a)</bdi>، وبعدين احسب أقل تكلفة.</p>
+      <a class="qz-keys" href="keys2.html#design">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -732,6 +752,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The reverse use of the price-demand line: you know p and want D, so D = (a − p)/b.</p>
       <p class="ar tr">الاستخدام العكسي لخط السعر والطلب: تعرف <bdi dir="ltr" class=nw>p</bdi> وتبي <bdi dir="ltr" class=nw>D</bdi>، يعني <bdi dir="ltr" class=nw>D = (a − p)/b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#price-demand">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -768,6 +789,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Motor running cost: convert hp to kW, divide by efficiency for the power drawn, then multiply by hours and price.</p>
       <p class="ar tr">تكلفة تشغيل موتور: حوّل الحصان لكيلوواط، واقسم على الكفاءة عشان القدرة المسحوبة، واضرب في الساعات والسعر.</p>
+      <a class="qz-keys" href="keys2.html#motor">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -804,6 +826,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">c<sub>v</sub> is inside D* = (a − c<sub>v</sub>)/2b, so a higher variable cost moves the best volume down.</p>
       <p class="ar tr"><bdi dir="ltr" class=nw>c<sub>v</sub></bdi> داخل <bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi>، فلما تزيد التكلفة المتغيرة تنزل الكمية المثلى.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -840,6 +863,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Efficiency difference → power difference → yearly energy saving. Then divide the extra price by the saving.</p>
       <p class="ar tr">فرق الكفاءة ← فرق القدرة ← توفير سنوي في الطاقة. بعدين اقسم الزيادة في السعر على التوفير.</p>
+      <a class="qz-keys" href="keys2.html#motor">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -847,7 +871,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: It saves about 1,764 SAR a year, so it pays back in about half a year (0.51 yr).</p>
-      <p class="ar tr">الجواب: يوفر تقريباً <bdi dir="ltr" class=nw>1,764</bdi> ريال بالسنة، فيتغطى في تقريباً نص سنة <bdi dir="ltr" class=nw>(0.51</bdi> سنة).</p>
+      <p class="ar tr">الجواب: يوفر تقريباً <bdi dir="ltr" class=nw>1,764</bdi> ريال بالسنة، فيتغطى في تقريباً نص سنة (<bdi dir="ltr" class=nw>0.51</bdi> سنة).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -876,6 +900,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The budget is a limit on the total cost of the month. Set C<sub>T</sub> = 20,000 and solve the total-cost line for D.</p>
       <p class="ar tr">الميزانية حد للتكلفة الكلية للشهر. خل <bdi dir="ltr" class=nw>C<sub>T</sub> = 20,000</bdi> وحل معادلة التكلفة الكلية عشان تطلع <bdi dir="ltr" class=nw>D</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#total-cost">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -912,6 +937,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Costs are out of the picture and the goal is maximum sales money: that is maximum total revenue, D̂ = a/2b and TR<sub>max</sub> = a²/4b.</p>
       <p class="ar tr">التكاليف طالعة من الحسبة والهدف أكبر فلوس من المبيعات: هذا أعلى إيراد كلي، <bdi dir="ltr" class=nw>D̂ = a/2b</bdi> و <bdi dir="ltr" class=nw>TR<sub>max</sub> = a²/4b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -948,6 +974,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The two ends of the price-demand line: D = 0 gives p = a, and p = 0 gives the largest demand D = a/b.</p>
       <p class="ar tr">طرفين خط السعر والطلب: لما <bdi dir="ltr" class=nw>D = 0</bdi> يطلع <bdi dir="ltr" class=nw>p = a</bdi>، ولما <bdi dir="ltr" class=nw>p = 0</bdi> يطلع أكبر طلب <bdi dir="ltr" class=nw>D = a/b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#price-demand">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -984,6 +1011,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Careful: costs are given, but the question is about sales income, not profit. Ignore the costs and use maximum revenue D̂ = a/2b.</p>
       <p class="ar tr">انتبه: التكاليف موجودة، بس السؤال عن دخل المبيعات مو الربح. تجاهل التكاليف واستخدم أعلى إيراد <bdi dir="ltr" class=nw>D̂ = a/2b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -991,7 +1019,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: 30 SAR (7,500 units, 225,000 SAR of sales). The costs do not matter for this question.</p>
-      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>30</bdi> ريال <bdi dir="ltr" class=nw>(7,500</bdi> وحدة، ومبيعات <bdi dir="ltr" class=nw>225,000</bdi> ريال). التكاليف ما لها دخل في هالسؤال.</p>
+      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>30</bdi> ريال (<bdi dir="ltr" class=nw>7,500</bdi> وحدة، ومبيعات <bdi dir="ltr" class=nw>225,000</bdi> ريال). التكاليف ما لها دخل في هالسؤال.</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -1020,6 +1048,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">In C<sub>T</sub> = C<sub>F</sub> + c<sub>v</sub> D only the variable part moves when D changes, so the extra cost is c<sub>v</sub> × the extra units.</p>
       <p class="ar tr">في <bdi dir="ltr" class=nw>C<sub>T</sub> = C<sub>F</sub> + c<sub>v</sub> D</bdi> لما تتغير <bdi dir="ltr" class=nw>D</bdi> يتحرك الجزء المتغير بس، فالزيادة = <bdi dir="ltr" class=nw>c<sub>v</sub></bdi> × الوحدات الزيادة.</p>
+      <a class="qz-keys" href="keys2.html#total-cost">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1056,6 +1085,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">D* = (a − c<sub>v</sub>)/2b has no C<sub>F</sub> in it. A fixed-cost change moves the profit level, not the best volume.</p>
       <p class="ar tr"><bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi> ما فيها <bdi dir="ltr" class=nw>C<sub>F</sub></bdi>. تغير التكلفة الثابتة يغير كمية الربح، مو مكان القمة.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1092,6 +1122,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Money coming in from sales = price × quantity = total revenue TR = aD − bD².</p>
       <p class="ar tr">الفلوس اللي تدخل من المبيعات = السعر × الكمية = الإيراد الكلي <bdi dir="ltr" class=nw>TR = aD − bD²</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1128,6 +1159,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Earn after paying all costs' at a given demand = profit = TR − C<sub>T</sub> = −bD² + (a − c<sub>v</sub>)D − C<sub>F</sub>.</p>
       <p class="ar tr">'كم تكسب بعد كل التكاليف' عند طلب معين = الربح = <bdi dir="ltr">TR − C<sub>T</sub> = −bD² + (a − c<sub>v</sub>)D − C<sub>F</sub></bdi>.</p>
+      <a class="qz-keys" href="keys2.html#profit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1164,6 +1196,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Cost of the form aX + b/X + k: set the first derivative to 0 and check the second derivative 2b/X³ &gt; 0.</p>
       <p class="ar tr">التكلفة على شكل <bdi dir="ltr" class=nw>aX + b/X + k</bdi>: خل المشتقة الأولى = <bdi dir="ltr" class=nw>0</bdi> وتأكد إن الثانية <bdi dir="ltr" class=nw>2b/X</bdi>³ &<bdi dir="ltr" class=nw>gt; 0</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#design">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1200,6 +1233,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Usable page' = good unit. Divide the cost by the fraction of good pages.</p>
       <p class="ar tr">'صفحة صالحة' = وحدة سليمة. اقسم التكلفة على نسبة الصفحات السليمة.</p>
+      <a class="qz-keys" href="keys2.html#good-unit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1236,6 +1270,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The price has to drop for demand to rise, in a straight line: p = a − bD. Get b from the slope and a from the known point.</p>
       <p class="ar tr">السعر لازم ينزل عشان يزيد الطلب، وبخط مستقيم: <bdi dir="ltr" class=nw>p = a − bD</bdi>. طلّع <bdi dir="ltr" class=nw>b</bdi> من الميل و <bdi dir="ltr" class=nw>a</bdi> من النقطة المعروفة.</p>
+      <a class="qz-keys" href="keys2.html#price-demand">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1272,6 +1307,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Most money from fares' with no costs in the question = maximum total revenue.</p>
       <p class="ar tr">'أكثر فلوس من الأجرة' وما فيه تكاليف في السؤال = أعلى إيراد كلي.</p>
+      <a class="qz-keys" href="keys2.html#revenue">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1279,7 +1315,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: A fare of 12.50 SAR (5,000 rides), 62,500 SAR a day.</p>
-      <p class="ar tr">الجواب: أجرة <bdi dir="ltr" class=nw>12.50</bdi> ريال <bdi dir="ltr" class=nw>(5,000</bdi> مشوار)، و <bdi dir="ltr" class=nw>62,500</bdi> ريال باليوم.</p>
+      <p class="ar tr">الجواب: أجرة <bdi dir="ltr" class=nw>12.50</bdi> ريال (<bdi dir="ltr" class=nw>5,000</bdi> مشوار)، و <bdi dir="ltr" class=nw>62,500</bdi> ريال باليوم.</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -1308,6 +1344,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Profit = total revenue − total cost. With a fixed price there is no b, so it is just pD − (C<sub>F</sub> + c<sub>v</sub> D).</p>
       <p class="ar tr">الربح = الإيراد الكلي − التكلفة الكلية. والسعر ثابت فما فيه <bdi dir="ltr" class=nw>b</bdi>، يعني <bdi dir="ltr" class=nw>pD − (C<sub>F</sub> + c<sub>v</sub> D)</bdi> بس.</p>
+      <a class="qz-keys" href="keys2.html#profit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1344,6 +1381,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The volume where profit disappears on the high side is the second (larger) breakeven root.</p>
       <p class="ar tr">الكمية اللي يختفي فيها الربح من الجهة العالية هي جذر التعادل الثاني (الأكبر).</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1380,6 +1418,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Output power and efficiency → input power P<sub>in</sub> = P<sub>out</sub>/η (here it is already in kW). Then kWh × price.</p>
       <p class="ar tr">القدرة الخارجة والكفاءة ← القدرة الداخلة <bdi dir="ltr" class=nw>P<sub>in</sub> = P<sub>out</sub></bdi>/η (هنا جاهزة بالكيلوواط). بعدين كيلوواط ساعة × السعر.</p>
+      <a class="qz-keys" href="keys2.html#motor">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1416,6 +1455,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Most profit' = the top of the profit parabola: D* = (a − c<sub>v</sub>)/2b. Then put D* back into the profit equation.</p>
       <p class="ar tr">'أكبر ربح' = قمة قطع الربح: <bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi>. بعدين عوّض <bdi dir="ltr" class=nw>D*</bdi> في معادلة الربح.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1452,6 +1492,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Short horizon, same revenue per good part, different defect rates: compare cost per good (non-defective) unit.</p>
       <p class="ar tr">مدة قصيرة، ونفس الإيراد لكل قطعة سليمة، ونسب عيوب مختلفة: قارن تكلفة الوحدة السليمة.</p>
+      <a class="qz-keys" href="keys2.html#good-unit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1488,6 +1529,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">A target demand and a demand curve: plug D into p = a − bD to read the price.</p>
       <p class="ar tr">عندك طلب مستهدف ومنحنى طلب: عوّض <bdi dir="ltr" class=nw>D</bdi> في <bdi dir="ltr" class=nw>p = a − bD</bdi> وطلّع السعر.</p>
+      <a class="qz-keys" href="keys2.html#price-demand">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1524,6 +1566,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Earns the most after costs' = maximum profit, D* = (a − c<sub>v</sub>)/2b.</p>
       <p class="ar tr">'يكسب أكثر شي بعد التكاليف' = أعلى ربح، <bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1560,6 +1603,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Range where it makes money' = between the two breakeven points, the roots of Profit = 0.</p>
       <p class="ar tr">'المدى اللي تكسب فيه' = بين نقطتين التعادل، يعني جذور الربح = <bdi dir="ltr" class=nw>0</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1595,7 +1639,8 @@
     <div class="qz-why">
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The price fixes the demand (from p = a − bD); then profit = TR − C<sub>T</sub> at that demand.</p>
-      <p class="ar tr">السعر يحدد الطلب (من <bdi dir="ltr" class=nw>p = a − bD)</bdi>، وبعدين الربح = <bdi dir="ltr" class=nw>TR − C<sub>T</sub></bdi> عند هالطلب.</p>
+      <p class="ar tr">السعر يحدد الطلب (من <bdi dir="ltr" class=nw>p = a − bD</bdi>)، وبعدين الربح = <bdi dir="ltr" class=nw>TR − C<sub>T</sub></bdi> عند هالطلب.</p>
+      <a class="qz-keys" href="keys2.html#profit">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1603,7 +1648,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: 28,000 SAR a month (400 units).</p>
-      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>28,000</bdi> ريال بالشهر <bdi dir="ltr" class=nw>(400</bdi> وحدة).</p>
+      <p class="ar tr">الجواب: <bdi dir="ltr" class=nw>28,000</bdi> ريال بالشهر (<bdi dir="ltr" class=nw>400</bdi> وحدة).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -1632,6 +1677,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Best-profit price: find D* = (a − c<sub>v</sub>)/2b first, then read the price from p = a − bD*.</p>
       <p class="ar tr">سعر أعلى ربح: طلّع <bdi dir="ltr" class=nw>D* = (a − c<sub>v</sub>)/2b</bdi> أول، وبعدين اقرأ السعر من <bdi dir="ltr" class=nw>p = a − bD*</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#optimal">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1668,6 +1714,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">'Minimum volume with no loss' = the first (smaller) root of Profit = 0.</p>
       <p class="ar tr">'أقل كمية بدون خسارة' = الجذر الأول (الأصغر) للربح = <bdi dir="ltr" class=nw>0</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1675,7 +1722,7 @@
     </div>
     <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
       <p class="en" dir="ltr" lang="en">Answer: About 1,293 units (profit stays positive up to about 2,707).</p>
-      <p class="ar tr">الجواب: تقريباً <bdi dir="ltr" class=nw>1,293</bdi> وحدة (ويبقى الربح موجب لين تقريباً <bdi dir="ltr" class=nw>2,707)</bdi>.</p>
+      <p class="ar tr">الجواب: تقريباً <bdi dir="ltr" class=nw>1,293</bdi> وحدة (ويبقى الربح موجب لين تقريباً <bdi dir="ltr" class=nw>2,707</bdi>).</p>
     </div></div>
     <div class="qz-grade" role="group" aria-label="قيّم نفسك">
       <span>طلع معك نفس القانون؟</span>
@@ -1704,6 +1751,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Two costs moving in opposite directions with one variable: the aX + b/X design optimization.</p>
       <p class="ar tr">تكلفتين يمشون عكس بعض مع متغير واحد: هذا تحسين التصميم <bdi dir="ltr" class=nw>aX + b/X</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#design">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1740,6 +1788,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">The volume where it 'stops losing money' is where profit is exactly zero: breakeven.</p>
       <p class="ar tr">الكمية اللي 'توقف فيها الخسارة' هي اللي الربح فيها صفر بالضبط: نقطة التعادل.</p>
+      <a class="qz-keys" href="keys2.html#breakeven">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
@@ -1776,6 +1825,7 @@
       <h4>🔎 ليش هذا القانون؟ <span dir="ltr" lang="en">Why this law</span></h4>
       <p class="en" dir="ltr" lang="en">Copper cost grows with A, loss cost shrinks with A: cost = aX + b/X + k, so X* = √(b/a).</p>
       <p class="ar tr">تكلفة النحاس تكبر مع <bdi dir="ltr" class=nw>A</bdi> وتكلفة الضياع تصغر معها: التكلفة = <bdi dir="ltr" class=nw>aX + b/X + k</bdi>، يعني <bdi dir="ltr" class=nw>X* = √(b/a)</bdi>.</p>
+      <a class="qz-keys" href="keys2.html#design">🔑 كل الكلمات اللي تدل على هالقانون</a>
     </div>
     <div class="qz-work">
       <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
