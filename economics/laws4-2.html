@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة قوانين الفصل ٤ (٢) · الاقتصاد الهندسي</title>
+<meta name="description" content="Chapter 4 formula sheet, part 2 · Gradients &amp; effective interest: every formula, each symbol in English and Arabic, and worked examples in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="laws.js"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">الاقتصاد الهندسي</a><span class="dot">·</span><b>الفصل ٤ (٢)</b><span class="dot">·</span><span>ورقة القوانين</span></div>
+    <div class="bar-end">
+      <div class="legend" aria-label="ألوان الرموز"><span class="lg x"><i></i>\(P\) الحاضر</span><span class="lg y"><i></i>\(A,\ G\) الدفعات والتدرج</span><span class="lg z"><i></i>\(F,\ i\) المستقبل والفعالة</span></div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو القوانين"><a href="lecture4-2.html">📖 الشرح</a><span class="on" aria-current="page">📐 القوانين</span></nav>
+  <nav class="lw-tabs" aria-label="الفصول"><a class="tab" href="laws2.html">الفصل ٢ <small dir="ltr" lang="en">Ch 2</small></a><a class="tab" href="laws4-1.html">الفصل ٤ (١) <small dir="ltr" lang="en">Ch 4 · Part 1</small></a><a class="tab on" href="laws4-2.html" aria-current=page>الفصل ٤ (٢) <small dir="ltr" lang="en">Ch 4 · Part 2</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة القوانين · الفصل ٤ (٢)</span>
+    <h1>قوانين التدرجات والفائدة الفعالة</h1>
+    <p class="sub">الدفعات المؤجلة، والتدرج المنتظم والهندسي، والفائدة المتغيرة، والاسمية والفعالة، والتركيب المستمر، ودوال الإكسل.</p>
+    <p class="sub-en" dir="ltr" lang="en">Chapter 4 formula sheet, part 2 · Gradients &amp; effective interest</p>
+    <div class="stats"><span><b>٨</b> قوانين</span><span><b>١٦</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card">\[\Z{i} = \left(1 + \dfrac{r}{M}\right)^M - 1\]</div>
+</section>
+
+<div class="view" role="group" aria-label="لغة الأمثلة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#deferred"><span class="ix-n">١</span><b>الدفعات المؤجلة</b><small dir="ltr" lang="en">Deferred annuity</small><span class="ix-m">\(A(P/A)(P/F)\)</span></a><a class="ix" href="#pg"><span class="ix-n">٢</span><b>التدرج المنتظم: القيمة الحالية</b><small dir="ltr" lang="en">Uniform gradient present worth (P/G)</small><span class="ix-m">\(P = G(P/G)\)</span></a><a class="ix" href="#ag"><span class="ix-n">٣</span><b>التدرج المنتظم: الدفعة والمستقبل</b><small dir="ltr" lang="en">Gradient to annual &amp; future (A/G, F/G)</small><span class="ix-m">\(A = A_1 + G(A/G)\)</span></a><a class="ix" href="#geometric"><span class="ix-n">٤</span><b>التدرج الهندسي</b><small dir="ltr" lang="en">Geometric gradient</small><span class="ix-m">\(\tfrac{A_1[1 - (P/F)(F/P)]}{i - \bar f}\)</span></a><a class="ix" href="#varying"><span class="ix-n">٥</span><b>الفائدة المتغيرة مع الوقت</b><small dir="ltr" lang="en">Interest rate that varies over time</small><span class="ix-m">\(P = F_N / \textstyle\prod(1 + i_k)\)</span></a><a class="ix" href="#effective"><span class="ix-n">٦</span><b>الفائدة الاسمية والفعالة</b><small dir="ltr" lang="en">Nominal &amp; effective interest</small><span class="ix-m">\(i = (1 + r/M)^M - 1\)</span></a><a class="ix" href="#continuous"><span class="ix-n">٧</span><b>التركيب المستمر</b><small dir="ltr" lang="en">Continuous compounding</small><span class="ix-m">\(i = e^r - 1\)</span></a><a class="ix" href="#excel"><span class="ix-n">٨</span><b>دوال الإكسل المالية</b><small dir="ltr" lang="en">Excel financial functions</small><span class="ix-m">\(\texttt{PMT, NPER, RATE}\)</span></a></div>
+</section>
+
+<section class="law" id="deferred">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>الدفعات المؤجلة</h2><p class="law-en" dir="ltr" lang="en">Law 1 · Deferred annuity</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[\X{P_0} = \Y{A}\,(P/A,\ i\%,\ N - J)\,(P/F,\ i\%,\ J)\]</div><div class="eq narrow big">\[\begin{gathered}\X{P_0} = \Y{A}\,(P/A,\ i\%,\ N - J) \\ \times\,(P/F,\ i\%,\ J)\end{gathered}\]</div></div><figure class="fig"><svg class="cfd" data-cfd="7|0:-?:P_0:x|3:-?:P_J:x|4-7:1:A:y" data-ticks="0,1,…,J,J+1,J+2,…,N" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(J\)</td><td class="en" dir="ltr" lang="en">Number of periods the series is deferred; first payment at J + 1</td><td class="ar">عدد فترات التأجيل، وأول دفعة عند <bdi dir="ltr" class=nw>J + 1</bdi></td></tr><tr><td class="s">\(N - J\)</td><td class="en" dir="ltr" lang="en">Number of payments (from J + 1 to N)</td><td class="ar">عدد الدفعات (من <bdi dir="ltr" class=nw>J + 1</bdi> إلى <bdi dir="ltr" class=nw>N)</bdi></td></tr><tr><td class="s">\(\X{P_J}\)</td><td class="en" dir="ltr" lang="en">Value of the series at point J (from P/A)</td><td class="ar">قيمة السلسلة عند النقطة <bdi dir="ltr" class=nw>J</bdi> (من <bdi dir="ltr" class=nw>P/A)</bdi></td></tr><tr><td class="s">\(\X{P_0}\)</td><td class="en" dir="ltr" lang="en">Value at time 0 (bring P<sub>J</sub> back J periods)</td><td class="ar">القيمة عند الزمن <bdi dir="ltr" class=nw>0</bdi> (ترجّع <bdi dir="ltr" class=nw>P<sub>J</sub></bdi> بمقدار <bdi dir="ltr" class=nw>J</bdi> فترة)</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Equal payments that do not start at period 1. Step 1: (P/A) puts the value one period before the first payment, at J. Step 2: (P/F) brings it back to 0.</p><p class="ar ">دفعات متساوية ما تبدأ من الفترة <bdi dir="ltr" class=nw>1</bdi>. الخطوة <bdi dir="ltr" class=nw>1: (P/A)</bdi> يحط القيمة قبل أول دفعة بفترة، يعني عند <bdi dir="ltr" class=nw>J</bdi>. الخطوة <bdi dir="ltr" class=nw>2: (P/F)</bdi> يرجعها للصفر.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">The biggest trap: discount J periods, not J + 1. (P/A) already lands one period before the first payment.</p><p class="ar ">الفخ الأكبر: ترجّع <bdi dir="ltr" class=nw>J</bdi> فترة، مو <bdi dir="ltr" class=nw>J + 1</bdi>. لأن <bdi dir="ltr" class=nw>(P/A)</bdi> أصلاً يوقف قبل أول دفعة بفترة.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>صيانة سيارة آيرين</b> <span dir="ltr" lang="en">Irene&#x27;s car upkeep</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Irene will pay $2,000 a year for car upkeep in years 6 to 10. At 8%, what amount set aside today covers it?</p><p class="ar ">آيرين بتدفع <bdi dir="ltr" class=nw>2,000$</bdi> بالسنة صيانة سيارة من السنة <bdi dir="ltr" class=nw>6</bdi> إلى <bdi dir="ltr" class=nw>10</bdi>. بفائدة <bdi dir="ltr" class=nw>8%</bdi>، كم تحط اليوم عشان يغطيها؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Payments in years 6–10, so J = 5 and N − J = 5. Value at year 5:</p><p class="ar ">الدفعات من <bdi dir="ltr" class=nw>6</bdi> إلى <bdi dir="ltr" class=nw>10</bdi>، يعني <bdi dir="ltr" class=nw>J = 5</bdi> و <bdi dir="ltr" class=nw>N − J = 5</bdi>. القيمة عند السنة <bdi dir="ltr" class=nw>5</bdi>:</p><div class="eq ">\[\X{P_5} = 2{,}000\,(P/A, 8\%, 5) = 2{,}000\,(3.9927) = \$7{,}985.4\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Bring it back 5 years:</p><p class="ar ">رجّعها <bdi dir="ltr" class=nw>5</bdi> سنوات:</p><div class="eq wide ">\[\X{P_0} = 7{,}985.4\,(P/F, 8\%, 5) = 7{,}985.4\,(0.6806) = \$5{,}435\]</div><div class="eq narrow ">\[\begin{aligned}\X{P_0} &= 7{,}985.4\,(P/F, 8\%, 5) \\ &= 7{,}985.4\,(0.6806) = \$5{,}435\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About $5,435 today.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>5,435$</bdi> اليوم.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>منحة دراسية</b> <span dir="ltr" lang="en">A scholarship</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A scholarship pays 5,000 SAR a year for 4 years, with the first payment at the end of year 3. At 6%, what is it worth today?</p><p class="ar ">منحة تصرف <bdi dir="ltr" class=nw>5,000</bdi> ريال بالسنة لمدة <bdi dir="ltr" class=nw>4</bdi> سنوات، وأول دفعة في نهاية السنة <bdi dir="ltr" class=nw>3</bdi>. بفائدة <bdi dir="ltr" class=nw>6%</bdi>، كم قيمتها اليوم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">First payment at 3 = J + 1, so J = 2 and there are 4 payments (years 3–6).</p><p class="ar ">أول دفعة عند <bdi dir="ltr" class=nw>3 = J + 1</bdi>، يعني <bdi dir="ltr" class=nw>J = 2</bdi>، وفيه <bdi dir="ltr" class=nw>4</bdi> دفعات (السنوات <bdi dir="ltr" class=nw>3</bdi> إلى <bdi dir="ltr" class=nw>6)</bdi>.</p><div class="eq ">\[\X{P_2} = 5{,}000\,(P/A, 6\%, 4) = 5{,}000\,(3.4651) = 17{,}325.5\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Bring it back 2 years:</p><p class="ar ">رجّعها سنتين:</p><div class="eq wide ">\[\X{P_0} = 17{,}325.5\,(P/F, 6\%, 2) = 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}\X{P_0} &= 17{,}325.5\,(P/F, 6\%, 2) \\ &= 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 15,420 SAR today.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>15,420</bdi> ريال اليوم.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="pg">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>التدرج المنتظم: القيمة الحالية</h2><p class="law-en" dir="ltr" lang="en">Law 2 · Uniform gradient present worth (P/G)</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[(P/G,\ i\%,\ N) = \frac{1}{i}\left[\frac{(1+i)^N - 1}{i(1+i)^N} - \frac{N}{(1+i)^N}\right]\]</div><div class="eq narrow big">\[\begin{aligned}(P/G,\ i\%,\ N) = \frac{1}{i}\Bigg[&\frac{(1+i)^N - 1}{i(1+i)^N} \\ &- \frac{N}{(1+i)^N}\Bigg]\end{aligned}\]</div><div class="eq ">\[\X{P} = \Y{G}\,(P/G,\ i\%,\ N) = \frac{\Y{G}}{i}\big[(P/A) - N(P/F)\big]\]</div></div><figure class="fig"><svg class="cfd" data-cfd="5|0:-?:P = ?:x|2:1:G:y|3:2:2G:y|4:3::y|5:4:(N−1)G:y" data-ticks="0,1,2,3,…,N" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\Y{G}\)</td><td class="en" dir="ltr" lang="en">Gradient: the fixed amount added each period (0 at period 1, G at 2, 2G at 3…)</td><td class="ar">التدرج: المقدار الثابت اللي يزيد كل فترة <bdi dir="ltr" class=nw>(0</bdi> عند <bdi dir="ltr" class=nw>1</bdi>، و <bdi dir="ltr" class=nw>G</bdi> عند <bdi dir="ltr" class=nw>2</bdi>، و <bdi dir="ltr" class=nw>2G</bdi> عند <bdi dir="ltr" class=nw>3</bdi>…)</td></tr><tr><td class="s">\((N-1)\Y{G}\)</td><td class="en" dir="ltr" lang="en">Size of the last gradient flow at period N</td><td class="ar">حجم آخر تدفق في التدرج عند الفترة <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\(\X{P}\)</td><td class="en" dir="ltr" lang="en">Present worth at time 0, two periods before the first G</td><td class="ar">القيمة الحالية عند الزمن <bdi dir="ltr" class=nw>0</bdi>، قبل أول <bdi dir="ltr" class=nw>G</bdi> بفترتين</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Cash flows that rise (or fall) by the same amount every period. Split a flow that starts at A₁ into an annuity A₁ plus a gradient that starts from 0.</p><p class="ar ">تدفقات تزيد (أو تنقص) بنفس المقدار كل فترة. لو التدفق يبدأ بـ <bdi dir="ltr" class=nw>A₁</bdi>، افصله: دفعة ثابتة <bdi dir="ltr" class=nw>A₁</bdi> + تدرج يبدأ من صفر.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">The base amount is not part of the gradient: for 2,000, 3,000, 4,000 the gradient is G = 1,000 (starting from 0) and 2,000 is a separate annuity.</p><p class="ar ">الدفعة الأساسية مو جزء من التدرج: لو <bdi dir="ltr" class=nw>2,000</bdi> و <bdi dir="ltr" class=nw>3,000</bdi> و <bdi dir="ltr" class=nw>4,000</bdi> فالتدرج <bdi dir="ltr" class=nw>G = 1,000</bdi> (يبدأ من صفر)، و <bdi dir="ltr" class=nw>2,000</bdi> دفعة ثابتة لحالها.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>تدرج صافي</b> <span dir="ltr" lang="en">Pure gradient</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Maintenance costs are $0, $1,000, $2,000 and $3,000 at the end of years 1–4. At 8%, what is their present worth?</p><p class="ar ">تكاليف الصيانة <bdi dir="ltr" class=nw>0$</bdi> و <bdi dir="ltr" class=nw>1,000$</bdi> و <bdi dir="ltr" class=nw>2,000$</bdi> و <bdi dir="ltr" class=nw>3,000$</bdi> في نهاية السنوات <bdi dir="ltr" class=nw>1</bdi> إلى <bdi dir="ltr" class=nw>4</bdi>. بفائدة <bdi dir="ltr" class=nw>8%</bdi>، كم قيمتها الحالية؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">This is a pure gradient with G = 1,000 and N = 4.</p><p class="ar ">هذا تدرج صافي فيه <bdi dir="ltr" class=nw>G = 1,000</bdi> و <bdi dir="ltr" class=nw>N = 4</bdi>.</p><div class="eq ">\[(P/G, 8\%, 4) = \frac{1}{0.08}\left[3.3121 - \frac{4}{1.3605}\right] = 4.6501\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Multiply:</p><p class="ar ">اضرب:</p><div class="eq ">\[\X{P} = 1{,}000\,(4.6501) = \$4{,}650\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About $4,650.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>4,650$</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>دفعة ثابتة + تدرج</b> <span dir="ltr" lang="en">Annuity + gradient</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Rent income is 2,000 SAR in year 1 and grows by 500 SAR every year for 6 years. At 10%, find the present worth.</p><p class="ar ">دخل إيجار <bdi dir="ltr" class=nw>2,000</bdi> ريال في السنة <bdi dir="ltr" class=nw>1</bdi> ويزيد <bdi dir="ltr" class=nw>500</bdi> ريال كل سنة لمدة <bdi dir="ltr" class=nw>6</bdi> سنوات. بفائدة <bdi dir="ltr" class=nw>10%</bdi>، أوجد القيمة الحالية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Split it: annuity A = 2,000 for 6 years plus gradient G = 500.</p><p class="ar ">افصلها: دفعة ثابتة <bdi dir="ltr" class=nw>A = 2,000</bdi> لمدة <bdi dir="ltr" class=nw>6</bdi> سنوات + تدرج <bdi dir="ltr" class=nw>G = 500</bdi>.</p><div class="eq ">\[\X{P} = 2{,}000\,(P/A, 10\%, 6) + 500\,(P/G, 10\%, 6)\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Plug in the factors:</p><p class="ar ">عوّض العوامل:</p><div class="eq wide ">\[\X{P} = 2{,}000\,(4.3553) + 500\,(9.6842) = 8{,}710.6 + 4{,}842.1 = 13{,}553\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}\X{P} &= 2{,}000\,(4.3553) + 500\,(9.6842) \\ &= 8{,}710.6 + 4{,}842.1 \\ &= 13{,}553\ \text{SAR}\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 13,553 SAR.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>13,553</bdi> ريال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="ag">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>التدرج المنتظم: الدفعة والمستقبل</h2><p class="law-en" dir="ltr" lang="en">Law 3 · Gradient to annual &amp; future (A/G, F/G)</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[(A/G,\ i\%,\ N) = \frac{1}{i} - \frac{N}{(1+i)^N - 1}\]</div><div class="eq ">\[(F/G,\ i\%,\ N) = \frac{1}{i}(F/A,\ i\%,\ N) - \frac{N}{i}\]</div><div class="eq ">\[\Y{A} = A_1 \pm \Y{G}\,(A/G,\ i\%,\ N)\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\((A/G)\)</td><td class="en" dir="ltr" lang="en">Turns a gradient into an equal annual amount over the same N</td><td class="ar">يحوّل التدرج لدفعة سنوية متساوية على نفس <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\((F/G)\)</td><td class="en" dir="ltr" lang="en">Turns a gradient into a future amount at N</td><td class="ar">يحوّل التدرج لمبلغ مستقبلي عند <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\(A_1\)</td><td class="en" dir="ltr" lang="en">Base amount in period 1</td><td class="ar">الدفعة الأساسية في الفترة <bdi dir="ltr" class=nw>1</bdi></td></tr><tr><td class="s">\(\pm\)</td><td class="en" dir="ltr" lang="en">+ if the flows increase, − if they decrease</td><td class="ar">+ لو التدفقات تزيد، و − لو تنقص</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When you want the equivalent equal yearly amount of a rising or falling series (to compare with other options on an annual basis).</p><p class="ar ">لما تبي الدفعة السنوية المتساوية اللي تعادل سلسلة تزيد أو تنقص (عشان تقارنها ببدائل ثانية على أساس سنوي).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الدفعة السنوية لتدرج</b> <span dir="ltr" lang="en">Annual amount of a gradient</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Cash flows are $2,000, $3,000, $4,000 and $5,000 at the end of years 1–4. At 8%, find the equivalent uniform annual amount.</p><p class="ar ">التدفقات <bdi dir="ltr" class=nw>2,000$</bdi> و <bdi dir="ltr" class=nw>3,000$</bdi> و <bdi dir="ltr" class=nw>4,000$</bdi> و <bdi dir="ltr" class=nw>5,000$</bdi> في نهاية السنوات <bdi dir="ltr" class=nw>1</bdi> إلى <bdi dir="ltr" class=nw>4</bdi>. بفائدة <bdi dir="ltr" class=nw>8%</bdi>، أوجد الدفعة السنوية المتساوية المكافئة.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A₁ = 2,000 and G = 1,000. Factor:</p><p class="ar "><bdi dir="ltr" class=nw>A₁ = 2,000</bdi> و <bdi dir="ltr" class=nw>G = 1,000</bdi>. العامل:</p><div class="eq wide ">\[(A/G, 8\%, 4) = \frac{1}{0.08} - \frac{4}{(1.08)^4 - 1} = 12.5 - \frac{4}{0.36049} = 1.4040\]</div><div class="eq narrow ">\[\begin{aligned}(A/G, 8\%, 4) &= \frac{1}{0.08} - \frac{4}{(1.08)^4 - 1} \\ &= 12.5 - \frac{4}{0.36049} = 1.4040\end{aligned}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Add the base:</p><p class="ar ">زِد الأساس:</p><div class="eq ">\[\Y{A} = 2{,}000 + 1{,}000\,(1.4040) = \$3{,}404\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: $3,404 a year.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>3,404$</bdi> بالسنة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سلسلة تنقص</b> <span dir="ltr" lang="en">A decreasing series</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Savings from a machine are 5,000, 4,500, 4,000, 3,500 and 3,000 SAR in years 1–5. At 7%, what equal yearly saving is equivalent?</p><p class="ar ">توفير مكينة <bdi dir="ltr" class=nw>5,000</bdi> و <bdi dir="ltr" class=nw>4,500</bdi> و <bdi dir="ltr" class=nw>4,000</bdi> و <bdi dir="ltr" class=nw>3,500</bdi> و <bdi dir="ltr" class=nw>3,000</bdi> ريال في السنوات <bdi dir="ltr" class=nw>1</bdi> إلى <bdi dir="ltr" class=nw>5</bdi>. بفائدة <bdi dir="ltr" class=nw>7%</bdi>، كم التوفير السنوي المتساوي المكافئ؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A₁ = 5,000 and the flows drop by G = 500, so subtract the gradient part.</p><p class="ar "><bdi dir="ltr" class=nw>A₁ = 5,000</bdi> والتدفقات تنقص بـ <bdi dir="ltr" class=nw>G = 500</bdi>، فنطرح جزء التدرج.</p><div class="eq ">\[(A/G, 7\%, 5) = \frac{1}{0.07} - \frac{5}{(1.07)^5 - 1} = 1.8650\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Annual amount:</p><p class="ar ">الدفعة السنوية:</p><div class="eq ">\[\Y{A} = 5{,}000 - 500\,(1.8650) = 4{,}067.5\ \text{SAR}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 4,068 SAR a year.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>4,068</bdi> ريال بالسنة.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="geometric">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>التدرج الهندسي</h2><p class="law-en" dir="ltr" lang="en">Law 4 · Geometric gradient</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[\X{P} = \frac{A_1\big[1 - (P/F,\ i\%,\ N)(F/P,\ \bar f\%,\ N)\big]}{i - \bar f}, \qquad \bar f \ne i\]</div><div class="eq narrow big">\[\begin{gathered}\X{P} = \frac{A_1\big[1 - (P/F,\ i\%,\ N)(F/P,\ \bar f\%,\ N)\big]}{i - \bar f} \\ \bar f \ne i\end{gathered}\]</div><div class="eq ">\[\X{P} = \frac{A_1 N}{1 + i}, \qquad \bar f = i\]</div><div class="eq ">\[A_k = A_1(1 + \bar f)^{k-1}, \qquad k = 1, 2, \dots, N\]</div></div><figure class="fig"><svg class="cfd" data-cfd="4|1:1000:$1,000:y|2:1200:$1,200:y|3:1440:$1,440:y|4:1728:$1,728:y" data-i="f = 20%" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(A_1\)</td><td class="en" dir="ltr" lang="en">First cash flow, at the end of period 1</td><td class="ar">أول تدفق، في نهاية الفترة <bdi dir="ltr" class=nw>1</bdi></td></tr><tr><td class="s">\(\bar f\)</td><td class="en" dir="ltr" lang="en">Constant growth rate per period (f-bar), e.g. 15%</td><td class="ar">نسبة النمو الثابتة كل فترة <bdi dir="ltr" class=nw>(f</bdi> بار)، مثلاً <bdi dir="ltr" class=nw>15%</bdi></td></tr><tr><td class="s">\(A_k\)</td><td class="en" dir="ltr" lang="en">Cash flow in period k</td><td class="ar">التدفق في الفترة <bdi dir="ltr" class=nw>k</bdi></td></tr><tr><td class="s">\(i\)</td><td class="en" dir="ltr" lang="en">Interest rate per period</td><td class="ar">نسبة الفائدة لكل فترة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Cash flows that grow by a constant percentage each period (revenue up 15% a year, costs up with inflation). If f̄ = i use the second formula.</p><p class="ar ">تدفقات تكبر بنسبة ثابتة كل فترة (إيراد يزيد <bdi dir="ltr" class=nw>15%</bdi> بالسنة، تكاليف تزيد مع التضخم). ولو <bdi dir="ltr" class=nw>f̄ = i</bdi> استخدم القانون الثاني.</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide typo</span></div>
+  <p class="en " dir="ltr" lang="en">Slide typo: the denominator is printed as 1 − f̄. The correct denominator is i − f̄ (as in the textbook). Check: with f̄ = 0 the formula must reduce to A₁(P/A), which only works with i.</p><p class="ar ">غلطة مطبعية في السلايد: المقام مكتوب <bdi dir="ltr" class=nw>‎1 − f̄</bdi>‎ والصح <bdi dir="ltr" class=nw>‎i − f̄</bdi>‎ (مثل الكتاب). تأكد بنفسك: لو <bdi dir="ltr" class=nw>f̄ = 0</bdi> لازم يرجع <bdi dir="ltr" class=nw>A₁(P/A)</bdi>، وهذا ما يطلع إلا لو المقام <bdi dir="ltr" class=nw>i</bdi>.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>إيرادات حبوب <bdi dir="ltr" class=nw>LoseIt</bdi></b> <span dir="ltr" lang="en">LoseIt pill revenue</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Revenue is $1,100,000 in year 1 and grows 15% a year for 5 years. At 20%, find the present worth and the equivalent annual amount.</p><p class="ar ">الإيراد <bdi dir="ltr" class=nw>1,100,000$</bdi> في السنة <bdi dir="ltr" class=nw>1</bdi> ويزيد <bdi dir="ltr" class=nw>15%</bdi> كل سنة لمدة <bdi dir="ltr" class=nw>5</bdi> سنوات. بفائدة <bdi dir="ltr" class=nw>20%</bdi>، أوجد القيمة الحالية والدفعة السنوية المكافئة.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Bracket term:</p><p class="ar ">اللي داخل القوس:</p><div class="eq wide ">\[1 - (P/F, 20\%, 5)(F/P, 15\%, 5) = 1 - (0.401878)(2.011357) = 0.191681\]</div><div class="eq narrow ">\[\begin{aligned}&1 - (0.401878)(2.011357) \\ &= 0.191681\end{aligned}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Present worth:</p><p class="ar ">القيمة الحالية:</p><div class="eq ">\[\X{P} = \frac{1{,}100{,}000\,(0.191681)}{0.20 - 0.15} = \$4{,}216{,}974\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Annual amount with (A/P, 20%, 5) = 0.334380:</p><p class="ar ">الدفعة السنوية بـ <bdi dir="ltr" class=nw>(A/P, 20%, 5) = 0.334380</bdi>:</p><div class="eq ">\[\Y{A} = 4{,}216{,}974\,(0.334380) = \$1{,}410{,}071\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: P ≈ $4,216,974, A ≈ $1,410,071 a year. (With the slide's 1 − f̄ you would get a P about 17 times too small.)</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>P ≈ 4,216,974$</bdi>، و <bdi dir="ltr" class=nw>A ≈ 1,410,071$</bdi> بالسنة. (لو استخدمت <bdi dir="ltr" class=nw>‎1 − f̄</bdi>‎ اللي في السلايد يطلع <bdi dir="ltr" class=nw>P</bdi> أصغر بـ <bdi dir="ltr" class=nw>17</bdi> مرة تقريباً.)</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>النمو = الفائدة</b> <span dir="ltr" lang="en">Growth equal to interest</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A contract pays 10,000 SAR in year 1, rising 8% a year for 6 years. The interest rate is also 8%. Find the present worth.</p><p class="ar ">عقد يدفع <bdi dir="ltr" class=nw>10,000</bdi> ريال في السنة <bdi dir="ltr" class=nw>1</bdi> ويزيد <bdi dir="ltr" class=nw>8%</bdi> كل سنة لمدة <bdi dir="ltr" class=nw>6</bdi> سنوات، والفائدة بعد <bdi dir="ltr" class=nw>8%</bdi>. أوجد القيمة الحالية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">f̄ = i, so the first formula divides by zero. Use the special case: every flow is worth exactly A₁/(1+i) today.</p><p class="ar "><bdi dir="ltr" class=nw>f̄ = i</bdi>، فالقانون الأول يقسم على صفر. استخدم الحالة الخاصة: كل تدفق قيمته اليوم <bdi dir="ltr" class=nw>A₁/(1+i)</bdi> بالضبط.</p><div class="eq ">\[\X{P} = \frac{10{,}000 \times 6}{1.08} = 55{,}555.56\ \text{SAR}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 55,555.56 SAR.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>55,555.56</bdi> ريال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="varying">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>الفائدة المتغيرة مع الوقت</h2><p class="law-en" dir="ltr" lang="en">Law 5 · Interest rate that varies over time</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\X{P} = \frac{\Z{F_N}}{\prod_{k=1}^{N}(1 + i_k)} = \Z{F_N}\,(P/F, i_1, 1)(P/F, i_2, 1)\cdots(P/F, i_N, 1)\]</div><div class="eq narrow big">\[\begin{aligned}\X{P} &= \frac{\Z{F_N}}{\prod_{k=1}^{N}(1 + i_k)} \\ &= \Z{F_N}\,(P/F, i_1, 1)\cdots(P/F, i_N, 1)\end{aligned}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(i_k\)</td><td class="en" dir="ltr" lang="en">Interest rate during period k</td><td class="ar">نسبة الفائدة خلال الفترة <bdi dir="ltr" class=nw>k</bdi></td></tr><tr><td class="s">\(\Z{F_N}\)</td><td class="en" dir="ltr" lang="en">Amount at the end of period N</td><td class="ar">المبلغ في نهاية الفترة <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\(\prod\)</td><td class="en" dir="ltr" lang="en">Product: multiply all the (1 + i<sub>k</sub>) together</td><td class="ar">حاصل ضرب: اضرب كل <bdi dir="ltr" class=nw>(1 + i<sub>k</sub>)</bdi> في بعض</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the rate is different in each period. You cannot use one factor; discount one period at a time with that period's rate.</p><p class="ar ">لما النسبة تختلف من فترة لفترة. ما ينفع عامل واحد، لازم ترجّع فترة فترة وكل فترة بنسبتها.</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide typo</span></div>
+  <p class="en " dir="ltr" lang="en">Slide note: the slide labels the amount F₄ but uses only three rates (three periods). The numbers work if the cash flow is at the end of period 3; a true F₄ needs a fourth rate.</p><p class="ar ">ملاحظة على السلايد: مكتوب <bdi dir="ltr" class=nw>F₄</bdi> بس الحساب فيه ثلاث نسب (ثلاث فترات). الأرقام تمشي لو التدفق في نهاية الفترة <bdi dir="ltr" class=nw>3</bdi>، ولو فعلاً <bdi dir="ltr" class=nw>F₄</bdi> تحتاج نسبة رابعة.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>ثلاث نسب مختلفة</b> <span dir="ltr" lang="en">Three different rates</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">$2,500 is received after three periods with rates 8%, 10% and 11%. What is its present worth?</p><p class="ar ">تستلم <bdi dir="ltr" class=nw>2,500$</bdi> بعد ثلاث فترات، والنسب <bdi dir="ltr" class=nw>8%</bdi> و <bdi dir="ltr" class=nw>10%</bdi> و <bdi dir="ltr" class=nw>11%</bdi>. كم قيمتها الحالية؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">One (P/F) per period, each with its own rate:</p><p class="ar ">عامل <bdi dir="ltr" class=nw>(P/F)</bdi> لكل فترة، وكل واحد بنسبته:</p><div class="eq wide ">\[\X{P} = 2{,}500\,(P/F, 8\%, 1)(P/F, 10\%, 1)(P/F, 11\%, 1)\]</div><div class="eq narrow ">\[\begin{aligned}\X{P} = 2{,}500\,&(P/F, 8\%, 1) \\ \times\,&(P/F, 10\%, 1) \\ \times\,&(P/F, 11\%, 1)\end{aligned}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Multiply:</p><p class="ar ">اضرب:</p><div class="eq ">\[\X{P} = 2{,}500\,(0.9259)(0.9091)(0.9009) = \$1{,}896\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About $1,896.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>1,896$</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>4</bdi> سنوات و <bdi dir="ltr" class=nw>4</bdi> نسب</b> <span dir="ltr" lang="en">Four years, four rates</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">You will receive 10,000 SAR at the end of year 4. Rates are 5%, 6%, 6% and 7% in years 1–4. What is it worth today?</p><p class="ar ">بتستلم <bdi dir="ltr" class=nw>10,000</bdi> ريال في نهاية السنة <bdi dir="ltr" class=nw>4</bdi>، والنسب <bdi dir="ltr" class=nw>5%</bdi> و <bdi dir="ltr" class=nw>6%</bdi> و <bdi dir="ltr" class=nw>6%</bdi> و <bdi dir="ltr" class=nw>7%</bdi> في السنوات <bdi dir="ltr" class=nw>1</bdi> إلى <bdi dir="ltr" class=nw>4</bdi>. كم تسوى اليوم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Divide by the product of all four growth factors:</p><p class="ar ">اقسم على حاصل ضرب الأربع:</p><div class="eq wide ">\[\X{P} = \frac{10{,}000}{(1.05)(1.06)(1.06)(1.07)} = \frac{10{,}000}{1.262365} = 7{,}921.64\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}\X{P} &= \frac{10{,}000}{(1.05)(1.06)(1.06)(1.07)} \\ &= \frac{10{,}000}{1.262365} = 7{,}921.64\ \text{SAR}\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 7,921.64 SAR.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>7,921.64</bdi> ريال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="effective">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>الفائدة الاسمية والفعالة</h2><p class="law-en" dir="ltr" lang="en">Law 6 · Nominal &amp; effective interest</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{i} = \left(1 + \frac{r}{M}\right)^M - 1\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal (stated) annual rate, e.g. 18% compounded quarterly</td><td class="ar">النسبة الاسمية السنوية المعلنة، مثلاً <bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوي</td></tr><tr><td class="s">\(M\)</td><td class="en" dir="ltr" lang="en">Compounding periods per year (4 quarterly, 12 monthly, 365 daily)</td><td class="ar">عدد مرات التركيب بالسنة <bdi dir="ltr" class=nw>(4</bdi> ربع سنوي، <bdi dir="ltr" class=nw>12</bdi> شهري، <bdi dir="ltr" class=nw>365</bdi> يومي)</td></tr><tr><td class="s">\(r/M\)</td><td class="en" dir="ltr" lang="en">Rate per compounding period</td><td class="ar">النسبة لكل فترة تركيب</td></tr><tr><td class="s">\(\Z{i}\)</td><td class="en" dir="ltr" lang="en">Effective annual rate: what you really earn or pay in one year</td><td class="ar">النسبة الفعالة السنوية: اللي فعلاً تكسبه أو تدفعه في سنة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Whenever a rate is compounded more than once a year. Use the effective rate with yearly cash flows, or use r/M with N × M periods when cash flows match the compounding period.</p><p class="ar ">كل ما النسبة تتركب أكثر من مرة بالسنة. استخدم الفعالة مع التدفقات السنوية، أو استخدم <bdi dir="ltr" class=nw>r/M</bdi> مع <bdi dir="ltr" class=nw>N × M</bdi> فترة لو التدفقات بنفس فترة التركيب.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Never put the nominal r straight into a factor when compounding is more often than yearly.</p><p class="ar ">لا تحط النسبة الاسمية <bdi dir="ltr" class=nw>r</bdi> على طول في العامل لو التركيب أكثر من مرة بالسنة.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوياً</b> <span dir="ltr" lang="en">18% compounded quarterly</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What is the effective annual rate of 18% compounded quarterly?</p><p class="ar ">كم النسبة الفعالة السنوية لـ <bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوياً؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Rate per quarter:</p><p class="ar ">النسبة لكل ربع:</p><div class="eq ">\[\frac{r}{M} = \frac{0.18}{4} = 0.045 = 4.5\%\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Compound it 4 times:</p><p class="ar ">ركّبها <bdi dir="ltr" class=nw>4</bdi> مرات:</p><div class="eq ">\[\Z{i} = (1.045)^4 - 1 = 1.19252 - 1 = 0.1925\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 19.25% per year (more than 18%).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>19.25%</bdi> بالسنة (أكثر من <bdi dir="ltr" class=nw>18%)</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>12%</bdi> مركبة شهرياً</b> <span dir="ltr" lang="en">12% compounded monthly</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A loan charges 12% compounded monthly. Find the effective annual rate, and what $1,000 grows to in 3 years.</p><p class="ar ">قرض بنسبة <bdi dir="ltr" class=nw>12%</bdi> مركبة شهرياً. أوجد النسبة الفعالة السنوية، وكم تصير <bdi dir="ltr" class=nw>1,000$</bdi> بعد <bdi dir="ltr" class=nw>3</bdi> سنوات.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">r/M = 1% per month:</p><p class="ar "><bdi dir="ltr" class=nw>r/M = 1%</bdi> بالشهر:</p><div class="eq ">\[\Z{i} = (1.01)^{12} - 1 = 0.1268 = 12.68\%\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">3 years = 36 months at 1% (same as 3 years at the effective rate):</p><p class="ar "><bdi dir="ltr" class=nw>3</bdi> سنوات = <bdi dir="ltr" class=nw>36</bdi> شهر بـ <bdi dir="ltr" class=nw>1%</bdi> (نفس <bdi dir="ltr" class=nw>3</bdi> سنوات بالنسبة الفعالة):</p><div class="eq wide ">\[\Z{F} = 1{,}000\,(1.01)^{36} = 1{,}000\,(1+0.126825)^3 = \$1{,}430.77\]</div><div class="eq narrow ">\[\begin{aligned}\Z{F} &= 1{,}000\,(1.01)^{36} \\ &= 1{,}000\,(1+0.126825)^3 = \$1{,}430.77\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: i = 12.68% per year; F = $1,430.77.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>i = 12.68%</bdi> بالسنة، و <bdi dir="ltr" class=nw>F = 1,430.77$</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="continuous">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>التركيب المستمر</h2><p class="law-en" dir="ltr" lang="en">Law 7 · Continuous compounding</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{i} = e^{r} - 1\]</div><div class="eq wide ">\[(F/P, \underline{r}\%, N) = e^{rN}, \qquad (P/F, \underline{r}\%, N) = e^{-rN}\]</div><div class="eq narrow ">\[\begin{gathered}(F/P, \underline{r}\%, N) = e^{rN} \\ (P/F, \underline{r}\%, N) = e^{-rN}\end{gathered}\]</div><div class="eq wide ">\[(F/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{r} - 1}, \qquad (P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^{r} - 1)}\]</div><div class="eq narrow ">\[\begin{gathered}(F/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{r} - 1} \\ (P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^{r} - 1)}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal annual rate, compounded continuously (M → ∞)</td><td class="ar">النسبة الاسمية السنوية، مركبة باستمرار <bdi dir="ltr" class=nw>(M</bdi> → ∞)</td></tr><tr><td class="s">\(e\)</td><td class="en" dir="ltr" lang="en">Euler's number ≈ 2.71828</td><td class="ar">عدد أويلر ≈ <bdi dir="ltr" class=nw>2.71828</bdi></td></tr><tr><td class="s">\(\underline{r}\)</td><td class="en" dir="ltr" lang="en">Underlined r in a factor means continuous compounding</td><td class="ar"><bdi dir="ltr" class=nw>r</bdi> تحتها خط في العامل يعني تركيب مستمر</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the problem says 'compounded continuously'. It is the limit of (1 + r/M)^M as M grows without bound.</p><p class="ar ">لما المسألة تقول 'مركبة باستمرار'. هو نهاية <bdi dir="ltr" class=nw>‎(1 + r/M)^M</bdi>‎ لما <bdi dir="ltr" class=nw>M</bdi> تكبر بلا حدود.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>دفعات بـ <bdi dir="ltr" class=nw>10%</bdi> مستمرة</b> <span dir="ltr" lang="en">Annuity at 10% continuous</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">$1,000 is received at the end of each year for 5 years. At 10% compounded continuously, find the effective rate and the present worth.</p><p class="ar ">تستلم <bdi dir="ltr" class=nw>1,000$</bdi> في نهاية كل سنة لمدة <bdi dir="ltr" class=nw>5</bdi> سنوات. بـ <bdi dir="ltr" class=nw>10%</bdi> مركبة باستمرار، أوجد النسبة الفعالة والقيمة الحالية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Effective rate:</p><p class="ar ">النسبة الفعالة:</p><div class="eq ">\[\Z{i} = e^{0.10} - 1 = 0.10517 \approx 10.52\%\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Continuous (P/A) with rN = 0.5:</p><p class="ar "><bdi dir="ltr" class=nw>(P/A)</bdi> المستمر و <bdi dir="ltr" class=nw>rN = 0.5</bdi>:</p><div class="eq ">\[(P/A, \underline{10}\%, 5) = \frac{1.64872 - 1}{1.64872\,(0.10517)} = 3.7412\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Multiply:</p><p class="ar ">اضرب:</p><div class="eq ">\[\X{P} = 1{,}000\,(3.7412) = \$3{,}741.24\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: i ≈ 10.52%, P ≈ $3,741.24.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>i ≈ 10.52%</bdi>، و <bdi dir="ltr" class=nw>P ≈ 3,741.24$</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>إيداع واحد</b> <span dir="ltr" lang="en">A single deposit</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">5,000 SAR is deposited at 6% compounded continuously. How much is there after 8 years?</p><p class="ar ">أودعت <bdi dir="ltr" class=nw>5,000</bdi> ريال بـ <bdi dir="ltr" class=nw>6%</bdi> مركبة باستمرار. كم يصير بعد <bdi dir="ltr" class=nw>8</bdi> سنوات؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">rN = 0.06 × 8 = 0.48:</p><p class="ar "><bdi dir="ltr" class=nw>rN = 0.06 × 8 = 0.48</bdi>:</p><div class="eq ">\[\Z{F} = 5{,}000\,e^{0.48} = 5{,}000\,(1.61607) = 8{,}080.37\ \text{SAR}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 8,080.37 SAR.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>8,080.37</bdi> ريال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="excel">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٨</span>
+  <div class="law-t"><h2>دوال الإكسل المالية</h2><p class="law-en" dir="ltr" lang="en">Law 8 · Excel financial functions</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\begin{gathered}\texttt{=PV(i, n, A, F)} \qquad \texttt{=FV(i, n, A, P)} \qquad \texttt{=PMT(i, n, P, F)} \\ \texttt{=NPER(i, A, P, F)} \qquad \texttt{=RATE(n, A, P, F)}\end{gathered}\]</div><div class="eq narrow big">\[\begin{gathered}\texttt{=PV(i, n, A, F)} \\ \texttt{=FV(i, n, A, P)} \\ \texttt{=PMT(i, n, P, F)} \\ \texttt{=NPER(i, A, P, F)} \\ \texttt{=RATE(n, A, P, F)}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\texttt{PV, FV}\)</td><td class="en" dir="ltr" lang="en">Present / future value</td><td class="ar">القيمة الحالية / المستقبلية</td></tr><tr><td class="s">\(\texttt{PMT}\)</td><td class="en" dir="ltr" lang="en">Equal payment A</td><td class="ar">الدفعة المتساوية <bdi dir="ltr" class=nw>A</bdi></td></tr><tr><td class="s">\(\texttt{NPER}\)</td><td class="en" dir="ltr" lang="en">Number of periods N (no interpolation needed)</td><td class="ar">عدد الفترات <bdi dir="ltr" class=nw>N</bdi> (بدون استكمال)</td></tr><tr><td class="s">\(\texttt{RATE}\)</td><td class="en" dir="ltr" lang="en">Interest rate i (no interpolation needed)</td><td class="ar">نسبة الفائدة <bdi dir="ltr" class=nw>i</bdi> (بدون استكمال)</td></tr><tr><td class="s">\(\texttt{IRR, NPV}\)</td><td class="en" dir="ltr" lang="en">Rate and present worth of any uneven series</td><td class="ar">النسبة والقيمة الحالية لأي سلسلة غير منتظمة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">To check factor answers fast, or to find N and i exactly. Excel treats money received as + and money paid as −, like the cash-flow diagram.</p><p class="ar ">عشان تتأكد من جواب العوامل بسرعة، أو تطلع <bdi dir="ltr" class=nw>N</bdi> و <bdi dir="ltr" class=nw>i</bdi> بالضبط. الإكسل يعتبر الفلوس اللي تستلمها + واللي تدفعها −، مثل مخطط التدفق.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">In NPER and RATE one of the money values must be positive and the other negative, or Excel returns an error.</p><p class="ar ">في <bdi dir="ltr" class=nw>NPER</bdi> و <bdi dir="ltr" class=nw>RATE</bdi> لازم وحدة من القيم موجبة والثانية سالبة، وإلا يعطيك خطأ.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الدفعة بالإكسل</b> <span dir="ltr" lang="en">Payment with PMT</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Find the yearly payment on $5,000 over 5 years at 5%, with Excel and with the factor.</p><p class="ar ">أوجد الدفعة السنوية لـ <bdi dir="ltr" class=nw>5,000$</bdi> على <bdi dir="ltr" class=nw>5</bdi> سنوات بفائدة <bdi dir="ltr" class=nw>5%</bdi>، بالإكسل وبالعامل.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Excel:</p><p class="ar ">بالإكسل:</p><div class="eq ">\[\texttt{=PMT(5\%, 5, 5000)} \;\to\; -1{,}154.87\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Factor check:</p><p class="ar ">تأكيد بالعامل:</p><div class="eq ">\[\Y{A} = 5{,}000\,(A/P, 5\%, 5) = 5{,}000\,(0.23097) = \$1{,}154.87\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: $1,154.87 a year (negative in Excel because you pay it).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1,154.87$</bdi> بالسنة (سالبة في الإكسل لأنك تدفعها).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>N</bdi> و <bdi dir="ltr" class=nw>i</bdi> بدون جداول</b> <span dir="ltr" lang="en">N and i without tables</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Redo the two interpolation examples from part 1 in Excel: the $100,000 loan repaid at $8,000/yr at 7%, and Jill's $1,000/yr that became $8,000 in 5 years.</p><p class="ar ">أعد مثالين الاستكمال من الجزء <bdi dir="ltr" class=nw>1</bdi> بالإكسل: قرض <bdi dir="ltr" class=nw>100,000$</bdi> يتسدد بـ <bdi dir="ltr" class=nw>8,000$</bdi> بالسنة بفائدة <bdi dir="ltr" class=nw>7%</bdi>، وجيل اللي حطت <bdi dir="ltr" class=nw>1,000$</bdi> بالسنة وصارت <bdi dir="ltr" class=nw>8,000$</bdi> بعد <bdi dir="ltr" class=nw>5</bdi> سنوات.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Number of years:</p><p class="ar ">عدد السنوات:</p><div class="eq ">\[\texttt{=NPER(7\%, -8000, 100000)} \;\to\; 30.73\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Rate (P = 0, F = 8,000):</p><p class="ar ">النسبة <bdi dir="ltr" class=nw>(P = 0</bdi> و <bdi dir="ltr" class=nw>F = 8,000)</bdi>:</p><div class="eq ">\[\texttt{=RATE(5, -1000, 0, 8000)} \;\to\; 23.69\%\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: N = 30.73 years and i = 23.69%, matching the interpolation.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>N = 30.73</bdi> سنة و <bdi dir="ltr" class=nw>i = 23.69%</bdi>، نفس اللي طلع بالاستكمال.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg prev" href="laws4-1.html">→ قوانين الفصل ٤ (١)</a><a class="pg lec" href="lecture4-2.html">📖 ارجع لشرح الفصل ٤ (٢)</a></nav>
+</main>
+<script src="econ.js"></script>
+</body>
+</html>

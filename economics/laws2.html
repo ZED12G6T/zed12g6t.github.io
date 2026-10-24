@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة قوانين الفصل ٢ · الاقتصاد الهندسي</title>
+<meta name="description" content="Chapter 2 formula sheet · Cost Concepts &amp; Design Economics: every formula, each symbol in English and Arabic, and worked examples in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="laws.js"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">الاقتصاد الهندسي</a><span class="dot">·</span><b>الفصل ٢</b><span class="dot">·</span><span>ورقة القوانين</span></div>
+    <div class="bar-end">
+      <div class="legend" aria-label="ألوان الرموز"><span class="lg x"><i></i>\(D\) الطلب</span><span class="lg y"><i></i>\(p,\ TR\) السعر والإيراد</span><span class="lg z"><i></i>\(C\) التكلفة</span></div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو القوانين"><a href="lecture2.html">📖 الشرح</a><span class="on" aria-current="page">📐 القوانين</span></nav>
+  <nav class="lw-tabs" aria-label="الفصول"><a class="tab on" href="laws2.html" aria-current=page>الفصل ٢ <small dir="ltr" lang="en">Ch 2</small></a><a class="tab" href="laws4-1.html">الفصل ٤ (١) <small dir="ltr" lang="en">Ch 4 · Part 1</small></a><a class="tab" href="laws4-2.html">الفصل ٤ (٢) <small dir="ltr" lang="en">Ch 4 · Part 2</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة القوانين · الفصل ٢</span>
+    <h1>قوانين مفاهيم التكلفة</h1>
+    <p class="sub">كل قانون في الفصل: الصيغة، وش يعني كل رمز، ومتى تستخدمه، وأمثلة محلولة بالإنجليزي وتحتها الترجمة.</p>
+    <p class="sub-en" dir="ltr" lang="en">Chapter 2 formula sheet · Cost Concepts &amp; Design Economics</p>
+    <div class="stats"><span><b>٩</b> قوانين</span><span><b>١٨</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card">\[\X{D^*} = \dfrac{a - c_v}{2b}\]</div>
+</section>
+
+<div class="view" role="group" aria-label="لغة الأمثلة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#total-cost"><span class="ix-n">١</span><b>التكلفة الكلية</b><small dir="ltr" lang="en">Total cost</small><span class="ix-m">\(C_T = C_F + c_v D\)</span></a><a class="ix" href="#price-demand"><span class="ix-n">٢</span><b>علاقة السعر بالطلب</b><small dir="ltr" lang="en">Price–demand relationship</small><span class="ix-m">\(p = a - bD\)</span></a><a class="ix" href="#revenue"><span class="ix-n">٣</span><b>الإيراد الكلي وأعلى إيراد</b><small dir="ltr" lang="en">Total revenue &amp; maximum revenue</small><span class="ix-m">\(\hat D = \tfrac{a}{2b}\)</span></a><a class="ix" href="#profit"><span class="ix-n">٤</span><b>الربح</b><small dir="ltr" lang="en">Profit</small><span class="ix-m">\(-bD^2 + (a - c_v)D - C_F\)</span></a><a class="ix" href="#optimal"><span class="ix-n">٥</span><b>الطلب الأمثل (أعلى ربح)</b><small dir="ltr" lang="en">Optimal demand (maximum profit)</small><span class="ix-m">\(D^* = \tfrac{a - c_v}{2b}\)</span></a><a class="ix" href="#breakeven"><span class="ix-n">٦</span><b>نقطة التعادل</b><small dir="ltr" lang="en">Breakeven point</small><span class="ix-m">\(\text{Profit}(D') = 0\)</span></a><a class="ix" href="#design"><span class="ix-n">٧</span><b>تحسين التصميم بالتكلفة</b><small dir="ltr" lang="en">Cost-driven design optimization</small><span class="ix-m">\(X^* = \sqrt{b/a}\)</span></a><a class="ix" href="#good-unit"><span class="ix-n">٨</span><b>تكلفة الوحدة السليمة</b><small dir="ltr" lang="en">Cost per good (non-defective) unit</small><span class="ix-m">\(\tfrac{\text{cost}}{\text{good units}}\)</span></a><a class="ix" href="#motor"><span class="ix-n">٩</span><b>تكلفة تشغيل المحرك</b><small dir="ltr" lang="en">Motor operating (energy) cost</small><span class="ix-m">\(P_{\text{in}} = P_{\text{out}}/\eta\)</span></a></div>
+</section>
+
+<section class="law" id="total-cost">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>التكلفة الكلية</h2><p class="law-en" dir="ltr" lang="en">Law 1 · Total cost</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{C_T} = \Z{C_F} + \Z{C_V} = \Z{C_F} + c_v\,\X{D}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\Z{C_T}\)</td><td class="en" dir="ltr" lang="en">Total cost for the period</td><td class="ar">التكلفة الكلية في الفترة</td></tr><tr><td class="s">\(\Z{C_F}\)</td><td class="en" dir="ltr" lang="en">Fixed cost: paid even if you produce nothing (rent, salaries)</td><td class="ar">التكلفة الثابتة: تدفعها حتى لو ما أنتجت شي (إيجار، رواتب)</td></tr><tr><td class="s">\(\Z{C_V}\)</td><td class="en" dir="ltr" lang="en">Total variable cost: grows with output</td><td class="ar">التكلفة المتغيرة الكلية: تكبر مع الإنتاج</td></tr><tr><td class="s">\(c_v\)</td><td class="en" dir="ltr" lang="en">Variable cost per unit</td><td class="ar">التكلفة المتغيرة لكل وحدة</td></tr><tr><td class="s">\(\X{D}\)</td><td class="en" dir="ltr" lang="en">Demand: number of units produced and sold</td><td class="ar">الطلب: عدد الوحدات اللي تنتجها وتبيعها</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Any time you need the total cost of making D units in one period. It is also the cost line in every profit and breakeven problem.</p><p class="ar ">كل ما تبي التكلفة الكلية لإنتاج <bdi dir="ltr" class=nw>D</bdi> وحدة في فترة وحدة. وهي نفسها خط التكلفة في كل مسألة ربح أو تعادل.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>رشاشات <bdi dir="ltr" class=nw>Acme</bdi></b> <span dir="ltr" lang="en">Acme sprinklers</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Acme has fixed costs of $55,000 per month and a variable cost of $15.50 per sprinkler. What is the total monthly cost of making 1,800 sprinklers?</p><p class="ar ">شركة <bdi dir="ltr" class=nw>Acme</bdi> عندها تكاليف ثابتة <bdi dir="ltr" class=nw>55,000$</bdi> بالشهر، وتكلفة متغيرة <bdi dir="ltr" class=nw>15.50$</bdi> لكل رشاش. كم التكلفة الكلية بالشهر لو صنعت <bdi dir="ltr" class=nw>1,800</bdi> رشاش؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Variable part: multiply the unit cost by the number of units.</p><p class="ar ">الجزء المتغير: اضرب تكلفة الوحدة في عدد الوحدات.</p><div class="eq ">\[\Z{C_V} = c_v\,\X{D} = 15.50 \times 1{,}800 = \$27{,}900\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Add the fixed part.</p><p class="ar ">زِد الجزء الثابت.</p><div class="eq ">\[\Z{C_T} = 55{,}000 + 27{,}900 = \$82{,}900\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Total cost = $82,900 per month.</p><p class="ar ">الجواب: التكلفة الكلية = <bdi dir="ltr" class=nw>82,900$</bdi> بالشهر.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مخبز</b> <span dir="ltr" lang="en">A bakery</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A bakery pays 12,000 SAR a month for rent and wages. Ingredients cost 3.20 SAR per cake. Find the total cost and the average cost per cake for 2,500 cakes.</p><p class="ar ">مخبز يدفع <bdi dir="ltr" class=nw>12,000</bdi> ريال بالشهر إيجار ورواتب، والمكونات تكلف <bdi dir="ltr" class=nw>3.20</bdi> ريال لكل كيكة. أوجد التكلفة الكلية ومتوسط تكلفة الكيكة لو سوّى <bdi dir="ltr" class=nw>2,500</bdi> كيكة.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Total cost:</p><p class="ar ">التكلفة الكلية:</p><div class="eq ">\[\Z{C_T} = 12{,}000 + 3.20(2{,}500) = 12{,}000 + 8{,}000 = 20{,}000\ \text{SAR}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Average cost = total cost ÷ units. Notice the fixed cost is spread over all cakes, so making more cakes lowers the average.</p><p class="ar ">متوسط التكلفة = التكلفة الكلية ÷ عدد الوحدات. لاحظ إن الثابتة تتوزع على كل الكيك، فكل ما زاد الإنتاج نزل المتوسط.</p><div class="eq ">\[\frac{\Z{C_T}}{\X{D}} = \frac{20{,}000}{2{,}500} = 8.00\ \text{SAR per cake}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 20,000 SAR in total, 8.00 SAR per cake on average.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>20,000</bdi> ريال كلها، ومتوسط الكيكة <bdi dir="ltr" class=nw>8.00</bdi> ريال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="price-demand">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>علاقة السعر بالطلب</h2><p class="law-en" dir="ltr" lang="en">Law 2 · Price–demand relationship</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Y{p} = a - b\,\X{D}, \qquad 0 \le \X{D} \le \frac{a}{b}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\Y{p}\)</td><td class="en" dir="ltr" lang="en">Price per unit</td><td class="ar">سعر الوحدة</td></tr><tr><td class="s">\(a\)</td><td class="en" dir="ltr" lang="en">Intercept: the highest price, where nobody buys (D = 0)</td><td class="ar">نقطة التقاطع: أعلى سعر، وعنده ما أحد يشتري <bdi dir="ltr" class=nw>(D = 0)</bdi></td></tr><tr><td class="s">\(b\)</td><td class="en" dir="ltr" lang="en">Slope: how much the price drops for each extra unit sold</td><td class="ar">الميل: كم ينزل السعر مع كل وحدة زيادة تبيعها</td></tr><tr><td class="s">\(\X{D}\)</td><td class="en" dir="ltr" lang="en">Demand (units sold)</td><td class="ar">الطلب (عدد الوحدات المباعة)</td></tr><tr><td class="s">\(a/b\)</td><td class="en" dir="ltr" lang="en">Largest possible demand, where the price reaches 0</td><td class="ar">أكبر طلب ممكن، وعنده السعر يوصل صفر</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the price is not fixed: to sell more units you must lower the price. Use it to get the price at a given demand, or the demand at a given price.</p><p class="ar ">لما السعر مو ثابت: عشان تبيع أكثر لازم تنزّل السعر. تستخدمه عشان تطلع السعر عند طلب معيّن، أو الطلب عند سعر معيّن.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>رشاشات <bdi dir="ltr" class=nw>Acme</bdi></b> <span dir="ltr" lang="en">Acme sprinklers</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Acme's demand is \(\Y{p} = 87.50 - 0.02\X{D}\). What price lets Acme sell 1,800 units, and what is the largest demand possible?</p><p class="ar ">الطلب عند <bdi dir="ltr" class=nw>Acme</bdi> هو <bdi dir="ltr" class="im">\(\Y{p} = 87.50 - 0.02\X{D}\)</bdi>. بأي سعر تقدر تبيع <bdi dir="ltr" class=nw>1,800</bdi> وحدة؟ وكم أكبر طلب ممكن؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Put D = 1,800 into the line.</p><p class="ar ">عوّض <bdi dir="ltr" class=nw>D = 1,800</bdi> في المعادلة.</p><div class="eq ">\[\Y{p} = 87.50 - 0.02(1{,}800) = 87.50 - 36 = \$51.50\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Largest demand is where the price hits zero.</p><p class="ar ">أكبر طلب لما السعر يصير صفر.</p><div class="eq ">\[\X{D}_{\max} = \frac{a}{b} = \frac{87.50}{0.02} = 4{,}375\ \text{units}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Price $51.50; demand can never exceed 4,375 units.</p><p class="ar ">الجواب: السعر <bdi dir="ltr" class=nw>51.50$</bdi>، والطلب ما يتعدى <bdi dir="ltr" class=nw>4,375</bdi> وحدة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>المعادلة بالعكس</b> <span dir="ltr" lang="en">Reading the line backwards</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">For \(\Y{p} = 100 - 0.5\X{D}\), how many units can be sold at a price of $60?</p><p class="ar ">لو <bdi dir="ltr" class="im">\(\Y{p} = 100 - 0.5\X{D}\)</bdi>، كم وحدة تقدر تبيع لو السعر <bdi dir="ltr" class=nw>60$</bdi>؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Set p = 60 and solve for D.</p><p class="ar ">حط <bdi dir="ltr" class=nw>p = 60</bdi> وطلّع <bdi dir="ltr" class=nw>D</bdi>.</p><div class="eq ">\[60 = 100 - 0.5\X{D} \;\Rightarrow\; 0.5\X{D} = 40 \;\Rightarrow\; \X{D} = 80\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 80 units.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>80</bdi> وحدة.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="revenue">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>الإيراد الكلي وأعلى إيراد</h2><p class="law-en" dir="ltr" lang="en">Law 3 · Total revenue &amp; maximum revenue</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Y{TR} = \Y{p}\,\X{D} = a\X{D} - b\X{D}^2\]</div><div class="eq ">\[\X{\hat D} = \frac{a}{2b} \qquad\qquad \Y{TR}_{\max} = \frac{a^2}{4b} \quad \text{(eq. 2-6)}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\Y{TR}\)</td><td class="en" dir="ltr" lang="en">Total revenue = price × units</td><td class="ar">الإيراد الكلي = السعر × عدد الوحدات</td></tr><tr><td class="s">\(\X{\hat D}\)</td><td class="en" dir="ltr" lang="en">Demand that gives the most revenue (D-hat)</td><td class="ar">الطلب اللي يعطي أعلى إيراد <bdi dir="ltr" class=nw>(D</bdi> هات)</td></tr><tr><td class="s">\(\Y{TR}_{\max}\)</td><td class="en" dir="ltr" lang="en">The maximum revenue itself</td><td class="ar">قيمة أعلى إيراد نفسها</td></tr><tr><td class="s">\(a,\ b\)</td><td class="en" dir="ltr" lang="en">Intercept and slope of the price line</td><td class="ar">تقاطع وميل خط السعر</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When asked for the demand (or price) that brings in the most money. It comes from setting dTR/dD = a − 2bD = 0. It ignores costs, so it is not the best-profit point.</p><p class="ar ">لما يسألك عن الطلب (أو السعر) اللي يجيب أكثر فلوس. يطلع من مساواة المشتقة <bdi dir="ltr" class=nw>dTR/dD = a − 2bD</bdi> بالصفر. وما يحسب التكاليف، فهو مو نقطة أعلى ربح.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Max revenue ≠ max profit. With costs, the best demand D* is always a bit smaller than D̂.</p><p class="ar ">أعلى إيراد ≠ أعلى ربح. لما تدخل التكاليف، أفضل طلب <bdi dir="ltr" class=nw>D*</bdi> دايم أصغر شوي من <bdi dir="ltr" class=nw>D̂</bdi>.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>رشاشات <bdi dir="ltr" class=nw>Acme</bdi></b> <span dir="ltr" lang="en">Acme sprinklers</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">With \(\Y{p} = 87.50 - 0.02\X{D}\), what demand maximizes Acme's revenue, and how much is that revenue?</p><p class="ar ">لو <bdi dir="ltr" class="im">\(\Y{p} = 87.50 - 0.02\X{D}\)</bdi>، وش الطلب اللي يعطي <bdi dir="ltr" class=nw>Acme</bdi> أعلى إيراد، وكم هالإيراد؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Demand at maximum revenue:</p><p class="ar ">الطلب عند أعلى إيراد:</p><div class="eq ">\[\X{\hat D} = \frac{87.50}{2(0.02)} = \frac{87.50}{0.04} = 2{,}187.5\ \text{units}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Maximum revenue:</p><p class="ar ">أعلى إيراد:</p><div class="eq ">\[\Y{TR}_{\max} = \frac{(87.50)^2}{4(0.02)} = \frac{7{,}656.25}{0.08} = \$95{,}703.12\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: D̂ = 2,187.5 units, TRmax ≈ $95,703.12 per month (price there = a/2 = $43.75).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>D̂ = 2,187.5</bdi> وحدة، وأعلى إيراد ≈ <bdi dir="ltr" class=nw>95,703.12$</bdi> بالشهر (والسعر عندها <bdi dir="ltr" class=nw>a/2 = 43.75$)</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سوق ثاني</b> <span dir="ltr" lang="en">A second market</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">For \(\Y{p} = 100 - 0.5\X{D}\), find the revenue-maximizing demand and the maximum revenue.</p><p class="ar ">لو <bdi dir="ltr" class="im">\(\Y{p} = 100 - 0.5\X{D}\)</bdi>، أوجد الطلب اللي يعطي أعلى إيراد، وقيمة أعلى إيراد.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Apply both formulas with a = 100 and b = 0.5.</p><p class="ar ">طبّق القانونين بـ <bdi dir="ltr" class=nw>a = 100</bdi> و <bdi dir="ltr" class=nw>b = 0.5</bdi>.</p><div class="eq ">\[\X{\hat D} = \frac{100}{2(0.5)} = 100, \qquad \Y{TR}_{\max} = \frac{100^2}{4(0.5)} = \$5{,}000\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Check: at D = 100 the price is 100 − 50 = $50, and 50 × 100 = $5,000.</p><p class="ar ">تأكد: عند <bdi dir="ltr" class=nw>D = 100</bdi> السعر <bdi dir="ltr" class=nw>100 − 50 = 50$</bdi>، و <bdi dir="ltr" class=nw>50 × 100 = 5,000$</bdi>.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: D̂ = 100 units, TRmax = $5,000.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>D̂ = 100</bdi> وحدة، وأعلى إيراد = <bdi dir="ltr" class=nw>5,000$</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="profit">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>الربح</h2><p class="law-en" dir="ltr" lang="en">Law 4 · Profit</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Profit} = \Y{TR} - \Z{C_T} = -b\X{D}^2 + (a - c_v)\X{D} - \Z{C_F}\]</div><div class="eq narrow big">\[\begin{aligned}\text{Profit} &= \Y{TR} - \Z{C_T} \\ &= -b\X{D}^2 + (a - c_v)\X{D} - \Z{C_F}\end{aligned}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Profit}\)</td><td class="en" dir="ltr" lang="en">Total revenue minus total cost</td><td class="ar">الإيراد الكلي ناقص التكلفة الكلية</td></tr><tr><td class="s">\(a - c_v\)</td><td class="en" dir="ltr" lang="en">What one unit earns before fixed costs (at the top of the price line)</td><td class="ar">اللي تكسبه الوحدة قبل التكاليف الثابتة (عند أعلى السعر)</td></tr><tr><td class="s">\(b,\ \X{D}\)</td><td class="en" dir="ltr" lang="en">Slope of the price line, and demand</td><td class="ar">ميل خط السعر، والطلب</td></tr><tr><td class="s">\(\Z{C_F},\ c_v\)</td><td class="en" dir="ltr" lang="en">Fixed cost, and variable cost per unit</td><td class="ar">التكلفة الثابتة، والمتغيرة لكل وحدة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">To find the profit at any demand level. It is a downward parabola, so profit rises, peaks at D*, then falls.</p><p class="ar ">عشان تطلع الربح عند أي طلب. وهو قطع مكافئ مفتوح لتحت: الربح يزيد، يوصل قمته عند <bdi dir="ltr" class=nw>D*</bdi>، وبعدين ينزل.</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide typo</span></div>
+  <p class="en " dir="ltr" lang="en">Slide typo: the second line on the slide shows +c<sub>v</sub>·D. It should be −c<sub>v</sub>·D, because the whole bracket (C<sub>F</sub> + c<sub>v</sub>·D) is subtracted. The final line −bD² + (a − c<sub>v</sub>)D − C<sub>F</sub> is correct.</p><p class="ar ">غلطة مطبعية في السلايد: السطر الثاني مكتوب فيه <bdi dir="ltr" class=nw>‎+c<sub>v</sub>·D</bdi>‎ والصح <bdi dir="ltr" class=nw>‎−c<sub>v</sub>·D</bdi>‎، لأن القوس <bdi dir="ltr" class=nw>(C<sub>F</sub> + c<sub>v</sub>·D)</bdi> كله مطروح. والسطر الأخير <bdi dir="ltr" class=nw>‎−bD² + (a − c<sub>v</sub>)D − C<sub>F</sub></bdi>‎ صحيح.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>Acme</bdi> عند <bdi dir="ltr" class=nw>2,000</bdi> وحدة</b> <span dir="ltr" lang="en">Acme at 2,000 units</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Acme: a = 87.50, b = 0.02, C<sub>F</sub> = $55,000, c<sub>v</sub> = $15.50. What is the monthly profit if Acme sells 2,000 units?</p><p class="ar "><bdi dir="ltr" class=nw>Acme: a = 87.50</bdi> و <bdi dir="ltr" class=nw>b = 0.02</bdi> و <bdi dir="ltr" class=nw>C<sub>F</sub> = 55,000$</bdi> و <bdi dir="ltr" class=nw>c<sub>v</sub> = 15.50$</bdi>. كم الربح بالشهر لو باعت <bdi dir="ltr" class=nw>2,000</bdi> وحدة؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">First build the profit function: a − c<sub>v</sub> = 87.50 − 15.50 = 72.</p><p class="ar ">أول شي ابنِ دالة الربح: <bdi dir="ltr">a − c<sub>v</sub> = 87.50 − 15.50 = 72</bdi>.</p><div class="eq ">\[\text{Profit} = -0.02\X{D}^2 + 72\X{D} - 55{,}000\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Substitute D = 2,000.</p><p class="ar ">عوّض <bdi dir="ltr" class=nw>D = 2,000</bdi>.</p><div class="eq wide ">\[-0.02(2{,}000)^2 + 72(2{,}000) - 55{,}000 = -80{,}000 + 144{,}000 - 55{,}000 = \$9{,}000\]</div><div class="eq narrow ">\[\begin{aligned}&-0.02(2{,}000)^2 + 72(2{,}000) - 55{,}000 \\ &= -80{,}000 + 144{,}000 - 55{,}000 \\ &= \$9{,}000\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Profit = $9,000 per month (less than the $9,800 at D* = 1,800).</p><p class="ar ">الجواب: الربح = <bdi dir="ltr" class=nw>9,000$</bdi> بالشهر (أقل من <bdi dir="ltr" class=nw>9,800$</bdi> اللي عند <bdi dir="ltr" class=nw>D* = 1,800)</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سوق ثاني</b> <span dir="ltr" lang="en">A second market</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">\(\Y{p} = 100 - 0.5\X{D}\), C<sub>F</sub> = $2,400, c<sub>v</sub> = $20. Find the profit at D = 60.</p><p class="ar "><bdi dir="ltr" class="im">\(\Y{p} = 100 - 0.5\X{D}\)</bdi>، و <bdi dir="ltr" class=nw>C<sub>F</sub> = 2,400$</bdi>، و <bdi dir="ltr" class=nw>c<sub>v</sub> = 20$</bdi>. أوجد الربح عند <bdi dir="ltr" class=nw>D = 60</bdi>.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Profit function: a − c<sub>v</sub> = 80.</p><p class="ar ">دالة الربح: <bdi dir="ltr" class=nw>a − c<sub>v</sub> = 80</bdi>.</p><div class="eq ">\[\text{Profit} = -0.5\X{D}^2 + 80\X{D} - 2{,}400\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">At D = 60:</p><p class="ar ">عند <bdi dir="ltr" class=nw>D = 60</bdi>:</p><div class="eq ">\[-0.5(60)^2 + 80(60) - 2{,}400 = -1{,}800 + 4{,}800 - 2{,}400 = \$600\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Profit = $600.</p><p class="ar ">الجواب: الربح = <bdi dir="ltr" class=nw>600$</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="optimal">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>الطلب الأمثل (أعلى ربح)</h2><p class="law-en" dir="ltr" lang="en">Law 5 · Optimal demand (maximum profit)</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\X{D^*} = \frac{a - c_v}{2b}\]</div><div class="eq wide ">\[\frac{d(\text{Profit})}{d\X{D}} = a - c_v - 2b\X{D} = 0, \qquad \frac{d^2(\text{Profit})}{d\X{D}^2} = -2b < 0\]</div><div class="eq narrow ">\[\begin{gathered}\frac{d(\text{Profit})}{d\X{D}} = a - c_v - 2b\X{D} = 0 \\ \frac{d^2(\text{Profit})}{d\X{D}^2} = -2b < 0\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\X{D^*}\)</td><td class="en" dir="ltr" lang="en">Optimal demand: the volume that gives the most profit (D-star)</td><td class="ar">الطلب الأمثل: الكمية اللي تعطي أعلى ربح <bdi dir="ltr" class=nw>(D</bdi> ستار)</td></tr><tr><td class="s">\(a - c_v\)</td><td class="en" dir="ltr" lang="en">Must be positive, or every unit loses money</td><td class="ar">لازم يكون موجب، وإلا كل وحدة تبيعها خسارة</td></tr><tr><td class="s">\(-2b\)</td><td class="en" dir="ltr" lang="en">Second derivative: negative, so D* is a maximum</td><td class="ar">المشتقة الثانية: سالبة، يعني <bdi dir="ltr" class=nw>D*</bdi> قمة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When asked for the volume (or price) that maximizes profit. Notice C<sub>F</sub> does not appear: fixed cost changes how much profit you make, not where the peak is.</p><p class="ar ">لما يسألك عن الكمية (أو السعر) اللي تعطي أعلى ربح. لاحظ إن <bdi dir="ltr" class=nw>C<sub>F</sub></bdi> ما يدخل: الثابتة تغيّر كم تربح، بس ما تغيّر مكان القمة.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>رشاشات <bdi dir="ltr" class=nw>Acme</bdi></b> <span dir="ltr" lang="en">Acme sprinklers</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Find Acme's optimal demand, the maximum monthly profit, and the selling price at that demand.</p><p class="ar ">أوجد الطلب الأمثل لـ <bdi dir="ltr" class=nw>Acme</bdi>، وأعلى ربح بالشهر، وسعر البيع عند هالطلب.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Optimal demand:</p><p class="ar ">الطلب الأمثل:</p><div class="eq ">\[\X{D^*} = \frac{87.50 - 15.50}{2(0.02)} = \frac{72}{0.04} = 1{,}800\ \text{units/month}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Profit at D*:</p><p class="ar ">الربح عند <bdi dir="ltr" class=nw>D*</bdi>:</p><div class="eq wide ">\[-0.02(1{,}800)^2 + 72(1{,}800) - 55{,}000 = -64{,}800 + 129{,}600 - 55{,}000 = \$9{,}800\]</div><div class="eq narrow ">\[\begin{aligned}&-0.02(1{,}800)^2 + 72(1{,}800) - 55{,}000 \\ &= -64{,}800 + 129{,}600 - 55{,}000 \\ &= \$9{,}800\end{aligned}\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Price at D*:</p><p class="ar ">السعر عند <bdi dir="ltr" class=nw>D*</bdi>:</p><div class="eq ">\[\Y{p} = 87.50 - 0.02(1{,}800) = \$51.50\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: D* = 1,800 units, max profit = $9,800/month, price = $51.50.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>D* = 1,800</bdi> وحدة، أعلى ربح = <bdi dir="ltr" class=nw>9,800$</bdi> بالشهر، والسعر = <bdi dir="ltr" class=nw>51.50$</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سوق ثاني</b> <span dir="ltr" lang="en">A second market</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">\(\Y{p} = 100 - 0.5\X{D}\), C<sub>F</sub> = $2,400, c<sub>v</sub> = $20. Find D* and the maximum profit.</p><p class="ar "><bdi dir="ltr" class="im">\(\Y{p} = 100 - 0.5\X{D}\)</bdi>، و <bdi dir="ltr" class=nw>C<sub>F</sub> = 2,400$</bdi>، و <bdi dir="ltr" class=nw>c<sub>v</sub> = 20$</bdi>. أوجد <bdi dir="ltr" class=nw>D*</bdi> وأعلى ربح.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Optimal demand:</p><p class="ar ">الطلب الأمثل:</p><div class="eq ">\[\X{D^*} = \frac{100 - 20}{2(0.5)} = \frac{80}{1} = 80\ \text{units}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Maximum profit:</p><p class="ar ">أعلى ربح:</p><div class="eq ">\[-0.5(80)^2 + 80(80) - 2{,}400 = -3{,}200 + 6{,}400 - 2{,}400 = \$800\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Compare: D* = 80 is below D̂ = 100 from the revenue law, as expected.</p><p class="ar ">قارن: <bdi dir="ltr" class=nw>D* = 80</bdi> أصغر من <bdi dir="ltr" class=nw>D̂ = 100</bdi> اللي طلعت من قانون الإيراد، مثل ما توقعنا.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: D* = 80 units, max profit = $800.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>D* = 80</bdi> وحدة، وأعلى ربح = <bdi dir="ltr" class=nw>800$</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="breakeven">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>نقطة التعادل</h2><p class="law-en" dir="ltr" lang="en">Law 6 · Breakeven point</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\X{D'} = \frac{-(a - c_v) \pm \sqrt{(a - c_v)^2 - 4(-b)(-\Z{C_F})}}{2(-b)}\]</div><div class="eq ">\[D'_1 < \X{D} < D'_2 \;\Rightarrow\; \text{Profit} > 0\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\X{D'}\)</td><td class="en" dir="ltr" lang="en">Breakeven demand: total revenue = total cost, so profit = 0 (D-prime)</td><td class="ar">طلب التعادل: الإيراد الكلي = التكلفة الكلية، يعني الربح = صفر <bdi dir="ltr" class=nw>(D</bdi> برايم)</td></tr><tr><td class="s">\(D'_1,\ D'_2\)</td><td class="en" dir="ltr" lang="en">The two breakeven points; profit is positive only between them</td><td class="ar">نقطتين التعادل، والربح موجب بس بينهم</td></tr><tr><td class="s">\((a - c_v)^2 - 4bC_F\)</td><td class="en" dir="ltr" lang="en">Discriminant: if negative there is no breakeven (always a loss)</td><td class="ar">المميز: لو سالب ما فيه تعادل (خسارة دايم)</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When asked for the range of demand that makes a profit, or the demand where the firm just covers its costs. It is the quadratic formula applied to Profit = 0.</p><p class="ar ">لما يسألك عن مدى الطلب اللي يحقق ربح، أو الطلب اللي تغطي فيه الشركة تكاليفها بالضبط. هو قانون الدرجة الثانية على <bdi dir="ltr" class=nw>Profit = 0</bdi>.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Watch the signs: the 'a' of the quadratic here is −b, so the denominator 2(−b) is negative.</p><p class="ar ">انتبه للإشارات: معامل <bdi dir="ltr" class=nw>D²</bdi> هنا <bdi dir="ltr" class=nw>‎−b</bdi>‎، فالمقام <bdi dir="ltr" class=nw>‎2(−b)</bdi>‎ سالب.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>رشاشات <bdi dir="ltr" class=nw>Acme</bdi></b> <span dir="ltr" lang="en">Acme sprinklers</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Find the range of demand for which Acme makes a profit.</p><p class="ar ">أوجد مدى الطلب اللي تربح فيه <bdi dir="ltr" class=nw>Acme</bdi>.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Set profit to zero.</p><p class="ar ">ساوِ الربح بالصفر.</p><div class="eq ">\[-0.02\X{D}^2 + 72\X{D} - 55{,}000 = 0\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Discriminant:</p><p class="ar ">المميز:</p><div class="eq wide ">\[72^2 - 4(-0.02)(-55{,}000) = 5{,}184 - 4{,}400 = 784, \qquad \sqrt{784} = 28\]</div><div class="eq narrow ">\[\begin{aligned}&72^2 - 4(-0.02)(-55{,}000) \\ &= 5{,}184 - 4{,}400 = 784,\quad \sqrt{784} = 28\end{aligned}\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">The two roots:</p><p class="ar ">الجذرين:</p><div class="eq ">\[D'_1 = \frac{-72 + 28}{-0.04} = 1{,}100, \qquad D'_2 = \frac{-72 - 28}{-0.04} = 2{,}500\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Profit is positive for 1,100 &lt; D &lt; 2,500 units per month.</p><p class="ar ">الجواب: الربح موجب لما <bdi dir="ltr" class=nw>1,100 &lt; D &lt; 2,500</bdi> وحدة بالشهر.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سوق ثاني</b> <span dir="ltr" lang="en">A second market</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">\(\Y{p} = 100 - 0.5\X{D}\), C<sub>F</sub> = $2,400, c<sub>v</sub> = $20. Find the breakeven points.</p><p class="ar "><bdi dir="ltr" class="im">\(\Y{p} = 100 - 0.5\X{D}\)</bdi>، و <bdi dir="ltr" class=nw>C<sub>F</sub> = 2,400$</bdi>، و <bdi dir="ltr" class=nw>c<sub>v</sub> = 20$</bdi>. أوجد نقطتين التعادل.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Set profit to zero.</p><p class="ar ">ساوِ الربح بالصفر.</p><div class="eq ">\[-0.5\X{D}^2 + 80\X{D} - 2{,}400 = 0\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Discriminant: 80² − 4(0.5)(2,400) = 6,400 − 4,800 = 1,600, and √1,600 = 40.</p><p class="ar ">المميز: <bdi dir="ltr">80² − 4(0.5)(2,400) = 6,400 − 4,800 = 1,600</bdi>، وجذره <bdi dir="ltr" class=nw>40</bdi>.</p><div class="eq ">\[D' = \frac{-80 \pm 40}{2(-0.5)} = \frac{-80 \pm 40}{-1} \;\Rightarrow\; D'_1 = 40,\quad D'_2 = 120\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Profitable between 40 and 120 units (and D* = 80 sits exactly in the middle).</p><p class="ar ">الجواب: مربح بين <bdi dir="ltr" class=nw>40</bdi> و <bdi dir="ltr" class=nw>120</bdi> وحدة (و <bdi dir="ltr" class=nw>D* = 80</bdi> بالضبط في النص).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="design">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>تحسين التصميم بالتكلفة</h2><p class="law-en" dir="ltr" lang="en">Law 7 · Cost-driven design optimization</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{\text{Cost}} = a\X{X} + \frac{b}{\X{X}} + k\]</div><div class="eq ">\[\X{X^*} = \sqrt{\frac{b}{a}}, \qquad \Z{\text{Cost}}_{\min} = 2\sqrt{ab} + k\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\X{X}\)</td><td class="en" dir="ltr" lang="en">Design variable (speed, thickness, size…)</td><td class="ar">متغير التصميم (سرعة، سماكة، حجم…)</td></tr><tr><td class="s">\(a\X{X}\)</td><td class="en" dir="ltr" lang="en">Cost that grows as X grows</td><td class="ar">تكلفة تكبر كل ما كبر <bdi dir="ltr" class=nw>X</bdi></td></tr><tr><td class="s">\(b/\X{X}\)</td><td class="en" dir="ltr" lang="en">Cost that shrinks as X grows</td><td class="ar">تكلفة تصغر كل ما كبر <bdi dir="ltr" class=nw>X</bdi></td></tr><tr><td class="s">\(k\)</td><td class="en" dir="ltr" lang="en">Cost that does not depend on X</td><td class="ar">تكلفة ما تعتمد على <bdi dir="ltr" class=nw>X</bdi></td></tr><tr><td class="s">\(\X{X^*}\)</td><td class="en" dir="ltr" lang="en">Optimal value of the design variable</td><td class="ar">القيمة المثلى لمتغير التصميم</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When one design choice pushes two costs in opposite directions. Find X* from d(Cost)/dX = a − b/X² = 0, then check the second derivative 2b/X³ &gt; 0 (a minimum).</p><p class="ar ">لما قرار تصميم واحد يحرّك تكلفتين بعكس بعض. تطلع <bdi dir="ltr" class=nw>X*</bdi> من <bdi dir="ltr">d(Cost)/dX = a − b/X² = 0</bdi>، وتتأكد إن المشتقة الثانية <bdi dir="ltr" class=nw>2b/X</bdi>³ موجبة (يعني أقل قيمة).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>تمرين المحاضرة</b> <span dir="ltr" lang="en">Lecture practice</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Cost = 2X + 800/X + 50. Find the optimal X and the minimum cost.</p><p class="ar ">التكلفة = <bdi dir="ltr" class=nw>2X + 800/X + 50</bdi>. أوجد <bdi dir="ltr" class=nw>X</bdi> الأمثل وأقل تكلفة.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Optimal X:</p><p class="ar "><bdi dir="ltr" class=nw>X</bdi> الأمثل:</p><div class="eq ">\[\X{X^*} = \sqrt{\frac{800}{2}} = \sqrt{400} = 20\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Minimum cost (the two changing parts come out equal at the optimum):</p><p class="ar ">أقل تكلفة (الجزئين المتغيرين يطلعون متساويين عند الأمثل):</p><div class="eq ">\[\Z{\text{Cost}} = 2(20) + \frac{800}{20} + 50 = 40 + 40 + 50 = 130\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: X* = 20, minimum cost = 130.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>X* = 20</bdi>، وأقل تكلفة = <bdi dir="ltr" class=nw>130</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>أفضل سرعة للشاحنة</b> <span dir="ltr" lang="en">Best truck speed</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A truck's cost per km is: fuel = 0.01v SAR (v in km/h), driver wage = 64/v SAR, tires and upkeep = 0.40 SAR. Which speed gives the lowest cost per km?</p><p class="ar ">تكلفة الشاحنة لكل كيلو: وقود = <bdi dir="ltr" class=nw>0.01v</bdi> ريال <bdi dir="ltr" class=nw>(v</bdi> بالكيلو/ساعة)، وأجرة السواق = <bdi dir="ltr" class=nw>64/v</bdi> ريال، وكفرات وصيانة = <bdi dir="ltr" class=nw>0.40</bdi> ريال. أي سرعة تعطي أقل تكلفة لكل كيلو؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Match the form: a = 0.01, b = 64, k = 0.40. Faster burns more fuel; slower pays the driver longer.</p><p class="ar ">طابق الشكل: <bdi dir="ltr" class=nw>a = 0.01</bdi> و <bdi dir="ltr" class=nw>b = 64</bdi> و <bdi dir="ltr" class=nw>k = 0.40</bdi>. السرعة تصرف وقود أكثر، والبطء يطوّل أجرة السواق.</p><div class="eq ">\[\X{v^*} = \sqrt{\frac{64}{0.01}} = \sqrt{6{,}400} = 80\ \text{km/h}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Minimum cost per km:</p><p class="ar ">أقل تكلفة لكل كيلو:</p><div class="eq ">\[\Z{\text{Cost}} = 0.01(80) + \frac{64}{80} + 0.40 = 0.80 + 0.80 + 0.40 = 2.00\ \text{SAR/km}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 80 km/h, costing 2.00 SAR per km.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>80</bdi> كيلو/ساعة، والتكلفة <bdi dir="ltr" class=nw>2.00</bdi> ريال لكل كيلو.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="good-unit">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٨</span>
+  <div class="law-t"><h2>تكلفة الوحدة السليمة</h2><p class="law-en" dir="ltr" lang="en">Law 8 · Cost per good (non-defective) unit</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Cost per good unit} = \frac{\Z{\text{Total cost}}}{\X{\text{Units made}} \times \text{yield}}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Cost per good unit} \\ = \frac{\Z{\text{Total cost}}}{\X{\text{Units made}} \times \text{yield}}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{yield}\)</td><td class="en" dir="ltr" lang="en">Fraction of units that come out without defects (e.g. 0.95)</td><td class="ar">نسبة الوحدات اللي تطلع سليمة بدون عيوب (مثلاً <bdi dir="ltr" class=nw>0.95)</bdi></td></tr><tr><td class="s">\(\X{\text{Units made}} \times \text{yield}\)</td><td class="en" dir="ltr" lang="en">Number of good units you can actually sell</td><td class="ar">عدد الوحدات السليمة اللي فعلاً تقدر تبيعها</td></tr><tr><td class="s">\(\Z{\text{Total cost}}\)</td><td class="en" dir="ltr" lang="en">All the cost of the production run</td><td class="ar">كل تكلفة دفعة الإنتاج</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Present economy study (one year or less) where revenue is the same for all options: pick the option with the lowest cost per good unit, not the lowest total cost.</p><p class="ar ">دراسة الاقتصاد الحاضر (سنة أو أقل) لما الإيراد نفسه لكل البدائل: اختار الأقل تكلفة لكل وحدة سليمة، مو الأقل تكلفة كلية.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>طريقتين إنتاج</b> <span dir="ltr" lang="en">Two processes</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Process A makes 1,000 units for $9,500 with a 95% yield. Process B makes 1,000 units for $9,702 with a 99% yield. Which is cheaper per good unit?</p><p class="ar ">الطريقة <bdi dir="ltr" class=nw>A</bdi> تنتج <bdi dir="ltr" class=nw>1,000</bdi> وحدة بـ <bdi dir="ltr" class=nw>9,500$</bdi> ونسبة السليم <bdi dir="ltr" class=nw>95%</bdi>. والطريقة <bdi dir="ltr" class=nw>B</bdi> تنتج <bdi dir="ltr" class=nw>1,000</bdi> وحدة بـ <bdi dir="ltr" class=nw>9,702$</bdi> ونسبة السليم <bdi dir="ltr" class=nw>99%</bdi>. أيهم أرخص لكل وحدة سليمة؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Good units:</p><p class="ar ">الوحدات السليمة:</p><div class="eq ">\[A:\ 1{,}000(0.95) = 950, \qquad B:\ 1{,}000(0.99) = 990\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Cost per good unit:</p><p class="ar ">تكلفة الوحدة السليمة:</p><div class="eq ">\[A:\ \frac{9{,}500}{950} = \$10.00, \qquad B:\ \frac{9{,}702}{990} = \$9.80\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Choose B ($9.80 per good unit), even though its total cost is higher.</p><p class="ar ">الجواب: اختار <bdi dir="ltr" class=nw>B (9.80$</bdi> لكل وحدة سليمة)، حتى لو تكلفته الكلية أعلى.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>لما الجودة الأعلى تخسر</b> <span dir="ltr" lang="en">When the better yield loses</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Machine X makes 600 parts for $4,200 with a 92% yield. Machine Y makes 600 parts for $4,500 with a 98% yield. Which machine should you use?</p><p class="ar ">المكينة <bdi dir="ltr" class=nw>X</bdi> تسوي <bdi dir="ltr" class=nw>600</bdi> قطعة بـ <bdi dir="ltr" class=nw>4,200$</bdi> ونسبة السليم <bdi dir="ltr" class=nw>92%</bdi>. والمكينة <bdi dir="ltr" class=nw>Y</bdi> تسوي <bdi dir="ltr" class=nw>600</bdi> قطعة بـ <bdi dir="ltr" class=nw>4,500$</bdi> ونسبة السليم <bdi dir="ltr" class=nw>98%</bdi>. أي مكينة تستخدم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Good parts:</p><p class="ar ">القطع السليمة:</p><div class="eq ">\[X:\ 600(0.92) = 552, \qquad Y:\ 600(0.98) = 588\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Cost per good part:</p><p class="ar ">تكلفة القطعة السليمة:</p><div class="eq ">\[X:\ \frac{4{,}200}{552} = \$7.609, \qquad Y:\ \frac{4{,}500}{588} = \$7.653\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Choose X ($7.609 vs $7.653): a better yield is not always worth the extra cost.</p><p class="ar ">الجواب: اختار <bdi dir="ltr" class=nw>X (7.609$</bdi> مقابل <bdi dir="ltr" class=nw>7.653$)</bdi>: الجودة الأعلى مو دايم تستاهل التكلفة الزيادة.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="motor">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٩</span>
+  <div class="law-t"><h2>تكلفة تشغيل المحرك</h2><p class="law-en" dir="ltr" lang="en">Law 9 · Motor operating (energy) cost</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[P_{\text{in}} = \frac{\text{hp} \times 0.746}{\eta}, \qquad \Z{\text{Energy cost}} = P_{\text{in}} \times \text{hours} \times \text{price per kWh}\]</div><div class="eq narrow big">\[\begin{gathered}P_{\text{in}} = \frac{\text{hp} \times 0.746}{\eta} \\ \Z{\text{Energy cost}} = P_{\text{in}} \times \text{hours} \times \text{price/kWh}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{hp}\)</td><td class="en" dir="ltr" lang="en">Output power in horsepower (1 hp = 0.746 kW)</td><td class="ar">القدرة الخارجة بالحصان <bdi dir="ltr" class=nw>(1</bdi> حصان = <bdi dir="ltr" class=nw>0.746</bdi> كيلوواط)</td></tr><tr><td class="s">\(\eta\)</td><td class="en" dir="ltr" lang="en">Efficiency (eta): output ÷ input, less than 1</td><td class="ar">الكفاءة (إيتا): الخارج ÷ الداخل، أقل من <bdi dir="ltr" class=nw>1</bdi></td></tr><tr><td class="s">\(P_{\text{in}}\)</td><td class="en" dir="ltr" lang="en">Electrical power drawn from the grid (kW)</td><td class="ar">القدرة الكهربائية اللي يسحبها (كيلوواط)</td></tr><tr><td class="s">\(\text{kWh}\)</td><td class="en" dir="ltr" lang="en">Energy unit you pay for: kW × hours</td><td class="ar">وحدة الطاقة اللي تدفع عليها: كيلوواط × ساعات</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">Comparing machines that do the same job but have different efficiencies. The less efficient one draws more power, so it costs more to run every year.</p><p class="ar ">لما تقارن مكاين تسوي نفس الشغل بس كفاءتها مختلفة. الأقل كفاءة يسحب كهرباء أكثر، فيكلف أكثر كل سنة.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>المحرك الأوفر</b> <span dir="ltr" lang="en">The cheaper motor</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A 75 hp load runs 8 hours a day, 365 days a year. Motor A has 75% efficiency, motor B 85%. Electricity costs $0.16/kWh. Find each motor's yearly energy cost.</p><p class="ar ">حمل <bdi dir="ltr" class=nw>75</bdi> حصان يشتغل <bdi dir="ltr" class=nw>8</bdi> ساعات باليوم، <bdi dir="ltr" class=nw>365</bdi> يوم بالسنة. المحرك <bdi dir="ltr" class=nw>A</bdi> كفاءته <bdi dir="ltr" class=nw>75%</bdi>، والمحرك <bdi dir="ltr" class=nw>B</bdi> كفاءته <bdi dir="ltr" class=nw>85%</bdi>. الكهرباء بـ <bdi dir="ltr" class=nw>0.16$</bdi> للكيلوواط ساعة. أوجد تكلفة الطاقة السنوية لكل محرك.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Hours and output power:</p><p class="ar ">الساعات والقدرة الخارجة:</p><div class="eq ">\[8 \times 365 = 2{,}920\ \text{h}, \qquad P_{\text{out}} = 75 \times 0.746 = 55.95\ \text{kW}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Input power:</p><p class="ar ">القدرة الداخلة:</p><div class="eq wide ">\[P_{\text{in},A} = \frac{55.95}{0.75} = 74.60\ \text{kW}, \qquad P_{\text{in},B} = \frac{55.95}{0.85} = 65.82\ \text{kW}\]</div><div class="eq narrow ">\[\begin{aligned}P_{\text{in},A} &= \frac{55.95}{0.75} = 74.60\ \text{kW} \\ P_{\text{in},B} &= \frac{55.95}{0.85} = 65.82\ \text{kW}\end{aligned}\]</div></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Yearly cost:</p><p class="ar ">التكلفة السنوية:</p><div class="eq wide ">\[A:\ 74.60 \times 2{,}920 \times 0.16 = \$34{,}853.12, \qquad B:\ \$30{,}752.75\]</div><div class="eq narrow ">\[\begin{aligned}A&:\ 74.60 \times 2{,}920 \times 0.16 = \$34{,}853.12 \\ B&:\ 65.82 \times 2{,}920 \times 0.16 = \$30{,}752.75\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Motor B saves about $4,100.37 a year.</p><p class="ar ">الجواب: المحرك <bdi dir="ltr" class=nw>B</bdi> يوفر تقريباً <bdi dir="ltr" class=nw>4,100.37$</bdi> بالسنة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مضخة موية</b> <span dir="ltr" lang="en">A water pump</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A 20 hp pump with 80% efficiency runs 10 hours a day for 300 days a year. Electricity is 0.18 SAR/kWh. What is its yearly energy cost?</p><p class="ar ">مضخة <bdi dir="ltr" class=nw>20</bdi> حصان كفاءتها <bdi dir="ltr" class=nw>80%</bdi>، تشتغل <bdi dir="ltr" class=nw>10</bdi> ساعات باليوم لمدة <bdi dir="ltr" class=nw>300</bdi> يوم بالسنة. الكهرباء بـ <bdi dir="ltr" class=nw>0.18</bdi> ريال للكيلوواط ساعة. كم تكلفة الطاقة بالسنة؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Input power:</p><p class="ar ">القدرة الداخلة:</p><div class="eq ">\[P_{\text{in}} = \frac{20 \times 0.746}{0.80} = \frac{14.92}{0.80} = 18.65\ \text{kW}\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Energy and cost for 10 × 300 = 3,000 hours:</p><p class="ar ">الطاقة والتكلفة لـ <bdi dir="ltr" class=nw>10 × 300 = 3,000</bdi> ساعة:</p><div class="eq wide ">\[18.65 \times 3{,}000 = 55{,}950\ \text{kWh}, \qquad 55{,}950 \times 0.18 = 10{,}071.00\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}18.65 \times 3{,}000 &= 55{,}950\ \text{kWh} \\ 55{,}950 \times 0.18 &= 10{,}071.00\ \text{SAR}\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 10,071.00 SAR per year.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>10,071.00</bdi> ريال بالسنة.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg lec" href="lecture2.html">📖 ارجع لشرح الفصل ٢</a><a class="pg next" href="laws4-1.html">قوانين الفصل ٤ (١) ←</a></nav>
+</main>
+<script src="econ.js"></script>
+</body>
+</html>
