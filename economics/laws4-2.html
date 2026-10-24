@@ -8,11 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<link rel="stylesheet" href="laws.css?v=2">
+<link rel="stylesheet" href="laws.css?v=3">
 <script src="../site.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
-<script defer src="laws.js?v=2"></script>
+<script defer src="laws.js?v=3"></script>
 </head>
 <body>
 <header class="lw-top">
@@ -39,11 +39,18 @@
   <div class="hero-card">\[\Z{i} = \left(1 + \dfrac{r}{M}\right)^M - 1\]</div>
 </section>
 
+<div class="cta-row">
 <a class="quiz-cta" href="quiz4-2.html">
   <span class="qc-ic" aria-hidden="true">🧠</span>
   <span class="qc-t"><b>اختبر نفسك: أي قانون تستخدم؟</b><small>43 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
   <span class="qc-go">ابدأ الاختبار ←</span>
 </a>
+<a class="quiz-cta keys-cta" href="keys4-2.html">
+  <span class="qc-ic" aria-hidden="true">🔑</span>
+  <span class="qc-t"><b>الكلمات المفتاحية</b><small>وش الكلمات في السؤال اللي تقولك أي قانون؟ بالإنجليزي والعربي، مع خريطة سريعة</small></span>
+  <span class="qc-go">افتحها ←</span>
+</a>
+</div>
 
 <div class="view" role="group" aria-label="لغة الأمثلة">
   <span class="view-l">اعرض:</span>
@@ -69,7 +76,7 @@
   <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
-    <tbody><tr><td class="s">\(J\)</td><td class="en" dir="ltr" lang="en">Number of periods the series is deferred; first payment at J + 1</td><td class="ar">عدد فترات التأجيل، وأول دفعة عند <bdi dir="ltr" class=nw>J + 1</bdi></td></tr><tr><td class="s">\(N - J\)</td><td class="en" dir="ltr" lang="en">Number of payments (from J + 1 to N)</td><td class="ar">عدد الدفعات (من <bdi dir="ltr" class=nw>J + 1</bdi> إلى <bdi dir="ltr" class=nw>N)</bdi></td></tr><tr><td class="s">\(\X{P_J}\)</td><td class="en" dir="ltr" lang="en">Value of the series at point J (from P/A)</td><td class="ar">قيمة السلسلة عند النقطة <bdi dir="ltr" class=nw>J</bdi> (من <bdi dir="ltr" class=nw>P/A)</bdi></td></tr><tr><td class="s">\(\X{P_0}\)</td><td class="en" dir="ltr" lang="en">Value at time 0 (bring P<sub>J</sub> back J periods)</td><td class="ar">القيمة عند الزمن <bdi dir="ltr" class=nw>0</bdi> (ترجّع <bdi dir="ltr" class=nw>P<sub>J</sub></bdi> بمقدار <bdi dir="ltr" class=nw>J</bdi> فترة)</td></tr></tbody>
+    <tbody><tr><td class="s">\(J\)</td><td class="en" dir="ltr" lang="en">Number of periods the series is deferred; first payment at J + 1</td><td class="ar">عدد فترات التأجيل، وأول دفعة عند <bdi dir="ltr" class=nw>J + 1</bdi></td></tr><tr><td class="s">\(N - J\)</td><td class="en" dir="ltr" lang="en">Number of payments (from J + 1 to N)</td><td class="ar">عدد الدفعات (من <bdi dir="ltr" class=nw>J + 1</bdi> إلى <bdi dir="ltr" class=nw>N</bdi>)</td></tr><tr><td class="s">\(\X{P_J}\)</td><td class="en" dir="ltr" lang="en">Value of the series at point J (from P/A)</td><td class="ar">قيمة السلسلة عند النقطة <bdi dir="ltr" class=nw>J</bdi> (من <bdi dir="ltr" class=nw>P/A</bdi>)</td></tr><tr><td class="s">\(\X{P_0}\)</td><td class="en" dir="ltr" lang="en">Value at time 0 (bring P<sub>J</sub> back J periods)</td><td class="ar">القيمة عند الزمن <bdi dir="ltr" class=nw>0</bdi> (ترجّع <bdi dir="ltr" class=nw>P<sub>J</sub></bdi> بمقدار <bdi dir="ltr" class=nw>J</bdi> فترة)</td></tr></tbody>
   </table></div>
 </div>
 <div class="block use">
@@ -97,7 +104,7 @@
   </header>
   <div class="q"><p class="en " dir="ltr" lang="en">A scholarship pays 5,000 SAR a year for 4 years, with the first payment at the end of year 3. At 6%, what is it worth today?</p><p class="ar ">منحة تصرف <bdi dir="ltr" class=nw>5,000</bdi> ريال بالسنة لمدة <bdi dir="ltr" class=nw>4</bdi> سنوات، وأول دفعة في نهاية السنة <bdi dir="ltr" class=nw>3</bdi>. بفائدة <bdi dir="ltr" class=nw>6%</bdi>، كم قيمتها اليوم؟</p></div>
   <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
-  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">First payment at 3 = J + 1, so J = 2 and there are 4 payments (years 3–6).</p><p class="ar ">أول دفعة عند <bdi dir="ltr" class=nw>3 = J + 1</bdi>، يعني <bdi dir="ltr" class=nw>J = 2</bdi>، وفيه <bdi dir="ltr" class=nw>4</bdi> دفعات (السنوات <bdi dir="ltr" class=nw>3</bdi> إلى <bdi dir="ltr" class=nw>6)</bdi>.</p><div class="eq ">\[\X{P_2} = 5{,}000\,(P/A, 6\%, 4) = 5{,}000\,(3.4651) = 17{,}325.5\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Bring it back 2 years:</p><p class="ar ">رجّعها سنتين:</p><div class="eq wide ">\[\X{P_0} = 17{,}325.5\,(P/F, 6\%, 2) = 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}\X{P_0} &= 17{,}325.5\,(P/F, 6\%, 2) \\ &= 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\end{aligned}\]</div></div></li></ol>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">First payment at 3 = J + 1, so J = 2 and there are 4 payments (years 3–6).</p><p class="ar ">أول دفعة عند <bdi dir="ltr" class=nw>3 = J + 1</bdi>، يعني <bdi dir="ltr" class=nw>J = 2</bdi>، وفيه <bdi dir="ltr" class=nw>4</bdi> دفعات (السنوات <bdi dir="ltr" class=nw>3</bdi> إلى <bdi dir="ltr" class=nw>6</bdi>).</p><div class="eq ">\[\X{P_2} = 5{,}000\,(P/A, 6\%, 4) = 5{,}000\,(3.4651) = 17{,}325.5\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Bring it back 2 years:</p><p class="ar ">رجّعها سنتين:</p><div class="eq wide ">\[\X{P_0} = 17{,}325.5\,(P/F, 6\%, 2) = 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\]</div><div class="eq narrow ">\[\begin{aligned}\X{P_0} &= 17{,}325.5\,(P/F, 6\%, 2) \\ &= 17{,}325.5\,(0.8900) = 15{,}420\ \text{SAR}\end{aligned}\]</div></div></li></ol>
   <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 15,420 SAR today.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>15,420</bdi> ريال اليوم.</p></div></div>
 </article>
 </section>
@@ -113,7 +120,7 @@
   <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
-    <tbody><tr><td class="s">\(\Y{G}\)</td><td class="en" dir="ltr" lang="en">Gradient: the fixed amount added each period (0 at period 1, G at 2, 2G at 3…)</td><td class="ar">التدرج: المقدار الثابت اللي يزيد كل فترة <bdi dir="ltr" class=nw>(0</bdi> عند <bdi dir="ltr" class=nw>1</bdi>، و <bdi dir="ltr" class=nw>G</bdi> عند <bdi dir="ltr" class=nw>2</bdi>، و <bdi dir="ltr" class=nw>2G</bdi> عند <bdi dir="ltr" class=nw>3</bdi>…)</td></tr><tr><td class="s">\((N-1)\Y{G}\)</td><td class="en" dir="ltr" lang="en">Size of the last gradient flow at period N</td><td class="ar">حجم آخر تدفق في التدرج عند الفترة <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\(\X{P}\)</td><td class="en" dir="ltr" lang="en">Present worth at time 0, two periods before the first G</td><td class="ar">القيمة الحالية عند الزمن <bdi dir="ltr" class=nw>0</bdi>، قبل أول <bdi dir="ltr" class=nw>G</bdi> بفترتين</td></tr></tbody>
+    <tbody><tr><td class="s">\(\Y{G}\)</td><td class="en" dir="ltr" lang="en">Gradient: the fixed amount added each period (0 at period 1, G at 2, 2G at 3…)</td><td class="ar">التدرج: المقدار الثابت اللي يزيد كل فترة (<bdi dir="ltr" class=nw>0</bdi> عند <bdi dir="ltr" class=nw>1</bdi>، و <bdi dir="ltr" class=nw>G</bdi> عند <bdi dir="ltr" class=nw>2</bdi>، و <bdi dir="ltr" class=nw>2G</bdi> عند <bdi dir="ltr" class=nw>3</bdi>…)</td></tr><tr><td class="s">\((N-1)\Y{G}\)</td><td class="en" dir="ltr" lang="en">Size of the last gradient flow at period N</td><td class="ar">حجم آخر تدفق في التدرج عند الفترة <bdi dir="ltr" class=nw>N</bdi></td></tr><tr><td class="s">\(\X{P}\)</td><td class="en" dir="ltr" lang="en">Present worth at time 0, two periods before the first G</td><td class="ar">القيمة الحالية عند الزمن <bdi dir="ltr" class=nw>0</bdi>، قبل أول <bdi dir="ltr" class=nw>G</bdi> بفترتين</td></tr></tbody>
   </table></div>
 </div>
 <div class="block use">
@@ -197,7 +204,7 @@
   <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
-    <tbody><tr><td class="s">\(A_1\)</td><td class="en" dir="ltr" lang="en">First cash flow, at the end of period 1</td><td class="ar">أول تدفق، في نهاية الفترة <bdi dir="ltr" class=nw>1</bdi></td></tr><tr><td class="s">\(\bar f\)</td><td class="en" dir="ltr" lang="en">Constant growth rate per period (f-bar), e.g. 15%</td><td class="ar">نسبة النمو الثابتة كل فترة <bdi dir="ltr" class=nw>(f</bdi> بار)، مثلاً <bdi dir="ltr" class=nw>15%</bdi></td></tr><tr><td class="s">\(A_k\)</td><td class="en" dir="ltr" lang="en">Cash flow in period k</td><td class="ar">التدفق في الفترة <bdi dir="ltr" class=nw>k</bdi></td></tr><tr><td class="s">\(i\)</td><td class="en" dir="ltr" lang="en">Interest rate per period</td><td class="ar">نسبة الفائدة لكل فترة</td></tr></tbody>
+    <tbody><tr><td class="s">\(A_1\)</td><td class="en" dir="ltr" lang="en">First cash flow, at the end of period 1</td><td class="ar">أول تدفق، في نهاية الفترة <bdi dir="ltr" class=nw>1</bdi></td></tr><tr><td class="s">\(\bar f\)</td><td class="en" dir="ltr" lang="en">Constant growth rate per period (f-bar), e.g. 15%</td><td class="ar">نسبة النمو الثابتة كل فترة (<bdi dir="ltr" class=nw>f</bdi> بار)، مثلاً <bdi dir="ltr" class=nw>15%</bdi></td></tr><tr><td class="s">\(A_k\)</td><td class="en" dir="ltr" lang="en">Cash flow in period k</td><td class="ar">التدفق في الفترة <bdi dir="ltr" class=nw>k</bdi></td></tr><tr><td class="s">\(i\)</td><td class="en" dir="ltr" lang="en">Interest rate per period</td><td class="ar">نسبة الفائدة لكل فترة</td></tr></tbody>
   </table></div>
 </div>
 <div class="block use">
@@ -285,7 +292,7 @@
   <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
-    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal (stated) annual rate, e.g. 18% compounded quarterly</td><td class="ar">النسبة الاسمية السنوية المعلنة، مثلاً <bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوي</td></tr><tr><td class="s">\(M\)</td><td class="en" dir="ltr" lang="en">Compounding periods per year (4 quarterly, 12 monthly, 365 daily)</td><td class="ar">عدد مرات التركيب بالسنة <bdi dir="ltr" class=nw>(4</bdi> ربع سنوي، <bdi dir="ltr" class=nw>12</bdi> شهري، <bdi dir="ltr" class=nw>365</bdi> يومي)</td></tr><tr><td class="s">\(r/M\)</td><td class="en" dir="ltr" lang="en">Rate per compounding period</td><td class="ar">النسبة لكل فترة تركيب</td></tr><tr><td class="s">\(\Z{i}\)</td><td class="en" dir="ltr" lang="en">Effective annual rate: what you really earn or pay in one year</td><td class="ar">النسبة الفعالة السنوية: اللي فعلاً تكسبه أو تدفعه في سنة</td></tr></tbody>
+    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal (stated) annual rate, e.g. 18% compounded quarterly</td><td class="ar">النسبة الاسمية السنوية المعلنة، مثلاً <bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوي</td></tr><tr><td class="s">\(M\)</td><td class="en" dir="ltr" lang="en">Compounding periods per year (4 quarterly, 12 monthly, 365 daily)</td><td class="ar">عدد مرات التركيب بالسنة (<bdi dir="ltr" class=nw>4</bdi> ربع سنوي، <bdi dir="ltr" class=nw>12</bdi> شهري، <bdi dir="ltr" class=nw>365</bdi> يومي)</td></tr><tr><td class="s">\(r/M\)</td><td class="en" dir="ltr" lang="en">Rate per compounding period</td><td class="ar">النسبة لكل فترة تركيب</td></tr><tr><td class="s">\(\Z{i}\)</td><td class="en" dir="ltr" lang="en">Effective annual rate: what you really earn or pay in one year</td><td class="ar">النسبة الفعالة السنوية: اللي فعلاً تكسبه أو تدفعه في سنة</td></tr></tbody>
   </table></div>
 </div>
 <div class="block use">
@@ -304,7 +311,7 @@
   <div class="q"><p class="en " dir="ltr" lang="en">What is the effective annual rate of 18% compounded quarterly?</p><p class="ar ">كم النسبة الفعالة السنوية لـ <bdi dir="ltr" class=nw>18%</bdi> مركبة ربع سنوياً؟</p></div>
   <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
   <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Rate per quarter:</p><p class="ar ">النسبة لكل ربع:</p><div class="eq ">\[\frac{r}{M} = \frac{0.18}{4} = 0.045 = 4.5\%\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Compound it 4 times:</p><p class="ar ">ركّبها <bdi dir="ltr" class=nw>4</bdi> مرات:</p><div class="eq ">\[\Z{i} = (1.045)^4 - 1 = 1.19252 - 1 = 0.1925\]</div></div></li></ol>
-  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 19.25% per year (more than 18%).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>19.25%</bdi> بالسنة (أكثر من <bdi dir="ltr" class=nw>18%)</bdi>.</p></div></div>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 19.25% per year (more than 18%).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>19.25%</bdi> بالسنة (أكثر من <bdi dir="ltr" class=nw>18%</bdi>).</p></div></div>
 </article>
 <article class="ex">
   <header class="ex-h">
@@ -329,7 +336,7 @@
   <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
   <div class="tbl-wrap"><table>
     <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
-    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal annual rate, compounded continuously (M → ∞)</td><td class="ar">النسبة الاسمية السنوية، مركبة باستمرار <bdi dir="ltr" class=nw>(M</bdi> → ∞)</td></tr><tr><td class="s">\(e\)</td><td class="en" dir="ltr" lang="en">Euler's number ≈ 2.71828</td><td class="ar">عدد أويلر ≈ <bdi dir="ltr" class=nw>2.71828</bdi></td></tr><tr><td class="s">\(\underline{r}\)</td><td class="en" dir="ltr" lang="en">Underlined r in a factor means continuous compounding</td><td class="ar"><bdi dir="ltr" class=nw>r</bdi> تحتها خط في العامل يعني تركيب مستمر</td></tr></tbody>
+    <tbody><tr><td class="s">\(r\)</td><td class="en" dir="ltr" lang="en">Nominal annual rate, compounded continuously (M → ∞)</td><td class="ar">النسبة الاسمية السنوية، مركبة باستمرار (<bdi dir="ltr" class=nw>M</bdi> → ∞)</td></tr><tr><td class="s">\(e\)</td><td class="en" dir="ltr" lang="en">Euler's number ≈ 2.71828</td><td class="ar">عدد أويلر ≈ <bdi dir="ltr" class=nw>2.71828</bdi></td></tr><tr><td class="s">\(\underline{r}\)</td><td class="en" dir="ltr" lang="en">Underlined r in a factor means continuous compounding</td><td class="ar"><bdi dir="ltr" class=nw>r</bdi> تحتها خط في العامل يعني تركيب مستمر</td></tr></tbody>
   </table></div>
 </div>
 <div class="block use">
@@ -397,12 +404,12 @@
   </header>
   <div class="q"><p class="en " dir="ltr" lang="en">Redo the two interpolation examples from part 1 in Excel: the $100,000 loan repaid at $8,000/yr at 7%, and Jill's $1,000/yr that became $8,000 in 5 years.</p><p class="ar ">أعد مثالين الاستكمال من الجزء <bdi dir="ltr" class=nw>1</bdi> بالإكسل: قرض <bdi dir="ltr" class=nw>100,000$</bdi> يتسدد بـ <bdi dir="ltr" class=nw>8,000$</bdi> بالسنة بفائدة <bdi dir="ltr" class=nw>7%</bdi>، وجيل اللي حطت <bdi dir="ltr" class=nw>1,000$</bdi> بالسنة وصارت <bdi dir="ltr" class=nw>8,000$</bdi> بعد <bdi dir="ltr" class=nw>5</bdi> سنوات.</p></div>
   <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
-  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Number of years:</p><p class="ar ">عدد السنوات:</p><div class="eq ">\[\texttt{=NPER(7\%, -8000, 100000)} \;\to\; 30.73\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Rate (P = 0, F = 8,000):</p><p class="ar ">النسبة <bdi dir="ltr" class=nw>(P = 0</bdi> و <bdi dir="ltr" class=nw>F = 8,000)</bdi>:</p><div class="eq ">\[\texttt{=RATE(5, -1000, 0, 8000)} \;\to\; 23.69\%\]</div></div></li></ol>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Number of years:</p><p class="ar ">عدد السنوات:</p><div class="eq ">\[\texttt{=NPER(7\%, -8000, 100000)} \;\to\; 30.73\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Rate (P = 0, F = 8,000):</p><p class="ar ">النسبة (<bdi dir="ltr" class=nw>P = 0</bdi> و <bdi dir="ltr" class=nw>F = 8,000</bdi>):</p><div class="eq ">\[\texttt{=RATE(5, -1000, 0, 8000)} \;\to\; 23.69\%\]</div></div></li></ol>
   <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: N = 30.73 years and i = 23.69%, matching the interpolation.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>N = 30.73</bdi> سنة و <bdi dir="ltr" class=nw>i = 23.69%</bdi>، نفس اللي طلع بالاستكمال.</p></div></div>
 </article>
 </section>
 
-<nav class="pager"><a class="pg prev" href="laws4-1.html">→ قوانين الفصل ٤ (١)</a><a class="pg quiz" href="quiz4-2.html">🧠 اختبر نفسك: أي قانون؟</a><a class="pg lec" href="lecture4-2.html">📖 ارجع لشرح الفصل ٤ (٢)</a></nav>
+<nav class="pager"><a class="pg prev" href="laws4-1.html">→ قوانين الفصل ٤ (١)</a><a class="pg quiz" href="keys4-2.html">🔑 الكلمات المفتاحية</a><a class="pg quiz" href="quiz4-2.html">🧠 اختبر نفسك: أي قانون؟</a><a class="pg lec" href="lecture4-2.html">📖 ارجع لشرح الفصل ٤ (٢)</a></nav>
 </main>
 <script src="econ.js?v=4"></script>
 </body>
