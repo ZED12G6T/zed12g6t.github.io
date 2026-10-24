@@ -157,11 +157,11 @@ window.Econ = (function () {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fitMath);
     else fitMath();
   }
-  // زر "📐 القوانين" في الشريط العلوي لو الصفحة لها ورقة قوانين (<html data-laws="laws2.html">). الشريط يبنيه lecture.js وقت DOMContentLoaded قبلنا
+  // تبويب "الشرح | القوانين" في نص أعلى الصفحة لو لها ورقة قوانين (<html data-laws="laws2.html">). الشريط يبنيه lecture.js وقت DOMContentLoaded قبلنا
   document.addEventListener('DOMContentLoaded', () => {
-    const laws = document.documentElement.dataset.laws, box = document.querySelector('.topbar .tb-actions');
-    if (!laws || !box) return;
-    box.insertAdjacentHTML('afterbegin', `<a class="icon-btn laws-btn" href="${laws}" title="ورقة القوانين: كل القوانين مع أمثلة">📐 القوانين</a>`);
+    const laws = document.documentElement.dataset.laws, bar = document.querySelector('header.topbar');
+    if (!laws || !bar) return;
+    bar.insertAdjacentHTML('afterend', `<nav class="mode-tabs" aria-label="الشرح أو القوانين"><span class="on" aria-current="page">📖 الشرح</span><a href="${laws}">📐 القوانين</a></nav>`);
   });
   init();   // الملف يُحمَّل آخر الـ body، فالعناصر جاهزة، ونرسم قبل ما يطبع MathJax معادلات الحاسبة
   return { f, cfd };
