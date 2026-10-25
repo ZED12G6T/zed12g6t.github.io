@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة مفاهيم المحاضرة ٤ · كتابة التقارير الهندسية</title>
+<meta name="description" content="Lecture 4 concept sheet · How to Write a Lab Report: every formula, each symbol in English and Arabic, and worked examples in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css?v=3">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="laws.js?v=3"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">كتابة التقارير الهندسية</a><span class="dot">·</span><b>المحاضرة ٤</b><span class="dot">·</span><span>ورقة المفاهيم</span></div>
+    <div class="bar-end">
+      <div class="legend" aria-label="ألوان المصطلحات"></div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو المفاهيم أو الاختبار"><a href="lecture4.html">📖 الشرح</a><span class="on" aria-current="page">📐 المفاهيم</span><a href="quiz4.html">🧠 الاختبار</a></nav>
+  <nav class="lw-tabs" aria-label="الفصول"><a class="tab" href="laws2.html">المحاضرة ٢ <small dir="ltr" lang="en">Lec 2</small></a><a class="tab" href="laws3.html">المحاضرة ٣ <small dir="ltr" lang="en">Lec 3</small></a><a class="tab on" href="laws4.html" aria-current=page>المحاضرة ٤ <small dir="ltr" lang="en">Lec 4</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة المفاهيم · المحاضرة ٤</span>
+    <h1>مفاهيم تقرير المختبر</h1>
+    <p class="sub">موقف الكتابة، وقواعد المعرفة الموثوقة والكتابة الاحترافية، والأجزاء العشرة لتقرير المختبر: وش يدخل في كل جزء، مع أمثلة بالإنجليزي وتحتها الترجمة.</p>
+    <p class="sub-en" dir="ltr" lang="en">Lecture 4 concept sheet · How to Write a Lab Report</p>
+    <div class="stats"><span><b>٧</b> مفاهيم</span><span><b>١١</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card">\[\text{Title} \to \text{Objective} \to \cdots \to \text{Conclusions} \to \text{Works Cited}\]</div>
+</section>
+
+<div class="cta-row">
+<a class="quiz-cta" href="quiz4.html">
+  <span class="qc-ic" aria-hidden="true">🧠</span>
+  <span class="qc-t"><b>اختبر نفسك: أي مفهوم؟</b><small>35 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
+  <span class="qc-go">ابدأ الاختبار ←</span>
+</a>
+<a class="quiz-cta keys-cta" href="keys4.html">
+  <span class="qc-ic" aria-hidden="true">🔑</span>
+  <span class="qc-t"><b>الكلمات المفتاحية</b><small>وش الكلمات في السؤال اللي تقولك أي مفهوم؟ بالإنجليزي والعربي، مع خريطة سريعة</small></span>
+  <span class="qc-go">افتحها ←</span>
+</a>
+</div>
+
+<div class="view" role="group" aria-label="لغة الأمثلة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#situation"><span class="ix-n">١</span><b>موقف الكتابة والمصادر</b><small dir="ltr" lang="en">Writing situation &amp; available resources</small><span class="ix-m">\(\text{audience + purpose}\)</span></a><a class="ix" href="#reliable"><span class="ix-n">٢</span><b>المعرفة الموثوقة وحلل التجربة</b><small dir="ltr" lang="en">Reliable knowledge &amp; analyze the experiment</small><span class="ix-m">\(\text{your trial + your evidence}\)</span></a><a class="ix" href="#professional"><span class="ix-n">٣</span><b>اكتب مثل المحترفين</b><small dir="ltr" lang="en">Practice writing like a professional</small><span class="ix-m">\(\text{passive + labels + own words}\)</span></a><a class="ix" href="#sec-intro"><span class="ix-n">٤</span><b>العنوان والهدف والمقدمة</b><small dir="ltr" lang="en">Title, objective, introduction</small><span class="ix-m">\(\text{(1) title (2) objective (3) theory}\)</span></a><a class="ix" href="#sec-setup"><span class="ix-n">٥</span><b>الدائرة والأجهزة والخطوات</b><small dir="ltr" lang="en">Circuit diagram, equipment, procedure</small><span class="ix-m">\(\text{(4) diagram (5) equipment (6) procedure}\)</span></a><a class="ix" href="#sec-data"><span class="ix-n">٦</span><b>النتائج وتحليلها</b><small dir="ltr" lang="en">Results &amp; analysis</small><span class="ix-m">\(\text{(7) raw data (8) analysis}\)</span></a><a class="ix" href="#sec-end"><span class="ix-n">٧</span><b>المناقشة والمراجع</b><small dir="ltr" lang="en">Discussion/conclusions &amp; works cited</small><span class="ix-m">\(\text{(9) conclusions (10) works cited}\)</span></a></div>
+</section>
+
+<section class="law" id="situation">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>موقف الكتابة والمصادر</h2><p class="law-en" dir="ltr" lang="en">Concept 1 · Writing situation &amp; available resources</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Lab report} = \text{audience: other engineers} + \text{purpose: significance of results}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Lab report} = \\ \text{audience: other engineers} \\ +\ \text{purpose: significance of results}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Audience}\)</td><td class="en" dir="ltr" lang="en">Other engineers</td><td class="ar">مهندسين ثانيين</td></tr><tr><td class="s">\(\text{Purpose}\)</td><td class="en" dir="ltr" lang="en">Discuss the significance of the experimental results</td><td class="ar">تناقش أهمية نتائج التجربة</td></tr><tr><td class="s">\(\text{Lab manual}\)</td><td class="en" dir="ltr" lang="en">The first available resource</td><td class="ar">دليل المختبر: أول مصدر متاح</td></tr><tr><td class="s">\(\text{Writing consultant}\)</td><td class="en" dir="ltr" lang="en">The professor of the lab</td><td class="ar">المستشار في الكتابة: دكتور المختبر</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks who reads a lab report, what it is for, or where you can get help (the available resources).</p><p class="ar ">لما السؤال يسأل مين يقرا تقرير المختبر، أو وش الغرض منه، أو من وين تاخذ مساعدة (المصادر المتاحة).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>موقف الكتابة</b> <span dir="ltr" lang="en">Consider the writing situation</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Who is the audience of a lab report, and what is its purpose?</p><p class="ar ">مين جمهور تقرير المختبر، ووش غرضه؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The slide answers both in one line each.</p><p class="ar ">السلايد يجاوب كل وحدة بسطر.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Not your instructor as a person: other engineers.</p><p class="ar ">مو الدكتور كشخص، المهندسين بشكل عام.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Audience: other engineers. Purpose: discuss the significance of the experimental results.</p><p class="ar ">الجواب: الجمهور: مهندسين ثانيين. الغرض: مناقشة أهمية نتائج التجربة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>المصادر المتاحة</b> <span dir="ltr" lang="en">Available resources</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What resources are available when writing a lab report?</p><p class="ar ">وش المصادر المتاحة لك وانت تكتب تقرير المختبر؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Two items on the slide.</p><p class="ar ">نقطتين في السلايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) The lab manual. 2) Your writing consultant (the professor of the lab).</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) دليل المختبر. <bdi dir="ltr" class=nw>2</bdi>) المستشار في الكتابة (دكتور المختبر).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="reliable">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>المعرفة الموثوقة وحلل التجربة</h2><p class="law-en" dir="ltr" lang="en">Concept 2 · Reliable knowledge &amp; analyze the experiment</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Reliable} = \text{standard procedures} + \text{your trial only} + \text{no claims beyond evidence}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Reliable} = \\ \text{standard procedures} \\ +\ \text{your trial only} \\ +\ \text{no claims beyond evidence}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Standard procedures}\)</td><td class="en" dir="ltr" lang="en">Use the accepted way of doing the test</td><td class="ar">استخدم الطريقة المعتمدة في التجربة</td></tr><tr><td class="s">\(\text{Your specific trial}\)</td><td class="en" dir="ltr" lang="en">Report only your results, not general ideas</td><td class="ar">اكتب نتايجك أنت بس، مو أفكار عامة</td></tr><tr><td class="s">\(\text{Beyond your evidence}\)</td><td class="en" dir="ltr" lang="en">A claim your data does not prove</td><td class="ar">ادعاء بياناتك ما تثبته</td></tr><tr><td class="s">\(\text{Analyze the experiment, not yourself}\)</td><td class="en" dir="ltr" lang="en">Do not write what you 'learned'; report whether you reached the objective</td><td class="ar">لا تكتب وش «تعلمت»، اكتب هل وصلت لهدف التجربة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When a sentence in a lab report goes beyond the data, talks about general ideas, or talks about the student instead of the experiment.</p><p class="ar ">لما جملة في تقرير المختبر تطلع عن البيانات، أو تتكلم عن أفكار عامة، أو تتكلم عن الطالب بدل التجربة.</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide typo</span></div>
+  <p class="en " dir="ltr" lang="en">The slide says 'describe your findings qualitatively' (بالوصف). In engineering lab reports findings are normally described quantitatively (بالأرقام والقياسات), so this is probably a typo. Ask the doctor which word he wants; in the exam write what the slide says.</p><p class="ar ">السلايد مكتوب فيه «وصّف نتايجك نوعياً <bdi dir="ltr" class=nw>(qualitatively)</bdi>». في تقارير المختبر الهندسية عادة النتايج توصف كمياً <bdi dir="ltr" class=nw>(quantitatively)</bdi> يعني بالأرقام، فغالباً هذا غلط مطبعي. اسأل الدكتور أي كلمة يبي، وفي الاختبار اكتب مثل السلايد.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>القواعد الثلاث</b> <span dir="ltr" lang="en">Three rules</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Engineering needs reliable knowledge. What three rules does this give for a lab report?</p><p class="ar ">الهندسة تحتاج معرفة موثوقة. وش القواعد الثلاث اللي تطلع من هذا لتقرير المختبر؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Copy the numbered list of the slide.</p><p class="ar ">انقل القائمة المرقمة من السلايد.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Then add the next slide: analyze the experiment, not yourself.</p><p class="ar ">وزد عليها السلايد اللي بعده: حلل التجربة مو نفسك.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) Use standard procedures and describe your findings. 2) Report only the results of your specific trial, not general ideas. 3) Avoid claims that are beyond your evidence.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) استخدم الإجراءات القياسية ووصّف نتايجك. <bdi dir="ltr" class=nw>2</bdi>) اكتب نتايج تجربتك أنت بس، مو أفكار عامة. <bdi dir="ltr" class=nw>3</bdi>) تجنب الادعاءات اللي أكبر من أدلتك.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>صلّح الخاتمة</b> <span dir="ltr" lang="en">Fix the conclusion</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A student writes: 'This lab taught me a lot about circuits, and it proves that all circuits are linear.' What is wrong?</p><p class="ar ">طالب كتب: «هالتجربة علمتني كثير عن الدوائر، وتثبت إن كل الدوائر خطية». وش الغلط؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">'Taught me' talks about himself → analyze the experiment, not yourself.</p><p class="ar ">«علمتني» يتكلم عن نفسه ← حلل التجربة مو نفسك.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">'All circuits' is a general claim beyond one trial's evidence.</p><p class="ar ">«كل الدوائر» ادعاء عام أكبر من دليل تجربة وحدة.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: He reports what he learned instead of whether the objective was reached, and makes a claim beyond his evidence. Better: 'The measured currents verified the superposition theorem for this circuit.'</p><p class="ar ">الجواب: كتب وش تعلم بدل هل وصل للهدف، وادعى شي أكبر من دليله. الأحسن: «التيارات المقاسة أثبتت نظرية التراكب لهذي الدائرة».</p></div></div>
+</article>
+</section>
+
+<section class="law" id="professional">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>اكتب مثل المحترفين</h2><p class="law-en" dir="ltr" lang="en">Concept 3 · Practice writing like a professional</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Professional} = \text{passive voice} + \text{label graphics} + \text{no copy-paste} + \text{proofread} + \text{on time}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Professional} = \\ \text{passive voice} \\ +\ \text{label graphics} \\ +\ \text{no copy-paste} \\ +\ \text{proofread} \\ +\ \text{on time}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Passive voice}\)</td><td class="en" dir="ltr" lang="en">'The current was measured', not 'I measured the current'</td><td class="ar">«تم قياس التيار» بدل «قست التيار»</td></tr><tr><td class="s">\(\text{Label and describe graphics}\)</td><td class="en" dir="ltr" lang="en">Every figure and table gets a label and a description</td><td class="ar">كل شكل وجدول له عنوان ووصف</td></tr><tr><td class="s">\(\text{Cut and paste}\)</td><td class="en" dir="ltr" lang="en">Copying from another source, even the lab manual: not allowed</td><td class="ar">النسخ من أي مصدر حتى دليل المختبر: ممنوع</td></tr><tr><td class="s">\(\text{Proofread}\)</td><td class="en" dir="ltr" lang="en">Print and check before uploading</td><td class="ar">اطبع وراجع قبل ما ترفع</td></tr><tr><td class="s">\(\text{Hand in on time}\)</td><td class="en" dir="ltr" lang="en">Submit by the deadline</td><td class="ar">سلّم في الوقت</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about how the lab report is written and handed in: voice, graphics, copying, proofreading, deadline.</p><p class="ar ">لما السؤال عن طريقة كتابة التقرير وتسليمه: صيغة الجمل، الرسومات، النسخ، المراجعة، الموعد.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الخمس ممارسات</b> <span dir="ltr" lang="en">Five practices</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">List the five practices for writing a lab report like a professional.</p><p class="ar ">عدّد الخمس ممارسات عشان تكتب تقرير المختبر مثل المحترفين.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Numbered list on the slide.</p><p class="ar ">قائمة مرقمة في السلايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) Write complete sentences in passive voice. 2) Label and describe graphics. 3) Do not cut and paste from another source, even the lab manual. 4) Print and proofread before you upload. 5) Hand in reports on time.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) اكتب جمل كاملة بصيغة المبني للمجهول. <bdi dir="ltr" class=nw>2</bdi>) حط عنوان ووصف لكل رسم. <bdi dir="ltr" class=nw>3</bdi>) لا تنسخ من أي مصدر حتى دليل المختبر. <bdi dir="ltr" class=nw>4</bdi>) اطبع وراجع قبل ما ترفع. <bdi dir="ltr" class=nw>5</bdi>) سلّم التقارير في وقتها.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>من المعلوم للمجهول</b> <span dir="ltr" lang="en">Active to passive</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Rewrite in the style the lecture asks for: 'We connected the ammeter in series.'</p><p class="ar ">أعد كتابتها بالأسلوب اللي تطلبه المحاضرة: «وصّلنا الأميتر على التوالي».</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The rule is passive voice: the object becomes the subject, 'we' disappears.</p><p class="ar ">القاعدة المبني للمجهول: المفعول يصير فاعل، و«احنا» تختفي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 'The ammeter was connected in series.'</p><p class="ar ">الجواب: «تم توصيل الأميتر على التوالي».</p></div></div>
+</article>
+</section>
+
+<section class="law" id="sec-intro">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>العنوان والهدف والمقدمة</h2><p class="law-en" dir="ltr" lang="en">Concept 4 · Title, objective, introduction</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Front} = \text{(1) Title} + \text{(2) Objective} + \text{(3) Introduction / Theory}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Front} = \\ \text{(1) Title} \\ +\ \text{(2) Objective} \\ +\ \text{(3) Introduction / Theory}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Title}\)</td><td class="en" dir="ltr" lang="en">A concise, descriptive statement of the main topic, system or phenomenon</td><td class="ar">جملة قصيرة توصف الموضوع أو النظام أو الظاهرة الرئيسية</td></tr><tr><td class="s">\(\text{Objective}\)</td><td class="en" dir="ltr" lang="en">The core purpose: what you aim to measure, build or verify</td><td class="ar">الهدف الأساسي: وش تبي تقيس أو تبني أو تتحقق منه</td></tr><tr><td class="s">\(\text{Introduction / theoretical background}\)</td><td class="en" dir="ltr" lang="en">Scientific context and governing principles (laws, formulas, hypotheses) behind the expected outcomes</td><td class="ar">الخلفية العلمية والمبادئ (قوانين، معادلات، فرضيات) اللي تبرر النتايج المتوقعة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When a sentence names the experiment, states what you aim to measure or verify, or explains the theory and formulas behind it.</p><p class="ar ">لما الجملة تسمّي التجربة، أو تقول وش تبي تقيس أو تتحقق منه، أو تشرح النظرية والمعادلات وراها.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>من مثال نظرية التراكب</b> <span dir="ltr" lang="en">From the superposition example</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">In the example report, which sections hold 'Experiment (2): Superposition Theorem', 'Investigate the superposition theorem' and the paragraph on eliminating all but one source?</p><p class="ar ">في التقرير المثال، أي أقسام فيها «<bdi dir="ltr">Experiment (2): Superposition Theorem</bdi>» و «<bdi dir="ltr">Investigate the superposition theorem</bdi>» والفقرة عن إلغاء كل المصادر إلا واحد؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The name of the experiment → title.</p><p class="ar ">اسم التجربة ← العنوان.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">'Investigate...' → what you aim to verify → objective.</p><p class="ar ">«<bdi dir="ltr" class=nw>Investigate</bdi>...» ← وش تبي تتحقق منه ← الهدف.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">How the theorem works → the theoretical background.</p><p class="ar ">كيف تشتغل النظرية ← الخلفية النظرية.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Title, objective (2.1) and theoretical background (2.2).</p><p class="ar ">الجواب: العنوان، والهدف <bdi dir="ltr" class=nw>(2.1)</bdi>، والخلفية النظرية <bdi dir="ltr" class=nw>(2.2)</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="sec-setup">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>الدائرة والأجهزة والخطوات</h2><p class="law-en" dir="ltr" lang="en">Concept 5 · Circuit diagram, equipment, procedure</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Setup} = \text{(4) Circuit diagram} + \text{(5) Hardware equipment} + \text{(6) Procedure}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Setup} = \\ \text{(4) Circuit diagram} \\ +\ \text{(5) Hardware equipment} \\ +\ \text{(6) Procedure}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Circuit diagram}\)</td><td class="en" dir="ltr" lang="en">A schematic with standard electrical symbols: layout, connections, components</td><td class="ar">رسم بالرموز الكهربائية القياسية: الترتيب والتوصيل والمكونات</td></tr><tr><td class="s">\(\text{Hardware equipment}\)</td><td class="en" dir="ltr" lang="en">Itemized list of tools, components, supplies, meters, with model numbers</td><td class="ar">قائمة بالأدوات والمكونات ومصادر الطاقة وأجهزة القياس مع أرقام الموديل</td></tr><tr><td class="s">\(\text{Experimental procedure}\)</td><td class="en" dir="ltr" lang="en">Step-by-step, chronological, clear enough for someone else to replicate</td><td class="ar">خطوة بخطوة بالترتيب، وواضحة لدرجة إن غيرك يقدر يعيدها</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the sentence draws the circuit, lists the devices used, or tells the steps you did in order.</p><p class="ar ">لما الجملة ترسم الدائرة، أو تعدد الأجهزة اللي استخدمتها، أو تقول الخطوات اللي سويتها بالترتيب.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>مثال <bdi dir="ltr" class=nw>2.4</bdi> و <bdi dir="ltr" class=nw>2.5</bdi></b> <span dir="ltr" lang="en">Example 2.4 and 2.5</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Where do 'Ammeter (0-200 mA), Voltmeter (0-30 V)' and 'Short the circuit at E2 and measure I1' go?</p><p class="ar ">وين ينحط «<bdi dir="ltr">Ammeter (0-200 mA), Voltmeter (0-30 V)</bdi>» و «<bdi dir="ltr">Short the circuit at E2 and measure I1</bdi>»؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A list of devices with ranges → hardware equipment.</p><p class="ar ">قائمة أجهزة مع مداها ← الأجهزة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">An action step in order → procedure.</p><p class="ar ">خطوة تسويها بالترتيب ← الخطوات.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: The first in hardware equipment (2.4), the second in the experimental procedure (2.5).</p><p class="ar ">الجواب: الأول في الأجهزة <bdi dir="ltr" class=nw>(2.4)</bdi>، والثاني في خطوات التجربة <bdi dir="ltr" class=nw>(2.5)</bdi>.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="sec-data">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>النتائج وتحليلها</h2><p class="law-en" dir="ltr" lang="en">Concept 6 · Results &amp; analysis</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Data} = \text{(7) Results: raw data} + \text{(8) Analysis: calculations & errors}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Data} = \\ \text{(7) Results: raw data} \\ +\ \text{(8) Analysis: calculations & errors}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Results}\)</td><td class="en" dir="ltr" lang="en">Raw data and recorded measurements in tables, charts or primary graphs</td><td class="ar">البيانات الخام والقياسات في جداول أو رسومات</td></tr><tr><td class="s">\(\text{Analysis of experimental data}\)</td><td class="en" dir="ltr" lang="en">Calculations, error analysis and comparative graphs; compare measurements with theory</td><td class="ar">حسابات وتحليل أخطاء ورسومات مقارنة، وتقارن القياس بالنظري</td></tr><tr><td class="s">\(\text{Raw data}\)</td><td class="en" dir="ltr" lang="en">Numbers as you measured them, not processed yet</td><td class="ar">الأرقام زي ما قستها، قبل أي معالجة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the sentence shows measured numbers (results) or processes them: calculations, % error, comparison with theory (analysis).</p><p class="ar ">لما الجملة تعرض أرقام مقاسة (النتائج) أو تعالجها: حسابات، نسبة خطأ، مقارنة بالنظري (التحليل).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الجدول ولا التحقق</b> <span dir="ltr" lang="en">Table vs verification</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">In the example, the table 'Current due to E1, I1 = ...' and the sentence 'The student must verify that IL is equal from step 1 and step 4' belong to which sections?</p><p class="ar ">في المثال، جدول «<bdi dir="ltr" class=nw>Current due to E1, I1</bdi> = ...» والجملة «لازم الطالب يتحقق إن <bdi dir="ltr" class=nw>IL</bdi> نفسه من الخطوة <bdi dir="ltr" class=nw>1</bdi> والخطوة <bdi dir="ltr" class=nw>4</bdi>» تتبع أي أقسام؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Recorded measurements in a table → results.</p><p class="ar ">قياسات مسجلة في جدول ← النتائج.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Comparing and verifying values → analysis.</p><p class="ar ">مقارنة وتحقق من القيم ← التحليل.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: The table is results; the verification is analysis of experimental data (2.6).</p><p class="ar ">الجواب: الجدول نتائج، والتحقق تحليل البيانات <bdi dir="ltr" class=nw>(2.6)</bdi>.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>نسبة الخطأ</b> <span dir="ltr" lang="en">Percent error</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A report says: 'The theoretical IL is 6.0 mA and the measured IL is 5.8 mA, so the error is 3.3%.' Which section?</p><p class="ar ">تقرير مكتوب فيه: «<bdi dir="ltr" class=nw>IL</bdi> النظري <bdi dir="ltr" class=nw>6.0 mA</bdi> والمقاس <bdi dir="ltr" class=nw>5.8 mA</bdi>، فالخطأ <bdi dir="ltr" class=nw>3.3%</bdi>». أي قسم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">It calculates an error and compares measurement with theory.</p><p class="ar ">يحسب خطأ ويقارن القياس بالنظري.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Error: (6.0 − 5.8) ÷ 6.0 = 3.3% (calculated in Python).</p><p class="ar ">الخطأ: <bdi dir="ltr" class=nw>(6.0 − 5.8) ÷ 6.0 = 3.3%</bdi> (محسوبة ببايثون).</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Analysis of experimental data.</p><p class="ar ">الجواب: تحليل البيانات.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="sec-end">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>المناقشة والمراجع</h2><p class="law-en" dir="ltr" lang="en">Concept 7 · Discussion/conclusions &amp; works cited</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{End} = \text{(9) Discussion / Conclusions} + \text{(10) Works Cited}\]</div><div class="eq narrow big">\[\begin{gathered}\text{End} = \\ \text{(9) Discussion / Conclusions} \\ +\ \text{(10) Works Cited}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Discussion / conclusions}\)</td><td class="en" dir="ltr" lang="en">Were the objectives met? Discrepancies, sources of error, key takeaways</td><td class="ar">هل تحقق الهدف؟ الفروقات، مصادر الخطأ، والخلاصة</td></tr><tr><td class="s">\(\text{Works cited}\)</td><td class="en" dir="ltr" lang="en">Formatted list of textbooks, lab manuals, datasheets and academic sources</td><td class="ar">قائمة منسقة بالكتب وأدلة المختبر والـ <bdi dir="ltr" class=nw>datasheets</bdi> والمصادر</td></tr><tr><td class="s">\(\text{Discrepancy}\)</td><td class="en" dir="ltr" lang="en">A difference between expected and measured values</td><td class="ar">فرق بين المتوقع والمقاس</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the sentence judges whether the objective was met, explains errors, sums up, or lists the sources used.</p><p class="ar ">لما الجملة تحكم هل الهدف تحقق، أو تفسر الأخطاء، أو تلخص، أو تعدد المصادر.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">The 10 parts in order: Title, Objective, Introduction/Theory, Circuit diagram, Hardware equipment, Procedure, Results, Analysis, Discussion/Conclusions, Works cited. The order itself is a likely exam question.</p><p class="ar ">الأجزاء العشرة بالترتيب: العنوان، الهدف، المقدمة/النظرية، رسم الدائرة، الأجهزة، الخطوات، النتائج، التحليل، المناقشة/الاستنتاجات، المراجع. الترتيب نفسه ممكن يجي سؤال.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>خاتمة المثال</b> <span dir="ltr" lang="en">The example conclusion</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">'After confirming that the results are equal, we can conclude that the superposition theorem was applied successfully.' Which section?</p><p class="ar ">«بعد ما تأكدنا إن النتايج متساوية، نستنتج إن نظرية التراكب طُبقت بنجاح». أي قسم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">It says whether the objective was met.</p><p class="ar ">تقول هل الهدف تحقق.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">That is the job of discussion/conclusions.</p><p class="ar ">وهذا شغل المناقشة والاستنتاجات.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Discussion/conclusions (2.7).</p><p class="ar ">الجواب: المناقشة والاستنتاجات <bdi dir="ltr" class=nw>(2.7)</bdi>.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg prev" href="laws3.html">→ مفاهيم المحاضرة ٣</a><a class="pg quiz" href="keys4.html">🔑 الكلمات المفتاحية</a><a class="pg quiz" href="quiz4.html">🧠 اختبر نفسك: أي مفهوم؟</a><a class="pg lec" href="lecture4.html">📖 ارجع لشرح المحاضرة ٤</a></nav>
+</main>
+<script src="course.js?v=1"></script>
+</body>
+</html>

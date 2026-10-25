@@ -1,0 +1,90 @@
+/* =====================================================================
+   course.css — ثيم مادة الاقتصاد الهندسي بس: "دفتر حسابات"
+   ورق فاتح دافي وحبر نحاسي ذهبي، والليلي بني فحمي. يُحمَّل بعد ../lecture.css في صفحات economics/ بس.
+   ألوان المتغيرات (--cx --cy --cz) نفسها من lecture.css، عشان الأزرق والأخضر والبرتقالي يبقون لـ P و A و F.
+   ===================================================================== */
+
+html:root {
+  --bg: #f4f1ea; --surface: #fffdf8; --surface-2: #f8f5ee;
+  --ink: #1d1a14; --ink-2: #514b3f; --ink-3: #736b5c;
+  --line: #e4ded1; --line-2: #d2cab9;
+  --accent: #8c6412; --accent-soft: #f5ecd8;
+  --shadow: 0 1px 2px rgba(40,30,10,.05), 0 10px 30px -18px rgba(40,30,10,.25);
+}
+@media (prefers-color-scheme: dark) {
+  html:root:not([data-theme="light"]) {
+    --bg: #15140f; --surface: #1d1c17; --surface-2: #24221c;
+    --ink: #eeebe3; --ink-2: #b0a996; --ink-3: #7f7867;
+    --line: #302e27; --line-2: #3e3b31;
+    --accent: #e2b857; --accent-soft: rgba(226,184,87,.13);
+    --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.8);
+  }
+}
+html:root[data-theme="dark"] {
+  --bg: #15140f; --surface: #1d1c17; --surface-2: #24221c;
+  --ink: #eeebe3; --ink-2: #b0a996; --ink-3: #7f7867;
+  --line: #302e27; --line-2: #3e3b31;
+  --accent: #e2b857; --accent-soft: rgba(226,184,87,.13);
+  --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.8);
+}
+
+/* المعادلات الطويلة: سطر واحد في الشاشة العريضة، وأسطر تحت بعض في الجوال */
+.m.narrow { display: none; }
+@media (max-width: 760px) {
+  .m.wide { display: none; }
+  .m.narrow { display: block; }
+  .m { padding-inline: 8px; }
+}
+
+/* الجواب الطويل في صندوق النتيجة على الجوال: يصغر شوي، ولو ما كفى يتمرر داخل صندوقه */
+@media (max-width: 560px) {
+  .result .r-val { font-size: 1.12rem; max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  .result .r-val mjx-assistive-mml { max-width: 100%; }
+}
+
+/* الأرقام والمبالغ في الجداول تنقرا من اليسار وبعرض ثابت */
+table.tbl td.n, table.tbl th.n { direction: ltr; text-align: end; font-family: var(--f-mono); font-size: .86rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
+
+/* بطاقات الرموز: خط ملون فوق البطاقة حسب لون المتغير */
+.grid-2 > .tile, .grid-3 > .tile { min-width: 0; }
+.tile.x, .tile.y, .tile.z { border-top: 3px solid var(--c); }
+
+/* الرسومات */
+.fig .flow-up { stroke: var(--cy); }
+.fig .flow-dn { stroke: var(--bad); }
+.fig text.lbl.xt { fill: var(--cx); }
+.fig text.lbl.yt { fill: var(--cy); }
+.fig text.lbl.zt { fill: var(--cz); }
+.fig .area-good { fill: color-mix(in srgb, var(--good) 16%, transparent); stroke: none; }
+.fig .area-bad { fill: color-mix(in srgb, var(--bad) 12%, transparent); stroke: none; }
+.fig .guide { stroke: var(--ink-3); stroke-width: 1.2; stroke-dasharray: 4 4; fill: none; }
+.fig .pt { fill: var(--surface); stroke-width: 2.2; }
+
+/* المختبرات */
+.econ-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+.econ-lab .say { margin: 10px 0 0; text-align: center; font-weight: 500; color: var(--ink-2); }
+.econ-lab .field input[type=number] { font: 600 .9rem var(--f-mono); height: 38px; width: 120px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); direction: ltr; }
+@media (max-width: 560px) {
+  .econ-lab .ml-read { grid-template-columns: 1fr 1fr; }
+  .econ-lab .field input[type=range] { width: 140px; }
+}
+
+/* مخططات التدفق في الجوال: الرسمة تصغر لنص حجمها تقريباً، فنكبر خطها عشان ينقرا */
+@media (max-width: 560px) {
+  .fig svg.cfd text { font-size: 19px; }
+  .fig svg.cfd text.tick { font-size: 17px; }
+}
+
+/* تبويب "الشرح | القوانين" في نص أعلى الصفحة (يبنيه econ.js). بنفسجي مثل ثيم الفيديو وورقة القوانين */
+:root { --laws: #4f46e5; --laws-soft: #eef0ff; --laws-ink: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --laws: #8b85ff; --laws-soft: rgba(139,133,255,.14); --laws-ink: #14131c; } }
+:root[data-theme="dark"] { --laws: #8b85ff; --laws-soft: rgba(139,133,255,.14); --laws-ink: #14131c; }
+.mode-tabs { display: flex; width: fit-content; margin: 2px auto 10px; padding: 4px; gap: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-2); box-shadow: var(--shadow); }
+.mode-tabs > * { padding: 7px 22px; border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; color: var(--ink-2); white-space: nowrap; }
+.mode-tabs .on { background: var(--laws); color: var(--laws-ink); }
+.mode-tabs a { background: var(--laws-soft); color: var(--laws); }
+.mode-tabs a:hover { box-shadow: inset 0 0 0 1px var(--laws); }
+.mode-tabs > * { padding-inline: 18px; }
+@media (max-width: 640px) { .mode-tabs > * { padding: 6px 12px; font-size: .95rem; } }
+@media print { .mode-tabs { display: none; } }
