@@ -1,545 +1,367 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-topic="Gradient &amp; Directional Derivative" data-title-en="Lecture 3 Summary - Gradient &amp; Directional Derivative">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص المحاضرة 3 - انحدار الدالة القياسية والمشتقة الاتجاهية</title>
-
-    <!-- MathJax 3 -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
-        :root {
-            --bg-void:      #05090a;
-            --bg-panel:     #0b1210;
-            --grid-minor:   rgba(124, 255, 178, 0.045);
-            --grid-major:   rgba(124, 255, 178, 0.11);
-            --ink-primary:  #e9f5ef;
-            --ink-secondary:#7f9d92;
-
-            --trace-cos:    #7cffb2;  /* التعريف والقوانين الأساسية */
-            --trace-sin:    #ffb454;  /* صيغ ومفاهيم مرتبطة */
-            --trace-alert:  #ff6f6f;  /* غير مستخدم في هذه المحاضرة */
-            --accent-practice: #b98cff; /* الأمثلة المحلولة والتمارين */
-            --accent-assess:   #7cc4ff; /* التوضيح الهندسي / المتجهات */
-
-            --border-soft:  rgba(124, 255, 178, 0.16);
-            --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
-            --font-mono:    'IBM Plex Mono', monospace;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-arabic);
-            background-color: var(--bg-void);
-            color: var(--ink-primary);
-            line-height: 1.85;
-            padding: 22px 14px 60px;
-            min-height: 100vh;
-        }
-
-        .bg-grid {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image:
-                repeating-linear-gradient(0deg,  var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(90deg, var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
-                repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
-            background-color: var(--bg-void);
-        }
-        .bg-grid::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%);
-        }
-
-        a:focus-visible, select:focus-visible, .trigger:focus-visible, .curtain-container:focus-visible {
-            outline: 2px solid var(--accent-assess);
-            outline-offset: 2px;
-        }
-
-        .main-wrapper {
-            max-width: 760px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        /* ---------------- hero ---------------- */
-        .hero {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-soft);
-            border-radius: 12px;
-            padding: 28px 20px 20px;
-        }
-        .hero h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            text-align: center;
-            color: var(--ink-primary);
-            margin-bottom: 6px;
-        }
-        .hero .sub {
-            text-align: center;
-            color: var(--ink-secondary);
-            font-size: 0.95rem;
-            max-width: 540px;
-            margin: 0 auto 18px;
-        }
-        .scope-screen {
-            background: #030605;
-            border: 1px solid var(--border-soft);
-            border-radius: 8px;
-            padding: 6px 4px;
-            overflow: hidden;
-        }
-        .scope-screen svg { display: block; width: 100%; height: auto; }
-        .scope-legend {
-            display: flex; justify-content: center; gap: 24px;
-            margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap;
-        }
-        .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
-        .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
-
-        /* ---------------- panels ---------------- */
-        .panel {
-            background: var(--bg-panel);
-            border: 1px solid var(--border-soft);
-            border-radius: 12px;
-            padding: 24px 22px;
-            position: relative;
-        }
-        .panel::before, .panel::after {
-            content: ''; position: absolute; width: 14px; height: 14px;
-            border: 2px solid var(--panel-accent, var(--trace-cos));
-            opacity: 0.55;
-        }
-        .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
-        .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
-
-        .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .panel-index {
-            font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600;
-            color: var(--bg-void); background: var(--panel-accent, var(--trace-cos));
-            border-radius: 5px; padding: 3px 8px; flex-shrink: 0;
-        }
-        .symbol-badge {
-            width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-mono); font-weight: 700; font-size: 1rem;
-            color: var(--panel-accent, var(--trace-cos));
-            border: 1px solid var(--panel-accent, var(--trace-cos));
-            background: rgba(124,255,178,0.06);
-        }
-        .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
-        .panel h2 { font-size: 1.1rem; font-weight: 700; color: var(--ink-primary); }
-        .panel h3 { font-size: 0.98rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 14px 0 8px; }
-
-        .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
-        .panel p:last-child { margin-bottom: 0; }
-
-        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 14px; }
-        .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 8px; }
-        .panel ol { counter-reset: step; }
-
-        .math-block {
-            background: #030605;
-            border-right: 3px solid var(--panel-accent, var(--trace-cos));
-            padding: 14px 16px; margin: 12px 0; border-radius: 7px;
-            direction: ltr; text-align: center; overflow-x: auto;
-        }
-        .math-block.small { padding: 10px 14px; font-size: 0.92rem; }
-
-        .result-box {
-            background: rgba(124, 255, 178, 0.06);
-            border: 1px solid rgba(124, 255, 178, 0.28);
-            border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem;
-        }
-        .result-box strong { color: var(--trace-cos); }
-
-        .note-line {
-            text-align: center; color: var(--accent-assess);
-            font-size: 0.9rem; margin: 10px 0;
-        }
-
-        /* phasor / geometric diagram */
-        .diagram-frame {
-            background: #030605; border: 1px solid var(--border-soft); border-radius: 8px;
-            padding: 16px; display: flex; justify-content: center; margin: 14px 0;
-        }
-        .diagram-frame svg { max-width: 100%; height: auto; }
-
-        /* interactive class-work trigger */
-        .exercise-prompt {
-            background: rgba(185, 140, 255, 0.06);
-            border: 1px solid rgba(185, 140, 255, 0.25);
-            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
-        }
-        .exercise-prompt .ex-tag {
-            font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice);
-            display: block; margin-bottom: 6px;
-        }
-        .trigger {
-            position: relative; border: 1px dashed rgba(185, 140, 255, 0.4);
-            border-radius: 9px; cursor: pointer; overflow: hidden;
-        }
-        .trigger-hint {
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 14px; font-size: 0.88rem; color: var(--accent-practice); font-weight: 500;
-        }
-        .trigger-hint svg { width: 16px; height: 16px; }
-        .trigger-body { display: none; padding: 4px 16px 18px; }
-        .trigger.open .trigger-hint { display: none; }
-        .trigger.open .trigger-body { display: block; }
-        .trigger.open { border-style: solid; }
-
-        footer.note {
-            text-align: center; font-family: var(--font-mono); font-size: 0.72rem;
-            color: var(--ink-secondary); padding-top: 8px;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .draw-in { stroke-dashoffset: 0 !important; transition: none !important; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.15rem; }
-            .panel { padding: 18px 15px; }
-            .panel h2 { font-size: 1rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 3 - Gradient &amp; Directional Derivative</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <link rel="stylesheet" href="../fonts.css">
 </head>
 <body>
+<main class="wrap">
 
-    <div class="bg-grid"></div>
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 3 · Vector Calculus</span><span lang="en">LECTURE 3 · VECTOR CALCULUS</span></p>
+  <h1><span><span lang="ar">الانحدار والمشتقة الاتجاهية</span><span lang="en">Gradient and Directional Derivative</span></span> <span class="h1-math ltr">$\nabla f$</span></h1>
+  <p class="lead">
+    <span lang="ar">الانحدار $\nabla f$ يحوّل دالة قياسية (رقم عند كل نقطة) إلى متجه يأشر على اتجاه أسرع زيادة للدالة، وهو دايماً عمودي على سطح المستوى $f = c$. ومنه نحسب المشتقة في أي اتجاه نبيه، والمتجه العمودي على أي سطح.</span>
+    <span lang="en">The gradient $\nabla f$ turns a scalar function (a number at each point) into a vector that points where the function increases fastest, and it is always perpendicular to the level surface $f = c$. From it we get the derivative in any direction we like, and the normal vector to any surface.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">f</span><span class="y">∇f</span><span class="z">a</span>
+    <small><span lang="ar">← الأزرق = الدالة القياسية، الأخضر = متجه الانحدار، البرتقالي = الاتجاه المطلوب</span><span lang="en">← blue = the scalar function, green = the gradient vector, orange = the chosen direction</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">$\nabla f = \left[f_x, f_y, f_z\right]$: اشتق جزئياً بالنسبة لكل متغير، والنتيجة متجه دايماً.</span><span lang="en">$\nabla f = \left[f_x, f_y, f_z\right]$: take the partial derivative with respect to each variable; the result is always a vector.</span></li>
+      <li><span lang="ar">المشتقة الاتجاهية: $D_{\mathbf{a}}f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|}$. لا تنسى توحّد $\mathbf{a}$.</span><span lang="en">Directional derivative: $D_{\mathbf{a}}f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|}$. Don't forget to normalize $\mathbf{a}$.</span></li>
+      <li><span lang="ar">للسطح $f(x,y,z) = c$: $\nabla f$ عمودي عليه، والعمودي الموحد $\mathbf{n} = \frac{\nabla f}{|\nabla f|}$.</span><span lang="en">For a surface $f(x,y,z) = c$: $\nabla f$ is perpendicular to it, and the unit normal is $\mathbf{n} = \frac{\nabla f}{|\nabla f|}$.</span></li>
+    </ol>
+  </div>
+</section>
 
-    <div class="main-wrapper">
+<!-- ================= 01 الانحدار ================= -->
+<section class="card" id="gradient" data-num="01" data-nav="الانحدار|Gradient">
+  <h2><span lang="ar">انحدار الدالة القياسية</span><span lang="en">Gradient of a scalar field</span></h2>
+  <p class="sub"><span lang="ar">من رقم عند كل نقطة إلى سهم عند كل نقطة</span><span lang="en">From a number at each point to an arrow at each point</span></p>
+  <p><span lang="ar">الرمز $\nabla$ اسمه <span class="ltr">Del</span> أو <span class="ltr">Nabla</span>. إذا عندنا دالة قياسية $f(x,y,z)$ قابلة للاشتقاق، فانحدارها يُكتب $\text{grad}(f)$ أو $\nabla f$، وناتجه دايماً <b>متجه</b>. نكتبه بصيغتين:</span><span lang="en">The symbol $\nabla$ is called Del or Nabla. If $f(x,y,z)$ is a differentiable scalar function, its gradient is written $\text{grad}(f)$ or $\nabla f$, and the result is always a <b>vector</b>. Two ways to write it:</span></p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">صيغة الإحداثيات</span><span lang="en">Component form</span></div><div class="t-math">$\Y{\nabla f} = \left[ \dfrac{\partial f}{\partial x},\ \dfrac{\partial f}{\partial y},\ \dfrac{\partial f}{\partial z} \right]$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">متجهات الوحدة</span><span lang="en">Unit vectors</span></div><div class="t-math">$\text{grad}(f) = \dfrac{\partial f}{\partial x}\hat{i} + \dfrac{\partial f}{\partial y}\hat{j} + \dfrac{\partial f}{\partial z}\hat{k}$</div></div>
+  </div>
+  <figure class="fig">
+    <svg viewBox="0 0 600 220" role="img" aria-label="level curves with the gradient perpendicular to them">
+      <ellipse cx="300" cy="120" rx="70" ry="40" class="sk" style="--c:var(--cx);opacity:.45"/>
+      <ellipse cx="300" cy="120" rx="140" ry="72" class="sk" style="--c:var(--cx)"/>
+      <ellipse cx="300" cy="120" rx="230" ry="100" class="sk" style="--c:var(--cx);opacity:.45"/>
+      <circle cx="399" cy="69" r="5" class="fi" style="--c:var(--ink)"/>
+      <path class="sk" style="--c:var(--cy)" d="M399 69 L436 14"/><path class="fi" style="--c:var(--cy)" d="M440 8 L427 14 L438 22 Z"/>
+      <path class="sk dash" style="--c:var(--ink-3)" d="M330 30 L470 112"/>
+      <text class="lbl" x="446" y="18" style="fill:var(--cy)">∇f</text>
+      <text class="tick" x="480" y="122"><tspan>tangent</tspan></text>
+      <text class="lbl" x="140" y="70" style="fill:var(--cx)">f = c</text>
+    </svg>
+    <figcaption><span lang="ar">$\nabla f$ عمودي على منحنى المستوى $f = c$، ويأشر على اتجاه أقصى زيادة للدالة</span><span lang="en">$\nabla f$ is perpendicular to the level curve $f = c$ and points in the direction of fastest increase</span></figcaption>
+  </figure>
+  <div class="callout key"><strong>🔑 <span lang="ar">الترتيب:</span><span lang="en">The order:</span></strong> <span lang="ar">اشتق جزئياً (الباقي ثوابت) ← اكتب المتجه العام ← عوّض النقطة آخر شي.</span><span lang="en">Take partial derivatives (others held constant) → write the general vector → plug in the point last.</span></div>
+</section>
 
-        <!-- بداية كود قائمة الملخصات المتناسق -->
-        <div style="background-color: var(--card-bg, rgba(22, 30, 46, 0.85)); border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08)); border-radius: 12px; padding: 12px 20px; margin: 20px auto; max-width: 450px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">
-          <label for="lecture-select" style="font-family: 'Tajawal', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-cyan, #38bdf8); margin-left: 10px; display: inline-block; margin-bottom: 5px;">
-            📚 الانتقال السريع للمحاضرات:
-          </label>
-          <select id="lecture-select" onchange="if (this.value) window.location.href = this.value;" style="font-family: 'Tajawal', sans-serif; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15)); background-color: var(--math-bg, #030712); color: var(--text-primary, #f3f4f6); font-size: 14px; font-weight: 500; cursor: pointer; outline: none; transition: all 0.2s ease;">
-     
-          </select>
-        </div>
-        <!-- نهاية كود قائمة الملخصات -->
+<!-- ================= 02 المشتقة الاتجاهية ================= -->
+<section class="card" id="directional" data-num="02" data-nav="الاتجاهية|Directional">
+  <h2><span lang="ar">المشتقة الاتجاهية</span><span lang="en">The directional derivative</span></h2>
+  <p class="sub"><span lang="ar">قد إيش تتغير الدالة لو مشيت باتجاه $\mathbf{a}$؟</span><span lang="en">How fast does the function change if you walk in direction $\mathbf{a}$?</span></p>
+  <p><span lang="ar">إذا $f(x,y,z)$ قابلة للاشتقاق، والاتجاه معطى بمتجه $\mathbf{a}$ بحيث $|\mathbf{a}| \neq 0$، فالمشتقة الاتجاهية:</span><span lang="en">If $f(x,y,z)$ is differentiable and the direction is given by a vector $\mathbf{a}$ with $|\mathbf{a}| \neq 0$, the directional derivative is:</span></p>
+  <div class="m big">\[D_{\Z{\mathbf{a}}} f = \Y{\nabla f} \cdot \frac{\Z{\mathbf{a}}}{|\Z{\mathbf{a}}|}\]</div>
+  <p><span lang="ar">$\frac{\mathbf{a}}{|\mathbf{a}|}$ هو متجه الوحدة باتجاه $\mathbf{a}$. نوحّده عشان يقيس الاتجاه بس، مو الطول.</span><span lang="en">$\frac{\mathbf{a}}{|\mathbf{a}|}$ is the unit vector along $\mathbf{a}$. We normalize so that only the direction counts, not the length.</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">$\nabla f$ العام</span><span lang="en">The general $\nabla f$</span></b><span class="why"><span lang="ar">المشتقات الجزئية الثلاث</span><span lang="en">The three partial derivatives</span></span></li>
+    <li><b><span lang="ar">عوّض النقطة</span><span lang="en">Plug in the point</span></b><span class="why"><span lang="ar">يطلع متجه أرقام</span><span lang="en">You get a vector of numbers</span></span></li>
+    <li><b><span lang="ar">احسب $|\mathbf{a}|$</span><span lang="en">Compute $|\mathbf{a}|$</span></b><span class="why">$\sqrt{a_1^2+a_2^2+a_3^2}$</span></li>
+    <li><b><span lang="ar">الضرب القياسي</span><span lang="en">Dot product</span></b><span class="why"><span lang="ar">اضرب مركبة بمركبة واجمع، ثم اقسم على $|\mathbf{a}|$. النتيجة رقم</span><span lang="en">Multiply component by component, add, divide by $|\mathbf{a}|$. The result is a number</span></span></li>
+  </ol>
+  <div class="callout good"><strong>✅ <span lang="ar">معلومة تفيدك في الفحص</span><span lang="en">Handy check</span></strong><ul class="checks">
+    <li><span lang="ar">أكبر قيمة ممكنة لـ $D_{\mathbf{a}}f$ هي $|\nabla f|$، وتصير لما $\mathbf{a}$ بنفس اتجاه $\nabla f$.</span><span lang="en">The largest possible $D_{\mathbf{a}}f$ is $|\nabla f|$, reached when $\mathbf{a}$ points along $\nabla f$.</span></li>
+    <li><span lang="ar">لو $\mathbf{a}$ عمودي على $\nabla f$ فالمشتقة الاتجاهية صفر (تمشي على سطح المستوى).</span><span lang="en">If $\mathbf{a}$ is perpendicular to $\nabla f$, the directional derivative is zero (you're walking along the level surface).</span></li>
+  </ul></div>
+</section>
 
-        <!-- hero: contour + gradient vector -->
-        <div class="hero">
-            <h1>انحدار الدالة القياسية والمشتقة الاتجاهية</h1>
-            <p class="sub">متجه $\nabla f$ يشير دائماً عمودياً على منحنى المستوى $f = c$، في اتجاه أقصى تزايد للدالة</p>
+<!-- ================= 03 العمودي ================= -->
+<section class="card" id="normal" data-num="03" data-nav="العمودي|Normal">
+  <h2><span lang="ar">الانحدار كمتجه عمودي على السطح</span><span lang="en">The gradient as a surface normal</span></h2>
+  <p class="sub"><span lang="ar">أي سطح نكتبه $f(x,y,z) = c$، و $\nabla f$ عمودي عليه</span><span lang="en">Write any surface as $f(x,y,z) = c$, and $\nabla f$ is perpendicular to it</span></p>
+  <p><span lang="ar">إذا السطح $S$ معادلته $f(x,y,z) = c$ ($c$ ثابت) و $f$ قابلة للاشتقاق، فـ $\nabla f$ عند أي نقطة $P$ على السطح هو متجه عمودي <span class="ltr">(Normal Vector)</span> على السطح عند هذي النقطة.</span><span lang="en">If the surface $S$ is $f(x,y,z) = c$ ($c$ constant) and $f$ is differentiable, then $\nabla f$ at any point $P$ on the surface is a normal vector to the surface at that point.</span></p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">متجه عمودي</span><span lang="en">Normal vector</span></div><div class="t-math">$\text{Normal} = \Y{\nabla f}$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">العمودي الموحد</span><span lang="en">Unit normal</span></div><div class="t-math">$\mathbf{n} = \dfrac{\nabla f}{|\nabla f|}$</div></div>
+  </div>
+  <figure class="fig">
+    <svg viewBox="0 0 600 220" role="img" aria-label="surface f = c with tangent plane and normal gradient">
+      <path class="tint" style="--c:var(--cx)" d="M60 190 C180 120, 420 120, 540 190 Z"/>
+      <path class="sk" style="--c:var(--cx)" d="M60 190 C180 120, 420 120, 540 190"/>
+      <path class="tint" style="--c:var(--ink-3)" d="M170 160 L250 125 L430 125 L350 160 Z"/>
+      <path class="sk" style="--c:var(--ink-3);stroke-width:1.4" d="M170 160 L250 125 L430 125 L350 160 Z"/>
+      <circle cx="300" cy="142" r="5" class="fi" style="--c:var(--ink)"/>
+      <path class="sk" style="--c:var(--cy)" d="M300 142 L300 40"/><path class="fi" style="--c:var(--cy)" d="M300 32 L293 46 L307 46 Z"/>
+      <text class="lbl" x="312" y="50" style="fill:var(--cy)">∇f</text>
+      <text class="lbl" x="310" y="160">P</text>
+      <text class="lbl" x="520" y="170" style="fill:var(--cx)">f = c</text>
+      <text class="tick" x="440" y="122">tangent plane</text>
+    </svg>
+    <figcaption><span lang="ar">السطح $f = c$، المستوى المماس عند $P$، و $\nabla f$ عمودي عليهم</span><span lang="en">The surface $f = c$, its tangent plane at $P$, and $\nabla f$ perpendicular to both</span></figcaption>
+  </figure>
+  <div class="callout warn"><strong>⚠️ <span lang="ar">انتبه:</span><span lang="en">Careful:</span></strong> <span lang="ar">لو السطح معطى مثل $z^2 = 4(x^2+y^2)$، انقل كل شي لطرف واحد أول: $f = 4x^2 + 4y^2 - z^2 = 0$، وبعدين اشتق.</span><span lang="en">If the surface is given like $z^2 = 4(x^2+y^2)$, move everything to one side first: $f = 4x^2 + 4y^2 - z^2 = 0$, then differentiate.</span></div>
+</section>
 
-            <div class="scope-screen">
-                <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arr-grad" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M0 0L10 5 0 10z" fill="#7cc4ff"/>
-                        </marker>
-                    </defs>
-                    <circle cx="350" cy="95" r="25" fill="none" stroke="#3a4a44" stroke-width="1.5"/>
-                    <circle cx="350" cy="95" r="50" fill="none" stroke="#ffb454" stroke-width="2"/>
-                    <circle cx="350" cy="95" r="75" fill="none" stroke="#3a4a44" stroke-width="1.5"/>
-                    <circle cx="350" cy="95" r="100" fill="none" stroke="#3a4a44" stroke-width="1.5"/>
-                    <text x="278" y="34" fill="#ffb454" font-family="IBM Plex Mono" font-size="12">f = c</text>
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">انحدار بسيط عند نقطة</span><span lang="en">A simple gradient at a point</span></h2></div>
+  <div class="tags"><span class="tag ltr">∇f</span><span class="tag ltr">(1, 0, 1)</span></div>
+  <div class="m big">\[f(x,y,z) = x^2 + y^2 + z^2 \quad \text{at } (1, 0, 1)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">المشتقات الجزئية</span><span lang="en">The partial derivatives</span></h4>
+      <div class="m">\[\frac{\partial f}{\partial x} = 2x, \qquad \frac{\partial f}{\partial y} = 2y, \qquad \frac{\partial f}{\partial z} = 2z\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">عوّض $(1, 0, 1)$</span><span lang="en">Plug in $(1, 0, 1)$</span></h4>
+      <div class="m">\[2(1) = 2, \qquad 2(0) = 0, \qquad 2(1) = 2\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\nabla f = [2, 0, 2] = 2\hat{i} + 2\hat{k}$</div>
+      <p class="sanity"><span lang="ar">$f$ = مربع البعد عن الأصل، فأسرع زيادة تكون للخارج، يعني بنفس اتجاه النقطة $(1,0,1)$ ✓</span><span lang="en">$f$ is the squared distance from the origin, so it grows fastest straight outward, i.e. along $(1,0,1)$ itself ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-                    <line x1="377" y1="49" x2="400" y2="77" stroke="#e9f5ef" stroke-width="1.4" stroke-dasharray="3 3"/>
-                    <circle cx="388" cy="63" r="3" fill="#e9f5ef"/>
-                    <text x="393" y="58" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="11">P</text>
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 2</span><span lang="en">Example 2</span></span><h2><span lang="ar">انحدار دالة فيها حواصل ضرب</span><span lang="en">Gradient of a function with products</span></h2></div>
+  <div class="tags"><span class="tag ltr">∇f</span><span class="tag ltr">(1, 1, 1)</span></div>
+  <div class="m big">\[f(x,y,z) = 3x^2y^2z + 2xy - z^2 + 1 \quad \text{at } (1, 1, 1)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">المشتقات الجزئية</span><span lang="en">The partial derivatives</span> <span class="const"><span lang="ar">الباقي ثوابت</span><span lang="en">others constant</span></span></h4>
+      <div class="m">\[\frac{\partial f}{\partial x} = 6xy^2z + 2y, \qquad \frac{\partial f}{\partial y} = 6x^2yz + 2x, \qquad \frac{\partial f}{\partial z} = 3x^2y^2 - 2z\]</div>
+      <p class="why"><span lang="ar">الثابت $+1$ يختفي في كل المشتقات.</span><span lang="en">The constant $+1$ vanishes in every derivative.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المتجه العام ثم عوّض</span><span lang="en">The general vector, then plug in</span></h4>
+      <div class="m">\[\nabla f = [6xy^2z + 2y,\ 6x^2yz + 2x,\ 3x^2y^2 - 2z] \;\Rightarrow\; [6+2,\ 6+2,\ 3-2]\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\nabla f\big|_{(1,1,1)} = [8, 8, 1]$</div>
+      <p class="sanity"><span lang="ar">الدالة متماثلة في $x$ و $y$، والنقطة فيها $x = y$، فطبيعي أول مركبتين متساويتين ✓</span><span lang="en">The function is symmetric in $x$ and $y$, and the point has $x = y$, so the first two components should match ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-                    <line id="gradArrow" x1="388" y1="63" x2="423" y2="34" stroke="#7cc4ff" stroke-width="2.6" marker-end="url(#arr-grad)"/>
-                    <text x="428" y="30" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">∇f</text>
-                </svg>
-            </div>
-            <div class="scope-legend">
-                <span><i class="swatch" style="background:#ffb454"></i> منحنى المستوى f(x,y,z) = c</span>
-                <span><i class="swatch" style="background:#7cc4ff"></i> ∇f — عمودي على المنحنى</span>
-            </div>
-        </div>
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 3</span><span lang="en">Example 3</span></span><h2><span lang="ar">انحدار فيه أُسّية و cos</span><span lang="en">A gradient with exponential and cosine</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">قاعدة السلسلة</span><span lang="en">chain rule</span></span><span class="tag ltr">(0, π, 2)</span></div>
+  <div class="m big">\[f(x,y,z) = e^{xy} + \cos(xyz) + 3z \quad \text{at } (0, \pi, 2)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">المشتقات الجزئية</span><span lang="en">The partial derivatives</span></h4>
+      <div class="m">\[\frac{\partial f}{\partial x} = y e^{xy} - yz\sin(xyz), \qquad \frac{\partial f}{\partial y} = x e^{xy} - xz\sin(xyz), \qquad \frac{\partial f}{\partial z} = -xy\sin(xyz) + 3\]</div>
+      <p class="why">⚠️ <span lang="ar">مشتقة $e^{xy}$ بالنسبة لـ $x$ تطلع $y$ قدام، ومشتقة $\cos(xyz)$ تطلع $-yz\sin(xyz)$.</span><span lang="en">Differentiating $e^{xy}$ in $x$ brings a $y$ out front; differentiating $\cos(xyz)$ gives $-yz\sin(xyz)$.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">بسّط عند النقطة</span><span lang="en">Simplify at the point</span></h4>
+      <p class="why"><span lang="ar">بما إن $x = 0$: $xy = 0$ و $xyz = 0$، يعني $\sin 0 = 0$ و $e^0 = 1$.</span><span lang="en">Since $x = 0$: $xy = 0$ and $xyz = 0$, so $\sin 0 = 0$ and $e^0 = 1$.</span></p>
+      <div class="m">\[\pi e^0 - 0 = \pi, \qquad 0\cdot e^0 - 0 = 0, \qquad -0 + 3 = 3\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\nabla f\big|_{(0,\pi,2)} = [\pi, 0, 3]$</div>
+    </li>
+  </ol>
+</section>
 
-        <!-- panel 01 — التعريف والقانون الأساسي -->
-        <div class="panel" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">01</span>
-                <span class="symbol-badge">∇</span>
-                <h2>انحدار الدالة القياسية (Gradient of a Scalar Field)</h2>
-            </div>
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 4</span><span lang="en">Example 4</span></span><h2><span lang="ar">المشتقة الاتجاهية</span><span lang="en">A directional derivative</span></h2></div>
+  <div class="tags"><span class="tag ltr">D<sub>a</sub>f</span><span class="tag ltr">a = [1, 0, −2]</span></div>
+  <div class="m big">\[f = 2x^2 + 3y^2 + z^2 \quad \text{at } (2, 1, 3), \qquad \Z{\mathbf{a}} = [1, 0, -2]\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">الانحدار العام ثم عوّض</span><span lang="en">The general gradient, then plug in</span></h4>
+      <div class="m">\[\Y{\nabla f} = [4x,\ 6y,\ 2z] \;\Rightarrow\; \nabla f\big|_{(2,1,3)} = [4(2),\ 6(1),\ 2(3)] = [8, 6, 6]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">طول $\mathbf{a}$</span><span lang="en">The length of $\mathbf{a}$</span></h4>
+      <div class="m">\[|\Z{\mathbf{a}}| = \sqrt{1^2 + 0^2 + (-2)^2} = \sqrt{5}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الضرب القياسي</span><span lang="en">The dot product</span></h4>
+      <div class="m">\[D_{\mathbf{a}} f = [8, 6, 6] \cdot \frac{[1, 0, -2]}{\sqrt{5}} = \frac{8 + 0 - 12}{\sqrt{5}}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$D_{\mathbf{a}} f = -\dfrac{4}{\sqrt{5}}$</div>
+      <p class="sanity"><span lang="ar">سالب يعني الدالة تنقص بهذا الاتجاه، وطبيعي لأن $\mathbf{a}$ ينزل في $z$ والدالة تكبر مع $z$. وقيمته أصغر من $|\nabla f| = \sqrt{136}$ ✓</span><span lang="en">Negative means the function decreases this way, which makes sense: $\mathbf{a}$ goes down in $z$ and $f$ grows with $z$. Its size is below $|\nabla f| = \sqrt{136}$ ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-            <h3>الرمز والتعريف</h3>
-            <ul>
-                <li><strong>مؤشر الانحدار:</strong> يُرمز له بالرمز $\nabla$ (ويُسمى Del أو Nabla).</li>
-                <li><strong>تعريف الانحدار:</strong> إذا كانت لدينا دالة قياسية $f(x, y, z)$ معرفة وقابلة للمفاضلة، فإن انحدارها يُرمز له بـ $\text{grad}(f)$ أو $\nabla f$.</li>
-            </ul>
+<!-- ================= مثال 5 ================= -->
+<section class="card" id="ex5" data-nav="مثال 5|Ex 5">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 5</span><span lang="en">Example 5</span></span><h2><span lang="ar">العمودي الموحد على مخروط</span><span lang="en">The unit normal to a cone</span></h2></div>
+  <div class="tags"><span class="tag ltr">n = ∇f / |∇f|</span><span class="tag ltr">P(1, 0, 2)</span></div>
+  <div class="m big">\[z^2 = 4(x^2 + y^2) \quad \text{at } P(1, 0, 2)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">رتّب السطح $f = 0$</span><span lang="en">Rewrite the surface as $f = 0$</span></h4>
+      <div class="m">\[f(x,y,z) = 4x^2 + 4y^2 - z^2 = 0\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\nabla f$ ثم عوّض</span><span lang="en">$\nabla f$, then plug in</span></h4>
+      <div class="m">\[\nabla f = [8x,\ 8y,\ -2z] \;\Rightarrow\; \nabla f\big|_{(1,0,2)} = [8, 0, -4]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الطول</span><span lang="en">The length</span></h4>
+      <div class="m">\[|\nabla f| = \sqrt{64 + 0 + 16} = \sqrt{80} = 4\sqrt{5}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{n} = \dfrac{[8, 0, -4]}{\sqrt{80}} = \dfrac{[2, 0, -1]}{\sqrt{5}}$</div>
+      <p class="sanity"><span lang="ar">النقطة على السطح فعلاً: $2^2 = 4 = 4(1 + 0)$ ✓ وطول $\mathbf{n}$ = $\sqrt{\frac{4+1}{5}} = 1$ ✓</span><span lang="en">The point really is on the surface: $2^2 = 4 = 4(1 + 0)$ ✓ and $|\mathbf{n}| = \sqrt{\frac{4+1}{5}} = 1$ ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-            <h3>القوانين الأساسية</h3>
-            <p>النتيجة الناتجة من الانحدار تكون <strong>متجهاً (Vector)</strong> دائماً، ويمكن التعبير عنه بصيغتين:</p>
+<!-- ================= مثال 6 ================= -->
+<section class="card" id="ex6" data-nav="مثال 6|Ex 6">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 6</span><span lang="en">Example 6</span></span><h2><span lang="ar">حل الواجب: العمودي الموحد</span><span lang="en">Classwork: the unit normal</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">واجب</span><span lang="en">classwork</span></span><span class="tag ltr">P(4, 3, 2)</span></div>
+  <div class="m big">\[\frac{x^2}{8} + \frac{y^2}{9} - \frac{z^2}{2} = 1 \quad \text{at } P(4, 3, 2)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">المشتقات الجزئية</span><span lang="en">The partial derivatives</span></h4>
+      <div class="m">\[\frac{\partial f}{\partial x} = \frac{2x}{8} = \frac{x}{4}, \qquad \frac{\partial f}{\partial y} = \frac{2y}{9}, \qquad \frac{\partial f}{\partial z} = -\frac{2z}{2} = -z\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">عوّض $P(4, 3, 2)$</span><span lang="en">Plug in $P(4, 3, 2)$</span></h4>
+      <div class="m">\[\nabla f = \left[\tfrac44,\ \tfrac{2(3)}{9},\ -2\right] = \left[1,\ \tfrac{2}{3},\ -2\right]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الطول</span><span lang="en">The length</span></h4>
+      <div class="m">\[|\nabla f| = \sqrt{1 + \frac{4}{9} + 4} = \sqrt{\frac{49}{9}} = \frac{7}{3}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اقسم (يعني اضرب في $\frac37$)</span><span lang="en">Divide (i.e. multiply by $\frac37$)</span></h4>
+      <div class="m">\[1 \times \tfrac37 = \tfrac37, \qquad \tfrac23 \times \tfrac37 = \tfrac27, \qquad -2 \times \tfrac37 = -\tfrac67\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{n} = \left[\tfrac{3}{7},\ \tfrac{2}{7},\ -\tfrac{6}{7}\right] = \tfrac37\hat{i} + \tfrac27\hat{j} - \tfrac67\hat{k}$</div>
+      <p class="sanity"><span lang="ar">$\frac{9 + 4 + 36}{49} = 1$، طوله 1 ✓ والنقطة على السطح: $2 + 1 - 2 = 1$ ✓</span><span lang="en">$\frac{9 + 4 + 36}{49} = 1$, so its length is 1 ✓ and the point is on the surface: $2 + 1 - 2 = 1$ ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-            <div class="math-block">
-                <span style="direction:rtl; text-align:right; display:block; font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-secondary); margin-bottom:6px;">صيغة الإحداثيات</span>
-                \[ \nabla f = \left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right] \]
-            </div>
-            <div class="math-block">
-                <span style="direction:rtl; text-align:right; display:block; font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-secondary); margin-bottom:6px;">صيغة متجهات الوحدة (î, ĵ, k̂)</span>
-                \[ \text{grad}(f) = \frac{\partial f}{\partial x} \hat{i} + \frac{\partial f}{\partial y} \hat{j} + \frac{\partial f}{\partial z} \hat{k} \]
-            </div>
+<!-- ================= ✏ تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ تمارين|✏ Practice">
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الكسر كذا: 22/5</span><span lang="en">Type fractions like this: 22/5</span></p>
 
-            <h3>مثال محلول 1</h3>
-            <p><strong>المسألة:</strong> أوجد $\nabla f$ عند النقطة $(1, 0, 1)$ إذا كانت $f(x, y, z) = x^2 + y^2 + z^2$.</p>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">للدالة $f = xyz$، احسب $|\nabla f|$ عند النقطة $(1, 2, 3)$.</span><span lang="en">For $f = xyz$, compute $|\nabla f|$ at $(1, 2, 3)$.</span></p>
+    <div class="check" data-answer="7"></div>
+    <details class="hint"><p><span lang="ar">$\nabla f = [yz, xz, xy]$.</span><span lang="en">$\nabla f = [yz, xz, xy]$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الانحدار عند النقطة</span><span lang="en">The gradient at the point</span></h4><div class="m">\[\nabla f = [yz,\ xz,\ xy] = [6,\ 3,\ 2]\]</div></li>
+      <li class="step"><h4><span lang="ar">الطول</span><span lang="en">The length</span></h4><div class="m">\[\sqrt{36 + 9 + 4} = \sqrt{49}\]</div></li>
+      <li class="step final"><div class="result">$7$</div></li>
+    </ol>
+  </div>
 
-            <ol>
-                <li>حساب المشتقات الجزئية:</li>
-            </ol>
-            <div class="math-block small">\[ \frac{\partial f}{\partial x} = 2x, \quad \frac{\partial f}{\partial y} = 2y, \quad \frac{\partial f}{\partial z} = 2z \]</div>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">أوجد المشتقة الاتجاهية لـ $f = x^2 + y^2$ عند $(1, 2)$ باتجاه $\mathbf{a} = [3, 4]$.</span><span lang="en">Find the directional derivative of $f = x^2 + y^2$ at $(1, 2)$ in the direction $\mathbf{a} = [3, 4]$.</span></p>
+    <div class="check" data-answer="22/5"></div>
+    <details class="hint"><p><span lang="ar">$|\mathbf{a}| = 5$، و $\nabla f = [2x, 2y]$.</span><span lang="en">$|\mathbf{a}| = 5$ and $\nabla f = [2x, 2y]$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الانحدار عند النقطة</span><span lang="en">The gradient at the point</span></h4><div class="m">\[\nabla f = [2x, 2y] = [2, 4]\]</div></li>
+      <li class="step"><h4><span lang="ar">الضرب القياسي</span><span lang="en">The dot product</span></h4><div class="m">\[D_{\mathbf{a}}f = [2, 4]\cdot\frac{[3, 4]}{5} = \frac{6 + 16}{5}\]</div></li>
+      <li class="step final"><div class="result">$\dfrac{22}{5}$</div></li>
+    </ol>
+  </div>
 
-            <ol start="2"><li>التعويض بالنقطة $(1, 0, 1)$:</li></ol>
-            <div class="math-block small">\[ 2(1)=2, \quad 2(0)=0, \quad 2(1)=2 \]</div>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl hard"><span lang="ar">تحدي</span><span lang="en">challenge</span></span></div>
+    <p><span lang="ar">أوجد العمودي الموحد $\mathbf{n}$ على الكرة $x^2 + y^2 + z^2 = 9$ عند $(1, 2, 2)$. اكتب مركبة $z$ في $\mathbf{n}$.</span><span lang="en">Find the unit normal $\mathbf{n}$ to the sphere $x^2 + y^2 + z^2 = 9$ at $(1, 2, 2)$. Enter the $z$-component of $\mathbf{n}$.</span></p>
+    <div class="check" data-answer="2/3"></div>
+    <details class="hint"><p><span lang="ar">$f = x^2 + y^2 + z^2$، و $|\nabla f| = 6$.</span><span lang="en">$f = x^2 + y^2 + z^2$, and $|\nabla f| = 6$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الانحدار وطوله</span><span lang="en">The gradient and its length</span></h4><div class="m">\[\nabla f = [2, 4, 4], \qquad |\nabla f| = \sqrt{4 + 16 + 16} = 6\]</div></li>
+      <li class="step"><h4><span lang="ar">اقسم</span><span lang="en">Divide</span></h4><div class="m">\[\mathbf{n} = \left[\tfrac13,\ \tfrac23,\ \tfrac23\right]\]</div></li>
+      <li class="step final"><div class="result">$\dfrac{2}{3}$</div><p class="sanity"><span lang="ar">عمودي الكرة يأشر للخارج من المركز، يعني $\frac{(1,2,2)}{3}$ ✓</span><span lang="en">A sphere's normal points straight out from the centre: $\frac{(1,2,2)}{3}$ ✓</span></p></li>
+    </ol>
+  </div>
+</section>
 
-            <div class="result-box">
-                <strong>الناتج النهائي:</strong>
-                \[ \nabla f = 2\hat{i} + 2\hat{k} \quad \text{أو} \quad \nabla f = [2, 0, 2] \]
-            </div>
-        </div>
+<!-- ================= ⚠ الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost marks</span></h2>
+  <p class="sub"><span lang="ar">كل خطأ جنبه التصحيح</span><span lang="en">Each mistake next to its fix</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان توحيد $\mathbf{a}$</span><span lang="en">Forgetting to normalize $\mathbf{a}$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$D_{\mathbf{a}}f = \nabla f \cdot \mathbf{a} = -4$</div><span lang="ar">الطول دخل في الجواب</span><span lang="en">The length leaked into the answer</span></div><div class="yes"><div class="mm">$D_{\mathbf{a}}f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|} = -\frac{4}{\sqrt5}$</div><span lang="ar">اقسم على $|\mathbf{a}|$</span><span lang="en">Divide by $|\mathbf{a}|$</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">التعويض قبل الاشتقاق</span><span lang="en">Plugging in before differentiating</span></div>
+    <div class="pair"><div class="no"><div class="mm">$f(1,0,1) = 2 \Rightarrow \nabla f = 0$</div><span lang="ar">صار رقم ثابت فمشتقته صفر</span><span lang="en">It became a constant, so its derivative is zero</span></div><div class="yes"><div class="mm">$\nabla f = [2x, 2y, 2z] \Rightarrow [2, 0, 2]$</div><span lang="ar">اشتق أول، ثم عوّض</span><span lang="en">Differentiate first, then plug in</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان قاعدة السلسلة</span><span lang="en">Forgetting the chain rule</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\frac{\partial}{\partial x}e^{xy} = e^{xy}$</div><span lang="ar">ضاع العامل $y$</span><span lang="en">The factor $y$ is lost</span></div><div class="yes"><div class="mm">$\frac{\partial}{\partial x}e^{xy} = y\,e^{xy}$</div><span lang="ar">اشتق الأس كمان</span><span lang="en">Differentiate the exponent too</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">السطح مو على شكل $f = c$</span><span lang="en">The surface not written as $f = c$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$f = z^2 \Rightarrow \nabla f = [0, 0, 2z]$</div><span lang="ar">أخذت طرف واحد من المعادلة</span><span lang="en">Used only one side of the equation</span></div><div class="yes"><div class="mm">$f = 4x^2 + 4y^2 - z^2$</div><span lang="ar">انقل كل شي لطرف واحد</span><span lang="en">Move everything to one side</span></div></div>
+  </div>
+</section>
 
-        <!-- panel 02 — أمثلة إضافية -->
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">02</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>أمثلة إضافية على الانحدار</h2>
-            </div>
-
-            <h3>مثال محلول 2</h3>
-            <div class="math-block small">\[ f(x, y, z) = 3x^2 y^2 z + 2xy - z^2 + 1 \]</div>
-            <p><strong>المطلوب:</strong> أوجد $\nabla f$ عند النقطة $(1, 1, 1)$.</p>
-
-            <ol><li>المشتقات الجزئية:</li></ol>
-            <div class="math-block small">
-                \[ \frac{\partial f}{\partial x} = 6xy^2 z + 2y, \quad \frac{\partial f}{\partial y} = 6x^2 yz + 2x, \quad \frac{\partial f}{\partial z} = 3x^2 y^2 - 2z \]
-            </div>
-
-            <ol start="2"><li>صيغة المتجه العامة:</li></ol>
-            <div class="math-block small">\[ \nabla f = \left[ 6xy^2 z + 2y, \; 6x^2 yz + 2x, \; 3x^2 y^2 - 2z \right] \]</div>
-
-            <ol start="3"><li>التعويض بالنقطة $(1, 1, 1)$: $6+2=8$ ، $6+2=8$ ، $3-2=1$</li></ol>
-
-            <div class="result-box">
-                <strong>الناتج النهائي:</strong> \[ \left. \nabla f \right|_{(1,1,1)} = [8, 8, 1] \]
-            </div>
-
-            <h3>مثال محلول 3</h3>
-            <div class="math-block small">\[ f(x, y, z) = e^{xy} + \cos(xyz) + 3z \]</div>
-            <p><strong>المطلوب:</strong> أوجد $\nabla f$ عند النقطة $(0, \pi, 2)$.</p>
-
-            <ol><li>المشتقات الجزئية:</li></ol>
-            <div class="math-block small">
-                \[ \frac{\partial f}{\partial x} = y e^{xy} - yz \sin(xyz), \quad \frac{\partial f}{\partial y} = x e^{xy} - xz \sin(xyz), \quad \frac{\partial f}{\partial z} = -xy \sin(xyz) + 3 \]
-            </div>
-
-            <p class="note-line">بما أن $x = 0$ فإن $xy = 0$ و $xyz = 0$ و $\sin(0) = 0$ و $e^0 = 1$</p>
-
-            <ol start="2"><li>التعويض بالنقطة $(0, \pi, 2)$:</li></ol>
-            <div class="math-block small">
-                \[ \pi e^0 - 0 = \pi, \qquad 0 \cdot e^0 - 0 = 0, \qquad -0 + 3 = 3 \]
-            </div>
-
-            <div class="result-box">
-                <strong>الناتج النهائي:</strong> \[ \left. \nabla f \right|_{(0,\pi,2)} = [\pi, 0, 3] \]
-            </div>
-        </div>
-
-        <!-- panel 03 — المشتقة الاتجاهية -->
-        <div class="panel" style="--panel-accent: var(--trace-sin);">
-            <div class="panel-head">
-                <span class="panel-index">03</span>
-                <span class="symbol-badge">Dₐ</span>
-                <h2>المشتقة الاتجاهية (Directional Derivative)</h2>
-            </div>
-
-            <h3>التعريف والقانون</h3>
-            <ul>
-                <li>إذا كانت $f(x, y, z)$ دالة قياسية قابلة للمفاضلة، وكان الاتجاه معطى بالمتجه $\mathbf{a}$ بحيث $|\mathbf{a}| \neq 0$.</li>
-                <li>يُرمز للمشتقة الاتجاهية بـ $D_{\mathbf{a}} f$ وتُعرف بالقانون:</li>
-            </ul>
-            <div class="math-block">\[ D_{\mathbf{a}} f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|} \]</div>
-            <p style="color:var(--ink-secondary); font-size:0.88rem;">حيث $\frac{\mathbf{a}}{|\mathbf{a}|}$ هو متجه الوحدة في اتجاه المتجه $\mathbf{a}$.</p>
-
-            <h3>مثال محلول</h3>
-            <p><strong>المسألة:</strong> أوجد المشتقة الاتجاهية للدالة $f(x, y, z) = 2x^2 + 3y^2 + z^2$ عند النقطة $(2, 1, 3)$ في اتجاه المتجه $\mathbf{a} = [1, 0, -2]$.</p>
-
-            <ol><li>حساب الانحدار العام:</li></ol>
-            <div class="math-block small">\[ \nabla f = [4x, 6y, 2z] \]</div>
-
-            <ol start="2"><li>التعويض بالنقطة $(2, 1, 3)$:</li></ol>
-            <div class="math-block small">\[ \left. \nabla f \right|_{(2,1,3)} = [4(2), 6(1), 2(3)] = [8, 6, 6] \]</div>
-
-            <ol start="3"><li>حساب طول المتجه $|\mathbf{a}|$:</li></ol>
-            <div class="math-block small">\[ |\mathbf{a}| = \sqrt{1^2 + 0^2 + (-2)^2} = \sqrt{5} \]</div>
-
-            <ol start="4"><li>تطبيق القانون (الضرب القياسي):</li></ol>
-            <div class="math-block small">\[ D_{\mathbf{a}} f = [8, 6, 6] \cdot \frac{[1, 0, -2]}{\sqrt{5}} = \frac{8 + 0 - 12}{\sqrt{5}} \]</div>
-
-            <div class="result-box">
-                <strong>الناتج النهائي:</strong> \[ D_{\mathbf{a}} f = -\frac{4}{\sqrt{5}} \]
-            </div>
-        </div>
-
-        <!-- panel 04 — الانحدار كمتجه عمودي على السطح -->
-        <div class="panel" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">04</span>
-                <span class="symbol-badge">n̂</span>
-                <h2>الانحدار كمتجه عمودي على السطح</h2>
-            </div>
-
-            <ul>
-                <li>إذا كان لدينا سطح $S$ ممثل بالمعادلة $f(x, y, z) = c$ (حيث $c$ ثابت)، وكانت $f$ قابلة للمفاضلة.</li>
-                <li>فإن متجه الانحدار $\nabla f$ عند أي نقطة $P$ على السطح يكون متجهاً عمودياً (Normal Vector) على السطح عند تلك النقطة.</li>
-            </ul>
-
-            <div class="math-block small">\[ \text{Surface Normal Vector} = \nabla f \]</div>
-            <p>متجه الوحدة العمودي:</p>
-            <div class="math-block small">\[ \mathbf{n} = \frac{\nabla f}{|\nabla f|} \]</div>
-
-            <h3>التوضيح الهندسي</h3>
-            <p>العلاقة بين السطح المنحني $f = c$، والمستوى المماس عند نقطة التماس، ومتجه الانحدار العمودي $\nabla f$:</p>
-
-            <div class="diagram-frame">
-                <svg width="500" height="280" viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arr-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M0 0L10 5 0 10z" fill="#7cc4ff"/>
-                        </marker>
-                    </defs>
-                    <path d="M 80 220 Q 250 130 420 220" fill="none" stroke="#ffb454" stroke-width="3"/>
-                    <text x="390" y="200" fill="#ffb454" font-family="IBM Plex Mono" font-size="15">f = c</text>
-
-                    <polygon points="170,170 320,150 350,200 200,220" fill="rgba(124,196,255,0.05)" stroke="#7f9d92" stroke-width="1.4" stroke-dasharray="4,4"/>
-                    <text x="325" y="160" fill="#7f9d92" font-family="IBM Plex Mono" font-size="12">Tangent Plane</text>
-
-                    <circle cx="250" cy="180" r="4.5" fill="#e9f5ef"/>
-                    <text x="235" y="200" fill="#e9f5ef" font-family="IBM Plex Mono" font-size="13">P</text>
-
-                    <path d="M 250 155 L 265 155 L 265 180" fill="none" stroke="#7cc4ff" stroke-width="1.4"/>
-                    <line x1="250" y1="180" x2="250" y2="60" stroke="#7cc4ff" stroke-width="3" marker-end="url(#arr-blue)"/>
-                    <text x="260" y="70" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="17" font-weight="600">∇f</text>
-                </svg>
-            </div>
-
-            <h3>مثال محلول</h3>
-            <p><strong>المسألة:</strong> أوجد متجه الوحدة العمودي $\mathbf{n}$ لسطح المخروط $z^2 = 4(x^2 + y^2)$ عند النقطة $P(1, 0, 2)$.</p>
-
-            <ol><li>إعادة ترتيب معادلة السطح ($f = 0$):</li></ol>
-            <div class="math-block small">\[ f(x, y, z) = 4x^2 + 4y^2 - z^2 = 0 \]</div>
-
-            <ol start="2"><li>حساب متجه العمودي $\nabla f$:</li></ol>
-            <div class="math-block small">\[ \nabla f = [8x, 8y, -2z] \]</div>
-
-            <ol start="3"><li>التعويض بالنقطة $P(1, 0, 2)$:</li></ol>
-            <div class="math-block small">\[ \left. \nabla f \right|_{(1,0,2)} = [8, 0, -4] \]</div>
-
-            <ol start="4"><li>حساب مقدار المتجه $|\nabla f|$:</li></ol>
-            <div class="math-block small">\[ |\nabla f| = \sqrt{64 + 0 + 16} = \sqrt{80} \]</div>
-
-            <div class="result-box">
-                <strong>متجه الوحدة العمودي:</strong> \[ \mathbf{n} = \frac{[8, 0, -4]}{\sqrt{80}} \]
-            </div>
-        </div>
-
-        <!-- panel 05 — حل الواجب -->
-        <div class="panel" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">05</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/>
-                </svg>
-                <h2>حل الواجب (Class Work Solution)</h2>
-            </div>
-
-            <div class="exercise-prompt">
-                <span class="ex-tag">المسألة</span>
-                أوجد متجه الوحدة العمودي $\mathbf{n}$ للسطح
-                <div class="math-block small" style="margin-top:8px;">\[ \frac{x^2}{8} + \frac{y^2}{9} - \frac{z^2}{2} = 1 \]</div>
-                عند النقطة $P(4, 3, 2)$.
-            </div>
-
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol><li>المشتقات الجزئية لحساب $\nabla f$:</li></ol>
-                    <div class="math-block small">
-                        \[ \frac{\partial f}{\partial x} = \frac{x}{4}, \quad \frac{\partial f}{\partial y} = \frac{2y}{9}, \quad \frac{\partial f}{\partial z} = -z \]
-                    </div>
-                    <p>فتكون صيغة الانحدار العام:</p>
-                    <div class="math-block small">\[ \nabla f = \left[ \frac{x}{4}, \; \frac{2y}{9}, \; -z \right] \]</div>
-
-                    <ol start="2"><li>التعويض بالنقطة $P(4, 3, 2)$:</li></ol>
-                    <ul>
-                        <li>$x$: $\frac{4}{4} = 1$</li>
-                        <li>$y$: $\frac{2(3)}{9} = \frac{2}{3}$</li>
-                        <li>$z$: $-(2) = -2$</li>
-                    </ul>
-                    <div class="math-block small">\[ \nabla f = \left[ 1, \; \frac{2}{3}, \; -2 \right] \]</div>
-
-                    <ol start="3"><li>حساب مقدار المتجه $|\nabla f|$:</li></ol>
-                    <div class="math-block small">
-                        \[ |\nabla f| = \sqrt{1 + \frac{4}{9} + 4} = \sqrt{\frac{49}{9}} = \frac{7}{3} \]
-                    </div>
-
-                    <ol start="4"><li>إيجاد متجه الوحدة العمودي $\mathbf{n} = \dfrac{\nabla f}{|\nabla f|}$:</li></ol>
-                    <p>بضرب كل مركبة في القيمة العكسية $\frac{3}{7}$: $1 \times \frac{3}{7} = \frac{3}{7}$، $\frac{2}{3} \times \frac{3}{7} = \frac{2}{7}$، $-2 \times \frac{3}{7} = -\frac{6}{7}$</p>
-
-                    <div class="result-box">
-                        <strong>الناتج النهائي:</strong>
-                        \[ \mathbf{n} = \left[ \frac{3}{7}, \; \frac{2}{7}, \; -\frac{6}{7} \right] = \frac{3}{7}\hat{i} + \frac{2}{7}\hat{j} - \frac{6}{7}\hat{k} \]
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <footer class="note">SIGNAL REFERENCE · VECTOR CALCULUS</footer>
+<!-- ================= 📝 اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">اضغط على الجواب وتشوف التصحيح فوراً</span><span lang="en">Tap an answer to see the correction right away</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">ناتج $\nabla f$ لدالة قياسية $f$ يكون:</span><span lang="en">The result of $\nabla f$ for a scalar function $f$ is:</span></p>
+      <button><span lang="ar">قياسي (رقم)</span><span lang="en">A scalar</span></button><button><span lang="ar">متجه</span><span lang="en">A vector</span></button><button><span lang="ar">مصفوفة</span><span lang="en">A matrix</span></button><button><span lang="ar">صفر دايماً</span><span lang="en">Always zero</span></button>
+      <p class="q-why"><span lang="ar">$\nabla f = [f_x, f_y, f_z]$ متجه مركباته المشتقات الجزئية.</span><span lang="en">$\nabla f = [f_x, f_y, f_z]$ is a vector whose components are the partials.</span></p>
     </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">$\nabla f$ عند نقطة على السطح $f = c$ يكون:</span><span lang="en">At a point on the surface $f = c$, $\nabla f$ is:</span></p>
+      <button><span lang="ar">مماس للسطح</span><span lang="en">Tangent to the surface</span></button><button><span lang="ar">موازي لمحور $z$ دايماً</span><span lang="en">Always parallel to the $z$-axis</span></button><button><span lang="ar">عمودي على السطح</span><span lang="en">Perpendicular to the surface</span></button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button>
+      <p class="q-why"><span lang="ar">الانحدار عمودي على سطوح المستوى، ولهذا نستخدمه كـ Normal.</span><span lang="en">The gradient is perpendicular to level surfaces, which is why it serves as the normal.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">في $D_{\mathbf{a}}f$ ليش نقسم على $|\mathbf{a}|$؟</span><span lang="en">In $D_{\mathbf{a}}f$, why divide by $|\mathbf{a}|$?</span></p>
+      <button><span lang="ar">عشان يعتمد على الاتجاه بس، مو الطول</span><span lang="en">So it depends only on the direction, not the length</span></button><button><span lang="ar">عشان يطلع موجب</span><span lang="en">So it comes out positive</span></button><button><span lang="ar">عشان يصير متجه</span><span lang="en">So it becomes a vector</span></button><button><span lang="ar">ما نقسم</span><span lang="en">We don't</span></button>
+      <p class="q-why"><span lang="ar">$\frac{\mathbf{a}}{|\mathbf{a}|}$ متجه وحدة، فـ $[1,0,-2]$ و $[2,0,-4]$ يعطون نفس الجواب.</span><span lang="en">$\frac{\mathbf{a}}{|\mathbf{a}|}$ is a unit vector, so $[1,0,-2]$ and $[2,0,-4]$ give the same answer.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">أكبر قيمة للمشتقة الاتجاهية عند نقطة هي:</span><span lang="en">The largest directional derivative at a point is:</span></p>
+      <button>$0$</button><button>$1$</button><button>$f$</button><button>$|\nabla f|$</button>
+      <p class="q-why"><span lang="ar">$\nabla f \cdot \mathbf{u} = |\nabla f|\cos\theta$، وأكبر شي لما $\theta = 0$.</span><span lang="en">$\nabla f \cdot \mathbf{u} = |\nabla f|\cos\theta$, largest when $\theta = 0$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">للدالة $f = x^2 + y^2 + z^2$، كم $\nabla f$ عند $(0, 0, 3)$؟</span><span lang="en">For $f = x^2 + y^2 + z^2$, what is $\nabla f$ at $(0, 0, 3)$?</span></p>
+      <button>$[0, 0, 3]$</button><button>$[0, 0, 6]$</button><button>$9$</button><button>$[0, 0, 9]$</button>
+      <p class="q-why">$[2x, 2y, 2z] = [0, 0, 6]$.</p>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // single hero moment: draw the gradient vector on load
-        (function () {
-            const el = document.getElementById('gradArrow');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (reduceMotion || !el) return;
-            const len = el.getTotalLength ? el.getTotalLength() : 60;
-            el.style.strokeDasharray = len;
-            el.style.strokeDashoffset = len;
-            el.style.transition = 'stroke-dashoffset 1s ease 0.3s';
-            requestAnimationFrame(() => requestAnimationFrame(() => { el.style.strokeDashoffset = 0; }));
-        })();
+<!-- ================= 🃏 بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات مراجعة سريعة</span><span lang="en">Quick review cards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة عشان تقلبها</span><span lang="en">Tap a card to flip it</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">الانحدار</span><span lang="en">Gradient</span></div><div>$\nabla f = [f_x, f_y, f_z]$</div></div>
+    <div class="flash"><div><span lang="ar">نوع ناتج $\nabla f$</span><span lang="en">Type of $\nabla f$</span></div><div><span lang="ar">متجه</span><span lang="en">A vector</span></div></div>
+    <div class="flash"><div><span lang="ar">اسم الرمز $\nabla$</span><span lang="en">Name of $\nabla$</span></div><div>Del / Nabla</div></div>
+    <div class="flash"><div><span lang="ar">المشتقة الاتجاهية</span><span lang="en">Directional derivative</span></div><div>$D_{\mathbf{a}}f = \nabla f \cdot \frac{\mathbf{a}}{|\mathbf{a}|}$</div></div>
+    <div class="flash"><div><span lang="ar">اتجاه أسرع زيادة</span><span lang="en">Direction of fastest increase</span></div><div>$\nabla f$</div></div>
+    <div class="flash"><div><span lang="ar">العمودي على $f = c$</span><span lang="en">Normal to $f = c$</span></div><div>$\nabla f$</div></div>
+    <div class="flash"><div><span lang="ar">العمودي الموحد</span><span lang="en">Unit normal</span></div><div>$\mathbf{n} = \nabla f / |\nabla f|$</div></div>
+    <div class="flash"><div><span lang="ar">أكبر $D_{\mathbf{a}}f$</span><span lang="en">Largest $D_{\mathbf{a}}f$</span></div><div>$|\nabla f|$</div></div>
+  </div>
+</section>
 
-        function toggleTrigger(el) {
-            el.classList.toggle('open');
-        }
-    </script>
-    <script src="nav.js"></script>
+</main>
+<script src="nav.js"></script>
 </body>
 </html>
