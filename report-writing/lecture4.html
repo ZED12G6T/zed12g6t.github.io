@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-laws="laws4.html" data-topic="كتابة التقارير الهندسية" data-title-en="Lecture 4 - How to Write a Lab Report" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 4 - كتابة تقرير المختبر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css?v=4">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 4 · كتابة التقارير الهندسية · <span class="ltr">EENG 1278</span></p>
+  <h1><span>كتابة تقرير المختبر</span> <span class="ltr" style="font-size:.55em;opacity:.7">How to Write a Lab Report</span></h1>
+  <p class="lead">تقرير المختبر هو أكثر تقرير بتكتبه في الكلية. المحاضرة تقسمه لثلاث أجزاء: الغرض منه (لمين وليش وكيف تكتبه صح)، والشكل القياسي (10 أجزاء بالترتيب)، والمصادر اللي تساعدك. وفي الآخر مثال كامل عن نظرية التراكب (Superposition).</p>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>الجمهور: <b>مهندسين ثانيين</b>. الغرض: <b>مناقشة أهمية نتائج التجربة</b>. حلل التجربة مو نفسك، ولا تدعي شي أكبر من دليلك.</li>
+      <li>اكتب بالمبني للمجهول، عنون رسوماتك، لا تنسخ حتى من دليل المختبر، راجع قبل ما ترفع، وسلم في الوقت.</li>
+      <li>الأجزاء العشرة: العنوان، الهدف، المقدمة/النظرية، رسم الدائرة، الأجهزة، الخطوات، النتائج، التحليل، المناقشة/الاستنتاجات، المراجع.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الغرض ================= -->
+<section class="card" id="purpose" data-num="01" data-nav="الغرض من التقرير|Purpose">
+  <h2>الغرض من تقرير المختبر</h2>
+  <p class="sub">Purpose of a lab report · فكر في موقف الكتابة</p>
+  <div class="grid-2">
+    <div class="tile hl"><div class="t-name">الجمهور (Audience)</div><div class="t-desc">مهندسين ثانيين (Other engineers).</div></div>
+    <div class="tile hl"><div class="t-name">الغرض (Purpose)</div><div class="t-desc">تناقش أهمية نتائج التجربة (Discuss the significance of experimental results).</div></div>
+  </div>
+  <h3>الهندسة تحتاج معرفة موثوقة (Reliable knowledge)</h3>
+  <ol class="recipe">
+    <li><b>استخدم الإجراءات القياسية ووصّف نتايجك</b><span class="why" dir="ltr">Use standard procedures and describe your findings qualitatively.</span></li>
+    <li><b>اكتب نتايج تجربتك أنت بس، مو أفكار عامة</b><span class="why" dir="ltr">Report only the results of your specific trial, not general ideas.</span></li>
+    <li><b>تجنب الادعاءات اللي أكبر من دليلك</b><span class="why" dir="ltr">Avoid claims that are beyond your evidence.</span></li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ غالباً غلط مطبعي في السلايد:</strong> مكتوب «describe your findings <b>qualitatively</b>» (يعني بالوصف). في تقارير المختبر الهندسية النتايج عادة توصف <b>quantitatively</b> (بالأرقام والقياسات)، وهذا اللي يمشي مع باقي المحاضرة (جداول، حسابات، تحليل أخطاء). ما أقدر أجزم، فاسأل الدكتور، وفي الاختبار اكتبها زي السلايد.</div>
+  <h3>حلل التجربة، مو نفسك</h3>
+  <div class="pair"><div class="no">لا تكتب وش «تعلمت». بياناتك مو نتيجة اختبار قصير (quiz)!</div><div class="yes">اكتب هل وصلت لهدف التجربة (whether you reached your experimental objective).</div></div>
+  <div class="callout"><strong>💡 مثال من عندي:</strong> ❌ «هالتجربة علمتني كثير عن الدوائر، وتثبت إن كل الدوائر خطية». فيها غلطتين: تتكلم عن نفسك، وتدعي «كل الدوائر» من تجربة وحدة. ✅ «التيارات المقاسة أثبتت نظرية التراكب لهذي الدائرة».</div>
+  <h3>اكتب مثل المحترفين (Practice writing like a professional)</h3>
+  <ol class="recipe">
+    <li><b>جمل كاملة بالمبني للمجهول (Passive voice)</b><span class="why">«The current was measured» بدل «We measured the current».</span></li>
+    <li><b>عنون الرسومات ووصّفها</b><span class="why" dir="ltr">When using graphics, label and describe them.</span></li>
+    <li><b>لا تنسخ وتلصق من أي مصدر، حتى دليل المختبر</b><span class="why" dir="ltr">Do not "cut and paste" from another source, even the lab manual.</span></li>
+    <li><b>اطبع وراجع قبل ما ترفع</b><span class="why" dir="ltr">Print and proofread before you upload.</span></li>
+    <li><b>سلّم التقارير في وقتها</b><span class="why" dir="ltr">Hand in reports on time.</span></li>
+  </ol>
+</section>
+
+<!-- ================= 02 الشكل القياسي ================= -->
+<section class="card" id="format" data-num="02" data-nav="الأجزاء العشرة|Format">
+  <h2>الشكل القياسي يوفر الجهد</h2>
+  <p class="sub">Standard Format Conserves Effort · عشر أجزاء بالترتيب</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th class="n">#</th><th>الجزء</th><th>وش فيه</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td><b>Title</b> العنوان</td><td>جملة قصيرة توصف بوضوح الموضوع أو النظام أو الظاهرة اللي تدرسها.</td></tr>
+      <tr><td class="n">2</td><td><b>Objective</b> الهدف</td><td>ملخص واضح للغرض الأساسي: وش تبي تقيس أو تبني أو تتحقق منه.</td></tr>
+      <tr><td class="n">3</td><td><b dir="ltr">Introduction / Theoretical Background</b> المقدمة أو الخلفية النظرية</td><td>الخلفية العلمية والمبادئ (قوانين، معادلات، فرضيات) ورا التجربة، وتبرر النتايج المتوقعة.</td></tr>
+      <tr><td class="n">4</td><td><b dir="ltr">Circuit Diagram</b> رسم الدائرة</td><td>رسم بالرموز الكهربائية القياسية يوضح الترتيب والتوصيل والمكونات.</td></tr>
+      <tr><td class="n">5</td><td><b dir="ltr">Hardware Equipment</b> الأجهزة</td><td>قائمة بكل الأدوات والمكونات ومصادر الطاقة وأجهزة القياس (مع أرقام الموديل).</td></tr>
+      <tr><td class="n">6</td><td><b dir="ltr">Experimental Procedure</b> خطوات التجربة</td><td>خطوة بخطوة بالترتيب الزمني، وواضحة لدرجة إن غيرك يقدر يعيد التجربة.</td></tr>
+      <tr><td class="n">7</td><td><b>Results</b> النتائج</td><td>البيانات الخام والقياسات المسجلة، مرتبة في جداول أو رسومات أولية.</td></tr>
+      <tr><td class="n">8</td><td><b dir="ltr">Analysis of Experimental Data</b> تحليل البيانات</td><td>خطوة المعالجة: حسابات، تحليل أخطاء، رسومات مقارنة، وتقارن القياس بالقيم النظرية.</td></tr>
+      <tr><td class="n">9</td><td><b dir="ltr">Discussion / Conclusions</b> المناقشة والاستنتاجات</td><td>تقييم النتايج: هل تحقق الهدف؟ وتفسر الفروقات ومصادر الخطأ، وتلخص الخلاصة.</td></tr>
+      <tr><td class="n">10</td><td><b dir="ltr">Works Cited</b> المراجع</td><td>قائمة منسقة بكل الكتب وأدلة المختبر والـ datasheets والمصادر اللي رجعت لها.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>💡 حيلة للحفظ (من عندي):</strong> قسّمها أربع مجموعات: <b>ليش</b> (العنوان، الهدف، النظرية) ← <b>كيف</b> (الدائرة، الأجهزة، الخطوات) ← <b>وش طلع</b> (النتائج، التحليل) ← <b>الخلاصة</b> (الاستنتاجات، المراجع).</div>
+  <div class="callout key"><strong>🔑 أكثر شي يلخبط:</strong> النتائج = أرقام <b>خام</b> زي ما قستها. التحليل = <b>معالجة</b> الأرقام (حسابات، نسبة خطأ، مقارنة بالنظري). والمناقشة = <b>تفسير</b> ليش فيه فرق وهل الهدف تحقق. يعني حساب الخطأ تحليل، وتفسير الخطأ مناقشة.</div>
+</section>
+
+<!-- ================= مثال: نظرية التراكب ================= -->
+<section class="card" id="ex1" data-nav="مثال: التراكب|Ex: Superposition">
+  <div class="ex-head"><span class="ex-badge">مثال المحاضرة</span><h2>تقرير تجربة نظرية التراكب</h2></div>
+  <div class="tags"><span class="tag" dir="ltr">Experiment (2)</span><span class="tag" dir="ltr">Superposition Theorem</span></div>
+  <p>المحاضرة عرضت تقرير حقيقي. شوف كل جزء وش انكتب فيه:</p>
+  <ol class="solve">
+    <li class="step read"><h4>العنوان + 2.1 الهدف</h4><p class="why">العنوان: <span class="ltr">Experiment (2): Superposition Theorem</span>. والهدف: <span class="ltr">Investigate the Superposition theorem</span>.</p></li>
+    <li class="step"><h4>2.2 الخلفية النظرية</h4><p class="why">فكرة النظرية: تلغي كل المصادر إلا واحد، وتحسب الجهود أو التيارات بتحليل التوالي والتوازي. تعيد هذا لكل مصدر، وبعدين تجمع النتايج جبرياً عشان تطلع القيم الحقيقية والمصادر كلها شغالة.</p></li>
+    <li class="step"><h4>2.3 رسم الدائرة</h4><p class="why">مصدرين (<span class="ltr">E1 = 8 V</span> و <span class="ltr">E2 = 10 V</span>)، ومقاومتين (<span class="ltr">R1 = 2.2 kΩ</span> و <span class="ltr">R2 = 470 Ω</span>)، ومقاومة حمل <span class="ltr">RL = 1 kΩ</span> عليها أميتر.</p></li>
+    <li class="step"><h4>2.4 الأجهزة</h4><p class="why">مقاومات، مصدرين جهد مستمر، أميتر <span class="ltr">(0 – 200 mA)</span>، فولتميتر <span class="ltr">(0 – 30 V)</span>، ولوحة دوائر وأسلاك توصيل.</p></li>
+    <li class="step"><h4>2.5 الخطوات</h4><p class="why">1) وصّل الدائرة وقس تيار الحمل IL. 2) اقصر الدائرة عند E2 وقس I1 بسبب E1. 3) اقصر عند E1 وقس I2 بسبب E2. 4) احسب IL من مجموع الخطوة 2 و 3.</p></li>
+    <li class="step"><h4>النتائج</h4><p class="why">جدول فيه قيم الدائرة والتيارات: IL، و I1، و I2، و I1 + I2.</p></li>
+    <li class="step"><h4>2.6 التحليل + 2.7 الاستنتاج</h4><p class="why">التحليل: الطالب لازم يتحقق إن IL نفسه من الخطوة 1 والخطوة 4. والاستنتاج: بعد ما تأكدنا إن النتايج متساوية، نستنتج إن نظرية التراكب طُبقت بنجاح.</p></li>
+  </ol>
+  <div class="callout good"><strong>✅ لاحظ:</strong> الاستنتاج ما قال «تعلمت»، قال هل الهدف تحقق. وهذا بالضبط قاعدة «حلل التجربة مو نفسك».</div>
+</section>
+
+<!-- ================= 03 المصادر ================= -->
+<section class="card" id="resources" data-num="03" data-nav="المصادر المتاحة|Resources">
+  <h2>المصادر المتاحة</h2>
+  <p class="sub" dir="ltr">Available resources</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">1) دليل المختبر (Lab Manual)</div><div class="t-desc">فيه الخطوات والأجهزة. ترجع له بس <b>لا تنسخ منه</b>.</div></div>
+    <div class="tile"><div class="t-name">2) المستشار في الكتابة</div><div class="t-desc">Your writing consultant: دكتور المختبر (Professor of the Lab.).</div></div>
+  </div>
+</section>
+
+<!-- ================= أسئلة متوقعة ================= -->
+<section class="card" id="remember" data-num="⭐" data-nav="⭐ أسئلة متوقعة|⭐ Expected">
+  <h2>أسئلة متوقعة وأجوبتها</h2>
+  <p class="sub">هالمحاضرة ما فيها صندوق Remember، فهذي أسئلة جهزتها أنا من السلايدات</p>
+  <ol class="recipe">
+    <li><b dir="ltr">Who is the audience and what is the purpose of a lab report?</b><span class="why" dir="ltr">Audience: other engineers. Purpose: discuss the significance of experimental results.</span></li>
+    <li><b dir="ltr">List the standard format of a lab report.</b><span class="why" dir="ltr">Title, Objective, Introduction or Theoretical Background, Circuit Diagram, Hardware Equipment, Experimental Procedure, Results, Analysis of Experimental Data, Discussion/Conclusions, Works Cited.</span></li>
+    <li><b dir="ltr">Why does engineering need reliable knowledge? (three rules)</b><span class="why" dir="ltr">Use standard procedures and describe your findings · report only the results of your specific trial, not general ideas · avoid claims that are beyond your evidence.</span></li>
+    <li><b dir="ltr">How do you practice writing like a professional?</b><span class="why" dir="ltr">Complete sentences in passive voice · label and describe graphics · no "cut and paste" even from the lab manual · print and proofread before uploading · hand in on time.</span></li>
+    <li><b dir="ltr">What are the available resources?</b><span class="why" dir="ltr">The lab manual, and your writing consultant (professor of the lab).</span></li>
+    <li><b dir="ltr">Define: Results vs Analysis of Experimental Data.</b><span class="why" dir="ltr">Results: raw data and recorded measurements in tables, charts or graphs. Analysis: calculations, error analysis and comparative graphs to interpret the raw results and compare them with theory.</span></li>
+  </ol>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>أخطاء شائعة</h2>
+  <div class="mk"><div class="mk-title">الجمهور هو الدكتور</div>
+    <div class="pair"><div class="no" dir="ltr">«Audience: the professor»</div><div class="yes">Audience: other engineers. الدكتور هو المستشار (مصدر)</div></div></div>
+  <div class="mk"><div class="mk-title">تكتب وش تعلمت</div>
+    <div class="pair"><div class="no" dir="ltr">«In this lab I learned...»</div><div class="yes" dir="ltr">«The objective was achieved...»</div></div></div>
+  <div class="mk"><div class="mk-title">مبني للمعلوم</div>
+    <div class="pair"><div class="no" dir="ltr">«We connected the circuit»</div><div class="yes" dir="ltr">«The circuit was connected»</div></div></div>
+  <div class="mk"><div class="mk-title">تحط الحسابات في النتائج</div>
+    <div class="pair"><div class="no">نسبة الخطأ في Results</div><div class="yes">النتائج خام، والحسابات ونسبة الخطأ في Analysis</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط الأجهزة بالخطوات</div>
+    <div class="pair"><div class="no">«Ammeter (0-200 mA)» في Procedure</div><div class="yes">قائمة الأجهزة في Hardware Equipment، والأفعال (وصّل، قس) في Procedure</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>جمهور تقرير المختبر حسب المحاضرة:</p>
+      <button>الطلاب</button><button>مهندسين ثانيين</button><button>العميل</button><button>الإدارة</button>
+      <p class="q-why" dir="ltr">Audience: other engineers.</p></div>
+    <div class="q" data-answer="4"><p>الجزء اللي فيه القوانين والمعادلات اللي تتوقع النتايج:</p>
+      <button>Objective</button><button>Results</button><button>Procedure</button><button dir="ltr">Theoretical Background</button>
+      <p class="q-why">المبادئ والقوانين ورا النتايج المتوقعة = Introduction / Theoretical background.</p></div>
+    <div class="q" data-answer="1"><p>«Short the circuit at E2 and measure I1» مكانها:</p>
+      <button dir="ltr">Experimental Procedure</button><button dir="ltr">Hardware Equipment</button><button>Results</button><button>Objective</button>
+      <p class="q-why">خطوة تسويها بالترتيب.</p></div>
+    <div class="q" data-answer="3"><p>حساب نسبة الخطأ بين المقاس والنظري يكون في:</p>
+      <button>Results</button><button>Discussion</button><button dir="ltr">Analysis of Experimental Data</button><button dir="ltr">Works Cited</button>
+      <p class="q-why" dir="ltr">Calculations and error analysis = Analysis.</p></div>
+    <div class="q" data-answer="2"><p>آخر جزء في التقرير:</p>
+      <button>Conclusions</button><button dir="ltr">Works Cited</button><button>Analysis</button><button>Results</button>
+      <p class="q-why">الجزء 10: Works Cited.</p></div>
+    <div class="q" data-answer="4"><p>وش اللي <b>ممنوع</b> في تقرير المختبر؟</p>
+      <button>المبني للمجهول</button><button>عناوين للرسومات</button><button>الرجوع لدليل المختبر</button><button>النسخ من دليل المختبر</button>
+      <p class="q-why">ترجع له عادي، بس لا تنسخ منه.</p></div>
+    <div class="q" data-answer="1"><p>«This experiment proves that all circuits are linear» تكسر قاعدة:</p>
+      <button dir="ltr">Avoid claims beyond your evidence</button><button dir="ltr">Passive voice</button><button dir="ltr">Hand in on time</button><button dir="ltr">Label graphics</button>
+      <p class="q-why">تجربة وحدة ما تثبت «كل الدوائر».</p></div>
+    <div class="q" data-answer="3"><p>المصادر المتاحة لكتابة تقرير المختبر:</p>
+      <button>الإنترنت والكتب</button><button>زملاء الدفعة</button><button>دليل المختبر ودكتور المختبر</button><button>التقارير القديمة</button>
+      <p class="q-why" dir="ltr">Lab manual + your writing consultant (professor of the lab).</p></div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>بطاقات المراجعة</h2>
+  <p class="sub">اضغط البطاقة وتنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>الجمهور والغرض</div><div dir="ltr">Other engineers · discuss the significance of experimental results</div></div>
+    <div class="flash"><div>المعرفة الموثوقة</div><div>إجراءات قياسية، تجربتك أنت بس، لا ادعاءات أكبر من الدليل</div></div>
+    <div class="flash"><div>حلل التجربة مو نفسك</div><div>لا تكتب وش تعلمت، اكتب هل وصلت للهدف</div></div>
+    <div class="flash"><div>الكتابة الاحترافية</div><div>Passive voice، عنون الرسومات، لا نسخ، راجع قبل الرفع، سلّم في الوقت</div></div>
+    <div class="flash"><div>الأجزاء 1 لين 3</div><div dir="ltr">Title, Objective, Introduction / Theory</div></div>
+    <div class="flash"><div>الأجزاء 4 لين 6</div><div dir="ltr">Circuit Diagram, Hardware Equipment, Experimental Procedure</div></div>
+    <div class="flash"><div>الأجزاء 7 لين 10</div><div dir="ltr">Results, Analysis, Discussion / Conclusions, Works Cited</div></div>
+    <div class="flash"><div>النتائج مقابل التحليل</div><div>النتائج أرقام خام، والتحليل حسابات وأخطاء ومقارنة بالنظري</div></div>
+    <div class="flash"><div>المصادر المتاحة</div><div>Lab Manual و Writing consultant (Professor of the Lab)</div></div>
+  </div>
+</section>
+
+</main>
+<script src="course.js?v=1"></script>
+<script src="nav.js"></script>
+</body>
+</html>
