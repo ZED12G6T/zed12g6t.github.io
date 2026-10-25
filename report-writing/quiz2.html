@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار المحاضرة ٢: أي مفهوم؟ · كتابة التقارير الهندسية</title>
+<meta name="description" content="Lec 2 quiz: 45 word problems in English with an Arabic translation. Work out which concept it is, then reveal the answer and keep score.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css?v=3">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="quiz.js?v=3"></script>
+</head>
+<body class="quiz-page">
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">كتابة التقارير الهندسية</a><span class="dot">·</span><b>المحاضرة ٢</b><span class="dot">·</span><span>الاختبار</span></div>
+    <div class="bar-end">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو المفاهيم أو الاختبار"><a href="lecture2.html">📖 الشرح</a><a href="laws2.html">📐 المفاهيم</a><span class="on" aria-current="page">🧠 الاختبار</span></nav>
+  <div class="qz-score" aria-label="النتيجة">
+    <span class="sc ok" title="صح">✓ <b id="sc-ok">0</b></span>
+    <span class="sc no" title="غلط">✗ <b id="sc-no">0</b></span>
+    <div class="sc-bar" aria-hidden="true"><i class="ok" id="bar-ok"></i><i class="no" id="bar-no"></i></div>
+    <span class="sc left"><b id="sc-left">45</b> باقي</span>
+    <span class="sc pct" id="sc-pct" title="نسبة الصح">–</span>
+  </div>
+</header>
+
+<main class="lw-wrap">
+<section class="hero qz-hero">
+  <div class="hero-t">
+    <span class="pill">الاختبار · المحاضرة ٢</span>
+    <h1>أي مفهوم؟</h1>
+    <p class="sub">مو أسئلة حفظ مباشرة: كل سؤال موقف من الواقع، ومن صياغته تطلّع أنت وش المفهوم (النوع أو الخطوة أو الجزء) اللي يقصده.</p>
+    <p class="sub-en" dir="ltr" lang="en">Lec 2 · Which concept is it? 45 word problems</p>
+    <div class="stats"><span><b>45</b> سؤال</span><span><b>9</b> مفاهيم</span><span>بدون خيارات</span></div>
+  </div>
+  <ol class="how">
+    <li><span><b>اقرأ</b> السؤال بالإنجليزي.</span></li>
+    <li><span>ما فهمت؟ اضغط <b>🌐 ترجمة</b> وتطلع العربي تحته.</span></li>
+    <li><span><b>قرر</b> الجواب في بالك (أو اكتبه في ورقة).</span></li>
+    <li><span>اضغط <b>💡 الجواب</b>: المفهوم وليش، والحل.</span></li>
+    <li><span>قيّم نفسك <b>✓</b> أو <b>✗</b>، والعداد فوق يحسب.</span></li>
+    <li class="how-keys"><span>صعبة؟ راجع <a href="keys2.html">🔑 الكلمات المفتاحية</a> قبل.</span></li>
+  </ol>
+</section>
+
+<div class="qz-tools" role="toolbar" aria-label="أدوات الاختبار">
+  <div class="seg" role="group" aria-label="اعرض">
+    <button type="button" data-f="all" class="on">الكل</button>
+    <button type="button" data-f="todo">ما قيّمتها</button>
+    <button type="button" data-f="wrong">غلطت فيها</button>
+  </div>
+  <a class="tool keys" href="keys2.html">🔑 <span>الكلمات المفتاحية</span></a>
+  <button type="button" class="tool" id="tr-all" aria-pressed="false">🌐 <span>الترجمة دايم</span></button>
+  <button type="button" class="tool" id="shuffle">🔀 <span>لخبط الترتيب</span></button>
+  <button type="button" class="tool" id="reset">↺ <span>من جديد</span></button>
+</div>
+
+<nav class="lw-tabs qz-chs" aria-label="اختبارات الفصول"><a class="tab on" href="quiz2.html" aria-current=page>المحاضرة ٢ <small dir="ltr" lang="en">Lec 2</small></a><a class="tab" href="quiz3.html">المحاضرة ٣ <small dir="ltr" lang="en">Lec 3</small></a><a class="tab" href="quiz4.html">المحاضرة ٤ <small dir="ltr" lang="en">Lec 4</small></a></nav>
+
+<div class="qz-list" id="qz-list">
+<article class="qz" id="formal-4" data-law="formal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>1</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">An engineering firm prepares a long <mark class="clue">project report</mark> for the client at the end of a bridge project, with drawings and cited codes. Which type?</p>
+    <p class="ar tr">شركة هندسية تجهز <mark class="clue">تقرير مشروع</mark> طويل للعميل في نهاية مشروع جسر، فيه رسومات ومواصفات مذكورة مصادرها. وش النوع؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="formal-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="formal-4-a" hidden>
+    <a class="qz-law" href="laws2.html#formal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small></span>
+      <span class="qz-law-m">\(\text{set structure + long + citations}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Project reports are a slide example of formal reports.</p>
+      <p class="ar tr">تقارير المشاريع من أمثلة الرسمي في السلايد.</p>
+      <a class="qz-keys" href="keys2.html#formal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Project report → formal.</p><p class="ar tr">تقرير مشروع ← رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A formal report (a project report).</p>
+      <p class="ar tr">الجواب: تقرير رسمي (تقرير مشروع).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="analytical-1" data-law="analytical">
+  <header class="qz-h"><span class="qz-n">سؤال <b>2</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report studies why the motors keep overheating, <mark class="clue">finds the causes</mark> and <mark class="clue">recommends</mark> a new cooling fan. Which type by purpose?</p>
+    <p class="ar tr">تقرير يدرس ليش المحركات تسخن، <mark class="clue">يلقى الأسباب</mark> و<mark class="clue">يوصي</mark> بمروحة تبريد جديدة. وش نوعه حسب الغرض؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="analytical-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="analytical-1-a" hidden>
+    <a class="qz-law" href="laws2.html#analytical">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small></span>
+      <span class="qz-law-m">\(\text{describe + analyze + conclude}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Finding causes and recommending action go beyond describing: analytical.</p>
+      <p class="ar tr">إيجاد الأسباب والتوصية أكثر من الوصف: تحليلي.</p>
+      <a class="qz-keys" href="keys2.html#analytical">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Causes + recommendation → analytical.</p><p class="ar tr">أسباب + توصية ← تحليلي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An analytical report.</p>
+      <p class="ar tr">الجواب: تقرير تحليلي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="formal-3" data-law="formal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>3</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report <mark class="clue">analyzes one topic in great detail</mark>, follows a <mark class="clue">set structure</mark> and has a <mark class="clue">formal tone</mark>. Formal or informal?</p>
+    <p class="ar tr">تقرير <mark class="clue">يحلل موضوع واحد بتفصيل كبير</mark>، وله <mark class="clue">هيكل ثابت</mark>، و<mark class="clue">أسلوبه رسمي</mark>. رسمي ولا غير رسمي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="formal-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="formal-3-a" hidden>
+    <a class="qz-law" href="laws2.html#formal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small></span>
+      <span class="qz-law-m">\(\text{set structure + long + citations}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">All three are features listed under formal reports.</p>
+      <p class="ar tr">الثلاث صفات كلها مكتوبة تحت الرسمي.</p>
+      <a class="qz-keys" href="keys2.html#formal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Set structure + great detail + formal tone → formal.</p><p class="ar tr">هيكل ثابت + تفصيل كبير + أسلوب رسمي ← رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Formal.</p>
+      <p class="ar tr">الجواب: رسمي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informal-4" data-law="informal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>4</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A safety officer <mark class="clue">inspects</mark> the fire extinguishers and writes a quick list of which ones are expired. Which type of informal report?</p>
+    <p class="ar tr">مسؤول سلامة <mark class="clue">يفحص</mark> طفايات الحريق ويكتب قائمة سريعة بالمنتهية. وش نوع التقرير غير الرسمي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informal-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informal-4-a" hidden>
+    <a class="qz-law" href="laws2.html#informal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small></span>
+      <span class="qz-law-m">\(\text{short + no set structure}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Inspection reports are type (4) of informal reports.</p>
+      <p class="ar tr">تقرير الفحص هو النوع <bdi dir="ltr" class=nw>(4)</bdi> من غير الرسمية.</p>
+      <a class="qz-keys" href="keys2.html#informal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Inspect → inspection report.</p><p class="ar tr">فحص ← تقرير فحص.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An inspection report (informal).</p>
+      <p class="ar tr">الجواب: تقرير فحص (غير رسمي).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="trw-factors-1" data-law="trw-factors">
+  <header class="qz-h"><span class="qz-n">سؤال <b>5</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report says: '<mark class="clue">I</mark> checked the pump, and <mark class="clue">Khalid</mark> forgot to close the valve.' Which TRW factor does it break?</p>
+    <p class="ar tr">تقرير مكتوب فيه: «<mark class="clue">أنا</mark> فحصت المضخة، و<mark class="clue">خالد</mark> نسى يقفل المحبس». أي صفة من صفات كتابة التقارير يكسر؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="trw-factors-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="trw-factors-1-a" hidden>
+    <a class="qz-law" href="laws2.html#trw-factors">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small></span>
+      <span class="qz-law-m">\(\text{objective + impersonal + facts}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">TRW is impersonal: no first person, no names of who did the work (and it does not blame people).</p>
+      <p class="ar tr">التقرير التقني غير شخصي: بدون ضمير المتكلم وبدون أسماء (وما يلوم الناس).</p>
+      <a class="qz-keys" href="keys2.html#trw-factors">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">'I' + a name → not impersonal.</p><p class="ar tr">«أنا» + اسم ← مو غير شخصي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Impersonal (and does not blame people).</p>
+      <p class="ar tr">الجواب: غير شخصي (وما يلوم الناس).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informal-3" data-law="informal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>6</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report <mark class="clue">requires little background</mark>, is <mark class="clue">shorter</mark> than usual and <mark class="clue">does not analyze in detail</mark>. What is it?</p>
+    <p class="ar tr">تقرير <mark class="clue">يحتاج خلفية قليلة</mark>، و<mark class="clue">أقصر</mark> من العادة، و<mark class="clue">ما يحلل بالتفصيل</mark>. وش هو؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informal-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informal-3-a" hidden>
+    <a class="qz-law" href="laws2.html#informal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small></span>
+      <span class="qz-law-m">\(\text{short + no set structure}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">These are three of the four features of informal reports.</p>
+      <p class="ar tr">هذي ثلاث من أربع صفات للتقارير غير الرسمية.</p>
+      <a class="qz-keys" href="keys2.html#informal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Little background + short + no detail → informal.</p><p class="ar tr">خلفية قليلة + قصير + بدون تفصيل ← غير رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informal report.</p>
+      <p class="ar tr">الجواب: تقرير غير رسمي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="role-3" data-law="role">
+  <header class="qz-h"><span class="qz-n">سؤال <b>7</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">An engineer spends about <mark class="clue">a third of every workday</mark> writing reports, logs and emails. Which role of TR does this show?</p>
+    <p class="ar tr">مهندس يقضي تقريباً <mark class="clue">ثلث كل يوم شغل</mark> يكتب تقارير وسجلات وإيميلات. أي دور يبين هذا؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="role-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="role-3-a" hidden>
+    <a class="qz-law" href="laws2.html#role">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small></span>
+      <span class="qz-law-m">\(\text{communication + career}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Role (3): TR constitutes an important part of the everyday workload.</p>
+      <p class="ar tr">الدور <bdi dir="ltr" class=nw>(3)</bdi>: التقارير جزء مهم من الشغل اليومي.</p>
+      <a class="qz-keys" href="keys2.html#role">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Every day → workload.</p><p class="ar tr">كل يوم ← الشغل اليومي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: TR is an important part of the everyday workload.</p>
+      <p class="ar tr">الجواب: التقارير جزء مهم من الشغل اليومي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informational-3" data-law="informational">
+  <header class="qz-h"><span class="qz-n">سؤال <b>8</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A manual explains <mark class="clue">how to perform</mark> a firmware update in 10 steps. Which informational report type?</p>
+    <p class="ar tr">دليل يشرح <mark class="clue">كيف تسوي</mark> تحديث للبرنامج الثابت في <bdi dir="ltr" class=nw>10</bdi> خطوات. وش نوع التقرير المعلوماتي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informational-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informational-3-a" hidden>
+    <a class="qz-law" href="laws2.html#informational">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small></span>
+      <span class="qz-law-m">\(\text{describe only, no conclusions}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Instructional reports tell how something is done or how to perform actions.</p>
+      <p class="ar tr">التقرير الإرشادي يقول كيف يتسوى الشي أو كيف تنفذ خطوات.</p>
+      <a class="qz-keys" href="keys2.html#informational">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">How to perform → instructional.</p><p class="ar tr">كيف تسوي ← إرشادي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An instructional report.</p>
+      <p class="ar tr">الجواب: تقرير إرشادي <bdi dir="ltr" class=nw>(Instructional)</bdi>.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="role-1" data-law="role">
+  <header class="qz-h"><span class="qz-n">سؤال <b>9</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A fresh graduate asks why he should learn report writing. His mentor says: 'Without it you <mark class="clue">won't grow in your career</mark>.' Which role of TR is this?</p>
+    <p class="ar tr">خريج جديد يسأل ليش يتعلم كتابة التقارير. مشرفه قال: «بدونها <mark class="clue">ما بتتقدم في مسيرتك المهنية</mark>». أي دور من أدوار التقارير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="role-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="role-1-a" hidden>
+    <a class="qz-law" href="laws2.html#role">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small></span>
+      <span class="qz-law-m">\(\text{communication + career}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Role (5): TRs are necessary for a successful career.</p>
+      <p class="ar tr">الدور <bdi dir="ltr" class=nw>(5)</bdi>: التقارير ضرورية لمستقبل مهني ناجح.</p>
+      <a class="qz-keys" href="keys2.html#role">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Career → role 5.</p><p class="ar tr">المسيرة المهنية ← الدور <bdi dir="ltr" class=nw>5</bdi>.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: TRs are necessary for a successful career.</p>
+      <p class="ar tr">الجواب: التقارير ضرورية لمستقبل مهني ناجح.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="ew-rw-5" data-law="ew-rw">
+  <header class="qz-h"><span class="qz-n">سؤال <b>10</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A writer must give <mark class="clue">opinions, arguments, counter-arguments and evidence</mark>, in an <mark class="clue">argumentative or descriptive style</mark>. Essay or report?</p>
+    <p class="ar tr">كاتب لازم يعطي <mark class="clue">آراء وحجج وحجج مضادة وأدلة</mark>، بأسلوب <mark class="clue">جدلي أو وصفي</mark>. مقال ولا تقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="ew-rw-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="ew-rw-5-a" hidden>
+    <a class="qz-law" href="laws2.html#ew-rw">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small></span>
+      <span class="qz-law-m">\(\text{RW: TOC + facts + audience}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Both lines are in the essay column.</p>
+      <p class="ar tr">السطرين في عمود المقال.</p>
+      <a class="qz-keys" href="keys2.html#ew-rw">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Arguments + argumentative style → essay.</p><p class="ar tr">حجج + أسلوب جدلي ← مقال.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An essay.</p>
+      <p class="ar tr">الجواب: مقال.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="tech-nontech-2" data-law="tech-nontech">
+  <header class="qz-h"><span class="qz-n">سؤال <b>11</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A TV <mark class="clue">advertisement</mark> says a phone is 'the best in the universe'. Technical or non-technical?</p>
+    <p class="ar tr"><mark class="clue">إعلان</mark> في التلفزيون يقول الجوال «الأفضل في الكون». تقني ولا غير تقني؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="tech-nontech-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="tech-nontech-2-a" hidden>
+    <a class="qz-law" href="laws2.html#tech-nontech">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small></span>
+      <span class="qz-law-m">\(\text{factual → technical}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Advertising is not factual, so it is non-technical.</p>
+      <p class="ar tr">الإعلان مو حقائق، فهو غير تقني.</p>
+      <a class="qz-keys" href="keys2.html#tech-nontech">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Not factual → non-technical.</p><p class="ar tr">مو حقائق ← غير تقني.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Non-technical.</p>
+      <p class="ar tr">الجواب: غير تقني.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="analytical-2" data-law="analytical">
+  <header class="qz-h"><span class="qz-n">سؤال <b>12</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">The city wants to know if a new metro line is <mark class="clue">practical</mark> before building it. Which analytical report?</p>
+    <p class="ar tr">البلدية تبي تعرف هل خط مترو جديد <mark class="clue">عملي</mark> قبل ما تبنيه. وش التقرير التحليلي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="analytical-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="analytical-2-a" hidden>
+    <a class="qz-law" href="laws2.html#analytical">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small></span>
+      <span class="qz-law-m">\(\text{describe + analyze + conclude}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Feasibility reports assess the practicality of a proposed project or change.</p>
+      <p class="ar tr">تقرير الجدوى يقيّم هل المشروع أو التغيير المقترح عملي.</p>
+      <a class="qz-keys" href="keys2.html#analytical">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Proposed + practical → feasibility.</p><p class="ar tr">مقترح + عملي ← جدوى.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A feasibility report.</p>
+      <p class="ar tr">الجواب: تقرير جدوى <bdi dir="ltr" class=nw>(Feasibility)</bdi>.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="tech-nontech-5" data-law="tech-nontech">
+  <header class="qz-h"><span class="qz-n">سؤال <b>13</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A newspaper columnist writes his <mark class="clue">personal opinion</mark> about football on the <mark class="clue">editorial page</mark>. Technical or non-technical?</p>
+    <p class="ar tr">كاتب عمود يكتب <mark class="clue">رأيه الشخصي</mark> عن الكورة في <mark class="clue">صفحة الرأي</mark>. تقني ولا غير تقني؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="tech-nontech-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="tech-nontech-5-a" hidden>
+    <a class="qz-law" href="laws2.html#tech-nontech">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small></span>
+      <span class="qz-law-m">\(\text{factual → technical}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Opinion on the editorial pages is non-technical.</p>
+      <p class="ar tr">الرأي في صفحات الرأي غير تقني.</p>
+      <a class="qz-keys" href="keys2.html#tech-nontech">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Personal opinion → non-technical.</p><p class="ar tr">رأي شخصي ← غير تقني.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Non-technical.</p>
+      <p class="ar tr">الجواب: غير تقني.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="role-5" data-law="role">
+  <header class="qz-h"><span class="qz-n">سؤال <b>14</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A student writes <mark class="clue">lab reports, project reports and a thesis</mark> during university. Which role of TR says it is useful for all of these?</p>
+    <p class="ar tr">طالب يكتب <mark class="clue">تقارير مختبر وتقارير مشاريع ورسالة</mark> في الجامعة. أي دور يقول إن التقارير مفيدة لكل هذي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="role-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="role-5-a" hidden>
+    <a class="qz-law" href="laws2.html#role">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small></span>
+      <span class="qz-law-m">\(\text{communication + career}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Role (1): TR is a useful form of writing for projects, lab reports, instructions, theses...</p>
+      <p class="ar tr">الدور <bdi dir="ltr" class=nw>(1)</bdi>: التقارير شكل كتابة مفيد للمشاريع وتقارير المختبر والتعليمات والرسائل.</p>
+      <a class="qz-keys" href="keys2.html#role">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Many forms of professional writing → role 1.</p><p class="ar tr">أشكال كثيرة من الكتابة المهنية ← الدور <bdi dir="ltr" class=nw>1</bdi>.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: TR is a very useful form of writing and communication for many forms of professional writing.</p>
+      <p class="ar tr">الجواب: التقارير شكل مفيد جداً من الكتابة والتواصل لأشكال كثيرة من الكتابة المهنية.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="classify-5" data-law="classify">
+  <header class="qz-h"><span class="qz-n">سؤال <b>15</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A company says its internal notes can be <mark class="clue">relaxed in tone</mark>, but reports to the ministry must be <mark class="clue">serious and formal</mark>. Which criterion is this?</p>
+    <p class="ar tr">شركة تقول ملاحظاتها الداخلية ممكن تكون <mark class="clue">بأسلوب عادي</mark>، بس تقاريرها للوزارة لازم تكون <mark class="clue">جادة ورسمية</mark>. أي معيار هذا؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="classify-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="classify-5-a" hidden>
+    <a class="qz-law" href="laws2.html#classify">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small></span>
+      <span class="qz-law-m">\(\text{length · style · delivery · form · purpose}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Formal vs informal is the style criterion.</p>
+      <p class="ar tr">رسمي ولا غير رسمي هو معيار الأسلوب.</p>
+      <a class="qz-keys" href="keys2.html#classify">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Tone formal/informal → style.</p><p class="ar tr">الأسلوب رسمي/غير رسمي ← <bdi dir="ltr" class=nw>Style</bdi>.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Style (formal or informal).</p>
+      <p class="ar tr">الجواب: الأسلوب (رسمي أو غير رسمي).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="role-4" data-law="role">
+  <header class="qz-h"><span class="qz-n">سؤال <b>16</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A project manager uses reports to keep <mark class="clue">co-workers, clients and supervisors</mark> informed, <mark class="clue">inside and outside</mark> the company. Which role?</p>
+    <p class="ar tr">مدير مشروع يستخدم التقارير عشان يعرّف <mark class="clue">الزملاء والعملاء والمشرفين</mark>، <mark class="clue">داخل وخارج</mark> الشركة. أي دور؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="role-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="role-4-a" hidden>
+    <a class="qz-law" href="laws2.html#role">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small></span>
+      <span class="qz-law-m">\(\text{communication + career}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Role (4): TRs facilitate communication inside and outside the workplace.</p>
+      <p class="ar tr">الدور <bdi dir="ltr" class=nw>(4)</bdi>: التقارير تسهّل التواصل داخل وخارج مكان العمل.</p>
+      <a class="qz-keys" href="keys2.html#role">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Co-workers, clients, supervisors → communication.</p><p class="ar tr">زملاء وعملاء ومشرفين ← التواصل.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: TRs facilitate communication.</p>
+      <p class="ar tr">الجواب: التقارير تسهّل التواصل.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="classify-3" data-law="classify">
+  <header class="qz-h"><span class="qz-n">سؤال <b>17</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Your instructor asks you to <mark class="clue">classify reports according to their purpose</mark>. What two types do you write?</p>
+    <p class="ar tr">الدكتور يطلب منك <mark class="clue">تصنف التقارير حسب غرضها</mark>. وش النوعين اللي تكتبهم؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="classify-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="classify-3-a" hidden>
+    <a class="qz-law" href="laws2.html#classify">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small></span>
+      <span class="qz-law-m">\(\text{length · style · delivery · form · purpose}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">By purpose there are only two: informational and analytical.</p>
+      <p class="ar tr">حسب الغرض فيه نوعين بس: معلوماتي وتحليلي.</p>
+      <a class="qz-keys" href="keys2.html#classify">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Purpose → informational / analytical (not formal / informal).</p><p class="ar tr">الغرض ← معلوماتي / تحليلي (مو رسمي / غير رسمي).</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Informational and analytical reports.</p>
+      <p class="ar tr">الجواب: تقارير معلوماتية وتحليلية.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="ew-rw-1" data-law="ew-rw">
+  <header class="qz-h"><span class="qz-n">سؤال <b>18</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A document starts with the introduction and then a <mark class="clue">list of aims and objectives</mark>, and has a <mark class="clue">table of contents</mark>. Essay or report?</p>
+    <p class="ar tr">مستند يبدأ بالمقدمة بعدين <mark class="clue">قائمة أهداف</mark>، وفيه <mark class="clue">فهرس</mark>. مقال ولا تقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="ew-rw-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="ew-rw-1-a" hidden>
+    <a class="qz-law" href="laws2.html#ew-rw">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small></span>
+      <span class="qz-law-m">\(\text{RW: TOC + facts + audience}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Aims after the intro and a table of contents are report features.</p>
+      <p class="ar tr">الأهداف بعد المقدمة والفهرس من صفات التقرير.</p>
+      <a class="qz-keys" href="keys2.html#ew-rw">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Aims + TOC → report.</p><p class="ar tr">أهداف + فهرس ← تقرير.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A report.</p>
+      <p class="ar tr">الجواب: تقرير.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informal-2" data-law="informal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>19</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">After <mark class="clue">attending a conference</mark> in Riyadh, an engineer sends his manager a one-page summary of the talks. Which report type?</p>
+    <p class="ar tr">بعد ما <mark class="clue">حضر مؤتمر</mark> في الرياض، مهندس أرسل لمديره ملخص صفحة وحدة عن المحاضرات. وش نوع التقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informal-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informal-2-a" hidden>
+    <a class="qz-law" href="laws2.html#informal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small></span>
+      <span class="qz-law-m">\(\text{short + no set structure}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">'Reporting conference attendance' is one of the types of informal reports.</p>
+      <p class="ar tr">«تقرير حضور مؤتمر» من أنواع التقارير غير الرسمية.</p>
+      <a class="qz-keys" href="keys2.html#informal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">One page + conference attendance → informal.</p><p class="ar tr">صفحة وحدة + حضور مؤتمر ← غير رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informal report (reporting conference attendance).</p>
+      <p class="ar tr">الجواب: تقرير غير رسمي (تقرير حضور مؤتمر).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informational-2" data-law="informational">
+  <header class="qz-h"><span class="qz-n">سؤال <b>20</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">The team leader sends a report on <mark class="clue">which tasks are done and which are left</mark> this month, with no opinion. Which informational report?</p>
+    <p class="ar tr">قائد الفريق يرسل تقرير عن <mark class="clue">وش المهام اللي خلصت ووش باقي</mark> هالشهر، بدون رأي. وش التقرير المعلوماتي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informational-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informational-2-a" hidden>
+    <a class="qz-law" href="laws2.html#informational">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small></span>
+      <span class="qz-law-m">\(\text{describe only, no conclusions}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Progress reports are related to tasks.</p>
+      <p class="ar tr">تقارير تقدم العمل مرتبطة بالمهام.</p>
+      <a class="qz-keys" href="keys2.html#informational">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Tasks → progress report.</p><p class="ar tr">مهام ← تقرير تقدم العمل.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A progress report.</p>
+      <p class="ar tr">الجواب: تقرير تقدم العمل <bdi dir="ltr" class=nw>(Progress)</bdi>.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="classify-4" data-law="classify">
+  <header class="qz-h"><span class="qz-n">سؤال <b>21</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Two reports cover the same topic, but one is <mark class="clue">3 pages and the other 80 pages</mark>. By which criterion do they differ?</p>
+    <p class="ar tr">تقريرين عن نفس الموضوع، بس واحد <mark class="clue"><bdi dir="ltr" class=nw>3</bdi> صفحات والثاني <bdi dir="ltr" class=nw>80</bdi> صفحة</mark>. بأي معيار يختلفون؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="classify-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="classify-4-a" hidden>
+    <a class="qz-law" href="laws2.html#classify">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small></span>
+      <span class="qz-law-m">\(\text{length · style · delivery · form · purpose}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Short vs long is the length criterion.</p>
+      <p class="ar tr">قصير ولا طويل هو معيار الطول.</p>
+      <a class="qz-keys" href="keys2.html#classify">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">3 vs 80 pages → length.</p><p class="ar tr"><bdi dir="ltr" class=nw>3</bdi> مقابل <bdi dir="ltr" class=nw>80</bdi> صفحة ← الطول.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Length (short or long).</p>
+      <p class="ar tr">الجواب: الطول (قصير أو طويل).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="tech-nontech-3" data-law="tech-nontech">
+  <header class="qz-h"><span class="qz-n">سؤال <b>22</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A student writes a <mark class="clue">poem</mark> about the sea for a literature club. Technical or non-technical?</p>
+    <p class="ar tr">طالب كتب <mark class="clue">قصيدة</mark> عن البحر لنادي الأدب. تقني ولا غير تقني؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="tech-nontech-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="tech-nontech-3-a" hidden>
+    <a class="qz-law" href="laws2.html#tech-nontech">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small></span>
+      <span class="qz-law-m">\(\text{factual → technical}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Creative writing like poetry is non-technical (the 'tech.' written on the slide is a mistake).</p>
+      <p class="ar tr">الكتابة الإبداعية مثل الشعر غير تقنية (كلمة <bdi dir="ltr" class=nw>tech</bdi>. المكتوبة في السلايد غلط).</p>
+      <a class="qz-keys" href="keys2.html#tech-nontech">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Poetry → creative → non-technical.</p><p class="ar tr">شعر ← إبداعي ← غير تقني.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Non-technical.</p>
+      <p class="ar tr">الجواب: غير تقني.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="formal-1" data-law="formal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>23</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A university publishes a <mark class="clue">yearly</mark> document of 120 pages about its research, with <mark class="clue">charts, statistics and a list of sources</mark>. What type of report is it by style?</p>
+    <p class="ar tr">جامعة تنشر مستند <mark class="clue">سنوي</mark> <bdi dir="ltr" class=nw>120</bdi> صفحة عن أبحاثها، فيه <mark class="clue">رسومات وإحصائيات وقائمة مصادر</mark>. وش نوعه حسب الأسلوب؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="formal-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="formal-1-a" hidden>
+    <a class="qz-law" href="laws2.html#formal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small></span>
+      <span class="qz-law-m">\(\text{set structure + long + citations}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Long, with charts, statistics and citations; and annual reports are a slide example of formal reports.</p>
+      <p class="ar tr">طويل وفيه رسومات وإحصائيات ومراجع، والتقرير السنوي من أمثلة الرسمي في السلايد.</p>
+      <a class="qz-keys" href="keys2.html#formal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Annual report + citations + statistics → formal.</p><p class="ar tr">تقرير سنوي + مراجع + إحصائيات ← رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A formal report (an annual report).</p>
+      <p class="ar tr">الجواب: تقرير رسمي (تقرير سنوي).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informal-1" data-law="informal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>24</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A shift supervisor writes a <mark class="clue">short daily note</mark> about how many units were made today. <mark class="clue">No fixed template</mark> and no analysis. Which type?</p>
+    <p class="ar tr">مشرف وردية يكتب <mark class="clue">ملاحظة يومية قصيرة</mark> عن كم وحدة انصنعت اليوم. <mark class="clue">بدون قالب ثابت</mark> وبدون تحليل. وش النوع؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informal-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informal-1-a" hidden>
+    <a class="qz-law" href="laws2.html#informal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small></span>
+      <span class="qz-law-m">\(\text{short + no set structure}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Daily production reports are a slide example of informal reports: short, no set structure.</p>
+      <p class="ar tr">تقرير الإنتاج اليومي من أمثلة غير الرسمي: قصير وبدون هيكل ثابت.</p>
+      <a class="qz-keys" href="keys2.html#informal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Short + no set structure → informal.</p><p class="ar tr">قصير + بدون هيكل ثابت ← غير رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informal report (daily production report).</p>
+      <p class="ar tr">الجواب: تقرير غير رسمي (تقرير إنتاج يومي).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="classify-2" data-law="classify">
+  <header class="qz-h"><span class="qz-n">سؤال <b>25</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report is written as a <mark class="clue">memo</mark> to the department, not as a letter or a printed booklet. Which classification criterion describes this?</p>
+    <p class="ar tr">تقرير انكتب <mark class="clue">كمذكرة <bdi dir="ltr" class=nw>(Memo)</bdi></mark> للقسم، مو كخطاب ولا ككتيّب مطبوع. أي معيار تصنيف يوصف هذا؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="classify-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="classify-2-a" hidden>
+    <a class="qz-law" href="laws2.html#classify">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small></span>
+      <span class="qz-law-m">\(\text{length · style · delivery · form · purpose}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Printed, letter, memo and manuscript are the values of 'form'.</p>
+      <p class="ar tr">مطبوع، خطاب، مذكرة، مخطوطة هي قيم معيار «الشكل».</p>
+      <a class="qz-keys" href="keys2.html#classify">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Memo is one of the forms.</p><p class="ar tr">المذكرة واحد من الأشكال.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Form.</p>
+      <p class="ar tr">الجواب: الشكل <bdi dir="ltr" class=nw>(Form)</bdi>.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informational-4" data-law="informational">
+  <header class="qz-h"><span class="qz-n">سؤال <b>26</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">After reading a report, the readers <mark class="clue">decide by themselves whether they agree or disagree</mark>, because the report only presents the facts. Which type?</p>
+    <p class="ar tr">بعد ما قرو التقرير، القراء <mark class="clue">قرروا بأنفسهم يوافقون أو يعارضون</mark>، لأن التقرير عرض الحقائق بس. وش النوع؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informational-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informational-4-a" hidden>
+    <a class="qz-law" href="laws2.html#informational">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small></span>
+      <span class="qz-law-m">\(\text{describe only, no conclusions}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">In informational reports, readers agree or disagree, like or dislike, based on their own analysis.</p>
+      <p class="ar tr">في المعلوماتي، القارئ يوافق أو يعارض، يعجبه أو لا، حسب تحليله هو.</p>
+      <a class="qz-keys" href="keys2.html#informational">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Readers analyze, not the writer → informational.</p><p class="ar tr">القارئ يحلل مو الكاتب ← معلوماتي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informational report.</p>
+      <p class="ar tr">الجواب: تقرير معلوماتي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="analytical-5" data-law="analytical">
+  <header class="qz-h"><span class="qz-n">سؤال <b>27</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Which report type must have <mark class="clue">conclusions</mark> and may have <mark class="clue">recommendations for action</mark>, while the other purpose type must not?</p>
+    <p class="ar tr">أي نوع تقرير لازم يكون فيه <mark class="clue">استنتاجات</mark> وممكن <mark class="clue">توصيات بإجراء</mark>، والنوع الثاني حسب الغرض ممنوع فيه؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="analytical-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="analytical-5-a" hidden>
+    <a class="qz-law" href="laws2.html#analytical">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small></span>
+      <span class="qz-law-m">\(\text{describe + analyze + conclude}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Analytical reports include conclusions and may recommend; informational ones contain none.</p>
+      <p class="ar tr">التحليلي فيه استنتاجات وممكن توصيات، والمعلوماتي ما فيه.</p>
+      <a class="qz-keys" href="keys2.html#analytical">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Conclusions allowed → analytical.</p><p class="ar tr">الاستنتاجات مسموحة ← تحليلي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Analytical reports.</p>
+      <p class="ar tr">الجواب: التقارير التحليلية.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informational-5" data-law="informational">
+  <header class="qz-h"><span class="qz-n">سؤال <b>28</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">An engineer writes down her <mark class="clue">observations from a visit</mark> to the construction site, without judging them. Which type?</p>
+    <p class="ar tr">مهندسة تكتب <mark class="clue">ملاحظاتها من زيارة</mark> لموقع البناء، بدون ما تحكم عليها. وش النوع؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informational-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informational-5-a" hidden>
+    <a class="qz-law" href="laws2.html#informational">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small></span>
+      <span class="qz-law-m">\(\text{describe only, no conclusions}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Site visit reports (visits, trips, observations) are informational.</p>
+      <p class="ar tr">تقارير زيارة الموقع (زيارات، رحلات، ملاحظات) معلوماتية.</p>
+      <a class="qz-keys" href="keys2.html#informational">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Visit + observations, no judgment → site visit report.</p><p class="ar tr">زيارة + ملاحظات بدون حكم ← تقرير زيارة موقع.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informational report (a site visit report).</p>
+      <p class="ar tr">الجواب: تقرير معلوماتي (تقرير زيارة موقع).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="trw-factors-2" data-law="trw-factors">
+  <header class="qz-h"><span class="qz-n">سؤال <b>29</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A writer adds a <mark class="clue">joke</mark> and some <mark class="clue">street slang</mark> to make a technical report fun. Is that allowed?</p>
+    <p class="ar tr">كاتب حط <mark class="clue">نكتة</mark> وشوية <mark class="clue">كلام عامي</mark> عشان يخلي التقرير التقني ممتع. مسموح؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="trw-factors-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="trw-factors-2-a" hidden>
+    <a class="qz-law" href="laws2.html#trw-factors">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small></span>
+      <span class="qz-law-m">\(\text{objective + impersonal + facts}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">TRW does not employ humor or slang.</p>
+      <p class="ar tr">التقرير التقني ما يستخدم النكت ولا العامية.</p>
+      <a class="qz-keys" href="keys2.html#trw-factors">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Humor/slang → not allowed.</p><p class="ar tr">نكت/عامية ← ممنوع.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: No. Technical reports do not use humor or slang.</p>
+      <p class="ar tr">الجواب: لا. التقارير التقنية ما فيها نكت ولا عامية.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="formal-5" data-law="formal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>30</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Which report type is <mark class="clue">long, analytical and impersonal</mark> and usually includes <mark class="clue">graphs and statistical information</mark>?</p>
+    <p class="ar tr">أي نوع تقرير يكون <mark class="clue">طويل وتحليلي وغير شخصي</mark>، وعادة فيه <mark class="clue">رسومات ومعلومات إحصائية</mark>؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="formal-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="formal-5-a" hidden>
+    <a class="qz-law" href="laws2.html#formal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small></span>
+      <span class="qz-law-m">\(\text{set structure + long + citations}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">That is word for word the slide description of formal reports.</p>
+      <p class="ar tr">هذا حرفياً وصف السلايد للتقارير الرسمية.</p>
+      <a class="qz-keys" href="keys2.html#formal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Long + analytical + impersonal + statistics → formal.</p><p class="ar tr">طويل + تحليلي + غير شخصي + إحصائيات ← رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Formal reports.</p>
+      <p class="ar tr">الجواب: التقارير الرسمية.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="trw-factors-4" data-law="trw-factors">
+  <header class="qz-h"><span class="qz-n">سؤال <b>31</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A marketing team wants to <mark class="clue">use the technical report as an advertisement</mark> for their product. Which factor says no?</p>
+    <p class="ar tr">فريق تسويق يبي <mark class="clue">يستخدم التقرير التقني كإعلان</mark> لمنتجهم. أي صفة تقول لا؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="trw-factors-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="trw-factors-4-a" hidden>
+    <a class="qz-law" href="laws2.html#trw-factors">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small></span>
+      <span class="qz-law-m">\(\text{objective + impersonal + facts}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">TRW is never used as advertising copy.</p>
+      <p class="ar tr">التقرير التقني عمره ما يستخدم كإعلان.</p>
+      <a class="qz-keys" href="keys2.html#trw-factors">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Advertising → never.</p><p class="ar tr">إعلان ← أبد.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: It is never used as advertising copy.</p>
+      <p class="ar tr">الجواب: عمره ما يستخدم كإعلان.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="ew-rw-3" data-law="ew-rw">
+  <header class="qz-h"><span class="qz-n">سؤال <b>32</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Which one is required to <mark class="clue">describe the key findings and analyze them for future studies and use</mark>?</p>
+    <p class="ar tr">أيهم المطلوب منه <mark class="clue">يوصف النتائج الرئيسية ويحللها للدراسات والاستخدام المستقبلي</mark>؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="ew-rw-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="ew-rw-3-a" hidden>
+    <a class="qz-law" href="laws2.html#ew-rw">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small></span>
+      <span class="qz-law-m">\(\text{RW: TOC + facts + audience}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">That line is in the report column of the slide.</p>
+      <p class="ar tr">هالسطر في عمود التقرير بالسلايد.</p>
+      <a class="qz-keys" href="keys2.html#ew-rw">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Key findings for future use → report.</p><p class="ar tr">نتائج رئيسية للاستخدام المستقبلي ← تقرير.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Report writing.</p>
+      <p class="ar tr">الجواب: كتابة التقرير.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="trw-factors-5" data-law="trw-factors">
+  <header class="qz-h"><span class="qz-n">سؤال <b>33</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report points out that a design has a weak joint, <mark class="clue">criticizing the design</mark> but <mark class="clue">not blaming</mark> the designer. Is this OK in TRW?</p>
+    <p class="ar tr">تقرير يبين إن التصميم فيه وصلة ضعيفة، <mark class="clue">ينتقد التصميم</mark> بس <mark class="clue">ما يلوم</mark> المصمم. هذا مقبول في التقرير التقني؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="trw-factors-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="trw-factors-5-a" hidden>
+    <a class="qz-law" href="laws2.html#trw-factors">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small></span>
+      <span class="qz-law-m">\(\text{objective + impersonal + facts}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">TRW does not blame people, but criticizing is OK.</p>
+      <p class="ar tr">التقرير ما يلوم الناس، بس الانتقاد مقبول.</p>
+      <a class="qz-keys" href="keys2.html#trw-factors">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Criticize the work, not the person → OK.</p><p class="ar tr">انتقد الشغل مو الشخص ← مقبول.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Yes. Criticizing is OK; blaming people is not.</p>
+      <p class="ar tr">الجواب: إيه. الانتقاد مقبول، ولوم الناس لا.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informational-1" data-law="informational">
+  <header class="qz-h"><span class="qz-n">سؤال <b>34</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report <mark class="clue">describes</mark> what happened in the substation last week <mark class="clue">without any conclusions or recommendations</mark>. Which type by purpose?</p>
+    <p class="ar tr">تقرير <mark class="clue">يوصف</mark> وش صار في محطة التحويل الأسبوع اللي فات <mark class="clue">بدون أي استنتاجات أو توصيات</mark>. وش نوعه حسب الغرض؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informational-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informational-1-a" hidden>
+    <a class="qz-law" href="laws2.html#informational">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small></span>
+      <span class="qz-law-m">\(\text{describe only, no conclusions}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Describing without analysis, conclusions or recommendations is the definition of informational.</p>
+      <p class="ar tr">الوصف بدون تحليل ولا استنتاج ولا توصية هو تعريف المعلوماتي.</p>
+      <a class="qz-keys" href="keys2.html#informational">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">No conclusions + no recommendations → informational.</p><p class="ar tr">بدون استنتاجات + بدون توصيات ← معلوماتي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An informational report (a situation report).</p>
+      <p class="ar tr">الجواب: تقرير معلوماتي (تقرير وضع).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="analytical-3" data-law="analytical">
+  <header class="qz-h"><span class="qz-n">سؤال <b>35</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A consultant presents test data on three suppliers' cables and gives <mark class="clue">his judgment of which is best</mark>. Which analytical report?</p>
+    <p class="ar tr">مستشار يعرض بيانات فحص كيابل ثلاث موردين ويعطي <mark class="clue">حكمه مين الأفضل</mark>. وش التقرير التحليلي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="analytical-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="analytical-3-a" hidden>
+    <a class="qz-law" href="laws2.html#analytical">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small></span>
+      <span class="qz-law-m">\(\text{describe + analyze + conclude}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Evaluation reports present data and the writer's judgment of it.</p>
+      <p class="ar tr">تقرير التقييم يعرض بيانات وحكم الكاتب عليها.</p>
+      <a class="qz-keys" href="keys2.html#analytical">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Data + writer's judgment → evaluation.</p><p class="ar tr">بيانات + حكم الكاتب ← تقييم.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An evaluation report.</p>
+      <p class="ar tr">الجواب: تقرير تقييم <bdi dir="ltr" class=nw>(Evaluation)</bdi>.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="tech-nontech-1" data-law="tech-nontech">
+  <header class="qz-h"><span class="qz-n">سؤال <b>36</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A booklet that comes with a washing machine gives <mark class="clue">instructions for using</mark> it. Technical or non-technical writing?</p>
+    <p class="ar tr">كتيب يجي مع الغسالة فيه <mark class="clue">تعليمات الاستخدام</mark>. كتابة تقنية ولا غير تقنية؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="tech-nontech-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="tech-nontech-1-a" hidden>
+    <a class="qz-law" href="laws2.html#tech-nontech">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small></span>
+      <span class="qz-law-m">\(\text{factual → technical}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Instructions for use of a product or process are technical.</p>
+      <p class="ar tr">تعليمات استخدام منتج أو عملية تقنية.</p>
+      <a class="qz-keys" href="keys2.html#tech-nontech">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Instructions → technical.</p><p class="ar tr">تعليمات ← تقني.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Technical.</p>
+      <p class="ar tr">الجواب: تقني.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="formal-2" data-law="formal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>37</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A master's student submits a <mark class="clue">thesis</mark> with fixed chapters, an impersonal tone and 40 references. Which report type?</p>
+    <p class="ar tr">طالب ماجستير يسلّم <mark class="clue">رسالة علمية <bdi dir="ltr" class=nw>(Thesis)</bdi></mark> بفصول ثابتة وأسلوب غير شخصي و <bdi dir="ltr" class=nw>40</bdi> مرجع. وش نوع التقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="formal-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="formal-2-a" hidden>
+    <a class="qz-law" href="laws2.html#formal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small></span>
+      <span class="qz-law-m">\(\text{set structure + long + citations}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Theses are the first example of formal reports: set structure, impersonal, citations.</p>
+      <p class="ar tr">الرسائل العلمية أول مثال على الرسمي: هيكل ثابت، غير شخصي، مراجع.</p>
+      <a class="qz-keys" href="keys2.html#formal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Thesis → formal.</p><p class="ar tr">رسالة علمية ← رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A formal report.</p>
+      <p class="ar tr">الجواب: تقرير رسمي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="trw-factors-3" data-law="trw-factors">
+  <header class="qz-h"><span class="qz-n">سؤال <b>38</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">The test results were bad, so the engineer <mark class="clue">left out the failed test</mark> from the report. Which TRW factor is broken?</p>
+    <p class="ar tr">نتايج الفحص طلعت سيئة، فالمهندس <mark class="clue">شال الفحص الفاشل</mark> من التقرير. أي صفة انكسرت؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="trw-factors-3-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="trw-factors-3-a" hidden>
+    <a class="qz-law" href="laws2.html#trw-factors">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small></span>
+      <span class="qz-law-m">\(\text{objective + impersonal + facts}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">TRW requires facts or data and never hides facts.</p>
+      <p class="ar tr">التقرير التقني يحتاج حقائق وبيانات وما يخفي الحقائق أبد.</p>
+      <a class="qz-keys" href="keys2.html#trw-factors">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Hiding a result → breaks 'never hides facts'.</p><p class="ar tr">إخفاء نتيجة ← يكسر «ما يخفي الحقائق».</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Requires facts and never hides facts.</p>
+      <p class="ar tr">الجواب: يحتاج حقائق وما يخفي الحقائق.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="role-2" data-law="role">
+  <header class="qz-h"><span class="qz-n">سؤال <b>39</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A company noticed that clear written reports <mark class="clue">cut repeated meetings and rework</mark>, so projects finished cheaper. Which role of TR?</p>
+    <p class="ar tr">شركة لاحظت إن التقارير المكتوبة الواضحة <mark class="clue">قللت الاجتماعات المكررة وإعادة الشغل</mark>، فالمشاريع خلصت بتكلفة أقل. أي دور؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="role-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="role-2-a" hidden>
+    <a class="qz-law" href="laws2.html#role">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small></span>
+      <span class="qz-law-m">\(\text{communication + career}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Role (6): good writing skills contribute to saving time and money.</p>
+      <p class="ar tr">الدور <bdi dir="ltr" class=nw>(6)</bdi>: مهارة الكتابة الزينة توفر الوقت والفلوس.</p>
+      <a class="qz-keys" href="keys2.html#role">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Less rework, lower cost → saving time and money.</p><p class="ar tr">إعادة شغل أقل وتكلفة أقل ← توفير الوقت والفلوس.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Good writing saves time and money.</p>
+      <p class="ar tr">الجواب: الكتابة الزينة توفر الوقت والفلوس.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="analytical-4" data-law="analytical">
+  <header class="qz-h"><span class="qz-n">سؤال <b>40</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A report <mark class="clue">goes one step beyond</mark> describing: it <mark class="clue">interprets the data</mark> and shows <mark class="clue">long-range consequences</mark>. Which type?</p>
+    <p class="ar tr">تقرير <mark class="clue">يروح خطوة أبعد</mark> من الوصف: <mark class="clue">يفسر البيانات</mark> ويبين <mark class="clue">النتائج على المدى البعيد</mark>. وش النوع؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="analytical-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="analytical-4-a" hidden>
+    <a class="qz-law" href="laws2.html#analytical">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small></span>
+      <span class="qz-law-m">\(\text{describe + analyze + conclude}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">That is the slide description of analytical reports.</p>
+      <p class="ar tr">هذا وصف السلايد للتقارير التحليلية.</p>
+      <a class="qz-keys" href="keys2.html#analytical">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">One step beyond informational → analytical.</p><p class="ar tr">خطوة أبعد من المعلوماتي ← تحليلي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An analytical report.</p>
+      <p class="ar tr">الجواب: تقرير تحليلي.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="classify-1" data-law="classify">
+  <header class="qz-h"><span class="qz-n">سؤال <b>41</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A manager asks whether the safety report should be <mark class="clue">presented in the meeting or sent as a document</mark>. Which criterion of classifying reports is he thinking about?</p>
+    <p class="ar tr">مدير يسأل هل تقرير السلامة <mark class="clue">ينعرض في الاجتماع ولا ينرسل كمستند</mark>. على أي معيار من معايير تصنيف التقارير يفكر؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="classify-1-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="classify-1-a" hidden>
+    <a class="qz-law" href="laws2.html#classify">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small></span>
+      <span class="qz-law-m">\(\text{length · style · delivery · form · purpose}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Spoken vs written is the 'mode of delivery' criterion.</p>
+      <p class="ar tr">شفهي ولا مكتوب هو معيار «طريقة التقديم».</p>
+      <a class="qz-keys" href="keys2.html#classify">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Oral or written → mode of delivery.</p><p class="ar tr">شفهي أو مكتوب ← طريقة التقديم.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Mode of delivery (oral or written).</p>
+      <p class="ar tr">الجواب: طريقة التقديم (شفهي أو مكتوب).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="ew-rw-2" data-law="ew-rw">
+  <header class="qz-h"><span class="qz-n">سؤال <b>42</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A piece is <mark class="clue">written for no specific audience</mark> and is <mark class="clue">based on ideas and arguments</mark>. Essay or report?</p>
+    <p class="ar tr">كتابة <mark class="clue">ما لها جمهور محدد</mark> و<mark class="clue">مبنية على أفكار وحجج</mark>. مقال ولا تقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="ew-rw-2-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="ew-rw-2-a" hidden>
+    <a class="qz-law" href="laws2.html#ew-rw">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small></span>
+      <span class="qz-law-m">\(\text{RW: TOC + facts + audience}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">No specific audience + ideas and arguments → essay.</p>
+      <p class="ar tr">بدون جمهور محدد + أفكار وحجج ← مقال.</p>
+      <a class="qz-keys" href="keys2.html#ew-rw">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Essay = ideas; report = facts for a specific audience.</p><p class="ar tr">المقال = أفكار، والتقرير = حقائق لجمهور محدد.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: An essay.</p>
+      <p class="ar tr">الجواب: مقال.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="tech-nontech-4" data-law="tech-nontech">
+  <header class="qz-h"><span class="qz-n">سؤال <b>43</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A bank publishes its <mark class="clue">quarterly finance report</mark> with real figures. Technical or non-technical?</p>
+    <p class="ar tr">بنك ينشر <mark class="clue">تقريره المالي الربعي</mark> بأرقام حقيقية. تقني ولا غير تقني؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="tech-nontech-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="tech-nontech-4-a" hidden>
+    <a class="qz-law" href="laws2.html#tech-nontech">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small></span>
+      <span class="qz-law-m">\(\text{factual → technical}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Business and finance publications are technical: factual and purposeful.</p>
+      <p class="ar tr">منشورات الأعمال والمالية تقنية: حقائق ولها غرض.</p>
+      <a class="qz-keys" href="keys2.html#tech-nontech">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Business &amp; finance → technical.</p><p class="ar tr">أعمال ومالية ← تقني.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Technical.</p>
+      <p class="ar tr">الجواب: تقني.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="ew-rw-4" data-law="ew-rw">
+  <header class="qz-h"><span class="qz-n">سؤال <b>44</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">A topic is <mark class="clue">taken from outside the academic environment</mark> and its <mark class="clue">results are used for the work</mark>. Essay or report?</p>
+    <p class="ar tr">موضوع <mark class="clue">جاي من برا البيئة الأكاديمية</mark> و<mark class="clue">نتايجه تستخدم في الشغل</mark>. مقال ولا تقرير؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="ew-rw-4-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="ew-rw-4-a" hidden>
+    <a class="qz-law" href="laws2.html#ew-rw">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small></span>
+      <span class="qz-law-m">\(\text{RW: TOC + facts + audience}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Report topics come from outside the academic environment; essay topics are academic and practice-based.</p>
+      <p class="ar tr">مواضيع التقرير من برا البيئة الأكاديمية، ومواضيع المقال أكاديمية وللتمرين.</p>
+      <a class="qz-keys" href="keys2.html#ew-rw">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Outside academia + used for work → report.</p><p class="ar tr">برا الأكاديمي + يستخدم في الشغل ← تقرير.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: A report.</p>
+      <p class="ar tr">الجواب: تقرير.</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+<article class="qz" id="informal-5" data-law="informal">
+  <header class="qz-h"><span class="qz-n">سؤال <b>45</b></span><span class="qz-st" aria-live="polite"></span></header>
+  <div class="qz-q">
+    <p class="en" dir="ltr" lang="en">Students visit a power plant and each writes a <mark class="clue">short trip report</mark> the same day. Formal or informal?</p>
+    <p class="ar tr">طلاب زاروا محطة كهرباء وكل واحد كتب <mark class="clue">تقرير رحلة قصير</mark> نفس اليوم. رسمي ولا غير رسمي؟</p>
+  </div>
+  <div class="qz-btns">
+    <button type="button" class="b-tr" aria-expanded="false">🌐 <span>ترجمة</span></button>
+    <button type="button" class="b-ans" aria-expanded="false" aria-controls="informal-5-a">💡 <span>الجواب</span></button>
+  </div>
+  <div class="qz-a" id="informal-5-a" hidden>
+    <a class="qz-law" href="laws2.html#informal">
+      <span class="qz-law-l">📐 المفهوم</span>
+      <span class="qz-law-t"><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small></span>
+      <span class="qz-law-m">\(\text{short + no set structure}\)</span>
+    </a>
+    <div class="qz-why">
+      <h4>🔎 ليش هذا المفهوم؟ <span dir="ltr" lang="en">Why this concept</span></h4>
+      <p class="en" dir="ltr" lang="en">Trip reports and field trip reports are listed under informal reports.</p>
+      <p class="ar tr">تقارير الرحلات والرحلات الميدانية تحت غير الرسمية.</p>
+      <a class="qz-keys" href="keys2.html#informal">🔑 كل الكلمات اللي تدل على هالمفهوم</a>
+    </div>
+    <div class="qz-work">
+      <h4>✏️ الحل <span dir="ltr" lang="en">Solution</span></h4>
+      <div class="qz-line"><p class="en" dir="ltr" lang="en">Short trip report → informal.</p><p class="ar tr">تقرير رحلة قصير ← غير رسمي.</p></div>
+    </div>
+    <div class="ans"><span class="ok" aria-hidden="true">✓</span><div>
+      <p class="en" dir="ltr" lang="en">Answer: Informal (a field trip report).</p>
+      <p class="ar tr">الجواب: غير رسمي (تقرير رحلة ميدانية).</p>
+    </div></div>
+    <div class="qz-grade" role="group" aria-label="قيّم نفسك">
+      <span>طلع معك نفس المفهوم؟</span>
+      <button type="button" class="g-ok" data-g="1" aria-pressed="false">✓ إيه، صح</button>
+      <button type="button" class="g-no" data-g="0" aria-pressed="false">✗ لا، غلط</button>
+    </div>
+  </div>
+</article>
+</div>
+<p class="qz-empty" id="qz-empty" hidden>ما فيه أسئلة هنا. 👌</p>
+
+<section class="qz-end" id="qz-end" hidden>
+  <div class="qz-end-h">🎉 خلصت الاختبار</div>
+  <p class="qz-end-s" id="qz-end-s"></p>
+  <div class="qz-end-b"><button type="button" class="tool" data-go="wrong">راجع اللي غلطت فيها</button><a class="tool" href="laws2.html">📐 افتح ورقة المفاهيم</a></div>
+</section>
+
+<details class="qz-laws" id="qz-laws">
+  <summary>📊 نتيجتك حسب المفهوم <small>(يظهر بس المفاهيم اللي قيّمت أسئلتها)</small></summary>
+  <div class="qz-laws-b" id="qz-laws-b"><p class="muted">لسا ما قيّمت ولا سؤال.</p></div>
+</details>
+
+<nav class="pager"><a class="pg" href="laws2.html">📐 ورقة مفاهيم المحاضرة ٢</a><a class="pg lec" href="lecture2.html">📖 ارجع لشرح المحاضرة ٢</a></nav>
+</main>
+<script type="application/json" id="qz-data">{"key": "quiz:quiz2.html", "laws": {"classify": ["تصنيف التقارير", "How reports are categorized", "laws2.html#classify"], "formal": ["التقارير الرسمية", "Formal reports", "laws2.html#formal"], "informal": ["التقارير غير الرسمية", "Informal reports", "laws2.html#informal"], "informational": ["التقارير المعلوماتية", "Informational reports", "laws2.html#informational"], "analytical": ["التقارير التحليلية", "Analytical reports", "laws2.html#analytical"], "role": ["دور التقارير التقنية في العمل", "Role of TR in working fields", "laws2.html#role"], "ew-rw": ["الفرق بين المقال والتقرير", "Essay writing vs report writing", "laws2.html#ew-rw"], "trw-factors": ["صفات كتابة التقارير التقنية", "Factors to keep in mind about TRW", "laws2.html#trw-factors"], "tech-nontech": ["تقني ولا غير تقني؟", "Technical or non-technical writing", "laws2.html#tech-nontech"]}}</script>
+<script src="course.js?v=1"></script>
+</body>
+</html>

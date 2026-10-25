@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-laws="laws2.html" data-topic="كتابة التقارير الهندسية" data-title-en="Lecture 2 - Types of Reports" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 2 - أنواع التقارير</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css?v=4">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 1 و 2 · كتابة التقارير الهندسية · <span class="ltr">EENG 1278</span></p>
+  <h1><span>أنواع التقارير</span> <span class="ltr" style="font-size:.55em;opacity:.7">Types of Reports</span></h1>
+  <p class="lead">أول شي تحتاجه قبل ما تكتب أي تقرير: تعرف وش نوعه. هالمحاضرة تقسم التقارير التقنية (Technical reports) بأكثر من طريقة، وتوضح ليش التقرير مهم في الشغل، ووش الفرق بينه وبين المقال، ووش الصفات اللي لازم تكون فيه.</p>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>نصنف التقارير بخمس معايير: الطول، الأسلوب، طريقة التقديم، الشكل، والغرض. <b>حسب الأسلوب</b>: رسمي وغير رسمي. <b>حسب الغرض</b>: معلوماتي وتحليلي.</li>
+      <li>المعلوماتي يوصف بس (بدون استنتاجات ولا توصيات)، والتحليلي يروح خطوة أبعد: يحلل ويستنتج وممكن يوصي.</li>
+      <li>التقرير غير المقال: له جمهور محدد، مبني على حقائق، فيه فهرس وأهداف، وممكن فيه توصيات. والكتابة التقنية غير شخصية، بدون نكت، وما تخفي الحقائق ولا تلوم الناس.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 00 المحاضرة 1 ================= -->
+<section class="card" id="intro" data-num="00" data-nav="المحاضرة 1|Lec 1">
+  <h2>المحاضرة 1 باختصار: عن المادة</h2>
+  <p class="sub">مقدمة المادة: وش بندرس، وكيف تنحسب الدرجة</p>
+  <p>المادة اسمها <b>كتابة التقارير الهندسية</b> (<span class="ltr">Engineering Report Writing</span>، رمزها <span class="ltr">EENG 1278</span>). هدفها الرئيسي إنك تتعلم فن العرض والبحث في المكتبة واختيار مواضيع الهندسة الكهربائية للعرض، والمبادئ الأساسية لتجهيز السلايدات.</p>
+  <h3>المنهج (Syllabus)</h3>
+  <div class="grid-3">
+    <div class="tile hl"><div class="t-name">أنواع التقارير</div><div class="t-desc">Types of Reports · هالمحاضرة</div></div>
+    <div class="tile hl"><div class="t-name">خطوات الكتابة الناجحة</div><div class="t-desc">Steps to Successfully Writing · المحاضرة 3</div></div>
+    <div class="tile hl"><div class="t-name">كتابة تقرير المختبر</div><div class="t-desc">How to write Lab Report · المحاضرة 4</div></div>
+    <div class="tile"><div class="t-name">خطوات البحث العلمي</div><div class="t-desc" dir="ltr">Steps of Scientific Research</div></div>
+    <div class="tile"><div class="t-name">الهيكل الأساسي للتقرير</div><div class="t-desc" dir="ltr">Basic structure of a report</div></div>
+    <div class="tile"><div class="t-name">صفات البحث العلمي</div><div class="t-desc" dir="ltr">General characteristics of scientific research</div></div>
+  </div>
+  <h3>توزيع الدرجات</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>التقييم</th><th>الموعد</th><th class="n">النسبة</th></tr></thead>
+    <tbody>
+      <tr><td>الحضور</td><td>كل أسبوع</td><td class="n">10%</td></tr>
+      <tr><td>الاختبار النصفي (تحريري)</td><td>الأسبوع 9</td><td class="n">20%</td></tr>
+      <tr><td>النسخة النهائية من التقرير</td><td>الأسبوع 13 و 14</td><td class="n">20%</td></tr>
+      <tr><td>العرض النهائي والمناقشة</td><td>الأسبوع 15 و 16</td><td class="n">10%</td></tr>
+      <tr><td>الاختبار النهائي (تحريري)</td><td>الأسبوع 18 و 19</td><td class="n">40%</td></tr>
+      <tr class="sum"><td>المجموع</td><td></td><td class="n">100%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>📚 المراجع:</strong> <span class="ltr">Heike Hering, How to Write Technical Reports (Springer, 2018)</span>، و <span class="ltr">Robert M. Woelfle, A New Guide For Better Technical Presentation (IEEE, 1992)</span>.</div>
+  <div class="callout warn"><strong>⚠️ للنصفي:</strong> المحاضرة 1 إدارية، غالباً ما يجي منها سؤال. ركز على المحاضرات 2 و 3 و 4، وخصوصاً أسئلة <b>Remember</b> في آخر كل محاضرة (جمعتها لك مع أجوبتها تحت).</div>
+</section>
+
+<!-- ================= 01 تصنيف التقارير ================= -->
+<section class="card" id="classify" data-num="01" data-nav="تصنيف التقارير|Categories">
+  <h2>على أي أساس نصنف التقارير؟</h2>
+  <p class="sub">التقارير التقنية متنوعة مرة، فنقسمها بخمس معايير</p>
+  <div class="grid-3">
+    <div class="tile"><div class="t-name">الطول (Length)</div><div class="t-desc">قصير (Short) أو طويل (Long).</div></div>
+    <div class="tile"><div class="t-name">الأسلوب (Style)</div><div class="t-desc">رسمي (Formal) أو غير رسمي (Informal).</div></div>
+    <div class="tile"><div class="t-name">طريقة التقديم (Mode of delivery)</div><div class="t-desc">شفهي (Oral) أو مكتوب (Written).</div></div>
+    <div class="tile"><div class="t-name">الشكل (Form)</div><div class="t-desc">مطبوع (Printed)، خطاب (Letter)، مذكرة (Memo)، أو مخطوطة (Manuscript).</div></div>
+    <div class="tile hl"><div class="t-name">الغرض (Purpose)</div><div class="t-desc">معلوماتي (Informational) أو تحليلي (Analytical).</div></div>
+  </div>
+  <div class="callout"><strong>💡 مثال من عندي:</strong> تقرير السلامة الشهري في شركة: لو انعرض في اجتماع فهو <b>شفهي</b> (طريقة التقديم)، ولو انرسل كمذكرة داخلية فشكله <b>Memo</b> (الشكل)، ولو صفحتين فهو <b>قصير</b> (الطول). نفس التقرير له قيمة في كل معيار.</div>
+  <div class="callout key"><strong>🔑 أهم معيارين للاختبار:</strong> المحاضرة تفصّل بس اثنين: <b>الأسلوب</b> (رسمي/غير رسمي) و<b>الغرض</b> (معلوماتي/تحليلي). وسؤال Remember يقول «صنّف حسب الغرض»، فجوابه معلوماتي وتحليلي، مو رسمي وغير رسمي.</div>
+</section>
+
+<!-- ================= 02 رسمي وغير رسمي ================= -->
+<section class="card" id="style" data-num="02" data-nav="رسمي وغير رسمي|Formal vs informal">
+  <h2>حسب الأسلوب: رسمي ولا غير رسمي؟</h2>
+  <p class="sub">الرسمي طويل وله هيكل ثابت، وغير الرسمي قصير وبأي طريقة</p>
+  <div class="grid-2">
+    <div class="tile hl"><div class="t-name">الرسمي (Formal reports)</div><div class="t-desc">
+      • له هيكل ثابت (Set structure).<br>
+      • طويل وتحليلي وغير شخصي (Impersonal).<br>
+      • أسلوبه رسمي (Formal tone).<br>
+      • يحلل موضوع واحد بتفصيل كبير.<br>
+      • يذكر مصادره (Citations).<br>
+      • فيه رسومات وجداول وإحصائيات غالباً.</div></div>
+    <div class="tile"><div class="t-name">غير الرسمي (Informal reports)</div><div class="t-desc">
+      • ما له هيكل ثابت (ينكتب بأي طريقة).<br>
+      • أقصر من الرسمي.<br>
+      • يحتاج خلفية قليلة (Little background).<br>
+      • ما يحلل بالتفصيل.</div></div>
+  </div>
+  <h3>الأمثلة: احفظها</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>رسمي · أمثلة</th><th>غير رسمي · أمثلة</th><th>غير رسمي · أنواع</th></tr></thead>
+    <tbody>
+      <tr><td>الرسائل العلمية (Theses)</td><td>تقارير المختبر (Lab reports)</td><td>تقارير الحوادث (Incident)</td></tr>
+      <tr><td>تقارير المشاريع (Project reports)</td><td>تقارير الإنتاج اليومي (Daily production)</td><td>الرحلات الميدانية (Field trip)</td></tr>
+      <tr><td>التقارير السنوية (Annual reports)</td><td>تقارير المبيعات (Sales)</td><td>حضور المؤتمرات (Conference attendance)</td></tr>
+      <tr><td>تقارير الشركات (Reports of companies)</td><td>تقارير الرحلات (Trip)</td><td>الفحص (Inspection)</td></tr>
+      <tr><td></td><td></td><td>تقدم العمل (Progress)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>💡 أمثلة من عندي:</strong> مشروع تخرجك 60 صفحة بفصول ومراجع ← <b>رسمي</b>. ورقة نص صفحة تكتبها للمشرف إن المكيف في المعمل خربان ← <b>غير رسمي</b> (تقرير حادثة). تقرير شركة أرامكو السنوي ← <b>رسمي</b>. ملخص صفحة عن مؤتمر حضرته ← <b>غير رسمي</b> (حضور مؤتمر).</div>
+  <div class="callout warn"><strong>⚠️ انتبه:</strong> السلايد يحط <b>تقرير المختبر</b> من أمثلة غير الرسمي، بس المحاضرة 4 تعطيه شكل ثابت من 10 أجزاء. لو سألك «اذكر أمثلة غير رسمية» اكتبه عادي لأنه من السلايد.</div>
+</section>
+
+<!-- ================= 03 معلوماتي وتحليلي ================= -->
+<section class="card" id="purpose" data-num="03" data-nav="معلوماتي وتحليلي|By purpose">
+  <h2>حسب الغرض: معلوماتي ولا تحليلي؟</h2>
+  <p class="sub">السؤال الذهبي: هل التقرير يحكم ويستنتج، ولا يوصف بس؟</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-name">المعلوماتي (Informational)</div><div class="t-desc">
+      • يوصف الوضع <b>بدون</b> تحليل ولا تفسير ولا توصيات.<br>
+      • ما فيه أي استنتاجات (Conclusions) ولا توصيات (Recommendations).<br>
+      • القارئ هو اللي يقرر: يوافق أو يعارض، يعجبه أو لا، حسب تحليله هو.</div></div>
+    <div class="tile hl"><div class="t-name">التحليلي (Analytical)</div><div class="t-desc">
+      • يروح خطوة أبعد من المعلوماتي.<br>
+      • يوصف ويحلل الوضع.<br>
+      • يدور الأسباب، وممكن يبين النتائج على المدى البعيد أو القريب.<br>
+      • فيه تقييم أو تفسير أو تحليل بيانات، واستنتاجات.<br>
+      • ممكن فيه توصيات بإجراء.</div></div>
+  </div>
+  <h3>وش يشمل كل واحد؟</h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>المعلوماتي يشمل</th><th>معناه</th></tr></thead>
+    <tbody>
+      <tr><td>(1) تقارير تقدم العمل (Progress)</td><td>مرتبطة بالمهام: وش خلص ووش باقي</td></tr>
+      <tr><td>(2) تقارير الوضع (Situation)</td><td>مرتبطة بأحداث أو ظروف</td></tr>
+      <tr><td>(3) تقارير زيارة الموقع (Site visit)</td><td>زيارات، رحلات، ملاحظات</td></tr>
+      <tr><td>(4) التقارير الإرشادية (Instructional)</td><td>كيف يتسوى الشي أو كيف تنفذ خطوات</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>التحليلي يشمل</th><th>معناه</th></tr></thead>
+    <tbody>
+      <tr><td>(1) تقارير التقييم (Evaluation)</td><td>تعرض بيانات وحكم الكاتب على هالبيانات</td></tr>
+      <tr><td>(2) تقارير الجدوى (Feasibility)</td><td>تقيّم هل مشروع أو تغيير مقترح عملي</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>💡 نفس الموضوع بنوعين (مثال من عندي):</strong> المولد في الكلية يطفي. لو كتبت «طفى ثلاث مرات هالأسبوع، يوم الأحد والثلاثاء والخميس» ووقفت، هذا <b>معلوماتي</b> (تقرير وضع). لو زدت «السبب إن الحمل أكبر من قدرته، ونوصي بمولد ثاني» صار <b>تحليلي</b> لأنك لقيت السبب ووصيت.</div>
+  <div class="callout key"><strong>🔑 الفرق بين التقييم والجدوى:</strong> التقييم يحكم على شي <b>موجود</b> (بيانات أجهزة، أداء مورد). الجدوى يحكم على شي <b>مقترح</b> (مشروع جديد، تغيير) قبل ما يصير.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>صنّف التقرير</h2></div>
+  <div class="tags"><span class="tag" dir="ltr">Pause and solve</span><span class="tag">رسمي / غير رسمي</span><span class="tag">معلوماتي / تحليلي</span></div>
+  <p>شركة كهرباء طلبت من مهندس يدرس هل تركيب عدادات ذكية في حي كامل <b>عملي</b>. كتب تقرير 45 صفحة بفصول ثابتة، فيه جداول تكاليف ومراجع، وختمه بتوصية: «نوصي بالبدء بمرحلة تجريبية». صنّف التقرير حسب الأسلوب وحسب الغرض، وحدد نوعه بالضبط.</p>
+  <ol class="solve">
+    <li class="step read"><h4>اقرأ الكلمات المفتاحية</h4><p class="why">«45 صفحة، فصول ثابتة، مراجع، جداول» عن الشكل. و«عملي؟» و«نوصي» عن الغرض.</p></li>
+    <li class="step"><h4>حسب الأسلوب</h4><p class="why">طويل + هيكل ثابت + مراجع ← <b>رسمي</b>.</p></li>
+    <li class="step"><h4>حسب الغرض</h4><p class="why">فيه توصية واستنتاج، فمو معلوماتي ← <b>تحليلي</b>.</p></li>
+    <li class="step"><h4>أي تحليلي؟</h4><p class="why">يسأل هل مشروع <b>مقترح</b> عملي ← <b>تقرير جدوى</b> (Feasibility).</p></li>
+  </ol>
+  <div class="callout good"><strong>✅ الجواب:</strong> رسمي حسب الأسلوب، وتحليلي حسب الغرض، ونوعه تقرير جدوى. لاحظ إن التقرير الواحد ياخذ تصنيف في كل معيار.</div>
+</section>
+
+<!-- ================= 04 دور التقارير ================= -->
+<section class="card" id="role" data-num="04" data-nav="دور التقارير|Role of TR">
+  <h2>دور التقارير التقنية في العمل</h2>
+  <p class="sub">The Role of TR in Working Fields · ست نقاط</p>
+  <ol class="recipe">
+    <li><b>شكل كتابة وتواصل مفيد جداً</b><span class="why">للمشاريع، تقارير المختبر، التعليمات، الرسائل العلمية، وأشكال كثيرة من الكتابة المهنية.</span></li>
+    <li><b>يساعد المهندسين</b><span class="why">تواصل أحسن = مهارات أحسن (better communication, better skills).</span></li>
+    <li><b>جزء مهم من الشغل اليومي</b><span class="why">في أنواع كثيرة من الوظائف (everyday workload).</span></li>
+    <li><b>يسهّل التواصل</b><span class="why">مع الزملاء والعملاء والمشرفين، داخل وخارج مكان العمل.</span></li>
+    <li><b>ضروري لمستقبل مهني ناجح</b><span class="why" dir="ltr">(necessary for a successful career).</span></li>
+    <li><b>يوفر الوقت والفلوس</b><span class="why">مهارة الكتابة الزينة تساهم في توفير الوقت والمال.</span></li>
+  </ol>
+  <div class="callout"><strong>💡 تخيلها (مثال من عندي):</strong> مهندس موقع يكتب كل خميس تقرير صفحة للعميل والمدير. العميل يعرف وين وصل المشروع بدون ما يتصل (يسهّل التواصل)، والمدير ما يحتاج اجتماع (يوفر وقت)، والمهندس نفسه يبان شغله فيترقى (مستقبل مهني).</div>
+</section>
+
+<!-- ================= 05 مقال ولا تقرير ================= -->
+<section class="card" id="ew-rw" data-num="05" data-nav="المقال والتقرير|EW vs RW">
+  <h2>الفرق بين كتابة المقال وكتابة التقرير</h2>
+  <p class="sub">Essay Writing (EW) vs Report Writing (RW) · ثمان فروق</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>كتابة المقال (EW)</th><th>كتابة التقرير (RW)</th></tr></thead>
+    <tbody>
+      <tr><td>يبدأ بمقدمة الموضوع، بعدين المحتوى.</td><td>يبدأ بمقدمة الموضوع، بعدين <b>قائمة الأهداف</b>.</td></tr>
+      <tr><td>ما فيه فهرس (Table of contents).</td><td><b>فيه فهرس</b>.</td></tr>
+      <tr><td>ما فيه أي توصيات للمستقبل.</td><td><b>ممكن</b> فيه توصيات للمستقبل.</td></tr>
+      <tr><td>أسلوبه جدلي (Argumentative) أو وصفي (Descriptive).</td><td>ينكتب بمساعدة جداول وأشكال ورسومات وتوضيحات.</td></tr>
+      <tr><td>ما له جمهور محدد.</td><td>ينكتب لجمهور <b>محدد</b>.</td></tr>
+      <tr><td>مبني على أفكار وحجج ووصف.</td><td>مبني على <b>حقائق</b> ومعلومات.</td></tr>
+      <tr><td>لازم فيه آراء وحجج وحجج مضادة وأدلة.</td><td>لازم يوصف النتائج الرئيسية ويحللها للدراسات والاستخدام المستقبلي.</td></tr>
+      <tr><td>مواضيعه عادة من البيئة الأكاديمية وللتمرين.</td><td>مواضيعه من <b>برا</b> البيئة الأكاديمية، ونتايجه تستخدم في الشغل.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>💡 مثال من عندي:</strong> «هل الدراسة عن بعد أفضل؟» بحجج مع وضد ← <b>مقال</b>. «نتائج قياس استهلاك الكهرباء في مباني الجامعة 2026» بجداول وأهداف وتوصيات ← <b>تقرير</b>.</div>
+  <div class="callout key"><strong>🔑 لو نسيت كل شي، تذكر:</strong> التقرير = <b>حقائق + جمهور محدد + فهرس</b>. المقال = <b>آراء وحجج + بدون جمهور محدد</b>.</div>
+</section>
+
+<!-- ================= 06 صفات الكتابة التقنية ================= -->
+<section class="card" id="trw" data-num="06" data-nav="صفات الكتابة التقنية|TRW factors">
+  <h2>أشياء لازم تتذكرها في كتابة التقارير التقنية</h2>
+  <p class="sub">Some Factors to Keep in Mind About TRW · تسع نقاط</p>
+  <div class="grid-2">
+    <div class="tile hl"><div class="t-name">✅ التقرير التقني...</div><div class="t-desc">
+      • يناقش قضايا الهندسة والعلوم.<br>
+      • له شكل وأسلوب، بعناصر محددة.<br>
+      • موجه نحو تحقيق الأهداف (Objective-oriented).<br>
+      • يحتاج حقائق أو بيانات.<br>
+      • يتعامل مع قضايا <b>غير إدارية</b>.<br>
+      • غير شخصي (Impersonal).</div></div>
+    <div class="tile"><div class="t-name">❌ التقرير التقني ما...</div><div class="t-desc">
+      • يستخدم النكت ولا العامية (Humor or slang).<br>
+      • يلوم الناس (بس <b>الانتقاد مقبول</b>).<br>
+      • يخفي الحقائق أبد.<br>
+      • يستخدم كإعلان (Advertising copy).<br>
+      • يستخدم ضمير المتكلم أو يسمي اللي سووا أجزاء من الشغل.</div></div>
+  </div>
+  <h3>صلّح الجملة (أمثلة من عندي)</h3>
+  <div class="mk"><div class="mk-title">ضمير المتكلم ولوم شخص</div>
+    <div class="pair"><div class="no">«أنا لاحظت إن خالد غلط في التوصيل»</div><div class="yes">«لوحظ أن التوصيل غير صحيح»</div></div></div>
+  <div class="mk"><div class="mk-title">عامية ونكتة</div>
+    <div class="pair"><div class="no">«المحرك كان شغال على البركة 😂»</div><div class="yes">«المحرك كان يعمل فوق حمله المقنن»</div></div></div>
+  <div class="mk"><div class="mk-title">إعلان بدل حقائق</div>
+    <div class="pair"><div class="no">«أفضل كيبل في السوق بلا منافس!»</div><div class="yes">«الكيبل تحمّل 32 A لمدة ساعتين بدون ارتفاع حرارة يذكر»</div></div></div>
+</section>
+
+<!-- ================= 07 تقني ولا غير تقني ================= -->
+<section class="card" id="activity" data-num="07" data-nav="نشاط: تقني ولا لا|Activity">
+  <h2>النشاط: صنّف تقني ولا غير تقني</h2>
+  <p class="sub" dir="ltr">Activity: group the followings as technical or non-technical</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>النوع</th><th>التصنيف</th><th>ليش</th></tr></thead>
+    <tbody>
+      <tr><td>التعليمات (Instructions) لاستخدام منتج أو عملية</td><td class="ok">تقني</td><td>حقائق ولها غرض عملي</td></tr>
+      <tr><td>الإعلان (Advertising)</td><td class="bad">غير تقني</td><td>مو حقائق (not factual)</td></tr>
+      <tr><td>الكتابة الإبداعية مثل الشعر (Creative writing)</td><td class="bad">غير تقني</td><td>إبداعية ومشاعر، مو حقائق</td></tr>
+      <tr><td>الرأي الشخصي في صفحات الرأي بالجرايد (Opinion)</td><td class="bad">غير تقني</td><td>رأي شخصي</td></tr>
+      <tr><td>منشورات الأعمال والمالية (Business and Finance)</td><td class="ok">تقني</td><td>أرقام وحقائق</td></tr>
+      <tr><td>الترفيه (Entertainment)</td><td class="bad">غير تقني</td><td>للمتعة</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout warn"><strong>⚠️ غلط في السلايد:</strong> في سلايد النشاط مكتوب بخط اليد جنب «Creative Writing like poetry» كلمة <span class="ltr">tech.</span> (تقني). هذا غلط: الشعر كتابة إبداعية مو حقائق، فهو <b>غير تقني</b>، زي الإعلان والترفيه. لو جاك في الاختبار اكتب غير تقني، ولو تبي تتأكد اسأل الدكتور.</div>
+</section>
+
+<!-- ================= Remember ================= -->
+<section class="card" id="remember" data-num="⭐" data-nav="⭐ Remember|⭐ Remember">
+  <h2>أسئلة Remember وأجوبتها</h2>
+  <p class="sub">هذي الأسئلة اللي حطها الدكتور في آخر المحاضرة، يعني مرشحة للاختبار</p>
+  <ol class="recipe">
+    <li><b dir="ltr">Classify the types of reports according to their purpose?</b><span class="why">معلوماتي (Informational) وتحليلي (Analytical).</span></li>
+    <li><b dir="ltr">Mention some examples of formal reports?</b><span class="why" dir="ltr">Theses, Project reports, Annual reports, Reports of companies.</span></li>
+    <li><b dir="ltr">Mention some types of informal reports?</b><span class="why" dir="ltr">Incident reports, Field trip reports, Reporting conference attendance, Inspection reports, Progress reports.</span></li>
+    <li><b dir="ltr">What do informational reports include?</b><span class="why" dir="ltr">Progress reports (related to tasks), Situation reports (related to events or conditions), Site visit reports (visits, trips, observations), Instructional reports (how something is done or how to perform some actions).</span></li>
+    <li><b dir="ltr">What do analytical reports include?</b><span class="why" dir="ltr">Evaluation reports: data + the writer's judgment. Feasibility reports: assess the practicality of a proposed project or change.</span></li>
+    <li><b dir="ltr">Mention some roles of TR in working fields?</b><span class="why" dir="ltr">Useful form of writing (projects, lab reports, instructions, theses) · helps engineers (better communication, better skills) · part of everyday workload · facilitates communication with co-workers, clients and supervisors · necessary for a successful career · saves time and money.</span></li>
+    <li><b dir="ltr">State some differences between essay writing and report writing?</b><span class="why" dir="ltr">Report: aims and objectives, table of contents, may include recommendations, tables and figures, specific audience, fact-based, topics from outside academia. Essay: the opposite of each (see the table in section 05).</span></li>
+  </ol>
+  <div class="callout key"><strong>🔑 نصيحة للكتابة في الاختبار:</strong> الأسئلة بالإنجليزي، فاكتب الجواب بنفس كلمات السلايد بالإنجليزي. وراجع <a href="laws2.html">📐 ورقة المفاهيم</a> و<a href="quiz2.html">🧠 الاختبار</a> عشان تتعود على أسئلة المواقف.</div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>أخطاء شائعة</h2>
+  <div class="mk"><div class="mk-title">تخلط معيار الغرض بالأسلوب</div>
+    <div class="pair"><div class="no">«حسب الغرض: رسمي وغير رسمي»</div><div class="yes">حسب الغرض: معلوماتي وتحليلي. رسمي/غير رسمي هذا الأسلوب</div></div></div>
+  <div class="mk"><div class="mk-title">تحط توصيات في المعلوماتي</div>
+    <div class="pair"><div class="no">«تقرير معلوماتي يوصي بتغيير المورد»</div><div class="yes">أول ما فيه توصية صار تحليلي</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط التقييم بالجدوى</div>
+    <div class="pair"><div class="no">«هل المشروع المقترح عملي؟» = تقييم</div><div class="yes">مقترح وعملي = جدوى، والتقييم لبيانات موجودة</div></div></div>
+  <div class="mk"><div class="mk-title">تقول المقال فيه فهرس</div>
+    <div class="pair"><div class="no">المقال والتقرير الاثنين فيهم فهرس</div><div class="yes">التقرير بس فيه فهرس</div></div></div>
+  <div class="mk"><div class="mk-title">تمنع الانتقاد في التقرير</div>
+    <div class="pair"><div class="no">«التقرير ما ينتقد أبد»</div><div class="yes">ما يلوم الناس، بس الانتقاد مقبول</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>حسب الغرض، التقارير تنقسم إلى:</p>
+      <button>رسمي وغير رسمي</button><button>معلوماتي وتحليلي</button><button>شفهي ومكتوب</button><button>قصير وطويل</button>
+      <p class="q-why">الغرض = Informational و Analytical. الباقي معايير ثانية (الأسلوب، التقديم، الطول).</p></div>
+    <div class="q" data-answer="3"><p>أي واحد من هذول <b>مو</b> من أمثلة التقارير الرسمية؟</p>
+      <button>Theses</button><button dir="ltr">Annual reports</button><button dir="ltr">Sales reports</button><button dir="ltr">Project reports</button>
+      <p class="q-why">تقارير المبيعات من أمثلة غير الرسمي.</p></div>
+    <div class="q" data-answer="1"><p>تقرير يوصف وضع بدون أي استنتاجات أو توصيات:</p>
+      <button>معلوماتي</button><button>تحليلي</button><button>جدوى</button><button>تقييم</button>
+      <p class="q-why">المعلوماتي يوصف بس، والقارئ يحكم.</p></div>
+    <div class="q" data-answer="4"><p>تقرير يقيّم هل مشروع مقترح عملي:</p>
+      <button dir="ltr">Progress report</button><button dir="ltr">Situation report</button><button dir="ltr">Evaluation report</button><button dir="ltr">Feasibility report</button>
+      <p class="q-why">مقترح + عملي = جدوى (تحليلي).</p></div>
+    <div class="q" data-answer="2"><p>«Instructional reports» تكون عن:</p>
+      <button>زيارات ورحلات</button><button>كيف يتسوى شي أو كيف تنفذ خطوات</button><button>أحداث وظروف</button><button>مهام المشروع</button>
+      <p class="q-why" dir="ltr">Instructional = how something is done.</p></div>
+    <div class="q" data-answer="3"><p>وش اللي يتميز فيه التقرير عن المقال؟</p>
+      <button>ما له جمهور محدد</button><button>مبني على آراء وحجج</button><button>فيه فهرس</button><button>أسلوبه جدلي</button>
+      <p class="q-why">الثلاث الباقية صفات المقال.</p></div>
+    <div class="q" data-answer="1"><p>جملة «I think Ahmed made a mistake» في تقرير تقني تكسر:</p>
+      <button>غير شخصي وما يلوم الناس</button><button>يتعامل مع قضايا غير إدارية</button><button>له شكل وأسلوب</button><button>ولا شي، الجملة سليمة</button>
+      <p class="q-why">«I» ضمير متكلم، و«Ahmed made a mistake» لوم لشخص باسمه.</p></div>
+    <div class="q" data-answer="4"><p>الشعر (Poetry) حسب نشاط المحاضرة:</p>
+      <button>تقني لأنه مكتوب</button><button>تقني لأنه إبداعي</button><button>تقرير غير رسمي</button><button>غير تقني</button>
+      <p class="q-why">كتابة إبداعية مو حقائق. (السلايد كاتب tech بخط اليد وهذا غلط.)</p></div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>بطاقات المراجعة</h2>
+  <p class="sub">اضغط البطاقة وتنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>معايير تصنيف التقارير</div><div>الطول، الأسلوب، طريقة التقديم، الشكل، الغرض</div></div>
+    <div class="flash"><div>حسب الغرض</div><div>معلوماتي (Informational) وتحليلي (Analytical)</div></div>
+    <div class="flash"><div>أمثلة الرسمي</div><div dir="ltr">Theses, Project, Annual, Company reports</div></div>
+    <div class="flash"><div>أنواع غير الرسمي</div><div dir="ltr">Incident, Field trip, Conference attendance, Inspection, Progress</div></div>
+    <div class="flash"><div>المعلوماتي يشمل</div><div dir="ltr">Progress, Situation, Site visit, Instructional</div></div>
+    <div class="flash"><div>التحليلي يشمل</div><div>Evaluation (بيانات + حكم) و Feasibility (هل المقترح عملي)</div></div>
+    <div class="flash"><div>التقرير مقابل المقال</div><div>حقائق، جمهور محدد، فهرس، أهداف، ممكن توصيات</div></div>
+    <div class="flash"><div>التقرير التقني ما...</div><div>يلوم الناس، يستخدم نكت أو عامية، يخفي الحقائق، يكون إعلان، يستخدم «أنا»</div></div>
+    <div class="flash"><div>تقني ولا لا؟</div><div>تقني: التعليمات، الأعمال والمالية. غير تقني: الإعلان، الشعر، الرأي، الترفيه</div></div>
+    <div class="flash"><div>أدوار التقارير</div><div>كتابة مفيدة، تساعد المهندس، شغل يومي، تواصل، مستقبل مهني، توفير وقت وفلوس</div></div>
+  </div>
+</section>
+
+</main>
+<script src="course.js?v=1"></script>
+<script src="nav.js"></script>
+</body>
+</html>

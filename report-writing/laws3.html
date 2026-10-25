@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة مفاهيم المحاضرة ٣ · كتابة التقارير الهندسية</title>
+<meta name="description" content="Lecture 3 concept sheet · Steps to Successfully Writing: every formula, each symbol in English and Arabic, and worked examples in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css?v=3">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="laws.js?v=3"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">كتابة التقارير الهندسية</a><span class="dot">·</span><b>المحاضرة ٣</b><span class="dot">·</span><span>ورقة المفاهيم</span></div>
+    <div class="bar-end">
+      <div class="legend" aria-label="ألوان المصطلحات"></div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو المفاهيم أو الاختبار"><a href="lecture3.html">📖 الشرح</a><span class="on" aria-current="page">📐 المفاهيم</span><a href="quiz3.html">🧠 الاختبار</a></nav>
+  <nav class="lw-tabs" aria-label="الفصول"><a class="tab" href="laws2.html">المحاضرة ٢ <small dir="ltr" lang="en">Lec 2</small></a><a class="tab on" href="laws3.html" aria-current=page>المحاضرة ٣ <small dir="ltr" lang="en">Lec 3</small></a><a class="tab" href="laws4.html">المحاضرة ٤ <small dir="ltr" lang="en">Lec 4</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة المفاهيم · المحاضرة ٣</span>
+    <h1>مفاهيم خطوات الكتابة الناجحة</h1>
+    <p class="sub">الخطوات الخمس ومهام التحضير الأربع وطرق البحث: وش كل وحدة، ومتى السؤال يقصدها، وأمثلة بالإنجليزي وتحتها الترجمة.</p>
+    <p class="sub-en" dir="ltr" lang="en">Lecture 3 concept sheet · Steps to Successfully Writing</p>
+    <div class="stats"><span><b>٩</b> مفاهيم</span><span><b>١٣</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card">\[\text{Prepare} \to \text{Research} \to \text{Organize} \to \text{Write} \to \text{Revise}\]</div>
+</section>
+
+<div class="cta-row">
+<a class="quiz-cta" href="quiz3.html">
+  <span class="qc-ic" aria-hidden="true">🧠</span>
+  <span class="qc-t"><b>اختبر نفسك: أي مفهوم؟</b><small>45 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
+  <span class="qc-go">ابدأ الاختبار ←</span>
+</a>
+<a class="quiz-cta keys-cta" href="keys3.html">
+  <span class="qc-ic" aria-hidden="true">🔑</span>
+  <span class="qc-t"><b>الكلمات المفتاحية</b><small>وش الكلمات في السؤال اللي تقولك أي مفهوم؟ بالإنجليزي والعربي، مع خريطة سريعة</small></span>
+  <span class="qc-go">افتحها ←</span>
+</a>
+</div>
+
+<div class="view" role="group" aria-label="لغة الأمثلة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#steps"><span class="ix-n">١</span><b>الخطوات الخمس وتقسيمها</b><small dir="ltr" lang="en">The five steps &amp; collaborative writing</small><span class="ix-m">\(\text{5 steps · interrelated}\)</span></a><a class="ix" href="#purpose"><span class="ix-n">٢</span><b>تحديد الغرض الأساسي</b><small dir="ltr" lang="en">Establish your primary purpose</small><span class="ix-m">\(\text{what the reader should know or believe}\)</span></a><a class="ix" href="#audience"><span class="ix-n">٣</span><b>تقييم القارئ والسياق</b><small dir="ltr" lang="en">Assess your audience and context</small><span class="ix-m">\(\text{who reads + what they know + context}\)</span></a><a class="ix" href="#scope"><span class="ix-n">٤</span><b>تحديد نطاق التغطية</b><small dir="ltr" lang="en">Determine the scope of your coverage</small><span class="ix-m">\(\text{include / exclude + how much}\)</span></a><a class="ix" href="#medium"><span class="ix-n">٥</span><b>اختيار الوسيلة المناسبة</b><small dir="ltr" lang="en">Select the appropriate medium</small><span class="ix-m">\(\text{traditional or professional}\)</span></a><a class="ix" href="#research"><span class="ix-n">٦</span><b>البحث: طرقه ونوعيه</b><small dir="ltr" lang="en">Research: ways and methods</small><span class="ix-m">\(\text{ways: extensive/simple · methods: primary/secondary}\)</span></a><a class="ix" href="#organization"><span class="ix-n">٧</span><b>التنظيم</b><small dir="ltr" lang="en">Organization</small><span class="ix-m">\(\text{method of development + outlining}\)</span></a><a class="ix" href="#writing"><span class="ix-n">٨</span><b>الكتابة</b><small dir="ltr" lang="en">Writing</small><span class="ix-m">\(\text{draft, intro last, conclusion}\)</span></a><a class="ix" href="#revision"><span class="ix-n">٩</span><b>المراجعة</b><small dir="ltr" lang="en">Revision</small><span class="ix-m">\(\text{revise draft · trim · ethics}\)</span></a></div>
+</section>
+
+<section class="law" id="steps">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>الخطوات الخمس وتقسيمها</h2><p class="law-en" dir="ltr" lang="en">Concept 1 · The five steps &amp; collaborative writing</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Writing} = \text{preparation} + \text{research} + \text{organization} + \text{writing} + \text{revision}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Writing} = \\ \text{preparation} \\ +\ \text{research} \\ +\ \text{organization} \\ +\ \text{writing} \\ +\ \text{revision}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Interrelated and overlap}\)</td><td class="en" dir="ltr" lang="en">The steps affect each other and you may go back</td><td class="ar">الخطوات مرتبطة ببعض وتتداخل، وممكن ترجع لورا</td></tr><tr><td class="s">\(\text{Expand or contract}\)</td><td class="en" dir="ltr" lang="en">The steps grow or shrink with the writing task (email, memo, thesis...)</td><td class="ar">الخطوات تكبر أو تصغر حسب نوع الكتابة (إيميل، مذكرة، رسالة...)</td></tr><tr><td class="s">\(\text{Collaborative writing}\)</td><td class="en" dir="ltr" lang="en">Several people write one document</td><td class="ar">أكثر من شخص يكتبون مستند واحد</td></tr><tr><td class="s">\(\text{Dividing the work}\)</td><td class="en" dir="ltr" lang="en">Each team member takes a part</td><td class="ar">كل عضو في الفريق ياخذ جزء</td></tr><tr><td class="s">\(\text{Not duplicating effort}\)</td><td class="en" dir="ltr" lang="en">Two people do not do the same part</td><td class="ar">ما يشتغل اثنين على نفس الجزء</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks for the main steps, how they relate to each other, or why dividing writing into steps helps a team.</p><p class="ar ">لما السؤال يطلب الخطوات الرئيسية، أو علاقتها ببعض، أو ليش تقسيم الكتابة لخطوات يفيد الفريق.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الخطوات الرئيسية</b> <span dir="ltr" lang="en">Main steps</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What are the main steps for successful writing?</p><p class="ar ">وش الخطوات الرئيسية للكتابة الناجحة؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question: five steps in order.</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi>: خمس خطوات بالترتيب.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Trick to remember the order: you think, collect, arrange, write, fix.</p><p class="ar ">حيلة للترتيب: تفكر، تجمع، ترتب، تكتب، تصلح.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) Preparation 2) Research 3) Organization 4) Writing 5) Revision.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) التحضير <bdi dir="ltr" class=nw>2</bdi>) البحث <bdi dir="ltr" class=nw>3</bdi>) التنظيم <bdi dir="ltr" class=nw>4</bdi>) الكتابة <bdi dir="ltr" class=nw>5</bdi>) المراجعة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>ليش الخطوات تفيد الفريق</b> <span dir="ltr" lang="en">Why steps help a team</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Briefly explain why dividing the writing process into steps is especially useful for collaborative writing.</p><p class="ar ">اشرح باختصار ليش تقسيم عملية الكتابة لخطوات مفيد خصوصاً للكتابة الجماعية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question: the slide gives three reasons.</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi>: السلايد يعطي ثلاث أسباب.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Think of a group project: who does what, where are we, nobody repeats work.</p><p class="ar ">فكر في مشروع قروب: مين يسوي وش، وين وصلنا، ومحد يعيد شغل غيره.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) It divides the work among team members. 2) It helps keep track of the project. 3) It saves time by not duplicating effort.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) يقسم الشغل على أعضاء الفريق. <bdi dir="ltr" class=nw>2</bdi>) يساعد تتابع المشروع. <bdi dir="ltr" class=nw>3</bdi>) يوفر الوقت لأن محد يكرر شغل غيره.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٣ · <span dir="ltr" lang="en">Example 3</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>مهام التحضير</b> <span dir="ltr" lang="en">Tasks of preparation</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What are the major tasks in preparation for writing?</p><p class="ar ">وش المهام الرئيسية في التحضير للكتابة؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question: four tasks, (a) to (d).</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi>: أربع مهام من (أ) لين (د).</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Order trick: why (purpose), for whom (audience), how much (scope), how to send (medium).</p><p class="ar ">حيلة الترتيب: ليش (الغرض)، لمين (القارئ)، قد إيش (النطاق)، كيف ترسل (الوسيلة).</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (a) Establish your primary purpose. (b) Assess your audience (readers) and context. (c) Determine the scope of your coverage. (d) Select the appropriate medium.</p><p class="ar ">الجواب: (أ) حدد غرضك الأساسي. (ب) قيّم القارئ والسياق. (ج) حدد نطاق التغطية. (د) اختار الوسيلة المناسبة.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="purpose">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>تحديد الغرض الأساسي</h2><p class="law-en" dir="ltr" lang="en">Concept 2 · Establish your primary purpose</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Purpose} = \text{what readers should know} + \text{or believe}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Purpose} = \\ \text{what readers should know} \\ +\ \text{or believe}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Primary purpose}\)</td><td class="en" dir="ltr" lang="en">The main aim of the document</td><td class="ar">الهدف الرئيسي من المستند</td></tr><tr><td class="s">\(\text{Know}\)</td><td class="en" dir="ltr" lang="en">Information you want to give the reader</td><td class="ar">معلومة تبي توصلها للقارئ</td></tr><tr><td class="s">\(\text{Believe}\)</td><td class="en" dir="ltr" lang="en">An idea you want the reader to accept</td><td class="ar">فكرة تبي القارئ يقتنع فيها</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about deciding what you want your readers to know or believe. It is task (a) of preparation.</p><p class="ar ">لما السؤال عن إنك تقرر وش تبي القارئ يعرف أو يصدق. وهي المهمة (أ) من التحضير.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>قانون المختبر الجديد</b> <span dir="ltr" lang="en">The new lab rule</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Before writing a memo, a lab supervisor asks himself: 'After reading this, students must know that food is not allowed in the lab.' Which preparation task is he doing?</p><p class="ar ">قبل ما يكتب مذكرة، مشرف المختبر يسأل نفسه: «بعد ما يقرون هذا، لازم الطلاب يعرفون إن الأكل ممنوع في المختبر». أي مهمة من التحضير يسوي؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">He decides what the readers should know.</p><p class="ar ">يقرر وش القارئ لازم يعرف.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">That is the definition of the primary purpose.</p><p class="ar ">هذا هو تعريف الغرض الأساسي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (a) Establishing the primary purpose.</p><p class="ar ">الجواب: (أ) تحديد الغرض الأساسي.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="audience">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>تقييم القارئ والسياق</h2><p class="law-en" dir="ltr" lang="en">Concept 3 · Assess your audience and context</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Audience} = \text{who is the reader?} + \text{what do they know?} + \text{international?} + \text{context}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Audience} = \\ \text{who is the reader?} \\ +\ \text{what do they know?} \\ +\ \text{international?} \\ +\ \text{context}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Audience / readers}\)</td><td class="en" dir="ltr" lang="en">The people who will read the document</td><td class="ar">الناس اللي بيقرون المستند</td></tr><tr><td class="s">\(\text{Multiple readers}\)</td><td class="en" dir="ltr" lang="en">More than one kind of reader</td><td class="ar">أكثر من نوع قارئ</td></tr><tr><td class="s">\(\text{International readers}\)</td><td class="en" dir="ltr" lang="en">Readers from other countries or languages</td><td class="ar">قراء من دول أو لغات ثانية</td></tr><tr><td class="s">\(\text{Context}\)</td><td class="en" dir="ltr" lang="en">The environment or circumstances in which writers produce documents and readers interpret them</td><td class="ar">البيئة أو الظروف اللي ينكتب فيها المستند ويفهمه فيها القارئ</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about who will read, what they already know, whether they are international, or the circumstances of writing and reading. Task (b).</p><p class="ar ">لما السؤال عن مين بيقرا، ووش يعرف من قبل، وهل هو أجنبي، أو عن ظروف الكتابة والقراءة. المهمة (ب).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>تقرير للمدير</b> <span dir="ltr" lang="en">Report for the manager</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">An engineer must explain a network fault to the general manager, who has no technical background, and to a Japanese partner company. What should she assess first?</p><p class="ar ">مهندسة لازم تشرح عطل في الشبكة للمدير العام اللي ما عنده خلفية تقنية، ولشركة شريكة يابانية. وش لازم تقيّم أول؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Two kinds of readers, one non-technical and one international.</p><p class="ar ">نوعين قراء: واحد مو تقني، وواحد أجنبي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Questions: who is the reader, what do they know, are they international → audience.</p><p class="ar ">الأسئلة: مين القارئ، وش يعرف، هل هو أجنبي ← القارئ.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (b) Her audience (readers) and context.</p><p class="ar ">الجواب: (ب) القارئ والسياق.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="scope">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>تحديد نطاق التغطية</h2><p class="law-en" dir="ltr" lang="en">Concept 4 · Determine the scope of your coverage</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Scope} = \text{what to include} + \text{what to leave out} + \text{how much info}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Scope} = \\ \text{what to include} \\ +\ \text{what to leave out} \\ +\ \text{how much info}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Scope}\)</td><td class="en" dir="ltr" lang="en">How wide and deep the document goes</td><td class="ar">قد إيش المستند يغطي (العرض والعمق)</td></tr><tr><td class="s">\(\text{Coverage}\)</td><td class="en" dir="ltr" lang="en">The information you include</td><td class="ar">المعلومات اللي تحطها</td></tr><tr><td class="s">\(\text{Needless hours}\)</td><td class="en" dir="ltr" lang="en">Time wasted on research you do not need</td><td class="ar">ساعات تضيع في بحث ما تحتاجه</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about deciding what to include and leave out, or how much information you need, to avoid wasting hours on research. Task (c), and it depends on (a) and (b).</p><p class="ar ">لما السؤال عن وش تحط ووش تترك، أو قد إيش تحتاج معلومات، عشان ما تضيع ساعات في البحث. المهمة (ج)، وتعتمد على (أ) و (ب).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>خمس صفحات مو خمسين</b> <span dir="ltr" lang="en">Five pages, not fifty</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A student is told the report must cover only the cooling system, not the whole car, so he does not spend days reading about engines. Which task is this?</p><p class="ar ">طالب قالوا له التقرير يغطي نظام التبريد بس مو السيارة كلها، عشان ما يضيع أيام يقرا عن المكينة. أي مهمة هذي؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Deciding what to include and what not to include.</p><p class="ar ">تقرر وش تحط ووش ما تحط.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Avoiding needless hours on research is the reason given in the slide.</p><p class="ar ">وتجنب الساعات الضايعة في البحث هو السبب اللي في السلايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (c) Determining the scope of coverage.</p><p class="ar ">الجواب: (ج) تحديد نطاق التغطية.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="medium">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>اختيار الوسيلة المناسبة</h2><p class="law-en" dir="ltr" lang="en">Concept 5 · Select the appropriate medium</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Medium} = \text{traditional} + \text{professional}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Medium} = \\ \text{traditional} \\ +\ \text{professional}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Medium}\)</td><td class="en" dir="ltr" lang="en">The way the message is delivered</td><td class="ar">الطريقة اللي توصل فيها الرسالة</td></tr><tr><td class="s">\(\text{Traditional mediums}\)</td><td class="en" dir="ltr" lang="en">Letters, memos, projects, reports, papers, theses</td><td class="ar">رسائل، مذكرات، مشاريع، تقارير، أوراق، رسائل علمية</td></tr><tr><td class="s">\(\text{Professional mediums}\)</td><td class="en" dir="ltr" lang="en">E-mails, faxes, voice mails, videoconferencing, web sites</td><td class="ar">إيميل، فاكس، بريد صوتي، اجتماع فيديو، مواقع إنترنت</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about choosing how to send the message: letter, memo, e-mail, video call, web site... Task (d).</p><p class="ar ">لما السؤال عن اختيار طريقة إرسال الرسالة: خطاب، مذكرة، إيميل، اجتماع فيديو، موقع... المهمة (د).</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>مجموعتين الوسائل</b> <span dir="ltr" lang="en">Two groups of mediums</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Give the two groups of mediums with examples.</p><p class="ar ">اذكر مجموعتين الوسائل مع أمثلة.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Traditional = paper documents.</p><p class="ar ">التقليدية = مستندات ورقية.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Professional = electronic ones.</p><p class="ar ">المهنية <bdi dir="ltr" class=nw>(Professional)</bdi> = الإلكترونية.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Traditional: letters, memos, projects, reports, papers, theses. Professional: e-mails, faxes, voice mails, videoconferencing, web sites.</p><p class="ar ">الجواب: التقليدية: رسائل، مذكرات، مشاريع، تقارير، أوراق، رسائل علمية. المهنية: إيميل، فاكس، بريد صوتي، اجتماعات فيديو، مواقع.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>رسالة مستعجلة</b> <span dir="ltr" lang="en">Urgent message</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A site engineer must tell a team in three cities about a safety change today and discuss it with them face to face. Which medium fits, and which task is this?</p><p class="ar ">مهندس موقع لازم يبلغ فريق في ثلاث مدن عن تغيير في السلامة اليوم ويناقشهم وجه لوجه. وش الوسيلة المناسبة، وأي مهمة هذي؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Choosing the way to deliver the message → task (d).</p><p class="ar ">اختيار طريقة توصيل الرسالة ← المهمة (د).</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Far away + today + face to face → videoconferencing (a professional medium).</p><p class="ar ">بعيدين + اليوم + وجه لوجه ← اجتماع فيديو (وسيلة مهنية).</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (d) Selecting the medium: videoconferencing.</p><p class="ar ">الجواب: (د) اختيار الوسيلة: اجتماع فيديو.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="research">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>البحث: طرقه ونوعيه</h2><p class="law-en" dir="ltr" lang="en">Concept 6 · Research: ways and methods</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Research} = \text{extensive / simple} + \text{primary / secondary}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Research} = \\ \text{extensive / simple} \\ +\ \text{primary / secondary}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Extensive research}\)</td><td class="en" dir="ltr" lang="en">Library, Internet, interviewing</td><td class="ar">مكتبة، إنترنت، مقابلات</td></tr><tr><td class="s">\(\text{Simple research}\)</td><td class="en" dir="ltr" lang="en">A website, jotting down points</td><td class="ar">موقع واحد، أو تكتب نقاط بسرعة</td></tr><tr><td class="s">\(\text{Primary research}\)</td><td class="en" dir="ltr" lang="en">Data you gather yourself: interviews, observation, surveys, experiments, questionnaires, audio and video recordings</td><td class="ar">بيانات تجمعها أنت: مقابلات، ملاحظة مباشرة، استبيانات، تجارب، تسجيلات صوت وفيديو</td></tr><tr><td class="s">\(\text{Secondary research}\)</td><td class="en" dir="ltr" lang="en">Data from books, articles, reports</td><td class="ar">بيانات من كتب ومقالات وتقارير</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks how much research (extensive or simple) or where the data comes from (you collected it = primary, someone else published it = secondary).</p><p class="ar ">لما السؤال عن حجم البحث (موسع أو بسيط) أو مصدر البيانات (جمعتها أنت = أولي، غيرك نشرها = ثانوي).</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Ways (extensive/simple) and methods (primary/secondary) are two different Remember questions. Do not answer one with the other.</p><p class="ar ">الطرق (موسع/بسيط) والنوعين (أولي/ثانوي) سؤالين مختلفين في <bdi dir="ltr" class=nw>Remember</bdi>. لا تجاوب واحد بالثاني.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b><bdi dir="ltr" class=nw>Remember</bdi>: الطرق والنوعين</b> <span dir="ltr" lang="en">Remember: ways and methods</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Mention the two ways of conducting research, and the two methods of research.</p><p class="ar ">اذكر طريقتين إجراء البحث، ونوعين البحث.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Ways = how big: extensive or simple.</p><p class="ar ">الطرق = الحجم: موسع أو بسيط.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Methods = where the data comes from: primary or secondary.</p><p class="ar ">النوعين = مصدر البيانات: أولي أو ثانوي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Ways: extensive (library, Internet, interviewing) and simple (a website, jotting down points). Methods: primary (interviews, observation, surveys, experiments...) and secondary (books, articles, reports).</p><p class="ar ">الجواب: الطرق: موسع (مكتبة، إنترنت، مقابلات) وبسيط (موقع، تدوين نقاط). النوعين: أولي (مقابلات، ملاحظة، استبيانات، تجارب...) وثانوي (كتب، مقالات، تقارير).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>استبيان ولا كتاب</b> <span dir="ltr" lang="en">Survey vs textbook</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Group A sends a questionnaire to 100 drivers. Group B reads three published articles on traffic. Which research method does each group use?</p><p class="ar ">قروب <bdi dir="ltr" class=nw>A</bdi> يرسل استبيان لـ <bdi dir="ltr" class=nw>100</bdi> سواق. وقروب <bdi dir="ltr" class=nw>B</bdi> يقرا ثلاث مقالات منشورة عن الزحمة. وش نوع البحث عند كل قروب؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A collects new data itself → primary.</p><p class="ar "><bdi dir="ltr" class=nw>A</bdi> يجمع بيانات جديدة بنفسه ← أولي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">B uses data others already published → secondary.</p><p class="ar "><bdi dir="ltr" class=nw>B</bdi> يستخدم بيانات غيره نشرها ← ثانوي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: A: primary research. B: secondary research.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>A</bdi>: بحث أولي. <bdi dir="ltr" class=nw>B</bdi>: بحث ثانوي.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="organization">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>التنظيم</h2><p class="law-en" dir="ltr" lang="en">Concept 7 · Organization</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Organization} = \text{method of development} + \text{outlining}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Organization} = \\ \text{method of development} \\ +\ \text{outlining}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Method of development}\)</td><td class="en" dir="ltr" lang="en">The writer's tool for keeping information under control, and the readers' means of following the presentation</td><td class="ar">أداة الكاتب عشان يسيطر على المعلومات، ووسيلة القارئ عشان يتابع العرض</td></tr><tr><td class="s">\(\text{Outlining}\)</td><td class="en" dir="ltr" lang="en">Breaks large or complex subjects into manageable parts</td><td class="ar">يقسم المواضيع الكبيرة أو المعقدة لأجزاء سهلة</td></tr><tr><td class="s">\(\text{Outline}\)</td><td class="en" dir="ltr" lang="en">A list of headings and points before you write</td><td class="ar">قائمة عناوين ونقاط قبل ما تكتب</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about arranging the information before writing: choosing a method of development or making an outline.</p><p class="ar ">لما السؤال عن ترتيب المعلومات قبل الكتابة: تختار طريقة عرض أو تسوي مخطط <bdi dir="ltr" class=nw>(Outline)</bdi>.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>وش يشمل التنظيم</b> <span dir="ltr" lang="en">What organization includes</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What does organization include?</p><p class="ar ">وش يشمل التنظيم؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question with two parts.</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi> فيه جزئين.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Write the meaning of each part, not only its name.</p><p class="ar ">اكتب معنى كل جزء، مو اسمه بس.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: 1) Choosing a method of development: the writer's tool for keeping information under control and the readers' means of following the presentation. 2) Outlining: breaking large or complex subjects into manageable parts.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>1</bdi>) اختيار طريقة العرض: أداة الكاتب للسيطرة على المعلومات ووسيلة القارئ لمتابعة العرض. <bdi dir="ltr" class=nw>2</bdi>) المخطط: تقسيم المواضيع الكبيرة أو المعقدة لأجزاء يسهل التعامل معها.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="writing">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٨</span>
+  <div class="law-t"><h2>الكتابة</h2><p class="law-en" dir="ltr" lang="en">Concept 8 · Writing</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Writing} = \text{draft} + \text{outline → paragraphs} + \text{introduction last} + \text{conclusion}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Writing} = \\ \text{draft} \\ +\ \text{outline → paragraphs} \\ +\ \text{introduction last} \\ +\ \text{conclusion}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Draft}\)</td><td class="en" dir="ltr" lang="en">A first version: do not worry about language, grammar, punctuation</td><td class="ar">نسخة أولى: لا تشيل هم اللغة والقواعد وعلامات الترقيم</td></tr><tr><td class="s">\(\text{Expand the outline}\)</td><td class="en" dir="ltr" lang="en">Turn each outline point into a paragraph</td><td class="ar">حوّل كل نقطة في المخطط لفقرة</td></tr><tr><td class="s">\(\text{Introduction last}\)</td><td class="en" dir="ltr" lang="en">Write it at the end, because then you know more</td><td class="ar">اكتبها آخر شي، لأنك وقتها تعرف أكثر</td></tr><tr><td class="s">\(\text{Conclusion}\)</td><td class="en" dir="ltr" lang="en">Ties the main ideas and results together</td><td class="ar">تربط الأفكار الرئيسية والنتائج</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about producing the text: starting a draft, expanding the outline, writing the introduction and conclusion.</p><p class="ar ">لما السؤال عن إنتاج النص نفسه: تبدأ مسودة، تكبّر المخطط لفقرات، تكتب المقدمة والخاتمة.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">'Just start: write a draft' means do not stop for grammar now. Grammar and errors are fixed in the next step, revision.</p><p class="ar ">«ابدأ بس: اكتب مسودة» يعني لا توقف عشان القواعد الحين. القواعد والأخطاء تتصلح في الخطوة اللي بعدها، المراجعة.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>ليش المقدمة آخر شي</b> <span dir="ltr" lang="en">Why the introduction is last</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Why does the lecture advise writing the introduction last?</p><p class="ar ">ليش المحاضرة تنصح تكتب المقدمة آخر شي؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">While writing the body you discover what the report really says.</p><p class="ar ">وانت تكتب المحتوى تكتشف وش التقرير يقول فعلاً.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">So at the end you know more and can introduce it correctly.</p><p class="ar ">فبالأخير تعرف أكثر وتقدر تقدّمه صح.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Because by then you will know more about what the report contains.</p><p class="ar ">الجواب: لأنك وقتها بتعرف أكثر عن محتوى التقرير.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="revision">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٩</span>
+  <div class="law-t"><h2>المراجعة</h2><p class="law-en" dir="ltr" lang="en">Concept 9 · Revision</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Revision} = \text{read as a new reader} + \text{one set of errors at a time} + \text{trim} + \text{ethics}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Revision} = \\ \text{read as a new reader} \\ +\ \text{one set of errors at a time} \\ +\ \text{trim} \\ +\ \text{ethics}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Revise}\)</td><td class="en" dir="ltr" lang="en">Improve the draft</td><td class="ar">تحسّن المسودة</td></tr><tr><td class="s">\(\text{First-time reader}\)</td><td class="en" dir="ltr" lang="en">Read and evaluate as if you see it for the first time</td><td class="ar">اقرا وقيّم كأنك تشوفه أول مرة</td></tr><tr><td class="s">\(\text{Not everything at once}\)</td><td class="en" dir="ltr" lang="en">Each reading looks for a different set of problems</td><td class="ar">كل قراءة تدور نوع مختلف من الأخطاء</td></tr><tr><td class="s">\(\text{Trim}\)</td><td class="en" dir="ltr" lang="en">Cut unnecessary information</td><td class="ar">احذف المعلومات الزايدة</td></tr><tr><td class="s">\(\text{Ethics in writing}\)</td><td class="en" dir="ltr" lang="en">Consider honesty and fairness</td><td class="ar">انتبه للأمانة والأخلاق في الكتابة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question is about improving a finished draft: rereading, correcting errors, cutting extra information, checking ethics.</p><p class="ar ">لما السؤال عن تحسين مسودة خلصت: تعيد القراءة، تصلح الأخطاء، تحذف الزايد، تتأكد من الأخلاقيات.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>ثلاث قراءات</b> <span dir="ltr" lang="en">Three readings</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Noura reads her draft three times: first for spelling, then for numbers in the tables, then for long useless sentences, which she deletes. Which step is this?</p><p class="ar ">نورة قرت مسودتها ثلاث مرات: أول مرة للإملاء، بعدين للأرقام في الجداول، بعدين للجمل الطويلة اللي ما لها فايدة وحذفتها. أي خطوة هذي؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A different set of errors each reading → 'do not revise everything at once'.</p><p class="ar ">كل قراءة نوع أخطاء مختلف ← «لا تراجع كل شي مرة وحدة».</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Deleting useless sentences → trim unnecessary information.</p><p class="ar ">حذف الجمل اللي ما لها فايدة ← احذف الزايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Step 5: revision.</p><p class="ar ">الجواب: الخطوة <bdi dir="ltr" class=nw>5</bdi>: المراجعة.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg prev" href="laws2.html">→ مفاهيم المحاضرة ٢</a><a class="pg quiz" href="keys3.html">🔑 الكلمات المفتاحية</a><a class="pg quiz" href="quiz3.html">🧠 اختبر نفسك: أي مفهوم؟</a><a class="pg lec" href="lecture3.html">📖 ارجع لشرح المحاضرة ٣</a><a class="pg next" href="laws4.html">مفاهيم المحاضرة ٤ ←</a></nav>
+</main>
+<script src="course.js?v=1"></script>
+</body>
+</html>
