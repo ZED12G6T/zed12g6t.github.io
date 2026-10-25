@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة مفاهيم المحاضرة ٢ · كتابة التقارير الهندسية</title>
+<meta name="description" content="Lecture 2 concept sheet · Types of Reports: every formula, each symbol in English and Arabic, and worked examples in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="stylesheet" href="laws.css?v=3">
+<script src="../site.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="laws.js?v=3"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">كتابة التقارير الهندسية</a><span class="dot">·</span><b>المحاضرة ٢</b><span class="dot">·</span><span>ورقة المفاهيم</span></div>
+    <div class="bar-end">
+      <div class="legend" aria-label="ألوان المصطلحات"></div>
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو المفاهيم أو الاختبار"><a href="lecture2.html">📖 الشرح</a><span class="on" aria-current="page">📐 المفاهيم</span><a href="quiz2.html">🧠 الاختبار</a></nav>
+  <nav class="lw-tabs" aria-label="الفصول"><a class="tab on" href="laws2.html" aria-current=page>المحاضرة ٢ <small dir="ltr" lang="en">Lec 2</small></a><a class="tab" href="laws3.html">المحاضرة ٣ <small dir="ltr" lang="en">Lec 3</small></a><a class="tab" href="laws4.html">المحاضرة ٤ <small dir="ltr" lang="en">Lec 4</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة المفاهيم · المحاضرة ٢</span>
+    <h1>مفاهيم أنواع التقارير</h1>
+    <p class="sub">كل مفهوم في المحاضرة: وش هو، ومصطلحاته بالإنجليزي والعربي، ومتى تستخدمه في السؤال، وأمثلة بالإنجليزي وتحتها الترجمة.</p>
+    <p class="sub-en" dir="ltr" lang="en">Lecture 2 concept sheet · Types of Reports</p>
+    <div class="stats"><span><b>٩</b> مفاهيم</span><span><b>١٧</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card">\[\text{Report} = \text{facts} + \text{purpose} + \text{audience}\]</div>
+</section>
+
+<div class="cta-row">
+<a class="quiz-cta" href="quiz2.html">
+  <span class="qc-ic" aria-hidden="true">🧠</span>
+  <span class="qc-t"><b>اختبر نفسك: أي مفهوم؟</b><small>45 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
+  <span class="qc-go">ابدأ الاختبار ←</span>
+</a>
+<a class="quiz-cta keys-cta" href="keys2.html">
+  <span class="qc-ic" aria-hidden="true">🔑</span>
+  <span class="qc-t"><b>الكلمات المفتاحية</b><small>وش الكلمات في السؤال اللي تقولك أي مفهوم؟ بالإنجليزي والعربي، مع خريطة سريعة</small></span>
+  <span class="qc-go">افتحها ←</span>
+</a>
+</div>
+
+<div class="view" role="group" aria-label="لغة الأمثلة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#classify"><span class="ix-n">١</span><b>تصنيف التقارير</b><small dir="ltr" lang="en">How reports are categorized</small><span class="ix-m">\(\text{length · style · delivery · form · purpose}\)</span></a><a class="ix" href="#formal"><span class="ix-n">٢</span><b>التقارير الرسمية</b><small dir="ltr" lang="en">Formal reports</small><span class="ix-m">\(\text{set structure + long + citations}\)</span></a><a class="ix" href="#informal"><span class="ix-n">٣</span><b>التقارير غير الرسمية</b><small dir="ltr" lang="en">Informal reports</small><span class="ix-m">\(\text{short + no set structure}\)</span></a><a class="ix" href="#informational"><span class="ix-n">٤</span><b>التقارير المعلوماتية</b><small dir="ltr" lang="en">Informational reports</small><span class="ix-m">\(\text{describe only, no conclusions}\)</span></a><a class="ix" href="#analytical"><span class="ix-n">٥</span><b>التقارير التحليلية</b><small dir="ltr" lang="en">Analytical reports</small><span class="ix-m">\(\text{describe + analyze + conclude}\)</span></a><a class="ix" href="#role"><span class="ix-n">٦</span><b>دور التقارير التقنية في العمل</b><small dir="ltr" lang="en">Role of TR in working fields</small><span class="ix-m">\(\text{communication + career}\)</span></a><a class="ix" href="#ew-rw"><span class="ix-n">٧</span><b>الفرق بين المقال والتقرير</b><small dir="ltr" lang="en">Essay writing vs report writing</small><span class="ix-m">\(\text{RW: TOC + facts + audience}\)</span></a><a class="ix" href="#trw-factors"><span class="ix-n">٨</span><b>صفات كتابة التقارير التقنية</b><small dir="ltr" lang="en">Factors to keep in mind about TRW</small><span class="ix-m">\(\text{objective + impersonal + facts}\)</span></a><a class="ix" href="#tech-nontech"><span class="ix-n">٩</span><b>تقني ولا غير تقني؟</b><small dir="ltr" lang="en">Technical or non-technical writing</small><span class="ix-m">\(\text{factual → technical}\)</span></a></div>
+</section>
+
+<section class="law" id="classify">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>تصنيف التقارير</h2><p class="law-en" dir="ltr" lang="en">Concept 1 · How reports are categorized</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Reports by} = \text{length} · \text{style} · \text{delivery} · \text{form} · \text{purpose}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Reports by} = \\ \text{length} \\ ·\ \text{style} \\ ·\ \text{delivery} \\ ·\ \text{form} \\ ·\ \text{purpose}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Length}\)</td><td class="en" dir="ltr" lang="en">Short or long</td><td class="ar">قصير أو طويل</td></tr><tr><td class="s">\(\text{Style}\)</td><td class="en" dir="ltr" lang="en">Formal or informal</td><td class="ar">رسمي أو غير رسمي</td></tr><tr><td class="s">\(\text{Mode of delivery}\)</td><td class="en" dir="ltr" lang="en">Oral or written</td><td class="ar">شفهي أو مكتوب</td></tr><tr><td class="s">\(\text{Form}\)</td><td class="en" dir="ltr" lang="en">Printed, letter, memo, or manuscript format</td><td class="ar">مطبوع، رسالة، مذكرة <bdi dir="ltr" class=nw>(Memo)</bdi>، أو مخطوطة</td></tr><tr><td class="s">\(\text{Purpose}\)</td><td class="en" dir="ltr" lang="en">Informational or analytical</td><td class="ar">معلوماتي أو تحليلي</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks on what basis reports are grouped, or gives a feature (oral, memo, long, formal...) and asks which criterion it belongs to.</p><p class="ar ">لما يسألك على أي أساس نقسم التقارير، أو يعطيك صفة (شفهي، مذكرة، طويل، رسمي...) ويسأل هذي تتبع أي معيار.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Exam trap: 'by purpose' → informational / analytical. 'By style' → formal / informal. Do not mix the two answers.</p><p class="ar ">فخ في الاختبار: «حسب الغرض» ← معلوماتي / تحليلي. «حسب الأسلوب» ← رسمي / غير رسمي. لا تخلط الجوابين.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>المعايير الخمسة</b> <span dir="ltr" lang="en">The five criteria</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Technical reports are very diverse. List the criteria used to categorize them.</p><p class="ar ">التقارير التقنية متنوعة مرة. عدّد المعايير اللي نصنفها فيها.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Read the slide list: length, style, mode of delivery, form, purpose.</p><p class="ar ">من السلايد: الطول، الأسلوب، طريقة التقديم، الشكل، الغرض.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Give each one its pair of values so you show you understand it.</p><p class="ar ">اكتب مع كل معيار قيمه، عشان يبان إنك فاهم.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Length (short/long), style (formal/informal), mode of delivery (oral/written), form (printed, letter, memo, manuscript), purpose (informational/analytical).</p><p class="ar ">الجواب: الطول (قصير/طويل)، الأسلوب (رسمي/غير رسمي)، طريقة التقديم (شفهي/مكتوب)، الشكل (مطبوع، رسالة، مذكرة، مخطوطة)، الغرض (معلوماتي/تحليلي).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>سؤال <bdi dir="ltr" class=nw>Remember</bdi></b> <span dir="ltr" lang="en">Remember question</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Classify the types of reports according to their purpose.</p><p class="ar ">صنّف أنواع التقارير حسب الغرض.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">'Purpose' is only one of the five criteria. Do not list formal/informal here: that is style.</p><p class="ar ">«الغرض» معيار واحد من الخمسة. لا تكتب رسمي وغير رسمي هنا، هذاك الأسلوب.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">By purpose there are two types: informational (describe only) and analytical (describe and analyze).</p><p class="ar ">حسب الغرض فيه نوعين: معلوماتي (يوصف بس) وتحليلي (يوصف ويحلل).</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Informational reports and analytical reports.</p><p class="ar ">الجواب: تقارير معلوماتية وتقارير تحليلية.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="formal">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>التقارير الرسمية</h2><p class="law-en" dir="ltr" lang="en">Concept 2 · Formal reports</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Formal} = \text{set structure} + \text{long} + \text{analytical} + \text{impersonal} + \text{citations}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Formal} = \\ \text{set structure} \\ +\ \text{long} \\ +\ \text{analytical} \\ +\ \text{impersonal} \\ +\ \text{citations}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Set structure}\)</td><td class="en" dir="ltr" lang="en">Fixed parts in a fixed order</td><td class="ar">أجزاء ثابتة بترتيب ثابت</td></tr><tr><td class="s">\(\text{Impersonal}\)</td><td class="en" dir="ltr" lang="en">No personal tone, no 'I'</td><td class="ar">بدون أسلوب شخصي، ما فيه «أنا»</td></tr><tr><td class="s">\(\text{Formal tone}\)</td><td class="en" dir="ltr" lang="en">Serious, professional language</td><td class="ar">لغة جادة ومهنية</td></tr><tr><td class="s">\(\text{Citations}\)</td><td class="en" dir="ltr" lang="en">References to the sources used</td><td class="ar">إشارة للمصادر اللي استخدمتها</td></tr><tr><td class="s">\(\text{Graphs, charts, statistics}\)</td><td class="en" dir="ltr" lang="en">Common parts of a formal report</td><td class="ar">أجزاء منتشرة في التقرير الرسمي</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the report is long, follows a set structure, analyzes one topic in great detail and cites sources. Examples: theses, project reports, annual reports, company reports.</p><p class="ar ">لما يكون التقرير طويل، له هيكل ثابت، يحلل موضوع واحد بتفصيل كبير ويذكر المصادر. أمثلته: الرسائل العلمية، تقارير المشاريع، التقارير السنوية، تقارير الشركات.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>أمثلة السلايد</b> <span dir="ltr" lang="en">Examples from the slides</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Mention some examples of formal reports.</p><p class="ar ">اذكر أمثلة على التقارير الرسمية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Formal reports are long and detailed, so think of big documents.</p><p class="ar ">الرسمية طويلة ومفصلة، ففكر في المستندات الكبيرة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">The slide gives four: theses, project reports, annual reports, reports of companies.</p><p class="ar ">السلايد يعطيك أربعة: الرسائل العلمية، تقارير المشاريع، التقارير السنوية، تقارير الشركات.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Theses, project reports, annual reports and reports of companies.</p><p class="ar ">الجواب: الرسائل العلمية <bdi dir="ltr" class=nw>(Theses)</bdi>، تقارير المشاريع، التقارير السنوية، وتقارير الشركات.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مشروع التخرج</b> <span dir="ltr" lang="en">Graduation project</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Sara writes a 60-page graduation project report with chapters in a fixed order, many charts and a list of 25 references. What type is it by style?</p><p class="ar ">سارة تكتب تقرير مشروع تخرج <bdi dir="ltr" class=nw>60</bdi> صفحة، فصوله بترتيب ثابت، وفيه رسومات كثير وقائمة <bdi dir="ltr" class=nw>25</bdi> مرجع. وش نوعه حسب الأسلوب؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Long, set structure, charts and citations: all are features of formal reports.</p><p class="ar ">طويل، هيكل ثابت، رسومات ومراجع: كلها صفات الرسمي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">A project report is also one of the slide's formal examples.</p><p class="ar ">وتقرير المشروع أصلاً من أمثلة الرسمي في السلايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: A formal report.</p><p class="ar ">الجواب: تقرير رسمي.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="informal">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>التقارير غير الرسمية</h2><p class="law-en" dir="ltr" lang="en">Concept 3 · Informal reports</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Informal} = \text{no set structure} + \text{short} + \text{little background} + \text{no detailed analysis}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Informal} = \\ \text{no set structure} \\ +\ \text{short} \\ +\ \text{little background} \\ +\ \text{no detailed analysis}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{No set structure}\)</td><td class="en" dir="ltr" lang="en">Can be written in any way</td><td class="ar">تنكتب بأي طريقة</td></tr><tr><td class="s">\(\text{Shorter}\)</td><td class="en" dir="ltr" lang="en">Shorter than formal reports</td><td class="ar">أقصر من الرسمية</td></tr><tr><td class="s">\(\text{Little background}\)</td><td class="en" dir="ltr" lang="en">The reader does not need much context</td><td class="ar">القارئ ما يحتاج خلفية كثير</td></tr><tr><td class="s">\(\text{Incident report}\)</td><td class="en" dir="ltr" lang="en">Reports something that happened</td><td class="ar">تقرير حادثة</td></tr><tr><td class="s">\(\text{Inspection report}\)</td><td class="en" dir="ltr" lang="en">Reports what an inspection found</td><td class="ar">تقرير فحص أو تفتيش</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the report is short, has no fixed structure and does not analyze in detail. Examples: lab, daily production, sales and trip reports. Types: incident, field trip, conference attendance, inspection, progress.</p><p class="ar ">لما يكون التقرير قصير، ما له هيكل ثابت، وما يحلل بالتفصيل. أمثلته: تقرير المختبر، الإنتاج اليومي، المبيعات، الرحلة. وأنواعه: حادثة، رحلة ميدانية، حضور مؤتمر، فحص، تقدم العمل.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">💡 انتبه · <span dir="ltr" lang="en">Watch out</span></div>
+  <p class="en " dir="ltr" lang="en">Lecture 2 lists lab reports as informal, but Lecture 4 gives lab reports a standard 10-part format. Both are from the slides: write 'informal' if asked for an example of informal reports.</p><p class="ar ">المحاضرة <bdi dir="ltr" class=nw>2</bdi> تحط تقرير المختبر من غير الرسمية، بس المحاضرة <bdi dir="ltr" class=nw>4</bdi> تعطيه شكل قياسي من <bdi dir="ltr" class=nw>10</bdi> أجزاء. الاثنين من السلايدات: لو سألك عن مثال لغير الرسمي اكتب تقرير المختبر عادي.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>أنواع التقارير غير الرسمية</b> <span dir="ltr" lang="en">Types of informal reports</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Mention some types of informal reports.</p><p class="ar ">اذكر بعض أنواع التقارير غير الرسمية.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">This is a Remember question, so write the slide list of five.</p><p class="ar ">هذا سؤال من <bdi dir="ltr" class=nw>Remember</bdi>، فاكتب قائمة السلايد الخمسة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Incident, field trip, conference attendance, inspection, progress.</p><p class="ar ">حادثة، رحلة ميدانية، حضور مؤتمر، فحص، تقدم العمل.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Incident reports, field trip reports, reporting conference attendance, inspection reports and progress reports.</p><p class="ar ">الجواب: تقارير الحوادث، تقارير الرحلات الميدانية، تقارير حضور المؤتمرات، تقارير الفحص، وتقارير تقدم العمل.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مادة كيميائية انسكبت</b> <span dir="ltr" lang="en">A spilled chemical</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A technician writes a half-page note to the supervisor about a chemical spill in the workshop this morning. No fixed template, no analysis. What type is it?</p><p class="ar ">فني كتب ورقة نص صفحة للمشرف عن مادة كيميائية انسكبت في الورشة الصباح. بدون قالب ثابت وبدون تحليل. وش نوعه؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Short, no set structure, no detailed analysis → informal.</p><p class="ar ">قصير، بدون هيكل ثابت، بدون تحليل مفصل ← غير رسمي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">It reports something that happened, so its type is an incident report.</p><p class="ar ">ويبلّغ عن شي صار، فنوعه تقرير حادثة.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: An informal report (an incident report).</p><p class="ar ">الجواب: تقرير غير رسمي (تقرير حادثة).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="informational">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>التقارير المعلوماتية</h2><p class="law-en" dir="ltr" lang="en">Concept 4 · Informational reports</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Informational} = \text{describe the situation} + \text{no analysis} + \text{no conclusions} + \text{no recommendations}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Informational} = \\ \text{describe the situation} \\ +\ \text{no analysis} \\ +\ \text{no conclusions} \\ +\ \text{no recommendations}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Describe}\)</td><td class="en" dir="ltr" lang="en">Present the situation as it is</td><td class="ar">يعرض الوضع زي ما هو</td></tr><tr><td class="s">\(\text{Progress report}\)</td><td class="en" dir="ltr" lang="en">Related to tasks</td><td class="ar">مرتبط بالمهام: وين وصل الشغل</td></tr><tr><td class="s">\(\text{Situation report}\)</td><td class="en" dir="ltr" lang="en">Related to events or conditions</td><td class="ar">مرتبط بأحداث أو ظروف</td></tr><tr><td class="s">\(\text{Site visit report}\)</td><td class="en" dir="ltr" lang="en">Visits, trips, observations</td><td class="ar">زيارات ورحلات وملاحظات</td></tr><tr><td class="s">\(\text{Instructional report}\)</td><td class="en" dir="ltr" lang="en">How something is done or how to perform actions</td><td class="ar">كيف يتسوى شي أو كيف تنفذ خطوات</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the report only describes, with no analysis, interpretation, conclusions or recommendations. The reader decides: agrees or disagrees, likes or dislikes.</p><p class="ar ">لما التقرير يوصف بس، بدون تحليل ولا تفسير ولا استنتاجات ولا توصيات. والقارئ هو اللي يقرر: يوافق أو يعارض، يعجبه أو لا.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>وش تشمل التقارير المعلوماتية</b> <span dir="ltr" lang="en">What informational reports include</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What do informational reports include?</p><p class="ar ">وش تشمل التقارير المعلوماتية؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question. The slide lists four kinds, each with a short meaning.</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi>. السلايد يعطيك أربعة أنواع، وكل واحد له معنى قصير.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Write the meaning in brackets: it gets you the full mark.</p><p class="ar ">اكتب المعنى بين قوسين، هذا اللي يجيب الدرجة كاملة.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Progress reports (tasks), situation reports (events or conditions), site visit reports (visits, trips, observations), instructional reports (how something is done).</p><p class="ar ">الجواب: تقارير تقدم العمل (المهام)، تقارير الوضع (أحداث أو ظروف)، تقارير زيارة الموقع (زيارات ورحلات وملاحظات)، التقارير الإرشادية (كيف يتسوى الشي).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>كيف تشغل المولد</b> <span dir="ltr" lang="en">How to start the generator</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A document explains step by step how to start the backup generator. It gives no opinion and no recommendation. What type is it by purpose?</p><p class="ar ">مستند يشرح خطوة خطوة كيف تشغل المولد الاحتياطي، وما فيه رأي ولا توصية. وش نوعه حسب الغرض؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">It only describes, no conclusions or recommendations → informational.</p><p class="ar ">يوصف بس، بدون استنتاج أو توصية ← معلوماتي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">'How something is done' is exactly the instructional report.</p><p class="ar ">«كيف يتسوى الشي» هو بالضبط التقرير الإرشادي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: An informational report (an instructional report).</p><p class="ar ">الجواب: تقرير معلوماتي (تقرير إرشادي).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="analytical">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>التقارير التحليلية</h2><p class="law-en" dir="ltr" lang="en">Concept 5 · Analytical reports</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Analytical} = \text{description} + \text{analysis} + \text{conclusions} + \text{recommendations}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Analytical} = \\ \text{description} \\ +\ \text{analysis} \\ +\ \text{conclusions} \\ +\ \text{recommendations}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{One step beyond}\)</td><td class="en" dir="ltr" lang="en">Goes further than informational reports</td><td class="ar">يروح خطوة أبعد من المعلوماتي</td></tr><tr><td class="s">\(\text{Causes and consequences}\)</td><td class="en" dir="ltr" lang="en">Finds causes, may show long or short-range consequences</td><td class="ar">يدور الأسباب، وممكن يبين النتائج على المدى البعيد أو القريب</td></tr><tr><td class="s">\(\text{Evaluation report}\)</td><td class="en" dir="ltr" lang="en">Presents data and the writer's judgment of it</td><td class="ar">يعرض بيانات وحكم الكاتب عليها</td></tr><tr><td class="s">\(\text{Feasibility report}\)</td><td class="en" dir="ltr" lang="en">Assesses how practical a proposed project or change is</td><td class="ar">يقيّم جدوى مشروع أو تغيير مقترح</td></tr><tr><td class="s">\(\text{Recommendations}\)</td><td class="en" dir="ltr" lang="en">Suggested action</td><td class="ar">اقتراح وش نسوي</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the report analyzes, interprets data, gives conclusions and may recommend action. The two kinds: evaluation and feasibility.</p><p class="ar ">لما التقرير يحلل ويفسر البيانات ويطلع باستنتاجات، وممكن يوصي بإجراء. ونوعينه: تقييم وجدوى.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>وش تشمل التقارير التحليلية</b> <span dir="ltr" lang="en">What analytical reports include</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">What do analytical reports include?</p><p class="ar ">وش تشمل التقارير التحليلية؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Remember question with two items.</p><p class="ar ">سؤال <bdi dir="ltr" class=nw>Remember</bdi> فيه نقطتين.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Evaluation: data plus the writer's judgment. Feasibility: is a proposed project or change practical?</p><p class="ar ">التقييم: بيانات وحكم الكاتب عليها. الجدوى: هل المشروع أو التغيير المقترح عملي؟</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Evaluation reports (data and the writer's judgment of it) and feasibility reports (the practicality of a proposed project or change).</p><p class="ar ">الجواب: تقارير التقييم (بيانات وحكم الكاتب عليها) وتقارير الجدوى (هل المشروع أو التغيير المقترح عملي).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>ألواح شمسية في الجامعة</b> <span dir="ltr" lang="en">Solar panels on the campus</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">The university asks an engineer whether installing solar panels on the library roof is practical, and wants a recommendation. Which report?</p><p class="ar ">الجامعة تسأل مهندس: هل تركيب ألواح شمسية على سطح المكتبة عملي؟ وتبي منه توصية. وش التقرير؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A recommendation is asked → analytical, not informational.</p><p class="ar ">مطلوب توصية ← تحليلي، مو معلوماتي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">'Is a proposed project practical?' → feasibility report.</p><p class="ar ">«هل المشروع المقترح عملي؟» ← تقرير جدوى.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: An analytical report (a feasibility report).</p><p class="ar ">الجواب: تقرير تحليلي (تقرير جدوى).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="role">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>دور التقارير التقنية في العمل</h2><p class="law-en" dir="ltr" lang="en">Concept 6 · Role of TR in working fields</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Role of TR} = \text{communication} + \text{engineers' skills} + \text{daily workload} + \text{career} + \text{time & money}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Role of TR} = \\ \text{communication} \\ +\ \text{engineers' skills} \\ +\ \text{daily workload} \\ +\ \text{career} \\ +\ \text{time & money}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{TR}\)</td><td class="en" dir="ltr" lang="en">Technical report</td><td class="ar">التقرير التقني</td></tr><tr><td class="s">\(\text{Professional writing}\)</td><td class="en" dir="ltr" lang="en">Projects, lab reports, instructions, theses</td><td class="ar">المشاريع، تقارير المختبر، التعليمات، الرسائل</td></tr><tr><td class="s">\(\text{Workload}\)</td><td class="en" dir="ltr" lang="en">TR is a big part of everyday work</td><td class="ar">التقارير جزء كبير من الشغل اليومي</td></tr><tr><td class="s">\(\text{Facilitate communication}\)</td><td class="en" dir="ltr" lang="en">With co-workers, clients and supervisors, inside and outside the workplace</td><td class="ar">مع الزملاء والعملاء والمشرفين، داخل وخارج مكان العمل</td></tr><tr><td class="s">\(\text{Saving time and money}\)</td><td class="en" dir="ltr" lang="en">Good writing skills save both</td><td class="ar">مهارة الكتابة الزينة توفر الوقت والفلوس</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks why technical reports matter at work, or what they do for an engineer.</p><p class="ar ">لما السؤال يسأل ليش التقارير التقنية مهمة في الشغل، أو وش تفيد المهندس.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الأدوار الستة</b> <span dir="ltr" lang="en">The six roles</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Mention some roles of TR in working fields.</p><p class="ar ">اذكر بعض أدوار التقارير التقنية في مجالات العمل.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The slide numbers six points.</p><p class="ar ">السلايد يرقم ست نقاط.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Write at least four if the question says 'some'.</p><p class="ar ">لو قال «بعض» اكتب أربعة على الأقل.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: (1) A useful form of writing for projects, lab reports, instructions and theses. (2) Helps engineers: better communication, better skills. (3) A big part of everyday workload. (4) Facilitates communication with co-workers, clients and supervisors. (5) Necessary for a successful career. (6) Good writing saves time and money.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>(1)</bdi> شكل كتابة مفيد للمشاريع وتقارير المختبر والتعليمات والرسائل. <bdi dir="ltr" class=nw>(2)</bdi> يساعد المهندس: تواصل أحسن ومهارات أحسن. <bdi dir="ltr" class=nw>(3)</bdi> جزء كبير من الشغل اليومي. <bdi dir="ltr" class=nw>(4)</bdi> يسهّل التواصل مع الزملاء والعملاء والمشرفين. <bdi dir="ltr" class=nw>(5)</bdi> ضروري لمستقبل مهني ناجح. <bdi dir="ltr" class=nw>(6)</bdi> الكتابة الزينة توفر الوقت والفلوس.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>العميل في مدينة ثانية</b> <span dir="ltr" lang="en">The client in another city</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">An engineer sends a weekly written report to a client in another city and to her manager, so everyone knows the project status without meetings. Which role of TR is this?</p><p class="ar ">مهندسة ترسل تقرير أسبوعي مكتوب لعميل في مدينة ثانية ولمديرها، عشان الكل يعرف وضع المشروع بدون اجتماعات. أي دور من أدوار التقارير هذا؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The report connects her with a client (outside) and her manager (inside).</p><p class="ar ">التقرير يربطها بعميل (برا) ومدير (داخل).</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">That is role (4): facilitating communication. Fewer meetings also touches role (6): saving time.</p><p class="ar ">هذا الدور <bdi dir="ltr" class=nw>(4)</bdi>: تسهيل التواصل. وتقليل الاجتماعات يلمس الدور <bdi dir="ltr" class=nw>(6)</bdi>: توفير الوقت.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Facilitating communication with clients and supervisors (and it saves time).</p><p class="ar ">الجواب: تسهيل التواصل مع العملاء والمشرفين (ويوفر وقت بعد).</p></div></div>
+</article>
+</section>
+
+<section class="law" id="ew-rw">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>الفرق بين المقال والتقرير</h2><p class="law-en" dir="ltr" lang="en">Concept 7 · Essay writing vs report writing</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Report vs essay} = \text{aims & objectives} + \text{table of contents} + \text{recommendations} + \text{figures} + \text{specific audience} + \text{facts}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Report vs essay} = \\ \text{aims & objectives} \\ +\ \text{table of contents} \\ +\ \text{recommendations} \\ +\ \text{figures} \\ +\ \text{specific audience} \\ +\ \text{facts}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{EW}\)</td><td class="en" dir="ltr" lang="en">Essay writing</td><td class="ar">كتابة المقال</td></tr><tr><td class="s">\(\text{RW}\)</td><td class="en" dir="ltr" lang="en">Report writing</td><td class="ar">كتابة التقرير</td></tr><tr><td class="s">\(\text{Table of contents}\)</td><td class="en" dir="ltr" lang="en">Reports have one, essays do not</td><td class="ar">التقرير فيه فهرس، المقال لا</td></tr><tr><td class="s">\(\text{Argumentative / descriptive style}\)</td><td class="en" dir="ltr" lang="en">The style of an essay</td><td class="ar">أسلوب المقال: جدلي أو وصفي</td></tr><tr><td class="s">\(\text{Fact-based}\)</td><td class="en" dir="ltr" lang="en">A report is built on facts, an essay on ideas and arguments</td><td class="ar">التقرير مبني على حقائق، والمقال على أفكار وحجج</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks for differences between an essay and a report, or describes a piece of writing and asks which one it is.</p><p class="ar ">لما السؤال يطلب الفروق بين المقال والتقرير، أو يوصف لك كتابة ويسأل هي أيهم.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>اذكر الفروق</b> <span dir="ltr" lang="en">State the differences</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">State some differences between essay writing and report writing.</p><p class="ar ">اذكر بعض الفروق بين كتابة المقال وكتابة التقرير.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Write them as pairs: essay ... / report ....</p><p class="ar ">اكتبها أزواج: المقال ... / التقرير ....</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">The slides give eight pairs. Pick the clearest four or five.</p><p class="ar ">السلايدات فيها ثمان أزواج. اختار أوضح أربعة أو خمسة.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Essay: intro then body; no table of contents; no recommendations; argumentative or descriptive; no specific audience; ideas and arguments; topics from the academic environment. Report: intro then aims and objectives; has a table of contents; may recommend; uses tables, figures, graphs; a specific audience; fact-based; topics from outside the academic environment and results used for work.</p><p class="ar ">الجواب: المقال: مقدمة ثم المحتوى، ما فيه فهرس، ما فيه توصيات، أسلوبه جدلي أو وصفي، لجمهور غير محدد، مبني على أفكار وحجج، ومواضيعه من البيئة الأكاديمية. التقرير: مقدمة ثم الأهداف، فيه فهرس، ممكن فيه توصيات، فيه جداول وأشكال ورسومات، لجمهور محدد، مبني على حقائق، ومواضيعه من برا البيئة الأكاديمية ونتايجه تستخدم في الشغل.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مقال رأي ولا تقرير؟</b> <span dir="ltr" lang="en">Opinion piece or report?</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A student writes about whether social media is good for society, with arguments and counter-arguments, no table of contents and no data tables. Essay or report?</p><p class="ar ">طالب يكتب عن هل وسائل التواصل مفيدة للمجتمع، فيها حجج وحجج مضادة، بدون فهرس وبدون جداول بيانات. مقال ولا تقرير؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Arguments and counter-arguments, no table of contents, no specific facts → essay features.</p><p class="ar ">حجج وحجج مضادة، بدون فهرس، بدون حقائق محددة ← صفات المقال.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">A report would start with aims, be fact-based and include tables or figures.</p><p class="ar ">التقرير كان بيبدأ بالأهداف، ويكون مبني على حقائق، وفيه جداول أو أشكال.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: An essay.</p><p class="ar ">الجواب: مقال.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="trw-factors">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٨</span>
+  <div class="law-t"><h2>صفات كتابة التقارير التقنية</h2><p class="law-en" dir="ltr" lang="en">Concept 8 · Factors to keep in mind about TRW</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{TRW} = \text{engineering issues} + \text{form & style} + \text{no humor} + \text{objective} + \text{facts} + \text{impersonal}\]</div><div class="eq narrow big">\[\begin{gathered}\text{TRW} = \\ \text{engineering issues} \\ +\ \text{form & style} \\ +\ \text{no humor} \\ +\ \text{objective} \\ +\ \text{facts} \\ +\ \text{impersonal}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{TRW}\)</td><td class="en" dir="ltr" lang="en">Technical report writing</td><td class="ar">كتابة التقارير التقنية</td></tr><tr><td class="s">\(\text{Humor or slang}\)</td><td class="en" dir="ltr" lang="en">Never used in a technical report</td><td class="ar">النكت والعامية ممنوعة</td></tr><tr><td class="s">\(\text{Objective-oriented}\)</td><td class="en" dir="ltr" lang="en">Aimed at reaching its goals</td><td class="ar">موجه نحو تحقيق الأهداف</td></tr><tr><td class="s">\(\text{Does not blame people}\)</td><td class="en" dir="ltr" lang="en">Criticizing is OK, blaming is not</td><td class="ar">ما يلوم الناس، والانتقاد مقبول</td></tr><tr><td class="s">\(\text{Impersonal}\)</td><td class="en" dir="ltr" lang="en">No first-person pronouns, no names of who did the work</td><td class="ar">بدون ضمير المتكلم وبدون أسماء اللي سووا الشغل</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question gives a sentence or habit and asks if it fits a technical report, or asks for the factors of TRW.</p><p class="ar ">لما السؤال يعطيك جملة أو تصرف ويسأل هل يناسب التقرير التقني، أو يطلب صفات كتابة التقارير التقنية.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الصفات التسع</b> <span dir="ltr" lang="en">The nine factors</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">List the factors to keep in mind about technical report writing.</p><p class="ar ">عدّد الأشياء اللي لازم تنتبه لها في كتابة التقرير التقني.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Two slides, nine points in total.</p><p class="ar ">شريحتين، فيها تسع نقاط.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Group them: what it does, what it never does.</p><p class="ar ">قسّمها: وش يسوي، ووش ما يسوي أبد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: It communicates issues in engineering and the sciences; has form and style (definite elements); no humor or slang; is objective-oriented; does not blame people (criticizing is OK); requires facts or data and never hides facts; deals with non-administrative issues; is never used as advertising copy; is impersonal (no first person, no names).</p><p class="ar ">الجواب: يناقش قضايا الهندسة والعلوم، له شكل وأسلوب بعناصر محددة، بدون نكت أو عامية، موجه نحو الأهداف، ما يلوم الناس (والانتقاد مقبول)، يحتاج حقائق أو بيانات وما يخفي الحقائق، يتعامل مع قضايا غير إدارية، عمره ما يستخدم كإعلان، وغير شخصي (بدون ضمير المتكلم وبدون أسماء).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>صلّح الجملة</b> <span dir="ltr" lang="en">Fix the sentence</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Which rule does this sentence break: 'I think Ahmed messed up the wiring, lol'?</p><p class="ar ">وش القاعدة اللي تكسرها هالجملة: «أظن أحمد خرّب التوصيل، ههه»؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">'I' and the name 'Ahmed' → not impersonal.</p><p class="ar ">«أنا» واسم «أحمد» ← مو غير شخصي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">'messed up' blames a person, and 'lol' is humor/slang.</p><p class="ar ">«خرّب» لوم لشخص، و«ههه» نكتة وعامية.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: It breaks: impersonal, does not blame people, no humor or slang. Better: 'The wiring was found to be connected incorrectly.'</p><p class="ar ">الجواب: تكسر: غير شخصي، ما يلوم الناس، بدون نكت أو عامية. الأحسن: «وُجد أن التوصيل غير صحيح».</p></div></div>
+</article>
+</section>
+
+<section class="law" id="tech-nontech">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٩</span>
+  <div class="law-t"><h2>تقني ولا غير تقني؟</h2><p class="law-en" dir="ltr" lang="en">Concept 9 · Technical or non-technical writing</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\text{Technical} = \text{factual} · \text{has a purpose} · \text{instructions} · \text{business & finance}\]</div><div class="eq narrow big">\[\begin{gathered}\text{Technical} = \\ \text{factual} \\ ·\ \text{has a purpose} \\ ·\ \text{instructions} \\ ·\ \text{business & finance}\end{gathered}\]</div></div></div>
+<div class="block sym">
+  <h3><span>المصطلحات</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(\text{Instructions}\)</td><td class="en" dir="ltr" lang="en">For use of a product or a process: technical</td><td class="ar">تعليمات استخدام منتج أو عملية: تقني</td></tr><tr><td class="s">\(\text{Advertising}\)</td><td class="en" dir="ltr" lang="en">Not factual: non-technical</td><td class="ar">الإعلان ما هو حقائق: غير تقني</td></tr><tr><td class="s">\(\text{Creative writing (poetry)}\)</td><td class="en" dir="ltr" lang="en">Non-technical</td><td class="ar">الكتابة الإبداعية (الشعر): غير تقني</td></tr><tr><td class="s">\(\text{Opinion}\)</td><td class="en" dir="ltr" lang="en">Personal opinions on editorial pages: non-technical</td><td class="ar">آراء شخصية في صفحات الرأي: غير تقني</td></tr><tr><td class="s">\(\text{Entertainment}\)</td><td class="en" dir="ltr" lang="en">Non-technical</td><td class="ar">الترفيه: غير تقني</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question lists kinds of writing and asks you to group them as technical or non-technical (the activity in the slides).</p><p class="ar ">لما السؤال يعطيك أنواع كتابة ويطلب تصنفها تقني أو غير تقني (نشاط السلايدات).</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide typo</span></div>
+  <p class="en " dir="ltr" lang="en">In the slide, the handwritten answer next to 'Creative Writing like poetry' says 'tech.'. Poetry is not technical writing: it is creative and not factual, so the right answer is non-technical.</p><p class="ar ">في السلايد مكتوب بخط اليد جنب «الكتابة الإبداعية مثل الشعر» إنها تقني <bdi dir="ltr" class=nw>(tech.)</bdi>. الشعر مو كتابة تقنية، هو إبداعي ومو حقائق، فالصح إنه غير تقني.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>النشاط</b> <span dir="ltr" lang="en">The activity</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Group the following as technical or non-technical: instructions, advertising, creative writing (poetry), opinion, business and finance publications, entertainment.</p><p class="ar ">صنّف التالي تقني أو غير تقني: التعليمات، الإعلان، الكتابة الإبداعية (الشعر)، الرأي، منشورات الأعمال والمالية، الترفيه.</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Ask: is it factual and does it serve a practical purpose? Then technical.</p><p class="ar ">اسأل: هل هو حقائق ويخدم غرض عملي؟ إذاً تقني.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Ads are not factual, poetry and entertainment are for feelings and fun, opinion is personal.</p><p class="ar ">الإعلان مو حقائق، والشعر والترفيه للمشاعر والمتعة، والرأي شخصي.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Technical: instructions, business and finance publications. Non-technical: advertising, creative writing (poetry), opinion, entertainment.</p><p class="ar ">الجواب: تقني: التعليمات، ومنشورات الأعمال والمالية. غير تقني: الإعلان، والكتابة الإبداعية (الشعر)، والرأي، والترفيه.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg quiz" href="keys2.html">🔑 الكلمات المفتاحية</a><a class="pg quiz" href="quiz2.html">🧠 اختبر نفسك: أي مفهوم؟</a><a class="pg lec" href="lecture2.html">📖 ارجع لشرح المحاضرة ٢</a><a class="pg next" href="laws3.html">مفاهيم المحاضرة ٣ ←</a></nav>
+</main>
+<script src="course.js?v=1"></script>
+</body>
+</html>
