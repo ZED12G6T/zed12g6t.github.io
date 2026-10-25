@@ -1,1760 +1,601 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-topic="Divergence &amp; Curl" data-title-en="Lecture 4 Summary - Divergence &amp; Curl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملخص المحاضرة 4 - Divergence &amp; Curl</title>
-
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
-        :root {
-            --bg-void:      #05090a;
-            --bg-panel:     #0b1210;
-            --bg-inset:     #030605;
-            --grid-minor:   rgba(124, 255, 178, 0.045);
-            --grid-major:   rgba(124, 255, 178, 0.11);
-            --ink-primary:  #e9f5ef;
-            --ink-secondary:#7f9d92;
-
-            --trace-cos:    #7cffb2;
-            --trace-sin:    #ffb454;
-            --trace-alert:  #ff6f6f;
-            --accent-practice: #b98cff;
-            --accent-assess:   #7cc4ff;
-            --accent-identity: #ffd166;
-
-            --border-soft:  rgba(124, 255, 178, 0.16);
-            --font-arabic:  'IBM Plex Sans Arabic', sans-serif;
-            --font-mono:    'IBM Plex Mono', monospace;
-
-            --success: #4ade80;
-            --danger:  #f87171;
-        }
-
-        /* ============ الوضع النهاري ============ */
-        body.light {
-            --bg-void:      #eef3f0;
-            --bg-panel:     #ffffff;
-            --bg-inset:     #f2f7f4;
-            --grid-minor:   rgba(15, 80, 55, 0.06);
-            --grid-major:   rgba(15, 80, 55, 0.11);
-            --ink-primary:  #12241c;
-            --ink-secondary:#5c7268;
-            --border-soft:  rgba(15, 80, 55, 0.22);
-            --success: #16a34a;
-            --danger:  #dc2626;
-        }
-        body.light .bg-grid::after {
-            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(20,120,80,0.08), transparent 65%);
-        }
-        body.light .panel p   { color:#33473e; }
-        body.light .panel li  { color:#24382f; }
-        body.light .quiz-opt  { color: var(--ink-primary); }
-        body.light .flash-front { background:#fff; }
-        body.light .flash-back  { background: linear-gradient(135deg,#e6f5ec,#ffffff); }
-        body.light .copy-tex    { color:#0d7a4a; border-color: rgba(15,120,70,.35); background: rgba(15,120,70,.08); }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-arabic);
-            background-color: var(--bg-void);
-            color: var(--ink-primary);
-            line-height: 1.85;
-            padding: 22px 14px 60px;
-            min-height: 100vh;
-            transition: background-color .35s ease, color .35s ease;
-        }
-
-        .bg-grid {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background-image:
-                repeating-linear-gradient(0deg,  var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(90deg, var(--grid-minor) 0 1px, transparent 1px 40px),
-                repeating-linear-gradient(0deg,  var(--grid-major) 0 1px, transparent 1px 200px),
-                repeating-linear-gradient(90deg, var(--grid-major) 0 1px, transparent 1px 200px);
-            background-color: var(--bg-void);
-            transition: background-color .35s ease;
-        }
-        .bg-grid::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 900px 500px at 50% 0%, rgba(124,255,178,0.07), transparent 65%);
-        }
-
-        a:focus-visible, select:focus-visible, .trigger:focus-visible,
-        button:focus-visible, input:focus-visible { outline: 2px solid var(--accent-assess); outline-offset: 2px; }
-
-        /* ---------- شريط تقدم القراءة ---------- */
-        #read-progress {
-            position: fixed; top: 0; right: 0; left: 0;
-            height: 3px; background: transparent; z-index: 100;
-        }
-        #read-progress .bar {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, var(--trace-cos), var(--accent-assess));
-            transition: width .15s ease-out;
-            box-shadow: 0 0 10px rgba(124,255,178,0.5);
-        }
-
-        .main-wrapper { max-width: 820px; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; gap: 18px; }
-
-        /* ---------------- ظهور تدريجي ---------------- */
-        .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
-        .reveal.visible { opacity: 1; transform: none; }
-
-        /* ---------------- bezel nav ---------------- */
-        .bezel {
-            background: linear-gradient(180deg, #0d1614, #0a100e);
-            border: 1px solid var(--border-soft); border-radius: 10px;
-            padding: 14px 18px; display: flex; flex-wrap: wrap;
-            align-items: center; justify-content: space-between; gap: 12px;
-        }
-        body.light .bezel { background: linear-gradient(180deg, #ffffff, #eef4f1); }
-        .bezel-id { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-secondary); }
-        .bezel-id .lamp { width: 8px; height: 8px; border-radius: 2px; background: var(--trace-sin); box-shadow: 0 0 6px var(--trace-sin); flex-shrink: 0; animation: pulse 2s ease-in-out infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .bezel-id strong { color: var(--ink-primary); font-weight: 600; }
-        .bezel-actions { display: flex; align-items: center; gap: 8px; }
-        .icon-btn {
-            width: 40px; height: 40px; border-radius: 8px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); font-size: 1.05rem;
-            display: flex; align-items: center; justify-content: center;
-            transition: all .2s;
-        }
-        .icon-btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.07); }
-        .channel-select {
-            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 500;
-            padding: 8px 12px; border-radius: 7px; border: 1px solid var(--border-soft);
-            background-color: var(--bg-void); color: var(--ink-primary); cursor: pointer; min-width: 240px;
-        }
-        .channel-select:hover { border-color: var(--trace-cos); }
-
-        /* ---------------- quick-jump pills ---------------- */
-        .pill-row { display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px; scrollbar-width: none; }
-        .pill-row::-webkit-scrollbar { display: none; }
-        .pill-row a {
-            flex-shrink: 0; font-size: 0.8rem; font-weight: 500; padding: 7px 14px; border-radius: 999px;
-            border: 1px solid var(--border-soft); text-decoration: none; color: var(--ink-secondary);
-            transition: color .2s, border-color .2s; white-space: nowrap;
-        }
-        .pill-row a:hover { color: var(--ink-primary); border-color: var(--accent-assess); }
-
-        /* ---------------- hero ---------------- */
-        .hero { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 28px 20px 20px; }
-        .hero h1 { font-size: 1.42rem; font-weight: 700; text-align: center; color: var(--ink-primary); margin-bottom: 6px; }
-        .hero .sub { text-align: center; color: var(--ink-secondary); font-size: 0.95rem; max-width: 540px; margin: 0 auto 18px; }
-        .hero-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
-        .chip {
-            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
-            padding: 5px 13px; border-radius: 999px;
-            border: 1px solid var(--border-soft); color: var(--ink-secondary);
-        }
-        .chip.g { color: var(--trace-cos); border-color: rgba(124,255,178,.35); background: rgba(124,255,178,.06); }
-        .chip.b { color: var(--accent-assess); border-color: rgba(124,196,255,.35); background: rgba(124,196,255,.06); }
-        .chip.y { color: var(--accent-identity); border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.06); }
-        .scope-screen {
-            background: var(--bg-inset); border: 1px solid var(--border-soft);
-            border-radius: 8px; padding: 6px 4px; overflow: hidden;
-            position: relative;
-        }
-        .scope-screen svg { display: block; width: 100%; height: auto; }
-        .scope-screen::after {
-            content: '';
-            position: absolute; inset: 0;
-            background: radial-gradient(circle at 25% 50%, rgba(124,255,178,0.06), transparent 40%),
-                        radial-gradient(circle at 75% 50%, rgba(124,196,255,0.06), transparent 40%);
-            pointer-events: none;
-        }
-        .scope-legend { display: flex; justify-content: center; gap: 24px; margin-top: 12px; font-family: var(--font-mono); font-size: 0.8rem; flex-wrap: wrap; color: var(--ink-secondary); }
-        .scope-legend span { display: flex; align-items: center; gap: 7px; direction: ltr; }
-        .swatch { width: 16px; height: 3px; border-radius: 2px; display: inline-block; }
-
-        #hero-scope .div-arrow line { transition: filter .3s; }
-        #hero-scope:hover .div-arrow line { filter: drop-shadow(0 0 4px #7cffb2); }
-
-        /* ---------------- panels ---------------- */
-        .panel { background: var(--bg-panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 24px 22px; position: relative; transition: background-color .35s ease; }
-        .panel::before, .panel::after { content: ''; position: absolute; width: 14px; height: 14px; border: 2px solid var(--panel-accent, var(--trace-cos)); opacity: 0.55; }
-        .panel::before { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
-        .panel::after  { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
-
-        .panel-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-        .panel-index { font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; color: var(--bg-void); background: var(--panel-accent, var(--trace-cos)); border-radius: 5px; padding: 3px 8px; flex-shrink: 0; }
-        .symbol-badge {
-            width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem;
-            color: var(--panel-accent, var(--trace-cos)); border: 1px solid var(--panel-accent, var(--trace-cos));
-            background: rgba(124,255,178,0.06);
-        }
-        .panel-icon { width: 22px; height: 22px; color: var(--panel-accent, var(--trace-cos)); flex-shrink: 0; }
-        .panel h2 { font-size: 1.1rem; font-weight: 700; color: var(--ink-primary); }
-        .panel h2 .bi-caption { font-size: 0.82rem; font-weight: 500; color: var(--ink-secondary); display: block; margin-top: 4px; }
-        .panel h3 { font-size: 0.96rem; font-weight: 600; color: var(--panel-accent, var(--trace-cos)); margin: 14px 0 8px; }
-        .panel h3 .bi-caption { font-size: 0.8rem; font-weight: 400; color: var(--ink-secondary); display: block; margin-top: 3px; }
-
-        .panel p { color: #c7dbd1; margin-bottom: 10px; font-size: 0.96rem; }
-        .panel p:last-child { margin-bottom: 0; }
-        .panel ul, .panel ol { padding-right: 20px; margin-bottom: 14px; }
-        .panel li { color: #dcece5; font-size: 0.95rem; margin-bottom: 9px; }
-        .bi-caption { font-size: 0.82rem; color: var(--ink-secondary); display: block; margin-top: 3px; }
-
-        .math-block { background: var(--bg-inset); border-right: 3px solid var(--panel-accent, var(--trace-cos)); padding: 14px 16px; margin: 12px 0; border-radius: 7px; direction: ltr; text-align: center; overflow-x: auto; position: relative; }
-        .math-block.small { padding: 10px 14px; font-size: 0.9rem; }
-
-        .copy-tex {
-            position: absolute; top: 6px; left: 8px;
-            font-family: var(--font-mono); font-size: 0.68rem;
-            padding: 3px 8px; border-radius: 5px;
-            background: rgba(124,255,178,0.1); color: var(--trace-cos);
-            border: 1px solid rgba(124,255,178,0.3); cursor: pointer;
-            opacity: 0; transition: opacity .2s;
-        }
-        .math-block:hover .copy-tex { opacity: 1; }
-        .copy-tex:hover { background: rgba(124,255,178,0.2); }
-        .copy-tex.copied { background: var(--success); color: #000; }
-
-        .result-box { background: rgba(124, 255, 178, 0.06); border: 1px solid rgba(124, 255, 178, 0.28); border-radius: 8px; padding: 13px 16px; margin: 12px 0; font-size: 0.94rem; }
-        .result-box strong { color: var(--trace-cos); }
-
-        .question-box {
-            background: rgba(185, 140, 255, 0.06); border: 1px solid rgba(185, 140, 255, 0.25);
-            border-radius: 9px; padding: 14px 16px; margin-bottom: 10px;
-        }
-        .question-box .ex-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-practice); display: block; margin-bottom: 6px; }
-
-        .trigger { position: relative; border: 1px dashed rgba(185, 140, 255, 0.4); border-radius: 9px; cursor: pointer; overflow: hidden; margin-top: 10px; }
-        .trigger-hint { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; font-size: 0.86rem; color: var(--accent-practice); font-weight: 500; text-align: center; }
-        .trigger-hint svg { width: 16px; height: 16px; flex-shrink: 0; }
-        .trigger-body { display: none; padding: 4px 16px 18px; }
-        .trigger.open .trigger-hint { display: none; }
-        .trigger.open .trigger-body { display: block; }
-        .trigger.open { border-style: solid; cursor: default; }
-
-        .diagram-frame { background: var(--bg-inset); border: 1px solid var(--border-soft); border-radius: 8px; padding: 16px; display: flex; justify-content: center; margin: 14px 0; overflow-x: auto; }
-        .diagram-frame svg { max-width: 100%; height: auto; }
-
-        /* ---------------- جدول المقارنة ---------------- */
-        .cmp-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.88rem; }
-        .cmp-table th, .cmp-table td { border: 1px solid var(--border-soft); padding: 10px 12px; text-align: right; }
-        .cmp-table th { font-family: var(--font-mono); font-size: 0.78rem; color: var(--panel-accent, var(--trace-cos)); background: rgba(124,255,178,0.05); }
-        .cmp-table td { color: #dcece5; }
-        body.light .cmp-table td { color: #24382f; }
-        .cmp-table .mono { font-family: var(--font-mono); direction: ltr; display: inline-block; }
-
-        .mistake-list li { margin-bottom: 12px; }
-        .mistake-list .mk {
-            display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600;
-            padding: 2px 8px; border-radius: 5px; margin-left: 8px;
-            background: rgba(248,113,113,0.12); color: var(--danger); border: 1px solid rgba(248,113,113,0.3);
-        }
-
-        /* ---------------- مختبر المجال ---------------- */
-        .vf-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-bottom: 12px; }
-        .vf-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px; }
-        .vf-field label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); font-weight: 600; }
-        .vf-field select, .vf-field input {
-            font-family: var(--font-arabic); font-size: 0.86rem;
-            padding: 9px 11px; border-radius: 7px;
-            border: 1px solid var(--border-soft);
-            background: var(--bg-inset); color: var(--ink-primary);
-        }
-        .vf-field input { font-family: var(--font-mono); direction: ltr; }
-        .vf-field select:focus, .vf-field input:focus { border-color: var(--trace-cos); outline: none; }
-        .vf-custom { display: none; flex: 1 1 100%; gap: 10px; }
-        .vf-custom.show { display: flex; flex-wrap: wrap; }
-        .vf-modes { display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.82rem; color: var(--ink-secondary); margin: 4px 0 12px; }
-        .vf-modes label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-        .vf-modes input { accent-color: var(--trace-cos); cursor: pointer; }
-        .vf-stage { position: relative; border-radius: 9px; overflow: hidden; border: 1px solid var(--border-soft); background: var(--bg-inset); }
-        #vf-canvas { display: block; width: 100%; height: 340px; cursor: crosshair; }
-        .vf-readout {
-            position: absolute; top: 10px; right: 10px;
-            font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.7;
-            background: rgba(3,6,5,0.78); border: 1px solid var(--border-soft);
-            border-radius: 8px; padding: 8px 12px; direction: ltr; text-align: left;
-            color: var(--ink-primary); pointer-events: none; backdrop-filter: blur(4px);
-            min-width: 170px;
-        }
-        body.light .vf-readout { background: rgba(255,255,255,0.85); }
-        .vf-readout .rv { color: var(--accent-identity); font-weight: 600; }
-        .vf-readout .rg { color: var(--trace-cos); font-weight: 600; }
-        .vf-readout .rb { color: var(--accent-assess); font-weight: 600; }
-        .vf-legend { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); }
-        .vf-legend span { display: flex; align-items: center; gap: 6px; }
-        .vf-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-        .vf-note { font-size: 0.8rem; color: var(--ink-secondary); margin-top: 8px; text-align: center; }
-
-        /* ---------------- الحاسبة التفاعلية ---------------- */
-        .calc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
-        .calc-field { display: flex; flex-direction: column; gap: 4px; }
-        .calc-field label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-secondary); font-weight: 600; }
-        .calc-field input {
-            font-family: var(--font-mono); font-size: 0.9rem; direction: ltr; text-align: left;
-            padding: 9px 11px; border-radius: 7px;
-            border: 1px solid var(--border-soft);
-            background: var(--bg-inset); color: var(--ink-primary);
-            transition: border-color .2s;
-        }
-        .calc-field input:focus { border-color: var(--trace-cos); outline: none; }
-        .calc-field input.err { border-color: var(--danger); }
-        .point-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 4px; }
-        .point-row .pt-label { font-size: 0.82rem; color: var(--ink-secondary); font-weight: 600; }
-        .point-row .calc-field { flex: 0 0 90px; }
-
-        .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
-        .btn {
-            font-family: var(--font-arabic); font-size: 0.88rem; font-weight: 600;
-            padding: 10px 18px; border-radius: 8px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); transition: all .2s;
-        }
-        .btn:hover { border-color: var(--trace-cos); background: rgba(124,255,178,0.06); }
-        .btn.primary { background: rgba(124,255,178,0.1); border-color: var(--trace-cos); color: var(--trace-cos); }
-        .btn.primary:hover { background: rgba(124,255,178,0.2); }
-
-        .calc-output {
-            background: var(--bg-inset); border: 1px solid var(--border-soft);
-            border-radius: 9px; padding: 16px; margin-top: 12px;
-            font-family: var(--font-mono); font-size: 0.9rem;
-            min-height: 60px; direction: ltr; text-align: left;
-        }
-        .calc-output .step { color: var(--ink-secondary); margin-bottom: 8px; padding-left: 12px; border-left: 2px solid var(--border-soft); }
-        .calc-output .step .lbl { color: var(--trace-cos); font-weight: 600; display: inline-block; min-width: 60px; }
-        .calc-output .final { color: var(--accent-identity); font-weight: 700; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border-soft); }
-        .calc-output .error { color: var(--danger); }
-
-        /* ---------------- Quiz ---------------- */
-        .quiz-q {
-            background: rgba(124,196,255,0.04);
-            border: 1px solid rgba(124,196,255,0.2);
-            border-radius: 10px; padding: 16px 18px; margin-bottom: 14px;
-        }
-        .quiz-q .q-text { font-size: 0.95rem; margin-bottom: 12px; color: var(--ink-primary); }
-        .quiz-opts { display: flex; flex-direction: column; gap: 8px; }
-        .quiz-opt {
-            font-family: var(--font-arabic); font-size: 0.9rem;
-            padding: 10px 14px; border-radius: 7px; cursor: pointer;
-            border: 1px solid var(--border-soft); background: transparent;
-            color: var(--ink-primary); text-align: right;
-            transition: all .2s;
-        }
-        .quiz-opt:hover:not(:disabled) { border-color: var(--accent-assess); background: rgba(124,196,255,0.06); }
-        .quiz-opt.correct { background: rgba(74,222,128,0.15); border-color: var(--success); color: var(--success); }
-        .quiz-opt.wrong { background: rgba(248,113,113,0.15); border-color: var(--danger); color: var(--danger); }
-        .quiz-opt:disabled { cursor: default; }
-        .quiz-feedback { margin-top: 10px; padding: 10px 14px; border-radius: 7px; font-size: 0.88rem; display: none; }
-        .quiz-feedback.show { display: block; }
-        .quiz-feedback.ok { background: rgba(74,222,128,0.1); color: var(--success); border: 1px solid rgba(74,222,128,0.3); }
-        .quiz-feedback.no { background: rgba(248,113,113,0.1); color: var(--danger); border: 1px solid rgba(248,113,113,0.3); }
-
-        .quiz-score {
-            display: flex; align-items: center; justify-content: space-between;
-            background: rgba(255,209,102,0.06); border: 1px solid rgba(255,209,102,0.25);
-            border-radius: 9px; padding: 12px 16px; margin-top: 14px;
-            font-family: var(--font-mono); font-size: 0.9rem;
-        }
-        .quiz-score .val { color: var(--accent-identity); font-weight: 700; font-size: 1.1rem; }
-
-        /* ---------------- Flashcards ---------------- */
-        .flash-toolbar { display: flex; gap: 10px; margin-top: 4px; }
-        .flash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
-        .flash { perspective: 1000px; height: 150px; cursor: pointer; }
-        .flash-inner { position: relative; width: 100%; height: 100%; transition: transform .6s; transform-style: preserve-3d; }
-        .flash.flipped .flash-inner { transform: rotateY(180deg); }
-        .flash-face {
-            position: absolute; inset: 0;
-            backface-visibility: hidden;
-            border-radius: 10px; padding: 16px;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; font-size: 0.88rem;
-            border: 1px solid var(--border-soft);
-        }
-        .flash-front { background: #0b1210; color: var(--ink-primary); }
-        body.light .flash-front { background: #fff; }
-        .flash-front .hint { position: absolute; bottom: 8px; left: 12px; font-size: 0.68rem; color: var(--ink-secondary); font-family: var(--font-mono); }
-        .flash-back { background: linear-gradient(135deg, #0d1f18, #0b1210); color: var(--trace-cos); transform: rotateY(180deg); border-color: rgba(124,255,178,0.3); }
-
-        /* ---------------- القائمة الجانبية العائمة ---------------- */
-        #fab-toc {
-            position: fixed; bottom: 24px; left: 24px;
-            width: 48px; height: 48px; border-radius: 50%;
-            background: var(--bg-panel); border: 1px solid var(--border-soft);
-            color: var(--trace-cos); font-size: 1.3rem; cursor: pointer;
-            z-index: 90; display: flex; align-items: center; justify-content: center;
-            transition: all .2s; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        #fab-toc:hover { border-color: var(--trace-cos); transform: scale(1.08); }
-
-        #toc-drawer {
-            position: fixed; top: 0; bottom: 0; left: 0;
-            width: 280px; background: var(--bg-panel);
-            border-left: 1px solid var(--border-soft);
-            z-index: 95; padding: 20px 16px;
-            transform: translateX(-100%); transition: transform .3s ease;
-            overflow-y: auto;
-        }
-        #toc-drawer.open { transform: translateX(0); }
-        #toc-drawer h3 { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-secondary); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
-        #toc-drawer a { display: block; padding: 8px 12px; color: var(--ink-primary); text-decoration: none; font-size: 0.86rem; border-radius: 6px; margin-bottom: 4px; transition: all .15s; }
-        #toc-drawer a:hover { background: rgba(124,255,178,0.06); color: var(--trace-cos); }
-        #toc-drawer a.active { background: rgba(124,255,178,0.12); color: var(--trace-cos); border-right: 3px solid var(--trace-cos); }
-
-        #toc-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 94; opacity: 0; pointer-events: none; transition: opacity .3s; }
-        #toc-backdrop.open { opacity: 1; pointer-events: auto; }
-
-        footer.note { text-align: center; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-secondary); padding-top: 8px; }
-
-        /* ---------------- طباعة ---------------- */
-        @media print {
-            .bg-grid, #fab-toc, #toc-drawer, #toc-backdrop, #read-progress,
-            .pill-row, .channel-select, .bezel-actions, .btn-row, .trigger-hint,
-            .flash-toolbar, .vf-controls, .vf-modes { display: none !important; }
-            body { background: #fff; color: #000; padding: 0; }
-            .panel, .hero { border-color: #bbb; background: #fff; break-inside: avoid; opacity: 1 !important; transform: none !important; }
-            .panel p, .panel li, .panel h2, .cmp-table td { color: #111 !important; }
-            .trigger .trigger-body { display: block !important; }
-            .trigger { border-style: solid; }
-            .math-block { background: #f6f6f6; border-color: #999; }
-            .vf-stage { display: none; }
-            .quiz-opt { border-color: #999; color: #111 !important; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .bezel-id .lamp { animation: none; }
-            .reveal { opacity: 1; transform: none; transition: none; }
-        }
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 1.15rem; }
-            .panel { padding: 18px 15px; }
-            .panel h2 { font-size: 1rem; }
-            .channel-select { min-width: 0; width: 100%; }
-            .bezel { flex-direction: column; align-items: stretch; }
-            .calc-grid { grid-template-columns: 1fr; }
-            #fab-toc { bottom: 16px; left: 16px; }
-            #vf-canvas { height: 260px; }
-        }
-    </style>
-<base target="_blank">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 4 - Divergence &amp; Curl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* خانات المختبر والحاسبة */
+  .field input[type=text], .field input[type=number] { font: 600 .9rem var(--f-mono); height: 38px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); direction: ltr; text-align: center; width: 100%; }
+  .field input.err { border-color: var(--bad); }
+  .stage canvas.flat { cursor: crosshair; }
+  .lab-controls[hidden] { display: none; }
+  .calc-out { margin-top: 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); padding: 12px 14px; font: .82rem/1.9 var(--f-mono); direction: ltr; text-align: left; overflow-x: auto; }
+  .calc-out .k { color: var(--ink-3); }
+  .calc-out .fin { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line-2); font-weight: 600; }
+  .calc-out .fin .d { color: var(--cy); } .calc-out .fin .c { color: var(--cz); }
+  .calc-out .err { color: var(--bad); }
+  .vf-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: .82rem; color: var(--ink-2); }
+  .vf-key i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-inline-end: 6px; vertical-align: middle; }
+</style>
 <link rel="stylesheet" href="../fonts.css">
 </head>
 <body>
+<main class="wrap">
 
-    <div class="bg-grid"></div>
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 4 · Vector Calculus</span><span lang="en">LECTURE 4 · VECTOR CALCULUS</span></p>
+  <h1><span><span lang="ar">التباعد والدوران للمجال المتجه</span><span lang="en">Divergence and Curl of a Vector Field</span></span> <span class="h1-math ltr">$\nabla\cdot\mathbf{V},\ \nabla\times\mathbf{V}$</span></h1>
+  <p class="lead">
+    <span lang="ar">الـ Divergence $(\nabla\cdot\mathbf{V})$ يقيس قد إيش المجال "ينفتح" ويطلع من نقطة (مصدر) أو "ينسحب" لها (مصب)، والـ Curl $(\nabla\times\mathbf{V})$ يقيس قد إيش المجال "يدوّر" حولها. الأول رقم، والثاني متجه.</span>
+    <span lang="en">Divergence $(\nabla\cdot\mathbf{V})$ measures how much the field spreads out of a point (a source) or gathers into it (a sink), and curl $(\nabla\times\mathbf{V})$ measures how much the field swirls around it. The first is a number, the second a vector.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">∇f</span><span class="y">∇·V</span><span class="z">∇×V</span>
+    <small><span lang="ar">← الأزرق = الانحدار (من المحاضرة 3)، الأخضر = التباعد (قياسي)، البرتقالي = الدوران (متجه)</span><span lang="en">← blue = gradient (from Lecture 3), green = divergence (a scalar), orange = curl (a vector)</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">$\nabla\cdot\mathbf{V} = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z}$: كل مركبة تنشتق بمتغيرها، والنتيجة <b>رقم</b>.</span><span lang="en">$\nabla\cdot\mathbf{V} = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z}$: each component by its own variable; the result is a <b>scalar</b>.</span></li>
+      <li><span lang="ar">$\nabla\times\mathbf{V}$ = محدد $3\times3$ (صف $\mathbf{i},\mathbf{j},\mathbf{k}$، صف المشتقات، صف المركبات)، والنتيجة <b>متجه</b>. انتبه لسالب $\mathbf{j}$.</span><span lang="en">$\nabla\times\mathbf{V}$ is a $3\times3$ determinant ($\mathbf{i},\mathbf{j},\mathbf{k}$ row, derivatives row, components row); the result is a <b>vector</b>. Watch the minus on $\mathbf{j}$.</span></li>
+      <li><span lang="ar">دايماً: $\nabla\times(\nabla f) = \mathbf{0}$ و $\nabla\cdot(\nabla\times\mathbf{V}) = 0$. و $\nabla\cdot\mathbf{V} = 0$ = Solenoidal، و $\nabla\times\mathbf{V} = \mathbf{0}$ = Irrotational.</span><span lang="en">Always: $\nabla\times(\nabla f) = \mathbf{0}$ and $\nabla\cdot(\nabla\times\mathbf{V}) = 0$. $\nabla\cdot\mathbf{V} = 0$ means solenoidal, $\nabla\times\mathbf{V} = \mathbf{0}$ means irrotational.</span></li>
+    </ol>
+  </div>
+</section>
 
-    <div id="read-progress"><div class="bar"></div></div>
+<!-- ================= 01 الخريطة ================= -->
+<section class="card" id="map" data-num="01" data-nav="الخريطة|Big picture">
+  <h2><span lang="ar">الخلاصة الذهنية: $\nabla$ و $\nabla\cdot$ و $\nabla\times$</span><span lang="en">The big picture: $\nabla$, $\nabla\cdot$ and $\nabla\times$</span></h2>
+  <p class="sub"><span lang="ar">نفس الـ $\nabla$، ثلاث طرق نستخدمه فيها</span><span lang="en">The same $\nabla$, used three ways</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">المؤثر</span><span lang="en">Operator</span></th><th><span lang="ar">الرمز</span><span lang="en">Symbol</span></th><th><span lang="ar">يدخل</span><span lang="en">Input</span></th><th><span lang="ar">يطلع</span><span lang="en">Output</span></th><th><span lang="ar">المعنى</span><span lang="en">Meaning</span></th></tr></thead>
+    <tbody>
+      <tr><td><b>Gradient</b></td><td class="vx">$\nabla f$</td><td><span lang="ar">قياسي</span><span lang="en">scalar</span></td><td><span lang="ar">متجه</span><span lang="en">vector</span></td><td><span lang="ar">اتجاه وأقصى معدل تغيّر للدالة</span><span lang="en">Direction and rate of fastest increase</span></td></tr>
+      <tr><td><b>Divergence</b></td><td class="vy">$\nabla\cdot\mathbf{V}$</td><td><span lang="ar">متجه</span><span lang="en">vector</span></td><td><span lang="ar">قياسي</span><span lang="en">scalar</span></td><td><span lang="ar">تمدد (source) أو انكماش (sink) عند النقطة</span><span lang="en">Spreading out (source) or gathering in (sink)</span></td></tr>
+      <tr><td><b>Curl</b></td><td class="vz">$\nabla\times\mathbf{V}$</td><td><span lang="ar">متجه</span><span lang="en">vector</span></td><td><span lang="ar">متجه</span><span lang="en">vector</span></td><td><span lang="ar">محور ومعدل دوران المجال حول النقطة</span><span lang="en">Axis and rate of rotation around the point</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout key"><strong>🔑 <span lang="ar">قاعدة الإبهام:</span><span lang="en">Rule of thumb:</span></strong> <span lang="ar">$\nabla$ لحاله <b>يرفع</b> القياسي لمتجه، و $\nabla\cdot$ <b>ينزّل</b> المتجه لقياسي، و $\nabla\times$ <b>يخليه</b> متجه بس يكشف دورانه.</span><span lang="en">$\nabla$ alone <b>lifts</b> a scalar to a vector, $\nabla\cdot$ <b>drops</b> a vector to a scalar, and $\nabla\times$ <b>keeps</b> it a vector while revealing its rotation.</span></div>
+</section>
 
-    <button id="fab-toc" aria-label="فتح الفهرس" onclick="toggleToc()">☰</button>
-    <div id="toc-backdrop" onclick="toggleToc()"></div>
-    <aside id="toc-drawer">
-        <h3>فهرس المحاضرة</h3>
-        <a href="#quick-map">✦ الخلاصة الذهنية</a>
-        <a href="#field-lab">🧪 مختبر المجال التفاعلي</a>
-        <a href="#div-def">01 · تعريف Divergence</a>
-        <a href="#div-apps">02 · تطبيقات Divergence</a>
-        <a href="#calc-tool">🧮 الحاسبة التفاعلية</a>
-        <a href="#curl-def">04 · تعريف Curl</a>
-        <a href="#identities">05 · المتطابقات</a>
-        <a href="#irrotational">06 · المجال غير الدوراني</a>
-        <a href="#ex-curl1">07 · مثال curl(∇f)=0</a>
-        <a href="#ex-curl2">08 · مثال curl(V) عند نقطة</a>
-        <a href="#verification">09 · إثبات div(curl)=0</a>
-        <a href="#classwork">10 · تمرين صفي</a>
-        <a href="#mistakes">⚠️ الأخطاء الشائعة</a>
-        <a href="#quiz">📝 اختبر نفسك</a>
-        <a href="#flashcards">🃏 بطاقات المراجعة</a>
-    </aside>
+<!-- ================= 🧪 المختبر ================= -->
+<section class="card" id="lab" data-num="🧪" data-nav="🧪 المختبر|🧪 Lab">
+  <h2><span lang="ar">مختبر المجال: شوف div و curl بعينك</span><span lang="en">Field lab: see div and curl with your own eyes</span></h2>
+  <p class="sub"><span lang="ar">جسيمات تمشي مع المجال. مرّر الماوس (أو إصبعك) فوق الشاشة عشان تقرأ $\nabla\cdot\mathbf{F}$ و $\nabla\times\mathbf{F}$ عند أي نقطة</span><span lang="en">Particles drift with the field. Move the mouse (or your finger) over it to read $\nabla\cdot\mathbf{F}$ and $\nabla\times\mathbf{F}$ at any point</span></p>
+  <div class="lab-controls">
+    <div class="field" style="flex:1 1 280px"><label><span lang="ar">اختر المجال</span><span lang="en">Choose a field</span></label><select id="vf-preset"></select></div>
+  </div>
+  <div class="lab-controls" id="vf-custom" hidden>
+    <div class="field" style="flex:1 1 140px"><label>P(x, y)</label><input id="vf-p" type="text" value="x - y"></div>
+    <div class="field" style="flex:1 1 140px"><label>Q(x, y)</label><input id="vf-q" type="text" value="x + y"></div>
+    <button class="btn primary" id="vf-apply"><span lang="ar">ارسم</span><span lang="en">Draw</span></button>
+  </div>
+  <div class="seg" id="vf-mode"><button data-k="curl" class="on"><span lang="ar">لوّن حسب الدوران <span class="ltr">∇×F</span></span><span lang="en">Colour by curl ∇×F</span></button><button data-k="div"><span lang="ar">حسب التباعد <span class="ltr">∇·F</span></span><span lang="en">By divergence ∇·F</span></button><button data-k="speed"><span lang="ar">حسب السرعة <span class="ltr">|F|</span></span><span lang="en">By speed |F|</span></button></div>
+  <div class="stage"><canvas id="vf-canvas" class="flat" aria-label="vector field particles"></canvas><div class="readout" id="vf-readout"></div></div>
+  <div class="vf-key" id="vf-key"></div>
+  <div class="callout good"><strong>💡 <span lang="ar">جرّب:</span><span lang="en">Try:</span></strong> <span lang="ar">"دوران" تشوف الجسيمات تلف و $\nabla\cdot\mathbf{F} = 0$ (ما فيه تمدد). "مصدر" تشوف $\nabla\cdot\mathbf{F} = 2$ في كل مكان. وبعدين "دوامة مثالية": تلف حول المركز بس $\nabla\times\mathbf{F} = 0$!</span><span lang="en">"Rotation": particles turn and $\nabla\cdot\mathbf{F} = 0$ (no spreading). "Source": $\nabla\cdot\mathbf{F} = 2$ everywhere. Then "Ideal vortex": it circles the centre, yet $\nabla\times\mathbf{F} = 0$!</span></div>
+</section>
 
-    <div class="main-wrapper">
+<!-- ================= 02 Divergence ================= -->
+<section class="card" id="div" data-num="02" data-nav="Divergence|Divergence">
+  <h2><span lang="ar">التباعد <span class="ltr">(Divergence)</span></span><span lang="en">Divergence of a vector field</span></h2>
+  <p class="sub"><span lang="ar">ضرب قياسي بين $\nabla$ والمجال</span><span lang="en">A dot product between $\nabla$ and the field</span></p>
+  <p><span lang="ar">إذا المجال المتجه القابل للاشتقاق $\mathbf{V} = [v_1, v_2, v_3]$، فالـ Divergence يُكتب $\text{div}(\mathbf{V})$ أو $\nabla\cdot\mathbf{V}$:</span><span lang="en">If the differentiable vector field is $\mathbf{V} = [v_1, v_2, v_3]$, its divergence is written $\text{div}(\mathbf{V})$ or $\nabla\cdot\mathbf{V}$:</span></p>
+  <div class="m">\[\nabla\cdot\mathbf{V} = \left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)\cdot[v_1, v_2, v_3]\]</div>
+  <div class="m big">\[\Y{\text{div}(\mathbf{V})} = \nabla\cdot\mathbf{V} = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z}\]</div>
+  <div class="callout key"><strong>🔑 <span lang="ar">ملاحظة رئيسية:</span><span lang="en">Key point:</span></strong> <span lang="ar">ناتج الـ Divergence دايماً <b>كمية قياسية (Scalar)</b>.</span><span lang="en">The divergence is always a <b>scalar</b>.</span></div>
+  <h3><span lang="ar">التطبيقات الفيزيائية</span><span lang="en">Physical meaning</span></h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">الموائع</span><span lang="en">Fluids</span></div><div class="t-math">$\nabla\cdot\mathbf{V} = 0$</div><div class="t-desc"><span lang="ar">المائع غير قابل للانضغاط <span class="ltr">(Incompressible)</span> والكثافة ثابتة</span><span lang="en">The fluid is incompressible and the density is constant</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">الكهرومغناطيسية</span><span lang="en">Electromagnetism</span></div><div class="t-math">$\nabla\cdot\mathbf{V} = 0$</div><div class="t-desc"><span lang="ar">المجال أنبوبي / لا تباعدي <span class="ltr">(Solenoidal)</span></span><span lang="en">The field is solenoidal</span></div></div>
+  </div>
+  <h3><span lang="ar">تباعد الانحدار <span class="ltr">(Laplacian)</span></span><span lang="en">Divergence of a gradient (the Laplacian)</span></h3>
+  <p><span lang="ar">لو $f(x,y,z)$ دالة قياسية قابلة للاشتقاق، و $\nabla f = [f_x, f_y, f_z]$، فـ:</span><span lang="en">If $f(x,y,z)$ is a differentiable scalar function with $\nabla f = [f_x, f_y, f_z]$, then:</span></p>
+  <div class="m">\[\text{div}(\X{\nabla f}) = \nabla\cdot\nabla f = \nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2}\]</div>
+</section>
 
-        <div class="bezel">
-            <div class="bezel-id">
-                <span class="lamp"></span>
-                <span>ملخصات المحاضرات — <strong>Divergence &amp; Curl</strong></span>
-            </div>
-            <div class="bezel-actions">
-                <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" aria-label="تبديل المظهر" title="تبديل المظهر">🌙</button>
-                <select id="lecture-select" class="channel-select" onchange="if (this.value) window.location.href = this.value;">
-                    <option value="lecture1.html">ملخص المحاضرة 1</option>
-                    <option value="lecture2.html">ملخص المحاضرة 2</option>
-                    <option value="lecture3.html">ملخص المحاضرة 3</option>
-                    <option value="lecture4.html" selected>ملخص المحاضرة 4 - Divergence &amp; Curl</option>
-                </select>
-            </div>
-        </div>
+<!-- ================= 03 Curl ================= -->
+<section class="card" id="curl" data-num="03" data-nav="Curl|Curl">
+  <h2><span lang="ar">الدوران <span class="ltr">(Curl)</span></span><span lang="en">Curl of a vector field</span></h2>
+  <p class="sub"><span lang="ar">ضرب اتجاهي بين $\nabla$ والمجال، بالمحدد</span><span lang="en">A cross product between $\nabla$ and the field, via a determinant</span></p>
+  <p><span lang="ar">إذا $\mathbf{V} = [v_1, v_2, v_3]$ قابلة للاشتقاق، الـ Curl يُكتب $\text{curl}(\mathbf{V})$ أو $\nabla\times\mathbf{V}$:</span><span lang="en">If $\mathbf{V} = [v_1, v_2, v_3]$ is differentiable, its curl is written $\text{curl}(\mathbf{V})$ or $\nabla\times\mathbf{V}$:</span></p>
+  <div class="m big">\[\Z{\text{curl}(\mathbf{V})} = \nabla\times\mathbf{V} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ v_1 & v_2 & v_3 \end{vmatrix}\]</div>
+  <h3><span lang="ar">فك المحدد</span><span lang="en">Expanding the determinant</span></h3>
+  <div class="m">\[\nabla\times\mathbf{V} = \left(\frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z}\right)\mathbf{i} \;\Z{-}\; \left(\frac{\partial v_3}{\partial x} - \frac{\partial v_1}{\partial z}\right)\mathbf{j} + \left(\frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y}\right)\mathbf{k}\]</div>
+  <ol class="recipe">
+    <li><b><span lang="ar">مركبة $\mathbf{i}$: غطِّ عمود $\mathbf{i}$</span><span lang="en">The $\mathbf{i}$ part: cover the $\mathbf{i}$ column</span></b><span class="why">$\partial_y v_3 - \partial_z v_2$</span></li>
+    <li><b><span lang="ar">مركبة $\mathbf{j}$: غطِّ عمود $\mathbf{j}$ وحط سالب</span><span lang="en">The $\mathbf{j}$ part: cover the $\mathbf{j}$ column and add a minus</span></b><span class="why">$-(\partial_x v_3 - \partial_z v_1)$</span></li>
+    <li><b><span lang="ar">مركبة $\mathbf{k}$: غطِّ عمود $\mathbf{k}$</span><span lang="en">The $\mathbf{k}$ part: cover the $\mathbf{k}$ column</span></b><span class="why">$\partial_x v_2 - \partial_y v_1$</span></li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ <span lang="ar">جوهري:</span><span lang="en">Essential:</span></strong> <span lang="ar">عكس الـ Divergence، ناتج الـ Curl دايماً <b>متجه</b> يحدد محور الدوران ومعدله.</span><span lang="en">Unlike divergence, the curl is always a <b>vector</b>, giving the axis and rate of rotation.</span></div>
+</section>
 
-        <div class="pill-row">
-            <a href="#quick-map">الخلاصة الذهنية</a>
-            <a href="#field-lab">🧪 مختبر المجال</a>
-            <a href="#calc-tool">حاسبة تفاعلية</a>
-            <a href="#curl-def">تعريف Curl</a>
-            <a href="#identities">المتطابقات</a>
-            <a href="#irrotational">غير دوراني</a>
-            <a href="#quiz">اختبر نفسك</a>
-            <a href="#flashcards">بطاقات</a>
-        </div>
+<!-- ================= 04 المتطابقات ================= -->
+<section class="card" id="identities" data-num="04" data-nav="المتطابقات|Identities">
+  <h2><span lang="ar">المتطابقات ونوعين من المجالات</span><span lang="en">The identities and two kinds of field</span></h2>
+  <p class="sub"><span lang="ar">صفرين دايماً، احفظهم</span><span lang="en">Two zeros that always hold, memorize them</span></p>
+  <div class="grid-2">
+    <div class="tile hl"><div class="t-top">Curl of Gradient</div><div class="t-math">$\nabla\times(\X{\nabla f}) = \mathbf{0}$</div><div class="t-desc"><span lang="ar">لأي دالة قياسية $f$</span><span lang="en">For any scalar function $f$</span></div></div>
+    <div class="tile hl"><div class="t-top">Divergence of Curl</div><div class="t-math">$\nabla\cdot(\Z{\nabla\times\mathbf{V}}) = 0$</div><div class="t-desc"><span lang="ar">لأي مجال متجه $\mathbf{V}$</span><span lang="en">For any vector field $\mathbf{V}$</span></div></div>
+  </div>
+  <p><span lang="ar">السبب: لما تفك، كل حد يطلع مرتين بإشارتين عكس بعض، والمشتقات المختلطة متساوية (نظرية كليرو: $f_{xy} = f_{yx}$)، فيلغون بعض.</span><span lang="en">The reason: when you expand, every term appears twice with opposite signs, and mixed partials are equal (Clairaut: $f_{xy} = f_{yx}$), so they cancel.</span></p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">أنبوبي · Solenoidal</span><span lang="en">Solenoidal</span></div><div class="t-math">$\nabla\cdot\mathbf{V} = 0$</div><div class="t-desc"><span lang="ar">ما فيه مصادر ولا مصبات</span><span lang="en">No sources or sinks</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">غير دوراني · Irrotational</span><span lang="en">Irrotational</span></div><div class="t-math">$\nabla\times\mathbf{V} = \mathbf{0}$</div><div class="t-desc"><span lang="ar">عند جميع النقاط</span><span lang="en">At every point</span></div></div>
+  </div>
+  <h3><span lang="ar">التوضيح الهندسي لخطوط التدفق</span><span lang="en">Picturing the flow lines</span></h3>
+  <figure class="fig">
+    <svg viewBox="0 0 600 190" role="img" aria-label="uniform flow, irrotational vortex, rotational flow">
+      <g>
+        <path class="sk" style="--c:var(--cx)" d="M20 50H170M20 85H170M20 120H170"/>
+        <path class="fi" style="--c:var(--cx)" d="M178 50l-10-5v10zM178 85l-10-5v10zM178 120l-10-5v10z"/>
+        <rect x="88" y="78" width="14" height="14" rx="2" class="sk" style="--c:var(--ink)"/>
+        <text class="lbl" x="100" y="160" text-anchor="middle">curl = 0</text>
+      </g>
+      <g>
+        <circle cx="300" cy="85" r="28" class="sk" style="--c:var(--cy)"/><circle cx="300" cy="85" r="55" class="sk" style="--c:var(--cy)"/>
+        <path class="fi" style="--c:var(--cy)" d="M292 30l10-5v10zM292 57l10-5v10z"/>
+        <rect x="348" y="78" width="14" height="14" rx="2" class="sk" style="--c:var(--ink)"/>
+        <text class="lbl" x="300" y="160" text-anchor="middle">curl = 0</text>
+      </g>
+      <g>
+        <path class="sk" style="--c:var(--cz)" d="M430 120 C460 40, 520 40, 540 85 S 500 140, 480 100 S 500 70, 515 85"/>
+        <path class="fi" style="--c:var(--cz)" d="M517 88l-2-11 9 4z"/>
+        <rect x="505" y="45" width="14" height="14" rx="2" class="sk" style="--c:var(--ink)" transform="rotate(30 512 52)"/>
+        <text class="lbl" x="500" y="160" text-anchor="middle">curl ≠ 0</text>
+      </g>
+    </svg>
+    <figcaption><span lang="ar">المربع الأسود = جسيم صغير. يسار: تدفق منتظم. وسط: دوامة مثالية، الجسيم يلف حول المركز بس ما يلف حول نفسه. يمين: تدفق دوراني، الجسيم يلف حول محوره</span><span lang="en">The black square is a tiny particle. Left: uniform flow. Middle: an ideal vortex; the particle circles the centre but doesn't spin on itself. Right: rotational flow; the particle spins about its own axis</span></figcaption>
+  </figure>
+</section>
 
-        <!-- ============ hero ============ -->
-        <div class="hero reveal">
-            <h1>Divergence &amp; Curl للمجال الاتجاهي</h1>
-            <p class="sub">الـ Divergence $(\nabla \cdot \mathbf{V})$ يقيس مدى "تمدد" المجال من نقطة، والـ Curl $(\nabla \times \mathbf{V})$ يقيس مدى "دورانه" حولها</p>
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">Divergence عند نقطة</span><span lang="en">Divergence at a point</span></h2></div>
+  <div class="tags"><span class="tag ltr">div(V)</span><span class="tag ltr">(1, 1, 1)</span></div>
+  <div class="m big">\[\mathbf{V} = 3xz\,\mathbf{i} + 2xy\,\mathbf{j} - yz^2\,\mathbf{k} \quad \text{at } (1, 1, 1)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">اكتب المركبات</span><span lang="en">Write the components</span></h4>
+      <div class="m">\[\mathbf{V} = [\,3xz,\ 2xy,\ -yz^2\,]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">كل مركبة بمتغيرها</span><span lang="en">Each component by its own variable</span></h4>
+      <div class="m">\[\frac{\partial v_1}{\partial \X{x}} = 3z, \qquad \frac{\partial v_2}{\partial \Y{y}} = 2x, \qquad \frac{\partial v_3}{\partial \Z{z}} = -2yz\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اجمع ثم عوّض</span><span lang="en">Add, then plug in</span></h4>
+      <div class="m">\[\nabla\cdot\mathbf{V} = 3z + 2x - 2yz \;\Rightarrow\; 3 + 2 - 2\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\nabla\cdot\mathbf{V}\big|_{(1,1,1)} = 3$</div>
+      <p class="sanity"><span lang="ar">النتيجة رقم مو متجه ✓ وموجب يعني النقطة "مصدر" صغير. جرّبها في الحاسبة تحت ✓</span><span lang="en">The result is a number, not a vector ✓ and positive means the point is a small source. Try it in the calculator below ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-            <div class="hero-chips">
-                <span class="chip g">∇·V → قياسي</span>
-                <span class="chip b">∇×V → متجه</span>
-                <span class="chip y">∇·(∇×V) ≡ 0</span>
-                <span class="chip y">∇×(∇f) ≡ 0</span>
-            </div>
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 2</span><span lang="en">Example 2</span></span><h2><span lang="ar">إثبات $\text{curl}(\nabla f) = \mathbf{0}$</span><span lang="en">Showing $\text{curl}(\nabla f) = \mathbf{0}$</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">متطابقة</span><span lang="en">identity</span></span></div>
+  <div class="m big">\[f(x,y,z) = 2x^2 + y\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">الانحدار</span><span lang="en">The gradient</span></h4>
+      <div class="m">\[\X{\nabla f} = [4x,\ 1,\ 0]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المحدد</span><span lang="en">The determinant</span></h4>
+      <div class="m">\[\text{curl}(\nabla f) = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 4x & 1 & 0 \end{vmatrix}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">فك لكل مركبة</span><span lang="en">Expand each component</span></h4>
+      <div class="m">\[\mathbf{i}: \partial_y(0) - \partial_z(1) = 0, \qquad \mathbf{j}: -\big(\partial_x(0) - \partial_z(4x)\big) = 0, \qquad \mathbf{k}: \partial_x(1) - \partial_y(4x) = 0\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\text{curl}(\nabla f) = [0, 0, 0]$</div>
+      <p class="sanity"><span lang="ar">مثل ما تقول المتطابقة ✓</span><span lang="en">Just as the identity says ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-            <div class="scope-screen">
-                <svg id="hero-scope" viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arr-div" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                            <path d="M0 0L10 5 0 10z" fill="#7cffb2"/>
-                        </marker>
-                        <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="2.5" result="blur"/>
-                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                        </filter>
-                        <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur stdDeviation="3" result="blur"/>
-                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                        </filter>
-                    </defs>
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 3</span><span lang="en">Example 3</span></span><h2><span lang="ar">Curl عند نقطة</span><span lang="en">Curl at a point</span></h2></div>
+  <div class="tags"><span class="tag ltr">curl(V)</span><span class="tag ltr">(1, 1, 1)</span></div>
+  <div class="m big">\[\mathbf{V} = yz\,\mathbf{i} + 3zx\,\mathbf{j} + z\,\mathbf{k} \quad \text{at } (1, 1, 1)\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <div class="map"><span class="x">v₁ = yz</span><span class="y">v₂ = 3zx</span><span class="z">v₃ = z</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مركبة $\mathbf{i}$</span><span lang="en">The $\mathbf{i}$ component</span></h4>
+      <div class="m">\[\frac{\partial}{\partial y}(z) - \frac{\partial}{\partial z}(3zx) = 0 - 3x = -3x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مركبة $\mathbf{j}$</span><span lang="en">The $\mathbf{j}$ component</span> <span class="const"><span lang="ar">لا تنسى السالب</span><span lang="en">mind the minus</span></span></h4>
+      <div class="m">\[-\left(\frac{\partial}{\partial x}(z) - \frac{\partial}{\partial z}(yz)\right) = -(0 - y) = y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مركبة $\mathbf{k}$</span><span lang="en">The $\mathbf{k}$ component</span></h4>
+      <div class="m">\[\frac{\partial}{\partial x}(3zx) - \frac{\partial}{\partial y}(yz) = 3z - z = 2z\]</div>
+      <div class="m">\[\text{curl}(\mathbf{V}) = [-3x,\ y,\ 2z]\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\nabla\times\mathbf{V}\big|_{(1,1,1)} = [-3, 1, 2]$</div>
+      <p class="sanity"><span lang="ar">فحص بالمتطابقة: $\nabla\cdot[-3x, y, 2z] = -3 + 1 + 2 = 0$ ✓</span><span lang="en">Identity check: $\nabla\cdot[-3x, y, 2z] = -3 + 1 + 2 = 0$ ✓</span></p>
+    </li>
+  </ol>
+</section>
 
-                    <line x1="350" y1="25" x2="350" y2="165" stroke="rgba(255,255,255,0.12)" stroke-dasharray="3 4"/>
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 4</span><span lang="en">Example 4</span></span><h2><span lang="ar">تحقق: $\text{div}(\text{curl}\,\mathbf{V}) = 0$</span><span lang="en">Verify: $\text{div}(\text{curl}\,\mathbf{V}) = 0$</span></h2></div>
+  <div class="tags"><span class="tag ltr">Verification</span></div>
+  <div class="m big">\[\mathbf{V} = x^2y\,\mathbf{i} + z\,\mathbf{j} - (x + y - z)\,\mathbf{k} = [\,x^2y,\ z,\ -x - y + z\,]\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">احسب curl(V)</span><span lang="en">Compute curl(V)</span></h4>
+      <div class="m">\[\mathbf{i}: \frac{\partial}{\partial y}(-x-y+z) - \frac{\partial}{\partial z}(z) = -1 - 1 = -2\]</div>
+      <div class="m">\[\mathbf{j}: -\left(\frac{\partial}{\partial x}(-x-y+z) - \frac{\partial}{\partial z}(x^2y)\right) = -(-1 - 0) = 1\]</div>
+      <div class="m">\[\mathbf{k}: \frac{\partial}{\partial x}(z) - \frac{\partial}{\partial y}(x^2y) = 0 - x^2 = -x^2\]</div>
+      <div class="m">\[\Z{\text{curl}(\mathbf{V})} = [-2,\ 1,\ -x^2]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">Divergence للناتج</span><span lang="en">Divergence of the result</span></h4>
+      <div class="m">\[\text{div}(\text{curl}\,\mathbf{V}) = \frac{\partial}{\partial x}(-2) + \frac{\partial}{\partial y}(1) + \frac{\partial}{\partial z}(-x^2)\]</div>
+      <p class="why"><span lang="ar">$-x^2$ ما فيها $z$، فمشتقتها بالنسبة لـ $z$ صفر.</span><span lang="en">$-x^2$ has no $z$, so its $z$-derivative is zero.</span></p>
+    </li>
+    <li class="step final">
+      <div class="result">$\text{div}(\text{curl}\,\mathbf{V}) = 0 + 0 + 0 = 0$</div>
+    </li>
+  </ol>
+</section>
 
-                    <g id="div-group">
-                        <circle cx="175" cy="95" r="3" fill="#7cffb2" filter="url(#glow-green)"/>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="217" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="196" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="154" y2="58" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="133" y2="95" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="154" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                        <g class="div-arrow"><line x1="175" y1="95" x2="196" y2="132" stroke="#7cffb2" stroke-width="2.2" marker-end="url(#arr-div)"/></g>
-                    </g>
+<!-- ================= مثال 5 ================= -->
+<section class="card" id="ex5" data-nav="مثال 5|Ex 5">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 5</span><span lang="en">Example 5</span></span><h2><span lang="ar">تمرين صفي: div و curl لنفس المجال</span><span lang="en">Classwork: div and curl of the same field</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">تمرين صفي</span><span lang="en">classwork</span></span><span class="tag ltr">(1, π, 1)</span></div>
+  <div class="m big">\[\mathbf{V} = xy^2\,\mathbf{i} + \cos(xy)\,\mathbf{j} - yz\,\mathbf{k} \quad \text{at } (1, \pi, 1)\]</div>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">أولاً: Divergence</span><span lang="en">First: divergence</span></h4>
+      <div class="m">\[\text{div}(\mathbf{V}) = \frac{\partial}{\partial x}(xy^2) + \frac{\partial}{\partial y}\big(\cos(xy)\big) + \frac{\partial}{\partial z}(-yz) = y^2 - x\sin(xy) - y\]</div>
+      <p class="why">⚠️ <span lang="ar">مشتقة $\cos(xy)$ بالنسبة لـ $y$ = $-x\sin(xy)$ (قاعدة السلسلة).</span><span lang="en">The $y$-derivative of $\cos(xy)$ is $-x\sin(xy)$ (chain rule).</span></p>
+      <div class="m">\[\Y{\text{div}}\big|_{(1,\pi,1)} = \pi^2 - (1)\sin\pi - \pi = \pi^2 - \pi\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">ثانياً: Curl</span><span lang="en">Second: curl</span></h4>
+      <div class="m">\[\mathbf{i}: \frac{\partial}{\partial y}(-yz) - \frac{\partial}{\partial z}\big(\cos(xy)\big) = -z - 0 = -z\]</div>
+      <div class="m">\[\mathbf{j}: -\left(\frac{\partial}{\partial x}(-yz) - \frac{\partial}{\partial z}(xy^2)\right) = -(0 - 0) = 0\]</div>
+      <div class="m">\[\mathbf{k}: \frac{\partial}{\partial x}\big(\cos(xy)\big) - \frac{\partial}{\partial y}(xy^2) = -y\sin(xy) - 2xy\]</div>
+      <div class="m">\[\Z{\text{curl}(\mathbf{V})} = [-z,\ 0,\ -y\sin(xy) - 2xy] \;\Rightarrow\; [-1,\ 0,\ -\pi\sin\pi - 2\pi]\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\text{div}(\mathbf{V}) = \pi^2 - \pi, \qquad \text{curl}(\mathbf{V}) = [-1,\ 0,\ -2\pi]$</div>
+      <p class="sanity"><span lang="ar">الأول رقم والثاني متجه ✓ و $\sin\pi = 0$ شال كل حدود الـ sin.</span><span lang="en">The first is a number and the second a vector ✓ and $\sin\pi = 0$ wiped out every sine term.</span></p>
+    </li>
+  </ol>
+</section>
 
-                    <g id="curl-group">
-                        <circle id="curlRing" cx="525" cy="95" r="42" fill="none"
-                                stroke="#7cc4ff" stroke-width="1.6" stroke-dasharray="4 4"
-                                style="transform-origin: 525px 95px;"/>
-                        <path id="curlTrail" d="" fill="none" stroke="#7cc4ff" stroke-width="1.5" opacity="0.5" stroke-linecap="round"/>
-                        <circle id="curlDot" cx="567" cy="95" r="5" fill="#7cc4ff" filter="url(#glow-blue)"/>
-                    </g>
+<!-- ================= 🧮 الحاسبة ================= -->
+<section class="card" id="calc" data-num="🧮" data-nav="🧮 الحاسبة|🧮 Calculator">
+  <h2><span lang="ar">حاسبة div و curl</span><span lang="en">div and curl calculator</span></h2>
+  <p class="sub"><span lang="ar">اكتب $\mathbf{V} = [P, Q, R]$ ونقطة، وتطلع لك كل المشتقات. استخدمها عشان تتأكد من حلك</span><span lang="en">Enter $\mathbf{V} = [P, Q, R]$ and a point to get every partial derivative. Use it to check your own work</span></p>
+  <p class="muted small"><span lang="ar">المسموح: <code>x, y, z</code>، <code>^</code> للأس، <code>sin cos tan exp log sqrt pi</code>. مثال: <code>x^2*y + z</code></span><span lang="en">Allowed: <code>x, y, z</code>, <code>^</code> for powers, <code>sin cos tan exp log sqrt pi</code>. Example: <code>x^2*y + z</code></span></p>
+  <div class="lab-controls">
+    <div class="field" style="flex:1 1 150px"><label>P (i)</label><input id="calc-p" type="text" value="3*x*z"></div>
+    <div class="field" style="flex:1 1 150px"><label>Q (j)</label><input id="calc-q" type="text" value="2*x*y"></div>
+    <div class="field" style="flex:1 1 150px"><label>R (k)</label><input id="calc-r" type="text" value="-y*z^2"></div>
+  </div>
+  <div class="lab-controls">
+    <div class="field" style="flex:1 1 70px"><label>x</label><input id="calc-px" type="number" step="any" value="1"></div>
+    <div class="field" style="flex:1 1 70px"><label>y</label><input id="calc-py" type="number" step="any" value="1"></div>
+    <div class="field" style="flex:1 1 70px"><label>z</label><input id="calc-pz" type="number" step="any" value="1"></div>
+  </div>
+  <div class="seg" id="calc-ex"><button class="on" data-k="run"><span lang="ar">احسب</span><span lang="en">Compute</span></button><button data-k="div"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></button><button data-k="curl"><span lang="ar">مثال 3</span><span lang="en">Example 3</span></button><button data-k="both"><span lang="ar">مثال 4</span><span lang="en">Example 4</span></button></div>
+  <div class="calc-out" id="calc-out"></div>
+</section>
 
-                    <text x="132" y="165" fill="#7cffb2" font-family="IBM Plex Mono" font-size="13" font-weight="600">div(V) ≠ 0</text>
-                    <text x="490" y="165" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" font-weight="600">curl(V) ≠ 0</text>
-                </svg>
-            </div>
+<!-- ================= ✏ تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ تمارين|✏ Practice">
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الجواب رقم</span><span lang="en">Type the answer as a number</span></p>
 
-            <div class="scope-legend">
-                <span><i class="swatch" style="background:#7cffb2"></i> div — source / sink (expansion)</span>
-                <span><i class="swatch" style="background:#7cc4ff"></i> curl — rotation axis</span>
-            </div>
-        </div>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">احسب $\nabla\cdot\mathbf{V}$ عند $(1, 2, 3)$:</span><span lang="en">Compute $\nabla\cdot\mathbf{V}$ at $(1, 2, 3)$:</span></p>
+    <div class="m">\[\mathbf{V} = [\,x^2y,\ yz,\ xz^2\,]\]</div>
+    <div class="check" data-answer="13"></div>
+    <details class="hint"><p><span lang="ar">$\partial_x(x^2y) + \partial_y(yz) + \partial_z(xz^2)$.</span><span lang="en">$\partial_x(x^2y) + \partial_y(yz) + \partial_z(xz^2)$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">المشتقات</span><span lang="en">The derivatives</span></h4><div class="m">\[\nabla\cdot\mathbf{V} = 2xy + z + 2xz\]</div></li>
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Plug in</span></h4><div class="m">\[2(1)(2) + 3 + 2(1)(3) = 4 + 3 + 6\]</div></li>
+      <li class="step final"><div class="result">$13$</div></li>
+    </ol>
+  </div>
 
-        <!-- ============ الخلاصة الذهنية ============ -->
-        <div class="panel reveal" id="quick-map" style="--panel-accent: var(--accent-identity);">
-            <div class="panel-head">
-                <span class="panel-index">✦</span>
-                <span class="symbol-badge">∇</span>
-                <h2>الخلاصة الذهنية: الثلاثي ∇ / ∇· / ∇×</h2>
-            </div>
-            <table class="cmp-table">
-                <thead>
-                    <tr>
-                        <th>المؤثر</th>
-                        <th>الرمز</th>
-                        <th>المدخل</th>
-                        <th>المخرج</th>
-                        <th>المعنى الفيزيائي</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Gradient</strong></td>
-                        <td><span class="mono">∇f</span></td>
-                        <td>قياسي</td>
-                        <td>متجه</td>
-                        <td>اتجاه وأقصى معدل تغيّر للدالة</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Divergence</strong></td>
-                        <td><span class="mono">∇·V</span></td>
-                        <td>متجه</td>
-                        <td>قياسي</td>
-                        <td>تمدد (source) أو انكماش (sink) عند النقطة</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Curl</strong></td>
-                        <td><span class="mono">∇×V</span></td>
-                        <td>متجه</td>
-                        <td>متجه</td>
-                        <td>محور ومعدل دوران المجال حول النقطة</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="result-box">
-                <strong>قاعدة الإبهام:</strong> $\nabla$ وحده <strong>يرفع</strong> القياسي إلى متجه (Gradient)،
-                و$\nabla \cdot$ <strong>يخفض</strong> المتجه إلى قياسي (Divergence)،
-                و$\nabla \times$ <strong>يبقيه</strong> متجهاً لكن يكشف دورانه (Curl).
-            </div>
-        </div>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">للمجال $\mathbf{V} = [\,xy,\ yz,\ zx\,]$، وش مركبة $\mathbf{k}$ في $\nabla\times\mathbf{V}$ عند $(2, 3, 4)$؟</span><span lang="en">For $\mathbf{V} = [\,xy,\ yz,\ zx\,]$, what is the $\mathbf{k}$ component of $\nabla\times\mathbf{V}$ at $(2, 3, 4)$?</span></p>
+    <div class="check" data-answer="-2"></div>
+    <details class="hint"><p><span lang="ar">مركبة $\mathbf{k}$ = $\partial_x v_2 - \partial_y v_1$.</span><span lang="en">The $\mathbf{k}$ part is $\partial_x v_2 - \partial_y v_1$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">مركبة $\mathbf{k}$</span><span lang="en">The $\mathbf{k}$ component</span></h4><div class="m">\[\frac{\partial}{\partial x}(yz) - \frac{\partial}{\partial y}(xy) = 0 - x = -x\]</div></li>
+      <li class="step final"><div class="result">$-2$</div><p class="sanity"><span lang="ar">الـ curl كامل: $[-y, -z, -x] = [-3, -4, -2]$</span><span lang="en">The full curl: $[-y, -z, -x] = [-3, -4, -2]$</span></p></li>
+    </ol>
+  </div>
 
-        <!-- ============ مختبر المجال التفاعلي ============ -->
-        <div class="panel reveal" id="field-lab" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">🧪</span>
-                <span class="symbol-badge">∿</span>
-                <h2>مختبر المجال الاتجاهي — شاهد div و curl بالعين
-                    <span class="bi-caption">جسيمات تتدفق مع المجال — حرّك الفأرة فوق الشاشة لقراءة ∇·F و ∇×F عند أي نقطة</span>
-                </h2>
-            </div>
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl hard"><span lang="ar">تحدي</span><span lang="en">challenge</span></span></div>
+    <p><span lang="ar">احسب الـ Laplacian $\nabla^2 f = \nabla\cdot(\nabla f)$ عند $(1, 1, 1)$:</span><span lang="en">Compute the Laplacian $\nabla^2 f = \nabla\cdot(\nabla f)$ at $(1, 1, 1)$:</span></p>
+    <div class="m">\[f = x^3 + y^2 z + z^4\]</div>
+    <div class="check" data-answer="20"></div>
+    <details class="hint"><p><span lang="ar">اجمع المشتقات الثانية: $f_{xx} + f_{yy} + f_{zz}$.</span><span lang="en">Add the second derivatives: $f_{xx} + f_{yy} + f_{zz}$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الانحدار</span><span lang="en">The gradient</span></h4><div class="m">\[\nabla f = [\,3x^2,\ 2yz,\ y^2 + 4z^3\,]\]</div></li>
+      <li class="step"><h4><span lang="ar">التباعد</span><span lang="en">The divergence</span></h4><div class="m">\[\nabla^2 f = 6x + 2z + 12z^2 = 6 + 2 + 12\]</div></li>
+      <li class="step final"><div class="result">$20$</div></li>
+    </ol>
+  </div>
+</section>
 
-            <div class="vf-controls">
-                <div class="vf-field" style="flex:2 1 260px;">
-                    <label>اختر المجال الجاهز</label>
-                    <select id="vf-preset"></select>
-                </div>
-                <button class="btn primary" onclick="FieldLab.applyPreset()">تطبيق</button>
-            </div>
-            <div class="vf-custom" id="vf-custom">
-                <div class="vf-field" style="flex:1 1 180px;">
-                    <label>P(x, y)</label>
-                    <input id="vf-p" type="text" value="x - y" />
-                </div>
-                <div class="vf-field" style="flex:1 1 180px;">
-                    <label>Q(x, y)</label>
-                    <input id="vf-q" type="text" value="x + y" />
-                </div>
-                <button class="btn primary" onclick="FieldLab.applyCustom()">ارسم المجال المخصص</button>
-            </div>
+<!-- ================= ⚠ الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost marks</span></h2>
+  <p class="sub"><span lang="ar">كل خطأ جنبه التصحيح</span><span lang="en">Each mistake next to its fix</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">الخلط في نوع الناتج</span><span lang="en">Mixing up the output type</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\nabla\times\mathbf{V} = 3$</div><span lang="ar">الـ Curl ما يطلع رقم</span><span lang="en">Curl never gives a number</span></div><div class="yes"><div class="mm">$\nabla\cdot\mathbf{V} = 3,\quad \nabla\times\mathbf{V} = [-3, 1, 2]$</div><span lang="ar">div قياسي، curl متجه</span><span lang="en">div is a scalar, curl a vector</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان سالب $\mathbf{j}$</span><span lang="en">Forgetting the minus on $\mathbf{j}$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf{j}: \partial_x v_3 - \partial_z v_1$</div><span lang="ar">أكثر خطأ شائع في المحاضرة</span><span lang="en">The most common mistake in this lecture</span></div><div class="yes"><div class="mm">$\mathbf{j}: -(\partial_x v_3 - \partial_z v_1)$</div><span lang="ar">الوسط في المحدد دايماً بسالب</span><span lang="en">The middle term of the determinant always gets a minus</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">"يلف = curl مو صفر"</span><span lang="en">"It circles, so curl ≠ 0"</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\frac{[-y,\ x]}{x^2+y^2} \Rightarrow \text{curl} \neq 0$</div><span lang="ar">الدوامة المثالية تلف حول المركز</span><span lang="en">The ideal vortex circles the centre</span></div><div class="yes"><div class="mm">$\text{curl} = 0 \ \ (\text{away from } O)$</div><span lang="ar">الـ curl يقيس دوران الجسيم حول <b>محوره</b> مو حول المركز. جرّبها في المختبر</span><span lang="en">Curl measures a particle spinning about <b>its own axis</b>, not around the centre. Try it in the lab</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">التعويض قبل الاشتقاق</span><span lang="en">Plugging in before differentiating</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\mathbf{V}(1,1,1) = [3, 2, -1] \Rightarrow \nabla\cdot\mathbf{V} = 0$</div><span lang="ar">صارت أرقام ثابتة</span><span lang="en">They became constants</span></div><div class="yes"><div class="mm"><span lang="ar">اشتق ← بسّط ← عوّض</span><span lang="en">Differentiate → simplify → plug in</span></div><span lang="ar">النقطة آخر شي</span><span lang="en">The point comes last</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان قاعدة السلسلة</span><span lang="en">Forgetting the chain rule</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\frac{\partial}{\partial x}\cos(xy) = -\sin(xy)$</div><span lang="ar">ضاع العامل $y$</span><span lang="en">The factor $y$ is lost</span></div><div class="yes"><div class="mm">$\frac{\partial}{\partial x}\cos(xy) = -y\sin(xy)$</div><span lang="ar">اشتق اللي داخل كمان</span><span lang="en">Differentiate the inside too</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">الخلط بين المتطابقتين</span><span lang="en">Confusing the two identities</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\nabla\cdot(\nabla f) = 0$</div><span lang="ar">هذا مو صحيح دايماً</span><span lang="en">Not true in general</span></div><div class="yes"><div class="mm">$\nabla\cdot(\nabla f) = \nabla^2 f, \quad \nabla\times(\nabla f) = \mathbf{0}$</div><span lang="ar">اللي صفر دايماً هو curl الانحدار</span><span lang="en">The one that's always zero is the curl of a gradient</span></div></div>
+  </div>
+</section>
 
-            <div class="vf-modes">
-                <span style="font-weight:600;">تلوين الجسيمات حسب:</span>
-                <label><input type="radio" name="vf-mode" value="curl" checked> الدوران ∇×F</label>
-                <label><input type="radio" name="vf-mode" value="div"> التمدد ∇·F</label>
-                <label><input type="radio" name="vf-mode" value="speed"> السرعة |F|</label>
-            </div>
-
-            <div class="vf-stage">
-                <canvas id="vf-canvas"></canvas>
-                <div class="vf-readout" id="vf-readout">
-                    <div>move mouse over field…</div>
-                </div>
-            </div>
-
-            <div class="vf-legend" id="vf-legend"></div>
-            <p class="vf-note">💡 جرّب "دوامة — Vortex" ولاحظ أن الجسيمات تدور لكن قيمة ∇·F = 0 (لا تمدد)، ثم جرّب "مصدر" وسترى ∇·F = 2 في كل مكان.</p>
-        </div>
-
-        <!-- panel 01 -->
-        <div class="panel reveal" id="div-def" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">01</span>
-                <span class="symbol-badge">∇·</span>
-                <h2>Divergence of a Vector Field</h2>
-            </div>
-            <p>يتناول هذا الجزء مفهوم الـ Divergence للمجال الاتجاهي وكيفية حسابه رياضياً.</p>
-
-            <h3>التعريف والقانون الرياضي</h3>
-            <p>إذا كان المجال الاتجاهي القابل للمفاضلة معرفاً كـ $\mathbf{V} = [v_1, v_2, v_3]$، فإن الـ Divergence يُرمز له بالرمز $\text{div}(\mathbf{V})$ أو $\nabla \cdot \mathbf{V}$:</p>
-
-            <div class="math-block small">\[ \nabla \cdot \mathbf{V} = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right) \cdot [v_1, v_2, v_3] \]</div>
-            <div class="math-block">\[ \text{div}(\mathbf{V}) = \nabla \cdot \mathbf{V} = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z} \]</div>
-
-            <div class="result-box"><strong>ملاحظة رئيسية:</strong> ناتج عملية الـ Divergence $\text{div}(\mathbf{V})$ هو دائماً <strong>كمية قياسية (Scalar)</strong>.</div>
-
-            <h3>مثال محلول</h3>
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                احسب الـ Divergence $\text{div}(\mathbf{V})$ للمجال $\mathbf{V} = 3xz\,\mathbf{i} + 2xy\,\mathbf{j} - yz^2\,\mathbf{k}$ عند النقطة $(1, 1, 1)$.
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol><li>كتابة المتجه في صورة مركبات: $\mathbf{V} = [3xz, 2xy, -yz^2]$</li></ol>
-                    <ol start="2"><li>المشتقات الجزئية:</li></ol>
-                    <div class="math-block small">
-                        \[ \frac{\partial v_1}{\partial x} = 3z, \quad \frac{\partial v_2}{\partial y} = 2x, \quad \frac{\partial v_3}{\partial z} = -2yz \]
-                    </div>
-                    <ol start="3"><li>دالة الـ Divergence العامة:</li></ol>
-                    <div class="math-block small">\[ \nabla \cdot \mathbf{V} = 3z + 2x - 2yz \]</div>
-                    <ol start="4"><li>التعويض بالنقطة $(1,1,1)$:</li></ol>
-                    <div class="result-box"><strong>الناتج:</strong> \[ \left. \nabla \cdot \mathbf{V} \right|_{(1,1,1)} = 3 + 2 - 2 = 3 \]</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- panel 02 -->
-        <div class="panel reveal" id="div-apps" style="--panel-accent: var(--trace-sin);">
-            <div class="panel-head">
-                <span class="panel-index">02</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11z"/>
-                </svg>
-                <h2>التطبيقات الفيزيائية للـ Divergence و Divergence of Gradient</h2>
-            </div>
-
-            <ul>
-                <li><strong>انضغاطية الموائع:</strong> إذا كان $\nabla \cdot \mathbf{V} = 0$، فالمائع غير قابل للانضغاط (Incompressible) وتكون الكثافة ثابتة.</li>
-                <li><strong>المجالات الكهرومغناطيسية:</strong> إذا تحقق $\nabla \cdot \mathbf{V} = 0$، يُقال عن المجال أنه <strong>أنبوبي / لا تباعدي (Solenoidal)</strong>.</li>
-            </ul>
-
-            <h3>Divergence of Gradient $\text{div}(\nabla f)$ (Laplacian)</h3>
-            <p>إذا كانت $f(x, y, z)$ دالة قياسية قابلة للمفاضلة:</p>
-            <div class="math-block small">\[ \nabla f = \left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right] \]</div>
-            <div class="math-block">\[ \text{div}(\nabla f) = \nabla \cdot \nabla f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} \]</div>
-        </div>
-
-        <!-- ====== الحاسبة التفاعلية ====== -->
-        <div class="panel reveal" id="calc-tool" style="--panel-accent: var(--trace-sin);">
-            <div class="panel-head">
-                <span class="panel-index">03</span>
-                <span class="symbol-badge">🧮</span>
-                <h2>حاسبة Divergence و Curl التفاعلية
-                    <span class="bi-caption">أدخل مركبات المجال V = [P, Q, R] ونقطة التعويض — سيتم الحساب خطوة بخطوة</span>
-                </h2>
-            </div>
-
-            <p style="font-size:0.9rem;color:var(--ink-secondary);">
-                اكتب كل مركبة بصيغة رياضية. المدعوم: <code style="color:var(--trace-cos)">x, y, z</code>،
-                <code style="color:var(--trace-cos)">^</code> للأس،
-                <code style="color:var(--trace-cos)">sin, cos, tan, exp, log, sqrt</code>.
-                مثال: <code>x^2*y + z</code>
-            </p>
-
-            <div class="calc-grid">
-                <div class="calc-field">
-                    <label>P (مركبة i)</label>
-                    <input id="calc-p" type="text" value="3*x*z" />
-                </div>
-                <div class="calc-field">
-                    <label>Q (مركبة j)</label>
-                    <input id="calc-q" type="text" value="2*x*y" />
-                </div>
-                <div class="calc-field">
-                    <label>R (مركبة k)</label>
-                    <input id="calc-r" type="text" value="-y*z^2" />
-                </div>
-            </div>
-
-            <div class="point-row">
-                <span class="pt-label">نقطة التعويض (x, y, z):</span>
-                <div class="calc-field"><input id="calc-px" type="number" step="any" value="1" /></div>
-                <div class="calc-field"><input id="calc-py" type="number" step="any" value="1" /></div>
-                <div class="calc-field"><input id="calc-pz" type="number" step="any" value="1" /></div>
-            </div>
-
-            <div class="btn-row">
-                <button class="btn primary" onclick="runCalc()">احسب div و curl</button>
-                <button class="btn" onclick="loadExample('div')">مثال Divergence</button>
-                <button class="btn" onclick="loadExample('curl')">مثال Curl</button>
-                <button class="btn" onclick="loadExample('both')">مثال شامل</button>
-            </div>
-
-            <div class="calc-output" id="calc-out">
-                <div class="step">👋 أدخل المركبات ثم اضغط "احسب"</div>
-            </div>
-        </div>
-
-        <!-- panel 04 -->
-        <div class="panel reveal" id="curl-def" style="--panel-accent: var(--trace-cos);">
-            <div class="panel-head">
-                <span class="panel-index">04</span>
-                <span class="symbol-badge">∇×</span>
-                <h2>Curl of a Vector Field</h2>
-            </div>
-            <p>تعريف وقانون الـ Curl للمجال الاتجاهي وكيفية حسابه باستخدام المحددات المتجهية.</p>
-
-            <h3>التعريف والصيغة الرياضية</h3>
-            <p>إذا كانت $\mathbf{V} = [v_1, v_2, v_3]$ دالة متجهية قابلة للمفاضلة، يُرمز للـ Curl بـ $\text{curl}(\mathbf{V})$ أو $\nabla \times \mathbf{V}$:</p>
-            <div class="math-block">\[ \text{curl}(\mathbf{V}) = \nabla \times \mathbf{V} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ v_1 & v_2 & v_3 \end{vmatrix} \]</div>
-
-            <h3>فك المحدد (الصيغة الممتدة)</h3>
-            <div class="math-block small">\[ \text{curl}(\mathbf{V}) = \left( \frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z} \right) \mathbf{i} - \left( \frac{\partial v_3}{\partial x} - \frac{\partial v_1}{\partial z} \right) \mathbf{j} + \left( \frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y} \right) \mathbf{k} \]</div>
-
-            <div class="result-box"><strong>ملاحظة جوهرية:</strong> على عكس الـ Divergence الذي ينتج قيمة قياسية، فإن الـ Curl يُنتج دائماً <strong>متجهاً</strong> يحدد محور الدوران ومعدله.</div>
-        </div>
-
-        <!-- panel 05 -->
-        <div class="panel reveal" id="identities" style="--panel-accent: var(--accent-identity);">
-            <div class="panel-head">
-                <span class="panel-index">05</span>
-                <span class="symbol-badge">≡0</span>
-                <h2>المتطابقات المتجهية الأساسية</h2>
-            </div>
-            <ul>
-                <li>
-                    <strong>Curl of Gradient لدالة قياسية:</strong> إذا كانت $f$ دالة قياسية، فإن Curl تدرجها يساوي صفراً دائماً:
-                    <div class="math-block small">\[ \text{curl}(\nabla f) \equiv \nabla \times \nabla f = 0 \]</div>
-                </li>
-                <li>
-                    <strong>Divergence of Curl لدالة متجهية:</strong> إذا كانت $\mathbf{V}$ دالة متجهية، فإن Divergence تلافيها يساوي صفراً دائماً:
-                    <div class="math-block small">\[ \text{div}(\text{curl}(\mathbf{V})) \equiv \nabla \cdot (\nabla \times \mathbf{V}) = 0 \]</div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- panel 06 -->
-        <div class="panel reveal" id="irrotational" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">06</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 12a8 8 0 1 1 3 6.2"/><path d="M4 12v5h5"/>
-                </svg>
-                <h2>المجال الاتجاهي غير الدوراني (Irrotational)</h2>
-            </div>
-            <p>يُقال عن المجال الاتجاهي $\mathbf{V}$ إنه غير دوراني إذا كان حاصل الـ Curl له يساوي صفراً عند جميع النقاط:</p>
-            <div class="math-block">\[ \text{curl}(\mathbf{V}) = \nabla \times \mathbf{V} = 0 \]</div>
-
-            <h3>التوضيح الهندسي لخطوط التدفق</h3>
-            <div class="diagram-frame">
-                <svg width="850" height="230" viewBox="0 0 850 230" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arrow-g" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7cffb2"/></marker>
-                        <marker id="arrow-b" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#7cc4ff"/></marker>
-                        <marker id="arrow-r" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5 0 10z" fill="#ff6f6f"/></marker>
-                    </defs>
-                    <g transform="translate(10, 15)">
-                        <rect width="240" height="185" rx="10" fill="rgba(124,255,178,0.04)" stroke="var(--border-soft)"/>
-                        <line x1="30" y1="40" x2="210" y2="40" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
-                        <line x1="30" y1="80" x2="210" y2="80" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
-                        <line x1="30" y1="120" x2="210" y2="120" stroke="#7cffb2" stroke-width="2.4" marker-end="url(#arrow-g)"/>
-                        <text x="120" y="165" fill="#7cffb2" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Irrotational (Linear)</text>
-                    </g>
-                    <g transform="translate(305, 15)">
-                        <rect width="240" height="185" rx="10" fill="rgba(124,196,255,0.04)" stroke="var(--border-soft)"/>
-                        <circle cx="120" cy="90" r="35" fill="none" stroke="#7cc4ff" stroke-width="1.4" stroke-dasharray="4,4"/>
-                        <path d="M 120 30 A 60 60 0 0 1 180 90" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
-                        <path d="M 180 90 A 60 60 0 0 1 120 150" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
-                        <path d="M 120 150 A 60 60 0 0 1 60 90" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
-                        <path d="M 60 90 A 60 60 0 0 1 120 30" fill="none" stroke="#7cc4ff" stroke-width="2.4" marker-end="url(#arrow-b)"/>
-                        <text x="120" y="165" fill="#7cc4ff" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Irrotational (Vortex)</text>
-                    </g>
-                    <g transform="translate(600, 15)">
-                        <rect width="240" height="185" rx="10" fill="rgba(255,111,111,0.04)" stroke="var(--border-soft)"/>
-                        <path d="M 20 50 Q 60 15 100 50 T 180 50" fill="none" stroke="#ff6f6f" stroke-width="2"/>
-                        <path d="M 70 90 C 60 60, 110 60, 100 90 C 95 105, 75 105, 75 85" fill="none" stroke="#ff6f6f" stroke-width="2.4" marker-end="url(#arrow-r)"/>
-                        <path d="M 140 110 C 130 80, 180 80, 170 110 C 165 125, 145 125, 145 105" fill="none" stroke="#ff6f6f" stroke-width="2.4" marker-end="url(#arrow-r)"/>
-                        <path d="M 20 140 Q 80 160 140 130 T 220 140" fill="none" stroke="#ff6f6f" stroke-width="2" marker-end="url(#arrow-r)"/>
-                        <text x="120" y="165" fill="#ff6f6f" font-family="IBM Plex Mono" font-size="13" text-anchor="middle">Rotational</text>
-                    </g>
-                </svg>
-            </div>
-            <ul>
-                <li><strong>خطي منتظم:</strong> خطوط متوازية بدون أي انحناء أو دوران ($\text{curl}(\mathbf{V}) = 0$).</li>
-                <li><strong>دوامة غير دورانية:</strong> الجسيمات تدور حول مركز، لكن كل جسيم لا يدور حول محوره الخاص ($\text{curl}(\mathbf{V}) = 0$).</li>
-                <li><strong>تدفق دوراني:</strong> اضطرابات تجعل الجسيم يدور حول محوره ($\text{curl}(\mathbf{V}) \neq 0$).</li>
-            </ul>
-        </div>
-
-        <!-- panel 07 -->
-        <div class="panel reveal" id="ex-curl1" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">07</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>مثال 1: إثبات أن $\text{curl}(\nabla f) = [0,0,0]$</h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                الدالة القياسية $f(x, y, z) = 2x^2 + y$ — أثبت أن $\text{curl}(\nabla f) = [0, 0, 0]$.
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol><li>حساب التدرج: $\nabla f = [4x, 1, 0]$</li></ol>
-                    <div class="math-block small">\[ \text{curl}(\nabla f) = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ 4x & 1 & 0 \end{vmatrix} \]</div>
-                    <ol start="2"><li>فك المحدد لكل مركبة: $\mathbf{i}: 0-0=0$، $\mathbf{j}: -(0-0)=0$، $\mathbf{k}: 0-0=0$</li></ol>
-                    <div class="result-box"><strong>النتيجة:</strong> \[ \text{curl}(\nabla f) = [0, 0, 0] \]</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- panel 08 -->
-        <div class="panel reveal" id="ex-curl2" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">08</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>مثال 2: حساب $\text{curl}(\mathbf{V})$ عند نقطة</h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">المسألة</span>
-                $\mathbf{V} = yz\,\mathbf{i} + 3zx\,\mathbf{j} + z\,\mathbf{k}$ — احسب $\text{curl}(\mathbf{V})$ عند النقطة $(1, 1, 1)$.
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ol><li>المركبة $\mathbf{i}$: $\frac{\partial}{\partial y}(z) - \frac{\partial}{\partial z}(3zx) = 0 - 3x = -3x$</li></ol>
-                    <ol start="2"><li>المركبة $\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(z) - \frac{\partial}{\partial z}(yz)\right) = -(0-y) = y$</li></ol>
-                    <ol start="3"><li>المركبة $\mathbf{k}$: $\frac{\partial}{\partial x}(3zx) - \frac{\partial}{\partial y}(yz) = 3z - z = 2z$</li></ol>
-                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-3x, y, 2z] \]</div>
-                    <div class="result-box"><strong>عند $(1,1,1)$:</strong> \[ \left. \nabla \times \mathbf{V} \right|_{(1,1,1)} = [-3, 1, 2] \]</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- panel 09 -->
-        <div class="panel reveal" id="verification" style="--panel-accent: var(--accent-identity);">
-            <div class="panel-head">
-                <span class="panel-index">09</span>
-                <span class="symbol-badge">≡0</span>
-                <h2>Verification: $\text{div}(\text{curl}(\mathbf{V})) = 0$
-                    <span class="bi-caption">التحقق العملي من متطابقة Divergence of Curl</span>
-                </h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">Given &amp; Required / المعطيات والمطلوب</span>
-                $\mathbf{V} = x^2 y\,\mathbf{i} + z\,\mathbf{j} - (x + y - z)\,\mathbf{k} = [x^2 y, \; z, \; -x - y + z]$<br>
-                Required: Calculate $\text{div}(\text{curl}(\mathbf{V}))$
-            </div>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض الحل
-                </div>
-                <div class="trigger-body">
-                    <h3>1. Calculate curl(V)</h3>
-                    <ul>
-                        <li>$\mathbf{i}$: $\frac{\partial}{\partial y}(-x-y+z) - \frac{\partial}{\partial z}(z) = -1-1=-2$</li>
-                        <li>$\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(-x-y+z) - \frac{\partial}{\partial z}(x^2y)\right) = -(-1-0)=1$</li>
-                        <li>$\mathbf{k}$: $\frac{\partial}{\partial x}(z) - \frac{\partial}{\partial y}(x^2y) = 0-x^2=-x^2$</li>
-                    </ul>
-                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-2, \; 1, \; -x^2] \]</div>
-                    <h3>2. Divergence of the curl</h3>
-                    <div class="math-block small">\[ \text{div}(\text{curl}(\mathbf{V})) = \frac{\partial}{\partial x}(-2) + \frac{\partial}{\partial y}(1) + \frac{\partial}{\partial z}(-x^2) \]</div>
-                    <div class="result-box"><strong>Result:</strong> \[ \text{div}(\text{curl}(\mathbf{V})) = 0 + 0 + 0 = 0 \]</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- panel 10 -->
-        <div class="panel reveal" id="classwork" style="--panel-accent: var(--accent-practice);">
-            <div class="panel-head">
-                <span class="panel-index">10</span>
-                <svg class="panel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                </svg>
-                <h2>Classwork: div(V) &amp; curl(V)
-                    <span class="bi-caption">تمرين صفي شامل — Divergence و Curl لنفس المجال</span>
-                </h2>
-            </div>
-            <div class="question-box">
-                <span class="ex-tag">Given &amp; Required / المعطيات والمطلوب</span>
-                Vector Field: $\mathbf{V} = xy^2\,\mathbf{i} + \cos(xy)\,\mathbf{j} - yz\,\mathbf{k}$ &nbsp;—&nbsp; Point: $(x{=}1, y{=}\pi, z{=}1)$
-            </div>
-
-            <h3>أولاً: حساب الـ Divergence $\text{div}(\mathbf{V})$</h3>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <div class="math-block small">\[ \text{div}(\mathbf{V}) = \frac{\partial}{\partial x}(xy^2) + \frac{\partial}{\partial y}(\cos(xy)) + \frac{\partial}{\partial z}(-yz) \]</div>
-                    <div class="math-block small">\[ = y^2 - x\sin(xy) - y \]</div>
-                    <div class="result-box"><strong>عند $(1,\pi,1)$:</strong> \[ \pi^2 - (1)\sin(\pi) - \pi = \pi^2 - \pi \]</div>
-                </div>
-            </div>
-
-            <h3>ثانياً: حساب الـ Curl $\text{curl}(\mathbf{V})$</h3>
-            <div class="trigger" onclick="toggleTrigger(this)" tabindex="0" onkeydown="if(event.key==='Enter')toggleTrigger(this)">
-                <div class="trigger-hint">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z" fill="currentColor" stroke="none"/></svg>
-                    اضغط لعرض خطوات الحل
-                </div>
-                <div class="trigger-body">
-                    <ul>
-                        <li>$\mathbf{i}$: $\frac{\partial}{\partial y}(-yz) - \frac{\partial}{\partial z}(\cos(xy)) = -z - 0 = -z$</li>
-                        <li>$\mathbf{j}$: $-\left(\frac{\partial}{\partial x}(-yz) - \frac{\partial}{\partial z}(xy^2)\right) = -(0-0)=0$</li>
-                        <li>$\mathbf{k}$: $\frac{\partial}{\partial x}(\cos(xy)) - \frac{\partial}{\partial y}(xy^2) = -y\sin(xy) - 2xy$</li>
-                    </ul>
-                    <div class="math-block small">\[ \text{curl}(\mathbf{V}) = [-z, \; 0, \; -y\sin(xy) - 2xy] \]</div>
-                    <div class="result-box"><strong>عند $(1,\pi,1)$:</strong> \[ [-1, \; 0, \; -\pi\sin(\pi) - 2\pi] = [-1, 0, -2\pi] \]</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ============ الأخطاء الشائعة ============ -->
-        <div class="panel reveal" id="mistakes" style="--panel-accent: var(--trace-alert);">
-            <div class="panel-head">
-                <span class="panel-index">⚠️</span>
-                <span class="symbol-badge">!</span>
-                <h2>الأخطاء الشائعة في الامتحان</h2>
-            </div>
-            <ul class="mistake-list">
-                <li><span class="mk">خطأ 1</span> الخلط بين نوع الناتج: $\nabla \cdot \mathbf{V}$ ينتج <strong>قياسياً</strong>، بينما $\nabla \times \mathbf{V}$ ينتج <strong>متجهاً</strong>. كتابة curl كناتج قياسي تُحسب إجابة خاطئة.</li>
-                <li><span class="mk">خطأ 2</span> نسيان الإشارة السالبة في مركبة $\mathbf{j}$ عند فك محدد الـ Curl — هذا أكثر خطأ شائع في المحاضرة.</li>
-                <li><span class="mk">خطأ 3</span> الظن بأن أي حركة دائرية مرئية تعني $\text{curl} \neq 0$ — الدوامة المثالية (Vortex) مجالها غير دوراني! الـ Curl يقيس دوران الجسيم حول <strong>محوره</strong> وليس حول المركز.</li>
-                <li><span class="mk">خطأ 4</span> التعويض بالنقطة <strong>قبل</strong> إتمام الاشتقاق. الترتيب الصحيح: اشتق → بسّط → عوّض.</li>
-                <li><span class="mk">خطأ 5</span> نسيان قاعدة السلسلة عند اشتقاق $\cos(xy)$ أو $\sin(xy)$: المشتقة ليست $-\sin(xy)$ بل $-y\sin(xy)$ بالنسبة لـ $x$.</li>
-                <li><span class="mk">خطأ 6</span> الخلط بين المتطابقتين: $\nabla \cdot (\nabla f) = \nabla^2 f$ (Laplacian — ليس بالضرورة صفراً)، بينما $\nabla \times (\nabla f) = 0$ دائماً.</li>
-            </ul>
-        </div>
-
-        <!-- ====== Quiz ====== -->
-        <div class="panel reveal" id="quiz" style="--panel-accent: var(--accent-assess);">
-            <div class="panel-head">
-                <span class="panel-index">📝</span>
-                <span class="symbol-badge">?</span>
-                <h2>اختبر نفسك
-                    <span class="bi-caption">5 أسئلة — اضغط على الإجابة لترى التصحيح فوراً</span>
-                </h2>
-            </div>
-            <div id="quiz-container"></div>
-            <div class="quiz-score">
-                <span>النتيجة</span>
-                <span style="display:flex;align-items:center;gap:14px;">
-                    <button class="btn" style="padding:6px 14px;font-size:0.78rem;" onclick="resetQuiz()">🔄 إعادة الاختبار</button>
-                    <span><span class="val" id="quiz-score">0</span> / 5</span>
-                </span>
-            </div>
-        </div>
-
-        <!-- ====== Flashcards ====== -->
-        <div class="panel reveal" id="flashcards" style="--panel-accent: var(--accent-identity);">
-            <div class="panel-head">
-                <span class="panel-index">🃏</span>
-                <span class="symbol-badge">↻</span>
-                <h2>بطاقات المراجعة السريعة
-                    <span class="bi-caption">اضغط على أي بطاقة لقلبها ورؤية الجواب</span>
-                </h2>
-            </div>
-            <div class="flash-toolbar">
-                <button class="btn" onclick="shuffleFlashcards()">🔀 خلط البطاقات</button>
-            </div>
-            <div class="flash-grid" id="flash-grid"></div>
-        </div>
-
-        <footer class="note">
-            SIGNAL REFERENCE · VECTOR CALCULUS — DIVERGENCE &amp; CURL · v3.0
-            &nbsp;·&nbsp; <button class="btn" style="padding:4px 12px;font-size:0.72rem;" onclick="window.print()">🖨️ طباعة الملخص</button>
-        </footer>
+<!-- ================= 📝 اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">اضغط على الجواب وتشوف التصحيح فوراً</span><span lang="en">Tap an answer to see the correction right away</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">ناتج الـ Divergence $\nabla\cdot\mathbf{V}$ يكون:</span><span lang="en">The divergence $\nabla\cdot\mathbf{V}$ is:</span></p>
+      <button><span lang="ar">متجه</span><span lang="en">A vector</span></button><button><span lang="ar">قياسي</span><span lang="en">A scalar</span></button><button><span lang="ar">مصفوفة</span><span lang="en">A matrix</span></button><button><span lang="ar">ما نقدر نحدد</span><span lang="en">Can't tell</span></button>
+      <p class="q-why"><span lang="ar">جمع ثلاث مشتقات = رقم. الـ Curl هو اللي متجه.</span><span lang="en">A sum of three derivatives is a number. Curl is the one that's a vector.</span></p>
     </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">أي متطابقة صحيحة دايماً لأي دالة قياسية $f$؟</span><span lang="en">Which identity always holds for any scalar function $f$?</span></p>
+      <button>$\nabla\cdot(\nabla f) = 0$</button><button>$\nabla\times(\nabla f) = 1$</button><button>$\nabla\times(\nabla f) = \mathbf{0}$</button><button>$\nabla\cdot(\nabla f) = f$</button>
+      <p class="q-why"><span lang="ar">Curl الانحدار صفر دايماً. أما Divergence الانحدار فهو الـ Laplacian، مو صفر بالضرورة.</span><span lang="en">The curl of a gradient is always zero. The divergence of a gradient is the Laplacian, not necessarily zero.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">إذا $\nabla\cdot\mathbf{V} = 0$ وش نسمي المجال؟</span><span lang="en">If $\nabla\cdot\mathbf{V} = 0$, the field is called:</span></p>
+      <button><span lang="ar">أنبوبي (Solenoidal)</span><span lang="en">Solenoidal</span></button><button><span lang="ar">دوراني (Rotational)</span><span lang="en">Rotational</span></button><button><span lang="ar">انحدار (Gradient)</span><span lang="en">A gradient</span></button><button><span lang="ar">قياسي</span><span lang="en">Scalar</span></button>
+      <p class="q-why"><span lang="ar">ما فيه مصادر ولا مصبات، مثل مائع غير قابل للانضغاط.</span><span lang="en">No sources or sinks, like an incompressible fluid.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">للمجال $\mathbf{V} = [x, y, z]$، كم $\text{curl}(\mathbf{V})$؟</span><span lang="en">For $\mathbf{V} = [x, y, z]$, what is $\text{curl}(\mathbf{V})$?</span></p>
+      <button>$[1, 1, 1]$</button><button>$3$</button><button>$[x, y, z]$</button><button>$[0, 0, 0]$</button>
+      <p class="q-why"><span lang="ar">كل مركبة تعتمد على متغيرها بس، فكل المشتقات المختلطة صفر. (لاحظ إن $\nabla\cdot\mathbf{V} = 3$.)</span><span lang="en">Each component depends only on its own variable, so all mixed derivatives vanish. (Note $\nabla\cdot\mathbf{V} = 3$.)</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">ليش $\text{div}(\text{curl}\,\mathbf{V}) = 0$ دايماً؟</span><span lang="en">Why is $\text{div}(\text{curl}\,\mathbf{V}) = 0$ always?</span></p>
+      <button><span lang="ar">لأن الـ Curl متجه</span><span lang="en">Because curl is a vector</span></button><button><span lang="ar">لأن المشتقات المختلطة متساوية فالحدود تلغي بعض</span><span lang="en">Because mixed partials are equal, so the terms cancel in pairs</span></button><button><span lang="ar">لأن الـ Divergence قياسي</span><span lang="en">Because divergence is a scalar</span></button><button><span lang="ar">لأن $\mathbf{V}$ ثابت</span><span lang="en">Because $\mathbf{V}$ is constant</span></button>
+      <p class="q-why"><span lang="ar">كل حد يطلع مرتين بإشارتين عكس بعض، و $f_{xy} = f_{yx}$ (نظرية كليرو).</span><span lang="en">Every term appears twice with opposite signs, and $f_{xy} = f_{yx}$ (Clairaut).</span></p>
+    </div>
+  </div>
+</section>
 
-    <script>
-        /* ============ Utils ============ */
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ================= 🃏 بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات مراجعة سريعة</span><span lang="en">Quick review cards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة عشان تقلبها</span><span lang="en">Tap a card to flip it</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">تعريف Divergence</span><span lang="en">Divergence</span></div><div>$\nabla\cdot\mathbf{V} = \partial_x v_1 + \partial_y v_2 + \partial_z v_3$</div></div>
+    <div class="flash"><div><span lang="ar">نوع ناتج Divergence</span><span lang="en">Type of divergence</span></div><div><span lang="ar">قياسي (Scalar)</span><span lang="en">A scalar</span></div></div>
+    <div class="flash"><div><span lang="ar">تعريف Curl</span><span lang="en">Curl</span></div><div><span lang="ar">$\nabla\times\mathbf{V}$ (محدد $3\times3$)</span><span lang="en">$\nabla\times\mathbf{V}$ (a $3\times3$ determinant)</span></div></div>
+    <div class="flash"><div><span lang="ar">نوع ناتج Curl</span><span lang="en">Type of curl</span></div><div><span lang="ar">متجه (Vector)</span><span lang="en">A vector</span></div></div>
+    <div class="flash"><div>curl(∇f) = ?</div><div><span lang="ar">$\mathbf{0}$ دايماً</span><span lang="en">Always $\mathbf{0}$</span></div></div>
+    <div class="flash"><div>div(curl V) = ?</div><div><span lang="ar">$0$ دايماً</span><span lang="en">Always $0$</span></div></div>
+    <div class="flash"><div>div(∇f) = ?</div><div><span lang="ar">الـ Laplacian $\nabla^2 f$</span><span lang="en">The Laplacian $\nabla^2 f$</span></div></div>
+    <div class="flash"><div><span lang="ar">المجال الأنبوبي</span><span lang="en">Solenoidal field</span></div><div><span lang="ar">$\nabla\cdot\mathbf{V} = 0$ (مائع غير قابل للانضغاط)</span><span lang="en">$\nabla\cdot\mathbf{V} = 0$ (incompressible fluid)</span></div></div>
+    <div class="flash"><div><span lang="ar">المجال غير الدوراني</span><span lang="en">Irrotational field</span></div><div>$\nabla\times\mathbf{V} = \mathbf{0}$</div></div>
+  </div>
+</section>
 
-        function toggleTrigger(el) { el.classList.toggle('open'); }
+</main>
 
-        /* ============ الثيم ============ */
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle('light');
-            const light = body.classList.contains('light');
-            document.getElementById('theme-btn').textContent = light ? '☀️' : '🌙';
-            try { localStorage.setItem('lecture4-theme', light ? 'light' : 'dark'); } catch(e) {}
-        }
-        (function initTheme() {
-            let saved = null;
-            try { saved = localStorage.getItem('lecture4-theme'); } catch(e) {}
-            if (saved === 'light') {
-                document.body.classList.add('light');
-                document.getElementById('theme-btn').textContent = '☀️';
-            }
-        })();
+<script>
+/* مختبر المجال + حاسبة div/curl. الألوان من lecture.css فتتغير مع الثيم، والنصوص تتبع اللغة */
+(function () {
+  const $ = id => document.getElementById(id);
+  const en = () => document.documentElement.lang === 'en';
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-        /* ============ شريط التقدم ============ */
-        const progressBar = document.querySelector('#read-progress .bar');
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement;
-            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-            progressBar.style.width = pct + '%';
-        }, { passive: true });
+  /* تحويل نص لدالة (x, y, z): أرقام ومتغيرات ودوال رياضية بس */
+  function compile(expr) {
+    let s = String(expr || '').trim();
+    if (!s || !/^[0-9a-zA-Z_+\-*/^().,\s]*$/.test(s)) throw new Error('bad');
+    s = s.replace(/\^/g, '**')
+      .replace(/\b(sin|cos|tan|exp|log|sqrt|asin|acos|atan|sinh|cosh|tanh|abs)\b/g, 'Math.$1')
+      .replace(/\bpi\b/g, 'Math.PI').replace(/\be\b/g, 'Math.E');
+    if (/[a-zA-Z_]/.test(s.replace(/Math\.[A-Za-z]+/g, '').replace(/\b[xyz]\b/g, ''))) throw new Error('bad');
+    const fn = new Function('x', 'y', 'z', 'return ' + s + ';'), v = fn(0.7, 1.3, 0.9);
+    if (typeof v !== 'number' || !isFinite(v)) throw new Error('bad');
+    return fn;
+  }
+  const d = (fn, i, p, h = 1e-5) => { const a = p.slice(), b = p.slice(); a[i] += h; b[i] -= h; return (fn(...a) - fn(...b)) / (2 * h); };
+  const fmt = v => !isFinite(v) ? '∞' : Math.abs(v) < 1e-7 ? '0' : String(Math.round(v * 1e5) / 1e5);
 
-        /* ============ ظهور تدريجي ============ */
-        (function initReveal() {
-            const items = document.querySelectorAll('.reveal');
-            if (reduceMotion || !('IntersectionObserver' in window)) {
-                items.forEach(el => el.classList.add('visible'));
-                return;
-            }
-            const obs = new IntersectionObserver(entries => {
-                entries.forEach(e => {
-                    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-                });
-            }, { threshold: 0.06 });
-            items.forEach(el => obs.observe(el));
-        })();
+  /* ---------- الحاسبة ---------- */
+  const EX = { div: ['3*x*z', '2*x*y', '-y*z^2'], curl: ['y*z', '3*z*x', 'z'], both: ['x^2*y', 'z', '-x-y+z'] };
+  function runCalc() {
+    const out = $('calc-out'), ins = ['calc-p', 'calc-q', 'calc-r'].map($), fns = [];
+    ins.forEach(el => el.classList.remove('err'));
+    for (let i = 0; i < 3; i++) {
+      try { fns.push(compile(ins[i].value)); }
+      catch (e) { ins[i].classList.add('err'); out.innerHTML = `<div class="err">⚠ ${en() ? 'Component' : 'المركبة'} ${'PQR'[i]}: ${en() ? 'invalid expression' : 'تعبير مو صالح'}</div>`; return; }
+    }
+    const p = ['calc-px', 'calc-py', 'calc-pz'].map(id => { const v = parseFloat($(id).value); return isNaN(v) ? 0 : v; });
+    const [P, Q, R] = fns, D = (f, i) => d(f, i, p);
+    const Px = D(P, 0), Py = D(P, 1), Pz = D(P, 2), Qx = D(Q, 0), Qy = D(Q, 1), Qz = D(Q, 2), Rx = D(R, 0), Ry = D(R, 1), Rz = D(R, 2);
+    out.innerHTML =
+      `<div><span class="k">V =</span> [ ${esc(ins[0].value)}, ${esc(ins[1].value)}, ${esc(ins[2].value)} ] <span class="k">at</span> (${p.map(fmt).join(', ')})</div>` +
+      `<div><span class="k">∂P/∂x</span> = ${fmt(Px)} &nbsp;|&nbsp; <span class="k">∂Q/∂y</span> = ${fmt(Qy)} &nbsp;|&nbsp; <span class="k">∂R/∂z</span> = ${fmt(Rz)}</div>` +
+      `<div><span class="k">i:</span> ∂R/∂y − ∂Q/∂z = ${fmt(Ry)} − (${fmt(Qz)})</div>` +
+      `<div><span class="k">j:</span> −(∂R/∂x − ∂P/∂z) = −(${fmt(Rx)} − (${fmt(Pz)}))</div>` +
+      `<div><span class="k">k:</span> ∂Q/∂x − ∂P/∂y = ${fmt(Qx)} − (${fmt(Py)})</div>` +
+      `<div class="fin"><span class="d">∇·V = ${fmt(Px + Qy + Rz)}</span> <span class="k">(scalar)</span><br><span class="c">∇×V = [ ${fmt(Ry - Qz)}, ${fmt(Pz - Rx)}, ${fmt(Qx - Py)} ]</span> <span class="k">(vector)</span></div>` +
+      `<div class="k" style="margin-top:6px">* ${en() ? 'numerical derivatives (central difference) at your point' : 'مشتقات عددية (فرق مركزي) عند النقطة اللي كتبتها'}</div>`;
+  }
+  if ($('calc-out')) {
+    $('calc-ex').addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      const k = b.dataset.k;
+      if (EX[k]) { ['calc-p', 'calc-q', 'calc-r'].forEach((id, i) => { $(id).value = EX[k][i]; }); ['calc-px', 'calc-py', 'calc-pz'].forEach(id => { $(id).value = 1; }); }
+      runCalc();
+    });
+    ['calc-p', 'calc-q', 'calc-r', 'calc-px', 'calc-py', 'calc-pz'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') runCalc(); }));
+    runCalc();
+    if (window.Lec) Lec.onLang(runCalc);
+  }
 
-        /* ============ TOC drawer ============ */
-        function toggleToc() {
-            document.getElementById('toc-drawer').classList.toggle('open');
-            document.getElementById('toc-backdrop').classList.toggle('open');
-        }
-        document.querySelectorAll('#toc-drawer a').forEach(a => {
-            a.addEventListener('click', () => { if (window.innerWidth < 900) toggleToc(); });
-        });
+  /* ---------- مختبر المجال ---------- */
+  const cv = $('vf-canvas'); if (!cv) return;
+  const ctx = cv.getContext('2d'), readout = $('vf-readout'), sel = $('vf-preset'), key = $('vf-key');
+  const PRESETS = [
+    { id: 'rot',    ar: 'دوران · Rotation (∇×F = 2)',            en: 'Rotation (∇×F = 2)',             p: '-y', q: 'x' },
+    { id: 'source', ar: 'مصدر · Source (∇·F = 2)',               en: 'Source (∇·F = 2)',               p: 'x', q: 'y' },
+    { id: 'sink',   ar: 'مصب · Sink (∇·F = −2)',                 en: 'Sink (∇·F = −2)',                p: '-x', q: '-y' },
+    { id: 'saddle', ar: 'سرج · Saddle (∇·F = 0)',                en: 'Saddle (∇·F = 0)',               p: 'x', q: '-y' },
+    { id: 'shear',  ar: 'قص · Shear (∇×F = −1)',                 en: 'Shear (∇×F = −1)',               p: 'y', q: '0' },
+    { id: 'spiral', ar: 'حلزون · Spiral (الاثنين ≠ 0)',           en: 'Spiral (both ≠ 0)',              p: 'x - y', q: 'x + y' },
+    { id: 'vortex', ar: 'دوامة مثالية · Ideal vortex (∇×F = 0)', en: 'Ideal vortex (∇×F = 0)',         p: '-y/(x^2+y^2)', q: 'x/(x^2+y^2)' },
+    { id: 'custom', ar: '✏️ مجال من عندك…',                      en: '✏️ Your own field…',             p: '', q: '' }
+  ];
+  const S = 3.2, NP = 260;
+  let F = null, particles = [], mouse = null, running = false, raf = 0, W = 0, H = 0, mode = 'curl', C = {};
 
-        const tocLinks = [...document.querySelectorAll('#toc-drawer a')];
-        const tocTargets = tocLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-        const tocObs = new IntersectionObserver(entries => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    tocLinks.forEach(l => l.classList.remove('active'));
-                    const link = tocLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
-                    if (link) link.classList.add('active');
-                }
-            });
-        }, { rootMargin: '-30% 0px -60% 0px' });
-        tocTargets.forEach(t => tocObs.observe(t));
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const hex = h => { h = h.replace('#', ''); if (h.length === 3) h = h.split('').map(c => c + c).join(''); const v = parseInt(h, 16); return [v >> 16 & 255, v >> 8 & 255, v & 255]; };
+  function readColors() { C = { pos: hex(css('--cx')), neg: hex(css('--cz')), good: hex(css('--good')), bad: hex(css('--bad')), mid: hex(css('--ink-3')), acc: hex(css('--accent')), ink: css('--ink'), line: css('--line'), ax: css('--ink-3') }; }
+  const mix = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',')})`;
+  function colorFor(st) {
+    if (mode === 'div') { const t = Math.min(1, Math.abs(st.div) / 2.5); return mix(C.mid, st.div >= 0 ? C.good : C.bad, t); }
+    if (mode === 'curl') { const t = Math.min(1, Math.abs(st.curl) / 2.5); return mix(C.mid, st.curl >= 0 ? C.pos : C.neg, t); }
+    return mix(C.mid, C.acc, Math.min(1, st.speed / 4));
+  }
+  const k = () => Math.min(W, H) / 2 / S;
+  const toPX = (x, y) => [W / 2 + x * k(), H / 2 - y * k()];
+  const toW = (px, py) => [(px - W / 2) / k(), (H / 2 - py) / k()];
+  function stats(x, y) {
+    const v = F(x, y), Px = (F(x + 1e-4, y)[0] - F(x - 1e-4, y)[0]) / 2e-4, Py = (F(x, y + 1e-4)[0] - F(x, y - 1e-4)[0]) / 2e-4;
+    const Qx = (F(x + 1e-4, y)[1] - F(x - 1e-4, y)[1]) / 2e-4, Qy = (F(x, y + 1e-4)[1] - F(x, y - 1e-4)[1]) / 2e-4;
+    return { div: Px + Qy, curl: Qx - Py, speed: Math.hypot(v[0], v[1]) };
+  }
+  function setField(p, q) {
+    try { const P = compile(p), Q = compile(q); F = (x, y) => [P(x, y, 0), Q(x, y, 0)]; resetParticles(); return true; }
+    catch (e) { readout.innerHTML = `<div style="color:var(--bad)">⚠ ${en() ? 'invalid field' : 'المجال مو صالح'}</div>`; return false; }
+  }
+  const spawn = pt => { pt.x = (Math.random() * 2 - 1) * S; pt.y = (Math.random() * 2 - 1) * S; pt.life = .6 + Math.random() * .4; return pt; };
+  function resetParticles() { particles = Array.from({ length: NP }, () => { const p = spawn({}); p.life = Math.random(); return p; }); }
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2), r = cv.getBoundingClientRect();
+    W = r.width; H = r.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function arrow(px, py, fx, fy, col) {
+    const m = Math.hypot(fx, fy); if (m < 1e-6 || !isFinite(m)) return;
+    const len = Math.min(Math.max(m * 14, 7), 22), ux = fx / m, uy = fy / m, ex = px + ux * len, ey = py - uy * len, a = 4.5;
+    ctx.strokeStyle = col; ctx.lineWidth = 1.3; ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(ex, ey);
+    ctx.moveTo(ex, ey); ctx.lineTo(ex - ux * a - uy * a * .55, ey + uy * a - ux * a * .55);
+    ctx.moveTo(ex, ey); ctx.lineTo(ex - ux * a + uy * a * .55, ey + uy * a + ux * a * .55); ctx.stroke();
+  }
+  function frame(animate) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath();
+    for (let x = 34; x < W; x += 34) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+    for (let y = 34; y < H; y += 34) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+    ctx.stroke();
+    ctx.strokeStyle = C.ax; ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
+    if (!F) return;
+    for (let py = 23; py < H; py += 46) for (let px = 23; px < W; px += 46) {
+      const [x, y] = toW(px, py), v = F(x, y); arrow(px, py, v[0], v[1], colorFor(stats(x, y)));
+    }
+    if (animate) for (const pt of particles) {
+      const v = F(pt.x, pt.y), m = Math.hypot(v[0], v[1]), sc = m > 4 ? 4 / m : 1, dt = .012 * sc;
+      const nx = pt.x + v[0] * dt, ny = pt.y + v[1] * dt, [x2, y2] = toPX(nx, ny);
+      const [x0, y0] = toPX(pt.x - v[0] * sc * .07, pt.y - v[1] * sc * .07);   // ذيل قصير عشان يبان اتجاه الحركة
+      ctx.strokeStyle = colorFor(stats(pt.x, pt.y)); ctx.globalAlpha = .3 + pt.life * .7; ctx.lineWidth = 2.4; ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x2, y2); ctx.stroke(); ctx.globalAlpha = 1;
+      pt.x = nx; pt.y = ny; pt.life -= .006;
+      if (pt.life <= 0 || !isFinite(nx) || Math.abs(nx) > S * 1.15 || Math.abs(ny) > S * 1.15 || Math.hypot(nx, ny) < .08) spawn(pt);
+    }
+    if (mouse) {
+      const st = stats(mouse.x, mouse.y), [mx, my] = toPX(mouse.x, mouse.y);
+      ctx.strokeStyle = C.ink; ctx.lineWidth = 1.3; ctx.beginPath();
+      ctx.moveTo(mx - 9, my); ctx.lineTo(mx + 9, my); ctx.moveTo(mx, my - 9); ctx.lineTo(mx, my + 9); ctx.stroke();
+      ctx.beginPath(); ctx.arc(mx, my, 5, 0, Math.PI * 2); ctx.stroke();
+      readout.innerHTML = `<div><span class="k">x, y</span> = <span class="v">${mouse.x.toFixed(2)}, ${mouse.y.toFixed(2)}</span></div>` +
+        `<div><span class="k">div F</span> = <span class="v" style="color:var(--cy)">${fmt(st.div)}</span></div>` +
+        `<div><span class="k">curl F · k</span> = <span class="v" style="color:var(--cz)">${fmt(st.curl)}</span></div>` +
+        `<div><span class="k">|F|</span> = <span class="v">${st.speed.toFixed(3)}</span></div>`;
+    }
+  }
+  function loop() { if (!running) return; frame(true); raf = requestAnimationFrame(loop); }
+  function start() { if (running) return; if (reduceMotion) { frame(false); return; } running = true; raf = requestAnimationFrame(loop); }
+  function stop() { running = false; cancelAnimationFrame(raf); }
+  const hint = () => { if (!mouse) readout.innerHTML = `<div class="k">${en() ? 'hover or touch the field…' : 'مرّر فوق المجال…'}</div>`; };
+  function paintKey() {
+    const dot = c => `<i style="background:${c}"></i>`;
+    key.innerHTML = mode === 'div'
+      ? `<span>${dot('var(--good)')}<b class="ltr">∇·F &gt; 0</b> ${en() ? 'spreading out (source)' : 'تمدد (مصدر)'}</span><span>${dot('var(--bad)')}<b class="ltr">∇·F &lt; 0</b> ${en() ? 'gathering in (sink)' : 'انكماش (مصب)'}</span><span>${dot('var(--ink-3)')}<b class="ltr">∇·F ≈ 0</b></span>`
+      : mode === 'curl'
+        ? `<span>${dot('var(--cx)')}<b class="ltr">curl &gt; 0</b> ${en() ? 'counterclockwise spin' : 'يلف عكس عقارب الساعة'}</span><span>${dot('var(--cz)')}<b class="ltr">curl &lt; 0</b> ${en() ? 'clockwise spin' : 'يلف مع عقارب الساعة'}</span><span>${dot('var(--ink-3)')}<b class="ltr">curl ≈ 0</b></span>`
+        : `<span>${dot('var(--accent)')}${en() ? 'fast' : 'سريع'}</span><span>${dot('var(--ink-3)')}${en() ? 'slow' : 'بطيء'}</span>`;
+  }
+  function fillPresets() { const v = sel.value; sel.innerHTML = PRESETS.map(p => `<option value="${p.id}">${(en() ? p.en : p.ar).replace(/\(([^)]*)\)/, '(\u2066$1\u2069)')}</option>`).join(''); sel.value = v || 'rot'; }
+  sel.addEventListener('change', () => {
+    const p = PRESETS.find(x => x.id === sel.value), custom = p.id === 'custom';
+    $('vf-custom').hidden = !custom;
+    if (!custom && setField(p.p, p.q) && !running) { frame(false); start(); }
+  });
+  $('vf-apply').addEventListener('click', () => { if (setField($('vf-p').value, $('vf-q').value)) { frame(false); start(); } });
+  $('vf-mode').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    mode = b.dataset.k; $('vf-mode').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); paintKey(); if (!running) frame(false);
+  });
+  const point = e => { const r = cv.getBoundingClientRect(), [x, y] = toW(e.clientX - r.left, e.clientY - r.top); mouse = { x, y }; if (!running) frame(false); };
+  cv.addEventListener('pointermove', point); cv.addEventListener('pointerdown', point);
+  cv.addEventListener('pointerleave', () => { mouse = null; hint(); if (!running) frame(false); });
+  addEventListener('resize', () => { resize(); frame(false); });
+  if (window.Lec) { Lec.onTheme(() => { readColors(); frame(false); }); Lec.onLang(() => { fillPresets(); paintKey(); hint(); }); }
 
-        /* ============================================================
-           Hero Animation — div (نبض) + curl (دوران)
-           ============================================================ */
-        if (!reduceMotion) {
-            const divArrows = document.querySelectorAll('#hero-scope .div-arrow line');
-            const baseEndpoints = [...divArrows].map(line => ({
-                x2: parseFloat(line.getAttribute('x2')),
-                y2: parseFloat(line.getAttribute('y2'))
-            }));
-            const centerX = 175, centerY = 95;
-
-            function animateDiv(ts) {
-                const period = 2200;
-                const phase = (ts % period) / period;
-                const pulse = (1 - Math.cos(phase * Math.PI * 2)) / 2;
-                const scale = 1 + pulse * 0.35;
-                divArrows.forEach((line, i) => {
-                    const base = baseEndpoints[i];
-                    line.setAttribute('x2', centerX + (base.x2 - centerX) * scale);
-                    line.setAttribute('y2', centerY + (base.y2 - centerY) * scale);
-                });
-                requestAnimationFrame(animateDiv);
-            }
-
-            const curlDot = document.getElementById('curlDot');
-            const curlRing = document.getElementById('curlRing');
-            const curlTrail = document.getElementById('curlTrail');
-            const CX = 525, CY = 95, R = 42;
-            const trailPoints = [];
-            const TRAIL_LEN = 22;
-
-            function animateCurl(ts) {
-                const angle = ts * 0.0018;
-                const x = CX + R * Math.cos(angle);
-                const y = CY + R * Math.sin(angle);
-                curlDot.setAttribute('cx', x);
-                curlDot.setAttribute('cy', y);
-                trailPoints.push([x, y]);
-                if (trailPoints.length > TRAIL_LEN) trailPoints.shift();
-                if (trailPoints.length > 1) {
-                    curlTrail.setAttribute('d', trailPoints.map((p, i) =>
-                        (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)
-                    ).join(' '));
-                }
-                curlRing.style.transform = `rotate(${(ts * 0.04) % 360}deg)`;
-                requestAnimationFrame(animateCurl);
-            }
-
-            requestAnimationFrame(animateDiv);
-            requestAnimationFrame(animateCurl);
-        }
-
-        /* ============================================================
-           Math Parser
-           ============================================================ */
-        const MathParser = (() => {
-            function compile(expr) {
-                if (!expr || !expr.trim()) throw new Error('تعبير فارغ');
-                let s = expr.trim();
-                const allowed = /^[0-9a-zA-Z_+\-*/^().,\s]*$/;
-                if (!allowed.test(s)) throw new Error('رموز غير مسموحة');
-                s = s.replace(/\^/g, '**');
-                const funcs = ['sin','cos','tan','exp','log','sqrt','asin','acos','atan','sinh','cosh','tanh','abs'];
-                funcs.forEach(f => { s = s.replace(new RegExp('\\b' + f + '\\b', 'g'), 'Math.' + f); });
-                s = s.replace(/\bpi\b/g, 'Math.PI');
-                s = s.replace(/\be\b/g, 'Math.E');
-                try {
-                    const fn = new Function('x','y','z', 'return ' + s + ';');
-                    const test = fn(1,1,1);
-                    if (typeof test !== 'number' || isNaN(test) || !isFinite(test)) throw new Error('نتيجة غير رقمية');
-                    return fn;
-                } catch (err) { throw new Error('تعبير غير صالح: ' + expr); }
-            }
-            function d(fn, varIdx, x, y, z, h = 1e-6) {
-                const a1 = [x, y, z], a2 = [x, y, z];
-                a1[varIdx] += h; a2[varIdx] -= h;
-                return (fn(...a1) - fn(...a2)) / (2 * h);
-            }
-            function fmt(v) {
-                if (!isFinite(v)) return '∞';
-                if (Math.abs(v) < 1e-9) return '0';
-                return (Math.round(v * 1e6) / 1e6).toString();
-            }
-            return { compile, d, fmt };
-        })();
-
-        /* ============================================================
-           الحاسبة (مع نقطة تعويض حرة)
-           ============================================================ */
-        function runCalc() {
-            const out = document.getElementById('calc-out');
-            const ids = ['calc-p','calc-q','calc-r'];
-            const els = ids.map(i => document.getElementById(i));
-            els.forEach(el => el.classList.remove('err'));
-
-            const names = ['P', 'Q', 'R'];
-            const fns = [];
-            for (let i = 0; i < 3; i++) {
-                try { fns.push(MathParser.compile(els[i].value)); }
-                catch (e) { els[i].classList.add('err'); return showError(out, 'المركبة ' + names[i] + ': ' + e.message); }
-            }
-            const [P, Q, R] = fns;
-
-            const pv = ['calc-px','calc-py','calc-pz'].map(id => {
-                const v = parseFloat(document.getElementById(id).value);
-                return isNaN(v) ? 0 : v;
-            });
-            const pt = { x: pv[0], y: pv[1], z: pv[2] };
-
-            try {
-                const dPdx = MathParser.d(P, 0, pt.x, pt.y, pt.z);
-                const dPdy = MathParser.d(P, 1, pt.x, pt.y, pt.z);
-                const dPdz = MathParser.d(P, 2, pt.x, pt.y, pt.z);
-                const dQdx = MathParser.d(Q, 0, pt.x, pt.y, pt.z);
-                const dQdy = MathParser.d(Q, 1, pt.x, pt.y, pt.z);
-                const dQdz = MathParser.d(Q, 2, pt.x, pt.y, pt.z);
-                const dRdx = MathParser.d(R, 0, pt.x, pt.y, pt.z);
-                const dRdy = MathParser.d(R, 1, pt.x, pt.y, pt.z);
-                const dRdz = MathParser.d(R, 2, pt.x, pt.y, pt.z);
-
-                const div = dPdx + dQdy + dRdz;
-                const cx = dRdy - dQdz;
-                const cy = dPdz - dRdx;
-                const cz = dQdx - dPdy;
-                const f = MathParser.fmt;
-
-                out.innerHTML = `
-                    <div class="step"><span class="lbl">V =</span> [ ${escapeHtml(els[0].value)}, ${escapeHtml(els[1].value)}, ${escapeHtml(els[2].value)} ]</div>
-                    <div class="step"><span class="lbl">point</span> = (${f(pt.x)}, ${f(pt.y)}, ${f(pt.z)})</div>
-                    <div class="step"><span class="lbl">∂P/∂x</span> = ${f(dPdx)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂y</span> = ${f(dQdy)} &nbsp; | &nbsp; <span class="lbl">∂R/∂z</span> = ${f(dRdz)}</div>
-                    <div class="step"><span class="lbl">∂R/∂y</span> = ${f(dRdy)} &nbsp; | &nbsp; <span class="lbl">∂Q/∂z</span> = ${f(dQdz)}</div>
-                    <div class="step"><span class="lbl">∂P/∂z</span> = ${f(dPdz)} &nbsp; | &nbsp; <span class="lbl">∂R/∂x</span> = ${f(dRdx)}</div>
-                    <div class="step"><span class="lbl">∂Q/∂x</span> = ${f(dQdx)} &nbsp; | &nbsp; <span class="lbl">∂P/∂y</span> = ${f(dPdy)}</div>
-                    <div class="final">
-                        ∇·V = ${f(div)} &nbsp;&nbsp;&nbsp; (scalar)<br>
-                        ∇×V = [ ${f(cx)}, ${f(cy)}, ${f(cz)} ]
-                    </div>
-                    <div style="margin-top:10px;color:var(--ink-secondary);font-size:0.78rem;">
-                        * الحساب جرى عند النقطة التي أدخلتها باستخدام التفاضل العددي (فرق مركزي)
-                    </div>
-                `;
-            } catch (e) {
-                showError(out, 'تعذر الحساب عند هذه النقطة: ' + e.message);
-            }
-        }
-
-        function showError(out, msg) { out.innerHTML = `<div class="error">⚠ ${escapeHtml(msg)}</div>`; }
-        function escapeHtml(s) {
-            return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-        }
-
-        function loadExample(type) {
-            const p = document.getElementById('calc-p');
-            const q = document.getElementById('calc-q');
-            const r = document.getElementById('calc-r');
-            if (type === 'div')      { p.value = '3*x*z'; q.value = '2*x*y'; r.value = '-y*z^2'; }
-            else if (type === 'curl'){ p.value = 'y*z';   q.value = '3*z*x'; r.value = 'z'; }
-            else                     { p.value = 'x^2*y'; q.value = 'z';     r.value = '-x-y+z'; }
-            runCalc();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => { setTimeout(runCalc, 200); });
-
-        /* ============================================================
-           مختبر المجال الاتجاهي (FieldLab)
-           ============================================================ */
-        const FieldLab = (() => {
-            const canvas = document.getElementById('vf-canvas');
-            if (!canvas) return { applyPreset(){}, applyCustom(){} };
-            const ctx = canvas.getContext('2d');
-            const readout = document.getElementById('vf-readout');
-            const presetSel = document.getElementById('vf-preset');
-            const customBox = document.getElementById('vf-custom');
-            const legend = document.getElementById('vf-legend');
-
-            const PRESETS = [
-                { id:'vortex', name:'🌀 دوامة — Vortex (∇×F = 2)',        p:'-y',    q:'x'    },
-                { id:'source', name:'💨 مصدر — Source (∇·F = 2)',          p:'x',     q:'y'    },
-                { id:'sink',   name:'🕳️ مصب — Sink (∇·F = −2)',            p:'-x',    q:'-y'   },
-                { id:'saddle', name:'🫳 سرج — Saddle (∇·F = 0)',           p:'x',     q:'-y'   },
-                { id:'shear',  name:'✂️ قص — Shear (∇×F = −1)',            p:'y',     q:'0'    },
-                { id:'spiral', name:'🌪️ حلزون — Spiral (كلاهما ≠ 0)',      p:'x - y', q:'x + y'},
-                { id:'custom', name:'✏️ مجال مخصص…',                       p:'',      q:''     },
-            ];
-
-            let F = null;               // (x,y) => [fx, fy]
-            let particles = [];
-            let mouse = null;           // {wx, wy}
-            let running = false;
-            let rafId = null;
-            let W = 0, H = 0, dpr = 1;
-            const S = 3.2;              // نصف عرض العالم
-            const NP = 260;
-
-            function resize() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                const rect = canvas.getBoundingClientRect();
-                W = rect.width; H = rect.height;
-                canvas.width = W * dpr; canvas.height = H * dpr;
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            }
-            window.addEventListener('resize', resize);
-
-            const toPX = (wx, wy) => {
-                const k = Math.min(W, H) / 2 / S;
-                return [W / 2 + wx * k, H / 2 - wy * k];
-            };
-            const toWorld = (px, py) => {
-                const k = Math.min(W, H) / 2 / S;
-                return [(px - W / 2) / k, (H / 2 - py) / k];
-            };
-
-            function numD(fn, varIdx, x, y) {
-                const h = 1e-4;
-                const a = [x, y], b = [x, y];
-                a[varIdx] += h; b[varIdx] -= h;
-                return (fn(...a) - fn(...b)) / (2 * h);
-            }
-
-            function setField(pExpr, qExpr) {
-                try {
-                    const pFn = MathParser.compile(pExpr);
-                    const qFn = MathParser.compile(qExpr);
-                    F = (x, y) => [pFn(x, y, 0), qFn(x, y, 0)];
-                    resetParticles();
-                    return null;
-                } catch (e) { return e.message; }
-            }
-
-            function resetParticles() {
-                particles = [];
-                for (let i = 0; i < NP; i++) {
-                    particles.push({
-                        x: (Math.random() * 2 - 1) * S,
-                        y: (Math.random() * 2 - 1) * S,
-                        life: Math.random()
-                    });
-                }
-            }
-
-            /* تدرج لوني */
-            function lerp(a, b, t) { return a + (b - a) * t; }
-            function mixRGB(c1, c2, t) {
-                return `rgb(${Math.round(lerp(c1[0],c2[0],t))},${Math.round(lerp(c1[1],c2[1],t))},${Math.round(lerp(c1[2],c2[2],t))}`;
-            }
-            function colorFor(mode, val, speed) {
-                if (mode === 'div') {
-                    const t = Math.min(1, Math.abs(val) / 3);
-                    return val >= 0 ? mixRGB([70,90,80],[124,255,178],t) : mixRGB([70,90,80],[255,111,111],t);
-                }
-                if (mode === 'curl') {
-                    const t = Math.min(1, Math.abs(val) / 3);
-                    return val >= 0 ? mixRGB([70,90,95],[124,196,255],t) : mixRGB([70,90,95],[255,180,84],t);
-                }
-                const t = Math.min(1, speed / 5);
-                return mixRGB([90,110,100],[255,209,102],t);
-            }
-
-            function currentMode() {
-                const r = document.querySelector('input[name="vf-mode"]:checked');
-                return r ? r.value : 'curl';
-            }
-
-            function fieldStats(x, y) {
-                if (!F) return { div: 0, curl: 0, speed: 0 };
-                const [fx, fy] = F(x, y);
-                const h = 1e-4;
-                const dPx = numD((a,b)=>F(a,b)[0], 0, x, y);
-                const dPy = numD((a,b)=>F(a,b)[0], 1, x, y);
-                const dQx = numD((a,b)=>F(a,b)[1], 0, x, y);
-                const dQy = numD((a,b)=>F(a,b)[1], 1, x, y);
-                void h;
-                return {
-                    div: dPx + dQy,
-                    curl: dQx - dPy,
-                    speed: Math.hypot(fx, fy)
-                };
-            }
-
-            function drawArrow(px, py, fx, fy, color) {
-                const mag = Math.hypot(fx, fy);
-                if (mag < 1e-6) return;
-                const len = Math.min(Math.max(mag * 14, 7), 24);
-                const ux = fx / mag, uy = fy / mag;
-                const ex = px + ux * len, ey = py - uy * len;
-                ctx.strokeStyle = color;
-                ctx.lineWidth = 1.2;
-                ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(ex, ey); ctx.stroke();
-                const a = 4.5;
-                ctx.beginPath();
-                ctx.moveTo(ex, ey);
-                ctx.lineTo(ex - ux * a - uy * a * 0.55, ey + uy * a - ux * a * 0.55);
-                ctx.moveTo(ex, ey);
-                ctx.lineTo(ex - ux * a + uy * a * 0.55, ey + uy * a + ux * a * 0.55);
-                ctx.stroke();
-            }
-
-            function step(ts) {
-                if (!running) return;
-                const mode = currentMode();
-
-                ctx.clearRect(0, 0, W, H);
-
-                /* شبكة خفيفة */
-                ctx.strokeStyle = document.body.classList.contains('light') ? 'rgba(15,80,55,0.07)' : 'rgba(124,255,178,0.045)';
-                ctx.lineWidth = 1;
-                const gs = 34;
-                ctx.beginPath();
-                for (let x = gs; x < W; x += gs) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
-                for (let y = gs; y < H; y += gs) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
-                ctx.stroke();
-
-                /* محاور */
-                ctx.strokeStyle = 'rgba(140,160,150,0.25)';
-                ctx.beginPath(); ctx.moveTo(0, H/2); ctx.lineTo(W, H/2); ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H); ctx.stroke();
-
-                if (F) {
-                    /* أسهم المجال */
-                    const as = 46;
-                    for (let py = as/2; py < H; py += as) {
-                        for (let px = as/2; px < W; px += as) {
-                            const [wx, wy] = toWorld(px, py);
-                            const [fx, fy] = F(wx, wy);
-                            const st = fieldStats(wx, wy);
-                            const val = mode === 'div' ? st.div : mode === 'curl' ? st.curl : 0;
-                            drawArrow(px, py, fx, fy, colorFor(mode, val, st.speed));
-                        }
-                    }
-
-                    /* جسيمات متدفقة */
-                    const dt = 0.012;
-                    for (const pt of particles) {
-                        const [fx, fy] = F(pt.x, pt.y);
-                        const nx = pt.x + fx * dt;
-                        const ny = pt.y + fy * dt;
-                        const [x1, y1] = toPX(pt.x, pt.y);
-                        const [x2, y2] = toPX(nx, ny);
-                        const st = fieldStats(pt.x, pt.y);
-                        const val = mode === 'div' ? st.div : mode === 'curl' ? st.curl : 0;
-                        ctx.strokeStyle = colorFor(mode, val, st.speed);
-                        ctx.globalAlpha = 0.25 + pt.life * 0.65;
-                        ctx.lineWidth = 1.6;
-                        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-                        ctx.globalAlpha = 1;
-                        pt.x = nx; pt.y = ny; pt.life -= 0.006;
-                        if (pt.life <= 0 || Math.abs(pt.x) > S * 1.15 || Math.abs(pt.y) > S * 1.15) {
-                            pt.x = (Math.random() * 2 - 1) * S;
-                            pt.y = (Math.random() * 2 - 1) * S;
-                            pt.life = 0.6 + Math.random() * 0.4;
-                        }
-                    }
-
-                    /* مؤشر الفأرة */
-                    if (mouse) {
-                        const st = fieldStats(mouse.wx, mouse.wy);
-                        const [mx, my] = toPX(mouse.wx, mouse.wy);
-                        ctx.strokeStyle = '#ffd166';
-                        ctx.lineWidth = 1.2;
-                        ctx.beginPath();
-                        ctx.moveTo(mx - 9, my); ctx.lineTo(mx + 9, my);
-                        ctx.moveTo(mx, my - 9); ctx.lineTo(mx, my + 9);
-                        ctx.stroke();
-                        ctx.beginPath(); ctx.arc(mx, my, 5, 0, Math.PI * 2); ctx.stroke();
-                        readout.innerHTML =
-                            `<div>x = <span class="rv">${mouse.wx.toFixed(2)}</span>, y = <span class="rv">${mouse.wy.toFixed(2)}</span></div>` +
-                            `<div>∇·F = <span class="rg">${st.div.toFixed(3)}</span></div>` +
-                            `<div>(∇×F)z = <span class="rb">${st.curl.toFixed(3)}</span></div>` +
-                            `<div>|F| = <span class="rv">${st.speed.toFixed(3)}</span></div>`;
-                    }
-                }
-
-                rafId = requestAnimationFrame(step);
-            }
-
-            function start() {
-                if (running || reduceMotion) { if (!running && reduceMotion) { running = true; step(0); running = false; cancelAnimationFrame(rafId); drawStatic(); } return; }
-                running = true;
-                resize();
-                rafId = requestAnimationFrame(step);
-            }
-            function stop() { running = false; cancelAnimationFrame(rafId); }
-
-            function drawStatic() {
-                resize();
-                const keep = running; running = true;
-                step(0); stop(); running = keep;
-            }
-
-            canvas.addEventListener('mousemove', e => {
-                const rect = canvas.getBoundingClientRect();
-                const [wx, wy] = toWorld(e.clientX - rect.left, e.clientY - rect.top);
-                mouse = { wx, wy };
-            });
-            canvas.addEventListener('mouseleave', () => {
-                mouse = null;
-                readout.innerHTML = '<div>move mouse over field…</div>';
-            });
-
-            function updateLegend() {
-                const mode = currentMode();
-                if (mode === 'div') {
-                    legend.innerHTML = '<span><i class="vf-dot" style="background:#7cffb2"></i> ∇·F &gt; 0 تمدد (source)</span>' +
-                        '<span><i class="vf-dot" style="background:#ff6f6f"></i> ∇·F &lt; 0 انكماش (sink)</span>' +
-                        '<span><i class="vf-dot" style="background:#3a5a4c"></i> ∇·F ≈ 0</span>';
-                } else if (mode === 'curl') {
-                    legend.innerHTML = '<span><i class="vf-dot" style="background:#7cc4ff"></i> (∇×F)z &gt; 0 دوران عكس عقارب الساعة</span>' +
-                        '<span><i class="vf-dot" style="background:#ffb454"></i> (∇×F)z &lt; 0 دوران مع عقارب الساعة</span>' +
-                        '<span><i class="vf-dot" style="background:#3a5a5e"></i> ≈ 0</span>';
-                } else {
-                    legend.innerHTML = '<span><i class="vf-dot" style="background:#ffd166"></i> سرعة عالية</span>' +
-                        '<span><i class="vf-dot" style="background:#5a6e64"></i> سرعة منخفضة</span>';
-                }
-            }
-            document.querySelectorAll('input[name="vf-mode"]').forEach(r => r.addEventListener('change', updateLegend));
-
-            function applyPreset() {
-                const sel = PRESETS.find(p => p.id === presetSel.value);
-                if (!sel) return;
-                if (sel.id === 'custom') {
-                    customBox.classList.add('show');
-                    return;
-                }
-                customBox.classList.remove('show');
-                const err = setField(sel.p, sel.q);
-                if (err) readout.innerHTML = `<div style="color:#f87171;">⚠ ${escapeHtml(err)}</div>`;
-                if (!running && !reduceMotion) start();
-            }
-
-            function applyCustom() {
-                const p = document.getElementById('vf-p').value;
-                const q = document.getElementById('vf-q').value;
-                const err = setField(p, q);
-                if (err) readout.innerHTML = `<div style="color:#f87171;">⚠ ${escapeHtml(err)}</div>`;
-                else if (!running && !reduceMotion) start();
-            }
-
-            /* تهيئة */
-            PRESETS.forEach(p => {
-                const opt = document.createElement('option');
-                opt.value = p.id; opt.textContent = p.name;
-                presetSel.appendChild(opt);
-            });
-            presetSel.value = 'vortex';
-            updateLegend();
-            setField('-y', 'x');
-            resize();
-
-            /* تشغيل فقط عندما يكون المرئي */
-            const stage = document.getElementById('field-lab');
-            if ('IntersectionObserver' in window && !reduceMotion) {
-                const io = new IntersectionObserver(entries => {
-                    entries.forEach(e => { e.isIntersecting ? start() : stop(); });
-                }, { threshold: 0.1 });
-                io.observe(stage);
-            } else {
-                drawStatic();
-            }
-
-            return { applyPreset, applyCustom };
-        })();
-
-        /* ============================================================
-           Quiz
-           ============================================================ */
-        const quizData = [
-            {
-                q: 'ما نوع ناتج عملية الـ Divergence $\\nabla \\cdot \\mathbf{V}$؟',
-                opts: ['متجه (Vector)', 'قياسي (Scalar)', 'مصفوفة (Matrix)', 'لا يمكن تحديده'],
-                correct: 1,
-                feedback: 'الـ Divergence ينتج كمية قياسية (Scalar) دائماً، بينما الـ Curl ينتج متجهاً.'
-            },
-            {
-                q: 'أي من المتطابقات التالية صحيحة دائماً لأي دالة قياسية $f$ قابلة للمفاضلة؟',
-                opts: ['$\\nabla \\cdot (\\nabla f) = 0$', '$\\nabla \\times (\\nabla f) = 0$', '$\\nabla \\times (\\nabla f) = 1$', '$\\nabla \\cdot (\\nabla f) = f$'],
-                correct: 1,
-                feedback: 'Curl of Gradient يساوي صفراً دائماً. أما Divergence of Gradient فيساوي Laplacian $f$ وليس صفراً بالضرورة.'
-            },
-            {
-                q: 'إذا كان $\\nabla \\cdot \\mathbf{V} = 0$ فماذا نسمي المجال؟',
-                opts: ['دوراني (Rotational)', 'أنبوبي / لا تباعدي (Solenoidal)', 'متدرج (Gradient)', 'قياسي (Scalar)'],
-                correct: 1,
-                feedback: 'المجال ذو الـ Divergence الصفري يسمى Solenoidal (أنبوبي)، ويستخدم في وصف الموائع غير القابلة للانضغاط.'
-            },
-            {
-                q: 'بالنسبة للمجال $\\mathbf{V} = [x, y, z]$، ما هو $\\text{curl}(\\mathbf{V})$؟',
-                opts: ['$[1, 1, 1]$', '$[0, 0, 0]$', '$[x, y, z]$', '$3$'],
-                correct: 1,
-                feedback: 'كل مركبة تعتمد على متغيرها فقط، لذا جميع المشتقات المختلطة صفر → الـ Curl = [0,0,0]. لاحظ أن $\\nabla \\cdot \\mathbf{V} = 3$.'
-            },
-            {
-                q: 'لماذا $\\text{div}(\\text{curl}(\\mathbf{V})) = 0$ دائماً؟',
-                opts: [
-                    'لأن الـ Curl متجه دائماً',
-                    'بسبب تساوي المشتقات المختلطة (نظرية كليرو) والتلاشي الزوجي',
-                    'لأن الـ Divergence قياسي',
-                    'لأن $\\mathbf{V}$ ثابت'
-                ],
-                correct: 1,
-                feedback: 'بفك المحدد، كل حد يظهر مرتين بإشارتين متعاكستين، وبما أن المشتقات المختلطة متساوية (نظرية كليرو)، الناتج صفر.'
-            }
-        ];
-
-        let quizScore = 0;
-        let answered = new Set();
-
-        function renderQuiz() {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = quizData.map((item, i) => `
-                <div class="quiz-q" data-i="${i}">
-                    <div class="q-text"><strong>${i+1}.</strong> ${item.q}</div>
-                    <div class="quiz-opts">
-                        ${item.opts.map((opt, j) => `
-                            <button class="quiz-opt" onclick="answerQuiz(${i}, ${j}, this)">${opt}</button>
-                        `).join('')}
-                    </div>
-                    <div class="quiz-feedback" id="fb-${i}"></div>
-                </div>
-            `).join('');
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([container]).catch(()=>{});
-        }
-
-        function answerQuiz(qIdx, optIdx, btn) {
-            if (answered.has(qIdx)) return;
-            answered.add(qIdx);
-            const item = quizData[qIdx];
-            const parent = btn.closest('.quiz-q');
-            const allOpts = parent.querySelectorAll('.quiz-opt');
-            const fb = document.getElementById('fb-' + qIdx);
-            allOpts.forEach((b, j) => {
-                b.disabled = true;
-                if (j === item.correct) b.classList.add('correct');
-                else if (j === optIdx) b.classList.add('wrong');
-            });
-            if (optIdx === item.correct) {
-                quizScore++;
-                fb.className = 'quiz-feedback show ok';
-                fb.innerHTML = '✓ صحيح! ' + item.feedback;
-            } else {
-                fb.className = 'quiz-feedback show no';
-                fb.innerHTML = '✗ خطأ. ' + item.feedback;
-            }
-            document.getElementById('quiz-score').textContent = quizScore;
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([fb]).catch(()=>{});
-            try {
-                localStorage.setItem('lecture4-quiz', JSON.stringify({ score: quizScore, answered: [...answered] }));
-            } catch (e) {}
-        }
-
-        function resetQuiz() {
-            quizScore = 0;
-            answered = new Set();
-            document.getElementById('quiz-score').textContent = '0';
-            try { localStorage.removeItem('lecture4-quiz'); } catch(e) {}
-            renderQuiz();
-        }
-
-        /* ============================================================
-           Flashcards
-           ============================================================ */
-        let flashData = [
-            { f: 'تعريف Divergence', b: '$\\nabla \\cdot \\mathbf{V} = \\partial_x v_1 + \\partial_y v_2 + \\partial_z v_3$' },
-            { f: 'نوع ناتج Divergence', b: 'كمية قياسية (Scalar)' },
-            { f: 'تعريف Curl', b: '$\\nabla \\times \\mathbf{V}$ (محدد 3×3)' },
-            { f: 'نوع ناتج Curl', b: 'متجه (Vector)' },
-            { f: 'curl(∇f) = ؟', b: '$\\mathbf{0}$ دائماً' },
-            { f: 'div(curl(V)) = ؟', b: '$0$ دائماً' },
-            { f: 'div(∇f) = ؟', b: 'مؤثر Laplacian $\\nabla^2 f$' },
-            { f: 'المجال الأنبوبي (Solenoidal)', b: '$\\nabla \\cdot \\mathbf{V} = 0$ — مائع غير قابل للانضغاط' },
-            { f: 'المجال غير الدوراني (Irrotational)', b: '$\\nabla \\times \\mathbf{V} = \\mathbf{0}$' },
-        ];
-
-        function renderFlashcards() {
-            const grid = document.getElementById('flash-grid');
-            grid.innerHTML = flashData.map(c => `
-                <div class="flash" onclick="this.classList.toggle('flipped')">
-                    <div class="flash-inner">
-                        <div class="flash-face flash-front">
-                            <div>${c.f}<span class="hint">اضغط للقلب ↻</span></div>
-                        </div>
-                        <div class="flash-face flash-back">
-                            <div>${c.b}</div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([grid]).catch(()=>{});
-        }
-
-        function shuffleFlashcards() {
-            for (let i = flashData.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [flashData[i], flashData[j]] = [flashData[j], flashData[i]];
-            }
-            renderFlashcards();
-        }
-
-        /* ============================================================
-           أزرار نسخ LaTeX
-           ============================================================ */
-        function addCopyButtons() {
-            document.querySelectorAll('.math-block').forEach(block => {
-                const container = block.querySelector('mjx-container');
-                let tex = container ? (container.getAttribute('aria-label') || '') : '';
-                if (!tex) return;
-                const btn = document.createElement('button');
-                btn.className = 'copy-tex';
-                btn.textContent = 'copy TeX';
-                btn.onclick = (e) => {
-                    e.stopPropagation();
-                    navigator.clipboard.writeText(tex).then(() => {
-                        btn.textContent = '✓ copied';
-                        btn.classList.add('copied');
-                        setTimeout(() => { btn.textContent = 'copy TeX'; btn.classList.remove('copied'); }, 1500);
-                    }).catch(() => { btn.textContent = '✗ فشل'; });
-                };
-                block.appendChild(btn);
-            });
-        }
-
-        /* ============ Init ============ */
-        window.addEventListener('load', () => {
-            renderQuiz();
-            renderFlashcards();
-            setTimeout(addCopyButtons, 1200);
-        });
-    </script>
+  readColors(); fillPresets(); paintKey(); hint(); setField('-y', 'x'); resize(); frame(false);
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: .1 }).observe($('lab'));
+  else start();
+})();
+</script>
 <script src="nav.js"></script>
 </body>
 </html>
