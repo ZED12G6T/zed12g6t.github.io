@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورقة القواعد · المحاضرة ٢ · أخلاقيات المهنة</title>
+<meta name="description" content="Part 2 rules sheet · Concept of Engineering Ethics: every concept and rule, what it means and why, when to use it, and worked cases in English with an Arabic translation.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="laws.css?v=1">
+<script src="../site.js"></script>
+<script defer src="laws.js?v=1"></script>
+</head>
+<body>
+<header class="lw-top">
+  <div class="lw-bar">
+    <div class="crumb"><a href="index.html">أخلاقيات المهنة</a><span class="dot">·</span><b>المحاضرة ٢</b><span class="dot">·</span><span>ورقة القواعد</span></div>
+    <div class="bar-end">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">◐</button>
+    </div>
+  </div>
+  <nav class="mode-tabs" aria-label="الشرح أو القواعد أو الاختبار"><a href="lecture2.html">📖 الشرح</a><span class="on" aria-current="page">📐 القواعد</span><a href="quiz2.html">🧠 الاختبار</a></nav>
+  <nav class="lw-tabs" aria-label="المحاضرات"><a class="tab" href="laws1.html">المحاضرة ١ <small dir="ltr" lang="en">Part 1</small></a><a class="tab on" href="laws2.html" aria-current=page>المحاضرة ٢ <small dir="ltr" lang="en">Part 2</small></a><a class="tab" href="laws3.html">المحاضرة ٣ <small dir="ltr" lang="en">Part 3</small></a></nav>
+</header>
+
+<main class="lw-wrap">
+<section class="hero">
+  <div class="hero-t">
+    <span class="pill">ورقة القواعد · المحاضرة ٢</span>
+    <h1>مفهوم أخلاقيات الهندسة</h1>
+    <p class="sub">من الأخلاق الشخصية اليومية، للقضايا العشر، للرشوة والإبلاغ، لأسئلة القرار. كل مفهوم: نصه، ووش يعني وليش، ومتى تستخدمه، وحالات محلولة بالإنجليزي وتحتها الترجمة.</p>
+    <p class="sub-en" dir="ltr" lang="en">Part 2 rules sheet · Concept of Engineering Ethics</p>
+    <div class="stats"><span><b>7</b> مفاهيم</span><span><b>16</b> حالة محلولة</span><span>بالإنجليزي + ترجمة عربي</span></div>
+  </div>
+  <div class="hero-card hero-txt" dir="ltr" lang="en">Is it SAFE? Is it LEGAL?</div>
+</section>
+
+<div class="cta-row">
+<a class="quiz-cta" href="quiz2.html">
+  <span class="qc-ic" aria-hidden="true">🧠</span>
+  <span class="qc-t"><b>اختبر نفسك: أي قاعدة تنطبق؟</b><small>37 حالة بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
+  <span class="qc-go">ابدأ الاختبار ←</span>
+</a>
+<a class="quiz-cta keys-cta" href="keys2.html">
+  <span class="qc-ic" aria-hidden="true">🔑</span>
+  <span class="qc-t"><b>الكلمات المفتاحية</b><small>وش الكلمات في السؤال اللي تقولك أي مفهوم أو قاعدة؟ بالإنجليزي والعربي، مع خريطة سريعة</small></span>
+  <span class="qc-go">افتحها ←</span>
+</a>
+</div>
+
+<div class="view" role="group" aria-label="اللغة">
+  <span class="view-l">اعرض:</span>
+  <button type="button" data-view="both" class="on">الاثنين</button>
+  <button type="button" data-view="en" dir="ltr" lang="en">English</button>
+  <button type="button" data-view="ar">عربي</button>
+  <button type="button" class="print" onclick="window.print()">🖨️ <span class="hide-sm">طباعة</span></button>
+</div>
+
+<section class="index" id="index">
+  <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
+  <div class="ix-grid"><a class="ix" href="#personal"><span class="ix-n">١</span><b>الأخلاق الشخصية اليومية</b><small dir="ltr" lang="en">Personal ethics (everyday examples)</small><span class="ix-m" dir="ltr" lang="en">piracy, copying, plagiarism…</span></a><a class="ix" href="#conflicting"><span class="ix-n">٢</span><b>القضايا نادراً أبيض وأسود</b><small dir="ltr" lang="en">Conflicting demands</small><span class="ix-m" dir="ltr" lang="en">seldom black and white</span></a><a class="ix" href="#general"><span class="ix-n">٣</span><b>القضايا الأخلاقية العشر في الهندسة</b><small dir="ltr" lang="en">General engineering ethical issues</small><span class="ix-m" dir="ltr" lang="en">10 issues (Q1)</span></a><a class="ix" href="#fields"><span class="ix-n">٤</span><b>قضايا خاصة بكل تخصص</b><small dir="ltr" lang="en">Specific engineering ethical issues by field</small><span class="ix-m" dir="ltr" lang="en">civil, chemical, robotics… (Q2)</span></a><a class="ix" href="#kickback"><span class="ix-n">٥</span><b>الرشوة (العمولة)</b><small dir="ltr" lang="en">Kickback</small><span class="ix-m" dir="ltr" lang="en">money for favorable treatment</span></a><a class="ix" href="#whistle"><span class="ix-n">٦</span><b>الإبلاغ عن المخالفات</b><small dir="ltr" lang="en">Whistle blowing</small><span class="ix-m" dir="ltr" lang="en">reporting unethical behavior</span></a><a class="ix" href="#decision"><span class="ix-n">٧</span><b>أسئلة اتخاذ القرار</b><small dir="ltr" lang="en">Decision making to solve ethical dilemmas</small><span class="ix-m" dir="ltr" lang="en">SAFE? LEGAL? right? fair? feel? defend?</span></a></div>
+</section>
+
+<section class="law" id="personal">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>الأخلاق الشخصية اليومية</h2><p class="law-en" dir="ltr" lang="en">Concept 1 · Personal ethics (everyday examples)</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en">Personal Ethics (everyday examples): Software Piracy · "Copying" of Homework &amp; Tests · "Borrowing" office supplies from employer · Copying of Videos or CDs · <b>Plagiarism</b> (the practice of taking someone else's work or ideas and passing them off as one's own) · Personal use of the copy machine at work.</p><p class="ar">الأخلاق الشخصية (أمثلة يومية): قرصنة البرامج، "نسخ" الواجبات والاختبارات، "استلاف" أدوات المكتب من صاحب العمل، نسخ الفيديوهات والسيديات، السرقة العلمية (تاخذ شغل أو أفكار غيرك وتنسبها لنفسك)، واستخدام آلة التصوير في الشغل لأغراضك الشخصية.</p></div><p class="fc-src">📍 سلايد 5 · <span dir="ltr" lang="en">(KSU, 2019)</span></p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">Ethics starts with <b>small daily choices</b>, before any big engineering decision. Each example takes something that is not yours: a product, an answer, a supply, an idea, or the employer's resources.</p><p class="ar ">الأخلاق تبدأ من اختيارات يومية صغيرة، قبل أي قرار هندسي كبير. وكل مثال فيه أخذ شي مو حقك: منتج، أو جواب، أو أداة، أو فكرة، أو موارد صاحب العمل.</p><p class="en " dir="ltr" lang="en">Notice the quotation marks: "copying" and "borrowing" are soft words for cheating and taking without permission.</p><p class="ar ">لاحظ علامات التنصيص: "نسخ" و"استلاف" كلمات ناعمة، والحقيقة غش وأخذ بدون إذن.</p><p class="en " dir="ltr" lang="en">The conclusion slide says: <b>start applying</b> (no plagiarism, no software pirating, no abuse of office resources).</p><p class="ar ">وشريحة الخلاصة تقول: ابدأ تطبّق من الحين (لا سرقة علمية، ولا قرصنة، ولا إساءة استخدام موارد المكتب).</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">software piracy</td><td class="en" dir="ltr" lang="en">using or copying software without paying</td><td class="ar">قرصنة البرامج</td></tr><tr><td class="s" dir="ltr" lang="en">"copying" homework &amp; tests</td><td class="en" dir="ltr" lang="en">cheating</td><td class="ar">نسخ الواجبات والاختبارات (غش)</td></tr><tr><td class="s" dir="ltr" lang="en">"borrowing" office supplies</td><td class="en" dir="ltr" lang="en">taking the employer's supplies for yourself</td><td class="ar">"استلاف" أدوات المكتب لنفسك</td></tr><tr><td class="s" dir="ltr" lang="en">plagiarism</td><td class="en" dir="ltr" lang="en">passing off someone else's work or ideas as your own</td><td class="ar">السرقة العلمية</td></tr><tr><td class="s" dir="ltr" lang="en">personal use of the copy machine</td><td class="en" dir="ltr" lang="en">using work resources for private needs</td><td class="ar">استخدام آلة التصوير لأغراض شخصية</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the situation is an everyday, personal act (a student, an employee) rather than an engineering design decision.</p><p class="ar ">لما الموقف تصرف يومي شخصي (طالب أو موظف)، مو قرار تصميم هندسي.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">⚠️ لا تخلط · <span dir="ltr" lang="en">Don't mix it up</span></div>
+  <p class="en " dir="ltr" lang="en">Plagiarism appears twice: as a personal everyday example AND as issue no. 10 of the general engineering issues. If it is a student or a person copying for himself, use this concept; if it happens in engineering work or reports, it is issue no. 10.</p><p class="ar ">السرقة العلمية مذكورة مرتين: مثال شخصي يومي، والقضية رقم ١٠ في القضايا الهندسية العامة. لو طالب أو شخص ينسخ لنفسه استخدم هذا المفهوم، ولو صارت في شغل هندسي أو تقارير فهي القضية ١٠.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>السرقة العلمية</b> <span dir="ltr" lang="en">Plagiarism</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Define plagiarism and give an example.</p><p class="ar ">عرّف السرقة العلمية وأعطِ مثال.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Definition from the slide: taking someone else's work or ideas and passing them off as one's own.</p><p class="ar ">التعريف من السلايد: تاخذ شغل أو أفكار غيرك وتقدّمها كأنها لك.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Example: copying paragraphs from a website into your report without citing the source.</p><p class="ar ">مثال: تنسخ فقرات من موقع وتحطها في تقريرك بدون ما تذكر المصدر.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Plagiarism = presenting another person's work or ideas as yours, e.g. an uncited copied report.</p><p class="ar ">الجواب: السرقة العلمية = تقدّم شغل أو أفكار غيرك كأنها لك، مثل تقرير منسوخ بدون مصدر.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>طابعة الشركة</b> <span dir="ltr" lang="en">The company printer</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Omar prints 200 pages of his brother's school project on the office copy machine after hours. "It's only paper," he says. Is this an ethical issue?</p><p class="ar ">عمر طبع <bdi dir="ltr" class=nw>200</bdi> صفحة لمشروع أخوه المدرسي على آلة التصوير في الشغل بعد الدوام، ويقول: "مجرد ورق". فيها مشكلة أخلاقية؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The paper, toner and machine belong to the employer.</p><p class="ar ">الورق والحبر والآلة ملك صاحب العمل.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">This is "personal use of the copy machine at work", one of the slide's everyday examples.</p><p class="ar ">هذا "استخدام آلة التصوير لأغراض شخصية"، من الأمثلة اليومية في السلايد.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Yes. It is a personal-ethics issue: using the employer's resources without permission.</p><p class="ar ">الجواب: إيه. مشكلة أخلاق شخصية: يستخدم موارد صاحب العمل بدون إذن.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="conflicting">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>القضايا نادراً أبيض وأسود</h2><p class="law-en" dir="ltr" lang="en">Concept 2 · Conflicting demands</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en"><b>Ethical issues are seldom black and white.</b> Ethical standards are usually relative and personal; there is seldom an absolute standard. Conflicting demands: <b>loyalty to company and colleagues</b>, <b>personal gain and ambition</b>, and <b>concern for public welfare</b>.</p><p class="ar">نادراً ما تكون القضايا الأخلاقية واضحة تماماً (أبيض وأسود)، فالمعايير الأخلاقية عادةً نسبية وشخصية، وقلّما يوجد معيار مطلق. والمتطلبات المتضاربة ثلاثة: الولاء للشركة والزملاء، والمكاسب الشخصية والطموح، والاهتمام بالمصلحة العامة.</p></div><p class="fc-src">📍 سلايد 6</p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">Real cases are hard because <b>three pulls</b> act on the engineer at the same time, and they do not point the same way.</p><p class="ar ">الحالات الحقيقية صعبة لأن فيه ثلاث قوى تسحب المهندس بنفس الوقت، وكل وحدة باتجاه.</p><p class="en " dir="ltr" lang="en"><b>Loyalty</b> (do not embarrass the company or a colleague) vs. <b>personal gain</b> (promotion, bonus, keeping your job) vs. <b>public welfare</b> (people's safety).</p><p class="ar ">الولاء (لا تفشّل الشركة أو زميلك) ضد المكسب الشخصي (ترقية، مكافأة، تحافظ على وظيفتك) ضد المصلحة العامة (سلامة الناس).</p><p class="en " dir="ltr" lang="en">That is why we need a method to decide (the decision questions, concept 7).</p><p class="ar ">وعشان كذا نحتاج طريقة نقرر فيها (أسئلة القرار، المفهوم ٧).</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">seldom black and white</td><td class="en" dir="ltr" lang="en">rarely completely clear</td><td class="ar">نادراً واضحة تماماً</td></tr><tr><td class="s" dir="ltr" lang="en">relative and personal</td><td class="en" dir="ltr" lang="en">they depend on the person and situation</td><td class="ar">نسبية وشخصية</td></tr><tr><td class="s" dir="ltr" lang="en">absolute standard</td><td class="en" dir="ltr" lang="en">one rule that fits every case</td><td class="ar">معيار مطلق</td></tr><tr><td class="s" dir="ltr" lang="en">loyalty to company and colleagues</td><td class="en" dir="ltr" lang="en">standing with your employer and team</td><td class="ar">الولاء للشركة والزملاء</td></tr><tr><td class="s" dir="ltr" lang="en">personal gain, ambition</td><td class="en" dir="ltr" lang="en">your own benefit and career</td><td class="ar">المكاسب الشخصية والطموح</td></tr><tr><td class="s" dir="ltr" lang="en">concern for public welfare</td><td class="en" dir="ltr" lang="en">caring about the safety and good of society</td><td class="ar">الاهتمام بالمصلحة العامة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question describes an engineer torn between loyalty, his own interest and the public good, or asks why ethical issues are hard.</p><p class="ar ">لما السؤال يوصف مهندس محتار بين الولاء ومصلحته الشخصية ومصلحة الناس، أو يسأل ليش القضايا الأخلاقية صعبة.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الضغوط الثلاث</b> <span dir="ltr" lang="en">The three pulls</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Name the three conflicting demands an engineer faces.</p><p class="ar ">اذكر المتطلبات الثلاثة المتضاربة اللي يواجهها المهندس.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">From the triangle on slide 6.</p><p class="ar ">من المثلث في سلايد 6.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Loyalty to company and colleagues; personal gain and ambition; concern for public welfare.</p><p class="ar ">الجواب: الولاء للشركة والزملاء، والمكاسب الشخصية والطموح، والاهتمام بالمصلحة العامة.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>زميل غلط في الحساب</b> <span dir="ltr" lang="en">A colleague's mistake</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Hassan finds a calculation error by a close colleague in a hospital design. Reporting it may delay the project and his own promotion. Why is this decision hard?</p><p class="ar ">حسن لقى غلطة حسابية لزميله القريب في تصميم مستشفى. لو بلّغ ممكن يتأخر المشروع وتتأخر ترقيته هو. ليش القرار صعب؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Loyalty: he does not want to embarrass his colleague.</p><p class="ar ">الولاء: ما يبي يفشّل زميله.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Personal gain: his promotion.</p><p class="ar ">المكسب الشخصي: ترقيته.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Public welfare: the safety of patients. This must win.</p><p class="ar ">المصلحة العامة: سلامة المرضى. وهذي لازم تغلب.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Conflicting demands pull him in three directions; the issue is not black and white, but public welfare comes first.</p><p class="ar ">الجواب: ثلاث ضغوط متضاربة تسحبه، فالقضية مو أبيض وأسود، بس مصلحة الناس أول.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="general">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>القضايا الأخلاقية العشر في الهندسة</h2><p class="law-en" dir="ltr" lang="en">Concept 3 · General engineering ethical issues</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en">1. Handling, storing and disposing of <b>hazardous materials</b> · 2. Accepting <b>gifts and amenities</b> · 3. <b>Conflict of interest</b> · 4. <b>Report falsification</b> and ethical misconduct · 5. <b>Social obligations</b> · 6. <b>Miscommunication</b> between engineers and fabricators · 7. <b>Engineering responsibility versus management decisions</b> · 8. <b>Safety negligence</b> of subordinates · 9. <b>Accountability</b> to clients and customers · 10. <b>Plagiarism</b></p><p class="ar">١. التعامل مع المواد الخطرة وتخزينها والتخلص منها · ٢. قبول الهدايا ووسائل الراحة · ٣. تضارب المصالح · ٤. تزوير التقارير وسوء السلوك الأخلاقي · ٥. الالتزامات الاجتماعية · ٦. سوء التواصل بين المهندسين والمصنّعين · ٧. المسؤولية الهندسية مقابل القرارات الإدارية · ٨. إهمال سلامة المرؤوسين · ٩. المساءلة أمام العملاء · ١٠. السرقة العلمية</p></div><p class="fc-src">📍 سلايد 7 · <span dir="ltr" lang="en">(KSU, 2019)</span></p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">These are the issues that can happen in <b>any</b> engineering field. The exam question is "List FIVE".</p><p class="ar ">هذي القضايا اللي ممكن تصير في أي تخصص هندسي. وسؤال الاختبار: "اذكر خمس".</p><p class="en " dir="ltr" lang="en">Memory groups: <b>things</b> (hazardous materials, gifts), <b>money &amp; honesty</b> (conflict of interest, falsified reports, plagiarism), <b>people</b> (society, fabricators, management, subordinates, clients).</p><p class="ar ">قسّمها عشان تحفظها: أشياء (المواد الخطرة، الهدايا)، فلوس وصدق (تضارب المصالح، تزوير التقارير، السرقة العلمية)، ناس (المجتمع، المصنّعين، الإدارة، المرؤوسين، العملاء).</p><p class="en " dir="ltr" lang="en">In a case question, name the issue <b>by its exact title</b>: e.g. "this is a conflict of interest".</p><p class="ar ">وفي سؤال الحالة، سمّ القضية باسمها بالضبط: مثلاً "this is a conflict of interest".</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">hazardous materials</td><td class="en" dir="ltr" lang="en">unsafe materials (toxic, flammable…)</td><td class="ar">مواد خطرة (غير آمنة)</td></tr><tr><td class="s" dir="ltr" lang="en">gifts and amenities</td><td class="en" dir="ltr" lang="en">presents and favors from others</td><td class="ar">الهدايا ووسائل الراحة</td></tr><tr><td class="s" dir="ltr" lang="en">conflict of interest</td><td class="en" dir="ltr" lang="en">a personal interest that can bias your judgment</td><td class="ar">تضارب المصالح</td></tr><tr><td class="s" dir="ltr" lang="en">report falsification</td><td class="en" dir="ltr" lang="en">changing data or results in a report</td><td class="ar">تزوير التقارير</td></tr><tr><td class="s" dir="ltr" lang="en">fabricators</td><td class="en" dir="ltr" lang="en">those who build or manufacture the design</td><td class="ar">المصنّعين</td></tr><tr><td class="s" dir="ltr" lang="en">subordinates</td><td class="en" dir="ltr" lang="en">people who work under you</td><td class="ar">المرؤوسين (اللي تحتك)</td></tr><tr><td class="s" dir="ltr" lang="en">accountability</td><td class="en" dir="ltr" lang="en">being answerable for your work</td><td class="ar">المساءلة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When a case describes one of these situations in general engineering work and asks you to identify the ethical issue.</p><p class="ar ">لما الحالة توصف موقف من هذي في شغل هندسي عام، وتطلب تحدد القضية الأخلاقية.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">⚠️ لا تخلط · <span dir="ltr" lang="en">Don't mix it up</span></div>
+  <p class="en " dir="ltr" lang="en">Kickback and whistle blowing have their own concepts (5 and 6). A gift you receive is issue no. 2; money paid in secret in exchange for a contract is a kickback.</p><p class="ar ">الرشوة <bdi dir="ltr" class=nw>(Kickback)</bdi> والإبلاغ <bdi dir="ltr" class=nw>(Whistle blowing)</bdi> لهم مفاهيم لحالهم (٥ و٦). هدية تستلمها = القضية ٢، وفلوس سرية مقابل عقد = رشوة.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>المستشار وحصته في الشركة</b> <span dir="ltr" lang="en">The consultant's shares (Q8)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">You are a consultant asked to evaluate designs. You recommend one company's solution, but you do not mention that you have a significant financial interest in that company. Is this ethical?</p><p class="ar ">أنت مستشار مطلوب منك تقيّم تصاميم. وصّيت بحل شركة معيّنة، بس ما ذكرت إن لك مصلحة مالية كبيرة في هالشركة. هل هذا أخلاقي؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Your financial interest can bias your recommendation.</p><p class="ar ">مصلحتك المالية ممكن تأثر على توصيتك.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Hiding it is the problem: this is issue no. 3, conflict of interest.</p><p class="ar ">وإخفاؤها هو المشكلة: هذي القضية ٣، تضارب المصالح.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Ethical path: disclose the interest or withdraw from the evaluation.</p><p class="ar ">الصح: تصرّح بمصلحتك أو تنسحب من التقييم.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Not ethical. It is a conflict of interest; he must disclose it.</p><p class="ar ">الجواب: غير أخلاقي. تضارب مصالح، ولازم يصرّح فيه.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>برنامج الطيارة</b> <span dir="ltr" lang="en">The airplane software (Q7)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">You are a design engineer on a late, over-budget airplane project. The software does not meet specifications and may be safety critical, but your boss says it is of no concern. Identify the issue and what you should do.</p><p class="ar ">أنت مهندس تصميم في مشروع طيارة متأخر وفوق الميزانية. البرنامج ما يطابق المواصفات وممكن يكون حرج للسلامة، بس مديرك يقول ما يهم. حدد القضية ووش تسوي.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The boss puts schedule and budget over safety: issue no. 7, engineering responsibility versus management decisions.</p><p class="ar ">المدير يقدّم الموعد والميزانية على السلامة: القضية ٧، المسؤولية الهندسية مقابل القرار الإداري.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Ask the decision questions: Is it SAFE? Could I defend it if something terrible happened? No.</p><p class="ar ">اسأل أسئلة القرار: هل هو آمن؟ أقدر أدافع عن نفسي لو صارت كارثة؟ لا.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Document the problem, insist on testing and fixing it, and escalate if needed.</p><p class="ar ">وثّق المشكلة، واطلب اختبارها وإصلاحها، وصعّدها لو احتاج.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Engineering responsibility vs. management decisions; safety comes first, so do not sign off until it is fixed.</p><p class="ar ">الجواب: المسؤولية الهندسية مقابل القرار الإداري، والسلامة أول، فلا توافق لين تنصلح.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٣ · <span dir="ltr" lang="en">Example 3</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>براميل المذيبات</b> <span dir="ltr" lang="en">Solvent drums</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A plant engineer lets workers pour used solvent drums into the desert behind the plant to save disposal fees. Which general issue is this?</p><p class="ar ">مهندس مصنع يخلي العمال يكبّون براميل المذيبات المستعملة في البر ورا المصنع عشان يوفرون رسوم التخلص منها. أي قضية عامة هذي؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Solvents are hazardous materials.</p><p class="ar ">المذيبات مواد خطرة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">The problem is how they are disposed of.</p><p class="ar ">والمشكلة في طريقة التخلص منها.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Issue no. 1, handling, storing and disposing of hazardous materials.</p><p class="ar ">الجواب: القضية ١، التعامل مع المواد الخطرة وتخزينها والتخلص منها.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="fields">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>قضايا خاصة بكل تخصص</h2><p class="law-en" dir="ltr" lang="en">Concept 4 · Specific engineering ethical issues by field</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en"><b>Civil:</b> safety of built structures, accessibility for different stakeholder groups, environmental issues, design of inhumane spaces, destruction of cultural heritage. <b>Chemical:</b> toxic by-products, long-term effects of new chemicals, environmental impacts and safety, consumption of natural resources. <b>Robotics:</b> responsibility for actions of robots and AI, well-being and safety, social and humanoid robots, drones (privacy), military applications, technological singularity. <b>Environmental:</b> responsibility for future generations, ecological restoration, geo-engineering (fracking, drilling), climate engineering. <b>Nuclear:</b> nuclear weapons, nuclear catastrophes, waste disposal. <b>Nanotechnology:</b> health and environmental risks, nanomedicine, military applications, privacy (molecular tracking).</p><p class="ar">المدني: سلامة المنشآت، تيسير الوصول لكل الفئات، المشاكل البيئية، تصميم أماكن غير إنسانية، تدمير التراث الثقافي. الكيميائي: النواتج الثانوية السامة، صعوبة معرفة الآثار طويلة المدى للمواد الجديدة، الآثار البيئية والسلامة، استهلاك الموارد الطبيعية. الروبوتات: المسؤولية عن تصرفات الروبوت والذكاء الاصطناعي، الرفاهية والسلامة، الروبوتات الاجتماعية والشبيهة بالبشر، الطائرات بدون طيار (الخصوصية)، الاستخدام العسكري، التفرد التقني. البيئي: المسؤولية تجاه الأجيال القادمة، الترميم البيئي، الهندسة الجيولوجية (التكسير الهيدروليكي والحفر)، هندسة المناخ. النووي: الأسلحة النووية، الكوارث النووية، التخلص من النفايات. النانو: مخاطر صحية وبيئية، الطب النانوي، الاستخدام العسكري، الخصوصية (التتبع الجزيئي).</p></div><p class="fc-src">📍 سلايد 8 إلى 12 · <span dir="ltr" lang="en">(Brey &amp; Jansen, 2015)</span></p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">Each field has issues that come from <b>what it builds</b>: civil builds structures people live in, robotics builds machines that act on their own, nuclear handles dangerous energy.</p><p class="ar ">كل تخصص له قضايا جاية من الشي اللي يبنيه: المدني يبني منشآت الناس يعيشون فيها، والروبوتات تبني آلات تتصرف لحالها، والنووي يتعامل مع طاقة خطيرة.</p><p class="en " dir="ltr" lang="en">The exam asks: "List <b>TWO</b> specific issues for each of: Civil, Robotics, Environmental &amp; Nuclear." Know two for each, by name.</p><p class="ar ">سؤال الاختبار: "اذكر قضيتين لكل من: المدني، والروبوتات، والبيئي، والنووي". احفظ اثنتين لكل واحد بأسمائها.</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">accessibility</td><td class="en" dir="ltr" lang="en">buildings and roads usable by everyone, incl. people with disabilities</td><td class="ar">تيسير الوصول لذوي الهمم وغيرهم</td></tr><tr><td class="s" dir="ltr" lang="en">inhumane spaces</td><td class="en" dir="ltr" lang="en">places not fit for human dignity or comfort</td><td class="ar">أماكن غير إنسانية</td></tr><tr><td class="s" dir="ltr" lang="en">cultural heritage</td><td class="en" dir="ltr" lang="en">historic sites and buildings</td><td class="ar">التراث الثقافي</td></tr><tr><td class="s" dir="ltr" lang="en">toxic by-products</td><td class="en" dir="ltr" lang="en">harmful waste made while producing chemicals</td><td class="ar">نواتج ثانوية سامة</td></tr><tr><td class="s" dir="ltr" lang="en">humanoid robots</td><td class="en" dir="ltr" lang="en">robots that look and act like humans</td><td class="ar">روبوتات شبيهة بالبشر</td></tr><tr><td class="s" dir="ltr" lang="en">technological singularity</td><td class="en" dir="ltr" lang="en">AI becoming able to harm humans beyond our control</td><td class="ar">التفرد التقني</td></tr><tr><td class="s" dir="ltr" lang="en">hydraulic fracturing</td><td class="en" dir="ltr" lang="en">fracking: breaking rock with fluid to get oil or gas</td><td class="ar">التكسير الهيدروليكي</td></tr><tr><td class="s" dir="ltr" lang="en">future generations</td><td class="en" dir="ltr" lang="en">people who will live after us</td><td class="ar">الأجيال القادمة</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the case clearly belongs to one engineering field (a bridge, a robot, a drone, a reactor, a chemical plant) and asks which specific issue it raises.</p><p class="ar ">لما الحالة واضح إنها من تخصص معيّن (جسر، روبوت، درون، مفاعل، مصنع كيماويات) وتسأل وش القضية الخاصة فيها.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>قضيتين لكل تخصص</b> <span dir="ltr" lang="en">Two per field (Q2)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">List TWO specific engineering ethical issues for each of: Civil Engineering, Robotics, Environmental Engineering and Nuclear technology.</p><p class="ar ">اذكر قضيتين أخلاقيتين خاصتين لكل من: الهندسة المدنية، والروبوتات، والهندسة البيئية، والتقنية النووية.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Civil: safety of built structures; destruction of cultural heritage.</p><p class="ar ">المدني: سلامة المنشآت، تدمير التراث الثقافي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Robotics: responsibility for actions of robots and AI; drones and privacy.</p><p class="ar ">الروبوتات: المسؤولية عن تصرفات الروبوت والذكاء الاصطناعي، الدرونز والخصوصية.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Environmental: responsibility for future generations; climate engineering side-effects.</p><p class="ar ">البيئي: المسؤولية تجاه الأجيال القادمة، الآثار الجانبية لهندسة المناخ.</p></div></li><li><span class="sn">4</span><div class="st"><p class="en " dir="ltr" lang="en">Nuclear: nuclear weapons; waste disposal.</p><p class="ar ">النووي: الأسلحة النووية، التخلص من النفايات.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: any two from each list, written by name.</p><p class="ar ">الجواب: أي اثنتين من كل قائمة، مكتوبة بأسمائها.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>الدرون فوق الحي</b> <span dir="ltr" lang="en">The drone over the neighborhood</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A company flies camera drones over homes to map roofs for solar panels, recording residents in their yards without asking. Which field and which issue?</p><p class="ar ">شركة تطيّر درونز فيها كاميرات فوق البيوت عشان ترسم الأسطح للألواح الشمسية، وتصوّر السكان في أحواشهم بدون ما تستأذن. أي تخصص وأي قضية؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Drones are unmanned aerial vehicles: robotics.</p><p class="ar ">الدرونز طائرات بدون طيار: روبوتات.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Filming people without consent violates privacy.</p><p class="ar ">تصوير الناس بدون إذن ينتهك الخصوصية.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Robotics: drones and violation of privacy.</p><p class="ar ">الجواب: الروبوتات: الدرونز وانتهاك الخصوصية.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="kickback">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>الرشوة (العمولة)</h2><p class="law-en" dir="ltr" lang="en">Concept 5 · Kickback</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en">A <b>kickback</b> refers to a form of <b>bribery</b> or unethical practice where someone, typically an employee or a contractor, <b>receives money, goods, or services in exchange for providing favorable treatment</b> or business opportunities to another person or entity.</p><p class="ar">العمولة <bdi dir="ltr" class=nw>(Kickback)</bdi> شكل من أشكال الرشوة أو الممارسة غير الأخلاقية، حيث يستلم شخص (غالباً موظف أو مقاول) فلوس أو بضايع أو خدمات مقابل إنه يعطي معاملة تفضيلية أو فرص عمل لشخص أو جهة ثانية.</p></div><p class="fc-src">📍 سلايد 13 · والحديث: "لعن الله الراشي والمرتشي"</p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">The heart of it is the <b>exchange</b>: something of value (money, goods, services) for <b>favorable treatment</b> (a contract, approval, a better evaluation).</p><p class="ar ">قلبها المقايضة: شي له قيمة (فلوس، بضايع، خدمات) مقابل معاملة تفضيلية (عقد، اعتماد، تقييم أحسن).</p><p class="en " dir="ltr" lang="en">Both sides are guilty: the one who pays and the one who receives ("لعن الله الراشي والمرتشي"). Good intentions (keeping employees) do not make it right.</p><p class="ar ">والطرفين مذنبين: اللي يدفع واللي يستلم ("لعن الله الراشي والمرتشي"). والنية الطيبة (تحافظ على الموظفين) ما تخليها صح.</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">kickback</td><td class="en" dir="ltr" lang="en">a secret payment in return for a favor</td><td class="ar">عمولة / رشوة</td></tr><tr><td class="s" dir="ltr" lang="en">bribery</td><td class="en" dir="ltr" lang="en">giving or taking money to influence a decision</td><td class="ar">رشوة</td></tr><tr><td class="s" dir="ltr" lang="en">favorable treatment</td><td class="en" dir="ltr" lang="en">unfair advantage over others</td><td class="ar">معاملة تفضيلية</td></tr><tr><td class="s" dir="ltr" lang="en">in exchange for</td><td class="en" dir="ltr" lang="en">as a price for</td><td class="ar">مقابل</td></tr><tr><td class="s" dir="ltr" lang="en">secret payments</td><td class="en" dir="ltr" lang="en">hidden money</td><td class="ar">مدفوعات سرية</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When someone pays or demands money, goods or a percentage in return for a contract, an approval or any favor.</p><p class="ar ">لما أحد يدفع أو يطلب فلوس أو بضايع أو نسبة مقابل عقد أو اعتماد أو أي خدمة.</p>
+</div>
+<aside class="note tip">
+  <div class="note-h">⚠️ لا تخلط · <span dir="ltr" lang="en">Don't mix it up</span></div>
+  <p class="en " dir="ltr" lang="en">A gift with no clear deal is "accepting gifts and amenities" (issue no. 2). A payment tied to a contract or a favor is a kickback.</p><p class="ar ">هدية بدون صفقة واضحة = "قبول الهدايا" (القضية ٢). دفعة مربوطة بعقد أو خدمة = رشوة <bdi dir="ltr" class=nw>(Kickback)</bdi>.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>قضية كاميرر 1967</b> <span dir="ltr" lang="en">The Kammerer case (1967)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A county engineer in Virginia demanded a 25% kickback in secret payments for highway contracts. In 1967 he made the offer to Allan Kammerer, a 32-year-old vice president of a young, struggling consulting firm. Kammerer agreed, mainly to keep his employees in work. Discuss the ethical issue.</p><p class="ar ">مهندس مقاطعة في فيرجينيا طلب رشوة <bdi dir="ltr" class=nw>25%</bdi> كمدفوعات سرية مقابل عقود الطرق. وفي <bdi dir="ltr" class=nw>1967</bdi> عرضها على آلان كاميرر، نائب رئيس شركة استشارية شابة ومتعثرة عمره <bdi dir="ltr" class=nw>32</bdi> سنة. كاميرر وافق، وسببه الرئيسي يحافظ على شغل موظفينه. ناقش القضية الأخلاقية.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A secret 25% payment in exchange for contracts = kickback (bribery).</p><p class="ar ">دفعة سرية <bdi dir="ltr" class=nw>25%</bdi> مقابل عقود = رشوة <bdi dir="ltr" class=nw>(kickback)</bdi>.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Both the county engineer (receiver) and Kammerer (payer) acted unethically and illegally.</p><p class="ar ">مهندس المقاطعة (المستلم) وكاميرر (الدافع) الاثنين تصرفوا بشكل غير أخلاقي وغير قانوني.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">His reason (saving jobs) does not justify it: it is unfair to honest competitors and wastes public money.</p><p class="ar ">وسببه (يحافظ على الوظايف) ما يبرر: ظلم للمنافسين الصادقين وهدر للمال العام.</p></div></li><li><span class="sn">4</span><div class="st"><p class="en " dir="ltr" lang="en">He should have refused and reported the demand.</p><p class="ar ">كان لازم يرفض ويبلّغ عن الطلب.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Unethical. It is a kickback; the right action was to refuse and report it.</p><p class="ar ">الجواب: غير أخلاقي. رشوة، والصح يرفض ويبلّغ.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>مفتش الاستلام</b> <span dir="ltr" lang="en">The inspector</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A site inspector tells a contractor: "Install the AC units at my house for free and I will approve your building without checking." What is this?</p><p class="ar ">مفتش موقع يقول لمقاول: "ركّب المكيفات في بيتي ببلاش وأنا أعتمد مبناك بدون ما أفحصه". وش هذا؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">He receives a service (free AC installation).</p><p class="ar ">يستلم خدمة (تركيب مكيفات ببلاش).</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">In exchange for favorable treatment (approval without inspection).</p><p class="ar ">مقابل معاملة تفضيلية (اعتماد بدون فحص).</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: A kickback (bribery), even though no cash changes hands.</p><p class="ar ">الجواب: رشوة <bdi dir="ltr" class=nw>(Kickback)</bdi>، حتى لو ما فيه فلوس نقد.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="whistle">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>الإبلاغ عن المخالفات</h2><p class="law-en" dir="ltr" lang="en">Concept 6 · Whistle blowing</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en"><b>Whistle blowing</b> refers to the action of <b>reporting unethical behavior</b> of another person or other people. For the whistle-blower, the intention to report comes from the existence of conflicts in morality. In engineering circles, whistle blowing can occur <b>before and after a disaster</b> happens.</p><p class="ar">الإبلاغ عن المخالفات (إطلاق صافرة الإنذار) هو الإبلاغ عن السلوك غير الأخلاقي لشخص أو أشخاص ثانيين. ونية المبلّغ جاية من وجود صراع في الأخلاق. وفي الهندسة ممكن يصير الإبلاغ قبل الكارثة أو بعدها.</p></div><p class="fc-src">📍 سلايد 16 · <span dir="ltr" lang="en">(Harris, Pritchard &amp; Rabins, 2009)</span></p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">The whistle-blower sees wrongdoing (usually inside his organization) and <b>speaks up</b>, often at a personal cost.</p><p class="ar ">المبلّغ يشوف مخالفة (غالباً داخل جهته) ويتكلم، وغالباً يدفع ثمن شخصي.</p><p class="en " dir="ltr" lang="en">Before a disaster it can prevent harm; after a disaster it presents the facts and puts blame where it belongs, so similar disasters are prevented in the future.</p><p class="ar ">قبل الكارثة ممكن يمنع الضرر، وبعدها يعرض الحقائق ويحدد المسؤول، عشان ما تتكرر كوارث مشابهة.</p><p class="en " dir="ltr" lang="en">In the Saudi charter, item 6‑4 asks the engineer to notify the concerned entity of threats to public safety: that is whistle blowing.</p><p class="ar ">وفي الميثاق السعودي، البند <bdi dir="ltr" class=nw>6‑4</bdi> يطلب من المهندس يبلّغ الجهة المعنية عن أي خطر على السلامة العامة: وهذا هو الإبلاغ.</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">whistle blowing</td><td class="en" dir="ltr" lang="en">reporting wrongdoing</td><td class="ar">الإبلاغ عن المخالفات</td></tr><tr><td class="s" dir="ltr" lang="en">whistle-blower</td><td class="en" dir="ltr" lang="en">the person who reports</td><td class="ar">المبلّغ</td></tr><tr><td class="s" dir="ltr" lang="en">conflicts in morality</td><td class="en" dir="ltr" lang="en">a clash between right and what is happening</td><td class="ar">صراع أخلاقي</td></tr><tr><td class="s" dir="ltr" lang="en">before and after a disaster</td><td class="en" dir="ltr" lang="en">to prevent it, or to reveal the facts</td><td class="ar">قبل الكارثة أو بعدها</td></tr><tr><td class="s" dir="ltr" lang="en">memoranda</td><td class="en" dir="ltr" lang="en">written internal notes</td><td class="ar">مذكرات داخلية</td></tr><tr><td class="s" dir="ltr" lang="en">probation</td><td class="en" dir="ltr" lang="en">a trial period with a threat of dismissal</td><td class="ar">فترة مراقبة (إنذار)</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When an engineer discovers wrongdoing (unsafe work, fraud, pollution) and reports it to management or an outside authority, especially when he is punished for it.</p><p class="ar ">لما مهندس يكتشف مخالفة (شغل مو آمن، غش، تلوث) ويبلّغ الإدارة أو جهة برا، خصوصاً لو تعاقب بسببها.</p>
+</div>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide error</span></div>
+  <p class="en " dir="ltr" lang="en">Slide error: slide 16 says "reporting ethical behavior". It should be "reporting <b>unethical</b> behavior": you do not report correct behavior. Write unethical in the exam.</p><p class="ar ">غلطة في السلايد: سلايد 16 مكتوب فيه <bdi dir="ltr" class=nw>"reporting ethical behavior"</bdi> والصح <bdi dir="ltr" class=nw>"unethical"</bdi>، لأنك ما تبلّغ عن تصرف صح. اكتبها <bdi dir="ltr" class=nw>unethical</bdi> في الاختبار.</p>
+</aside>
+<aside class="note typo">
+  <div class="note-h">⚠️ غلطة في السلايد · <span dir="ltr" lang="en">Slide error</span></div>
+  <p class="en " dir="ltr" lang="en">Slide contradiction in question 6 (slide 24): it says the company discharges an "<b>unlawful</b> amount" of lead and arsenic, then says "technically the company is <b>not breaking the law</b>". Both cannot be true. The intended meaning is a harmful amount that is still within the legal limit, i.e. legal but unethical. Answer on that basis.</p><p class="ar ">تناقض في السؤال 6 (سلايد 24): يقول الشركة تصرّف كمية "غير قانونية" <bdi dir="ltr" class=nw>(unlawful)</bdi> من الرصاص والزرنيخ، وبعدين يقول "فنياً الشركة ما تخالف القانون". ما يصير الاثنين. المقصود كمية ضارة بس داخل الحد القانوني، يعني قانونية وغير أخلاقية. جاوب على هالأساس.</p>
+</aside>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>المهندس أ ومقاول الباطن</b> <span dir="ltr" lang="en">Engineer A and the subcontractor</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Engineer A reviews subcontractors' plans for a large company. He writes memos to management about deficiencies in one subcontractor's work and urges them to reject it. Management rejects his comments, puts a critical memo in his file and places him on three months' probation. He insists the employer must ensure work meets specifications. Discuss.</p><p class="ar ">المهندس أ يراجع مخططات مقاولي الباطن في شركة كبيرة. كتب مذكرات للإدارة عن عيوب في شغل مقاول معيّن وطلب رفضه. الإدارة رفضت كلامه، وحطت مذكرة سلبية في ملفه، وحطته تحت المراقبة <bdi dir="ltr" class=nw>3</bdi> شهور. وهو مصرّ إن الشركة لازم تتأكد إن الشغل مطابق للمواصفات. ناقش.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">He reported deficiencies he found: this is whistle blowing inside the company.</p><p class="ar ">بلّغ عن عيوب لقاها: هذا إبلاغ داخل الشركة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">He acted ethically: protecting quality, safety and public (defense) money is his duty.</p><p class="ar ">تصرّف صح: حماية الجودة والسلامة والمال العام (الدفاع) من واجبه.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Punishing him is wrong; the engineer should keep facts documented and may take the issue to a higher or outside authority.</p><p class="ar ">ومعاقبته غلط، والمهندس يوثّق الحقائق وممكن يرفع الموضوع لجهة أعلى أو خارجية.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Engineer A is a whistle-blower and acted ethically; management's punishment is unethical.</p><p class="ar ">الجواب: المهندس أ مبلّغ وتصرّف صح، وعقاب الإدارة هو الغلط.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>الرصاص والزرنيخ</b> <span dir="ltr" lang="en">Lead and arsenic (Q6)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Your company discharges unlawful amounts of lead and arsenic into the city sewer, and preliminary investigations show the water is polluted, but technically the company is not breaking the law. What should you do?</p><p class="ar ">شركتك تصرّف كميات من الرصاص والزرنيخ في شبكة الصرف بالمدينة، والتحقيقات الأولية تقول إن الماي تلوّث، بس فنياً الشركة ما تخالف القانون. وش تسوي؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">"Technically legal" but harming public health: legal but unethical.</p><p class="ar ">"قانوني فنياً" بس يضر صحة الناس: قانوني وغير أخلاقي.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">First raise it inside the company and ask to stop the discharge.</p><p class="ar ">أول شي بلّغ داخل الشركة واطلب يوقفون التصريف.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">If nothing changes, report it to the environmental authority: whistle blowing.</p><p class="ar ">ولو ما تغير شي، بلّغ الجهة البيئية المختصة: إبلاغ عن المخالفات.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: It is unethical; report internally, then blow the whistle to the authority if needed.</p><p class="ar ">الجواب: غير أخلاقي، بلّغ داخلياً، وبعدين بلّغ الجهة المختصة لو احتاج.</p></div></div>
+</article>
+</section>
+
+<section class="law" id="decision">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>أسئلة اتخاذ القرار</h2><p class="law-en" dir="ltr" lang="en">Concept 7 · Decision making to solve ethical dilemmas</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-text"><p class="en" dir="ltr" lang="en">When making a decision, these questions should be asked: <b>Is it SAFE? Is it LEGAL? Is it the right thing to do? Is it just, balanced and fair? How will it make me feel about myself? If something terrible happened, could I defend my actions?</b></p><p class="ar">لما تاخذ قرار، اسأل هالأسئلة: هل هو آمن؟ هل هو قانوني؟ هل هو الشي الصح؟ هل هو عادل ومتوازن ومنصف؟ وش بيكون شعوري عن نفسي؟ لو صار شي فظيع، أقدر أدافع عن تصرفي؟</p></div><p class="fc-src">📍 سلايد 20 · <span dir="ltr" lang="en">(KSU, 2019)</span></p></div>
+<div class="block mean">
+  <h3><span>وش يعني؟ وليش؟</span> <span class="h-en" dir="ltr" lang="en">What it means &amp; why</span></h3>
+  <p class="en " dir="ltr" lang="en">A <b>checklist of six questions</b>. If any answer is "no", stop and rethink. Safety comes first in the list on purpose.</p><p class="ar ">قائمة فحص من ست أسئلة. لو أي جواب "لا"، وقف وراجع. والسلامة أول وحدة في القائمة عن قصد.</p><p class="en " dir="ltr" lang="en">Order to memorize: <b>Safe → Legal → Right → Fair → Feel → Defend</b>.</p><p class="ar ">رتّبها كذا وتحفظها: آمن ← قانوني ← صح ← عادل ← شعوري ← أدافع.</p><p class="en " dir="ltr" lang="en">Conclusions (slide 21): read and memorize your profession's code; never disclose confidential information unless it violates ethical codes; take responsibility for your mistakes; never accept gifts that compromise your freedom to perform; start applying now.</p><p class="ar ">الخلاصة (سلايد 21): اقرأ ميثاق مهنتك واحفظه، لا تكشف معلومات سرية إلا إذا كانت تخالف المواثيق، تحمّل مسؤولية أخطائك، لا تقبل هدايا تقيّد حريتك في الشغل، وابدأ تطبّق من الحين.</p>
+</div>
+<div class="block sym">
+  <h3><span>الكلمات المهمة</span> <span class="h-en" dir="ltr" lang="en">Key terms</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Term</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s" dir="ltr" lang="en">ethical dilemma</td><td class="en" dir="ltr" lang="en">a hard choice where every option has a cost</td><td class="ar">معضلة أخلاقية</td></tr><tr><td class="s" dir="ltr" lang="en">just, balanced and fair</td><td class="en" dir="ltr" lang="en">fair to everyone involved</td><td class="ar">عادل ومتوازن ومنصف</td></tr><tr><td class="s" dir="ltr" lang="en">defend my actions</td><td class="en" dir="ltr" lang="en">justify what I did if things go wrong</td><td class="ar">أدافع عن تصرفي</td></tr><tr><td class="s" dir="ltr" lang="en">in confidence</td><td class="en" dir="ltr" lang="en">given to you as a secret</td><td class="ar">بسرية (أمانة)</td></tr><tr><td class="s" dir="ltr" lang="en">compromise your ability</td><td class="en" dir="ltr" lang="en">weaken your freedom to judge</td><td class="ar">تقيّد قدرتك (على الحكم بحرية)</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When the question asks how to decide in a dilemma, or what steps or questions an engineer should go through before acting.</p><p class="ar ">لما السؤال يسأل كيف تقرر في معضلة، أو وش الخطوات أو الأسئلة اللي يمر عليها المهندس قبل ما يتصرف.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>قاعدة البيانات الرخيصة</b> <span dir="ltr" lang="en">The cheap database (Q10)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">You are a consultant developing a database. The cheap version does not protect customers' sensitive personal data; the secure one costs more. The company wants the cheap, non-secure solution. Is this ethical?</p><p class="ar ">أنت مستشار تطوّر قاعدة بيانات. النسخة الرخيصة ما تحمي بيانات العملاء الشخصية الحساسة، والآمنة أغلى. الشركة تبي الرخيصة غير الآمنة. هل هذا أخلاقي؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Is it SAFE? No: customers' data is exposed.</p><p class="ar ">آمن؟ لا: بيانات العملاء مكشوفة.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Is it fair to the customers? No. Could I defend it after a data leak? No.</p><p class="ar ">عادل للعملاء؟ لا. أقدر أدافع عنه بعد تسريب البيانات؟ لا.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">So advise the secure solution and explain the risk in writing; refuse to build an unsafe system.</p><p class="ar ">فانصح بالحل الآمن ووضّح الخطر كتابياً، وارفض تبني نظام مو آمن.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Not ethical. The decision questions fail; protect the customers' data.</p><p class="ar ">الجواب: غير أخلاقي. أسئلة القرار ما تنجح، ولازم تحمي بيانات العملاء.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>مشروع التخرج والعميل</b> <span dir="ltr" lang="en">The student team (Q9)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Four students implement a client's software ideas (with a few of their own) in a design course. After graduating they form a company and sell the same software. What are the issues, and what should you do as a team member?</p><p class="ar ">أربع طلاب نفّذوا أفكار عميل لبرنامج (مع كم فكرة منهم) في مقرر التصميم. وبعد التخرج سووا شركة وصاروا يبيعون نفس البرنامج. وش القضايا، ووش تسوي لو أنت معهم؟</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">The ideas belong mainly to the client: selling them without permission takes his work (ownership / plagiarism of ideas).</p><p class="ar ">الأفكار أساساً للعميل: بيعها بدون إذن أخذ لشغله (ملكية فكرية، سرقة أفكار).</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Is it right? Is it fair to the client? No.</p><p class="ar ">هل هو صح؟ عادل للعميل؟ لا.</p></div></li><li><span class="sn">3</span><div class="st"><p class="en " dir="ltr" lang="en">Get the client's written permission or an agreement (licence or share) before selling.</p><p class="ar ">خذ موافقة العميل كتابياً أو اتفاق (ترخيص أو شراكة) قبل البيع.</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: Unethical without the client's consent; reach an agreement with him first.</p><p class="ar ">الجواب: غير أخلاقي بدون موافقة العميل، لازم اتفاق معه أول.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٣ · <span dir="ltr" lang="en">Example 3</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>أي موقف ينتهك الأخلاقيات؟</b> <span dir="ltr" lang="en">Which one violates ethics? (Q5)</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Which situation violates engineering ethics? A. An engineer works as a project manager. B. An engineer hides a fatal error in his design. C. An engineer has registered a patent.</p><p class="ar ">أي موقف ينتهك أخلاقيات الهندسة؟ أ. مهندس يشتغل مدير مشروع. ب. مهندس يخفي غلطة قاتلة في تصميمه. ج. مهندس سجّل براءة اختراع.</p></div>
+  <div class="sol-h"><span>التحليل</span> · <span dir="ltr" lang="en">Analysis</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">A and C are normal, legitimate work.</p><p class="ar ">أ و ج شغل طبيعي ومشروع.</p></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">B fails "Is it SAFE?" and "Could I defend my actions?", and breaks "assume responsibility for your mistakes".</p><p class="ar ">ب يفشل في "آمن؟" و"أقدر أدافع؟"، ويخالف "تحمّل مسؤولية أخطائك".</p></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: B.</p><p class="ar ">الجواب: ب.</p></div></div>
+</article>
+</section>
+
+<nav class="pager"><a class="pg quiz" href="keys2.html">🔑 الكلمات المفتاحية</a><a class="pg quiz" href="quiz2.html">🧠 اختبر نفسك: أي قاعدة؟</a><a class="pg lec" href="lecture2.html">📖 ارجع لشرح المحاضرة ٢</a><a class="pg next" href="laws3.html">قواعد المحاضرة ٣ ←</a></nav>
+</main>
+</body>
+</html>
