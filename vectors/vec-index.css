@@ -1,0 +1,48 @@
+/* =====================================================================
+   vec-index.css — فهرس المتجهات. خلفية كانفس فيها أعمدة ريمان تحت سطح (vec-index.js)، وفوقها بطاقات المحاضرات.
+   الثيم ثابت: منتصف الليل (اختيار مجاهد).
+   ===================================================================== */
+:root {
+  --bg: #0a0f1c; --bg-2: #16213b; --ink: #eef2fb; --dim: #9aa6bf; --acc: #7fb2ff;
+  --card: rgba(19,27,48,.82); --edge: rgba(170,190,230,.18); --soft: rgba(127,178,255,.16);
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --ar: 'Naskh Swash', 'IBM Plex Sans Arabic', serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); direction: rtl; font-family: var(--ar); font-size: 15.5px; line-height: 1.75; transition: background .4s; }
+a { color: inherit; text-decoration: none; }
+.en-name { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; }
+#sky { position: fixed; inset: 0; width: 100%; height: 100%; display: block; background: radial-gradient(ellipse at 28% 48%, var(--bg-2), var(--bg) 68%); }
+.page { position: relative; z-index: 1; padding: 0 16px 72px; }
+.wrap { max-width: 1120px; margin: 0 auto; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; }
+.brand { font-size: 1.05rem; }
+.brand .en-name { font-size: .72rem; color: var(--dim); margin-right: 10px; }
+.home { font-size: .9rem; color: var(--dim); border: 1px solid var(--edge); border-radius: 999px; padding: 4px 14px; background: var(--card); }
+.home:hover { color: var(--ink); border-color: var(--acc); }
+.hero { max-width: 520px; min-height: min(64vh, 520px); padding-block: 24px 34px; display: flex; flex-direction: column; justify-content: center; }
+.hero > .en-name { color: var(--acc); font-size: .74rem; letter-spacing: .24em; }
+.hero h1 { margin: 6px 0 8px; font-weight: 400; font-size: clamp(2.8rem, 8vw, 4.8rem); line-height: 1.25; }
+.hero p { margin: 0; color: var(--dim); font-size: 1.08rem; max-width: 40ch; }
+.obj-name { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; color: var(--dim); font-size: .95rem; }
+.obj-name b { font-weight: 400; color: var(--acc); }
+.obj-name .en-name { font-size: .68rem; letter-spacing: .08em; }
+.xyz { display: flex; gap: 14px; margin-top: 14px; font: .72rem var(--mono); color: var(--dim); direction: ltr; justify-content: flex-end; }
+.xyz i { display: inline-block; width: 18px; height: 2px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.lec { background: var(--card); border: 1px solid var(--edge); border-radius: 16px; padding: 14px 18px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: border-color .2s, transform .2s; }
+.lec:hover { border-color: var(--acc); transform: translateY(-1px); }
+.lec .n { font: .78rem var(--mono); background: var(--soft); color: var(--acc); padding: 3px 9px; border-radius: 8px; font-variant-numeric: tabular-nums; }
+.lec .t { min-width: 0; display: grid; }
+.lec b { font-weight: 400; font-size: 1.12rem; line-height: 1.6; }
+.lec .t .en-name { font-size: .72rem; color: var(--dim); justify-self: start; }
+.lec .tag { font-size: .75rem; padding: 2px 10px; border-radius: 999px; background: var(--soft); color: var(--acc); white-space: nowrap; }
+@media (max-width: 760px) {
+  .hero { padding-block: 40vh 22px; min-height: 0; }
+  .obj-name .en-name { display: none; }
+  .lec { grid-template-columns: auto 1fr; } .lec .tag { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .lec { transition: none; } }
