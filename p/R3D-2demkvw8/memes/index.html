@@ -320,9 +320,11 @@ function wrap(ctx, text, maxW){
 async function drawMeme(canvas, src, text, pos){
   const img = await loadImg(src);
   await memeFont();
-  const W = Math.min(1080, img.naturalWidth), H = Math.round(W * img.naturalHeight / img.naturalWidth);
+  // الصور الصغيرة تتكبّر عشان يطلع الكلام حاد
+  const W = Math.max(720, Math.min(1080, img.naturalWidth)), H = Math.round(W * img.naturalHeight / img.naturalWidth);
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(img, 0, 0, W, H);
   text = (text || '').trim();
   if (!text) return;
