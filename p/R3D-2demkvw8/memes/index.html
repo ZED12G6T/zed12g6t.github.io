@@ -105,6 +105,20 @@ main{max-width:560px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-rig
 .foot{position:fixed;inset:auto 0 0 0;z-index:6;padding:12px max(16px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,#09090b 30%);}
 .foot .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* الطرد والقفل: تضغط على لاعب وتطلع نافذة من تحت */
+.pl[data-mod]{cursor:pointer;transition:border-color .15s}
+.pl[data-mod]:hover{border-color:var(--line2)}
+.pl .more{color:var(--dim);font-size:20px;line-height:1;letter-spacing:-1px}
+.badge.kick{color:#ffb3bd;border-color:#ff4d6355}
+.lockbtn[aria-pressed="true"],.chip.locked{border-color:#ff4d6355;color:#ffb3bd}
+.ptools{display:flex;align-items:center;gap:8px}
+.msheet-bg{position:fixed;inset:0;z-index:40;background:#000b;display:flex;align-items:flex-end;justify-content:center;animation:mfade .2s}
+.msheet{width:100%;max-width:560px;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:22px 22px 0 0;padding:10px max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:10px;animation:mup .25s ease-out}
+.msheet .grab{width:42px;height:5px;border-radius:9px;background:var(--line2);margin:0 auto 2px}
+.msheet .mwho{display:flex;align-items:center;gap:10px;font-size:22px}
+.msheet .mwho .label{margin-inline-start:auto}
+@keyframes mup{from{transform:translateY(40px);opacity:0}}
+@keyframes mfade{from{opacity:0}}
 
 /* الميمز: أصفر ميمز على نفس أرضية المنصة. الصورة دايم بالنص، والكلام عليها بخط Cairo عريض بحد أسود. */
 :root{--g:#ffcc33;--g-bg:#ffcc331f;--g-fg:#1a1400;--glow:#ffcc3324;--meme:'Cairo','Noto Kufi Arabic',system-ui,sans-serif}
@@ -285,6 +299,139 @@ function joinBase(dir){
   return new URL(dir, base.endsWith('/') ? base : base.replace(/[^/]*$/, '')).href;
 }
 
+/* ---------- الطرد والباند وقفل الدخول (مشترك بين الألعاب) ----------
+   أي لاعب يصوّت لطرد لاعب، وينطرد لو صوّت أكثر من نص اللي في الغرفة (٧ يبي لها ٤، و٣ يبي لها ٢).
+   المؤسس يطرد على طول، أو يعطي باند فما يقدر يرجع من الرابط، ويقدر يقفل الدخول على الجدد.
+   كل لعبة تعرّف onPlayerOut(id) عشان تعدّل جولتها لما أحد يطلع. */
+const kickNeed = () => Math.floor(S.players.length / 2) + 1;
+const outName = id => (S && S.out && S.out[id] && S.out[id].name) || '؟';
+const kickVotes = id => (S.kv && S.kv[id]) || [];
+const canMod = p => S.phase !== 'closed' && !!player(ME.id) && p.id !== ME.id && p.id !== S.hostId;
+const modAttr = p => canMod(p) ? ` data-mod="${esc(p.id)}" role="button" tabindex="0" aria-label="خيارات ${esc(p.name)}"` : '';
+function modTag(p){
+  const n = kickVotes(p.id).length;
+  return (n ? `<span class="badge kick">طرد <span class="num">${n}/${kickNeed()}</span></span>` : '') + (canMod(p) ? '<span class="more" aria-hidden="true">⋯</span>' : '');
+}
+function lockChip(){
+  if (!S || S.phase === 'closed') return '';
+  if (isHost()) return `<button class="chip lockbtn" id="lockRoom" type="button" aria-pressed="${!!S.locked}">${S.locked ? '🔒 الدخول مقفل' : '🔓 الدخول مفتوح'}</button>`;
+  return S.locked ? '<span class="chip locked">🔒 الدخول مقفل</span>' : '';
+}
+function modBind(){
+  document.querySelectorAll('[data-mod]').forEach(el => {
+    el.onclick = () => modSheet(el.dataset.mod);
+    el.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); modSheet(el.dataset.mod); } };
+  });
+  const lk = $('lockRoom');
+  if (lk) lk.onclick = () => { S.locked = !S.locked; toast(S.locked ? 'قفلت الدخول، محد جديد يقدر يدخل' : 'فتحت الدخول'); hostPublish(); };
+}
+function modSheet(id){
+  const p = player(id);
+  if (!p) return;
+  const old = $('msheet'); if (old) old.remove();
+  const n = kickVotes(id).length, need = kickNeed(), mine = kickVotes(id).includes(ME.id);
+  const bg = document.createElement('div');
+  bg.className = 'msheet-bg'; bg.id = 'msheet';
+  bg.innerHTML = `<div class="msheet" role="dialog" aria-modal="true" aria-label="خيارات ${esc(p.name)}"><div class="grab"></div>
+    <div class="mwho">${avatar(p)}<span>${esc(p.name)}</span>${n ? `<span class="label">أصوات الطرد <span class="num">${n}/${need}</span></span>` : ''}</div>
+    ${isHost() ? `<button class="btn ghost" type="button" data-m="kick">اطرده</button><div class="helper" style="margin-top:-4px">يقدر يرجع من الرابط إذا الدخول مفتوح</div>
+      <button class="btn red" type="button" data-m="ban">اطرده وامنعه يرجع</button>`
+    : `<button class="btn ${mine ? 'ghost' : 'red'}" type="button" data-m="vote">${mine ? 'اسحب صوتي' : 'صوّت لطرده'}</button>
+      <div class="helper" style="margin-top:-4px">ينطرد إذا صوّت <span class="num">${need}</span> من <span class="num">${S.players.length}</span> اللي في الغرفة</div>`}
+    <button class="btn ghost" type="button" data-m="x">إلغاء</button></div>`;
+  document.body.appendChild(bg);
+  const close = () => { bg.remove(); document.removeEventListener('keydown', esc_); };
+  const esc_ = e => { if (e.key === 'Escape') close(); };
+  document.addEventListener('keydown', esc_);
+  bg.onclick = e => { if (e.target === bg) close(); };
+  bg.querySelectorAll('[data-m]').forEach(b => b.onclick = () => {
+    const m = b.dataset.m;
+    close();
+    if (m === 'kick' || m === 'ban') hostRemove(id, m === 'ban', 'host');
+    else if (m === 'vote') { act({t:'kv', target:id, on:!mine}); toast(mine ? 'سحبت صوتك' : 'انحسب صوتك'); }
+  });
+  bg.querySelector('[data-m="x"]').focus();
+}
+
+// المؤسس
+async function hostKickVote(voter, target, on){
+  if (!player(voter) || !player(target) || target === S.hostId || target === voter) return;
+  S.kv = S.kv || {};
+  const l = new Set(S.kv[target] || []);
+  if (on) l.add(voter); else l.delete(voter);
+  if (l.size) S.kv[target] = [...l]; else delete S.kv[target];
+  if (!(await hostKickCheck())) await hostPublish();
+}
+async function hostKickCheck(){
+  let any = false;
+  for (;;) {
+    const need = kickNeed();
+    const hit = Object.entries(S.kv || {}).find(([id, l]) => player(id) && l.filter(v => player(v)).length >= need);
+    if (!hit) break;
+    await hostRemove(hit[0], false, 'vote', true);
+    any = true;
+  }
+  if (any) await hostPublish();
+  return any;
+}
+async function hostRemove(id, ban, by, quiet){
+  const p = player(id);
+  if (!p || id === S.hostId) return;
+  S.players = S.players.filter(x => x.id !== id);
+  S.out = S.out || {};
+  S.out[id] = {name:p.name, ban:!!ban, by};
+  HOST.outP = HOST.outP || {};
+  HOST.outP[id] = p;
+  if (S.kv) { delete S.kv[id]; for (const k of Object.keys(S.kv)) { S.kv[k] = S.kv[k].filter(v => v !== id); if (!S.kv[k].length) delete S.kv[k]; } }
+  toast(by === 'vote' ? `${p.name} طلع بالتصويت` : ban ? `${p.name} انطرد وانمنع` : `${p.name} انطرد`);
+  if (MQC) MQC.pub(`${BASE}/p/${id}`, new Uint8Array(0), true);
+  await onPlayerOut(id);
+  if (!quiet && !(await hostKickCheck())) await hostPublish();
+}
+// يرجع false لو الدخول مرفوض، و'back' لو مطرود ورجع بنفسه (يرجع بنقاطه)
+function hostJoinAllowed(pid, again){
+  const o = S.out && S.out[pid];
+  if (o) { if (o.ban || !again || S.locked) return false; delete S.out[pid]; return 'back'; }
+  if (S.locked && !player(pid)) return false;
+  return true;
+}
+function hostBackPlayer(pid, name){
+  const p = HOST.outP && HOST.outP[pid];
+  if (!p) return null;
+  delete HOST.outP[pid];
+  return {...p, name, on:true, inRound:false, done:false, ready:false, voted:false};
+}
+
+// اللاعب
+function kickToasts(prev, next){
+  if (!prev || !next.out) return;
+  for (const [id, o] of Object.entries(next.out)) if (!(prev.out && prev.out[id]) && id !== CL.pid) toast(o.by === 'vote' ? `${o.name} طلع بالتصويت` : o.ban ? `${o.name} انطرد وانمنع` : `${o.name} انطرد`);
+}
+// يعرض شاشة الطرد أو القفل لو اللاعب برا الغرفة، ويرجع true
+function clientOutGate(){
+  const o = S.out && S.out[CL.pid];
+  if (o) {
+    CL.out = true;
+    const back = !o.ban && !S.locked;
+    $('app').innerHTML = `<div class="hero"><h2>${o.ban ? 'انمنعت من الغرفة' : o.by === 'vote' ? 'طلّعوك بالتصويت' : 'المؤسس طلّعك'}</h2>
+      <p>${o.ban ? 'المؤسس طلّعك ومنعك ترجع لهذي الغرفة.' : o.by === 'vote' ? 'أغلب اللي في الغرفة صوّتوا لطردك.' : 'تقدر ترجع إذا تبي.'}${!o.ban && S.locked ? ' والدخول مقفل الحين.' : ''}</p></div>`;
+    $('footIn').innerHTML = back ? '<button class="btn" id="rejoin" type="button">ارجع للغرفة</button>' : '';
+    $('foot').hidden = !back;
+    if (back) $('rejoin').onclick = () => { CL.out = false; sendJoin(true); skeleton(); };
+    return true;
+  }
+  CL.out = false;
+  if (S.locked && !player(CL.pid)) {
+    CL.wasLocked = true;
+    $('app').innerHTML = `<div class="hero"><h2>الدخول مقفل</h2><p>المؤسس قفل الغرفة على الجدد. أول ما يفتحها تدخل على طول.</p></div>`;
+    $('foot').hidden = true;
+    return true;
+  }
+  // انفتح الدخول: اللي كتب اسمه يدخل على طول، والباقي يرجع لشاشة الاسم
+  if (CL.wasLocked) { CL.wasLocked = false; if (CL.name) { if (!player(CL.pid)) sendJoin(); } else CL.showName = true; }
+  return false;
+}
+
 
 const PTS = {laugh:100, king:100, star:250, ban:100};
 const MAXLEN = 90;
@@ -294,7 +441,7 @@ const IMG = {};            // round -> dataURL
 const CHUNKS = {};         // round -> {n, parts:[]}
 let OFFSET = 0;            // فرق ساعة المؤسس
 const player = id => S && S.players.find(p => p.id === id);
-const nameOf = id => (player(id) || {}).name || '؟';
+const nameOf = id => (player(id) || {}).name || outName(id);
 const isHost = () => MODE === 'host';
 const inRound = () => S.players.filter(p => p.inRound);
 const hostNow = () => Date.now() - OFFSET;
@@ -356,17 +503,17 @@ function skeleton(){
 }
 function playersCard(showScore){
   const ps = S.players.slice().sort((a, b) => showScore ? b.score - a.score : 0);
-  return `<div class="card"><div class="setrow"><h2>اللاعبين <span class="num">${ps.filter(p => p.on).length}</span></h2>${showScore ? '<span class="label">النقاط</span>' : ''}</div>
+  return `<div class="card"><div class="setrow"><h2>اللاعبين <span class="num">${ps.filter(p => p.on).length}</span></h2><span class="ptools">${lockChip()}${showScore ? '<span class="label">النقاط</span>' : ''}</span></div>
     <div class="plist">${ps.map(p => `
-      <div class="pl ${p.id === ME.id ? 'me' : ''} ${p.on ? '' : 'away'}">
+      <div class="pl ${p.id === ME.id ? 'me' : ''} ${p.on ? '' : 'away'}"${modAttr(p)}>
         ${avatar(p)}<span class="nm">${esc(p.name)}${p.id === ME.id ? ' <span class="label">(أنت)</span>' : ''}</span>
         ${p.id === S.hostId ? '<span class="badge host">المؤسس</span>' : ''}
         ${!p.on ? '<span class="badge">غير متصل</span>' : ''}
         ${S.phase === 'write' && p.inRound && p.done ? '<span class="badge ok">كتب</span>' : ''}
         ${S.phase === 'vote' && p.inRound && p.done ? '<span class="badge ok">صوّت</span>' : ''}
         <span class="dot ${p.on ? 'on' : ''}"></span>
-        ${showScore ? `<span class="pts" style="font-size:20px">${p.score}</span>` : ''}
-      </div>`).join('')}</div></div>`;
+        ${showScore ? `<span class="pts" style="font-size:20px">${p.score}</span>` : ''}${modTag(p)}
+      </div>`).join('')}</div>${S.phase === 'lobby' && ps.some(canMod) ? `<div class="helper">${isHost() ? 'اضغط على أي لاعب عشان تطرده أو تمنعه' : 'اضغط على لاعب عشان تصوّت لطرده'}</div>` : ''}</div>`;
 }
 function timerBar(){
   if (!S.deadline) return '';
@@ -414,6 +561,7 @@ function render(){
       const sent = UI.sentText != null && UI.sentText === UI.draft.trim() + '|' + UI.pos;
       f += `<button class="btn" id="send" type="button" ${UI.draft.trim() ? '' : 'disabled'}>${sent ? 'انرسل ✓ (تقدر تعدّل)' : meP.done ? 'أرسل التعديل' : 'أرسل'}</button>`;
     } else h += `<div class="banner">دخلت والجولة بادية. تلعب من الجولة الجاية.</div>`;
+    h += playersCard(false);
     const dn = inRound().filter(p => p.done).length;
     f += `<div class="helper">كتبوا ${dn} من ${inRound().length}</div>`;
     if (isHost()) f += `<button class="btn ghost" id="endWrite" type="button">خلّص الكتابة الحين</button>`;
@@ -437,6 +585,7 @@ function render(){
           <button class="act ban" type="button" data-a="ban" data-e="${e.eid}" aria-pressed="${UI.ban === e.eid}" ${PRIV && PRIV.ban ? '' : 'disabled'}><span class="e">🚫</span>منع</button>
           <button class="act star" type="button" data-a="star" data-e="${e.eid}" aria-pressed="${UI.star === e.eid}" ${PRIV && PRIV.star ? '' : 'disabled'}><span class="e">⭐</span>أفضل ذبة</button></div>` : ''}
       </div>`; }).join('')}</div>`;
+    h += playersCard(false);
     const dn = inRound().filter(p => p.done).length;
     if (meP.inRound && !meP.done) f += `<button class="btn" id="castVote" type="button" ${UI.laugh ? '' : 'disabled'}>ثبّت تصويتي</button><div class="helper">لازم تختار «ضحكني» وحدة، والمنع وأفضل ذبة اختياري</div>`;
     else f += `<div class="helper">صوّت ${dn} من ${inRound().length}</div>`;
@@ -448,7 +597,7 @@ function render(){
     h += `<div class="entries">${R.entries.map((e, i) => {
       draws.push(['cv-r' + i, IMG[S.round], () => e.text, () => e.pos]);
       return `<div class="entry ${e.king ? 'win' : ''}">${IMG[S.round] ? memeBox('cv-r' + i) : ''}
-        <div class="who">${avatar(player(e.author) || {id:e.author, name:'؟'})}<span class="nm">${esc(nameOf(e.author))}</span>${e.king ? '<span class="crown">👑 ملك الجولة</span>' : ''}<span class="pts">+${e.pts}</span></div>
+        <div class="who">${avatar(player(e.author) || {id:e.author, name:nameOf(e.author)})}<span class="nm">${esc(nameOf(e.author))}</span>${e.king ? '<span class="crown">👑 ملك الجولة</span>' : ''}<span class="pts">+${e.pts}</span></div>
         <div class="who"><span class="stat">😂 <span class="num">${e.laughs}</span></span>${e.stars ? `<span class="stat">⭐ <span class="num">${e.stars}</span></span>` : ''}${e.bans ? `<span class="stat">🚫 <span class="num">${e.bans}</span></span>` : ''}
         ${i === 0 && IMG[S.round] ? `<span style="flex:1"></span><button class="btn sm ghost" type="button" data-save="cv-r0">احفظ الميم</button>` : ''}</div>
       </div>`; }).join('')}</div>`;
@@ -502,6 +651,7 @@ function bind(){
   });
   on('castVote', () => { if (UI.laugh) act({t:'vote', laugh:UI.laugh, ban:UI.ban, star:UI.star, round:S.round}); });
   document.querySelectorAll('[data-save]').forEach(b => b.onclick = () => saveMeme($(b.dataset.save)));
+  modBind();
   if (isHost()) hostBind(on);
 }
 
@@ -674,10 +824,12 @@ async function hostOnMsg(topic, bytes){
     if (!/^p[a-z0-9]{7}$/.test(pid || '') || !pub || typeof name !== 'string') return;
     const nm = name.trim().slice(0, 16) || 'لاعب';
     if (HOST.pubs[pid] && JSON.stringify(HOST.pubs[pid]) !== JSON.stringify(pub)) return;
+    const allowed = hostJoinAllowed(pid, m.join.again);
+    if (!allowed) return;
     HOST.seen[pid] = Date.now();
     if (!HOST.keys[pid]) { HOST.pubs[pid] = pub; HOST.keys[pid] = await C.shared(HOST.privKey, pub); }
     let p = player(pid);
-    if (!p) { S.players.push({...hostPlayer(pid, nm), on:true}); toast(`${nm} دخل الغرفة`); }
+    if (!p) { S.players.push(allowed === 'back' && hostBackPlayer(pid, nm) || {...hostPlayer(pid, nm), on:true}); toast(allowed === 'back' ? `${nm} رجع للغرفة` : `${nm} دخل الغرفة`); }
     else { if (!p.on) toast(`${nm} رجع`); p.on = true; p.name = nm; }
     await hostPublish();
     MQC.pub(`${BASE}/p/${pid}`, await C.enc(HOST.keys[pid], privFor(pid)), true);
@@ -697,6 +849,7 @@ async function act(a){ return isHost() ? hostAct(S.hostId, a) : clientAct(a); }
 
 async function hostAct(pid, a){
   const p = player(pid), H = HOST.H;
+  if (p && a.t === 'kv') return hostKickVote(pid, a.target, !!a.on);
   if (!p || !p.inRound || a.round !== S.round) return;
   if (a.t === 'submit' && S.phase === 'write') {
     const text = String(a.text || '').trim().slice(0, MAXLEN);
@@ -836,6 +989,16 @@ async function hostResult(){
   await hostPublish();
 }
 
+// لاعب انطرد: نشيل كتابته، ونكمّل الجولة لو الباقين خلّصوا. ميمه في التصويت يبقى بس نقاطه ما تروح لأحد.
+async function onPlayerOut(id){
+  const H = HOST.H;
+  if (S.phase === 'write') {
+    if (H.subs) delete H.subs[id];
+    if (inRound().length && inRound().every(x => x.done || !x.on)) return hostToVote();
+  }
+  if (S.phase === 'vote' && inRound().length && inRound().every(x => x.done || !x.on)) return hostResult();
+}
+
 /* ======================================================================
    اللاعب: يدخل من الرابط بدون كود
    ====================================================================== */
@@ -851,10 +1014,10 @@ async function clientBoot(){
   CL.key = ck; ME = {id:CL.pid, name:CL.name || ''};
   CL.privKey = await C.impPriv(CL.priv);
   skeleton();
-  MQC = new MQ(BROKERS[+b], clientOnMsg, s => { setNet(s); if (s === 'up' && CL.name) sendJoin(); });
+  MQC = new MQ(BROKERS[+b], clientOnMsg, s => { setNet(s); if (s === 'up' && CL.name && !CL.out) sendJoin(); });
   MQC.sub(BASE + '/s'); MQC.sub(`${BASE}/p/${CL.pid}`); MQC.sub(`${BASE}/img/#`);
   setTimeout(() => { if (!S) $('app').innerHTML = `<div class="hero"><h2>ما لقيت الغرفة</h2><p>يمكن المؤسس قفلها أو جواله مو متصل. تأكد من الرابط وجرّب بعد شوي.</p></div>`; }, 12000);
-  setInterval(() => { if (CL.name && CL.shared) clientAct({t:'ping'}); }, 8000);
+  setInterval(() => { if (CL.name && CL.shared && !CL.out) clientAct({t:'ping'}); }, 8000);
 }
 function clientNameScreen(){
   $('app').innerHTML = `<div class="hero"><h2>انضم لغرفة الميمز</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
@@ -866,13 +1029,14 @@ function clientNameScreen(){
     CL.name = n.slice(0, 16);
     const {privKey, shared, key, ...save} = CL; LS.set(CL.key, save);
     ME = {id:CL.pid, name:CL.name};
+    if (S && clientOutGate()) return;
     sendJoin(); skeleton();
   };
   $('joinBtn').onclick = go;
   $('cname').onkeydown = e => { if (e.key === 'Enter') go(); };
   $('cname').focus();
 }
-async function sendJoin(){ MQC.pub(BASE + '/i', await C.enc(KEY, {join:{pid:CL.pid, name:CL.name, pub:CL.pub}}), false); }
+async function sendJoin(again){ MQC.pub(BASE + '/i', await C.enc(KEY, {join:{pid:CL.pid, name:CL.name, pub:CL.pub, again:!!again}}), false); }
 let pendingPriv = null;
 async function clientOnMsg(topic, bytes){
   if (topic.startsWith(BASE + '/img/')) return gotChunk(topic, bytes);
@@ -884,11 +1048,13 @@ async function clientOnMsg(topic, bytes){
     const first = !S, roundChanged = S && S.round !== st.round, phaseChanged = S && S.phase !== st.phase;
     if (!CL.shared || !S || JSON.stringify(S.hostPub) !== JSON.stringify(st.hostPub)) CL.shared = await C.shared(CL.privKey, st.hostPub);
     const typing = S && S.phase === 'write' && st.phase === 'write' && !roundChanged && document.activeElement && document.activeElement.id === 'draft';
+    kickToasts(S, st);
     S = st;
     if (roundChanged || (phaseChanged && st.phase === 'write')) UI = {draft:'', pos:'top', laugh:null, ban:null, star:null, sentText:null};
     if (phaseChanged && st.phase === 'vote') { UI.laugh = UI.ban = UI.star = null; }
     if (pendingPriv) { const b = pendingPriv; pendingPriv = null; await clientPriv(b); }
-    if (!CL.name) { if (first) clientNameScreen(); return; }
+    if (S.phase !== 'closed' && clientOutGate()) return;
+    if (!CL.name) { if (first || CL.showName) { CL.showName = false; clientNameScreen(); } return; }
     ME = {id:CL.pid, name:CL.name};
     if (!player(CL.pid)) { if (first) sendJoin(); skeleton(); return; }
     if (typing) { updateCounts(); return; }   // لا نخرب على اللي يكتب
