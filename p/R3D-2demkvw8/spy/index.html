@@ -15,18 +15,18 @@
 :root{
   --bg:#09090b; --bg2:#101014; --panel:#141418; --panel2:#1c1c21; --line:#2a2a31; --line2:#3a3a43;
   --fg:#f5f5f7; --mute:#a3a3ae; --dim:#6b6b76;
-  --acc:#e3122f; --spy:#b07cff; --spy-bg:#b07cff1f; --ok:#36d39a; --warn:#ffb020; --bad:#ff4d63;
+  --acc:#e3122f; --g:#b07cff; --g-bg:#b07cff1f; --g-fg:#140a24; --glow:#6d3bd433; --ok:#36d39a; --warn:#ffb020; --bad:#ff4d63;
   --ar:'Lifta','Anton',system-ui,sans-serif; --lat:'Anton','Lifta',Impact,sans-serif; --num:'Bebas Neue','Anton','Lifta',sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{background:var(--bg)}
-body{margin:0;min-height:100vh;background:radial-gradient(800px 480px at 50% -10%,#6d3bd433,transparent 65%) no-repeat,var(--bg);color:var(--fg);font-family:var(--ar);font-size:18px;line-height:1.7;font-synthesis:none;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:radial-gradient(800px 480px at 50% -10%,var(--glow),transparent 65%) no-repeat,var(--bg);color:var(--fg);font-family:var(--ar);font-size:18px;line-height:1.7;font-synthesis:none;-webkit-tap-highlight-color:transparent}
 h1,h2,h3,b,strong,button{font-weight:400}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 input{font:inherit}
 [hidden]{display:none!important}
-:focus-visible{outline:2px solid var(--spy);outline-offset:3px;border-radius:10px}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px;border-radius:10px}
 .num{font-family:var(--num);direction:ltr;unicode-bidi:isolate;letter-spacing:.04em}
 .lat{font-family:var(--lat);direction:ltr;unicode-bidi:isolate}
 
@@ -50,7 +50,7 @@ main{max-width:560px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-rig
 .hero h2{margin:0;font-size:32px;line-height:1.3;text-wrap:balance}
 .hero p{margin:0;color:var(--mute);font-size:17px}
 
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 18px;border-radius:14px;background:var(--spy);color:#140a24;font-size:19px;transition:filter .15s,transform .1s}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px 18px;border-radius:14px;background:var(--g);color:var(--g-fg);font-size:19px;transition:filter .15s,transform .1s}
 .btn:hover{filter:brightness(1.08)}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
@@ -63,7 +63,7 @@ main{max-width:560px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-rig
 
 .field{display:flex;flex-direction:column;gap:6px}
 .field input{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);font-size:20px;outline:none}
-.field input:focus{border-color:var(--spy);box-shadow:0 0 0 4px var(--spy-bg)}
+.field input:focus{border-color:var(--g);box-shadow:0 0 0 4px var(--g-bg)}
 
 .linkbox{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:12px;background:var(--bg2);border:1px dashed var(--line2)}
 .linkbox code{flex:1;min-width:0;font-family:ui-monospace,Menlo,monospace;font-size:13px;color:var(--mute);direction:ltr;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -83,46 +83,60 @@ main{max-width:560px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-rig
 /* إعدادات */
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chips button{padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);font-size:15px;color:var(--mute)}
-.chips button[aria-pressed="true"]{background:var(--spy);border-color:var(--spy);color:#140a24}
+.chips button[aria-pressed="true"]{background:var(--g);border-color:var(--g);color:var(--g-fg)}
 .seg{display:inline-flex;padding:3px;border-radius:12px;background:var(--bg2);border:1px solid var(--line)}
 .seg button{padding:4px 16px;border-radius:9px;color:var(--mute);font-size:16px}
 .seg button[aria-pressed="true"]{background:var(--panel2);color:var(--fg);box-shadow:0 1px 0 #fff1 inset}
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .switch{position:relative;width:48px;height:28px;border-radius:999px;background:var(--line2);transition:background .2s;flex:none}
 .switch::after{content:"";position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s}
-.switch[aria-checked="true"]{background:var(--spy)}
+.switch[aria-checked="true"]{background:var(--g)}
 .switch[aria-checked="true"]::after{transform:translateX(-20px)}
+.prog{height:6px;border-radius:9px;background:var(--panel2);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--g);border-radius:9px;transition:width .3s}
+.plus{color:var(--ok);font-family:var(--num);font-size:18px;direction:ltr}
+/* سكلتون وتوست وتنبيه */
+.sk{border-radius:12px;background:linear-gradient(90deg,var(--panel) 0,var(--panel2) 40%,var(--panel) 80%);background-size:200% 100%;animation:sh 1.3s linear infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.banner{display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;background:#ffb02014;border:1px solid #ffb02044;color:#ffd58a;font-size:15px}
+.banner.bad{background:#ff4d6314;border-color:#ff4d6344;color:#ffb3bd}
+.toasts{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none;width:max-content;max-width:calc(100vw - 32px)}
+.toast{background:var(--fg);color:var(--bg);padding:7px 16px;border-radius:999px;font-size:15px;animation:tin .25s ease-out}
+@keyframes tin{from{transform:translateY(10px);opacity:0}}
+.foot{position:fixed;inset:auto 0 0 0;z-index:6;padding:12px max(16px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,#09090b 30%);}
+.foot .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+:root{--g:#b07cff;--g-bg:#b07cff1f;--g-fg:#140a24;--glow:#6d3bd433}
 
 /* بطاقة الدور */
 .role{position:relative;min-height:190px;border-radius:20px;display:grid;place-items:center;text-align:center;padding:18px;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation}
-.role.hidden{background:repeating-linear-gradient(45deg,#1d1730 0 10px,#221b38 10px 20px);border:1px solid #b07cff44;color:var(--spy)}
+.role.hidden{background:repeating-linear-gradient(45deg,#1d1730 0 10px,#221b38 10px 20px);border:1px solid #b07cff44;color:var(--g)}
 .role.civ{background:linear-gradient(160deg,#173826,#0f1f17);border:1px solid #36d39a55}
 .role.spyr{background:linear-gradient(160deg,#3a1226,#1e0b15);border:1px solid #ff4d6355}
 .role .k{font-size:15px;color:var(--mute)}
 .role .w{font-size:40px;line-height:1.25;margin:4px 0}
 .role .h{font-size:15px;opacity:.75}
 .mini{display:flex;align-items:center;gap:8px;justify-content:center;font-size:16px;color:var(--mute)}
-.mini button{color:var(--spy);text-decoration:underline;text-underline-offset:4px}
+.mini button{color:var(--g);text-decoration:underline;text-underline-offset:4px}
 
 /* ترتيب الأسئلة */
-.now{text-align:center;padding:14px;border-radius:18px;background:var(--spy-bg);border:1px solid #b07cff55}
+.now{text-align:center;padding:14px;border-radius:18px;background:var(--g-bg);border:1px solid #b07cff55}
 .now .k{font-size:15px;color:var(--mute)}
 .now .pair{font-size:30px;line-height:1.35}
-.now .pair i{font-style:normal;color:var(--spy);margin:0 6px}
-.prog{height:6px;border-radius:9px;background:var(--panel2);overflow:hidden}
-.prog i{display:block;height:100%;background:var(--spy);border-radius:9px;transition:width .3s}
+.now .pair i{font-style:normal;color:var(--g);margin:0 6px}
 .order{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 .order li{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;font-size:17px}
 .order li .n{font-family:var(--num);font-size:18px;color:var(--dim);width:22px;text-align:center}
 .order li.done{color:var(--dim);text-decoration:line-through}
-.order li.cur{background:var(--panel2);color:var(--fg);box-shadow:inset -3px 0 0 var(--spy)}
-.order li .ar{color:var(--spy)}
+.order li.cur{background:var(--panel2);color:var(--fg);box-shadow:inset -3px 0 0 var(--g)}
+.order li .ar{color:var(--g)}
 
 /* التصويت */
 .vgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .vbtn{display:flex;align-items:center;gap:8px;padding:10px;border-radius:14px;background:var(--bg2);border:1px solid var(--line);text-align:right;min-width:0}
 .vbtn span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.vbtn[aria-pressed="true"]{border-color:var(--spy);background:var(--spy-bg);box-shadow:0 0 0 3px #b07cff33}
+.vbtn[aria-pressed="true"]{border-color:var(--g);background:var(--g-bg);box-shadow:0 0 0 3px #b07cff33}
 .tally{display:flex;flex-direction:column;gap:6px}
 .tr{display:grid;grid-template-columns:minmax(0,7em) 1fr auto;gap:8px;align-items:center;font-size:16px}
 .tr .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -137,20 +151,8 @@ main{max-width:560px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-rig
 .verdict p{margin:0;color:var(--mute);font-size:16px}
 .opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .opts button{padding:10px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);font-size:18px}
-.opts button[aria-pressed="true"]{border-color:var(--spy);background:var(--spy-bg)}
-.plus{color:var(--ok);font-family:var(--num);font-size:18px;direction:ltr}
+.opts button[aria-pressed="true"]{border-color:var(--g);background:var(--g-bg)}
 
-/* سكلتون وتوست وتنبيه */
-.sk{border-radius:12px;background:linear-gradient(90deg,var(--panel) 0,var(--panel2) 40%,var(--panel) 80%);background-size:200% 100%;animation:sh 1.3s linear infinite}
-@keyframes sh{to{background-position:-200% 0}}
-.banner{display:flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;background:#ffb02014;border:1px solid #ffb02044;color:#ffd58a;font-size:15px}
-.banner.bad{background:#ff4d6314;border-color:#ff4d6344;color:#ffb3bd}
-.toasts{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none;width:max-content;max-width:calc(100vw - 32px)}
-.toast{background:var(--fg);color:var(--bg);padding:7px 16px;border-radius:999px;font-size:15px;animation:tin .25s ease-out}
-@keyframes tin{from{transform:translateY(10px);opacity:0}}
-.foot{position:fixed;inset:auto 0 0 0;z-index:6;padding:12px max(16px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,#09090b 30%);}
-.foot .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -256,13 +258,6 @@ const C = {
   async shared(priv, pubJwk){ return crypto.subtle.deriveKey({name:'ECDH', public: await C.impPub(pubJwk)}, priv, {name:'AES-GCM', length:256}, false, ['encrypt', 'decrypt']); }
 };
 
-/* ---------- الواجهة المشتركة ---------- */
-let S = null;        // الحالة العامة (من المؤسس)
-let ME = null;       // {id, name}
-let PRIV = null;     // دوري الخاص في الجولة
-let UI = {peek:false, vote:null, guess:null, cat:null};
-let NET = 'connecting';
-
 function toast(t){
   const el = document.createElement('div'); el.className = 'toast'; el.textContent = t;
   $('toasts').appendChild(el); setTimeout(() => el.remove(), 2200);
@@ -273,13 +268,28 @@ function setNet(s){
   d.className = 'dot ' + (s === 'up' ? 'on' : s === 'down' ? 'off' : 'mid');
   t.textContent = s === 'up' ? 'متصل' : s === 'down' ? 'انقطع' : 'يتصل…';
 }
+async function copy(t){ try { await navigator.clipboard.writeText(t); toast('تم النسخ'); } catch(e){ toast('ما قدرت أنسخ، انسخه يدوي'); } }
+function joinBase(dir){
+  let base;
+  try { base = parent.location.href.split('#')[0]; } catch(e){ base = location.href.split('#')[0]; }
+  if (base.startsWith('blob:') || base.startsWith('about:')) base = location.origin + '/';
+  return new URL(dir, base.endsWith('/') ? base : base.replace(/[^/]*$/, '')).href;
+}
+
+
+/* ---------- الواجهة المشتركة ---------- */
+let S = null;        // الحالة العامة (من المؤسس)
+let ME = null;       // {id, name}
+let PRIV = null;     // دوري الخاص في الجولة
+let UI = {peek:false, vote:null, guess:null, cat:null};
+let NET = 'connecting';
+
 const player = id => S && S.players.find(p => p.id === id);
 const nameOf = id => (player(id) || {}).name || '؟';
 const isHost = () => MODE === 'host';
 const inRound = () => S.players.filter(p => p.inRound);
 const totalTurns = () => S.order.length * S.settings.laps;
 const pairAt = i => { const n = S.order.length; const a = S.order[i % n], b = S.order[(i + 1) % n]; return [a, b]; };
-async function copy(t){ try { await navigator.clipboard.writeText(t); toast('تم النسخ'); } catch(e){ toast('ما قدرت أنسخ، انسخه يدوي'); } }
 
 function skeleton(){
   $('app').innerHTML = `<div class="sk" style="height:60px"></div><div class="sk" style="height:150px"></div><div class="sk" style="height:44px"></div><div class="sk" style="height:44px"></div>`;
@@ -451,12 +461,6 @@ function hostCreateScreen(prevName){
   $('hname').onkeydown = e => { if (e.key === 'Enter') go(); };
 }
 
-function joinBase(){
-  let base;
-  try { base = parent.location.href.split('#')[0]; } catch(e){ base = location.href.split('#')[0]; }
-  if (base.startsWith('blob:') || base.startsWith('about:')) base = location.origin + '/';
-  return new URL('spy/', base.endsWith('/') ? base : base.replace(/[^/]*$/, '')).href;
-}
 
 async function hostCreate(name){
   const kp = await C.pair();
@@ -500,7 +504,7 @@ async function hostConnect(fresh){
   m.onState = s => setNet(s);
   MQC = m; HOST.b = idx;
   BASE = `r3d-spy/v1/${HOST.room}`;
-  HOST.link = `${joinBase()}#${HOST.room}.${HOST.K}.${idx}`;
+  HOST.link = `${joinBase('spy/')}#${HOST.room}.${HOST.K}.${idx}`;
   MQC.sub(BASE + '/i');
   for (const p of S.players) if (HOST.pubs[p.id]) HOST.keys[p.id] = await C.shared(HOST.privKey, HOST.pubs[p.id]);
   await hostPublish();
