@@ -44,6 +44,8 @@ input{font:inherit}
 .chip .num{font-size:20px;color:var(--fg)}
 button.chip{color:var(--fg);border-bottom:1px solid var(--line2);transition:border-color .2s}
 button.chip:hover{border-color:var(--fg)}
+#toLib{min-height:44px;padding:8px 18px;border:1px solid var(--line2);border-radius:999px;font-size:16px}
+@media (pointer:coarse), (max-width:600px){#toLib{min-height:46px;font-size:17px}}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--dim);flex:none}
 .dot.on{background:var(--ok);box-shadow:0 0 10px var(--ok)}
 .dot.mid{background:var(--warn);animation:blink 1.2s steps(1) infinite}
