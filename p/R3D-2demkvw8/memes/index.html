@@ -757,11 +757,13 @@ function clientOutGate(){
    (نفس رابط الغرفة وآخره .bot1)، فيدخل ويلعب بكود اللاعب العادي، والمالك يفتح شاشته ويشوف اللعبة من عين اللاعب.
    المنصة تحط window.R3D_OWNER = 1 لصفحة المؤسس لما الدخول بالكود الدائم. كل لعبة تعرّف botMove() للعب التلقائي. */
 const OWNER = MODE === 'host' && window.R3D_OWNER === 1;
-const BOT = (() => { if (MODE === 'host') return null; const m = location.hash.match(/\.bot(\d{1,2})$/); return m ? {n:+m[1], auto:true, done:new Set()} : null; })();
+const BOT = (() => { if (MODE === 'host') return null; const m = location.hash.match(/\.bot(\d{1,2})$/); return m ? {n:+m[1], auto:true, done:new Map()} : null; })();
 const BOT_NAMES = ['بوت فهد', 'بوت نوره', 'بوت سلطان', 'بوت ريم', 'بوت خالد', 'بوت لمى', 'بوت ناصر', 'بوت جود'];
 const BOT_MAX = 8;
 const botKey = ck => BOT ? ck + '.bot' + BOT.n : ck;
-const botOnce = (k, fn) => { if (BOT.done.has(k)) return; BOT.done.add(k); fn(); };
+// كل حركة مرة وحدة لكل حالة، بس لو اللعبة رجعت لنفس الحالة (مثلاً الفريقين غلطوا والسؤال رجع) أو ضاعت الرسالة
+// يعيدها بعد ٦ ثواني، مثل اللاعب الحقيقي. قبل كذا البوت الهوست كان يعلق وما يفتح الجرس مرة ثانية
+const botOnce = (k, fn) => { const t = BOT.done.get(k); if (t && Date.now() - t < 6000) return; BOT.done.set(k, Date.now()); fn(); };
 
 // البوت: ياخذ اسمه لحاله ويدخل، ويلعب حركة كل شوي لين المالك يقول «أنا أتحكم»
 function botInit(){
