@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-skin="sticker">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -139,11 +139,7 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
 @keyframes mup{from{transform:translateY(40px);opacity:0}}
 @keyframes mfade{from{opacity:0}}
 
-/* خلية الحروف: أخضر ليموني للعبة، والفريقين أخضر (يمين ↔ يسار) وبرتقالي (فوق ↔ تحت). فيها ثيم فاتح وداكن. */
-:root{--g:#9be15d;--g-bg:#9be15d1f;--g-fg:#0d1a02;--glow:#9be15d22;--A:#2fd18a;--Ad:#0b3b2a;--B:#ff8a3d;--Bd:#3d1d06;--gold:#ffd76a;
-  --cell:#131313;--cellS:#ffffff24;--cellT:var(--fg);--hiT:#000}
-html[data-theme=light]{--bg:#f3eee6;--bg2:#00000008;--panel:#fff;--panel2:#0000000d;--line:#0000001c;--line2:#00000038;--fg:#17120f;--mute:#5f5753;--dim:#8b827e;
-  --g:#5fae22;--glow:#9be15d40;--A:#14b874;--B:#f2741f;--gold:#e0a800;--cell:#fffdf9;--cellS:#0000002e;--cellT:#17120f;color-scheme:light}
+/* خلية الحروف: ثيم خاص فيها (مو ثيم المنصة). ألوانه وأفكاره تحت في «ثيم اللعبة». الأخضر يوصّل يمين ↔ يسار، والبرتقالي فوق ↔ تحت. فيه فاتح وداكن. */
 html[data-theme=light] body::after{--c:#0000003d}
 html[data-theme=light] .bar{background:linear-gradient(var(--bg) 0,color-mix(in srgb,var(--bg) 90%,transparent) 55%,transparent)}
 html[data-theme=light] .foot{background:linear-gradient(transparent,var(--bg) 42%)}
@@ -270,11 +266,194 @@ html,body,.bar,.foot,.msheet{transition:background-color .35s}
 .reveal{display:flex;justify-content:center;gap:8px;font-size:16px;color:var(--mute)}
 .reveal b{color:var(--fg);font-weight:400}
 .psheet .opt{min-height:50px}
+/* طبقات الأفكتات: الثيم يقرر وش يبان منها */
+.deco{display:none}
+.logo{display:flex;flex-direction:column;align-items:flex-start}
+.board .hd,.board .hg,.board .hw,.board .eg{display:none}
+.board g.ci{transform-box:fill-box;transform-origin:center}
+.turn b.tn{color:var(--tc);font-weight:400}
+.winbox h2{color:var(--tc)}
+.flash .rays,.flash .conf{display:none}
+#party{position:fixed;inset:0;z-index:35;pointer-events:none;overflow:hidden}
+#party:empty{display:none}
+
+/* ====================== ثيم اللعبة ====================== */
+/* ---------- مشترك بين الثيمات ---------- */
+html[data-skin]{--hexP:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+html[data-skin] body::before,html[data-skin] body::after{content:none}
+html[data-skin] body{background:var(--bg)}
+html[data-skin] .deco{display:block;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html[data-skin] .deco i{position:absolute;display:block}
+html[data-skin] .bar{background:linear-gradient(var(--bar) 0,color-mix(in srgb,var(--bar) 78%,transparent) 62%,transparent)}
+html[data-skin] .foot{background:linear-gradient(transparent,var(--bar) 46%)}
+html[data-skin] .btn:not(.ghost):not(.sm):not(.red)::before{display:none}
+html[data-skin] .board .hd,html[data-skin] .board .hg,html[data-skin] .board .eg{display:block}
+html[data-skin] .board .hx{fill:var(--tile);stroke:var(--tileS);stroke-width:var(--tileSW);stroke-linejoin:round}
+html[data-skin] .board .hd{fill:var(--tileD);transform:translate(var(--dx),var(--dy))}
+html[data-skin] .board .hg{fill:url(#hvGloss);opacity:var(--gloss);pointer-events:none}
+html[data-skin] .board .lt{fill:var(--tileT)}
+html[data-skin] .board .A .hx{fill:var(--A);stroke:var(--AS,var(--tileS))}
+html[data-skin] .board .B .hx{fill:var(--B);stroke:var(--BS,var(--tileS))}
+html[data-skin] .board .sel .hx{fill:var(--gold);stroke:var(--goldS,var(--tileS));animation:none}
+html[data-skin] .board .A .hd{fill:var(--AD)}
+html[data-skin] .board .B .hd{fill:var(--BD)}
+html[data-skin] .board .sel .hd{fill:var(--goldD)}
+html[data-skin] .board .A .lt{fill:var(--AT)}
+html[data-skin] .board .B .lt{fill:var(--BT)}
+html[data-skin] .board .sel .lt{fill:var(--goldT)}
+html[data-skin] .board .ec .eA{stroke:var(--A);stroke-width:var(--eW)}
+html[data-skin] .board .ec .eB{stroke:var(--B);stroke-width:var(--eW)}
+html[data-skin] .board .path .hx{filter:none}
+html[data-skin] .board .dim .hx{opacity:1}
+html[data-skin] .board .dim{opacity:.3;transition:opacity .6s}
+html[data-skin] .board .pop{animation:none}
+html[data-skin] .board .ci{transition:transform .25s var(--out)}
+html[data-skin] .board.enter .cell{animation:hvIn .7s var(--out) both;animation-delay:calc(var(--d) - var(--e))}
+@keyframes hvIn{from{opacity:0;transform:scale(.15) rotate(-50deg)}}
+html[data-skin] .board .pop .ci{animation:hvPop .8s var(--out)}
+@keyframes hvPop{0%{transform:scale(.3)}35%{transform:scale(1.28,.82)}60%{transform:scale(.9,1.12)}100%{transform:none}}
+html[data-skin] .board .hw{display:block;fill:none;stroke-width:5;transform-box:fill-box;transform-origin:center;animation:hvWave .9s ease-out both;pointer-events:none}
+html[data-skin] .board .A .hw{stroke:var(--A)}
+html[data-skin] .board .B .hw{stroke:var(--B)}
+@keyframes hvWave{from{transform:scale(.9);opacity:1}to{transform:scale(2);opacity:0}}
+html[data-skin] .board .sel .ci{animation:hvSel 1.15s ease-in-out infinite}
+@keyframes hvSel{50%{transform:scale(1.1)}}
+html[data-skin] .board .path .ci{animation:hvWin .8s var(--out) both;animation-delay:calc(var(--p) * 110ms + 200ms)}
+@keyframes hvWin{0%{transform:none}40%{transform:scale(1.24) translateY(-5px)}100%{transform:none}}
+@media (hover:hover){html[data-skin] .board .can:hover .ci{transform:scale(1.08)}}
+html[data-skin] .board .can:focus{outline:none}
+html[data-skin] .board .can:focus-visible .hx{stroke:var(--fg);stroke-width:3}
+html[data-skin] .turn{align-self:center;width:fit-content;max-width:100%}
+html[data-skin] body[data-phase=buzz] .board{width:min(100%,318px)}
+html[data-skin] body[data-phase=buzz] main{gap:18px}
+html[data-skin] .team .btn{font-size:15px;min-height:42px;padding:4px 8px;white-space:nowrap}
+html[data-skin] .flash{overflow:hidden;animation:hvShake .5s ease-out}
+@keyframes hvShake{0%{transform:scale(1.08);opacity:0}15%{opacity:1}25%{transform:translate(-7px,4px)}45%{transform:translate(6px,-4px)}65%{transform:translate(-3px,2px)}85%{transform:translate(2px,-1px)}100%{transform:none}}
+html[data-skin] .flash .big{position:relative;animation:hvBadge .75s var(--out) both}
+@keyframes hvBadge{0%{transform:scale(.2) rotate(-30deg)}60%{transform:scale(1.12) rotate(5deg)}100%{transform:none}}
+html[data-skin] .flash .nm{animation:hvSlam .6s var(--out) .12s both}
+@keyframes hvSlam{from{transform:scale(2.6);opacity:0}}
+html[data-skin] .flash .conf{display:block;position:absolute;left:50%;top:38%;width:0;height:0}
+html[data-skin] .flash .conf i{position:absolute;left:-7px;top:-8px;width:14px;height:16px;background:var(--c);animation:hvBurst 1.2s var(--dl) cubic-bezier(.1,.7,.3,1) both}
+@keyframes hvBurst{from{transform:rotate(var(--a)) translateY(0) scale(.3);opacity:1}75%{opacity:1}to{transform:rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(var(--sp)) scale(1);opacity:0}}
+html[data-skin] .winbox.won h2{animation:hvSlam .6s var(--out) both}
+html[data-skin] #party i{position:absolute;top:-28px;left:var(--x);width:12px;height:14px;background:var(--c);animation:hvFall var(--du) var(--dl) cubic-bezier(.3,.2,.4,1) both}
+@keyframes hvFall{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--sw),112vh) rotate(var(--sp))}}
+@keyframes hvSpin{to{transform:rotate(1turn)}}
+@keyframes hvRot{to{rotate:1turn}}
+
+/* ======================================================================
+   ٣) ستيكر: ملصقات بحدود سودا وظلال حادة، كرتوني وصاخب
+   ====================================================================== */
+html[data-skin=sticker]{
+  --bg:#2A1248;--bar:#2A1248;--ink:#1C0A30;--fg:#fff;--mute:#DECFF6;--dim:#AB97CE;--line:#ffffff24;--line2:#ffffff47;--panel:#fff;--panel2:#1C0A3012;
+  --A:#67D33A;--AD:#1C0A30;--AT:#fff;--Ad:#2A6510;--B:#FF7A22;--BD:#1C0A30;--BT:#fff;--Bd:#8A3500;
+  --gold:#9B5CFF;--goldD:#1C0A30;--goldT:#fff;--grape:#9B5CFF;--sky:#3CC6F2;--pink:#FF5FAF;--lemon:#FFD84A;
+  --tile:#fff;--tileD:#1C0A30;--tileT:#1C0A30;--tileS:#1C0A30;--tileSW:2.6;--dx:3px;--dy:4px;--gloss:0;--eW:11;
+  --g:#FFD84A;--g-fg:#1C0A30;--ok:#67D33A;--bad:#FF5872;--warn:#FFD84A;
+  --c0:var(--A);--c1:var(--B);--c2:var(--grape);--c3:var(--sky);--c4:var(--pink);--c5:var(--lemon);
+}
+html[data-skin=sticker][data-theme=light]{
+  --bg:#FFD84A;--bar:#FFD84A;--fg:#1C0A30;--mute:#4F3A18;--dim:#7A6233;--line:#1C0A3029;--line2:#1C0A3052;
+  --g:#9B5CFF;--g-fg:#fff;--ok:#2E9E0E;--bad:#D61F3E;--warn:#9A5400;--c5:#fff;color-scheme:light;
+}
+html[data-skin=sticker] body{background:repeating-linear-gradient(-45deg,#0000 0 16px,#ffffff08 16px 18px),var(--bg)}
+html[data-skin=sticker][data-theme=light] body{background:repeating-linear-gradient(-45deg,#0000 0 16px,#1C0A300b 16px 18px),var(--bg)}
+html[data-skin=sticker] .board .A .lt,html[data-skin=sticker] .board .B .lt,html[data-skin=sticker] .board .sel .lt{fill:#fff;stroke:var(--ink);stroke-width:4.5px;paint-order:stroke;stroke-linejoin:round}
+html[data-skin=sticker] .board .eg .eA,html[data-skin=sticker] .board .eg .eB{stroke:var(--ink);stroke-width:18}
+html[data-skin=sticker] .board .hw{stroke:var(--ink)}
+html[data-skin=sticker] .deco .d1{left:50%;top:64px;width:540px;height:540px;margin-left:-270px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><polygon points='60,2 66.95,20.61 79.84,5.5 80,25.36 97.28,15.57 90.64,34.29 110.23,31 97.59,46.32 117.12,49.93 100,60 117.12,70.07 97.59,73.68 110.23,89 90.64,85.71 97.28,104.43 80,94.64 79.84,114.5 66.95,99.39 60,118 53.05,99.39 40.16,114.5 40,94.64 22.72,104.43 29.36,85.71 9.77,89 22.41,73.68 2.88,70.07 20,60 2.88,49.93 22.41,46.32 9.77,31 29.36,34.29 22.72,15.57 40,25.36 40.16,5.5 53.05,20.61' fill='%23fff'/></svg>") center/contain no-repeat;opacity:.07;transition:rotate 1.4s cubic-bezier(.3,1.5,.5,1)}
+html[data-skin=sticker] body:is([data-phase=q],[data-phase=buzz],[data-phase=answer]) .deco .d1{rotate:30deg}
+html[data-skin=sticker] body[data-phase=won] .deco .d1{rotate:180deg}
+html[data-skin=sticker][data-theme=light] .deco .d1{opacity:.5}
+html[data-skin=sticker] .deco .d2{left:-16px;top:350px;width:80px;height:88px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 120'><polygon points='58,12 103.03,38 103.03,90 58,116 12.97,90 12.97,38' fill='%231C0A30'/><polygon points='54,7 99.03,33 99.03,85 54,111 8.97,85 8.97,33' fill='%23fff'/><polygon points='54,16 91.24,37.5 91.24,80.5 54,102 16.76,80.5 16.76,37.5' fill='%239B5CFF' stroke='%231C0A30' stroke-width='3' stroke-linejoin='round'/></svg>") center/contain no-repeat;transform:rotate(-14deg)}
+html[data-skin=sticker] .deco .d3{right:-12px;top:168px;width:72px;height:79px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 120'><polygon points='58,12 103.03,38 103.03,90 58,116 12.97,90 12.97,38' fill='%231C0A30'/><polygon points='54,7 99.03,33 99.03,85 54,111 8.97,85 8.97,33' fill='%23fff'/><polygon points='54,16 91.24,37.5 91.24,80.5 54,102 16.76,80.5 16.76,37.5' fill='%236CD63A' stroke='%231C0A30' stroke-width='3' stroke-linejoin='round'/></svg>") center/contain no-repeat;transform:rotate(12deg)}
+html[data-skin=sticker] .deco .d2::after,html[data-skin=sticker] .deco .d3::after{position:absolute;left:0;top:0;width:98%;height:98%;display:grid;place-items:center;font:30px/1 var(--ar);color:#fff;text-shadow:2px 0 var(--ink),-2px 0 var(--ink),0 2px var(--ink),0 -2px var(--ink),1.5px 1.5px var(--ink),-1.5px 1.5px var(--ink),1.5px -1.5px var(--ink),-1.5px -1.5px var(--ink)}
+html[data-skin=sticker] .deco .d2::after{content:"ح"}
+html[data-skin=sticker] .deco .d3::after{content:"ر"}
+html[data-skin=sticker] .deco .d4{right:-20px;top:590px;width:86px;height:86px;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><polygon points='63,12 78.28,42.97 112.45,47.93 87.73,72.03 93.56,106.07 63,90 32.44,106.07 38.27,72.03 13.55,47.93 47.72,42.97' fill='%231C0A30' stroke='%231C0A30' stroke-width='14' stroke-linejoin='round'/><polygon points='58,6 73.28,36.97 107.45,41.93 82.73,66.03 88.56,100.07 58,84 27.44,100.07 33.27,66.03 8.55,41.93 42.72,36.97' fill='%23fff' stroke='%23fff' stroke-width='14' stroke-linejoin='round'/><polygon points='58,8 72.69,37.77 105.55,42.55 81.78,65.73 87.39,98.45 58,83 28.61,98.45 34.22,65.73 10.45,42.55 43.31,37.77' fill='%233CC6F2' stroke='%231C0A30' stroke-width='3' stroke-linejoin='round'/></svg>") center/contain no-repeat;transform:rotate(10deg)}
+html[data-skin=sticker] .deco .d5{left:-18px;top:720px;width:64px;height:64px;border-radius:50%;background:var(--pink);border:3px solid var(--ink);box-shadow:0 0 0 4px #fff,5px 6px 0 4px var(--ink);transform:rotate(-8deg)}
+html[data-skin=sticker] .deco .d5::after{content:"!";position:absolute;inset:0;display:grid;place-items:center;font:34px/1 var(--ar);color:#fff;text-shadow:2px 2px 0 var(--ink)}
+html[data-skin=sticker] .bar h1.logo{font-size:23px;line-height:1.3;gap:7px;margin:6px 0 10px}
+html[data-skin=sticker] .logo span{padding:0 12px 3px;color:#fff;border:3px solid var(--ink);border-radius:12px;box-shadow:0 0 0 3px #fff,5px 6px 0 3px var(--ink);text-shadow:2px 0 var(--ink),-2px 0 var(--ink),0 2px var(--ink),0 -2px var(--ink),1.5px 1.5px var(--ink),-1.5px 1.5px var(--ink),1.5px -1.5px var(--ink),-1.5px -1.5px var(--ink)}
+html[data-skin=sticker] .logo .w1{background:var(--grape);transform:rotate(-5deg)}
+html[data-skin=sticker] .logo .w2{background:var(--B);transform:rotate(3deg);margin-inline-start:12px}
+html[data-skin=sticker] .turn{gap:8px;padding:5px 16px 7px;border-radius:16px;background:#fff;color:var(--ink);border:3px solid var(--ink);box-shadow:5px 6px 0 var(--ink);font-size:20px;transform:rotate(-1.5deg)}
+html[data-skin=sticker] .turn .tdot{display:none}
+html[data-skin=sticker] .turn .tn{color:#fff;background:var(--tc);padding:0 10px 2px;border-radius:10px;border:2.5px solid var(--ink);text-shadow:1.5px 0 var(--ink),-1.5px 0 var(--ink),0 1.5px var(--ink),0 -1.5px var(--ink),1px 1px var(--ink),-1px 1px var(--ink),1px -1px var(--ink),-1px -1px var(--ink)}
+html[data-skin=sticker] .turn.cur{padding:4px 8px 4px 16px}
+html[data-skin=sticker] .turn .bl{display:inline-grid;place-items:center;min-width:58px;height:58px;padding:0 6px 4px;border-radius:14px;background:var(--grape);color:#fff;border:3px solid var(--ink);box-shadow:3px 4px 0 var(--ink);font-size:38px;transform:rotate(5deg);text-shadow:2px 0 var(--ink),-2px 0 var(--ink),0 2px var(--ink),0 -2px var(--ink),1.5px 1.5px var(--ink),-1.5px 1.5px var(--ink),1.5px -1.5px var(--ink),-1.5px -1.5px var(--ink)}
+html[data-skin=sticker] .legend span{display:inline-flex;align-items:center;background:#fff;color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:0 10px 2px;box-shadow:2px 3px 0 var(--ink)}
+html[data-skin=sticker] .legend i{border:1.5px solid var(--ink)}
+html[data-skin=sticker] .card{--fg:#1C0A30;--mute:#5B4A75;--dim:#857699;--line:#1C0A3026;--line2:#1C0A304d;--g:#9B5CFF;color:var(--fg);background:#fff;border:3px solid var(--ink);border-radius:20px;padding:16px;box-shadow:6px 7px 0 var(--ink)}
+html[data-skin=sticker] .team{border:2.5px solid var(--ink);border-radius:14px;padding:0 0 10px;overflow:hidden;background:#fff}
+html[data-skin=sticker] .team.A{--tc:var(--A)}
+html[data-skin=sticker] .team.B{--tc:var(--B)}
+html[data-skin=sticker] .team h3{margin:0 0 6px;padding:5px 12px 7px;background:var(--tc);color:#fff;border-bottom:2.5px solid var(--ink);text-shadow:1.5px 0 var(--ink),-1.5px 0 var(--ink),0 1.5px var(--ink),0 -1.5px var(--ink),1px 1px var(--ink),-1px 1px var(--ink),1px -1px var(--ink),-1px -1px var(--ink)}
+html[data-skin=sticker] .team h3 .tdot{display:none}
+html[data-skin=sticker] .team .tp{padding:2px 10px}
+html[data-skin=sticker] .team .emp{padding:0 10px}
+html[data-skin=sticker] .team .btn{margin:6px 10px 0;width:auto}
+html[data-skin=sticker] .hostrow{border:2.5px dashed var(--ink);background:#FFF1A6;border-radius:14px}
+html[data-skin=sticker] .hostrow .k{color:var(--ink)}
+html[data-skin=sticker] .av{border:2px solid var(--ink)}
+html[data-skin=sticker] .btn{background:var(--grape);color:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:5px 6px 0 var(--ink);transition:transform .1s,box-shadow .1s;text-shadow:1.5px 0 var(--ink),-1.5px 0 var(--ink),0 1.5px var(--ink),0 -1.5px var(--ink),1px 1px var(--ink),-1px 1px var(--ink),1px -1px var(--ink),-1px -1px var(--ink)}
+html[data-skin=sticker] .btn:hover{background:#AA74FF}
+html[data-skin=sticker] .btn:active{transform:translate(4px,5px);box-shadow:1px 1px 0 var(--ink)}
+html[data-skin=sticker] .btn.ghost{background:#fff;color:var(--ink);text-shadow:none;box-shadow:5px 6px 0 var(--ink)}
+html[data-skin=sticker] .btn.ghost:hover{background:#FFF7D1}
+html[data-skin=sticker] .btn.ok{background:var(--A)}
+html[data-skin=sticker] .btn.no{background:#FF4867}
+html[data-skin=sticker] .tbtn,html[data-skin=sticker] #toLib{background:#fff;color:var(--ink);border:2.5px solid var(--ink);box-shadow:2px 3px 0 var(--ink)}
+html[data-skin=sticker] .toast{background:#fff;color:var(--ink);border:2.5px solid var(--ink);box-shadow:3px 4px 0 var(--ink)}
+html[data-skin=sticker] .chips button[aria-pressed="true"]{background:var(--grape);border-color:var(--ink);color:#fff}
+html[data-skin=sticker] .seg button::after{background:var(--grape);height:4px;border-radius:3px}
+html[data-skin=sticker] .linkbox{border-radius:12px;border:2.5px dashed var(--ink)}
+html[data-skin=sticker] .msheet{--fg:#1C0A30;color:var(--fg);background:#fff;border:3px solid var(--ink);border-bottom:0;border-radius:22px 22px 0 0}
+html[data-skin=sticker] .score span{background:#fff;color:var(--ink);border:2.5px solid var(--ink);box-shadow:3px 4px 0 var(--ink)}
+html[data-skin=sticker] .q{background:var(--grape);color:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:6px 7px 0 var(--ink)}
+html[data-skin=sticker] .q .k{color:#FFE57A}
+html[data-skin=sticker] .q .a{color:#EEE3FF}
+html[data-skin=sticker] .q .a b{color:#fff}
+html[data-skin=sticker] .ans{background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 6px 0 var(--tc)}
+html[data-skin=sticker] .ans.A{--tc:var(--A)}
+html[data-skin=sticker] .ans.B{--tc:var(--B)}
+html[data-skin=sticker] .buzzwrap{position:relative;padding:26px 0 28px}
+html[data-skin=sticker] .buzzwrap::before{content:"";position:absolute;left:50%;top:50%;width:min(84vw,330px);aspect-ratio:1;transform:translate(-50%,-50%);background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><polygon points='63,10 71.9,25 86.43,15.35 87.94,32.73 105.22,30.33 99.04,46.64 115.65,51.98 103,64 115.65,76.02 99.04,81.36 105.22,97.67 87.94,95.27 86.43,112.65 71.9,103 63,118 54.1,103 39.57,112.65 38.06,95.27 20.78,97.67 26.96,81.36 10.35,76.02 23,64 10.35,51.98 26.96,46.64 20.78,30.33 38.06,32.73 39.57,15.35 54.1,25' fill='%231C0A30'/><polygon points='58,4 66.9,19 81.43,9.35 82.94,26.73 100.22,24.33 94.04,40.64 110.65,45.98 98,58 110.65,70.02 94.04,75.36 100.22,91.67 82.94,89.27 81.43,106.65 66.9,97 58,112 49.1,97 34.57,106.65 33.06,89.27 15.78,91.67 21.96,75.36 5.35,70.02 18,58 5.35,45.98 21.96,40.64 15.78,24.33 33.06,26.73 34.57,9.35 49.1,19' fill='%23fff' stroke='%231C0A30' stroke-width='3.5' stroke-linejoin='round'/></svg>") center/contain no-repeat;transition:rotate .14s,scale .14s}
+html[data-skin=sticker] .buzzwrap:has(.buzz:active:not(:disabled))::before{rotate:9deg;scale:1.07}
+html[data-skin=sticker] .buzz{width:min(54vw,214px);color:#fff;font-size:46px;background:var(--tc);border:6px solid var(--ink);box-shadow:inset 0 -14px 0 #0000002e,inset 0 10px 0 #ffffff47,9px 11px 0 var(--ink);transition:transform .08s,box-shadow .08s;text-shadow:3px 0 var(--ink),-3px 0 var(--ink),0 3px var(--ink),0 -3px var(--ink),2px 2px var(--ink),-2px 2px var(--ink),2px -2px var(--ink),-2px -2px var(--ink),4px 5px 0 var(--ink)}
+html[data-skin=sticker] .buzz:active{transform:translate(7px,9px);box-shadow:inset 0 -14px 0 #0000002e,inset 0 10px 0 #ffffff47,2px 2px 0 var(--ink)}
+html[data-skin=sticker] .buzz::after{display:none}
+html[data-skin=sticker] .buzz .bzt{position:relative}
+html[data-skin=sticker] .flash{background:repeating-linear-gradient(-45deg,#0000 0 22px,#0000001a 22px 44px),var(--tc);color:#fff}
+html[data-skin=sticker] .flash .rays{display:block;position:absolute;left:50%;top:34%;width:min(112vw,470px);aspect-ratio:1;translate:-50% -50%;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><polygon points='63,10 71.9,25 86.43,15.35 87.94,32.73 105.22,30.33 99.04,46.64 115.65,51.98 103,64 115.65,76.02 99.04,81.36 105.22,97.67 87.94,95.27 86.43,112.65 71.9,103 63,118 54.1,103 39.57,112.65 38.06,95.27 20.78,97.67 26.96,81.36 10.35,76.02 23,64 10.35,51.98 26.96,46.64 20.78,30.33 38.06,32.73 39.57,15.35 54.1,25' fill='%231C0A30'/><polygon points='58,4 66.9,19 81.43,9.35 82.94,26.73 100.22,24.33 94.04,40.64 110.65,45.98 98,58 110.65,70.02 94.04,75.36 100.22,91.67 82.94,89.27 81.43,106.65 66.9,97 58,112 49.1,97 34.57,106.65 33.06,89.27 15.78,91.67 21.96,75.36 5.35,70.02 18,58 5.35,45.98 21.96,40.64 15.78,24.33 33.06,26.73 34.57,9.35 49.1,19' fill='%23fff' stroke='%231C0A30' stroke-width='3.5' stroke-linejoin='round'/></svg>") center/contain no-repeat;animation:hvBurstIn .45s var(--out) backwards,hvRot 5s cubic-bezier(.12,.7,.3,1)}
+html[data-skin=sticker] .flash .rays::after{content:"";position:absolute;inset:-60%;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><polygon points='60,2 66.95,20.61 79.84,5.5 80,25.36 97.28,15.57 90.64,34.29 110.23,31 97.59,46.32 117.12,49.93 100,60 117.12,70.07 97.59,73.68 110.23,89 90.64,85.71 97.28,104.43 80,94.64 79.84,114.5 66.95,99.39 60,118 53.05,99.39 40.16,114.5 40,94.64 22.72,104.43 29.36,85.71 9.77,89 22.41,73.68 2.88,70.07 20,60 2.88,49.93 22.41,46.32 9.77,31 29.36,34.29 22.72,15.57 40,25.36 40.16,5.5 53.05,20.61' fill='%23fff'/></svg>") center/contain no-repeat;opacity:.18;z-index:-1}
+html[data-skin=sticker] .flash .conf{top:34%}
+@keyframes hvBurstIn{from{scale:.15}}
+html[data-skin=sticker] .flash .big{width:150px;height:162px;border-radius:0;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 130'><polygon points='65,15 112.63,42.5 112.63,97.5 65,125 17.37,97.5 17.37,42.5' fill='%231C0A30'/><polygon points='59,8 106.63,35.5 106.63,90.5 59,118 11.37,90.5 11.37,35.5' fill='%23fff' stroke='%231C0A30' stroke-width='5' stroke-linejoin='round'/></svg>") center/contain no-repeat;color:var(--ink);box-shadow:none;padding:0 8px 12px 0}
+html[data-skin=sticker] .flash .nm{color:#fff;font-size:clamp(48px,14vw,74px);text-shadow:4px 0 var(--ink),-4px 0 var(--ink),0 4px var(--ink),0 -4px var(--ink),3px 3px var(--ink),-3px 3px var(--ink),3px -3px var(--ink),-3px -3px var(--ink),7px 8px 0 var(--ink)}
+html[data-skin=sticker] .flash .s{text-shadow:2px 0 var(--ink),-2px 0 var(--ink),0 2px var(--ink),0 -2px var(--ink),1.5px 1.5px var(--ink),-1.5px 1.5px var(--ink),1.5px -1.5px var(--ink),-1.5px -1.5px var(--ink)}
+html[data-skin=sticker] .flash .s.who{background:#fff;color:var(--ink);padding:2px 14px 5px;border-radius:12px;border:3px solid var(--ink);box-shadow:4px 5px 0 var(--ink);transform:rotate(-2deg);text-shadow:none;opacity:1}
+html[data-skin=sticker] .flash .conf i{border:2.5px solid var(--ink);border-radius:4px}
+html[data-skin=sticker] .flash svg{filter:drop-shadow(3px 4px 0 var(--ink))}
+html[data-skin=sticker] .flash svg circle{stroke-width:9}
+html[data-skin=sticker] .flash .rt{paint-order:stroke;stroke:var(--ink);stroke-width:5px}
+html[data-skin=sticker] .winbox h2{text-shadow:3px 0 var(--ink),-3px 0 var(--ink),0 3px var(--ink),0 -3px var(--ink),2px 2px var(--ink),-2px 2px var(--ink),2px -2px var(--ink),-2px -2px var(--ink),5px 6px 0 var(--ink)}
+html[data-skin=sticker] #party i{border:2px solid var(--ink);border-radius:3px}
+html[data-skin=sticker] #party i:nth-child(3n){border-radius:50%}
+/* الشريط تحت: رف ثابت بحد أسود بدال التلاشي (التلاشي فوق البطاقات البيضا يطلع رمادي) */
+html[data-skin=sticker] .foot{background:var(--bar);padding-top:14px;box-shadow:0 -3px 0 var(--ink)}
+/* ملصق «ر» فوق يمين ينلصق لما تبدأ اللعبة، لأن مكانه قبلها عنوان الغرفة */
+html[data-skin=sticker] .deco .d3{translate:130% 0;rotate:40deg;transition:translate .55s cubic-bezier(.3,1.45,.5,1),rotate .55s cubic-bezier(.3,1.45,.5,1)}
+html[data-skin=sticker] body:is([data-phase=pick],[data-phase=q],[data-phase=buzz],[data-phase=answer],[data-phase=won],[data-phase=final]) .deco .d3{translate:none;rotate:none}
+/* زر مقفل: ملصق ما انلصق (حد متقطع بدون ظل) بدال الشفافية اللي تطلع بني على الأصفر */
+html[data-skin=sticker] .btn:disabled{opacity:1;background:#ECE6F5;color:#86769F;text-shadow:none;border-style:dashed;border-color:#1C0A3073;box-shadow:none;transform:none}
 </style>
 </head>
 <body>
+<div class="deco" aria-hidden="true"><i class="d1"></i><i class="d2"></i><i class="d3"></i><i class="d4"></i><i class="d5"></i><i class="d6"></i></div>
 <header class="bar">
-  <h1>خلية الحروف</h1>
+  <h1 class="logo"><span class="w1">خلية</span> <span class="w2">الحروف</span></h1>
   <span class="chip" id="roundChip" hidden>الجولة <span class="num" id="roundNum"></span></span>
   <div class="sp"></div>
   <button class="tbtn" id="themeBtn" type="button" aria-label="غيّر الثيم"></button>
@@ -283,6 +462,7 @@ html,body,.bar,.foot,.msheet{transition:background-color .35s}
 </header>
 <main id="app"></main>
 <div id="over"></div>
+<div id="party" aria-hidden="true"></div>
 <div class="foot" id="foot" hidden><div class="in" id="footIn"></div></div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
@@ -642,21 +822,44 @@ function letterSVG(l, cx, cy){
   const sx = Math.min(1, T / (g.w * s / 100));
   return `<text class="lt m" x="0" y="0" font-size="${f1(s)}" transform="translate(${f1(cx - g.x * s / 100 * sx)} ${f1(cy - g.y * s / 100)}) scale(${sx.toFixed(3)} 1)">${l}</text>`;
 }
-let lastOwn = null;
+// طبقات الخلية: عمق تحت (3D)، الوجه، لمعة فوق، وموجة لما الخلية تنمسك. الثيم يقرر وش يبان منها
+const HXP = (cx, cy, r) => hexPts(cx, cy, r).map(p => p.map(f1).join(',')).join(' ');
+const glossPts = (cx, cy, r) => { const x = r * .866; return [[cx - x, cy - r * .06], [cx - x, cy - r * .5], [cx, cy - r], [cx + x, cy - r * .5], [cx + x, cy - r * .06]].map(p => p.map(f1).join(',')).join(' '); };
+const DEFS = `<defs><filter id="hvBlur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4.5"/></filter>
+  <linearGradient id="hvGloss" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  ${['W', 'A', 'B', 'S'].map(k => `<radialGradient id="hvJ${k}" cx=".5" cy=".3" r=".75"><stop offset="0"/><stop offset=".6"/><stop offset="1"/></radialGradient>`).join('')}</defs>`;
+let lastOwn = null, lastLetters = '', enterAt = 0;
 function boardSVG(canPick){
-  const B = S.board, path = S.win ? new Set(S.win.path) : null;
-  let h = `<svg class="board" id="board" viewBox="${-8} ${-8} ${f1(VB[0] + 16)} ${f1(VB[1] + 16)}" role="img" aria-label="لوحة الحروف">${EDGES}`;
+  const B = S.board, path = S.win ? S.win.path.slice().reverse() : null, onPath = path ? new Set(path) : null;
+  const key = B.letters.join('');
+  if (key !== lastLetters) { lastLetters = key; enterAt = Date.now(); lastOwn = null; }
+  const e = Date.now() - enterAt;
+  let h = `<svg class="board${e < 1600 ? ' enter' : ''}" id="board" viewBox="${-8} ${-8} ${f1(VB[0] + 16)} ${f1(VB[1] + 16)}" role="img" aria-label="لوحة الحروف" style="--e:${e}ms">${DEFS}<g class="eg">${EDGES}</g><g class="ec">${EDGES}</g>`;
   B.letters.forEach((l, i) => {
     const [cx, cy] = center(i), own = B.own[i], sel = S.sel === i && !own;
-    const can = canPick && !own;
-    const cls = ['cell', own || '', sel ? 'sel' : '', can ? 'can' : '', path ? (path.has(i) ? 'path' : 'dim') : '', lastOwn && own && lastOwn[i] !== own ? 'pop' : ''].join(' ');
-    h += `<g class="${cls}" ${can ? `data-cell="${i}" role="button" tabindex="0" aria-label="حرف ${l}"` : ''} style="${path && path.has(i) ? `--wc:var(--${own})` : ''}">
-      <polygon class="hx" points="${hexPts(cx, cy, R - 2.2).map(p => p.map(f1).join(',')).join(' ')}"/>
-      ${letterSVG(l, cx, cy)}</g>`;
+    const can = canPick && !own, pop = lastOwn && own && lastOwn[i] !== own;
+    const cls = ['cell', own || '', sel ? 'sel' : '', can ? 'can' : '', onPath ? (onPath.has(i) ? 'path' : 'dim') : '', pop ? 'pop' : ''].join(' ');
+    const d = Math.round(Math.hypot(cx - VB[0] / 2, cy - VB[1] / 2) * 3.2), pts = HXP(cx, cy, R - 2.2);
+    h += `<g class="${cls}" ${can ? `data-cell="${i}" role="button" tabindex="0" aria-label="حرف ${l}"` : ''} style="--d:${d}ms${onPath && onPath.has(i) ? `;--wc:var(--${own});--p:${path.indexOf(i)}` : ''}"><g class="ci">
+      <polygon class="hd" points="${pts}"/><polygon class="hx" points="${pts}"/><polygon class="hg" points="${glossPts(cx, cy, (R - 2.2) * .8)}"/>${pop ? `<polygon class="hw" points="${pts}"/>` : ''}
+      ${letterSVG(l, cx, cy)}</g></g>`;
   });
   lastOwn = B.own.slice();
   return h + '</svg>';
 }
+const rnd = (i, n) => { const x = Math.sin(i * 12.9898 + n * 78.233) * 43758.5453; return x - Math.floor(x); };
+const confetti = n => { let h = '<span class="conf">'; for (let i = 0; i < n; i++) h += `<i style="--a:${(i / n * 360 + rnd(i, 1) * 18).toFixed(0)}deg;--r:${(120 + rnd(i, 2) * 130).toFixed(0)}px;--c:var(--c${i % 6});--dl:${(rnd(i, 3) * 140).toFixed(0)}ms;--sp:${(rnd(i, 4) * 540 - 270).toFixed(0)}deg"></i>`; return h + '</span>'; };
+// احتفال الفوز: قصاصات تنزل مرة وحدة لكل جولة
+let partied = '';
+function party(k){
+  if (partied === k) return;
+  partied = k;
+  let h = '';
+  for (let i = 0; i < 48; i++) h += `<i style="--x:${(rnd(i, 5) * 100).toFixed(1)}%;--dl:${(rnd(i, 6) * 900).toFixed(0)}ms;--du:${(1900 + rnd(i, 7) * 1500).toFixed(0)}ms;--sp:${(rnd(i, 8) * 900 - 450).toFixed(0)}deg;--sw:${(rnd(i, 9) * 60 - 30).toFixed(0)}px;--c:var(--c${i % 6})"></i>`;
+  $('party').innerHTML = h;
+  setTimeout(() => { if (partied === k) $('party').innerHTML = ''; }, 4800);
+}
+const ansNote = () => S.pausedLeft != null ? 'الهوست وقّف الوقت' : 'يجاوب الحين…';
 const legend = () => `<div class="legend"><span><i style="background:var(--A)"></i>الأخضر: ${TEAM.A.goal}</span><span><i style="background:var(--B)"></i>البرتقالي: ${TEAM.B.goal}</span></div>`;
 const scoreRow = () => `<div class="score"><span>${tdot('A')}الأخضر <span class="num">${S.score.A}</span></span><span>${tdot('B')}البرتقالي <span class="num">${S.score.B}</span></span></div>`;
 
@@ -684,10 +887,11 @@ function timeLeft(){ return S.pausedLeft != null ? S.pausedLeft : Math.max(0, S.
 
 function render(){
   if (!S || !ME) return;
+  document.body.dataset.phase = S.phase;
   $('roundChip').hidden = ['lobby', 'closed'].includes(S.phase);
   $('roundNum').textContent = `${S.round}/${S.settings.rounds}`;
   const mc = isMC(), mt = myTeam();
-  let h = '', f = '', over = '';
+  let h = '', f = '', over = '', overKey = '';
   const hostAway = !isHost() && S.hostSeen && Date.now() - OFFSET - S.hostSeen > 30000;
   if (hostAway) h += `<div class="banner bad"><span class="dot off"></span>جهاز اللي سوّى الغرفة غير متصل. اللعبة تكمل أول ما يرجع.</div>`;
 
@@ -708,7 +912,7 @@ function render(){
   }
   else if (S.phase === 'final') {
     const w = S.score.A === S.score.B ? null : S.score.A > S.score.B ? 'A' : 'B';
-    h += `<div class="winbox"><h2 style="color:${w ? `var(--${w})` : 'var(--fg)'}">${w ? `${TEAM[w].n} فاز!` : 'تعادل!'}</h2><p class="label" style="font-size:16px">انتهت اللعبة</p></div>` + scoreRow() + teamsCard();
+    h += `<div class="winbox"><h2 style="--tc:${w ? `var(--${w})` : 'var(--fg)'}">${w ? `${TEAM[w].n} فاز!` : 'تعادل!'}</h2><p class="label" style="font-size:16px">انتهت اللعبة</p></div>` + scoreRow() + teamsCard();
     if (mc) f += `<button class="btn" id="again" type="button">لعبة جديدة</button>`;
     if (isHost()) f += `<button class="btn ghost" id="endRoom" type="button">إنهاء الغرفة</button>`;
   }
@@ -718,12 +922,12 @@ function render(){
     const brd = boardSVG(canPick) + legend();
     if (!(mc && ['q', 'buzz', 'answer'].includes(S.phase))) h += brd;
     if (S.phase === 'pick') {
-      h += `<div class="turn">${tdot(S.picker)}دور <b style="color:var(--${S.picker});font-weight:400">${TEAM[S.picker].n}</b> يختار حرف</div>`;
+      h += `<div class="turn" style="--tc:var(--${S.picker})">${tdot(S.picker)}دور <b class="tn">${TEAM[S.picker].n}</b> يختار حرف</div>`;
       if (canPick) h += `<div class="helper">${mc ? 'اضغط الحرف اللي اختاروه (أو يختارونه من جوالاتهم)' : 'اضغط على حرف من اللوحة'}</div>`;
       if (S.reveal) h += `<div class="reveal">آخر جواب: <b>${esc(S.reveal.a)}</b>${S.reveal.t ? ` · ${tdot(S.reveal.t)}` : ''}</div>`;
     } else if (S.phase === 'won') {
       const w = S.win.team;
-      h += `<div class="winbox"><h2 style="color:var(--${w})">${TEAM[w].n} فاز بالجولة!</h2><p class="label" style="font-size:16px">وصّلوا ${TEAM[w].goal}</p></div>` + scoreRow();
+      h += `<div class="winbox won"><h2 style="--tc:var(--${w})">${TEAM[w].n} فاز بالجولة!</h2><p class="label" style="font-size:16px">وصّلوا ${TEAM[w].goal}</p></div>` + scoreRow();
       if (mc) f += S.final ? `<button class="btn" id="toFinal" type="button">النتيجة النهائية</button>` : `<button class="btn" id="nextRound" type="button">الجولة الجاية</button>`;
       else f += '<div class="helper">ننتظر الهوست…</div>';
     } else {
@@ -733,7 +937,7 @@ function render(){
         const Q = PRIV && PRIV.q && PRIV.qn === S.qn ? PRIV.q : null;
         h += Q ? `<div class="q"><span class="k">السؤال · حرف ${L} (تشوفه أنت بس)</span><p class="t">${esc(Q.q)}</p><span class="a">الجواب: <b>${esc(Q.a)}</b></span></div>` : `<div class="q"><span class="k">حرف ${L}</span><p class="t">ما فيه أسئلة جاهزة لهالحرف، اسأل سؤال من عندك.</p></div>`;
         h += brd;
-      } else h += `<div class="turn">الحرف <span class="bl">${L}</span></div>`;
+      } else h += `<div class="turn cur">الحرف <span class="bl">${L}</span></div>`;
       if (S.phase === 'q') {
         if (mc) {
           if (S.missed) h += `<div class="banner">الفريقين ما جاوبوا صح.</div>`;
@@ -745,7 +949,7 @@ function render(){
           h += `<div class="wait">الجرس مفتوح ${S.allow.length === 2 ? 'للكل' : TEAM[S.allow[0]].l} · ننتظر أحد يضغط</div>`;
           f += `<div class="row"><button class="btn sm2 ghost" id="newQ" type="button">سؤال ثاني</button><button class="btn sm2 ghost" id="closeBuzz" type="button">سكّر الجرس</button></div>`;
         } else if (mt) {
-          h += `<div class="buzzwrap"><button class="buzz" id="buzz" type="button" style="--tc:var(--${mt})" ${allowed && !S.halt ? '' : 'disabled'}>اضغط!</button></div>`;
+          h += `<div class="buzzwrap"><button class="buzz" id="buzz" type="button" style="--tc:var(--${mt})" ${allowed && !S.halt ? '' : 'disabled'}><span class="bzt">اضغط!</span></button></div>`;
           h += `<div class="wait">${allowed ? 'أول واحد يضغط ياخذ فرصة الجواب' : `الجرس ${TEAM[S.allow[0]].l} بس هالمرة`}</div>`;
         } else h += `<div class="wait">الجرس مفتوح… اختر فريقك عشان تلعب</div>${teamsCard()}`;
       } else if (S.phase === 'answer') {
@@ -754,23 +958,27 @@ function render(){
           f += `<div class="ctl"><button class="btn ok" id="right" type="button">${OKI}صح</button><button class="btn no" id="wrong" type="button">${NOI}غلط</button></div>
             <div class="row3"><button class="btn sm2 ghost" data-add="-5" type="button">−5 ث</button><button class="btn sm2 ghost" id="pauseT" type="button">${S.pausedLeft != null ? PLAY + 'كمّل' : PAUSE + 'وقّف'}</button><button class="btn sm2 ghost" data-add="5" type="button">+5 ث</button></div>`;
         } else {
-          over = `<div class="flash ${b.pid === ME.id ? 'mine' : ''}" style="--tc:var(--${t});--td:var(--${t}d)"><span class="burst"></span>
+          overKey = `f${S.qn}.${b.pid}`;
+          over = `<div class="flash ${b.pid === ME.id ? 'mine' : ''}" style="--tc:var(--${t});--td:var(--${t}d)"><span class="rays"></span><span class="burst"></span>${confetti(18)}
             <div class="big">${bigLetter([...nameOf(b.pid)][0] || '؟')}</div><div class="nm">${esc(nameOf(b.pid))}</div>
-            <div class="s">ضغط أول · ${TEAM[t].n}</div><div class="s me">جاوب الحين!</div>
+            <div class="s who">ضغط أول · ${TEAM[t].n}</div><div class="s me">جاوب الحين!</div>
             <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" stroke="#ffffff33"/><circle id="ringC" cx="50" cy="50" r="42" stroke="#fff" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="264" stroke-dashoffset="${264 * (1 - timeLeft() / (S.ansTotal || 1))}"/><text class="rt" id="ringT" x="50" y="52">${left}</text></svg>
-            <div class="s" style="font-size:15px;opacity:.75" id="ansNote">${S.pausedLeft != null ? 'الهوست وقّف الوقت' : 'يجاوب الحين…'}</div></div>`;
+            <div class="s" style="font-size:15px;opacity:.75" id="ansNote">${ansNote()}</div></div>`;
         }
       }
       if (mc && S.phase !== 'answer') h += teamsCard();
     }
     if (mc && S.phase !== 'won') f += `<button class="btn sm2 ghost" id="halt" type="button">${S.halt ? PLAY + 'كمّل اللعب' : PAUSE + 'وقّف اللعب'}</button>`;
     if (!mc && S.phase !== 'answer' && S.phase !== 'buzz') h += teamsCard();
-    if (S.halt && !mc) over = `<div class="halt"><div><span class="hico">${PAUSE}</span><h2>الهوست وقّف اللعب</h2><p>ننتظره يكمّل…</p></div></div>`;
+    if (S.halt && !mc) { overKey = 'halt'; over = `<div class="halt"><div><span class="hico">${PAUSE}</span><h2>الهوست وقّف اللعب</h2><p>ننتظره يكمّل…</p></div></div>`; }
   }
   $('app').innerHTML = h;
   $('footIn').innerHTML = f;
   $('foot').hidden = !f;
-  $('over').innerHTML = over;
+  const ov = $('over');
+  if (!overKey || ov.dataset.k !== overKey) { ov.innerHTML = over; ov.dataset.k = overKey; }
+  else if ($('ansNote')) $('ansNote').textContent = ansNote();
+  if (S.phase === 'won' && S.win) party(`w${S.round}${S.win.team}`);
   bind();
 }
 
