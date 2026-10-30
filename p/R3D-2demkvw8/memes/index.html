@@ -138,6 +138,21 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
 @keyframes mup{from{transform:translateY(40px);opacity:0}}
 @keyframes mfade{from{opacity:0}}
 
+/* بوتات التجربة (للمالك بس) */
+#botBtn{position:fixed;z-index:30;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(max(18px,env(safe-area-inset-bottom,0px)) + 84px);min-height:44px;padding:6px 16px;border-radius:999px;background:#0b0b0bee;border:1px solid #ffffff3a;color:#fff3ec;font-family:var(--ar);font-size:16px;display:flex;align-items:center;gap:6px}
+#botBtn .num{font-size:19px}
+#botDock{position:fixed;z-index:72;left:-10000px;top:0;width:400px;height:800px;pointer-events:none}
+.botfr{position:absolute;inset:0;width:400px;height:800px;border:0;background:#000}
+.botfr.on{position:fixed;z-index:72;inset:auto;left:50%;top:110px;transform:translateX(-50%);width:min(420px,calc(100vw - 20px));height:calc(100% - 122px);border-radius:22px;box-shadow:0 0 0 1px #ffffff3a,0 20px 60px #000;pointer-events:auto}
+#botView{position:fixed;inset:0;z-index:71;background:#000000eb;font-family:var(--ar);color:#fff3ec}
+#botView .bvbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:max(14px,env(safe-area-inset-top,0px)) 16px 6px}
+#botView .sp{flex:1}
+#botView .chip{color:#fff3ec;min-height:40px;font-size:16px;border-bottom:1px solid #ffffff3a}
+#botView [data-v="auto"][aria-pressed="false"]{color:#ffb020}
+#botView .bvname{text-align:center;font-size:20px;line-height:1.4}
+.botsheet .botrow{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)}
+.botsheet .botrow .nm{flex:1}
+
 /* الميمز: أصفر ميمز على نفس أرضية المنصة. الصورة دايم بالنص، والكلام عليها بخط Cairo عريض بحد أسود. */
 :root{--g:#ffcc33;--g-bg:#ffcc331f;--g-fg:#1a1400;--glow:#ffcc3324;--meme:'Cairo','Noto Kufi Arabic',system-ui,sans-serif}
 
@@ -451,6 +466,116 @@ function clientOutGate(){
   if (CL.wasLocked) { CL.wasLocked = false; if (CL.name) { if (!player(CL.pid)) sendJoin(); } else CL.showName = true; }
   return false;
 }
+
+/* ---------- بوتات التجربة (للمالك بس) ----------
+   اللي داخل بالكود الدائم يقدر يضيف بوتات للغرفة ويجرّب اللعبة لحاله. كل بوت هو صفحة اللاعب نفسها في إطار مخفي
+   (نفس رابط الغرفة وآخره .bot1)، فيدخل ويلعب بكود اللاعب العادي، والمالك يفتح شاشته ويشوف اللعبة من عين اللاعب.
+   المنصة تحط window.R3D_OWNER = 1 لصفحة المؤسس لما الدخول بالكود الدائم. كل لعبة تعرّف botMove() للعب التلقائي. */
+const OWNER = MODE === 'host' && window.R3D_OWNER === 1;
+const BOT = (() => { if (MODE === 'host') return null; const m = location.hash.match(/\.bot(\d{1,2})$/); return m ? {n:+m[1], auto:true, done:new Set()} : null; })();
+const BOT_NAMES = ['بوت فهد', 'بوت نوره', 'بوت سلطان', 'بوت ريم', 'بوت خالد', 'بوت لمى', 'بوت ناصر', 'بوت جود'];
+const BOT_MAX = 8;
+const botKey = ck => BOT ? ck + '.bot' + BOT.n : ck;
+const botOnce = (k, fn) => { if (BOT.done.has(k)) return; BOT.done.add(k); fn(); };
+
+// البوت: ياخذ اسمه لحاله ويدخل، ويلعب حركة كل شوي لين المالك يقول «أنا أتحكم»
+function botInit(){
+  if (!BOT) return;
+  if (!CL.name) { CL.name = BOT_NAMES[(BOT.n - 1) % BOT_NAMES.length]; const {privKey, shared, key, ...save} = CL; LS.set(CL.key, save); }
+  ME = {id: CL.pid, name: CL.name};
+  const hi = () => parent.postMessage({r3dBot:'hi', n:BOT.n, pid:CL.pid, name:CL.name}, '*');
+  hi(); setTimeout(hi, 1500);
+  addEventListener('message', e => {
+    const d = e.data;
+    if (e.source !== parent || !d || !d.r3dBot) return;
+    if (d.r3dBot === 'auto') BOT.auto = !!d.on;
+    if (d.r3dBot === 'bye') { BOT.auto = false; LS.del(CL.key); }
+  });
+  setInterval(() => {
+    if (!BOT.auto || !S || S.phase === 'closed' || !CL.shared || CL.out || !player(CL.pid) || Math.random() > .5) return;
+    try { botMove(); } catch(e){}
+  }, 1000);
+}
+
+// المؤسس (المالك بس): زر «بوتات» تحت، ولوحة تضيف وتشيل، وشاشة تعرض البوت من عينه
+let BOTS = null, BOTV = -1;
+const botsKey = () => 'r3d.bots.' + HOST.room;
+const botsSave = () => LS.set(botsKey(), BOTS.map(({n, pid, name}) => ({n, pid, name})));
+function botFrame(b){
+  const fr = document.createElement('iframe');
+  fr.className = 'botfr'; fr.title = b.name; fr.src = HOST.link + '.bot' + b.n;
+  $('botDock').appendChild(fr); b.fr = fr;
+}
+function botsStart(){
+  BOTS = LS.get(botsKey(), []);
+  const dock = document.createElement('div'); dock.id = 'botDock'; dock.setAttribute('aria-hidden', 'true');
+  const btn = document.createElement('button'); btn.id = 'botBtn'; btn.type = 'button'; btn.onclick = botsSheet;
+  document.body.append(dock, btn);
+  BOTS.forEach(botFrame);
+  botsBadge();
+  addEventListener('message', e => {
+    const d = e.data, b = d && d.r3dBot === 'hi' && BOTS.find(x => x.n === d.n);
+    if (!b || e.source !== b.fr.contentWindow) return;
+    if (b.pid !== d.pid) { b.pid = d.pid; b.name = d.name; botsSave(); }
+  });
+}
+function botsBadge(){ $('botBtn').innerHTML = `🤖 بوتات${BOTS.length ? ` <span class="num">${BOTS.length}</span>` : ''}`; }
+function botAdd(){
+  if (BOTS.length >= BOT_MAX) return;
+  let n = 1; while (BOTS.some(b => b.n === n)) n++;
+  const b = {n, pid:null, name:BOT_NAMES[(n - 1) % BOT_NAMES.length]};
+  BOTS.push(b); botFrame(b); botsSave(); botsBadge();
+}
+async function botDrop(b){
+  BOTS = BOTS.filter(x => x !== b); botsSave(); botsBadge();
+  try { b.fr.contentWindow.postMessage({r3dBot:'bye'}, '*'); } catch(e){}
+  if (b.pid && player(b.pid)) await hostRemove(b.pid, false, 'host');
+  setTimeout(() => b.fr.remove(), 400);
+}
+function botsSheet(){
+  const old = $('msheet'); if (old) old.remove();
+  const bg = document.createElement('div');
+  bg.className = 'msheet-bg'; bg.id = 'msheet';
+  const draw = () => {
+    bg.innerHTML = `<div class="msheet botsheet" role="dialog" aria-modal="true" aria-label="بوتات التجربة"><div class="grab"></div>
+      <div class="mwho"><span>بوتات التجربة</span><span class="label">تطلع لك بس</span></div>
+      <div class="helper" style="margin-top:-6px">البوت يدخل الغرفة ويلعب لحاله. افتح شاشته عشان تشوف اللعبة مثل ما يشوفها اللاعب.</div>
+      ${BOTS.map((b, i) => { const p = b.pid && player(b.pid); return `<div class="botrow"><span class="nm">${esc(b.name)}</span><span class="label">${p ? (p.on ? 'في الغرفة' : 'غير متصل') : 'يدخل…'}</span>
+        <button class="btn sm ghost" type="button" data-bv="${i}">شاشته</button><button class="btn sm ghost" type="button" data-bx="${i}" aria-label="شيل ${esc(b.name)}">شيله</button></div>`; }).join('')}
+      <button class="btn" type="button" data-b="add" ${BOTS.length >= BOT_MAX ? 'disabled' : ''}>أضف بوت</button>
+      ${BOTS.length ? '<button class="btn ghost" type="button" data-b="all">شيل كل البوتات</button>' : ''}
+      <button class="btn ghost" type="button" data-b="x">تم</button></div>`;
+    bg.querySelectorAll('[data-bv]').forEach(x => x.onclick = () => { close(); botView(+x.dataset.bv); });
+    bg.querySelectorAll('[data-bx]').forEach(x => x.onclick = async () => { await botDrop(BOTS[+x.dataset.bx]); draw(); });
+    bg.querySelector('[data-b="add"]').onclick = () => { botAdd(); draw(); };
+    const all = bg.querySelector('[data-b="all"]'); if (all) all.onclick = async () => { for (const b of BOTS.slice()) await botDrop(b); draw(); };
+    bg.querySelector('[data-b="x"]').onclick = close;
+  };
+  const close = () => { clearInterval(t); bg.remove(); };
+  const t = setInterval(() => { if (bg.isConnected && !bg.querySelector(':focus')) draw(); }, 2000);
+  bg.onclick = e => { if (e.target === bg) close(); };
+  draw();
+  document.body.appendChild(bg);
+}
+// شاشة البوت: الإطار نفسه يتحرك لنص الشاشة (ما ننقله في الصفحة عشان ما يعيد التحميل)
+function botView(i){
+  BOTS.forEach(b => b.fr.classList.remove('on'));
+  let v = $('botView');
+  if (i < 0 || !BOTS[i]) { BOTV = -1; if (v) v.remove(); return; }
+  BOTV = i;
+  const b = BOTS[i];
+  b.fr.classList.add('on');
+  if (!v) { v = document.createElement('div'); v.id = 'botView'; document.body.appendChild(v); }
+  const auto = b.auto !== false;
+  v.innerHTML = `<div class="bvbar"><button class="chip" type="button" data-v="x">✕ رجوع لشاشتك</button><span class="sp"></span>
+    ${BOTS.length > 1 ? '<button class="chip" type="button" data-v="nx">البوت الثاني</button>' : ''}
+    <button class="chip" type="button" data-v="auto" aria-pressed="${auto}">${auto ? 'يلعب لحاله' : 'أنت تتحكم'}</button></div>
+    <div class="bvname">${esc(b.name)}</div>`;
+  v.querySelector('[data-v="x"]').onclick = () => botView(-1);
+  const nx = v.querySelector('[data-v="nx"]'); if (nx) nx.onclick = () => botView((i + 1) % BOTS.length);
+  v.querySelector('[data-v="auto"]').onclick = () => { b.auto = !auto; try { b.fr.contentWindow.postMessage({r3dBot:'auto', on:b.auto}, '*'); } catch(e){} botView(i); };
+}
+if (OWNER) { const w = setInterval(() => { if (typeof HOST !== 'undefined' && HOST && HOST.link && HOST.room) { clearInterval(w); botsStart(); } }, 600); }
 
 
 const PTS = {laugh:100, king:100, star:250, ban:100};
@@ -1028,10 +1153,11 @@ async function clientBoot(){
   if (!room || !k || !BROKERS[+b]) { $('app').innerHTML = `<div class="hero"><h2>الرابط ناقص</h2><p>اطلب من المؤسس يرسل لك رابط الغرفة كامل.</p></div>`; setNet('down'); return; }
   try { KEY = await C.aes(unb64u(k)); } catch(e){ $('app').innerHTML = `<div class="hero"><h2>الرابط غلط</h2><p>اطلب رابط جديد من المؤسس.</p></div>`; return; }
   BASE = `r3d-memes/v1/${room}`;
-  const ck = 'r3d.memes.c.' + room;
+  const ck = botKey('r3d.memes.c.' + room);
   CL = LS.get(ck, null);
   if (!CL) { const kp = await C.pair(); CL = {room, pid:'p' + rid(7), name:'', priv: await C.exp(kp.privateKey), pub: await C.exp(kp.publicKey)}; LS.set(ck, CL); }
   CL.key = ck; ME = {id:CL.pid, name:CL.name || ''};
+  botInit();
   CL.privKey = await C.impPriv(CL.priv);
   skeleton();
   MQC = new MQ(BROKERS[+b], clientOnMsg, s => { setNet(s); if (s === 'up' && CL.name && !CL.out) sendJoin(); });
@@ -1099,6 +1225,18 @@ async function clientAct(a){
   const inner = await C.enc(CL.shared, a);
   MQC.pub(BASE + '/i', await C.enc(KEY, {p:CL.pid, c:b64u(inner)}), false);
   if (a.t === 'submit' || a.t === 'vote') { const p = player(CL.pid); if (p) p.done = true; if (a.t === 'vote') render(); }
+}
+
+/* ---------- بوت التجربة: يكتب تعليق من القائمة، ويصوّت بالضحك لميم عشوائي ---------- */
+const BOT_CAPS = ['لما تقول لأمك بس خمس دقايق', 'أنا بعد ما قلت بنام بدري', 'الراتب بعد يومين', 'لما المعلم يقول اختبار مفاجئ', 'وجهي لما أحد يقول نطلع الظهر', 'أنا أشرح لأبوي وش أسوي بالجوال', 'لما النت يفصل وقت التحميل', 'أنا يوم الأحد الصبح', 'لما الأكل يتأخر نص ساعة', 'قروب العايلة الساعة ٦ الصبح'];
+function botMove(){
+  const me = player(ME.id);
+  if (!me || !me.inRound || me.done) return;
+  if (S.phase === 'write') return botOnce('w' + S.round, () => { const text = pick(BOT_CAPS), pos = pick(['top', 'bottom']); UI.draft = text; UI.pos = pos; UI.sentText = text + '|' + pos; act({t:'submit', text, pos, round:S.round}); render(); });
+  if (S.phase === 'vote') {
+    const mine = PRIV && PRIV.round === S.round ? PRIV.eid : null, es = (S.entries || []).filter(e => e.eid !== mine);
+    if (es.length) botOnce('v' + S.round, () => { UI.laugh = pick(es).eid; act({t:'vote', laugh:UI.laugh, ban:null, star:null, round:S.round}); });
+  }
 }
 
 /* ---------- تشغيل ---------- */
