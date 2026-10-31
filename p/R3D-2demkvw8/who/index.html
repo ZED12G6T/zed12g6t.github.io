@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-skin="sadu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -253,9 +253,111 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
 .titles .tw .who .num{margin-inline-start:auto;font-size:22px;color:var(--g)}
 .titles .tw ul{margin:0;padding:0 46px 0 0;list-style:none;font-size:15px;color:var(--mute)}
 @media (max-width:380px){.picks{grid-template-columns:1fr}}
+
+/* هوكات الثيم: مخفية إلا إذا الثيم استخدمها */
+.deco,#party{display:none}
+
+/* ====================== ثيم اللعبة ====================== */
+/* ---------- مشترك بين الثيمات ---------- */
+/* كل ثيم يشيل ضوء العدسة وزوايا الكاميرا حق المنصة ويحط خلفيته في .deco */
+html[data-skin] body::before,html[data-skin] body::after{display:none}
+html[data-skin] .deco{display:block;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html[data-skin] .deco i{position:absolute;display:block}
+/* الاحتفال: قطع تطيح مرة وحدة (مو infinite) */
+html[data-skin] #party{display:block;position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden}
+html[data-skin] #party i{position:absolute;top:-60px;left:var(--x);width:8px;height:15px;animation:pzFall 2.9s cubic-bezier(.25,.5,.45,1) var(--d) backwards}
+@keyframes pzFall{from{transform:translate3d(0,0,0) rotate(0) scale(var(--s))}to{transform:translate3d(0,112vh,0) rotate(var(--r)) scale(var(--s))}}
+/* أول ما تبدأ مرحلة: الأقسام تدخل ورا بعض مرة وحدة (backwards عشان ما تبقى طبقة مركّبة) */
+html[data-skin] body[data-enter] #app>:not(.col-main):not(.col-side),html[data-skin] body[data-enter] #app>.col-main>*,html[data-skin] body[data-enter] #app>.col-side>*{animation:enIn .5s var(--out) backwards}
+html[data-skin] body[data-enter] #app>:nth-child(2),html[data-skin] body[data-enter] #app>*>:nth-child(2){animation-delay:.07s}
+html[data-skin] body[data-enter] #app>:nth-child(3),html[data-skin] body[data-enter] #app>*>:nth-child(3){animation-delay:.14s}
+html[data-skin] body[data-enter] #app>:nth-child(n+4),html[data-skin] body[data-enter] #app>*>:nth-child(n+4){animation-delay:.2s}
+@keyframes enIn{from{opacity:0;transform:translateY(16px)}}
+html[data-skin] .pk{position:relative}
+
+/* ====================== سدو ====================== */
+/* جلسة ديوانية: نقشة السدو (مثلثات وخطوط بالأحمر والكريمي والأسود والذهبي) على أرضية بيت الشعر، ودلّة القهوة */
+html[data-skin=sadu]{--bg:#1b1110;--bg2:#f4ead60a;--panel:#2a1b17;--line:#f4ead61f;--line2:#f4ead64a;--fg:#f4ead6;--mute:#cfbb9c;--dim:#937e62;
+  --acc:#b0322a;--g:#dca63a;--g-bg:#dca63a1f;--g-fg:#1b1110;--ok:#a8d48f;--bad:#ff8172;--warn:#dca63a;--glow:transparent;
+  --red:#b0322a;--cream:#f4ead6;--ink:#1b1110;
+  /* شريط سدو: خط أحمر، خط كريمي، مثلثات متداخلة، خط كريمي، خط ذهبي */
+  --sadu:linear-gradient(var(--red),var(--red)) 0 0/100% 4px no-repeat,linear-gradient(var(--cream),var(--cream)) 0 6px/100% 2px no-repeat,
+    conic-gradient(from 135deg at 50% 0,var(--cream) 90deg,#0000 0) 0 10px/16px 8px repeat-x,conic-gradient(from -45deg at 50% 100%,var(--red) 90deg,#0000 0) 8px 10px/16px 8px repeat-x,
+    linear-gradient(var(--cream),var(--cream)) 0 20px/100% 2px no-repeat,linear-gradient(var(--g),var(--g)) 0 24px/100% 4px no-repeat,var(--ink);
+  --sadu-s:linear-gradient(var(--red),var(--red)) 0 0/100% 3px no-repeat,conic-gradient(from 135deg at 50% 0,var(--cream) 90deg,#0000 0) 0 4px/12px 6px repeat-x,conic-gradient(from -45deg at 50% 100%,var(--g) 90deg,#0000 0) 6px 4px/12px 6px repeat-x,linear-gradient(var(--red),var(--red)) 0 11px/100% 3px no-repeat,var(--ink)}
+html[data-skin=sadu] body{background:radial-gradient(80% 50% at 50% 0,#3a201a,#0000 70%) fixed,repeating-linear-gradient(90deg,#ffffff05 0 2px,#0000 2px 7px),var(--bg)}
+/* شريط سدو تحت الشريط العلوي وفوق الأزرار */
+html[data-skin=sadu] .deco i:nth-child(1){left:0;right:0;bottom:0;height:28px;background:var(--sadu);transform:scaleY(-1)}
+html[data-skin=sadu] .deco i:nth-child(2){top:0;bottom:0;right:0;width:6px;background:repeating-linear-gradient(var(--red) 0 10px,var(--cream) 10px 14px,var(--ink) 14px 22px,var(--g) 22px 26px)}
+html[data-skin=sadu] .deco i:nth-child(3){top:0;bottom:0;left:0;width:6px;background:repeating-linear-gradient(var(--red) 0 10px,var(--cream) 10px 14px,var(--ink) 14px 22px,var(--g) 22px 26px)}
+html[data-skin=sadu] .bar{background:linear-gradient(var(--bg) 0,#1b1110f2 72%,#1b111000)}
+html[data-skin=sadu] .bar::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:14px;background:var(--sadu-s)}
+html[data-skin=sadu] .bar h1{color:var(--cream)}
+html[data-skin=sadu] .bar h1::before{content:"";display:inline-block;width:30px;height:30px;margin-inline-end:6px;vertical-align:-5px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='%23dca63a'%3E%3Cpath d='M32 1l3 7h-6z'/%3E%3Ccircle cx='32' cy='10' r='2.6'/%3E%3Cpath d='M23 19c2-7 16-7 18 0z'/%3E%3Cpath d='M25 19h14v3H25z'/%3E%3Cpath d='M26 22c-2 4 0 8 4 10h4c4-2 6-6 4-10z'/%3E%3Cpath d='M29 31c-11 4-14 20-7 27h20c7-7 4-23-7-27z'/%3E%3Cpath d='M19 58h26v4H19z'/%3E%3Cpath d='M25 47c-8-4-13-15-17-28l-5-4 8 1c3 11 8 20 16 25z'/%3E%3C/g%3E%3Cpath d='M38 24c13-1 14 22 4 26' fill='none' stroke='%23dca63a' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+html[data-skin=sadu] .chip .num{color:var(--g)}
+html[data-skin=sadu] .hero h2{color:var(--cream)}
+html[data-skin=sadu] .label{color:var(--g)}
+/* الكروت: قماش غامق وفوقه شريط سدو */
+html[data-skin=sadu] .card{position:relative;overflow:hidden;background:#2a1b17;border:1px solid #f4ead61a;border-radius:6px;padding:34px 16px 16px}
+html[data-skin=sadu] .card::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:var(--sadu-s)}
+html[data-skin=sadu] .plist,html[data-skin=sadu] .pl{border-color:#f4ead61a}
+html[data-skin=sadu] .pl.me{box-shadow:inset -3px 0 0 var(--g)}
+html[data-skin=sadu] .av{box-shadow:0 0 0 2px #2a1b17,0 0 0 3.5px var(--cream)}
+html[data-skin=sadu] .badge.host{color:var(--g);border-color:#dca63a77}
+html[data-skin=sadu] .pl .pts{color:var(--g)}
+html[data-skin=sadu] .btn{background:var(--red);color:var(--cream);border-radius:8px;box-shadow:inset 0 0 0 2px #f4ead61c,0 4px 0 #6b1712}
+html[data-skin=sadu] .btn:hover{background:#c03a31}
+html[data-skin=sadu] .btn:not(.ghost):not(.sm):not(.red)::before{background:var(--g);border-radius:0;transform:rotate(45deg);width:8px;height:8px}
+html[data-skin=sadu] .btn.ghost{background:#0000;color:var(--cream);box-shadow:inset 0 0 0 1.5px #f4ead666}
+html[data-skin=sadu] .foot{background:linear-gradient(#0000,var(--bg) 40%);padding-bottom:max(36px,env(safe-area-inset-bottom,0px))}
+html[data-skin=sadu] .linkbox{border-color:#f4ead64a}
+html[data-skin=sadu] .seg button::after{background:var(--g)}
+html[data-skin=sadu] .rules .num{color:var(--g)}
+/* السؤال بين شريطين سدو */
+html[data-skin=sadu] .q{position:relative;align-items:center;text-align:center;padding:30px 12px 30px}
+html[data-skin=sadu] .q::before,html[data-skin=sadu] .q::after{content:"";position:absolute;left:0;right:0;height:14px;background:var(--sadu-s)}
+html[data-skin=sadu] .q::before{top:0}
+html[data-skin=sadu] .q::after{bottom:0;transform:scaleY(-1)}
+html[data-skin=sadu] .q .pre{color:var(--g)}
+html[data-skin=sadu] .q .t{color:var(--cream)}
+html[data-skin=sadu] .timer .prog{height:6px;background:#f4ead61a}
+html[data-skin=sadu] .timer .prog i{background:repeating-linear-gradient(90deg,var(--g) 0 10px,var(--red) 10px 14px)}
+html[data-skin=sadu] .timer .num{color:var(--g)}
+/* الاختيار: مساند ديوانية */
+html[data-skin=sadu] .pk{overflow:hidden;border:0;border-radius:10px;background:var(--cream);color:var(--ink);min-height:62px;padding-bottom:14px;box-shadow:0 6px 0 #0000004d}
+html[data-skin=sadu] .pk::after{content:"";position:absolute;left:0;right:0;bottom:0;height:9px;background:conic-gradient(from 135deg at 50% 0,var(--red) 90deg,#0000 0) 0 0/10px 5px repeat-x,conic-gradient(from -45deg at 50% 100%,var(--ink) 90deg,#0000 0) 5px 0/10px 5px repeat-x,linear-gradient(var(--red),var(--red)) 0 6px/100% 3px no-repeat}
+html[data-skin=sadu] .pk:hover:not(:disabled){box-shadow:0 6px 0 #0000004d,inset 0 0 0 2px var(--g)}
+html[data-skin=sadu] .pk[aria-pressed="true"]{background:var(--red);color:var(--cream);box-shadow:0 6px 0 #5a120e,inset 0 0 0 2px var(--g)}
+html[data-skin=sadu] .pk[aria-pressed="true"]::after{background:conic-gradient(from 135deg at 50% 0,var(--g) 90deg,#0000 0) 0 0/10px 5px repeat-x,conic-gradient(from -45deg at 50% 100%,var(--cream) 90deg,#0000 0) 5px 0/10px 5px repeat-x,linear-gradient(var(--g),var(--g)) 0 6px/100% 3px no-repeat}
+html[data-skin=sadu] .pk .av{box-shadow:0 0 0 2px var(--cream),0 0 0 3.5px var(--ink)}
+html[data-skin=sadu] .pk[aria-pressed="true"] .av{box-shadow:0 0 0 2px var(--red),0 0 0 3.5px var(--g)}
+html[data-skin=sadu] .mine{border-color:#f4ead64a}
+html[data-skin=sadu] .mine.hit{border-color:#a8d48f77}
+/* النتيجة */
+html[data-skin=sadu] .hero p b[style]{color:var(--g)!important}
+html[data-skin=sadu] .br .trk{height:12px;background:#f4ead612;border-radius:2px}
+html[data-skin=sadu] .br .trk i{background:conic-gradient(from 135deg at 50% 0,#f4ead699 90deg,#0000 0) 0 0/12px 12px,#f4ead633}
+html[data-skin=sadu] .br.top .trk i{background:conic-gradient(from 135deg at 50% 0,var(--g) 90deg,#0000 0) 0 0/12px 12px,var(--red);box-shadow:none}
+html[data-skin=sadu] .br.top .nm{color:var(--g)}
+html[data-skin=sadu] .crown{background:var(--g);color:var(--ink)}
+html[data-skin=sadu] .podium .blk{position:relative;overflow:hidden;border:0;border-radius:6px 6px 0 0;padding-top:12px}
+html[data-skin=sadu] .podium .blk::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:var(--sadu-s)}
+html[data-skin=sadu] .podium .p1 .blk{background:var(--red);color:var(--cream)}
+html[data-skin=sadu] .podium .p2 .blk{background:var(--cream);color:var(--ink)}
+html[data-skin=sadu] .podium .p3 .blk{background:#4a3129;color:var(--cream)}
+html[data-skin=sadu] .titles .tw .who .num{color:var(--g)}
+html[data-skin=sadu] .toast{background:var(--cream);color:var(--ink)}
+html[data-skin=sadu] .msheet{background:#2a1b17;border-top:0;box-shadow:inset 0 14px 0 -0px #0000}
+html[data-skin=sadu] .msheet::before{content:"";display:block;height:14px;margin:-12px -20px 6px;background:var(--sadu-s)}
+html[data-skin=sadu] #party i{width:14px;height:12px;background:var(--red);clip-path:polygon(50% 0,100% 100%,0 100%)}
+html[data-skin=sadu] #party i[style*="--k:1"]{background:var(--cream)}
+html[data-skin=sadu] #party i[style*="--k:2"]{background:var(--g)}
+html[data-skin=sadu] #party i[style*="--k:3"]{background:#000;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
 </style>
 </head>
 <body>
+<div class="deco" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div id="party" aria-hidden="true"></div>
 <header class="bar">
   <h1>مين فينا؟</h1>
   <span class="chip" id="roundChip" hidden>الجولة <span class="num" id="roundNum"></span></span>
@@ -824,8 +926,26 @@ function rulesList(){
     <li><span class="e">🤫</span>الأصوات ${S && S.settings.open ? 'مكشوفة: يبان مين اختار مين' : 'سرية: يبان العدد بس'}</li></ul>`;
 }
 
+
+/* ---------- هوكات الثيم ---------- */
+// المرحلة على body عشان الثيم يغيّر الخلفية حسبها، و data-enter أول 1.4 ثانية بس (الحركة مرة وحدة)
+let partied = '';
+function party(){
+  const k = S.round + ':' + S.phase; if (partied === k) return; partied = k;
+  const P = document.getElementById('party'); if (!P || getComputedStyle(P).display === 'none') return;
+  P.innerHTML = Array.from({length: 30}, (_, i) => `<i style="--x:${(Math.random() * 100).toFixed(1)}%;--d:${(Math.random() * .6).toFixed(2)}s;--r:${Math.round(Math.random() * 720 - 360)}deg;--s:${(.7 + Math.random() * .6).toFixed(2)};--k:${i % 4}"></i>`).join('');
+  clearTimeout(party.t); party.t = setTimeout(() => { P.innerHTML = ''; }, 4200);
+}
+function phaseHook(ph){
+  const b = document.body;
+  if (b.dataset.phase === ph) return;
+  b.dataset.phase = ph; b.dataset.enter = '1';
+  clearTimeout(phaseHook.t); phaseHook.t = setTimeout(() => { delete b.dataset.enter; }, 1400);
+  if (S && (ph === 'result' || ph === 'final')) party();
+}
 function render(){
   if (!S || !ME) return;
+  phaseHook(S.phase);
   $('roundChip').hidden = !['ask', 'result'].includes(S.phase);
   $('roundNum').textContent = `${S.round}/${S.settings.rounds}`;
   const meP = player(ME.id) || {};
@@ -930,6 +1050,7 @@ async function hostBoot(){
   hostCreateScreen();
 }
 function hostCreateScreen(){
+  phaseHook('create');
   setNet('idle'); $('netTxt').textContent = 'ما فيه غرفة'; $('netDot').className = 'dot';
   setApp(`<div class="hero"><h2>سوّ غرفة «مين فينا؟»</h2><p>يطلع سؤال، وكل واحد يختار مين من الشلة ينطبق عليه أكثر.</p></div>
     <div class="card"><div class="field"><label class="label" for="hname">اسمك في اللعبة</label><input id="hname" maxlength="16" autocomplete="off" value="${esc(LS.get('r3d.spy.hostname', ''))}" placeholder="مثلاً: مجاهد"></div></div>
@@ -1172,6 +1293,7 @@ async function clientBoot(){
   setInterval(() => { if (CL.name && CL.shared && !CL.out) clientAct({t:'ping'}); }, 8000);
 }
 function clientNameScreen(){
+  phaseHook('join');
   setApp(`<div class="hero"><h2>انضم لـ«مين فينا؟»</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
     <div class="card"><div class="field"><label class="label" for="cname">اسمك في اللعبة</label><input id="cname" maxlength="16" autocomplete="off" placeholder="مثلاً: سلمان"></div></div>${playersCard(false)}`);
   $('footIn').innerHTML = `<button class="btn" id="joinBtn" type="button">ادخل</button>`; $('foot').hidden = false;
