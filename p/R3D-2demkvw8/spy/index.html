@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-skin="dossier-leather">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -185,7 +185,12 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
   main.spread>.col-side{column-count:2;column-gap:48px}
   main.spread>.col-side>*{break-inside:avoid;margin-bottom:28px}
 }
-@media (min-width:1360px){main.spread>.col-side{column-count:3}}
+@media (min-width:1360px){main.spread>.col-side:not([data-n="2"]){column-count:3}}
+
+/* لوحة رمز QR */
+.qrsheet{align-items:center;text-align:center}
+.qrbox{width:min(300px,72vw);aspect-ratio:1;background:#fff;border-radius:14px;padding:6px;box-shadow:0 0 0 1px var(--line2)}
+.qrbox svg{display:block;width:100%;height:100%}
 
 :root{--g:#b07cff;--g-bg:#b07cff1f;--g-fg:#140a24;--glow:#6d3bd433}
 
@@ -238,9 +243,163 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
 .opts button:hover{border-color:var(--line2)}
 .opts button[aria-pressed="true"]{border-color:var(--g);background:var(--g-bg)}
 
+
+/* هوكات الثيم: مخفية إلا إذا الثيم استخدمها */
+.deco,#party{display:none}
+
+/* ====================== ثيم اللعبة ====================== */
+/* ---------- مشترك بين الثيمات ---------- */
+/* كل ثيم يشيل ضوء العدسة وزوايا الكاميرا حق المنصة ويحط خلفيته في .deco */
+html[data-skin] body::before,html[data-skin] body::after{display:none}
+html[data-skin] .deco{display:block;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html[data-skin] .deco i{position:absolute;display:block}
+/* الاحتفال: قطع تطيح مرة وحدة (مو infinite) */
+html[data-skin] #party{display:block;position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden}
+html[data-skin] #party i{position:absolute;top:-60px;left:var(--x);width:8px;height:15px;animation:pzFall 2.9s cubic-bezier(.25,.5,.45,1) var(--d) backwards}
+@keyframes pzFall{from{transform:translate3d(0,0,0) rotate(0) scale(var(--s))}to{transform:translate3d(0,112vh,0) rotate(var(--r)) scale(var(--s))}}
+/* أول ما تبدأ مرحلة: الأقسام تدخل ورا بعض مرة وحدة (backwards عشان ما تبقى طبقة مركّبة) */
+html[data-skin] body[data-enter] #app>:not(.col-main):not(.col-side),html[data-skin] body[data-enter] #app>.col-main>*,html[data-skin] body[data-enter] #app>.col-side>*{animation:enIn .5s var(--out) backwards}
+html[data-skin] body[data-enter] #app>:nth-child(2),html[data-skin] body[data-enter] #app>*>:nth-child(2){animation-delay:.07s}
+html[data-skin] body[data-enter] #app>:nth-child(3),html[data-skin] body[data-enter] #app>*>:nth-child(3){animation-delay:.14s}
+html[data-skin] body[data-enter] #app>:nth-child(n+4),html[data-skin] body[data-enter] #app>*>:nth-child(n+4){animation-delay:.2s}
+@keyframes enIn{from{opacity:0;transform:translateY(16px)}}
+html[data-skin] .vbtn,html[data-skin] .opts button{position:relative}
+
+/* ====================== ملف سري ====================== */
+/* ملف المباحث: ورق مانيلا، أوراق مطبوعة بمشبك، أختام حمرا، وقلم أحمر يدوّر على المشتبه */
+html[data-skin^=dossier]{--bg:#e4cb93;--bg2:#fffaf0;--panel:#fbf5e6;--line:#2a1d1226;--line2:#2a1d1250;--fg:#2a1d12;--mute:#5d4733;--dim:#7c6550;
+  --acc:#b3261e;--g:#b3261e;--g-bg:#b3261e14;--g-fg:#fff8ee;--ok:#2d6a3a;--bad:#b3261e;--warn:#9a5b00;--glow:transparent;color-scheme:light;
+  --paper:#fcf7ea;--ink:#2a1d12;--red:#b3261e;--on-bg:#2a1d12;--on-bg-mute:#5d4733;--on-red:#b3261e;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grunge:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 0 0 0 1.95'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+html[data-skin^=dossier] body{background:var(--bg)}
+html[data-skin^=dossier] .deco i:nth-child(1){inset:0;background:var(--noise);opacity:.13;mix-blend-mode:multiply}
+html[data-skin^=dossier] .deco i:nth-child(2){inset:0;background:radial-gradient(120% 80% at 50% 0,#0000 40%,#7a55202e 100%)}
+/* ختم كبير باهت ورا الصفحة */
+html[data-skin^=dossier] .deco i:nth-child(3){top:44%;left:50%;transform:translate(-50%,-50%) rotate(-14deg);padding:6px 26px;border:6px double #b3261e;color:#b3261e;font:64px/1.2 var(--ar);opacity:.07;white-space:nowrap;-webkit-mask:var(--grunge);mask:var(--grunge)}
+html[data-skin^=dossier] .deco i:nth-child(3)::before{content:"سري للغاية"}
+/* أثر كوب قهوة */
+html[data-skin^=dossier] .deco i:nth-child(4){width:170px;height:170px;left:-50px;bottom:120px;border-radius:50%;background:radial-gradient(circle,#0000 61%,#7a4a1a24 63%,#7a4a1a14 67%,#0000 70%)}
+html[data-skin^=dossier] .bar{background:linear-gradient(var(--bg) 0,color-mix(in srgb,var(--bg) 92%,transparent) 60%,#0000)}
+html[data-skin^=dossier] .bar h1{background:var(--paper);padding:2px 14px 0;box-shadow:0 1px 0 #0000001a,0 4px 10px -4px #5a3d1a80;transform:rotate(-1.5deg);border-inline-start:4px solid var(--red)}
+html[data-skin^=dossier] .chip{color:var(--on-bg-mute)}
+html[data-skin^=dossier] .chip .num{color:var(--on-bg)}
+html[data-skin^=dossier] #toLib{color:var(--on-bg);border-color:color-mix(in srgb,var(--on-bg) 40%,transparent)}
+html[data-skin^=dossier] .hero h2{color:var(--on-bg);padding-bottom:6px;background:linear-gradient(var(--red),var(--red)) right bottom/min(60%,220px) 3px no-repeat}
+html[data-skin^=dossier] .hero p{color:var(--on-bg-mute)}
+html[data-skin^=dossier] .label{color:var(--red)}
+/* كل كرت ورقة مطبوعة بمشبك */
+html[data-skin^=dossier] .card,html[data-skin^=dossier] .how{position:relative;background:var(--paper);border:0;padding:18px 16px 16px;border-radius:2px;box-shadow:0 1px 0 #00000014,0 10px 22px -14px #5a3d1aa8}
+html[data-skin^=dossier] .card::before,html[data-skin^=dossier] .how::before{content:"";position:absolute;top:-12px;left:26px;width:13px;height:38px;border:2.5px solid #858b93;border-radius:8px;box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 5.5px #858b93;transform:rotate(8deg);clip-path:inset(0 0 22% 0)}
+html[data-skin^=dossier] main>.card:nth-child(even),html[data-skin^=dossier] .col-side>.card:nth-child(even){transform:rotate(.35deg)}
+html[data-skin^=dossier] .card h2{color:var(--ink)}
+html[data-skin^=dossier] .plist,html[data-skin^=dossier] .pl{border-color:#2a1d121f}
+html[data-skin^=dossier] .pl{border-bottom-style:dashed}
+html[data-skin^=dossier] .pl.me{box-shadow:inset -3px 0 0 var(--red);background:linear-gradient(90deg,#0000,#fff07a55)}
+html[data-skin^=dossier] .av{border-radius:3px;filter:sepia(.45) saturate(.75);box-shadow:0 0 0 2px #fff,0 2px 5px #00000040;color:#1b120a}
+html[data-skin^=dossier] .badge{border-radius:2px;border-color:#2a1d1250;color:var(--mute)}
+html[data-skin^=dossier] .badge.host{color:var(--red);border-color:var(--red)}
+html[data-skin^=dossier] .badge.ok{color:var(--ok);border-color:#2d6a3a80}
+html[data-skin^=dossier] .pl .pts{color:var(--ink)}
+html[data-skin^=dossier] .btn{border-radius:3px;background:var(--red);color:#fff8ee;box-shadow:inset 0 0 0 2px var(--red),inset 0 0 0 4px #fff8ee55,0 6px 14px -8px #7a1a12}
+html[data-skin^=dossier] .btn:hover{background:#c42d23}
+html[data-skin^=dossier] .btn:not(.ghost):not(.sm):not(.red)::before{background:#fff8ee;width:8px;height:8px}
+html[data-skin^=dossier] .btn.ghost{background:#fffaf0aa;color:var(--ink);box-shadow:none;border:1.5px dashed #2a1d1288}
+html[data-skin^=dossier] .btn.ghost:hover{border-color:var(--ink)}
+html[data-skin^=dossier] .helper{color:var(--mute)}
+html[data-skin^=dossier] .foot .helper{color:var(--on-bg-mute)}
+html[data-skin^=dossier] .foot{background:linear-gradient(#0000,var(--bg) 42%)}
+html[data-skin^=dossier] .linkbox{background:#fff;border-color:#2a1d1260}
+html[data-skin^=dossier] .linkbox code{color:var(--ink)}
+html[data-skin^=dossier] .chips button{border-radius:3px;color:var(--mute);border-color:#2a1d1240}
+html[data-skin^=dossier] .chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+html[data-skin^=dossier] .switch::after{background:#fff;box-shadow:0 1px 3px #0004}
+html[data-skin^=dossier] .field input{color:var(--ink)}
+html[data-skin^=dossier] .how li::before{border-radius:50%;background:none;color:var(--red);box-shadow:inset 0 0 0 2px var(--red);font-size:18px}
+/* الدور: ظرف مختوم بشمع أحمر */
+html[data-skin^=dossier] .role{color:var(--ink);box-shadow:0 12px 26px -14px #5a3d1ab0;border-radius:3px;min-height:250px}
+html[data-skin^=dossier] .role::after{display:none}
+html[data-skin^=dossier] .role.hidden{background:linear-gradient(160deg,#d4ad69,#c39752);color:#2a1d12}
+html[data-skin^=dossier] .role.hidden::before{top:0;right:0;left:0;width:auto;height:58%;border:0;background:linear-gradient(#dcb877,#cda05b);clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 2px 2px #0003)}
+html[data-skin^=dossier] .role.hidden>div{position:relative}
+html[data-skin^=dossier] .role.hidden>div::before{content:"سري";display:grid;place-items:center;width:74px;height:74px;margin:0 auto 6px;border-radius:50%;background:radial-gradient(circle at 36% 30%,#e8665a,#ad1f1c 55%,#7d1013);box-shadow:0 0 0 5px #a01b1a55,0 4px 10px #4a0a0a80,inset 0 -4px 8px #0004;color:#ffe3d8;font-size:20px}
+html[data-skin^=dossier] .role.hidden .k,html[data-skin^=dossier] .role.hidden .h{color:#4a3520}
+/* بطاقة الموضوع: كرت فهرسة مسطّر */
+html[data-skin^=dossier] .role.civ{background:linear-gradient(#0000 46px,#d6443a 46px 48px,#0000 48px),repeating-linear-gradient(#fffdf5 0 30px,#a9c6e4 30px 31px);background-color:#fffdf5}
+html[data-skin^=dossier] .role.civ::before,html[data-skin^=dossier] .role.spyr::before{top:-12px;right:auto;left:30px;width:13px;height:40px;border:2.5px solid #858b93;border-radius:8px;box-shadow:inset 0 0 0 3px #fffdf5,inset 0 0 0 5.5px #858b93;transform:rotate(8deg);clip-path:inset(0 0 22% 0)}
+html[data-skin^=dossier] .role.civ .k{color:var(--red)}
+html[data-skin^=dossier] .role.civ .w{color:var(--ink)}
+/* الجاسوس: ختم أحمر كبير */
+html[data-skin^=dossier] .role.spyr{background:var(--paper)}
+html[data-skin^=dossier] .role.spyr .w{display:inline-block;margin:10px 0;padding:2px 18px;color:var(--red);border:5px double var(--red);transform:rotate(-7deg);-webkit-mask:var(--grunge);mask:var(--grunge)}
+html[data-skin^=dossier] .role.spyr .k,html[data-skin^=dossier] .role.spyr .h{color:var(--mute)}
+html[data-skin^=dossier] .mini{color:var(--on-bg-mute)}
+html[data-skin^=dossier] .mini button{color:var(--on-red)}
+html[data-skin^=dossier] .mini b[style]{color:var(--on-red)!important}
+/* مين يسأل مين: ورقة ملزوقة بشريط */
+html[data-skin^=dossier] .now{position:relative;background:var(--paper);border:0;box-shadow:0 10px 22px -14px #5a3d1aa8;padding:20px 12px 16px}
+html[data-skin^=dossier] .now::before,html[data-skin^=dossier] .now::after{content:"";position:absolute;top:-9px;width:76px;height:22px;background:#efe2b0c4;box-shadow:0 1px 2px #0002}
+html[data-skin^=dossier] .now::before{right:18px;transform:rotate(4deg)}
+html[data-skin^=dossier] .now::after{left:18px;transform:rotate(-5deg)}
+html[data-skin^=dossier] .now .pair{color:var(--ink)}
+html[data-skin^=dossier] .now .pair i{color:var(--red)}
+html[data-skin^=dossier] .order li{border-bottom:1px dashed #2a1d1226}
+html[data-skin^=dossier] .order li.done{text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--dim)}
+html[data-skin^=dossier] .order li.cur{background:linear-gradient(#0000 18%,#fff07a 18% 86%,#0000 86%);box-shadow:none}
+html[data-skin^=dossier] .order li .ar{color:var(--red)}
+html[data-skin^=dossier] .prog{height:4px;background:color-mix(in srgb,var(--on-bg) 16%,transparent)}
+/* التصويت: صور المشتبهين، والقلم الأحمر يدوّر على اختيارك */
+html[data-skin^=dossier] .vgrid{gap:14px}
+html[data-skin^=dossier] .vbtn{flex-direction:column;gap:8px;padding:14px 8px 10px;background:var(--paper);border:0;box-shadow:0 1px 0 #00000014,0 8px 18px -12px #5a3d1aa8;text-align:center;border-radius:2px}
+html[data-skin^=dossier] .vbtn:nth-child(odd){transform:rotate(-1deg)}
+html[data-skin^=dossier] .vbtn:nth-child(even){transform:rotate(1deg)}
+html[data-skin^=dossier] .vbtn .av{width:60px;height:68px;font-size:30px;border-radius:2px}
+html[data-skin^=dossier] .vbtn[aria-pressed="true"]{background:var(--paper)}
+html[data-skin^=dossier] .vbtn[aria-pressed="true"]::after{content:"";position:absolute;inset:-7px -4px;border:3px solid var(--red);border-radius:52% 46% 50% 48%/50% 55% 45% 50%;transform:rotate(-4deg)}
+html[data-skin^=dossier] .vbtn[aria-pressed="true"] span:not(.av){color:var(--red)}
+/* النتيجة: ختم «انكشف» أو «هرب» */
+html[data-skin^=dossier] .verdict{position:relative;background:var(--paper);border:0;box-shadow:0 10px 22px -14px #5a3d1aa8;padding:20px 16px 18px 128px;text-align:start}
+html[data-skin^=dossier] .verdict h2{color:var(--ink)}
+html[data-skin^=dossier] .verdict p{color:var(--mute)}
+html[data-skin^=dossier] .verdict::after{position:absolute;top:50%;left:14px;margin-top:-22px;padding:0 10px;font-size:24px;line-height:1.5;border:4px double currentColor;transform:rotate(-12deg);-webkit-mask:var(--grunge);mask:var(--grunge)}
+html[data-skin^=dossier] .verdict.caught::after{content:"انكشف";color:var(--red)}
+html[data-skin^=dossier] .verdict.free::after{content:"هرب";color:var(--ink)}
+html[data-skin^=dossier] .tr .bar2{height:10px;background:#2a1d1214}
+html[data-skin^=dossier] .tr .bar2 i{background:repeating-linear-gradient(-45deg,var(--ink) 0 2px,#0000 2px 5px)}
+html[data-skin^=dossier] .tr.spy .bar2 i{background:repeating-linear-gradient(-45deg,var(--red) 0 2.5px,#0000 2.5px 5px)}
+html[data-skin^=dossier] .opts button{background:var(--paper);border:1px solid #2a1d1230;border-radius:2px}
+html[data-skin^=dossier] .opts button[aria-pressed="true"]{background:var(--paper);border-color:#0000;color:var(--red)}
+html[data-skin^=dossier] .opts button[aria-pressed="true"]::after{content:"";position:absolute;inset:-5px -3px;border:3px solid var(--red);border-radius:50% 46% 52% 48%/52% 50% 46% 50%;transform:rotate(-3deg)}
+html[data-skin^=dossier] .plus{color:var(--ok)}
+html[data-skin^=dossier] .toast{background:var(--ink);color:var(--paper);border-radius:3px}
+html[data-skin^=dossier] .banner{background:#fff3c4;border-color:#9a5b0055;color:#5c3a00}
+html[data-skin^=dossier] .msheet-bg{background:#2a1d1299}
+html[data-skin^=dossier] .msheet{background:var(--paper);border-top:4px solid var(--red)}
+html[data-skin^=dossier] .sk{background:linear-gradient(90deg,#2a1d120a 0,#2a1d121a 40%,#2a1d120a 80%);background-size:200% 100%}
+html[data-skin^=dossier] #party i{width:7px;height:18px;background:var(--paper);box-shadow:0 0 0 1px #0001}
+html[data-skin^=dossier] #party i[style*="--k:1"]{background:var(--red)}
+html[data-skin^=dossier] #party i[style*="--k:2"]{background:#d4ad69}
+html[data-skin^=dossier] #party i[style*="--k:3"]{background:var(--ink)}
+
+
+/* ====================== ملف سري · جلد أخضر ====================== */
+/* مكتب رسمي قديم: جلد أخضر غامق بإطار ذهبي محفور، ضوء أباجورة، وقلم حبر */
+html[data-skin=dossier-leather]{--bg:#1c3529;--on-bg:#f4ecd9;--on-bg-mute:#cdbf9f;--on-red:#ff9a8a}
+html[data-skin=dossier-leather] body{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='l' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.1 0 0 0 .07 .2 0 0 0 .14 .15 0 0 0 .1 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E") 0 0/240px 240px,var(--bg)}
+html[data-skin=dossier-leather] .deco i:nth-child(1){inset:0;opacity:1;mix-blend-mode:normal;background:radial-gradient(70% 45% at 76% 0,#ffe0a830,#0000 72%)}
+html[data-skin=dossier-leather] .deco i:nth-child(2){inset:10px;border:1.5px solid #c9a24a8c;border-radius:4px;background:none;box-shadow:inset 0 0 0 4px #0000,inset 0 0 0 5.5px #c9a24a40,0 0 0 30px #0000004d}
+html[data-skin=dossier-leather] .deco i:nth-child(3){display:none}
+html[data-skin=dossier-leather] .deco i:nth-child(4){background:radial-gradient(circle,#0000 61%,#00000040 63%,#00000020 67%,#0000 70%)}
+html[data-skin=dossier-leather] .deco i:nth-child(6){inset:0;background:radial-gradient(130% 95% at 50% 30%,#0000 52%,#0000008c 100%)}
+html[data-skin=dossier-leather] .deco i:nth-child(5){left:-70px;bottom:210px;width:240px;height:13px;border-radius:7px 3px 3px 7px;background:linear-gradient(90deg,#16110e 0 64%,#d6ae55 64% 67%,#16110e 67% 92%,#c9a24a 92%);box-shadow:0 8px 10px -4px #000a;transform:rotate(-28deg)}
+html[data-skin=dossier-leather] .hero :is(h2,p){text-shadow:0 1px 3px #000a}
+html[data-skin=dossier-leather] .bar{background:linear-gradient(#16291f 0,#16291fe6 60%,#0000)}
+html[data-skin=dossier-leather] .foot{background:linear-gradient(#0000,#16291f 42%)}
 </style>
 </head>
 <body>
+<div class="deco" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div id="party" aria-hidden="true"></div>
 <header class="bar">
   <h1>الجاسوس</h1>
   <span class="chip" id="roundChip" hidden>الجولة <span class="num" id="roundNum"></span></span>
@@ -393,6 +552,100 @@ function joinBase(dir){
   return new URL(dir, base.endsWith('/') ? base : base.replace(/[^/]*$/, '')).href;
 }
 
+/* ---------- رمز QR للرابط (بدون مكتبات) ----------
+   QR.svg(text) يرجّع SVG. وضع البايت، تصحيح M، الإصدارات ١–٢٠ (يكفي رابط لين ~٣٣٠ حرف). */
+const QR = (() => {
+  const ECC = [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26];
+  const BLK = [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16];
+  const raw = v => { let r = (16 * v + 128) * v + 64; if (v >= 2) { const n = Math.floor(v / 7) + 2; r -= (25 * n - 10) * n - 55; if (v >= 7) r -= 36; } return r; };
+  const dataCw = v => Math.floor(raw(v) / 8) - ECC[v] * BLK[v];
+  const mul = (x, y) => { let z = 0; for (let i = 7; i >= 0; i--) { z = (z << 1) ^ ((z >>> 7) * 0x11D); z ^= ((y >>> i) & 1) * x; } return z & 255; };
+  function rsDiv(d){ const r = new Array(d).fill(0); r[d - 1] = 1; let root = 1;
+    for (let i = 0; i < d; i++) { for (let j = 0; j < d; j++) { r[j] = mul(r[j], root); if (j + 1 < d) r[j] ^= r[j + 1]; } root = mul(root, 2); } return r; }
+  function rsRem(data, div){ const r = new Array(div.length).fill(0);
+    for (const b of data) { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => r[i] ^= mul(c, f)); } return r; }
+  function align(v){ if (v === 1) return []; const n = Math.floor(v / 7) + 2, step = Math.ceil((v * 4 + 4) / (n * 2 - 2)) * 2, r = [6];
+    for (let p = v * 4 + 10; r.length < n; p -= step) r.splice(1, 0, p); return r; }
+  function encode(text){
+    const bytes = [...new TextEncoder().encode(text)];
+    let v = 1; for (; v <= 20; v++) if (4 + (v < 10 ? 8 : 16) + bytes.length * 8 <= dataCw(v) * 8) break;
+    if (v > 20) throw new Error('QR: النص طويل');
+    // البتات: وضع البايت، الطول، البيانات، ثم الحشو
+    const bits = []; const put = (x, n) => { for (let i = n - 1; i >= 0; i--) bits.push((x >>> i) & 1); };
+    put(4, 4); put(bytes.length, v < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+    const cap = dataCw(v) * 8; put(0, Math.min(4, cap - bits.length)); put(0, (8 - bits.length % 8) % 8);
+    for (let p = 0xEC; bits.length < cap; p ^= 0xEC ^ 0x11) put(p, 8);
+    const data = []; for (let i = 0; i < bits.length; i += 8) data.push(parseInt(bits.slice(i, i + 8).join(''), 2));
+    // تصحيح الأخطاء والتداخل بين الكتل
+    const nb = BLK[v], el = ECC[v], rc = Math.floor(raw(v) / 8), ns = nb - rc % nb, sl = Math.floor(rc / nb), div = rsDiv(el), blocks = [];
+    for (let i = 0, k = 0; i < nb; i++) { const d = data.slice(k, k + sl - el + (i < ns ? 0 : 1)); k += d.length; const e = rsRem(d, div); if (i < ns) d.push(0); blocks.push(d.concat(e)); }
+    const cw = []; for (let i = 0; i < blocks[0].length; i++) blocks.forEach((b, j) => { if (i !== sl - el || j >= ns) cw.push(b[i]); });
+    // المصفوفة
+    const n = v * 4 + 17, M = [...Array(n)].map(() => new Array(n).fill(false)), F = [...Array(n)].map(() => new Array(n).fill(false));
+    const set = (x, y, d) => { M[y][x] = d; F[y][x] = true; };
+    for (let i = 0; i < n; i++) { set(6, i, i % 2 === 0); set(i, 6, i % 2 === 0); }
+    for (const [cx, cy] of [[3, 3], [n - 4, 3], [3, n - 4]]) for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) {
+      const x = cx + dx, y = cy + dy, d = Math.max(Math.abs(dx), Math.abs(dy)); if (x >= 0 && x < n && y >= 0 && y < n) set(x, y, d !== 2 && d !== 4); }
+    const ap = align(v);
+    ap.forEach((a, i) => ap.forEach((b, j) => { if ((i === 0 && j === 0) || (i === 0 && j === ap.length - 1) || (i === ap.length - 1 && j === 0)) return;
+      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) set(a + dx, b + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1); }));
+    const fmt = mask => { const d = mask; let r = d; for (let i = 0; i < 10; i++) r = (r << 1) ^ ((r >>> 9) * 0x537); const b = ((d << 10) | r) ^ 0x5412; // M = 00
+      const g = i => ((b >>> i) & 1) === 1;
+      for (let i = 0; i <= 5; i++) set(8, i, g(i)); set(8, 7, g(6)); set(8, 8, g(7)); set(7, 8, g(8)); for (let i = 9; i < 15; i++) set(14 - i, 8, g(i));
+      for (let i = 0; i < 8; i++) set(n - 1 - i, 8, g(i)); for (let i = 8; i < 15; i++) set(8, n - 15 + i, g(i)); set(8, n - 8, true); };
+    fmt(0);
+    if (v >= 7) { let r = v; for (let i = 0; i < 12; i++) r = (r << 1) ^ ((r >>> 11) * 0x1F25); const b = (v << 12) | r;
+      for (let i = 0; i < 18; i++) { const d = ((b >>> i) & 1) === 1, a = n - 11 + i % 3, c = Math.floor(i / 3); set(a, c, d); set(c, a, d); } }
+    let i = 0;
+    for (let right = n - 1; right >= 1; right -= 2) { if (right === 6) right = 5;
+      for (let vert = 0; vert < n; vert++) for (let j = 0; j < 2; j++) { const x = right - j, up = ((right + 1) & 2) === 0, y = up ? n - 1 - vert : vert;
+        if (!F[y][x] && i < cw.length * 8) { M[y][x] = ((cw[i >>> 3] >>> (7 - (i & 7))) & 1) === 1; i++; } } }
+    // نجرب الأقنعة الثمانية وناخذ الأقل عقوبة
+    const MK = [(x, y) => (x + y) % 2 === 0, (x, y) => y % 2 === 0, (x, y) => x % 3 === 0, (x, y) => (x + y) % 3 === 0,
+      (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2 === 0, (x, y) => x * y % 2 + x * y % 3 === 0,
+      (x, y) => (x * y % 2 + x * y % 3) % 2 === 0, (x, y) => ((x + y) % 2 + x * y % 3) % 2 === 0];
+    const flip = m => { for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (!F[y][x] && MK[m](x, y)) M[y][x] = !M[y][x]; };
+    const score = () => { let s = 0, dark = 0;
+      for (let a = 0; a < n; a++) for (const row of [true, false]) { let run = 1;
+        for (let b = 1; b < n; b++) { const p = row ? M[a][b - 1] : M[b - 1][a], c = row ? M[a][b] : M[b][a]; if (p === c) { run++; if (run === 5) s += 3; else if (run > 5) s++; } else run = 1; } }
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { if (M[y][x]) dark++; if (x < n - 1 && y < n - 1 && M[y][x] === M[y][x + 1] && M[y][x] === M[y + 1][x] && M[y][x] === M[y + 1][x + 1]) s += 3; }
+      return s + Math.floor(Math.abs(dark * 20 - n * n * 10) / (n * n)) * 10; };
+    let best = 0, bs = Infinity;
+    for (let m = 0; m < 8; m++) { flip(m); fmt(m); const s = score(); if (s < bs) { bs = s; best = m; } flip(m); }
+    flip(best); fmt(best);
+    return M;
+  }
+  function svg(text){
+    const M = encode(text), n = M.length, q = 4; let d = '';
+    M.forEach((row, y) => row.forEach((on, x) => { if (on) d += `M${x + q} ${y + q}h1v1h-1z`; }));
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n + q * 2} ${n + q * 2}" shape-rendering="crispEdges" role="img" aria-label="رمز QR لرابط الغرفة"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="#000"/></svg>`;
+  }
+  return {encode, svg};
+})();
+
+/* ---------- رمز QR للغرفة ----------
+   كل لعبة تحط inviteRow() تحت رابط الغرفة: نسخ، مشاركة، وزر QR يفتح الرمز كبير عشان ربعك يصوّرونه. */
+function inviteRow(){
+  return `<div class="row"><button class="btn sm ghost" id="copyLink" type="button">انسخ الرابط</button>${navigator.share ? '<button class="btn sm ghost" id="shareLink" type="button">شارك</button>' : ''}<button class="btn sm ghost" type="button" data-inv="qr">QR</button></div>`;
+}
+function qrSheet(){
+  const old = $('msheet'); if (old) old.remove();
+  const bg = document.createElement('div'); bg.className = 'msheet-bg'; bg.id = 'msheet';
+  bg.innerHTML = `<div class="msheet qrsheet" role="dialog" aria-modal="true" aria-label="رمز QR"><div class="grab"></div>
+    <div class="mwho" style="font-size:22px">خلّ ربعك يصوّرونه</div><div class="qrbox">${QR.svg(HOST.link)}</div>
+    <div class="helper">افتح كاميرا الجوال ووجّهها على الرمز، ويدخل الغرفة على طول</div>
+    <button class="btn ghost" type="button" data-m="x">تم</button></div>`;
+  document.body.appendChild(bg);
+  const close = () => bg.remove();
+  bg.onclick = e => { if (e.target === bg) close(); };
+  bg.querySelector('[data-m="x"]').onclick = close;
+  bg.querySelector('[data-m="x"]').focus();
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('[data-inv="qr"]');
+  if (b && typeof HOST !== 'undefined' && HOST.link) qrSheet();
+});
+
 /* ---------- الكمبيوتر: عمودين ----------
    كل لعبة ترسم بـ setApp(h). على شاشة عريضة الكروت الجانبية (اللاعبين، الرابط، الإعدادات، كيف تلعب) تروح عمود يسار
    واللعب يبقى يمين. التوزيع يصير قبل ما ينحط بالصفحة، فالتركيز في خانة الكتابة ما يضيع. الجوال ما يتغيّر فيه شي. */
@@ -408,7 +661,7 @@ function setApp(h){
   document.body.classList.toggle('split', mode === 'split'); document.body.classList.toggle('wide', !!mode);
   if (!mode) { app.innerHTML = h; return; }
   const a = document.createElement('div'), s = document.createElement('aside');
-  a.className = 'col-main'; s.className = 'col-side';
+  a.className = 'col-main'; s.className = 'col-side'; s.dataset.n = side.length;
   for (const k of kids) (isSide(k) ? s : a).appendChild(k);
   app.replaceChildren(a, s);
 }
@@ -713,8 +966,27 @@ function roleCard(){
 }
 
 const HOW = {k:'spy', s:["كل واحد يشوف الموضوع بروحه، إلا الجاسوس ما يعرفه.", "تسألون بعض بالدور: جاوب بذكاء بدون ما تفضح الموضوع.", "صوّتوا على الجاسوس. لو انكشف، عنده فرصة يخمّن الموضوع ويفوز."]};
+
+/* ---------- هوكات الثيم ---------- */
+// المرحلة على body عشان الثيم يغيّر الخلفية حسبها، و data-enter أول 1.4 ثانية بس (الحركة مرة وحدة)
+let partied = '';
+function party(){
+  const k = S.round + ':' + S.phase; if (partied === k) return; partied = k;
+  const P = document.getElementById('party'); if (!P || getComputedStyle(P).display === 'none') return;
+  P.innerHTML = Array.from({length: 30}, (_, i) => `<i style="--x:${(Math.random() * 100).toFixed(1)}%;--d:${(Math.random() * .6).toFixed(2)}s;--r:${Math.round(Math.random() * 720 - 360)}deg;--s:${(.7 + Math.random() * .6).toFixed(2)};--k:${i % 4}"></i>`).join('');
+  clearTimeout(party.t); party.t = setTimeout(() => { P.innerHTML = ''; }, 4200);
+}
+function phaseHook(ph){
+  const b = document.body;
+  if (b.dataset.phase === ph) return;
+  b.dataset.phase = ph; b.dataset.enter = '1';
+  clearTimeout(phaseHook.t); phaseHook.t = setTimeout(() => { delete b.dataset.enter; }, 1400);
+  if (S && (ph === 'result' || ph === 'final')) party();
+}
 function render(){
   if (!S || !ME) return;
+  phaseHook(S.phase);
+  document.body.dataset.role = S.phase === 'reveal' && UI.peek && PRIV && PRIV.round === S.round ? PRIV.role : '';
   $('roundChip').hidden = S.phase === 'lobby' || S.phase === 'closed';
   $('roundNum').textContent = AR(S.round);
   const app = $('app'), foot = $('footIn');
@@ -730,7 +1002,7 @@ function render(){
     h += `<div class="hero"><h2>${isHost() ? 'غرفتك جاهزة' : 'أنت في الغرفة'}</h2><p>${isHost() ? 'أرسل الرابط لربعك، ويدخلون بدون كود.' : 'ننتظر المؤسس يبدأ الجولة…'}</p></div>` + howCard();
     if (S.note) h += `<div class="banner">${esc(S.note)}</div>`;
     if (isHost()) h += `<div class="card"><span class="label">رابط الغرفة</span><div class="linkbox"><code>${esc(HOST.link)}</code></div>
-      <div class="row"><button class="btn sm ghost" id="copyLink" type="button">انسخ الرابط</button>${navigator.share ? '<button class="btn sm ghost" id="shareLink" type="button">شارك</button>' : ''}</div></div>`;
+      ${inviteRow()}</div>`;
     h += playersCard(false);
     h += settingsCard();
     if (isHost()) {
@@ -841,10 +1113,11 @@ async function hostBoot(){
 }
 
 function hostCreateScreen(prevName){
+  phaseHook('create');
   setNet('idle'); $('netTxt').textContent = 'ما فيه غرفة'; $('netDot').className = 'dot';
-  $('app').innerHTML = `<div class="hero"><h2>سوّ غرفة جديدة</h2><p>أنت المؤسس. تفعيلك بالكود يكفي، والباقين يدخلون من الرابط.</p></div>
+  setApp(`<div class="hero"><h2>سوّ غرفة جديدة</h2><p>أنت المؤسس. تفعيلك بالكود يكفي، والباقين يدخلون من الرابط.</p></div>
     <div class="card"><div class="field"><label class="label" for="hname">اسمك في اللعبة</label><input id="hname" maxlength="16" autocomplete="off" value="${esc(prevName || '')}" placeholder="مثلاً: مجاهد"></div></div>
-    <div class="card"><span class="label">كيف تنلعب</span><div class="sub">١. ترسل الرابط ويدخلون. ٢. كل واحد يشوف دوره، والجاسوس ما يعرف الموضوع. ٣. تسألون بعض بالترتيب اللي يطلع للكل. ٤. تصوّتون، واللي يصوّت صح ياخذ نقاط. ٥. الجاسوس يخمّن الموضوع.</div></div>`;
+    <div class="card"><span class="label">كيف تنلعب</span><div class="sub">١. ترسل الرابط ويدخلون. ٢. كل واحد يشوف دوره، والجاسوس ما يعرف الموضوع. ٣. تسألون بعض بالترتيب اللي يطلع للكل. ٤. تصوّتون، واللي يصوّت صح ياخذ نقاط. ٥. الجاسوس يخمّن الموضوع.</div></div>`);
   $('footIn').innerHTML = `<button class="btn" id="create" type="button">سوّ الغرفة</button>`;
   $('foot').hidden = false;
   const go = async () => {
@@ -1140,9 +1413,10 @@ async function clientBoot(){
 }
 
 function clientNameScreen(){
-  $('app').innerHTML = `<div class="hero"><h2>انضم للغرفة</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
+  phaseHook('join');
+  setApp(`<div class="hero"><h2>انضم للغرفة</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
     <div class="card"><div class="field"><label class="label" for="cname">اسمك في اللعبة</label><input id="cname" maxlength="16" autocomplete="off" placeholder="مثلاً: سلمان"></div></div>
-    ${playersCard(false)}`;
+    ${playersCard(false)}`);
   $('footIn').innerHTML = `<button class="btn" id="joinBtn" type="button">ادخل</button>`;
   $('foot').hidden = false;
   const go = () => {

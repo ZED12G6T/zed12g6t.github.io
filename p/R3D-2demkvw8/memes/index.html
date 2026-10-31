@@ -185,7 +185,12 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
   main.spread>.col-side{column-count:2;column-gap:48px}
   main.spread>.col-side>*{break-inside:avoid;margin-bottom:28px}
 }
-@media (min-width:1360px){main.spread>.col-side{column-count:3}}
+@media (min-width:1360px){main.spread>.col-side:not([data-n="2"]){column-count:3}}
+
+/* لوحة رمز QR */
+.qrsheet{align-items:center;text-align:center}
+.qrbox{width:min(300px,72vw);aspect-ratio:1;background:#fff;border-radius:14px;padding:6px;box-shadow:0 0 0 1px var(--line2)}
+.qrbox svg{display:block;width:100%;height:100%}
 
 /* الميمز: أصفر ميمز على نفس أرضية المنصة. الصورة دايم بالنص، والكلام عليها بخط الميمز (MemeCap) بحد أسود. */
 :root{--g:#ffcc33;--g-bg:#ffcc331f;--g-fg:#1a1400;--glow:#ffcc3324;--meme:'MemeCap','Lifta',system-ui,sans-serif}
@@ -588,6 +593,100 @@ function joinBase(dir){
   return new URL(dir, base.endsWith('/') ? base : base.replace(/[^/]*$/, '')).href;
 }
 
+/* ---------- رمز QR للرابط (بدون مكتبات) ----------
+   QR.svg(text) يرجّع SVG. وضع البايت، تصحيح M، الإصدارات ١–٢٠ (يكفي رابط لين ~٣٣٠ حرف). */
+const QR = (() => {
+  const ECC = [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26];
+  const BLK = [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16];
+  const raw = v => { let r = (16 * v + 128) * v + 64; if (v >= 2) { const n = Math.floor(v / 7) + 2; r -= (25 * n - 10) * n - 55; if (v >= 7) r -= 36; } return r; };
+  const dataCw = v => Math.floor(raw(v) / 8) - ECC[v] * BLK[v];
+  const mul = (x, y) => { let z = 0; for (let i = 7; i >= 0; i--) { z = (z << 1) ^ ((z >>> 7) * 0x11D); z ^= ((y >>> i) & 1) * x; } return z & 255; };
+  function rsDiv(d){ const r = new Array(d).fill(0); r[d - 1] = 1; let root = 1;
+    for (let i = 0; i < d; i++) { for (let j = 0; j < d; j++) { r[j] = mul(r[j], root); if (j + 1 < d) r[j] ^= r[j + 1]; } root = mul(root, 2); } return r; }
+  function rsRem(data, div){ const r = new Array(div.length).fill(0);
+    for (const b of data) { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => r[i] ^= mul(c, f)); } return r; }
+  function align(v){ if (v === 1) return []; const n = Math.floor(v / 7) + 2, step = Math.ceil((v * 4 + 4) / (n * 2 - 2)) * 2, r = [6];
+    for (let p = v * 4 + 10; r.length < n; p -= step) r.splice(1, 0, p); return r; }
+  function encode(text){
+    const bytes = [...new TextEncoder().encode(text)];
+    let v = 1; for (; v <= 20; v++) if (4 + (v < 10 ? 8 : 16) + bytes.length * 8 <= dataCw(v) * 8) break;
+    if (v > 20) throw new Error('QR: النص طويل');
+    // البتات: وضع البايت، الطول، البيانات، ثم الحشو
+    const bits = []; const put = (x, n) => { for (let i = n - 1; i >= 0; i--) bits.push((x >>> i) & 1); };
+    put(4, 4); put(bytes.length, v < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+    const cap = dataCw(v) * 8; put(0, Math.min(4, cap - bits.length)); put(0, (8 - bits.length % 8) % 8);
+    for (let p = 0xEC; bits.length < cap; p ^= 0xEC ^ 0x11) put(p, 8);
+    const data = []; for (let i = 0; i < bits.length; i += 8) data.push(parseInt(bits.slice(i, i + 8).join(''), 2));
+    // تصحيح الأخطاء والتداخل بين الكتل
+    const nb = BLK[v], el = ECC[v], rc = Math.floor(raw(v) / 8), ns = nb - rc % nb, sl = Math.floor(rc / nb), div = rsDiv(el), blocks = [];
+    for (let i = 0, k = 0; i < nb; i++) { const d = data.slice(k, k + sl - el + (i < ns ? 0 : 1)); k += d.length; const e = rsRem(d, div); if (i < ns) d.push(0); blocks.push(d.concat(e)); }
+    const cw = []; for (let i = 0; i < blocks[0].length; i++) blocks.forEach((b, j) => { if (i !== sl - el || j >= ns) cw.push(b[i]); });
+    // المصفوفة
+    const n = v * 4 + 17, M = [...Array(n)].map(() => new Array(n).fill(false)), F = [...Array(n)].map(() => new Array(n).fill(false));
+    const set = (x, y, d) => { M[y][x] = d; F[y][x] = true; };
+    for (let i = 0; i < n; i++) { set(6, i, i % 2 === 0); set(i, 6, i % 2 === 0); }
+    for (const [cx, cy] of [[3, 3], [n - 4, 3], [3, n - 4]]) for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) {
+      const x = cx + dx, y = cy + dy, d = Math.max(Math.abs(dx), Math.abs(dy)); if (x >= 0 && x < n && y >= 0 && y < n) set(x, y, d !== 2 && d !== 4); }
+    const ap = align(v);
+    ap.forEach((a, i) => ap.forEach((b, j) => { if ((i === 0 && j === 0) || (i === 0 && j === ap.length - 1) || (i === ap.length - 1 && j === 0)) return;
+      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) set(a + dx, b + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1); }));
+    const fmt = mask => { const d = mask; let r = d; for (let i = 0; i < 10; i++) r = (r << 1) ^ ((r >>> 9) * 0x537); const b = ((d << 10) | r) ^ 0x5412; // M = 00
+      const g = i => ((b >>> i) & 1) === 1;
+      for (let i = 0; i <= 5; i++) set(8, i, g(i)); set(8, 7, g(6)); set(8, 8, g(7)); set(7, 8, g(8)); for (let i = 9; i < 15; i++) set(14 - i, 8, g(i));
+      for (let i = 0; i < 8; i++) set(n - 1 - i, 8, g(i)); for (let i = 8; i < 15; i++) set(8, n - 15 + i, g(i)); set(8, n - 8, true); };
+    fmt(0);
+    if (v >= 7) { let r = v; for (let i = 0; i < 12; i++) r = (r << 1) ^ ((r >>> 11) * 0x1F25); const b = (v << 12) | r;
+      for (let i = 0; i < 18; i++) { const d = ((b >>> i) & 1) === 1, a = n - 11 + i % 3, c = Math.floor(i / 3); set(a, c, d); set(c, a, d); } }
+    let i = 0;
+    for (let right = n - 1; right >= 1; right -= 2) { if (right === 6) right = 5;
+      for (let vert = 0; vert < n; vert++) for (let j = 0; j < 2; j++) { const x = right - j, up = ((right + 1) & 2) === 0, y = up ? n - 1 - vert : vert;
+        if (!F[y][x] && i < cw.length * 8) { M[y][x] = ((cw[i >>> 3] >>> (7 - (i & 7))) & 1) === 1; i++; } } }
+    // نجرب الأقنعة الثمانية وناخذ الأقل عقوبة
+    const MK = [(x, y) => (x + y) % 2 === 0, (x, y) => y % 2 === 0, (x, y) => x % 3 === 0, (x, y) => (x + y) % 3 === 0,
+      (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2 === 0, (x, y) => x * y % 2 + x * y % 3 === 0,
+      (x, y) => (x * y % 2 + x * y % 3) % 2 === 0, (x, y) => ((x + y) % 2 + x * y % 3) % 2 === 0];
+    const flip = m => { for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (!F[y][x] && MK[m](x, y)) M[y][x] = !M[y][x]; };
+    const score = () => { let s = 0, dark = 0;
+      for (let a = 0; a < n; a++) for (const row of [true, false]) { let run = 1;
+        for (let b = 1; b < n; b++) { const p = row ? M[a][b - 1] : M[b - 1][a], c = row ? M[a][b] : M[b][a]; if (p === c) { run++; if (run === 5) s += 3; else if (run > 5) s++; } else run = 1; } }
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { if (M[y][x]) dark++; if (x < n - 1 && y < n - 1 && M[y][x] === M[y][x + 1] && M[y][x] === M[y + 1][x] && M[y][x] === M[y + 1][x + 1]) s += 3; }
+      return s + Math.floor(Math.abs(dark * 20 - n * n * 10) / (n * n)) * 10; };
+    let best = 0, bs = Infinity;
+    for (let m = 0; m < 8; m++) { flip(m); fmt(m); const s = score(); if (s < bs) { bs = s; best = m; } flip(m); }
+    flip(best); fmt(best);
+    return M;
+  }
+  function svg(text){
+    const M = encode(text), n = M.length, q = 4; let d = '';
+    M.forEach((row, y) => row.forEach((on, x) => { if (on) d += `M${x + q} ${y + q}h1v1h-1z`; }));
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${n + q * 2} ${n + q * 2}" shape-rendering="crispEdges" role="img" aria-label="رمز QR لرابط الغرفة"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="#000"/></svg>`;
+  }
+  return {encode, svg};
+})();
+
+/* ---------- رمز QR للغرفة ----------
+   كل لعبة تحط inviteRow() تحت رابط الغرفة: نسخ، مشاركة، وزر QR يفتح الرمز كبير عشان ربعك يصوّرونه. */
+function inviteRow(){
+  return `<div class="row"><button class="btn sm ghost" id="copyLink" type="button">انسخ الرابط</button>${navigator.share ? '<button class="btn sm ghost" id="shareLink" type="button">شارك</button>' : ''}<button class="btn sm ghost" type="button" data-inv="qr">QR</button></div>`;
+}
+function qrSheet(){
+  const old = $('msheet'); if (old) old.remove();
+  const bg = document.createElement('div'); bg.className = 'msheet-bg'; bg.id = 'msheet';
+  bg.innerHTML = `<div class="msheet qrsheet" role="dialog" aria-modal="true" aria-label="رمز QR"><div class="grab"></div>
+    <div class="mwho" style="font-size:22px">خلّ ربعك يصوّرونه</div><div class="qrbox">${QR.svg(HOST.link)}</div>
+    <div class="helper">افتح كاميرا الجوال ووجّهها على الرمز، ويدخل الغرفة على طول</div>
+    <button class="btn ghost" type="button" data-m="x">تم</button></div>`;
+  document.body.appendChild(bg);
+  const close = () => bg.remove();
+  bg.onclick = e => { if (e.target === bg) close(); };
+  bg.querySelector('[data-m="x"]').onclick = close;
+  bg.querySelector('[data-m="x"]').focus();
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('[data-inv="qr"]');
+  if (b && typeof HOST !== 'undefined' && HOST.link) qrSheet();
+});
+
 /* ---------- الكمبيوتر: عمودين ----------
    كل لعبة ترسم بـ setApp(h). على شاشة عريضة الكروت الجانبية (اللاعبين، الرابط، الإعدادات، كيف تلعب) تروح عمود يسار
    واللعب يبقى يمين. التوزيع يصير قبل ما ينحط بالصفحة، فالتركيز في خانة الكتابة ما يضيع. الجوال ما يتغيّر فيه شي. */
@@ -603,7 +702,7 @@ function setApp(h){
   document.body.classList.toggle('split', mode === 'split'); document.body.classList.toggle('wide', !!mode);
   if (!mode) { app.innerHTML = h; return; }
   const a = document.createElement('div'), s = document.createElement('aside');
-  a.className = 'col-main'; s.className = 'col-side';
+  a.className = 'col-main'; s.className = 'col-side'; s.dataset.n = side.length;
   for (const k of kids) (isSide(k) ? s : a).appendChild(k);
   app.replaceChildren(a, s);
 }
@@ -1080,7 +1179,7 @@ function render(){
   else if (S.phase === 'lobby') {
     h += `<div class="hero"><h2>${isHost() ? 'غرفتك جاهزة' : 'أنت في الغرفة'}</h2><p>${isHost() ? 'أرسل الرابط لربعك، ويدخلون بدون كود.' : 'ننتظر المؤسس يبدأ…'}</p></div>` + howCard();
     if (isHost()) h += `<div class="card"><span class="label">رابط الغرفة</span><div class="linkbox"><code>${esc(HOST.link)}</code></div>
-      <div class="row"><button class="btn sm ghost" id="copyLink" type="button">انسخ الرابط</button>${navigator.share ? '<button class="btn sm ghost" id="shareLink" type="button">شارك</button>' : ''}</div></div>`;
+      ${inviteRow()}</div>`;
     h += playersCard(false);
     if (isHost()) h += hostSettings();
     else h += `<div class="card"><span class="label">الإعدادات</span><div class="sub"><span class="num">${S.settings.rounds}</span> جولات · <span class="num">${S.settings.timer}</span> ثانية للكتابة</div></div>`;
@@ -1265,9 +1364,9 @@ async function hostBoot(){
 }
 function hostCreateScreen(){
   setNet('idle'); $('netTxt').textContent = 'ما فيه غرفة'; $('netDot').className = 'dot';
-  $('app').innerHTML = `<div class="hero"><h2>سوّ غرفة ميمز</h2><p>تطلع صورة، وكل واحد يكتب عليها شي يضحك، وبعدها تصوّتون.</p></div>
+  setApp(`<div class="hero"><h2>سوّ غرفة ميمز</h2><p>تطلع صورة، وكل واحد يكتب عليها شي يضحك، وبعدها تصوّتون.</p></div>
     <div class="card"><div class="field"><label class="label" for="hname">اسمك في اللعبة</label><input id="hname" maxlength="16" autocomplete="off" value="${esc(LS.get('r3d.spy.hostname', ''))}" placeholder="مثلاً: مجاهد"></div></div>
-    <div class="card"><span class="label">النقاط</span>${rulesList()}</div>`;
+    <div class="card"><span class="label">النقاط</span>${rulesList()}</div>`);
   $('footIn').innerHTML = `<button class="btn" id="create" type="button">سوّ الغرفة</button>`;
   $('foot').hidden = false;
   const go = async () => {
@@ -1571,8 +1670,8 @@ async function clientBoot(){
   setInterval(() => { if (CL.name && CL.shared && !CL.out) clientAct({t:'ping'}); }, 8000);
 }
 function clientNameScreen(){
-  $('app').innerHTML = `<div class="hero"><h2>انضم لغرفة الميمز</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
-    <div class="card"><div class="field"><label class="label" for="cname">اسمك في اللعبة</label><input id="cname" maxlength="16" autocomplete="off" placeholder="مثلاً: سلمان"></div></div>${playersCard(false)}`;
+  setApp(`<div class="hero"><h2>انضم لغرفة الميمز</h2><p>اكتب اسمك وادخل، ما تحتاج كود.</p></div>
+    <div class="card"><div class="field"><label class="label" for="cname">اسمك في اللعبة</label><input id="cname" maxlength="16" autocomplete="off" placeholder="مثلاً: سلمان"></div></div>${playersCard(false)}`);
   $('footIn').innerHTML = `<button class="btn" id="joinBtn" type="button">ادخل</button>`; $('foot').hidden = false;
   const go = () => {
     const n = $('cname').value.trim();
