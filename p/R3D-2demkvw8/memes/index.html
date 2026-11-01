@@ -42,7 +42,8 @@ input{font:inherit}
 .bar .sp{flex:1}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:2px 0;font-size:15px;color:var(--mute);white-space:nowrap}
 .chip .num{font-size:20px;color:var(--fg)}
-button.chip{color:var(--fg);border-bottom:1px solid var(--line2);transition:border-color .2s}
+button.chip{position:relative;color:var(--fg);border-bottom:1px solid var(--line2);transition:border-color .2s}
+button.chip::before{content:"";position:absolute;inset:-8px -6px}
 button.chip:hover{border-color:var(--fg)}
 #toLib{min-height:44px;padding:8px 18px;border:1px solid var(--line2);border-radius:999px;font-size:16px}
 @media (pointer:coarse), (max-width:600px){#toLib{min-height:46px;font-size:17px}}
@@ -97,12 +98,12 @@ main{max-width:560px;margin:0 auto;padding:10px max(20px,env(safe-area-inset-rig
 
 /* إعدادات */
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips button{padding:4px 14px;border-radius:999px;border:1px solid var(--line2);background:none;font-size:15px;color:var(--mute);transition:color .2s,border-color .2s,background .2s}
+.chips button{position:relative;min-height:40px;padding:4px 14px;border-radius:999px;border:1px solid var(--line2);background:none;font-size:15px;color:var(--mute);transition:color .2s,border-color .2s,background .2s}
 .chips button:hover{color:var(--fg);border-color:var(--fg)}
 .chips button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:#000}
-.seg{display:inline-flex;gap:20px;padding:0;border-radius:0;background:none;border:0}
-.seg button{position:relative;padding:4px 2px;border-radius:0;color:var(--mute);font-size:18px;transition:color .2s}
-.seg button::after{content:"";position:absolute;right:0;left:0;bottom:0;height:2px;background:var(--g);transform:scaleX(0);transition:transform .4s var(--out)}
+.seg{display:inline-flex;gap:4px;padding:0;border-radius:0;background:none;border:0}
+.seg button{position:relative;min-width:44px;min-height:44px;padding:4px 8px;border-radius:0;color:var(--mute);font-size:18px;transition:color .2s}
+.seg button::after{content:"";position:absolute;right:8px;left:8px;bottom:4px;height:2px;background:var(--g);transform:scaleX(0);transition:transform .4s var(--out)}
 .seg button[aria-pressed="true"]{color:var(--fg)}
 .seg button[aria-pressed="true"]::after{transform:scaleX(1)}
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -290,7 +291,7 @@ html[data-skin] .memebox canvas{display:block}
 /* القروب: الغرفة كأنها محادثة قروب. صورة الجولة رسالة من المؤسس، ميمك فقاعة صفرا على اليسار، وميمز ربعك فقاعات على اليمين وتحتها تفاعلات */
 html[data-skin=chat]{
   --bg:#0d1317;--panel:#1a232a;--panel2:#222d35;--line:#ffffff12;--line2:#ffffff2b;
-  --fg:#edf2f4;--mute:#a3b0b8;--dim:#76848d;--g:#ffcf3a;--g-bg:#ffcf3a1f;--g-fg:#1d1600;--glow:#ffcf3a14;--ok:#3ee0a1;
+  --fg:#edf2f4;--mute:#b4c0c7;--dim:#76848d;--g:#ffcf3a;--g-bg:#ffcf3a1f;--g-fg:#1d1600;--glow:#ffcf3a14;--ok:#3ee0a1;
   --in:#1b252c;--in2:#232f37;--out-b:#ffcf3a;--tick:#4fc3ff;
 }
 html[data-skin=chat] body{background:var(--bg)}
@@ -565,7 +566,9 @@ const C = {
 
 function toast(t){
   const el = document.createElement('div'); el.className = 'toast'; el.textContent = t;
-  $('toasts').appendChild(el); setTimeout(() => el.remove(), 2200);
+  // لا يغطي زر «ابدأ» اللي تحت
+  const f = document.querySelector('.foot'), ts = $('toasts'); ts.style.bottom = f && !document.body.classList.contains('wide') ? (f.offsetHeight + 8) + 'px' : '';
+  ts.appendChild(el); setTimeout(() => el.remove(), 2200);
 }
 // شريط فوق يطلع إذا انقطع الاتصال بعد ما كان شغّال، ويختفي أول ما يرجع
 let netWasUp = false, netT = 0;
