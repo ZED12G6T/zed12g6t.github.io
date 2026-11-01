@@ -13,10 +13,10 @@
 }
 
 :root {
-  --bg: #f6f3ee; --surface: #fffdfa; --surface-2: #faf7f2;
+  --bg: #f6f5fb; --surface: #fffeff; --surface-2: #f9f8fd;
   --ink: #1f1d2b; --ink-2: #4b4860; --ink-3: #7a7690;
-  --line: #e7e2d9; --line-2: #d8d2c6;
-  --accent: #4f46e5; --accent-soft: #eef0ff; --accent-ink: #ffffff;
+  --line: #e6e3f0; --line-2: #d6d2e4;
+  --accent: #7c3aed; --accent-soft: #f1ebff; --accent-ink: #ffffff;
   --cx: #2563eb; --cy: #0b8f63; --cz: #db540c;
   --good: #0b8f63; --good-soft: #e7f6ef;
   --bad: #d23a4e; --bad-soft: #fdeef0;
@@ -32,7 +32,7 @@
     --bg: #14131c; --surface: #1c1b27; --surface-2: #222131;
     --ink: #ecebf5; --ink-2: #b9b6cc; --ink-3: #8a87a0;
     --line: #2d2b3d; --line-2: #3a384d;
-    --accent: #8b85ff; --accent-soft: rgba(139,133,255,.14); --accent-ink: #14131c;
+    --accent: #b69cff; --accent-soft: rgba(182,156,255,.14); --accent-ink: #14131c;
     --cx: #6fa8ff; --cy: #3ad69a; --cz: #ff8f55;
     --good: #3ad69a; --good-soft: rgba(58,214,154,.12);
     --bad: #ff7a8a; --bad-soft: rgba(255,122,138,.12);
@@ -45,7 +45,7 @@
   --bg: #14131c; --surface: #1c1b27; --surface-2: #222131;
   --ink: #ecebf5; --ink-2: #b9b6cc; --ink-3: #8a87a0;
   --line: #2d2b3d; --line-2: #3a384d;
-  --accent: #8b85ff; --accent-soft: rgba(139,133,255,.14); --accent-ink: #14131c;
+  --accent: #b69cff; --accent-soft: rgba(182,156,255,.14); --accent-ink: #14131c;
   --cx: #6fa8ff; --cy: #3ad69a; --cz: #ff8f55;
   --good: #3ad69a; --good-soft: rgba(58,214,154,.12);
   --bad: #ff7a8a; --bad-soft: rgba(255,122,138,.12);
