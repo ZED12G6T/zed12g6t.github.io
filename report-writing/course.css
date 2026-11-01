@@ -95,39 +95,38 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 .recipe li b[dir="ltr"] { display: block; text-align: left; }
 
 /* =====================================================================
-   الخريطة الذهنية (mindmaps.html وصفحات الشرح): الموضوع في النص والفروع حوله، كل عقدة إنجليزي وتحته العربي
+   الخريطة الذهنية (mindmaps.html وصفحات الشرح): شجرة من فوق لتحت
+   المحاضرة فوق ← خط ← الفروع في صف واحد ← تحت كل فرع نقاطه معلقة على خط
+   كل عقدة إنجليزي وتحته العربي. الخريطة تطلع أعرض من البطاقة في الشاشة العريضة، وفي الجوال تتسحب يمين ويسار
    ===================================================================== */
-.mm { margin: 14px 0 4px; }
+.mm { --mmw: min(calc(100vw - 32px), 1400px); --ln: 3px solid var(--line); width: var(--mmw); margin: 14px calc((100% - var(--mmw)) / 2) 4px; position: relative; }
 .mm .mm-e { display: block; direction: ltr; text-align: left; font-family: var(--f-en, system-ui); }
 .mm .mm-a { display: block; }
-.mm-brs { display: grid; gap: 14px; }
-.mm-hub { display: flex; align-items: center; justify-content: center; }
-.mm-root { background: var(--accent); color: #fff; border-radius: 18px; padding: 14px 18px; text-align: center; box-shadow: var(--shadow, 0 6px 20px rgba(0,0,0,.12)); }
-.mm-root .mm-e { text-align: center; font-size: .95rem; font-weight: 600; opacity: .95; }
-.mm-root .mm-a { font-family: var(--f-head); font-weight: 700; font-size: 1.15rem; margin-top: 2px; }
-.mm-br { position: relative; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--b); border-radius: 14px; padding: 10px 12px; min-width: 0; }
-.mm-bh { margin-bottom: 6px; }
-.mm-bh .mm-e { font-weight: 600; font-size: .92rem; color: var(--b); }
-.mm-bh .mm-a { font-family: var(--f-head); font-weight: 600; font-size: 1.02rem; }
-.mm-lv { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.mm-lv li { border-inline-start: 3px solid color-mix(in srgb, var(--b) 45%, transparent); padding-inline-start: 8px; }
-.mm-lv .mm-e { font-size: .82rem; color: var(--ink-2); line-height: 1.45; }
-.mm-lv .mm-a { font-size: .9rem; line-height: 1.55; }
-/* جوال: الموضوع فوق، والفروع على خط رأسي */
-@media (max-width: 899px) {
-  .mm-brs { position: relative; padding-inline-start: 18px; }
-  .mm-brs::before { content: ''; position: absolute; inset-inline-start: 4px; top: 30px; bottom: 24px; border-inline-start: 3px solid var(--line); }
-  .mm-hub { justify-content: flex-start; margin-inline-start: -18px; }
-  .mm-br::before { content: ''; position: absolute; inset-inline-start: -15px; top: 22px; width: 14px; border-top: 3px solid var(--b); }
-}
-/* شاشة عريضة: الموضوع في النص، ونص الفروع يمينه ونصها يساره */
-@media (min-width: 900px) {
-  .mm-brs { grid-template-columns: minmax(0, 1fr) 190px minmax(0, 1fr); column-gap: 22px; grid-auto-flow: row dense; }
-  .mm-hub { grid-column: 2; grid-row: 1 / span var(--rows); border-inline: 3px solid var(--line); padding: 0 10px; }
-  .mm-br.a { grid-column: 1; }
-  .mm-br.b { grid-column: 3; }
-  .mm-br::before { content: ''; position: absolute; top: 26px; width: 22px; border-top: 3px solid var(--b); }
-  .mm-br.a::before { inset-inline-end: -23px; }
-  .mm-br.b::before { inset-inline-start: -23px; }
-}
-@media print { .mm-br { break-inside: avoid; } }
+.mm-hint { display: none; margin: 0 0 6px; text-align: center; font-size: .85rem; color: var(--ink-2); }
+.mm.scrolls .mm-hint { display: block; }
+.mm-scroll { overflow-x: auto; overscroll-behavior-x: contain; padding: 2px 0 10px; }
+.mm-tree { width: 100%; min-width: calc(var(--n, 4) * 156px); display: flex; flex-direction: column; align-items: center; }
+.mm-root { position: relative; background: var(--accent); color: #fff; border-radius: 18px; padding: 12px 20px; text-align: center; box-shadow: var(--shadow, 0 6px 20px rgba(0,0,0,.12)); max-width: 420px; }
+.mm-root .mm-e { text-align: center; font-size: .92rem; font-weight: 600; opacity: .95; }
+.mm-root .mm-a { font-family: var(--f-head); font-weight: 700; font-size: 1.12rem; margin-top: 2px; }
+/* الخط النازل من المحاضرة */
+.mm-root::after { content: ''; position: absolute; top: 100%; left: 50%; height: 20px; border-left: var(--ln); }
+.mm-brs { list-style: none; margin: 20px 0 0; padding: 0; display: flex; justify-content: center; align-items: flex-start; width: 100%; }
+.mm-br { position: relative; flex: 1 1 0; min-width: 150px; max-width: 240px; padding: 22px 6px 0; }
+/* الخط الأفقي فوق الفروع: كل فرع يرسم نصين، وأول فرع وآخر فرع يشيلون النص اللي برا */
+.mm-br::before, .mm-br::after { content: ''; position: absolute; top: 0; width: 50%; border-top: var(--ln); }
+.mm-br::before { inset-inline-start: 0; }
+.mm-br::after { inset-inline-end: 0; }
+.mm-br:first-child::before, .mm-br:last-child::after { border-top: 0; }
+.mm-bh { position: relative; background: color-mix(in srgb, var(--b) 12%, var(--surface)); border: 2px solid var(--b); border-radius: 12px; padding: 8px 10px; text-align: center; }
+/* الخط النازل لكل فرع */
+.mm-bh::before { content: ''; position: absolute; bottom: 100%; left: 50%; margin-left: -1.5px; height: 22px; border-left: 3px solid var(--b); }
+.mm-bh .mm-e { text-align: center; font-weight: 600; font-size: .88rem; color: var(--b); }
+.mm-bh .mm-a { font-family: var(--f-head); font-weight: 600; font-size: 1rem; }
+/* النقاط تحت الفرع معلقة على خط نازل من وسط الفرع */
+.mm-lv { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; }
+.mm-lv li { position: relative; width: 100%; margin-top: 14px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--b) 45%, var(--line)); border-radius: 10px; padding: 6px 8px; text-align: center; }
+.mm-lv li::before { content: ''; position: absolute; bottom: 100%; left: 50%; margin-left: -1px; height: 14px; border-left: 2px solid color-mix(in srgb, var(--b) 55%, transparent); }
+.mm-lv .mm-e { text-align: center; font-size: .78rem; color: var(--ink-2); line-height: 1.4; }
+.mm-lv .mm-a { font-size: .88rem; line-height: 1.5; }
+@media print { .mm { width: auto; margin-inline: 0; } .mm-scroll { overflow: visible; } .mm-br { min-width: 0; } }
