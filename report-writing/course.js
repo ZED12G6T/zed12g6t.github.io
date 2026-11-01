@@ -28,4 +28,17 @@
     if (!laws || !bar) return;
     bar.insertAdjacentHTML('afterend', `<nav class="mode-tabs" aria-label="الشرح أو المفاهيم أو الاختبار"><span class="on" aria-current="page">📖 الشرح</span><a href="${laws}">📐 المفاهيم</a><a href="${laws.replace('laws', 'quiz')}">🧠 الاختبار</a></nav>`);
   });
+  // الخريطة الذهنية: لو أعرض من الشاشة تطلع جملة "اسحب" وتبدأ من نص الخريطة (تحت المحاضرة)
+  function maps() {
+    document.querySelectorAll('.mm').forEach(mm => {
+      const sc = mm.querySelector('.mm-scroll');
+      if (!sc) return;
+      const over = sc.scrollWidth > sc.clientWidth + 2;
+      mm.classList.toggle('scrolls', over);
+      if (over && !sc.dataset.c) { sc.dataset.c = 1; const root = sc.querySelector('.mm-root'); if (root) { const r = root.getBoundingClientRect(), b = sc.getBoundingClientRect(); sc.scrollLeft += (r.left + r.width / 2) - (b.left + b.width / 2); } }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', maps); else maps();
+  window.addEventListener('load', maps);
+  window.addEventListener('resize', maps);
 })();
