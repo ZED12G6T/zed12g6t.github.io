@@ -88,3 +88,8 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 .mode-tabs > * { padding-inline: 18px; }
 @media (max-width: 640px) { .mode-tabs > * { padding: 6px 12px; font-size: .95rem; } }
 @media print { .mode-tabs { display: none; } }
+
+/* أجوبة Remember: الإنجليزي فوق وترجمته العربي تحته */
+.recipe li .why.rm-ar { margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); color: var(--ink); }
+.recipe li .why.rm-ar b { font-weight: 600; }
+.recipe li b[dir="ltr"] { display: block; text-align: left; }
