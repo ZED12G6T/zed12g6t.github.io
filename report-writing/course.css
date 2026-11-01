@@ -130,3 +130,33 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 .mm-lv .mm-e { text-align: center; font-size: .78rem; color: var(--ink-2); line-height: 1.4; }
 .mm-lv .mm-a { font-size: .88rem; line-height: 1.5; }
 @media print { .mm { width: auto; margin-inline: 0; } .mm-scroll { overflow: visible; } .mm-br { min-width: 0; } }
+/* =====================================================================
+   🎯 جاوب من راسك (mindmaps.html + recall.js): خانة لكل محاضرة، السؤال عشوائي ويتغير في نفس المكان
+   ===================================================================== */
+.rc-grid { --rcw: min(calc(100vw - 32px), 1400px); width: var(--rcw); margin: 12px calc((100% - var(--rcw)) / 2) 0; display: grid; gap: 14px; }
+@media (min-width: 900px) { .rc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; } }
+.rc { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.rc:nth-child(2) { border-top-color: var(--cy); } .rc:nth-child(3) { border-top-color: var(--cz); }
+.rc.rc-in { animation: rcIn .35s ease; }
+@keyframes rcIn { from { opacity: .3; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .rc.rc-in { animation: none; } }
+.rc p { margin: 0; }
+.rc .rc-en { display: block; direction: ltr; text-align: left; font-family: var(--f-en, system-ui); }
+.rc-h b { display: block; font-family: var(--f-head); font-size: 1.02rem; }
+.rc-h .rc-en { font-size: .82rem; color: var(--ink-2); }
+.rc-q { min-height: 7.5em; display: flex; flex-direction: column; gap: 6px; }
+.rc-q .rc-en { font-size: .95rem; line-height: 1.55; }
+.rc-q .rc-ar { font-size: 1rem; line-height: 1.7; }
+.rc mark { background: color-mix(in srgb, var(--accent) 22%, transparent); color: inherit; border-radius: 4px; padding: 0 2px; }
+.rc-a { background: color-mix(in srgb, var(--good, #2e7d32) 9%, var(--surface)); border: 1px solid color-mix(in srgb, var(--good, #2e7d32) 35%, var(--line)); border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; gap: 4px; }
+.rc-a[hidden] { display: none; }
+.rc-lbl { font-size: .8rem; font-weight: 600; color: var(--ink-2); margin-top: 4px !important; }
+.rc-ans { font-weight: 600; }
+.rc-why { font-size: .9rem; color: var(--ink-2); }
+.rc-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.rc-btns button { flex: 1 1 auto; font: inherit; font-weight: 600; border-radius: 10px; padding: 10px 12px; cursor: pointer; border: 1px solid var(--line); background: var(--accent); color: #fff; }
+.rc-btns button[hidden] { display: none; }
+.rc-btns .rc-ok { background: var(--good, #2e7d32); }
+.rc-btns .rc-no { background: var(--bad, #c62828); }
+.rc-btns button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 2px; }
+.rc-score { font-size: .85rem; color: var(--ink-2); text-align: center; }
