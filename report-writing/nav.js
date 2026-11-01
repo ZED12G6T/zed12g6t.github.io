@@ -2,6 +2,7 @@
 const lectures = [
   { name: "🏠 فهرس المادة", url: "index.html" },
   { name: "📝 الملخص الشامل", url: "summary.html" },
+  { name: "🗺️ الخرائط الذهنية", url: "mindmaps.html" },
   { name: "المحاضرة 2 · أنواع التقارير", url: "lecture2.html" },
   { name: "المحاضرة 3 · خطوات الكتابة الناجحة", url: "lecture3.html" },
   { name: "المحاضرة 4 · كتابة تقرير المختبر", url: "lecture4.html" }
