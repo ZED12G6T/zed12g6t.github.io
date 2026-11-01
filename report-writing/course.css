@@ -1,30 +1,30 @@
 /* =====================================================================
-   course.css — ثيم مادة الاقتصاد الهندسي بس: "دفتر حسابات"
-   ورق فاتح دافي وحبر نحاسي ذهبي، والليلي بني فحمي. يُحمَّل بعد ../lecture.css في صفحات economics/ بس.
+   course.css — ثيم مادة كتابة التقارير: بنفسجي هادي
+   ورق فاتح مائل للبنفسجي وحبر بنفسجي، والليلي بنفسجي غامق. يُحمَّل بعد ../lecture.css في صفحات report-writing/ بس.
    ألوان المتغيرات (--cx --cy --cz) نفسها من lecture.css، عشان الأزرق والأخضر والبرتقالي يبقون لـ P و A و F.
    ===================================================================== */
 
 html:root {
-  --bg: #f4f1ea; --surface: #fffdf8; --surface-2: #f8f5ee;
-  --ink: #1d1a14; --ink-2: #514b3f; --ink-3: #736b5c;
-  --line: #e4ded1; --line-2: #d2cab9;
-  --accent: #8c6412; --accent-soft: #f5ecd8;
-  --shadow: 0 1px 2px rgba(40,30,10,.05), 0 10px 30px -18px rgba(40,30,10,.25);
+  --bg: #f6f5fb; --surface: #fffeff; --surface-2: #f9f8fd;
+  --ink: #1e1b2e; --ink-2: #4c4766; --ink-3: #7a7592;
+  --line: #e6e3f0; --line-2: #d6d2e4;
+  --accent: #7c3aed; --accent-soft: #f1ebff; --accent-ink: #ffffff;
+  --shadow: 0 1px 2px rgba(40,20,80,.05), 0 10px 30px -18px rgba(40,20,80,.25);
 }
 @media (prefers-color-scheme: dark) {
   html:root:not([data-theme="light"]) {
-    --bg: #15140f; --surface: #1d1c17; --surface-2: #24221c;
-    --ink: #eeebe3; --ink-2: #b0a996; --ink-3: #7f7867;
-    --line: #302e27; --line-2: #3e3b31;
-    --accent: #e2b857; --accent-soft: rgba(226,184,87,.13);
+    --bg: #15131d; --surface: #1d1a28; --surface-2: #242131;
+    --ink: #eeecf6; --ink-2: #b9b5cf; --ink-3: #8a86a2;
+    --line: #2e2b3e; --line-2: #3b384e;
+    --accent: #b69cff; --accent-soft: rgba(182,156,255,.14); --accent-ink: #15131d;
     --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.8);
   }
 }
 html:root[data-theme="dark"] {
-  --bg: #15140f; --surface: #1d1c17; --surface-2: #24221c;
-  --ink: #eeebe3; --ink-2: #b0a996; --ink-3: #7f7867;
-  --line: #302e27; --line-2: #3e3b31;
-  --accent: #e2b857; --accent-soft: rgba(226,184,87,.13);
+  --bg: #15131d; --surface: #1d1a28; --surface-2: #242131;
+  --ink: #eeecf6; --ink-2: #b9b5cf; --ink-3: #8a86a2;
+  --line: #2e2b3e; --line-2: #3b384e;
+  --accent: #b69cff; --accent-soft: rgba(182,156,255,.14); --accent-ink: #15131d;
   --shadow: 0 1px 2px rgba(0,0,0,.35), 0 12px 30px -18px rgba(0,0,0,.8);
 }
 
@@ -77,9 +77,9 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 }
 
 /* تبويب "الشرح | القوانين" في نص أعلى الصفحة (يبنيه econ.js). بنفسجي مثل ثيم الفيديو وورقة القوانين */
-:root { --laws: #4f46e5; --laws-soft: #eef0ff; --laws-ink: #fff; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --laws: #8b85ff; --laws-soft: rgba(139,133,255,.14); --laws-ink: #14131c; } }
-:root[data-theme="dark"] { --laws: #8b85ff; --laws-soft: rgba(139,133,255,.14); --laws-ink: #14131c; }
+:root { --laws: #7c3aed; --laws-soft: #f1ebff; --laws-ink: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --laws: #b69cff; --laws-soft: rgba(182,156,255,.14); --laws-ink: #14131c; } }
+:root[data-theme="dark"] { --laws: #b69cff; --laws-soft: rgba(182,156,255,.14); --laws-ink: #14131c; }
 .mode-tabs { display: flex; width: fit-content; margin: 2px auto 10px; padding: 4px; gap: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-2); box-shadow: var(--shadow); }
 .mode-tabs > * { padding: 7px 22px; border-radius: 999px; font-size: 1rem; font-weight: 600; text-decoration: none; color: var(--ink-2); white-space: nowrap; }
 .mode-tabs .on { background: var(--laws); color: var(--laws-ink); }
@@ -106,7 +106,7 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 .mm.scrolls .mm-hint { display: block; }
 .mm-scroll { overflow-x: auto; overscroll-behavior-x: contain; padding: 2px 0 10px; }
 .mm-tree { width: 100%; min-width: calc(var(--n, 4) * 156px); display: flex; flex-direction: column; align-items: center; }
-.mm-root { position: relative; background: var(--accent); color: #fff; border-radius: 18px; padding: 12px 20px; text-align: center; box-shadow: var(--shadow, 0 6px 20px rgba(0,0,0,.12)); max-width: 420px; }
+.mm-root { position: relative; background: var(--accent); color: var(--accent-ink, #fff); border-radius: 18px; padding: 12px 20px; text-align: center; box-shadow: var(--shadow, 0 6px 20px rgba(0,0,0,.12)); max-width: 420px; }
 .mm-root .mm-e { text-align: center; font-size: .92rem; font-weight: 600; opacity: .95; }
 .mm-root .mm-a { font-family: var(--f-head); font-weight: 700; font-size: 1.12rem; margin-top: 2px; }
 /* الخط النازل من المحاضرة */
@@ -154,9 +154,78 @@ table.tbl tr.sum td { font-weight: 700; background: var(--accent-soft); }
 .rc-ans { font-weight: 600; }
 .rc-why { font-size: .9rem; color: var(--ink-2); }
 .rc-btns { display: flex; gap: 8px; flex-wrap: wrap; }
-.rc-btns button { flex: 1 1 auto; font: inherit; font-weight: 600; border-radius: 10px; padding: 10px 12px; cursor: pointer; border: 1px solid var(--line); background: var(--accent); color: #fff; }
+.rc-btns button { flex: 1 1 auto; font: inherit; font-weight: 600; border-radius: 10px; padding: 10px 12px; cursor: pointer; border: 1px solid var(--line); background: var(--accent); color: var(--accent-ink, #fff); }
 .rc-btns button[hidden] { display: none; }
 .rc-btns .rc-ok { background: var(--good, #2e7d32); }
 .rc-btns .rc-no { background: var(--bad, #c62828); }
 .rc-btns button:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent); outline-offset: 2px; }
 .rc-score { font-size: .85rem; color: var(--ink-2); text-align: center; }
+/* =====================================================================
+   🌳 شجرة المفاهيم (tree.html + tree.js): شجرة تفتح وتسكر، وكل عقدة تضغطها يطلع شرحها في اللوحة
+   شاشة عريضة: الشجرة يمين واللوحة يسار ثابتة. جوال: اللوحة ورقة تطلع من تحت.
+   ===================================================================== */
+.tr-tools { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 6px; }
+.tr-tools button { font: inherit; font-size: .88rem; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+.tr-tools button:hover { border-color: var(--accent); color: var(--accent); }
+.tr { --trw: min(calc(100vw - 32px), 1300px); width: var(--trw); margin: 8px calc((100% - var(--trw)) / 2) 0; }
+@media (min-width: 900px) {
+  .tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 20px; align-items: start; }
+  .tr-panel { position: sticky; top: 64px; max-height: calc(100vh - 80px); overflow: auto; }
+}
+.tr .tr-e { display: block; direction: ltr; text-align: left; font-family: var(--f-en, system-ui); }
+.tr .tr-a { display: block; }
+/* الشجرة */
+.tr-ul { list-style: none; margin: 0; padding: 0; }
+.tr-ul .tr-ul { margin-inline-start: 13px; padding-inline-start: 14px; border-inline-start: 2px solid color-mix(in srgb, var(--b, var(--line-2)) 45%, var(--line)); }
+.tr-li { position: relative; margin: 4px 0; }
+.tr-ul .tr-ul > .tr-li::before { content: ''; position: absolute; inset-inline-start: -14px; top: 22px; width: 12px; border-top: 2px solid color-mix(in srgb, var(--b, var(--line-2)) 45%, var(--line)); }
+.tr-li[aria-expanded="false"] > .tr-ul { display: none; }
+.tr-row { display: flex; align-items: flex-start; gap: 4px; }
+.tr-tg, .tr-dot { flex: 0 0 26px; height: 26px; margin-top: 8px; }
+.tr-tg { border: 1px solid var(--line-2); background: var(--surface); border-radius: 8px; cursor: pointer; color: var(--ink-2); padding: 0; font-size: .8rem; line-height: 1; }
+.tr-tg::before { content: '◂'; display: inline-block; transition: transform .15s; }
+.tr-li[aria-expanded="true"] > .tr-row .tr-tg::before { transform: rotate(-90deg); }
+.tr-dot { display: flex; align-items: center; justify-content: center; }
+.tr-dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--b, var(--accent)) 60%, transparent); }
+.tr-node { flex: 0 1 auto; min-width: min(230px, 100%); position: relative; text-align: start; font: inherit; color: var(--ink); cursor: pointer; background: var(--surface); border: 1px solid var(--line); border-inline-start: 4px solid var(--b, var(--accent)); border-radius: 10px; padding: 6px 10px; padding-inline-end: 36px; }
+.tr-node:hover { border-color: var(--b, var(--accent)); }
+.tr-node.on { background: color-mix(in srgb, var(--b, var(--accent)) 13%, var(--surface)); border-color: var(--b, var(--accent)); box-shadow: 0 0 0 2px color-mix(in srgb, var(--b, var(--accent)) 30%, transparent); }
+.tr-node .tr-e, .tr-title .tr-e { text-align: right; }
+.tr-node .tr-e { font-size: .8rem; color: var(--ink-2); line-height: 1.4; }
+.tr-node .tr-a { font-weight: 600; line-height: 1.5; }
+.tr-top > .tr-li > .tr-row .tr-node { background: var(--accent); color: var(--accent-ink, #fff); border-color: var(--accent); }
+.tr-top > .tr-li > .tr-row .tr-node .tr-e { color: inherit; opacity: .85; }
+.tr-c { position: absolute; inset-inline-end: 8px; top: 50%; transform: translateY(-50%); font-size: .72rem; min-width: 20px; text-align: center; border-radius: 999px; padding: 1px 6px; background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--line); }
+/* اللوحة */
+.tr-panel { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 14px; padding: 14px 16px; }
+.tr-panel:empty { display: none; }
+.tr-panel p { margin: 0; }
+.tr-x { display: none; }
+.tr-crumb { font-size: .82rem; color: var(--ink-3); margin-bottom: 8px; line-height: 1.9; }
+.tr-crumb button { font: inherit; color: var(--accent); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.tr-crumb span { margin: 0 2px; }
+.tr-title { margin: 0 0 10px; }
+.tr-title .tr-e { font-size: .95rem; color: var(--accent); font-weight: 600; }
+.tr-title .tr-a { font-family: var(--f-head); font-size: 1.3rem; }
+.tr-box { border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; margin-top: 10px; background: var(--surface-2); }
+.tr-lbl { font-size: .8rem; font-weight: 600; color: var(--ink-2); margin-bottom: 4px !important; }
+.tr-pe { direction: ltr; text-align: left; font-family: var(--f-en, system-ui); font-size: .92rem; color: var(--ink-2); line-height: 1.5; }
+.tr-pa { line-height: 1.75; }
+.tr-say { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.tr-ex { background: var(--good-soft, var(--surface-2)); }
+.tr-tip { background: var(--bad-soft, var(--surface-2)); border-color: color-mix(in srgb, var(--bad, #c62828) 30%, var(--line)); }
+.tr-pts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tr-pts li { border-inline-start: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); padding-inline-start: 8px; }
+.tr-kids { display: flex; flex-wrap: wrap; gap: 6px; }
+.tr-kids button { font: inherit; cursor: pointer; text-align: center; border: 1px solid var(--line-2); background: var(--surface); color: var(--ink); border-radius: 10px; padding: 5px 10px; }
+.tr-kids button:hover { border-color: var(--accent); }
+.tr-kids .tr-e { text-align: center; font-size: .75rem; color: var(--ink-2); }
+.tr-go { display: inline-block; margin-top: 12px; font-weight: 600; }
+/* جوال: اللوحة ورقة من تحت */
+@media (max-width: 899px) {
+  .tr-panel { position: fixed; inset-inline: 0; bottom: 0; z-index: 60; max-height: 72vh; overflow: auto; border-radius: 18px 18px 0 0; box-shadow: 0 -10px 30px rgba(0,0,0,.18); transform: translateY(105%); transition: transform .22s ease; padding-top: 40px; }
+  body.tr-sheet .tr-panel { transform: none; }
+  .tr-x { display: block; position: absolute; top: 8px; inset-inline-end: 10px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface-2); color: var(--ink); font-size: 1rem; cursor: pointer; }
+  body.tr-sheet main.wrap { padding-bottom: 60vh; }
+}
+@media (prefers-reduced-motion: reduce) { .tr-panel, .tr-tg::before { transition: none; } }
