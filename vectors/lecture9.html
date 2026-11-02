@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-ar-only data-topic="Line Integrals" data-title-en="Lecture 9 Summary - Line Integrals">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 9 - Line Integrals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 9 · Vector Calculus</p>
+  <h1><span>التكامل الخطي <span class="ltr">Line Integrals</span></span> <span class="h1-math ltr">$\displaystyle\int_C f(x,y)\,ds$</span></h1>
+  <p class="lead">بدل ما نجمع الدالة على خط مستقيم من $a$ إلى $b$، نجمعها وإحنا نمشي على منحنى $C$. السر كله: نكتب المنحنى بدلالة $t$، فيتحول التكامل إلى تكامل عادي في $t$ تعرف تحله.</p>
+  <div class="xyz-bar">
+    <span class="x">x(t), y(t)</span><span class="y">f(x, y)</span><span class="z">ds</span>
+    <small>← الأزرق = المنحنى بدلالة t، الأخضر = الدالة (الارتفاع)، البرتقالي = طول القطعة الصغيرة على المنحنى</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>اكتب المنحنى $C$ بدلالة باراميتر: $x = x(t),\ y = y(t),\ a \le t \le b$.</li>
+      <li>بدّل كل شي بـ $t$: الدالة $f(x(t), y(t))$، و $ds = \sqrt{x'(t)^2 + y'(t)^2}\,dt$ (أو $dx = x'\,dt$ و $dy = y'\,dt$ إذا السؤال طلبهم).</li>
+      <li>معنى $\int_C f\,ds$: مساحة "سياج" ارتفاعه $f$ واقف على المنحنى $C$. ومنها طلع قانون المساحة الجانبية للأسطوانة $2\pi r h$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الفكرة ================= -->
+<section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
+  <h2>وش يعني تكامل على منحنى؟</h2>
+  <p class="sub">نفس فكرة التكامل العادي، بس الطريق صار منحنى بدل خط مستقيم</p>
+  <p>في التكامل العادي $\int_a^b f(x)\,dx$ نقطّع المحور $x$ لقطع صغيرة $dx$ ونجمع $f \times dx$. في التكامل الخطي نقطّع <b>المنحنى نفسه</b> لقطع صغيرة طولها $\Z{ds}$، ونضرب كل قطعة بقيمة الدالة $\Y{f}$ عندها، ونجمع.</p>
+  <div class="m big">\[ \int_C \Y{f(x,y)}\,\Z{ds} \;=\; \int_a^b \Y{f\big(\X{x(t)},\X{y(t)}\big)}\;\Z{\sqrt{\big(x'(t)\big)^2+\big(y'(t)\big)^2}\,dt} \]</div>
+  <p>ليش الجذر؟ القطعة الصغيرة على المنحنى هي وتر مثلث صغير: ضلعه الأفقي $dx = x'\,dt$ وضلعه الرأسي $dy = y'\,dt$. فيثاغورس يعطيك $ds = \sqrt{dx^2+dy^2} = \sqrt{x'^2+y'^2}\,dt$. نفس قانون طول القوس اللي أخذناه في المحاضرة 2.</p>
+
+  <h3>ثلاث أنواع ممكن يجيك فيها السؤال</h3>
+  <div class="grid-3">
+    <div class="tile hl"><div class="t-top">بالنسبة لطول القوس</div><div class="t-name">ds</div><div class="t-math">$ds = \sqrt{x'^2+y'^2}\,dt$</div><div class="t-desc">فيه جذر. هذا "التكامل الخطي" الأساسي.</div></div>
+    <div class="tile"><div class="t-top">بالنسبة لـ x</div><div class="t-name">dx</div><div class="t-math">$dx = x'(t)\,dt$</div><div class="t-desc">بدون جذر. بس مشتقة $x$.</div></div>
+    <div class="tile"><div class="t-top">بالنسبة لـ y</div><div class="t-name">dy</div><div class="t-math">$dy = y'(t)\,dt$</div><div class="t-desc">بدون جذر. بس مشتقة $y$.</div></div>
+  </div>
+
+  <div class="funnel">
+    <div class="f-node"><span class="fv">$\int_C f\,ds$</span><span class="fl">على منحنى</span></div>
+    <div class="f-arrow vx">بدّل بـ t</div>
+    <div class="f-node"><span class="fv">$\int_a^b (\dots)\,dt$</span><span class="fl">تكامل عادي</span></div>
+    <div class="f-arrow vz">احسب</div>
+    <div class="f-node end"><span class="fv">رقم</span><span class="fl">✓</span></div>
+  </div>
+  <div class="callout key"><strong>🔑 القاعدة:</strong> ما يبقى ولا $x$ ولا $y$ داخل التكامل. كل شي يصير بدلالة $t$، والحدود هي حدود $t$ مو حدود $x$.</div>
+</section>
+
+<!-- ================= المعنى ================= -->
+<section class="card" id="meaning" data-num="02" data-nav="المعنى|Meaning">
+  <h2>وش يمثل $\int_C f\,ds$؟</h2>
+  <p class="sub">معنيين في المحاضرة</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">(1) إذا $f$ قوة</div><div class="t-name">الشغل</div><div class="t-math">$W = \int_a^b f\big(x(t),y(t)\big)\sqrt{x'^2+y'^2}\,dt$</div><div class="t-desc">إذا $f(x,y)$ تمثل قوة، التكامل يعطيك الشغل على طول المنحنى.</div></div>
+    <div class="tile hl"><div class="t-top">(2) إذا $f$ ارتفاع</div><div class="t-name">مساحة سياج</div><div class="t-math">$\text{Area} = \int_C f\,ds$</div><div class="t-desc">$f\,ds$ = مساحة شريحة رفيعة من السياج، والتكامل = مساحة السياج كله.</div></div>
+  </div>
+  <figure class="fig">
+    <svg viewBox="0 0 600 260" role="img" aria-label="سياج ارتفاعه f واقف على المنحنى C">
+      <path class="tint" style="--c:var(--cy)" d="M60 215 L67 212 L74 209 L81 206 L89 204 L96 202 L103 200 L111 198 L118 197 L125 196 L133 195 L141 194 L148 193 L156 193 L164 192 L172 192 L179 192 L187 192 L195 192 L203 193 L211 193 L219 193 L227 194 L235 195 L243 195 L251 196 L260 197 L268 198 L276 199 L284 200 L292 201 L301 202 L309 202 L317 203 L326 204 L334 205 L342 206 L351 207 L359 207 L367 208 L376 209 L384 209 L392 210 L401 210 L409 210 L417 210 L425 210 L434 210 L442 209 L450 209 L459 208 L467 207 L475 206 L483 205 L491 204 L500 202 L508 200 L516 198 L524 195 L532 193 L540 190 L540 143 L532 147 L524 151 L516 154 L508 156 L500 158 L491 160 L483 161 L475 161 L467 161 L459 160 L450 159 L442 158 L434 156 L425 154 L417 152 L409 149 L401 146 L392 142 L384 139 L376 135 L367 131 L359 127 L351 123 L342 118 L334 114 L326 110 L317 106 L309 102 L301 98 L292 94 L284 91 L276 87 L268 84 L260 81 L251 79 L243 77 L235 75 L227 73 L219 72 L211 72 L203 71 L195 71 L187 72 L179 73 L172 74 L164 76 L156 78 L148 81 L141 84 L133 88 L125 92 L118 96 L111 101 L103 106 L96 112 L89 118 L81 124 L74 131 L67 138 L60 145Z"/>
+      <path class="sk" style="--c:var(--cy);stroke-width:1;opacity:.45" d="M60 215V145M89 204V118M118 197V96M148 193V81M179 192V73M211 193V72M243 195V77M276 199V87M309 202V102M342 206V118M376 209V135M409 210V149M442 209V158M475 206V161M508 200V156M540 190V143"/>
+      <path class="fi" style="--c:var(--cz);opacity:.55" d="M276 199 L309 202 L309 102 L276 87Z"/>
+      <path class="sk" style="--c:var(--cy)" d="M60 145 L67 138 L74 131 L81 124 L89 118 L96 112 L103 106 L111 101 L118 96 L125 92 L133 88 L141 84 L148 81 L156 78 L164 76 L172 74 L179 73 L187 72 L195 71 L203 71 L211 72 L219 72 L227 73 L235 75 L243 77 L251 79 L260 81 L268 84 L276 87 L284 91 L292 94 L301 98 L309 102 L317 106 L326 110 L334 114 L342 118 L351 123 L359 127 L367 131 L376 135 L384 139 L392 142 L401 146 L409 149 L417 152 L425 154 L434 156 L442 158 L450 159 L459 160 L467 161 L475 161 L483 161 L491 160 L500 158 L508 156 L516 154 L524 151 L532 147 L540 143"/>
+      <path class="sk" style="--c:var(--cx);stroke-width:3.2" d="M60 215 L67 212 L74 209 L81 206 L89 204 L96 202 L103 200 L111 198 L118 197 L125 196 L133 195 L141 194 L148 193 L156 193 L164 192 L172 192 L179 192 L187 192 L195 192 L203 193 L211 193 L219 193 L227 194 L235 195 L243 195 L251 196 L260 197 L268 198 L276 199 L284 200 L292 201 L301 202 L309 202 L317 203 L326 204 L334 205 L342 206 L351 207 L359 207 L367 208 L376 209 L384 209 L392 210 L401 210 L409 210 L417 210 L425 210 L434 210 L442 209 L450 209 L459 208 L467 207 L475 206 L483 205 L491 204 L500 202 L508 200 L516 198 L524 195 L532 193 L540 190"/>
+      <text class="lbl" x="44" y="232" style="fill:var(--cx)">C</text>
+      <text class="lbl" x="300" y="226" text-anchor="middle" style="fill:var(--cz)">ds</text>
+      <text class="lbl" x="312" y="150" style="fill:var(--cy)">f(x, y)</text>
+      <text x="470" y="60" text-anchor="middle">مساحة السياج = ∫ f ds</text>
+    </svg>
+    <figcaption>المنحنى $C$ على الأرض (أزرق)، فوق كل نقطة عمود طوله $f(x,y)$ (أخضر). الشريحة البرتقالية مساحتها تقريباً $f\,ds$.</figcaption>
+  </figure>
+  <div class="callout good"><strong>✅ حالة خاصة:</strong> إذا $f = 1$ صار $\int_C 1\,ds$ = طول المنحنى نفسه (طول القوس).</div>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="03" data-nav="الطريقة|Method">
+  <h2>الطريقة خطوة بخطوة</h2>
+  <p class="sub">نفس الخطوات في كل سؤال</p>
+  <ol class="recipe">
+    <li><b>اكتب المنحنى بدلالة t</b><span class="why">$x = x(t),\ y = y(t)$ وحدود $t$. إذا معطى جاهز خذه، وإذا دائرة استخدم $x = r\cos t,\ y = r\sin t,\ 0 \le t \le 2\pi$.</span></li>
+    <li><b>اشتق</b><span class="why">احسب $x'(t)$ و $y'(t)$.</span></li>
+    <li><b>جهّز العنصر</b><span class="why">$ds = \sqrt{x'^2+y'^2}\,dt$، أو $dx = x'\,dt$، أو $dy = y'\,dt$ حسب المطلوب.</span></li>
+    <li><b>عوّض في الدالة</b><span class="why">بدّل $x$ و $y$ في $f$ بدلالة $t$.</span></li>
+    <li><b>كامل في t</b><span class="why">تكامل عادي من $a$ إلى $b$.</span></li>
+  </ol>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>نفس الدالة، ثلاث تكاملات: dx و dy و ds</h2></div>
+  <div class="tags"><span class="tag">خط مستقيم</span><span class="tag ltr">dx · dy · ds</span></div>
+  <div class="m big">\[ \int_C xy^2\,dx,\qquad \int_C xy^2\,dy,\qquad \int_C xy^2\,ds \qquad C:\ x = 3t,\ y = 4t,\ 0 \le t \le 1 \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">المنحنى معطى جاهز بدلالة $t$ (خط مستقيم من $(0,0)$ إلى $(3,4)$). نفس الدالة $xy^2$ بس ثلاث عناصر مختلفة.</p>
+      <div class="map"><span class="x">x = 3t, y = 4t</span><span class="z">t: 0 → 1</span></div>
+    </li>
+    <li class="step">
+      <h4>بدّل الدالة بـ $t$</h4>
+      <div class="m">\[ \Y{xy^2} = (\X{3t})(\X{4t})^2 = 3t \cdot 16t^2 = \Y{48t^3} \]</div>
+    </li>
+    <li class="step">
+      <h4>جهّز العناصر الثلاثة</h4>
+      <p class="why">$x' = 3$ و $y' = 4$:</p>
+      <div class="m">\[ dx = 3\,dt,\qquad dy = 4\,dt,\qquad \Z{ds} = \sqrt{3^2+4^2}\,dt = \Z{5\,dt} \]</div>
+    </li>
+    <li class="step">
+      <h4>بالنسبة لـ $x$</h4>
+      <div class="m">\[ \int_C xy^2\,dx = \int_0^1 48t^3 \cdot 3\,dt = 144\Big[\tfrac{t^4}{4}\Big]_0^1 = 36 \]</div>
+    </li>
+    <li class="step">
+      <h4>بالنسبة لـ $y$</h4>
+      <div class="m">\[ \int_C xy^2\,dy = \int_0^1 48t^3 \cdot 4\,dt = 192\Big[\tfrac{t^4}{4}\Big]_0^1 = 48 \]</div>
+    </li>
+    <li class="step">
+      <h4>بالنسبة لطول القوس $s$</h4>
+      <div class="m">\[ \int_C xy^2\,ds = \int_0^1 48t^3 \cdot \Z{5}\,dt = 240\Big[\tfrac{t^4}{4}\Big]_0^1 = 60 \]</div>
+      <p class="why">⚠ الفخ هنا: $ds$ مو $dt$. لو نسيت الـ $5$ بيطلع لك $12$ وهو غلط.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$36,\quad 48,\quad 60$</div>
+      <p class="sanity">الأجوبة بنسبة $3 : 4 : 5$ بالضبط مثل $dx : dy : ds$، لأن الجزء $\int_0^1 48t^3\,dt = 12$ مشترك وكل واحد مضروب بعامله ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>المساحة الجانبية للأسطوانة = $2\pi r h$</h2></div>
+  <div class="tags"><span class="tag">مساحة سياج</span><span class="tag">دائرة</span></div>
+  <p>استخدم التكامل الخطي عشان تثبت إن المساحة الجانبية $A$ لأسطوانة دائرية قائمة نصف قطرها $r$ وارتفاعها $h$ تساوي $2\pi r h$.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 250" role="img" aria-label="أسطوانة قاعدتها الدائرة C وارتفاعها h" style="max-width:360px">
+      <path class="tint" style="--c:var(--cy)" d="M90 70 V190 A90 28 0 0 0 270 190 V70 A90 28 0 0 1 90 70Z"/>
+      <path class="sk" style="--c:var(--cy)" d="M90 70V190M270 70V190"/>
+      <ellipse class="sk" style="--c:var(--cy)" cx="180" cy="70" rx="90" ry="28"/>
+      <path class="sk" style="--c:var(--cx);stroke-width:3.4" d="M90 190 A90 28 0 0 0 270 190"/>
+      <path class="sk dash" style="--c:var(--cx)" d="M90 190 A90 28 0 0 1 270 190"/>
+      <path class="sk" style="--c:var(--cz)" d="M180 190H270"/>
+      <circle class="fi" style="--c:var(--ink-2)" cx="180" cy="190" r="3"/>
+      <path class="sk" style="--c:var(--cy);stroke-width:1.4" d="M300 70V190M294 70H306M294 190H306"/>
+      <text class="lbl" x="312" y="134" style="fill:var(--cy)">h = f(x,y)</text>
+      <text class="lbl" x="225" y="184" text-anchor="middle" style="fill:var(--cz)">r</text>
+      <text class="lbl" x="180" y="238" text-anchor="middle" style="fill:var(--cx)">C : x² + y² = r²</text>
+    </svg>
+    <figcaption>الأسطوانة = سياج ارتفاعه ثابت $h$ واقف على الدائرة $C$.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">الجدار الجانبي للأسطوانة هو "سياج" واقف على الدائرة $C: x^2+y^2=r^2$، وارتفاعه في كل مكان $h$. يعني المساحة $= \int_C f\,ds$ مع $f(x,y) = h$.</p>
+      <div class="map"><span class="x">C: x² + y² = r²</span><span class="y">f = h</span></div>
+    </li>
+    <li class="step">
+      <h4>اكتب الدائرة بدلالة $t$</h4>
+      <p class="why">باتجاه عكس عقارب الساعة (الاتجاه الموجب):</p>
+      <div class="m">\[ \X{x = r\cos t},\qquad \X{y = r\sin t},\qquad 0 \le t \le 2\pi \]</div>
+    </li>
+    <li class="step">
+      <h4>اشتق وجهّز $ds$</h4>
+      <div class="m">\[ x' = -r\sin t,\qquad y' = r\cos t \]</div>
+      <div class="m">\[ \Z{ds} = \sqrt{(-r\sin t)^2 + (r\cos t)^2}\,dt = r\sqrt{\sin^2 t + \cos^2 t}\,dt = \Z{r\,dt} \]</div>
+      <p class="why">⚠ $\sqrt{r^2} = r$ (مو $r^2$)، و $\sin^2 t + \cos^2 t = 1$.</p>
+    </li>
+    <li class="step">
+      <h4>عوّض وكامل</h4>
+      <div class="m">\[ A = \int_C \Y{h}\,ds = \int_0^{2\pi} \Y{h}\cdot \Z{r}\,dt = rh\int_0^{2\pi} 1\,dt = rh\,(2\pi) \]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="المساحة|Area">$A = 2\pi r h$</div>
+      <p class="sanity">افتح الجدار وافرده: يصير مستطيل طوله محيط الدائرة $2\pi r$ وعرضه $h$، ومساحته $2\pi r \times h$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ تمارين|✏ Practice">
+  <h2>دورك: تمارين</h2><p class="sub">اكتب الكسر هكذا: 35/2 ، و π هكذا: pi</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <div class="m">\[ \int_C (x+y)\,ds,\qquad C:\ x = 3t,\ y = 4t,\ 0 \le t \le 1 \]</div>
+    <div class="check" data-answer="35/2"></div>
+    <details class="hint"><p>نفس منحنى مثال 1، يعني $ds = 5\,dt$. و $x + y = 7t$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>بدّل بـ $t$</h4><div class="m">\[ x + y = 3t + 4t = 7t,\qquad ds = 5\,dt \]</div></li>
+      <li class="step"><h4>كامل</h4><div class="m">\[ \int_0^1 7t \cdot 5\,dt = 35\Big[\tfrac{t^2}{2}\Big]_0^1 = \tfrac{35}{2} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac{35}{2}$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <div class="m">\[ \int_C y\,dx,\qquad C:\ x = t^2,\ y = t,\ 0 \le t \le 1 \]</div>
+    <div class="check" data-answer="2/3"></div>
+    <details class="hint"><p>هنا $dx$ مو $ds$، يعني بدون جذر: $dx = 2t\,dt$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>جهّز $dx$</h4><div class="m">\[ x' = 2t \;\Rightarrow\; dx = 2t\,dt \]</div></li>
+      <li class="step"><h4>عوّض وكامل</h4><div class="m">\[ \int_0^1 t \cdot 2t\,dt = 2\Big[\tfrac{t^3}{3}\Big]_0^1 = \tfrac{2}{3} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac{2}{3}$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <div class="m">\[ \int_C x\,ds,\qquad C:\ x = \cos t,\ y = \sin t,\ 0 \le t \le \tfrac{\pi}{2} \]</div>
+    <div class="check" data-answer="1"></div>
+    <details class="hint"><p>ربع دائرة نصف قطرها 1، يعني $ds = 1\cdot dt$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>جهّز $ds$</h4><div class="m">\[ ds = \sqrt{\sin^2 t + \cos^2 t}\,dt = dt \]</div></li>
+      <li class="step"><h4>كامل</h4><div class="m">\[ \int_0^{\pi/2} \cos t\,dt = \big[\sin t\big]_0^{\pi/2} = 1 \]</div></li>
+      <li class="step final"><div class="result">$1$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl hard">تحدي</span></div>
+    <p>سياج واقف على ربع الدائرة $x^2+y^2=4$ في الربع الأول، وارتفاعه عند كل نقطة $f(x,y) = y$. كم مساحته؟</p>
+    <div class="check" data-answer="4"></div>
+    <details class="hint"><p>$x = 2\cos t,\ y = 2\sin t,\ 0 \le t \le \tfrac{\pi}{2}$، و $ds = 2\,dt$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>اكتب المنحنى بدلالة $t$</h4><div class="m">\[ x = 2\cos t,\quad y = 2\sin t,\quad 0 \le t \le \tfrac{\pi}{2},\qquad ds = 2\,dt \]</div></li>
+      <li class="step"><h4>كامل</h4><div class="m">\[ \int_0^{\pi/2} 2\sin t \cdot 2\,dt = 4\big[-\cos t\big]_0^{\pi/2} = 4(0+1) = 4 \]</div></li>
+      <li class="step final"><div class="result" data-label="المساحة|Area">$4$</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= أخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2><p class="sub">كل خطأ جنبه التصحيح</p>
+  <div class="mk"><div class="mk-title">نسيان الجذر في $ds$</div>
+    <div class="pair"><div class="no"><div class="mm">$\int_C f\,ds = \int_a^b f\,dt$</div>كأن $ds = dt$.</div><div class="yes"><div class="mm">$\int_a^b f\,\sqrt{x'^2+y'^2}\,dt$</div>لازم تضرب بطول السرعة.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">حط جذر في $dx$ أو $dy$</div>
+    <div class="pair"><div class="no"><div class="mm">$dx = \sqrt{x'^2+y'^2}\,dt$</div>الجذر خاص بـ $ds$ بس.</div><div class="yes"><div class="mm">$dx = x'(t)\,dt$</div>و $dy = y'(t)\,dt$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">ترك $x$ و $y$ داخل التكامل</div>
+    <div class="pair"><div class="no"><div class="mm">$\int_0^1 xy^2 \cdot 5\,dt$</div>خلط بين متغيرات.</div><div class="yes"><div class="mm">$\int_0^1 48t^3 \cdot 5\,dt$</div>كل شي بدلالة $t$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">حدود غلط</div>
+    <div class="pair"><div class="no"><div class="mm">$\int_0^3 \dots\,dt$</div>حطيت حدود $x$ (من 0 إلى 3).</div><div class="yes"><div class="mm">$\int_0^1 \dots\,dt$</div>الحدود دايماً حدود $t$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">تبسيط الجذر في الدائرة</div>
+    <div class="pair"><div class="no"><div class="mm">$\sqrt{r^2\sin^2 t + r^2\cos^2 t} = r^2$</div>نسيت تاخذ الجذر.</div><div class="yes"><div class="mm">$= r\sqrt{\sin^2 t+\cos^2 t} = r$</div>طلّع $r^2$ من الجذر تصير $r$.</div></div>
+  </div>
+</section>
+
+<!-- ================= اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2><p class="sub">اضغط على الجواب اللي تشوفه صح</p>
+  <div class="quiz">
+    <div class="q" data-answer="3">
+      <p>إذا $x = 3t,\ y = 4t$ فإن $ds$ تساوي:</p>
+      <button>$7\,dt$</button><button>$dt$</button><button>$5\,dt$</button><button>$25\,dt$</button>
+      <p class="q-why">$\sqrt{3^2+4^2} = \sqrt{25} = 5$.</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p>في $\int_C f\,dy$ نبدّل $dy$ بـ:</p>
+      <button>$y'(t)\,dt$</button><button>$\sqrt{x'^2+y'^2}\,dt$</button><button>$x'(t)\,dt$</button><button>$dt$</button>
+      <p class="q-why">$dy$ بدون جذر، بس مشتقة $y$ ضرب $dt$.</p>
+    </div>
+    <div class="q" data-answer="4">
+      <p>إذا $f(x,y)$ ارتفاع سياج على $C$، فإن $\int_C f\,ds$ تعطي:</p>
+      <button>طول المنحنى</button><button>حجم تحت السياج</button><button>ميل المنحنى</button><button>مساحة السياج</button>
+      <p class="q-why">$f\,ds$ = مساحة شريحة رفيعة، والمجموع = مساحة السياج كله.</p>
+    </div>
+    <div class="q" data-answer="2">
+      <p>للدائرة $x = r\cos t,\ y = r\sin t$ قيمة $ds$:</p>
+      <button>$r^2\,dt$</button><button>$r\,dt$</button><button>$dt$</button><button>$2\pi r\,dt$</button>
+      <p class="q-why">$\sqrt{r^2\sin^2 t + r^2\cos^2 t} = r$.</p>
+    </div>
+    <div class="q" data-answer="3">
+      <p>$\int_C 1\,ds$ يساوي:</p>
+      <button>صفر</button><button>مساحة تحت المنحنى</button><button>طول المنحنى $C$</button><button>$b - a$ دايماً</button>
+      <p class="q-why">سياج ارتفاعه 1: مساحته = طوله = طول القوس.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>بطاقات مراجعة سريعة</h2><p class="sub">اضغط على البطاقة تنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>$ds$ = ؟</div><div>$\sqrt{x'(t)^2 + y'(t)^2}\,dt$</div></div>
+    <div class="flash"><div>$dx$ و $dy$ = ؟</div><div>$dx = x'\,dt,\quad dy = y'\,dt$ (بدون جذر)</div></div>
+    <div class="flash"><div>حدود التكامل بعد التعويض؟</div><div>حدود $t$: من $a$ إلى $b$</div></div>
+    <div class="flash"><div>معنى $\int_C f\,ds$ هندسياً؟</div><div>مساحة سياج ارتفاعه $f$ على المنحنى $C$</div></div>
+    <div class="flash"><div>إذا $f$ قوة؟</div><div>التكامل = الشغل $W$ على طول المنحنى</div></div>
+    <div class="flash"><div>تمثيل الدائرة $x^2+y^2=r^2$؟</div><div>$x = r\cos t,\ y = r\sin t,\ 0 \le t \le 2\pi$ و $ds = r\,dt$</div></div>
+    <div class="flash"><div>المساحة الجانبية للأسطوانة؟</div><div>$\int_C h\,ds = 2\pi r h$</div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
