@@ -57,6 +57,8 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 170px; -webkit-text-size-adjust: 100%; }
+html { background: var(--bg); }
+html.theme-switch, html.theme-switch *, html.theme-switch *::before, html.theme-switch *::after { transition: none !important; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.75 var(--f-ar); font-synthesis: none; }
 a { color: var(--accent); }
 h1, h2, h3 { font-family: var(--f-ar); font-weight: 400; margin: 0; }

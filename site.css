@@ -31,6 +31,8 @@
 }
 
 * { box-sizing: border-box; }
+html { background: var(--bg); }   /* الخلفية على html نفسه عشان المتصفح يعيد رسمها فوراً لما يتغير الثيم */
+html.theme-switch, html.theme-switch *, html.theme-switch *::before, html.theme-switch *::after { transition: none !important; }   /* أثناء تبديل الثيم: كل شي يتغير مرة وحدة */
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15.5px; line-height: 1.75; }
 a { color: inherit; text-decoration: none; }
 button, select { font: inherit; color: inherit; }

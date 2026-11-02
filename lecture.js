@@ -49,7 +49,7 @@
   function paintTheme() { const b = document.getElementById('theme-btn'); if (b) b.textContent = theme() === 'dark' ? '☀' : '☾'; }
   function toggleTheme() {
     const next = theme() === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    root.classList.add('theme-switch'); root.setAttribute('data-theme', next); void root.offsetHeight; requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switch')));
     try { localStorage.setItem('lec-theme', next); } catch (e) {}
     paintTheme(); hooks.theme.forEach(f => f());
   }

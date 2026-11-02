@@ -61,9 +61,11 @@
 /* ================= الأساس ================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { background: var(--bg); }   /* الخلفية على html نفسه عشان المتصفح يعيد رسمها فوراً لما يتغير الثيم */
+html.theme-switch, html.theme-switch *, html.theme-switch *::before, html.theme-switch *::after { transition: none !important; }   /* أثناء تبديل الثيم: كل شي يتغير مرة وحدة */
 body {
   font-family: var(--f-body); background: var(--bg); color: var(--ink);
-  line-height: 1.9; font-size: 1rem; transition: background-color .3s, color .3s;
+  line-height: 1.9; font-size: 1rem;
 }
 html[lang="en"] body [lang="ar"], html[lang="ar"] body [lang="en"] { display: none !important; }
 a { color: var(--accent); }
@@ -555,7 +557,7 @@ body *:not(mjx-container):not(mjx-container *):not(.code):not(.en-name):not(.chi
   function paintTheme() { const b = document.getElementById('theme-btn'); if (b) b.textContent = theme() === 'dark' ? '☀' : '☾'; }
   function toggleTheme() {
     const next = theme() === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    root.classList.add('theme-switch'); root.setAttribute('data-theme', next); void root.offsetHeight; requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switch')));
     try { localStorage.setItem('lec-theme', next); } catch (e) {}
     paintTheme(); hooks.theme.forEach(f => f());
   }

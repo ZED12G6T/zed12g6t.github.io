@@ -10,7 +10,8 @@
     b.addEventListener('click', function () {
       var cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       var next = cur === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
+      root.classList.add('theme-switch'); root.setAttribute('data-theme', next); void root.offsetHeight;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove('theme-switch'); }); });
       try { localStorage.setItem(KEY, next); } catch (e) {}
     });
   });
