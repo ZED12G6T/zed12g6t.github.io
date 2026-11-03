@@ -11,7 +11,8 @@ const lectures = [
   { name: "ملخص المحاضرة 8", url: "lecture8.html" },
   { name: "ملخص المحاضرة 9", url: "lecture9.html" },
   { name: "ملخص المحاضرة 10", url: "lecture10.html" },
-  { name: "Exercise 2", url: "exercise2.html" }
+  { name: "Exercise 2", url: "exercise2.html" },
+  { name: "حل الميد 1", url: "midterm1.html" }
 ];
 
 function renderNavigation() {

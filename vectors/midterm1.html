@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-ar-only data-topic="Mid-term Exam" data-title-en="Vector Calculus Mid-term 1 - Solutions">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حل اختبار الميد 1 - Applied Vector Calculus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">اختبار منتصف الفصل · ENG 1263</p>
+  <h1><span>حل اختبار الميد <span class="ltr">Mid-term Exam</span></span> <span class="h1-math ltr">$20$ درجة</span></h1>
+  <p class="lead">أسئلة الميد الأول في مادة Applied Vector Calculus، محلولة خطوة بخطوة. جرّب تحل كل سؤال بنفسك أول، وبعدين افتح الحل وقارن.</p>
+  <div class="xyz-bar">
+    <span class="x">المحاضرات 1 و 2</span><span class="y">المحاضرات 3 و 4</span><span class="z">المحاضرة 6</span>
+    <small>← كل سؤال من أي محاضرة</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الأجوبة النهائية</div>
+    <ol>
+      <li>س1: $\mathbf r'(0) = [2, 2, 5]$ و $\mathbf u = \tfrac{1}{\sqrt{33}}[2, 2, 5]$، والمشتقة الاتجاهية $D_{\mathbf a}f = -\tfrac{3}{\sqrt6}$، وطول القوس $s = 5t$ والانحناء $\kappa = \tfrac{9}{25}$.</li>
+      <li>س2 (أ): $\operatorname{div}\mathbf v = -1$ و $\operatorname{curl}\mathbf v = [2, -3, 0]$.</li>
+      <li>س2 (ب): التكامل الثنائي $= \tfrac16$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= س1 أ ================= -->
+<section class="card" id="q1a" data-nav="س1 أ|Q1a">
+  <div class="ex-head"><span class="ex-badge">س1 (أ)</span><h2>متجه المماس ومتجه الوحدة المماس</h2></div>
+  <div class="tags"><span class="tag">3 درجات</span><span class="tag">المحاضرة 1</span></div>
+  <div class="m big">\[ \begin{gathered} \mathbf r(t) = \big[t^3 + 2t,\ -e^{-2t},\ \sin 5t\big] \\ \text{at } t = 0:\ \text{(i) tangent} \\ \text{(ii) unit tangent} \end{gathered} \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">متجه المماس = المشتقة $\mathbf r'(t)$. ومتجه الوحدة المماس = المماس مقسوم على طوله.</p>
+    </li>
+    <li class="step">
+      <h4>اشتق كل مركّبة لحالها</h4>
+      <div class="m">\[ \begin{aligned} (t^3 + 2t)' &= 3t^2 + 2 \\ (-e^{-2t})' &= -(-2)e^{-2t} = 2e^{-2t} \\ (\sin 5t)' &= 5\cos 5t \end{aligned} \]</div>
+      <p class="why">⚠ في الثانية: مشتقة $e^{-2t}$ هي $-2e^{-2t}$، والسالب اللي قدامها يقلبها موجب.</p>
+      <div class="m">\[ \mathbf r'(t) = \big[3t^2 + 2,\ 2e^{-2t},\ 5\cos 5t\big] \]</div>
+    </li>
+    <li class="step">
+      <h4>(i) عوّض $t = 0$</h4>
+      <div class="m">\[ \begin{aligned} \mathbf r'(0) &= \big[0 + 2,\ 2e^{0},\ 5\cos 0\big] \\ &= [2,\ 2,\ 5] \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>احسب الطول</h4>
+      <div class="m">\[ \begin{aligned} |\mathbf r'(0)| &= \sqrt{2^2 + 2^2 + 5^2} \\ &= \sqrt{4 + 4 + 25} = \sqrt{33} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>(ii) اقسم على الطول</h4>
+      <div class="m">\[ \mathbf u = \frac{\mathbf r'(0)}{|\mathbf r'(0)|} = \frac{1}{\sqrt{33}}\,[2,\ 2,\ 5] \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} \mathbf r'(0) = [2, 2, 5] \\ \mathbf u = \tfrac{1}{\sqrt{33}}[2, 2, 5] \end{gathered}$</div>
+      <p class="sanity">طول $\mathbf u$: $\tfrac{4 + 4 + 25}{33} = 1$ ✓</p>
+    </li>
+  </ol>
+  <div class="callout good"><strong>✅ إضافة:</strong> لو قصد السؤال "خط المماس" بعد: $\mathbf r(0) = [0, -1, 0]$، فالخط هو $\mathbf q(w) = [0, -1, 0] + w\,[2, 2, 5]$.</div>
+</section>
+
+<!-- ================= س1 ب ================= -->
+<section class="card" id="q1b" data-nav="س1 ب|Q1b">
+  <div class="ex-head"><span class="ex-badge">س1 (ب)</span><h2>المشتقة الاتجاهية</h2></div>
+  <div class="tags"><span class="tag">3 درجات</span><span class="tag">المحاضرة 3</span></div>
+  <div class="m big">\[ \begin{gathered} f(x,y,z) = 2x^2y - xz^3 \\ \mathbf a = [1, -1, 2],\quad \text{at } (1, 1, -1) \end{gathered} \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">القانون: $D_{\mathbf a}f = \nabla f \cdot \dfrac{\mathbf a}{|\mathbf a|}$. والناتج <b>رقم</b> مو متجه، لأنه ضرب نقطي.</p>
+    </li>
+    <li class="step">
+      <h4>المشتقات الجزئية</h4>
+      <div class="m">\[ \begin{aligned} f_x &= 4xy - z^3 \\ f_y &= 2x^2 \\ f_z &= -3xz^2 \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض النقطة $(1, 1, -1)$</h4>
+      <div class="m">\[ \begin{aligned} f_x &= 4(1)(1) - (-1)^3 = 4 + 1 = 5 \\ f_y &= 2(1)^2 = 2 \\ f_z &= -3(1)(-1)^2 = -3 \end{aligned} \]</div>
+      <div class="m">\[ \nabla f(1,1,-1) = [5,\ 2,\ -3] \]</div>
+      <p class="why">⚠ $(-1)^3 = -1$، فـ $-z^3 = +1$.</p>
+    </li>
+    <li class="step">
+      <h4>طول $\mathbf a$</h4>
+      <div class="m">\[ |\mathbf a| = \sqrt{1 + 1 + 4} = \sqrt 6 \]</div>
+    </li>
+    <li class="step">
+      <h4>اضرب ضرب نقطي واجمع</h4>
+      <div class="m">\[ \begin{aligned} D_{\mathbf a}f &= \frac{[5, 2, -3]\cdot[1, -1, 2]}{\sqrt 6} \\ &= \frac{5(1) + 2(-1) + (-3)(2)}{\sqrt 6} \\ &= \frac{5 - 2 - 6}{\sqrt 6} = \frac{-3}{\sqrt 6} \end{aligned} \]</div>
+      <p class="why">⚠ الفخ هنا: بعد ما تضرب كل مركّبة بمقابلها لازم <b>تجمعهم</b>. لو كتبت $\tfrac{[5, -2, -6]}{\sqrt6}$ وقفت قبل الجمع، والجواب صار متجه وهو غلط.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} D_{\mathbf a}f = -\dfrac{3}{\sqrt 6} \\ \approx -1.225 \end{gathered}$</div>
+      <p class="sanity">الناتج رقم واحد (مو متجه) ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= س1 ج ================= -->
+<section class="card" id="q1c" data-nav="س1 ج|Q1c">
+  <div class="ex-head"><span class="ex-badge">س1 (ج)</span><h2>طول القوس والانحناء للحلزون</h2></div>
+  <div class="tags"><span class="tag">4 درجات</span><span class="tag">المحاضرة 2</span></div>
+  <div class="m big">\[ \mathbf r(t) = \big[\cos 3t,\ \sin 3t,\ 4t\big] \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">$s = \int_0^t |\mathbf r'(\tau)|\,d\tau$. والانحناء: نكتب $\mathbf r$ بدلالة $s$، وبعدها $\kappa = |\mathbf r''(s)|$.</p>
+    </li>
+    <li class="step">
+      <h4>المشتقة</h4>
+      <div class="m">\[ \mathbf r'(t) = \big[-3\sin 3t,\ 3\cos 3t,\ 4\big] \]</div>
+    </li>
+    <li class="step">
+      <h4>الطول</h4>
+      <div class="m">\[ \begin{aligned} \mathbf r'\cdot\mathbf r' &= 9\sin^2 3t + 9\cos^2 3t + 4^2 \\ &= 9(1) + 16 = 25 \\ |\mathbf r'| &= \sqrt{25} = 5 \end{aligned} \]</div>
+      <p class="why">⚠ المركّبة الثالثة $4$ تتربع: $4^2 = 16$ مو $4$. لو حطيتها $4$ بيطلع لك $\sqrt{13}$ وكل اللي بعده يخرب.</p>
+    </li>
+    <li class="step">
+      <h4>طول القوس</h4>
+      <div class="m">\[ \begin{gathered} s = \int_0^t 5\,d\tau = 5t \\ \Rightarrow\ t = \frac{s}{5} \end{gathered} \]</div>
+    </li>
+    <li class="step">
+      <h4>اكتب $\mathbf r$ بدلالة $s$</h4>
+      <div class="m">\[ \mathbf r(s) = \Big[\cos\tfrac{3s}{5},\ \sin\tfrac{3s}{5},\ \tfrac{4s}{5}\Big] \]</div>
+    </li>
+    <li class="step">
+      <h4>اشتق مرتين بالنسبة لـ $s$</h4>
+      <div class="m">\[ \begin{aligned} \mathbf r'(s) &= \Big[-\tfrac35\sin\tfrac{3s}{5},\ \tfrac35\cos\tfrac{3s}{5},\ \tfrac45\Big] \\ \mathbf r''(s) &= \Big[-\tfrac{9}{25}\cos\tfrac{3s}{5},\ -\tfrac{9}{25}\sin\tfrac{3s}{5},\ 0\Big] \end{aligned} \]</div>
+      <p class="why">فحص سريع: $|\mathbf r'(s)| = \sqrt{\tfrac{9}{25} + \tfrac{16}{25}} = 1$ ✓ (لازم يطلع 1 لما نشتق بالنسبة لـ $s$).</p>
+    </li>
+    <li class="step">
+      <h4>الانحناء = طول $\mathbf r''(s)$</h4>
+      <div class="m">\[ \begin{aligned} \kappa = |\mathbf r''(s)| &= \frac{9}{25}\sqrt{\cos^2 + \sin^2} \\ &= \frac{9}{25} \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} s = 5t \\ \kappa = \dfrac{9}{25} \end{gathered}$</div>
+      <p class="sanity">بالقانون الثاني: $\kappa = \dfrac{|\mathbf r'\times\mathbf r''|}{|\mathbf r'|^3} = \dfrac{5\cdot 9}{125} = \dfrac{9}{25}$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= س2 أ ================= -->
+<section class="card" id="q2a" data-nav="س2 أ|Q2a">
+  <div class="ex-head"><span class="ex-badge">س2 (أ)</span><h2>التباعد والالتفاف</h2></div>
+  <div class="tags"><span class="tag">4 درجات</span><span class="tag">المحاضرة 4</span></div>
+  <div class="m big">\[ \mathbf v = xz\,\mathbf i - y^2\,\mathbf j + 2x^2y\,\mathbf k \quad\text{at } (1, 1, 1) \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <div class="map"><span class="x">v₁ = xz</span><span class="y">v₂ = −y²</span><span class="z">v₃ = 2x²y</span></div>
+    </li>
+    <li class="step">
+      <h4>التباعد: مجموع ثلاث مشتقات</h4>
+      <div class="m">\[ \begin{aligned} \operatorname{div}\mathbf v &= \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z} \\ &= z + (-2y) + 0 = z - 2y \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض $(1,1,1)$</h4>
+      <div class="m">\[ \operatorname{div}\mathbf v = 1 - 2 = -1 \]</div>
+      <p class="why">⚠ مشتقة $-y^2$ هي $-2y$ (سالب). لو نسيت السالب بيطلع $3$ وهو غلط. والتباعد رقم، مو متجه.</p>
+    </li>
+    <li class="step">
+      <h4>الالتفاف: المحدّدة</h4>
+      <div class="m">\[ \operatorname{curl}\mathbf v = \begin{vmatrix} \mathbf i & \mathbf j & \mathbf k \\ \partial_x & \partial_y & \partial_z \\ xz & -y^2 & 2x^2y \end{vmatrix} \]</div>
+      <div class="m">\[ \begin{aligned} \mathbf i:&\ \ \partial_y(2x^2y) - \partial_z(-y^2) \\ &= 2x^2 - 0 = 2x^2 \\[6pt] \mathbf j:&\ -\big[\partial_x(2x^2y) - \partial_z(xz)\big] \\ &= -(4xy - x) = x - 4xy \\[6pt] \mathbf k:&\ \ \partial_x(-y^2) - \partial_y(xz) \\ &= 0 - 0 = 0 \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض $(1,1,1)$</h4>
+      <div class="m">\[ \begin{aligned} \operatorname{curl}\mathbf v &= \big[2(1)^2,\ 1 - 4(1)(1),\ 0\big] \\ &= [2,\ -3,\ 0] \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} \operatorname{div}\mathbf v = -1 \\ \operatorname{curl}\mathbf v = [2, -3, 0] \end{gathered}$</div>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= س2 ب ================= -->
+<section class="card" id="q2b" data-nav="س2 ب|Q2b">
+  <div class="ex-head"><span class="ex-badge">س2 (ب)</span><h2>تكامل ثنائي حدوده متغيرة</h2></div>
+  <div class="tags"><span class="tag">3 درجات</span><span class="tag">المحاضرة 6</span></div>
+  <div class="m big">\[ \int_0^1\!\!\int_0^{1-x} (1 - x - y)\,dy\,dx \]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">الداخلي بالنسبة لـ $y$ و $x$ ثابت. وحطّ انتباهك: الحد العلوي $1 - x$ كله، فخلّه بين قوسين.</p>
+      <div class="map"><span class="y">y: 0 → 1−x</span><span class="x">x: 0 → 1</span></div>
+    </li>
+    <li class="step">
+      <h4>كامل بالنسبة لـ $y$</h4>
+      <p class="why">أسهل طريقة: سمّ $u = 1 - x$ (ثابت بالنسبة لـ $y$)، فالدالة $u - y$:</p>
+      <div class="m">\[ \begin{aligned} \int_0^{u} (u - y)\,dy &= \Big[uy - \frac{y^2}{2}\Big]_0^{u} \\ &= u^2 - \frac{u^2}{2} = \frac{u^2}{2} \\ &= \frac{(1-x)^2}{2} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>نفس الخطوة بالتفصيل بدون $u$</h4>
+      <div class="m">\[ \begin{aligned} &\Big[y - xy - \tfrac{y^2}{2}\Big]_0^{1-x} \\ &= (1-x) - x(1-x) - \tfrac{(1-x)^2}{2} \\ &= (1-x)(1-x) - \tfrac{(1-x)^2}{2} \\ &= (1-x)^2 - \tfrac{(1-x)^2}{2} = \tfrac{(1-x)^2}{2} \end{aligned} \]</div>
+      <p class="why">⚠ لاحظ $(1-x) - x(1-x) = (1-x)(1-x)$: طلّع $(1-x)$ عامل مشترك بدل ما تفك. اللي يفك ويغلط في إشارة وحدة يطلع له صفر.</p>
+    </li>
+    <li class="step">
+      <h4>كامل بالنسبة لـ $x$</h4>
+      <div class="m">\[ \begin{aligned} \int_0^1 \frac{(1-x)^2}{2}\,dx &= \frac12\Big[-\frac{(1-x)^3}{3}\Big]_0^1 \\ &= \frac12\Big(0 + \frac13\Big) = \frac16 \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\dfrac16$</div>
+      <p class="sanity">هذا حجم هرم (رباعي أوجه) رؤوسه $(0,0,0),(1,0,0),(0,1,0),(0,0,1)$: $\tfrac13 \times \text{القاعدة } \tfrac12 \times \text{الارتفاع } 1 = \tfrac16$ ✓. والتكامل لدالة موجبة ما يطلع صفر أبداً.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ جرّب|✏ Try">
+  <h2>دورك: نفس الأسئلة بأرقام ثانية</h2><p class="sub">اكتب الكسر هكذا: 9/25</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>المشتقة الاتجاهية لـ $f = x^2y + z$ في اتجاه $\mathbf a = [2, 1, 2]$ عند $(1, 1, 1)$:</p>
+    <div class="check" data-answer="7/3"></div>
+    <details class="hint"><p>$\nabla f = [2xy,\ x^2,\ 1] = [2, 1, 1]$ و $|\mathbf a| = 3$. ولا تنسى تجمع.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>التدرّج</h4><div class="m">\[ \nabla f(1,1,1) = [2,\ 1,\ 1] \]</div></li>
+      <li class="step"><h4>ضرب نقطي واجمع</h4><div class="m">\[ \frac{2(2) + 1(1) + 1(2)}{3} = \frac{7}{3} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac73$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
+    <p>الانحناء للحلزون $\mathbf r(t) = [2\cos t,\ 2\sin t,\ t]$:</p>
+    <div class="check" data-answer="2/5"></div>
+    <details class="hint"><p>$|\mathbf r'| = \sqrt{4 + 1} = \sqrt5$. يعني $t = s/\sqrt5$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>بدلالة $s$</h4><div class="m">\[ \mathbf r(s) = \Big[2\cos\tfrac{s}{\sqrt5},\ 2\sin\tfrac{s}{\sqrt5},\ \tfrac{s}{\sqrt5}\Big] \]</div></li>
+      <li class="step"><h4>المشتقة الثانية</h4><div class="m">\[ \begin{gathered} \mathbf r''(s) = \Big[-\tfrac25\cos\tfrac{s}{\sqrt5},\ -\tfrac25\sin\tfrac{s}{\sqrt5},\ 0\Big] \\ \Rightarrow\ \kappa = \tfrac25 \end{gathered} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac25$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <div class="m">\[ \int_0^2\!\!\int_0^{2-x} (2 - x - y)\,dy\,dx \]</div>
+    <div class="check" data-answer="4/3"></div>
+    <details class="hint"><p>نفس س2 (ب): الداخلي يطلع $\tfrac{(2-x)^2}{2}$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>الداخلي</h4><div class="m">\[ \int_0^{2-x} (2 - x - y)\,dy = \frac{(2-x)^2}{2} \]</div></li>
+      <li class="step"><h4>الخارجي</h4><div class="m">\[ \frac12\Big[-\frac{(2-x)^3}{3}\Big]_0^2 = \frac12\cdot\frac83 = \frac43 \]</div></li>
+      <li class="step final"><div class="result">$\tfrac43$</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= أخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2>الأخطاء اللي ضيّعت درجات في هذا الاختبار</h2><p class="sub">كل خطأ جنبه التصحيح</p>
+  <div class="mk"><div class="mk-title">المشتقة الاتجاهية طلعت متجه</div>
+    <div class="pair"><div class="no"><div class="mm">$\tfrac{[5, -2, -6]}{\sqrt6}$</div>ضربت المركّبات وما جمعتها.</div><div class="yes"><div class="mm">$\tfrac{5 - 2 - 6}{\sqrt6} = -\tfrac{3}{\sqrt6}$</div>الضرب النقطي يعطي رقم.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">نسيان تربيع المركّبة الثابتة</div>
+    <div class="pair"><div class="no"><div class="mm">$9 + 4 = 13$</div>المركّبة $4$ ما تربعت.</div><div class="yes"><div class="mm">$9 + 16 = 25 \Rightarrow 5$</div>كل مركّبة تتربع.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">إشارة مشتقة $-y^2$</div>
+    <div class="pair"><div class="no"><div class="mm">$\operatorname{div} = 1 + 2 + 0 = 3$</div>أخذت $+2y$.</div><div class="yes"><div class="mm">$1 - 2 + 0 = -1$</div>$\partial_y(-y^2) = -2y$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">فك الأقواس وضياع الإشارة</div>
+    <div class="pair"><div class="no"><div class="mm">$\dots = 0$</div>تكامل دالة موجبة ما يطلع صفر.</div><div class="yes"><div class="mm">$\tfrac{(1-x)^2}{2} \Rightarrow \tfrac16$</div>طلّع $(1-x)$ عامل مشترك.</div></div>
+  </div>
+</section>
+
+<!-- ================= بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>القوانين اللي جت في الاختبار</h2><p class="sub">اضغط على البطاقة تنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>متجه الوحدة المماس؟</div><div>$\mathbf u = \dfrac{\mathbf r'(t)}{|\mathbf r'(t)|}$</div></div>
+    <div class="flash"><div>المشتقة الاتجاهية؟</div><div>$D_{\mathbf a}f = \nabla f\cdot\dfrac{\mathbf a}{|\mathbf a|}$ (رقم)</div></div>
+    <div class="flash"><div>طول القوس؟</div><div>$s = \int_0^t |\mathbf r'(\tau)|\,d\tau$</div></div>
+    <div class="flash"><div>الانحناء بدلالة $s$؟</div><div>$\kappa = |\mathbf r''(s)|$</div></div>
+    <div class="flash"><div>التباعد؟</div><div>$\partial_x v_1 + \partial_y v_2 + \partial_z v_3$ (رقم)</div></div>
+    <div class="flash"><div>الالتفاف؟</div><div>محدّدة $\mathbf i, \mathbf j, \mathbf k$ / $\partial_x, \partial_y, \partial_z$ / $v_1, v_2, v_3$ (متجه)</div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
