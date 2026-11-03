@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-ar-only data-topic="Line Integrals of Vector Fields" data-title-en="Lecture 10 Summary - Line Integrals of Vector Fields">
+<html lang="ar" dir="rtl" data-topic="Line Integrals of Vector Fields" data-title-en="Lecture 10 Summary - Line Integrals of Vector Fields">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,37 +16,37 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 10 · Vector Calculus</p>
-  <h1><span>التكامل الخطي للدالة المتجهة <span class="ltr">Line Integral of a Vector Function</span></span> <span class="h1-math ltr">$\displaystyle\int_C \mathbf F\cdot d\mathbf r$</span></h1>
-  <p class="lead">في <a href="lecture9.html">المحاضرة 9</a> كانت الدالة رقم $f(x,y)$ وجمعناها على المنحنى. هنا الدالة <b>متجه</b> (قوة) $\mathbf F = P\,\mathbf i + Q\,\mathbf j$، وكل اللي نسويه نضربها ضرب نقطي في خطوة الحركة الصغيرة $d\mathbf r$ ونجمع، فيطلع الشغل.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 10 · Vector Calculus</span><span lang="en">LECTURE 10 · VECTOR CALCULUS</span></p>
+  <h1><span><span lang="ar">التكامل الخطي للدالة المتجهة <span class="ltr">Line Integral of a Vector Function</span></span><span lang="en">Line Integral of a Vector Function</span></span> <span class="h1-math ltr">$\displaystyle\int_C \mathbf F\cdot d\mathbf r$</span></h1>
+  <p class="lead"><span lang="ar">في <a href="lecture9.html">المحاضرة 9</a> كانت الدالة رقم $f(x,y)$ وجمعناها على المنحنى. هنا الدالة <b>متجه</b> (قوة) $\mathbf F = P\,\mathbf i + Q\,\mathbf j$، وكل اللي نسويه نضربها ضرب نقطي في خطوة الحركة الصغيرة $d\mathbf r$ ونجمع، فيطلع الشغل.</span><span lang="en">In <a href="lecture9.html">lecture 9</a> the function was a number $f(x,y)$ and we added it up along the curve. Here the function is a <b>vector</b> (a force) $\mathbf F = P\,\mathbf i + Q\,\mathbf j$. All we do is take its dot product with the tiny step of motion $d\mathbf r$ and add up, and out comes the work.</span></p>
   <div class="xyz-bar">
     <span class="x">x(t), y(t), dr</span><span class="y">F = P i + Q j</span><span class="z">T, ds</span>
-    <small>← الأزرق = المنحنى وخطوة الحركة، الأخضر = المجال (القوة)، البرتقالي = اتجاه المماس وطول القطعة</small>
+    <small><span lang="ar">← الأزرق = المنحنى وخطوة الحركة، الأخضر = المجال (القوة)، البرتقالي = اتجاه المماس وطول القطعة</span><span lang="en">← blue = the curve and the step of motion, green = the field (the force), orange = tangent direction and piece length</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
     <ol>
-      <li>القانون كله سطر واحد: $\int_C \mathbf F\cdot d\mathbf r = \int_C P\,dx + Q\,dy$.</li>
-      <li>بدّل بـ $t$: $x = x(t),\ y = y(t)$ و $dx = x'(t)\,dt,\ dy = y'(t)\,dt$، وكامل من $a$ إلى $b$. ما فيه جذر.</li>
-      <li>إذا المسار قطع (مضلّع): $\int_C = \int_{C_1} + \int_{C_2}$. على القطعة الرأسية $dx = 0$، وعلى الأفقية $dy = 0$.</li>
+      <li><span lang="ar">القانون كله سطر واحد: $\int_C \mathbf F\cdot d\mathbf r = \int_C P\,dx + Q\,dy$.</span><span lang="en">The whole formula is one line: $\int_C \mathbf F\cdot d\mathbf r = \int_C P\,dx + Q\,dy$.</span></li>
+      <li><span lang="ar">بدّل بـ $t$: $x = x(t),\ y = y(t)$ و $dx = x'(t)\,dt,\ dy = y'(t)\,dt$، وكامل من $a$ إلى $b$. ما فيه جذر.</span><span lang="en">Switch to $t$: $x = x(t),\ y = y(t)$ and $dx = x'(t)\,dt,\ dy = y'(t)\,dt$, then integrate from $a$ to $b$. No square root.</span></li>
+      <li><span lang="ar">إذا المسار قطع (مضلّع): $\int_C = \int_{C_1} + \int_{C_2}$. على القطعة الرأسية $dx = 0$، وعلى الأفقية $dy = 0$.</span><span lang="en">If the path is made of pieces (polygonal): $\int_C = \int_{C_1} + \int_{C_2}$. On a vertical piece $dx = 0$, and on a horizontal one $dy = 0$.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الفكرة ================= -->
 <section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
-  <h2>وش الجديد عن المحاضرة 9؟</h2>
-  <p class="sub">نفس المنحنى $C$، بس اللي نجمعه صار متجه</p>
+  <h2><span lang="ar">وش الجديد عن المحاضرة 9؟</span><span lang="en">What is new compared to lecture 9?</span></h2>
+  <p class="sub"><span lang="ar">نفس المنحنى $C$، بس اللي نجمعه صار متجه</span><span lang="en">Same curve $C$, but what we add up is now a vector</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">المحاضرة 9</div><div class="t-name">دالة قياسية (رقم)</div><div class="t-math">$\int_C f(x,y)\,ds$</div><div class="t-desc">عند كل نقطة رقم واحد، مثل ارتفاع سياج.</div></div>
-    <div class="tile hl"><div class="t-top">المحاضرة 10</div><div class="t-name">دالة متجهة (مجال)</div><div class="t-math">$\int_C \mathbf F\cdot d\mathbf r$</div><div class="t-desc">عند كل نقطة سهم له اتجاه وقيمة، مثل قوة تدفع جسم.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">المحاضرة 9</span><span lang="en">Lecture 9</span></div><div class="t-name"><span lang="ar">دالة قياسية (رقم)</span><span lang="en">Scalar function (a number)</span></div><div class="t-math">$\int_C f(x,y)\,ds$</div><div class="t-desc"><span lang="ar">عند كل نقطة رقم واحد، مثل ارتفاع سياج.</span><span lang="en">One number at each point, like the height of a fence.</span></div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">المحاضرة 10</span><span lang="en">Lecture 10</span></div><div class="t-name"><span lang="ar">دالة متجهة (مجال)</span><span lang="en">Vector function (a field)</span></div><div class="t-math">$\int_C \mathbf F\cdot d\mathbf r$</div><div class="t-desc"><span lang="ar">عند كل نقطة سهم له اتجاه وقيمة، مثل قوة تدفع جسم.</span><span lang="en">An arrow with direction and size at each point, like a force pushing a body.</span></div></div>
   </div>
-  <h3>المعطيات</h3>
-  <p>عندنا دالة متجهة معرّفة على طول المنحنى:</p>
+  <h3><span lang="ar">المعطيات</span><span lang="en">What we are given</span></h3>
+  <p><span lang="ar">عندنا دالة متجهة معرّفة على طول المنحنى:</span><span lang="en">We have a vector function defined along the curve:</span></p>
   <div class="m big">\[ \Y{\mathbf F(x,y) = P(x,y)\,\mathbf i + Q(x,y)\,\mathbf j} \]</div>
-  <p>والمنحنى مكتوب بدلالة باراميتر:</p>
+  <p><span lang="ar">والمنحنى مكتوب بدلالة باراميتر:</span><span lang="en">and the curve is written with a parameter:</span></p>
   <div class="m">\[ C:\quad \X{x = x(t)},\quad \X{y = y(t)},\qquad a \le t \le b \]</div>
-  <p>ونعرّف <b>متجه الموضع</b> $\mathbf r(t)$: سهم من نقطة الأصل إلى النقطة اللي إحنا فيها على المنحنى الحين.</p>
+  <p><span lang="ar">ونعرّف <b>متجه الموضع</b> $\mathbf r(t)$: سهم من نقطة الأصل إلى النقطة اللي إحنا فيها على المنحنى الحين.</span><span lang="en">We define the <b>position vector</b> $\mathbf r(t)$: an arrow from the origin to the point where we are on the curve right now.</span></p>
   <div class="m">\[ \X{\mathbf r(t) = x(t)\,\mathbf i + y(t)\,\mathbf j} \]</div>
   <figure class="fig">
     <svg viewBox="0 0 440 270" role="img" aria-label="متجه الموضع r(t) من الأصل إلى نقطة على المنحنى C، ومركّبتيه x و y، و dr مماس للمنحنى">
@@ -63,33 +63,34 @@
     <text class="lbl" x="144" y="253" text-anchor="middle">x(t)</text>
     <text class="lbl" x="240" y="198">y(t)</text>
     </svg>
-    <figcaption>$\mathbf r(t)$ (السهم من الأصل) مركّبته الأفقية $x(t)$ والرأسية $y(t)$. لما $t$ تزيد شوي، النقطة تتحرك خطوة صغيرة $d\mathbf r$ مماسة للمنحنى.</figcaption>
+    <figcaption><span lang="ar">$\mathbf r(t)$ (السهم من الأصل) مركّبته الأفقية $x(t)$ والرأسية $y(t)$. لما $t$ تزيد شوي، النقطة تتحرك خطوة صغيرة $d\mathbf r$ مماسة للمنحنى.</span><span lang="en">$\mathbf r(t)$ (the arrow from the origin) has horizontal component $x(t)$ and vertical component $y(t)$. When $t$ grows a little, the point moves a tiny step $d\mathbf r$ tangent to the curve.</span></figcaption>
   </figure>
 </section>
 
 <!-- ================= الاشتقاق ================= -->
 <section class="card" id="derive" data-num="02" data-nav="القانون|Formula">
-  <h2>من وين جا القانون؟</h2>
-  <p class="sub">ثلاث خطوات بس</p>
+  <h2><span lang="ar">من وين جا القانون؟</span><span lang="en">Where does the formula come from?</span></h2>
+  <p class="sub"><span lang="ar">ثلاث خطوات بس</span><span lang="en">Just three steps</span></p>
   <ol class="recipe">
-    <li><b>اشتق متجه الموضع</b><span class="why">$\dfrac{d\mathbf r}{dt} = \dfrac{dx}{dt}\,\mathbf i + \dfrac{dy}{dt}\,\mathbf j$</span></li>
-    <li><b>اضرب في $dt$</b><span class="why">فتصير خطوة الحركة الصغيرة: $\X{d\mathbf r = dx\,\mathbf i + dy\,\mathbf j}$</span></li>
-    <li><b>اضرب $\mathbf F$ ضرب نقطي في $d\mathbf r$</b><span class="why">الضرب النقطي = (i مع i) + (j مع j)، والناتج رقم مو متجه.</span></li>
+    <li><b><span lang="ar">اشتق متجه الموضع</span><span lang="en">Differentiate the position vector</span></b><span class="why">$\dfrac{d\mathbf r}{dt} = \dfrac{dx}{dt}\,\mathbf i + \dfrac{dy}{dt}\,\mathbf j$</span></li>
+    <li><b><span lang="ar">اضرب في $dt$</span><span lang="en">Multiply by $dt$</span></b><span class="why"><span lang="ar">فتصير خطوة الحركة الصغيرة: $\X{d\mathbf r = dx\,\mathbf i + dy\,\mathbf j}$</span><span lang="en">This gives the tiny step of motion: $\X{d\mathbf r = dx\,\mathbf i + dy\,\mathbf j}$</span></span></li>
+    <li><b><span lang="ar">اضرب $\mathbf F$ ضرب نقطي في $d\mathbf r$</span><span lang="en">Dot $\mathbf F$ with $d\mathbf r$</span></b><span class="why"><span lang="ar">الضرب النقطي = (i مع i) + (j مع j)، والناتج رقم مو متجه.</span><span lang="en">Dot product = (i with i) + (j with j), and the result is a number, not a vector.</span></span></li>
   </ol>
   <div class="m big">\[ \begin{aligned} \Y{\mathbf F}\cdot \X{d\mathbf r} &= \big[\Y{P}\,\mathbf i + \Y{Q}\,\mathbf j\big]\cdot\big[\X{dx}\,\mathbf i + \X{dy}\,\mathbf j\big] \\ &= \Y{P}\,\X{dx} + \Y{Q}\,\X{dy} \end{aligned} \]</div>
-  <p>نجمع على المنحنى كله:</p>
+  <p><span lang="ar">نجمع على المنحنى كله:</span><span lang="en">Add up along the whole curve:</span></p>
   <div class="m big">\[ \boxed{\begin{aligned} \int_C \mathbf F\cdot d\mathbf r &= \int_C P(x,y)\,dx + Q(x,y)\,dy \\ &= \int_C P\,dx + \int_C Q\,dy \end{aligned}} \]</div>
-  <div class="callout key"><strong>🔑 القاعدة:</strong> لا تخاف من شكل $\mathbf F\cdot d\mathbf r$. أول ما تشوفه حوّله فوراً إلى $P\,dx + Q\,dy$، وبعدها نفس شغل المحاضرة 9 بالنسبة لـ $dx$ و $dy$ (بدون جذر).</div>
-  <div class="callout warn"><strong>⚠ انتبه:</strong> لو السؤال جاك على شكل $\int_C (x^2+y^2)\,dx + 2xy\,dy$ فهو نفس الشي: $P = x^2+y^2$ (اللي جنب $dx$) و $Q = 2xy$ (اللي جنب $dy$).</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 القاعدة:</strong> لا تخاف من شكل $\mathbf F\cdot d\mathbf r$. أول ما تشوفه حوّله فوراً إلى $P\,dx + Q\,dy$، وبعدها نفس شغل المحاضرة 9 بالنسبة لـ $dx$ و $dy$ (بدون جذر).</span><span lang="en"><strong>🔑 The rule:</strong> don't be scared by $\mathbf F\cdot d\mathbf r$. As soon as you see it, turn it into $P\,dx + Q\,dy$; after that it is the same work as lecture 9 with respect to $dx$ and $dy$ (no square root).</span></div>
+  <div class="callout warn"><span lang="ar"><strong>⚠ انتبه:</strong> لو السؤال جاك على شكل $\int_C (x^2+y^2)\,dx + 2xy\,dy$ فهو نفس الشي: $P = x^2+y^2$ (اللي جنب $dx$) و $Q = 2xy$ (اللي جنب $dy$).</span><span lang="en"><strong>⚠ Careful:</strong> if the question comes as $\int_C (x^2+y^2)\,dx + 2xy\,dy$, it is the same thing: $P = x^2+y^2$ (next to $dx$) and $Q = 2xy$ (next to $dy$).</span></div>
 </section>
 
 <!-- ================= الشغل ================= -->
 <section class="card" id="work" data-num="03" data-nav="الشغل|Work">
-  <h2>المعنى: الشغل $W$</h2>
-  <p class="sub">ليش نسوي ضرب نقطي أصلاً؟</p>
-  <p>إذا $\mathbf T$ متجه الوحدة المماس للمنحنى (اتجاه الحركة، طوله 1):</p>
-  <div class="m">\[ \Z{\mathbf T = \frac{\mathbf r'(t)}{|\mathbf r'(t)|}} \qquad\text{و}\qquad d\mathbf r = \mathbf T\,ds \]</div>
-  <p>يعني خطوة الحركة = اتجاهها $\mathbf T$ × طولها $ds$. نعوّض:</p>
+  <h2><span lang="ar">المعنى: الشغل $W$</span><span lang="en">Meaning: the work $W$</span></h2>
+  <p class="sub"><span lang="ar">ليش نسوي ضرب نقطي أصلاً؟</span><span lang="en">Why a dot product in the first place?</span></p>
+  <p><span lang="ar">إذا $\mathbf T$ متجه الوحدة المماس للمنحنى (اتجاه الحركة، طوله 1):</span><span lang="en">If $\mathbf T$ is the unit tangent vector of the curve (direction of motion, length 1):</span></p>
+  <div class="m" lang="ar">\[ \Z{\mathbf T = \frac{\mathbf r'(t)}{|\mathbf r'(t)|}} \qquad\text{و}\qquad d\mathbf r = \mathbf T\,ds \]</div>
+  <div class="m" lang="en">\[ \Z{\mathbf T = \frac{\mathbf r'(t)}{|\mathbf r'(t)|}} \qquad\text{and}\qquad d\mathbf r = \mathbf T\,ds \]</div>
+  <p><span lang="ar">يعني خطوة الحركة = اتجاهها $\mathbf T$ × طولها $ds$. نعوّض:</span><span lang="en">So the step of motion = its direction $\mathbf T$ × its length $ds$. Substituting:</span></p>
   <div class="m big">\[ \int_C \mathbf F\cdot d\mathbf r = \int_C \Y{\mathbf F}\cdot\Z{\mathbf T}\,\Z{ds} \]</div>
   <figure class="fig">
     <svg viewBox="0 0 440 260" role="img" aria-label="أسهم القوة F وأسهم المماس T على المنحنى C، ومركّبة القوة على اتجاه الحركة F·T">
@@ -98,40 +99,41 @@
     <text class="lbl" x="70" y="232" style="fill:var(--cx);font-size:15px">C</text>
     <path class="sk" style="--c:var(--cy);stroke-width:3.6" d="M132 210 L139.8 164.3"/><path class="fi" style="--c:var(--cy)" d="M142.0 151.5 L145.2 165.3 L134.4 163.4Z"/><path class="sk" style="--c:var(--cz);stroke-width:3.2" d="M132 210 L160.4 203.8"/><path class="fi" style="--c:var(--cz)" d="M173.2 201.3 L161.5 209.2 L159.4 198.5Z"/><circle cx="132" cy="210" r="4.5" class="fi" style="--c:var(--ink)"/><path class="sk" style="--c:var(--cy);stroke-width:3.6" d="M211 185 L252.1 154.5"/><path class="fi" style="--c:var(--cy)" d="M262.6 146.8 L255.4 158.9 L248.9 150.1Z"/><path class="sk" style="--c:var(--cz);stroke-width:3.2" d="M211 185 L237.3 173.3"/><path class="fi" style="--c:var(--cz)" d="M249.2 168.2 L239.4 178.4 L235.1 168.3Z"/><circle cx="211" cy="185" r="4.5" class="fi" style="--c:var(--ink)"/><path class="sk" style="--c:var(--cy);stroke-width:3.6" d="M287 143 L349.5 155.0"/><path class="fi" style="--c:var(--cy)" d="M362.3 157.6 L348.4 160.4 L350.6 149.6Z"/><path class="sk" style="--c:var(--cz);stroke-width:3.2" d="M287 143 L311.3 126.3"/><path class="fi" style="--c:var(--cz)" d="M322.1 119.0 L314.3 130.8 L308.2 121.8Z"/><circle cx="287" cy="143" r="4.5" class="fi" style="--c:var(--ink)"/><path class="sk dash" style="--c:var(--ink-2);stroke-width:1.6" d="M362 158 L332 112"/><path class="sk" style="--c:var(--cz);stroke-width:7;opacity:.35" d="M287 143 L332 112"/><text class="lbl" x="368" y="162" style="fill:var(--cy);font-size:15px">F</text><text class="lbl" x="310" y="98" style="fill:var(--cz);font-size:14px">F·T</text><text class="lbl" x="280" y="125" style="fill:var(--cz);font-size:15px">T</text><path class="sk" style="--c:var(--cy);stroke-width:3.6" d="M362 83 L391.7 106.6"/><path class="fi" style="--c:var(--cy)" d="M401.9 114.7 L388.3 110.8 L395.1 102.3Z"/><path class="sk" style="--c:var(--cz);stroke-width:3.2" d="M362 83 L383.1 62.9"/><path class="fi" style="--c:var(--cz)" d="M392.6 54.1 L386.8 66.9 L379.3 58.9Z"/><circle cx="362" cy="83" r="4.5" class="fi" style="--c:var(--ink)"/>
     </svg>
-    <figcaption>عند كل نقطة: السهم الأخضر القوة $\mathbf F$، والبرتقالي اتجاه الحركة $\mathbf T$. الجزء المظلّل $\mathbf F\cdot\mathbf T$ هو اللي فعلاً يدفع الجسم على الطريق.</figcaption>
+    <figcaption><span lang="ar">عند كل نقطة: السهم الأخضر القوة $\mathbf F$، والبرتقالي اتجاه الحركة $\mathbf T$. الجزء المظلّل $\mathbf F\cdot\mathbf T$ هو اللي فعلاً يدفع الجسم على الطريق.</span><span lang="en">At each point: the green arrow is the force $\mathbf F$ and the orange one is the direction of motion $\mathbf T$. The shaded part $\mathbf F\cdot\mathbf T$ is what actually pushes the body along the path.</span></figcaption>
   </figure>
-  <p>$\mathbf F\cdot\mathbf T$ = مركّبة القوة في اتجاه الحركة. ضربها في $ds$ = شغل القطعة الصغيرة. الجمع = الشغل كله:</p>
+  <p><span lang="ar">$\mathbf F\cdot\mathbf T$ = مركّبة القوة في اتجاه الحركة. ضربها في $ds$ = شغل القطعة الصغيرة. الجمع = الشغل كله:</span><span lang="en">$\mathbf F\cdot\mathbf T$ = the component of the force along the motion. Times $ds$ = the work on a tiny piece. The sum = the total work:</span></p>
   <div class="m big">\[ W = \int_C \mathbf F\cdot\mathbf T\,ds = \int_C \mathbf F\cdot d\mathbf r \]</div>
   <div class="grid-3">
-    <div class="tile"><div class="t-top">القوة مع الحركة</div><div class="t-name">شغل موجب</div><div class="t-desc">$\mathbf F\cdot\mathbf T > 0$: القوة تساعد.</div></div>
-    <div class="tile"><div class="t-top">القوة ضد الحركة</div><div class="t-name">شغل سالب</div><div class="t-desc">$\mathbf F\cdot\mathbf T < 0$: القوة تعاكس.</div></div>
-    <div class="tile"><div class="t-top">القوة عمودية</div><div class="t-name">شغل صفر</div><div class="t-desc">$\mathbf F\cdot\mathbf T = 0$: ما تحرّك الجسم على الطريق.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">القوة مع الحركة</span><span lang="en">Force with the motion</span></div><div class="t-name"><span lang="ar">شغل موجب</span><span lang="en">Positive work</span></div><div class="t-desc"><span lang="ar">$\mathbf F\cdot\mathbf T > 0$: القوة تساعد.</span><span lang="en">$\mathbf F\cdot\mathbf T > 0$: the force helps.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">القوة ضد الحركة</span><span lang="en">Force against the motion</span></div><div class="t-name"><span lang="ar">شغل سالب</span><span lang="en">Negative work</span></div><div class="t-desc"><span lang="ar">$\mathbf F\cdot\mathbf T < 0$: القوة تعاكس.</span><span lang="en">$\mathbf F\cdot\mathbf T < 0$: the force resists.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">القوة عمودية</span><span lang="en">Perpendicular force</span></div><div class="t-name"><span lang="ar">شغل صفر</span><span lang="en">Zero work</span></div><div class="t-desc"><span lang="ar">$\mathbf F\cdot\mathbf T = 0$: ما تحرّك الجسم على الطريق.</span><span lang="en">$\mathbf F\cdot\mathbf T = 0$: it does not move the body along the path.</span></div></div>
   </div>
 </section>
 
 <!-- ================= الطريقة ================= -->
 <section class="card" id="method" data-num="04" data-nav="الطريقة|Method">
-  <h2>الطريقة خطوة بخطوة</h2>
-  <p class="sub">نفس الخطوات في كل سؤال</p>
+  <h2><span lang="ar">الطريقة خطوة بخطوة</span><span lang="en">The method step by step</span></h2>
+  <p class="sub"><span lang="ar">نفس الخطوات في كل سؤال</span><span lang="en">The same steps in every question</span></p>
   <ol class="recipe">
-    <li><b>طلّع P و Q</b><span class="why">$P$ = اللي جنب $dx$، و $Q$ = اللي جنب $dy$.</span></li>
-    <li><b>اكتب المنحنى بدلالة t</b><span class="why">$x = x(t),\ y = y(t)$ وحدود $t$.</span></li>
-    <li><b>اشتق</b><span class="why">$dx = x'(t)\,dt$ و $dy = y'(t)\,dt$.</span></li>
-    <li><b>عوّض كل شي</b><span class="why">بدّل $x$ و $y$ و $dx$ و $dy$ بدلالة $t$، واجمع الحدود المتشابهة.</span></li>
-    <li><b>كامل في t</b><span class="why">تكامل عادي من $a$ إلى $b$.</span></li>
+    <li><b><span lang="ar">طلّع P و Q</span><span lang="en">Find P and Q</span></b><span class="why"><span lang="ar">$P$ = اللي جنب $dx$، و $Q$ = اللي جنب $dy$.</span><span lang="en">$P$ = what sits next to $dx$, and $Q$ = what sits next to $dy$.</span></span></li>
+    <li><b><span lang="ar">اكتب المنحنى بدلالة t</span><span lang="en">Write the curve in terms of t</span></b><span class="why"><span lang="ar">$x = x(t),\ y = y(t)$ وحدود $t$.</span><span lang="en">$x = x(t),\ y = y(t)$ and the limits of $t$.</span></span></li>
+    <li><b><span lang="ar">اشتق</span><span lang="en">Differentiate</span></b><span class="why"><span lang="ar">$dx = x'(t)\,dt$ و $dy = y'(t)\,dt$.</span><span lang="en">$dx = x'(t)\,dt$ and $dy = y'(t)\,dt$.</span></span></li>
+    <li><b><span lang="ar">عوّض كل شي</span><span lang="en">Substitute everything</span></b><span class="why"><span lang="ar">بدّل $x$ و $y$ و $dx$ و $dy$ بدلالة $t$، واجمع الحدود المتشابهة.</span><span lang="en">Replace $x$, $y$, $dx$ and $dy$ with their expressions in $t$, and collect like terms.</span></span></li>
+    <li><b><span lang="ar">كامل في t</span><span lang="en">Integrate in t</span></b><span class="why"><span lang="ar">تكامل عادي من $a$ إلى $b$.</span><span lang="en">An ordinary integral from $a$ to $b$.</span></span></li>
   </ol>
-  <h3>إذا المسار قطع (Piecewise)</h3>
-  <p>إذا $C$ مكوّن من قطعتين $C = C_1 \cup C_2$ (مثل مسار مضلّع)، تحسب كل قطعة لحالها، وكل قطعة لها باراميتر وحدود خاصة فيها، وبعدين تجمع:</p>
+  <h3><span lang="ar">إذا المسار قطع (Piecewise)</span><span lang="en">If the path is piecewise</span></h3>
+  <p><span lang="ar">إذا $C$ مكوّن من قطعتين $C = C_1 \cup C_2$ (مثل مسار مضلّع)، تحسب كل قطعة لحالها، وكل قطعة لها باراميتر وحدود خاصة فيها، وبعدين تجمع:</span><span lang="en">If $C$ is made of two pieces $C = C_1 \cup C_2$ (like a polygonal path), compute each piece on its own, each with its own parameter and limits, then add:</span></p>
   <div class="m big">\[ \int_C = \int_{C_1} + \int_{C_2} \]</div>
-  <div class="callout good"><strong>✅ اختصار القطع المستقيمة</strong><ul class="checks"><li>قطعة رأسية ($x$ ثابت): $dx = 0$، فيبقى بس $\int Q\,dy$.</li><li>قطعة أفقية ($y$ ثابت): $dy = 0$، فيبقى بس $\int P\,dx$.</li></ul></div>
+  <div class="callout good"><strong><span lang="ar">✅ اختصار القطع المستقيمة</span><span lang="en">✅ Shortcut for straight pieces</span></strong><ul class="checks"><li><span lang="ar">قطعة رأسية ($x$ ثابت): $dx = 0$، فيبقى بس $\int Q\,dy$.</span><span lang="en">Vertical piece ($x$ constant): $dx = 0$, so only $\int Q\,dy$ is left.</span></li><li><span lang="ar">قطعة أفقية ($y$ ثابت): $dy = 0$، فيبقى بس $\int P\,dx$.</span><span lang="en">Horizontal piece ($y$ constant): $dy = 0$, so only $\int P\,dx$ is left.</span></li></ul></div>
 </section>
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>نفس التكامل على مسارين: خط مستقيم وقطع مكافئ</h2></div>
-  <div class="tags"><span class="tag">P dx + Q dy</span><span class="tag">(أ) و (ب)</span></div>
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">نفس التكامل على مسارين: خط مستقيم وقطع مكافئ</span><span lang="en">One integral on two paths: a straight line and a parabola</span></h2></div>
+  <div class="tags"><span class="tag">P dx + Q dy</span><span class="tag"><span lang="ar">(أ) و (ب)</span><span lang="en">(a) and (b)</span></span></div>
   <div class="m big">\[ \text{Evaluate}\quad \int_C (x^2+y^2)\,dx + 2xy\,dy \]</div>
-  <div class="m">\[ \begin{gathered} \text{(أ)}\ \ C:\ x = t,\ y = 2t,\ 0 \le t \le 1 \\[4pt] \text{(ب)}\ \ C:\ x = t,\ y = 2t^2,\ 0 \le t \le 1 \end{gathered} \]</div>
+  <div class="m" lang="ar">\[ \begin{gathered} \text{(أ)}\ \ C:\ x = t,\ y = 2t,\ 0 \le t \le 1 \\[4pt] \text{(ب)}\ \ C:\ x = t,\ y = 2t^2,\ 0 \le t \le 1 \end{gathered} \]</div>
+  <div class="m" lang="en">\[ \begin{gathered} \text{(a)}\ \ C:\ x = t,\ y = 2t,\ 0 \le t \le 1 \\[4pt] \text{(b)}\ \ C:\ x = t,\ y = 2t^2,\ 0 \le t \le 1 \end{gathered} \]</div>
   <figure class="fig">
     <svg viewBox="0 0 330 290" role="img" aria-label="المسار أ خط مستقيم y = 2x والمسار ب قطع مكافئ y = 2x² من (0,0) إلى (1,2)" style="max-width:340px">
     <path class="ax" style="stroke-width:2" d="M50 250 H210.0 M70 266 V15.0"/><text class="lbl" x="214.0" y="255">x</text><text class="lbl" x="66" y="7.0">y</text><path class="ax" d="M170 246 V254"/><text class="tick" x="170" y="268" text-anchor="middle">1</text><path class="ax" d="M66 150 H74"/><text class="tick" x="60" y="154" text-anchor="end">1</text><path class="ax" d="M66 50 H74"/><text class="tick" x="60" y="54" text-anchor="end">2</text>
@@ -141,81 +143,81 @@
     <path class="sk" style="--c:var(--cz);stroke-width:4" d="M128 183 L126.2 187.0"/><path class="fi" style="--c:var(--cz)" d="M132.0 173.1 L132.0 189.4 L120.4 184.5Z"/>
     <circle cx="70" cy="250" r="5.5" class="fi" style="--c:var(--ink)"/><circle cx="170" cy="50" r="5.5" class="fi" style="--c:var(--ink)"/>
     <text class="lbl" x="78" y="270">(0,0)</text><text class="lbl" x="180" y="54">(1,2)</text>
-    <text class="lbl" x="190" y="150" style="fill:var(--cx);font-size:14px">(أ) y = 2x</text>
-    <text class="lbl" x="190" y="180" style="fill:var(--cz);font-size:14px">(ب) y = 2x²</text>
+    <text lang="ar" class="lbl" x="190" y="150" style="fill:var(--cx);font-size:14px">(أ) y = 2x</text><text lang="en" class="lbl" x="190" y="150" style="fill:var(--cx);font-size:14px">(a) y = 2x</text>
+    <text lang="ar" class="lbl" x="190" y="180" style="fill:var(--cz);font-size:14px">(ب) y = 2x²</text><text lang="en" class="lbl" x="190" y="180" style="fill:var(--cz);font-size:14px">(b) y = 2x²</text>
     </svg>
-    <figcaption>المساران يبدون من $(0,0)$ وينتهون عند $(1,2)$: الأزرق خط مستقيم، والبرتقالي قطع مكافئ.</figcaption>
+    <figcaption><span lang="ar">المساران يبدون من $(0,0)$ وينتهون عند $(1,2)$: الأزرق خط مستقيم، والبرتقالي قطع مكافئ.</span><span lang="en">Both paths start at $(0,0)$ and end at $(1,2)$: blue is a straight line, orange is a parabola.</span></figcaption>
   </figure>
 
-  <h3>(أ) الخط المستقيم $x = t,\ y = 2t$</h3>
+  <h3><span lang="ar">(أ) الخط المستقيم $x = t,\ y = 2t$</span><span lang="en">(a) The straight line $x = t,\ y = 2t$</span></h3>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4><p class="why">جاك على شكل $P\,dx + Q\,dy$ جاهز، والمنحنى معطى بدلالة $t$.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4><p class="why"><span lang="ar">جاك على شكل $P\,dx + Q\,dy$ جاهز، والمنحنى معطى بدلالة $t$.</span><span lang="en">It is already in the form $P\,dx + Q\,dy$, and the curve is given in terms of $t$.</span></p>
       <div class="map"><span class="y">P = x² + y²</span><span class="y">Q = 2xy</span><span class="x">x = t, y = 2t</span><span class="z">t: 0 → 1</span></div>
     </li>
     <li class="step">
-      <h4>اشتق: جهّز $dx$ و $dy$</h4>
+      <h4><span lang="ar">اشتق: جهّز $dx$ و $dy$</span><span lang="en">Differentiate: prepare $dx$ and $dy$</span></h4>
       <div class="m">\[ \begin{gathered} x = t \Rightarrow \frac{dx}{dt} = 1 \Rightarrow \X{dx = dt} \\ y = 2t \Rightarrow \frac{dy}{dt} = 2 \Rightarrow \X{dy = 2\,dt} \end{gathered} \]</div>
     </li>
     <li class="step">
-      <h4>عوّض في $P$</h4>
+      <h4><span lang="ar">عوّض في $P$</span><span lang="en">Substitute into $P$</span></h4>
       <div class="m">\[ \begin{aligned} P\,dx &= \big(x^2+y^2\big)\,dx \\ &= \big(t^2 + (2t)^2\big)\,dt \\ &= \big(t^2 + 4t^2\big)\,dt \\ &= 5t^2\,dt \end{aligned} \]</div>
-      <p class="why">⚠ $(2t)^2 = 4t^2$ مو $2t^2$. التربيع يدخل على الـ 2 بعد.</p>
+      <p class="why"><span lang="ar">⚠ $(2t)^2 = 4t^2$ مو $2t^2$. التربيع يدخل على الـ 2 بعد.</span><span lang="en">⚠ $(2t)^2 = 4t^2$, not $2t^2$. The square applies to the 2 as well.</span></p>
     </li>
     <li class="step">
-      <h4>عوّض في $Q$</h4>
+      <h4><span lang="ar">عوّض في $Q$</span><span lang="en">Substitute into $Q$</span></h4>
       <div class="m">\[ \begin{aligned} Q\,dy &= 2xy\,dy \\ &= 2(t)(2t)\cdot 2\,dt \\ &= 8t^2\,dt \end{aligned} \]</div>
-      <p class="why">لا تنسى الـ $2$ اللي جت من $dy = 2\,dt$.</p>
+      <p class="why"><span lang="ar">لا تنسى الـ $2$ اللي جت من $dy = 2\,dt$.</span><span lang="en">Don't forget the $2$ that came from $dy = 2\,dt$.</span></p>
     </li>
     <li class="step">
-      <h4>اجمع وكامل</h4>
+      <h4><span lang="ar">اجمع وكامل</span><span lang="en">Add and integrate</span></h4>
       <div class="m">\[ \begin{aligned} &\int_0^1 \big(5t^2 + 8t^2\big)\,dt \\ &= \int_0^1 13t^2\,dt \\ &= 13\Big[\frac{t^3}{3}\Big]_0^1 \\ &= 13\Big(\frac13 - 0\Big) \\ &= \frac{13}{3} \end{aligned} \]</div>
     </li>
     <li class="step final">
       <div class="result">$\dfrac{13}{3}$</div>
-      <p class="sanity">كل الحدود موجبة على $0 \le t \le 1$، فالجواب لازم يطلع موجب ✓</p>
+      <p class="sanity"><span lang="ar">كل الحدود موجبة على $0 \le t \le 1$، فالجواب لازم يطلع موجب ✓</span><span lang="en">All terms are positive on $0 \le t \le 1$, so the answer must be positive ✓</span></p>
     </li>
   </ol>
 
-  <h3>(ب) القطع المكافئ $x = t,\ y = 2t^2$</h3>
+  <h3><span lang="ar">(ب) القطع المكافئ $x = t,\ y = 2t^2$</span><span lang="en">(b) The parabola $x = t,\ y = 2t^2$</span></h3>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4><p class="why">نفس $P$ و $Q$ ونفس البداية والنهاية، بس الطريق تغيّر. يعني $dy$ بيتغير.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4><p class="why"><span lang="ar">نفس $P$ و $Q$ ونفس البداية والنهاية، بس الطريق تغيّر. يعني $dy$ بيتغير.</span><span lang="en">Same $P$ and $Q$, same start and end, but the path changed. So $dy$ changes.</span></p>
       <div class="map"><span class="x">x = t, y = 2t²</span><span class="z">t: 0 → 1</span></div>
     </li>
     <li class="step">
-      <h4>اشتق: جهّز $dx$ و $dy$</h4>
+      <h4><span lang="ar">اشتق: جهّز $dx$ و $dy$</span><span lang="en">Differentiate: prepare $dx$ and $dy$</span></h4>
       <div class="m">\[ \begin{gathered} x = t \Rightarrow \X{dx = dt} \\ y = 2t^2 \Rightarrow \frac{dy}{dt} = 4t \Rightarrow \X{dy = 4t\,dt} \end{gathered} \]</div>
     </li>
     <li class="step">
-      <h4>عوّض في $P$</h4>
+      <h4><span lang="ar">عوّض في $P$</span><span lang="en">Substitute into $P$</span></h4>
       <div class="m">\[ \begin{aligned} P\,dx &= \big(t^2 + (2t^2)^2\big)\,dt \\ &= \big(t^2 + 4t^4\big)\,dt \end{aligned} \]</div>
-      <p class="why">$(2t^2)^2 = 4t^4$: الـ 2 تتربع والأس يتضاعف.</p>
+      <p class="why"><span lang="ar">$(2t^2)^2 = 4t^4$: الـ 2 تتربع والأس يتضاعف.</span><span lang="en">$(2t^2)^2 = 4t^4$: the 2 gets squared and the exponent doubles.</span></p>
     </li>
     <li class="step">
-      <h4>عوّض في $Q$</h4>
+      <h4><span lang="ar">عوّض في $Q$</span><span lang="en">Substitute into $Q$</span></h4>
       <div class="m">\[ \begin{aligned} Q\,dy &= 2(t)(2t^2)\cdot 4t\,dt \\ &= 4t^3 \cdot 4t\,dt \\ &= 16t^4\,dt \end{aligned} \]</div>
     </li>
     <li class="step">
-      <h4>اجمع الحدود المتشابهة</h4>
+      <h4><span lang="ar">اجمع الحدود المتشابهة</span><span lang="en">Collect like terms</span></h4>
       <div class="m">\[ \begin{aligned} \big(t^2 + 4t^4\big) + 16t^4 &= t^2 + 20t^4 \end{aligned} \]</div>
     </li>
     <li class="step">
-      <h4>كامل</h4>
+      <h4><span lang="ar">كامل</span><span lang="en">Integrate</span></h4>
       <div class="m">\[ \begin{aligned} &\int_0^1 \big(t^2 + 20t^4\big)\,dt \\ &= \Big[\frac{t^3}{3} + 20\cdot\frac{t^5}{5}\Big]_0^1 \\ &= \Big[\frac{t^3}{3} + 4t^5\Big]_0^1 \\ &= \frac13 + 4 \\ &= \frac{13}{3} \end{aligned} \]</div>
     </li>
     <li class="step final">
       <div class="result">$\dfrac{13}{3}$</div>
-      <p class="sanity">طلع نفس جواب (أ)! مو صدفة: شوف الملاحظة تحت ✓</p>
+      <p class="sanity"><span lang="ar">طلع نفس جواب (أ)! مو صدفة: شوف الملاحظة تحت ✓</span><span lang="en">Same answer as (a)! Not a coincidence: see the note below ✓</span></p>
     </li>
   </ol>
-  <div class="callout good"><strong>💡 ليش نفس الجواب؟</strong> هذا المجال بالذات $\mathbf F = (x^2+y^2)\,\mathbf i + 2xy\,\mathbf j$ هو تدرّج (gradient) الدالة $\phi = \tfrac{x^3}{3} + xy^2$. لمثل هذا المجال، الجواب يعتمد بس على البداية والنهاية: $\phi(1,2) - \phi(0,0) = \tfrac13 + 4 = \tfrac{13}{3}$. هذا مجرد فحص للجواب الحين، وغالباً بتاخذه بالتفصيل في محاضرة جاية. في العموم، المسار يفرق (شوف تمرين د).</div>
+  <div class="callout good"><span lang="ar"><strong>💡 ليش نفس الجواب؟</strong> هذا المجال بالذات $\mathbf F = (x^2+y^2)\,\mathbf i + 2xy\,\mathbf j$ هو تدرّج (gradient) الدالة $\phi = \tfrac{x^3}{3} + xy^2$. لمثل هذا المجال، الجواب يعتمد بس على البداية والنهاية: $\phi(1,2) - \phi(0,0) = \tfrac13 + 4 = \tfrac{13}{3}$. هذا مجرد فحص للجواب الحين، وغالباً بتاخذه بالتفصيل في محاضرة جاية. في العموم، المسار يفرق (شوف تمرين د).</span><span lang="en"><strong>💡 Why the same answer?</strong> This particular field $\mathbf F = (x^2+y^2)\,\mathbf i + 2xy\,\mathbf j$ is the gradient of $\phi = \tfrac{x^3}{3} + xy^2$. For such a field the answer depends only on the start and end points: $\phi(1,2) - \phi(0,0) = \tfrac13 + 4 = \tfrac{13}{3}$. For now this is just a check on the answer; you will most likely study it in detail in a later lecture. In general, the path does matter (see problem D).</span></div>
 </section>
 
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مسار مضلّع: قطعتين $C = C_1 \cup C_2$</h2></div>
-  <div class="tags"><span class="tag">Piecewise</span><span class="tag">قطعة رأسية + أفقية</span></div>
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 2</span><span lang="en">Example 2</span></span><h2><span lang="ar">مسار مضلّع: قطعتين $C = C_1 \cup C_2$</span><span lang="en">Polygonal path: two pieces $C = C_1 \cup C_2$</span></h2></div>
+  <div class="tags"><span class="tag">Piecewise</span><span class="tag"><span lang="ar">قطعة رأسية + أفقية</span><span lang="en">vertical + horizontal piece</span></span></div>
   <div class="m big">\[ \begin{gathered} \int_C (x^2+y^2)\,dx + 2xy\,dy \\ C:\ (0,0) \to (0,2) \to (1,2) \end{gathered} \]</div>
   <figure class="fig">
     <svg viewBox="0 0 330 290" role="img" aria-label="مسار مضلّع: C1 من (0,0) إلى (0,2) على محور y، ثم C2 من (0,2) إلى (1,2) أفقياً" style="max-width:340px">
@@ -231,97 +233,97 @@
     <text x="110" y="140" style="fill:var(--cx)">x = 0 ⇒ dx = 0</text>
     <text x="126" y="20" style="fill:var(--cz)">y = 2 ⇒ dy = 0</text>
     </svg>
-    <figcaption>$C_1$ (أزرق) يطلع على محور $y$ من $(0,0)$ إلى $(0,2)$، وبعدها $C_2$ (برتقالي) يمشي أفقياً إلى $(1,2)$.</figcaption>
+    <figcaption><span lang="ar">$C_1$ (أزرق) يطلع على محور $y$ من $(0,0)$ إلى $(0,2)$، وبعدها $C_2$ (برتقالي) يمشي أفقياً إلى $(1,2)$.</span><span lang="en">$C_1$ (blue) goes up the $y$-axis from $(0,0)$ to $(0,2)$, then $C_2$ (orange) runs horizontally to $(1,2)$.</span></figcaption>
   </figure>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4><p class="why">المسار مو معطى بدلالة $t$، أنت اللي تكتبه. وهو قطعتين، فنقسم التكامل:</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4><p class="why"><span lang="ar">المسار مو معطى بدلالة $t$، أنت اللي تكتبه. وهو قطعتين، فنقسم التكامل:</span><span lang="en">The path is not given in terms of $t$; you write it yourself. It has two pieces, so we split the integral:</span></p>
       <div class="m">\[ \int_C = \int_{C_1} + \int_{C_2} \]</div>
     </li>
     <li class="step">
-      <h4>اكتب $C_1$ بدلالة $t$</h4>
-      <p class="why">على $C_1$ إحنا على محور $y$، يعني $x$ دايماً صفر، و $y$ يتحرك من 0 إلى 2:</p>
+      <h4><span lang="ar">اكتب $C_1$ بدلالة $t$</span><span lang="en">Write $C_1$ in terms of $t$</span></h4>
+      <p class="why"><span lang="ar">على $C_1$ إحنا على محور $y$، يعني $x$ دايماً صفر، و $y$ يتحرك من 0 إلى 2:</span><span lang="en">On $C_1$ we are on the $y$-axis, so $x$ is always zero, and $y$ moves from 0 to 2:</span></p>
       <div class="m">\[ \begin{gathered} C_1:\ \X{x = 0},\ \X{y = t},\ 0 \le t \le 2 \\ \Rightarrow\ dx = 0,\ \ dy = dt \end{gathered} \]</div>
     </li>
     <li class="step">
-      <h4>احسب $\int_{C_1}$</h4>
+      <h4><span lang="ar">احسب $\int_{C_1}$</span><span lang="en">Compute $\int_{C_1}$</span></h4>
       <div class="m">\[ \begin{aligned} &\int_{C_1} (x^2+y^2)\,\underbrace{dx}_{0} + 2\underbrace{x}_{0}y\,dy \\ &= \int_0^2 \big(0 + t^2\big)(0) + 2(0)(t)\,dt \\ &= 0 \end{aligned} \]</div>
-      <p class="why">الحد الأول راح لأن $dx = 0$، والثاني راح لأن $x = 0$. فكل القطعة صفر.</p>
+      <p class="why"><span lang="ar">الحد الأول راح لأن $dx = 0$، والثاني راح لأن $x = 0$. فكل القطعة صفر.</span><span lang="en">The first term vanishes because $dx = 0$, and the second because $x = 0$. So the whole piece is zero.</span></p>
     </li>
     <li class="step">
-      <h4>اكتب $C_2$ بدلالة $t$</h4>
-      <p class="why">على $C_2$ الارتفاع ثابت $y = 2$، و $x$ يتحرك من 0 إلى 1:</p>
+      <h4><span lang="ar">اكتب $C_2$ بدلالة $t$</span><span lang="en">Write $C_2$ in terms of $t$</span></h4>
+      <p class="why"><span lang="ar">على $C_2$ الارتفاع ثابت $y = 2$، و $x$ يتحرك من 0 إلى 1:</span><span lang="en">On $C_2$ the height is fixed at $y = 2$, and $x$ moves from 0 to 1:</span></p>
       <div class="m">\[ \begin{gathered} C_2:\ \X{x = t},\ \X{y = 2},\ 0 \le t \le 1 \\ \Rightarrow\ dx = dt,\ \ dy = 0 \end{gathered} \]</div>
     </li>
     <li class="step">
-      <h4>احسب $\int_{C_2}$</h4>
+      <h4><span lang="ar">احسب $\int_{C_2}$</span><span lang="en">Compute $\int_{C_2}$</span></h4>
       <div class="m">\[ \begin{aligned} &\int_{C_2} (x^2+y^2)\,dx + 2xy\,\underbrace{dy}_{0} \\ &= \int_0^1 \big(t^2 + 2^2\big)\,dt + 0 \\ &= \int_0^1 \big(t^2 + 4\big)\,dt \end{aligned} \]</div>
       <div class="m">\[ = \Big[\frac{t^3}{3} + 4t\Big]_0^1 = \frac13 + 4 = \frac{13}{3} \]</div>
     </li>
     <li class="step">
-      <h4>اجمع القطعتين</h4>
+      <h4><span lang="ar">اجمع القطعتين</span><span lang="en">Add the two pieces</span></h4>
       <div class="m">\[ \int_C = \int_{C_1} + \int_{C_2} = 0 + \frac{13}{3} \]</div>
     </li>
     <li class="step final">
       <div class="result">$\dfrac{13}{3}$</div>
-      <p class="sanity">نفس جواب مثال 1 بالمسارين، لأنه نفس المجال ونفس البداية $(0,0)$ والنهاية $(1,2)$ ✓</p>
+      <p class="sanity"><span lang="ar">نفس جواب مثال 1 بالمسارين، لأنه نفس المجال ونفس البداية $(0,0)$ والنهاية $(1,2)$ ✓</span><span lang="en">Same answer as both paths in example 1, because it is the same field with the same start $(0,0)$ and end $(1,2)$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= تمارين ================= -->
 <section class="card" id="practice" data-num="✏" data-nav="✏ تمارين|✏ Practice">
-  <h2>دورك: تمارين</h2><p class="sub">اكتب الكسر هكذا: 7/3</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2><p class="sub"><span lang="ar">اكتب الكسر هكذا: 7/3</span><span lang="en">Type fractions like 7/3</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Problem A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
     <div class="m">\[ \begin{gathered} \int_C y\,dx + x\,dy \\ C:\ x = t,\ y = t^2,\ 0 \le t \le 1 \end{gathered} \]</div>
     <div class="check" data-answer="1"></div>
-    <details class="hint"><p>$dx = dt$ و $dy = 2t\,dt$. عوّض واجمع.</p></details>
+    <details class="hint"><p><span lang="ar">$dx = dt$ و $dy = 2t\,dt$. عوّض واجمع.</span><span lang="en">$dx = dt$ and $dy = 2t\,dt$. Substitute and add.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>جهّز</h4><div class="m">\[ dx = dt,\qquad dy = 2t\,dt \]</div></li>
-      <li class="step"><h4>عوّض</h4><div class="m">\[ \begin{aligned} y\,dx + x\,dy &= t^2\,dt + t\cdot 2t\,dt \\ &= 3t^2\,dt \end{aligned} \]</div></li>
-      <li class="step"><h4>كامل</h4><div class="m">\[ \int_0^1 3t^2\,dt = \big[t^3\big]_0^1 = 1 \]</div></li>
+      <li class="step"><h4><span lang="ar">جهّز</span><span lang="en">Prepare</span></h4><div class="m">\[ dx = dt,\qquad dy = 2t\,dt \]</div></li>
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4><div class="m">\[ \begin{aligned} y\,dx + x\,dy &= t^2\,dt + t\cdot 2t\,dt \\ &= 3t^2\,dt \end{aligned} \]</div></li>
+      <li class="step"><h4><span lang="ar">كامل</span><span lang="en">Integrate</span></h4><div class="m">\[ \int_0^1 3t^2\,dt = \big[t^3\big]_0^1 = 1 \]</div></li>
       <li class="step final"><div class="result">$1$</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
-    <p>احسب الشغل اللي تبذله القوة $\mathbf F = x\,\mathbf i + y\,\mathbf j$ على ربع الدائرة:</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Problem B</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">احسب الشغل اللي تبذله القوة $\mathbf F = x\,\mathbf i + y\,\mathbf j$ على ربع الدائرة:</span><span lang="en">Find the work done by the force $\mathbf F = x\,\mathbf i + y\,\mathbf j$ along the quarter circle:</span></p>
     <div class="m">\[ C:\ x = \cos t,\ y = \sin t,\ 0 \le t \le \tfrac{\pi}{2} \]</div>
     <div class="check" data-answer="0"></div>
-    <details class="hint"><p>$P = x$ و $Q = y$. و $dx = -\sin t\,dt$ و $dy = \cos t\,dt$.</p></details>
+    <details class="hint"><p><span lang="ar">$P = x$ و $Q = y$. و $dx = -\sin t\,dt$ و $dy = \cos t\,dt$.</span><span lang="en">$P = x$ and $Q = y$. Also $dx = -\sin t\,dt$ and $dy = \cos t\,dt$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>حوّل إلى $P\,dx + Q\,dy$</h4><div class="m">\[ W = \int_C x\,dx + y\,dy \]</div></li>
-      <li class="step"><h4>عوّض</h4><div class="m">\[ \begin{aligned} &\cos t\,(-\sin t)\,dt + \sin t\,(\cos t)\,dt \\ &= 0 \end{aligned} \]</div></li>
-      <li class="step"><h4>كامل</h4><div class="m">\[ W = \int_0^{\pi/2} 0\,dt = 0 \]</div><p class="why">منطقي: $\mathbf F$ يطلع من الأصل للخارج، والحركة على الدائرة دايماً عمودية عليه، فـ $\mathbf F\cdot\mathbf T = 0$.</p></li>
+      <li class="step"><h4><span lang="ar">حوّل إلى $P\,dx + Q\,dy$</span><span lang="en">Convert to $P\,dx + Q\,dy$</span></h4><div class="m">\[ W = \int_C x\,dx + y\,dy \]</div></li>
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4><div class="m">\[ \begin{aligned} &\cos t\,(-\sin t)\,dt + \sin t\,(\cos t)\,dt \\ &= 0 \end{aligned} \]</div></li>
+      <li class="step"><h4><span lang="ar">كامل</span><span lang="en">Integrate</span></h4><div class="m">\[ W = \int_0^{\pi/2} 0\,dt = 0 \]</div><p class="why"><span lang="ar">منطقي: $\mathbf F$ يطلع من الأصل للخارج، والحركة على الدائرة دايماً عمودية عليه، فـ $\mathbf F\cdot\mathbf T = 0$.</span><span lang="en">Makes sense: $\mathbf F$ points outward from the origin, and motion on the circle is always perpendicular to it, so $\mathbf F\cdot\mathbf T = 0$.</span></p></li>
       <li class="step final"><div class="result">$0$</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Problem C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
     <div class="m">\[ \begin{gathered} \int_C y\,dx + x^2\,dy \\ C:\ (0,0) \to (2,0) \to (2,1) \end{gathered} \]</div>
     <div class="check" data-answer="4"></div>
-    <details class="hint"><p>قطعتين. الأولى أفقية على محور $x$ ($y = 0$)، والثانية رأسية ($x = 2$).</p></details>
+    <details class="hint"><p><span lang="ar">قطعتين. الأولى أفقية على محور $x$ ($y = 0$)، والثانية رأسية ($x = 2$).</span><span lang="en">Two pieces. The first is horizontal on the $x$-axis ($y = 0$), the second is vertical ($x = 2$).</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>$C_1$: أفقية</h4><div class="m">\[ \begin{gathered} x = t,\ y = 0,\ 0 \le t \le 2 \\ \Rightarrow\ dx = dt,\ dy = 0 \end{gathered} \]</div><div class="m">\[ \int_{C_1} = \int_0^2 (0)\,dt + 0 = 0 \]</div></li>
-      <li class="step"><h4>$C_2$: رأسية</h4><div class="m">\[ \begin{gathered} x = 2,\ y = t,\ 0 \le t \le 1 \\ \Rightarrow\ dx = 0,\ dy = dt \end{gathered} \]</div><div class="m">\[ \int_{C_2} = 0 + \int_0^1 2^2\,dt = 4 \]</div></li>
-      <li class="step"><h4>اجمع</h4><div class="m">\[ 0 + 4 = 4 \]</div></li>
+      <li class="step"><h4><span lang="ar">$C_1$: أفقية</span><span lang="en">$C_1$: horizontal</span></h4><div class="m">\[ \begin{gathered} x = t,\ y = 0,\ 0 \le t \le 2 \\ \Rightarrow\ dx = dt,\ dy = 0 \end{gathered} \]</div><div class="m">\[ \int_{C_1} = \int_0^2 (0)\,dt + 0 = 0 \]</div></li>
+      <li class="step"><h4><span lang="ar">$C_2$: رأسية</span><span lang="en">$C_2$: vertical</span></h4><div class="m">\[ \begin{gathered} x = 2,\ y = t,\ 0 \le t \le 1 \\ \Rightarrow\ dx = 0,\ dy = dt \end{gathered} \]</div><div class="m">\[ \int_{C_2} = 0 + \int_0^1 2^2\,dt = 4 \]</div></li>
+      <li class="step"><h4><span lang="ar">اجمع</span><span lang="en">Add</span></h4><div class="m">\[ 0 + 4 = 4 \]</div></li>
       <li class="step final"><div class="result">$4$</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl hard">تحدي</span></div>
-    <p>نفس تكامل تمرين ج ونفس البداية والنهاية، بس على الخط المستقيم مباشرة:</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Problem D</span></b><span class="lvl hard"><span lang="ar">تحدي</span><span lang="en">Challenge</span></span></div>
+    <p><span lang="ar">نفس تكامل تمرين ج ونفس البداية والنهاية، بس على الخط المستقيم مباشرة:</span><span lang="en">Same integral as problem C, same start and end, but straight along the line:</span></p>
     <div class="m">\[ \begin{gathered} \int_C y\,dx + x^2\,dy \\ C:\ x = 2t,\ y = t,\ 0 \le t \le 1 \end{gathered} \]</div>
     <div class="check" data-answer="7/3"></div>
-    <details class="hint"><p>$dx = 2\,dt$ و $dy = dt$. قارن جوابك بتمرين ج.</p></details>
+    <details class="hint"><p><span lang="ar">$dx = 2\,dt$ و $dy = dt$. قارن جوابك بتمرين ج.</span><span lang="en">$dx = 2\,dt$ and $dy = dt$. Compare your answer with problem C.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>عوّض</h4><div class="m">\[ \begin{aligned} y\,dx + x^2\,dy &= t\cdot 2\,dt + (2t)^2\,dt \\ &= \big(2t + 4t^2\big)\,dt \end{aligned} \]</div></li>
-      <li class="step"><h4>كامل</h4><div class="m">\[ \begin{aligned} \int_0^1 \big(2t + 4t^2\big)\,dt &= \Big[t^2 + \tfrac{4t^3}{3}\Big]_0^1 \\ &= 1 + \tfrac43 \\ &= \tfrac73 \end{aligned} \]</div><p class="why">$\tfrac73 \ne 4$: هنا المسار فرق، لأن هذا المجال مو مثل مجال الأمثلة.</p></li>
+      <li class="step"><h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4><div class="m">\[ \begin{aligned} y\,dx + x^2\,dy &= t\cdot 2\,dt + (2t)^2\,dt \\ &= \big(2t + 4t^2\big)\,dt \end{aligned} \]</div></li>
+      <li class="step"><h4><span lang="ar">كامل</span><span lang="en">Integrate</span></h4><div class="m">\[ \begin{aligned} \int_0^1 \big(2t + 4t^2\big)\,dt &= \Big[t^2 + \tfrac{4t^3}{3}\Big]_0^1 \\ &= 1 + \tfrac43 \\ &= \tfrac73 \end{aligned} \]</div><p class="why"><span lang="ar">$\tfrac73 \ne 4$: هنا المسار فرق، لأن هذا المجال مو مثل مجال الأمثلة.</span><span lang="en">$\tfrac73 \ne 4$: here the path matters, because this field is not like the one in the examples.</span></p></li>
       <li class="step final"><div class="result">$\tfrac{7}{3}$</div></li>
     </ol>
   </div>
@@ -329,70 +331,70 @@
 
 <!-- ================= أخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2><p class="sub">كل خطأ جنبه التصحيح</p>
-  <div class="mk"><div class="mk-title">حط جذر مثل المحاضرة 9</div>
-    <div class="pair"><div class="no"><div class="mm">$dx = \sqrt{x'^2+y'^2}\,dt$</div>الجذر خاص بـ $ds$.</div><div class="yes"><div class="mm">$dx = x'\,dt,\ dy = y'\,dt$</div>في $\mathbf F\cdot d\mathbf r$ ما فيه جذر.</div></div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost marks</span></h2><p class="sub"><span lang="ar">كل خطأ جنبه التصحيح</span><span lang="en">Each mistake next to its fix</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">حط جذر مثل المحاضرة 9</span><span lang="en">Adding a square root like lecture 9</span></div>
+    <div class="pair"><div class="no"><div class="mm">$dx = \sqrt{x'^2+y'^2}\,dt$</div><span lang="ar">الجذر خاص بـ $ds$.</span><span lang="en">The root belongs to $ds$.</span></div><div class="yes"><div class="mm">$dx = x'\,dt,\ dy = y'\,dt$</div><span lang="ar">في $\mathbf F\cdot d\mathbf r$ ما فيه جذر.</span><span lang="en">There is no root in $\mathbf F\cdot d\mathbf r$.</span></div></div>
   </div>
-  <div class="mk"><div class="mk-title">نسيان مشتقة $y$ في $dy$</div>
-    <div class="pair"><div class="no"><div class="mm">$y = 2t \Rightarrow dy = dt$</div>نسيت الـ 2.</div><div class="yes"><div class="mm">$dy = 2\,dt$</div>فيطلع $Q\,dy = 8t^2\,dt$ مو $4t^2$.</div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان مشتقة $y$ في $dy$</span><span lang="en">Forgetting the derivative of $y$ in $dy$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$y = 2t \Rightarrow dy = dt$</div><span lang="ar">نسيت الـ 2.</span><span lang="en">Forgot the 2.</span></div><div class="yes"><div class="mm">$dy = 2\,dt$</div><span lang="ar">فيطلع $Q\,dy = 8t^2\,dt$ مو $4t^2$.</span><span lang="en">So $Q\,dy = 8t^2\,dt$, not $4t^2$.</span></div></div>
   </div>
-  <div class="mk"><div class="mk-title">التربيع ما دخل على المعامل</div>
-    <div class="pair"><div class="no"><div class="mm">$(2t)^2 = 2t^2$</div>ربعت $t$ بس.</div><div class="yes"><div class="mm">$(2t)^2 = 4t^2$</div>و $(2t^2)^2 = 4t^4$.</div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">التربيع ما دخل على المعامل</span><span lang="en">Not squaring the coefficient</span></div>
+    <div class="pair"><div class="no"><div class="mm">$(2t)^2 = 2t^2$</div><span lang="ar">ربعت $t$ بس.</span><span lang="en">Squared only $t$.</span></div><div class="yes"><div class="mm">$(2t)^2 = 4t^2$</div><span lang="ar">و $(2t^2)^2 = 4t^4$.</span><span lang="en">and $(2t^2)^2 = 4t^4$.</span></div></div>
   </div>
-  <div class="mk"><div class="mk-title">على القطعة الرأسية خلّيت $dx$</div>
-    <div class="pair"><div class="no"><div class="mm">$x = 0 \Rightarrow dx = dt$</div>$x$ ثابت ما يتغير.</div><div class="yes"><div class="mm">$x = 0 \Rightarrow dx = 0$</div>الثابت مشتقته صفر.</div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">على القطعة الرأسية خلّيت $dx$</span><span lang="en">Keeping $dx$ on a vertical piece</span></div>
+    <div class="pair"><div class="no"><div class="mm">$x = 0 \Rightarrow dx = dt$</div><span lang="ar">$x$ ثابت ما يتغير.</span><span lang="en">$x$ is constant; it does not change.</span></div><div class="yes"><div class="mm">$x = 0 \Rightarrow dx = 0$</div><span lang="ar">الثابت مشتقته صفر.</span><span lang="en">A constant has zero derivative.</span></div></div>
   </div>
-  <div class="mk"><div class="mk-title">نفس الحدود لكل القطع</div>
-    <div class="pair"><div class="no"><div class="mm">$C_1:\ 0 \le t \le 1$</div>القطعة من $(0,0)$ إلى $(0,2)$ طولها 2.</div><div class="yes"><div class="mm">$C_1:\ 0 \le t \le 2$</div>كل قطعة حدودها من بدايتها لنهايتها.</div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نفس الحدود لكل القطع</span><span lang="en">Same limits for every piece</span></div>
+    <div class="pair"><div class="no"><div class="mm">$C_1:\ 0 \le t \le 1$</div><span lang="ar">القطعة من $(0,0)$ إلى $(0,2)$ طولها 2.</span><span lang="en">The piece from $(0,0)$ to $(0,2)$ has length 2.</span></div><div class="yes"><div class="mm">$C_1:\ 0 \le t \le 2$</div><span lang="ar">كل قطعة حدودها من بدايتها لنهايتها.</span><span lang="en">Each piece runs from its own start to its own end.</span></div></div>
   </div>
-  <div class="mk"><div class="mk-title">بدّلت $P$ و $Q$</div>
-    <div class="pair"><div class="no"><div class="mm">$P = 2xy$</div>أخذت اللي جنب $dy$.</div><div class="yes"><div class="mm">$P = x^2+y^2$</div>$P$ دايماً جنب $dx$، و $Q$ جنب $dy$.</div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">بدّلت $P$ و $Q$</span><span lang="en">Swapping $P$ and $Q$</span></div>
+    <div class="pair"><div class="no"><div class="mm">$P = 2xy$</div><span lang="ar">أخذت اللي جنب $dy$.</span><span lang="en">Took the one next to $dy$.</span></div><div class="yes"><div class="mm">$P = x^2+y^2$</div><span lang="ar">$P$ دايماً جنب $dx$، و $Q$ جنب $dy$.</span><span lang="en">$P$ is always next to $dx$, and $Q$ next to $dy$.</span></div></div>
   </div>
 </section>
 
 <!-- ================= اختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2><p class="sub">اضغط على الجواب اللي تشوفه صح</p>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2><p class="sub"><span lang="ar">اضغط على الجواب اللي تشوفه صح</span><span lang="en">Tap the answer you think is right</span></p>
   <div class="quiz">
     <div class="q" data-answer="2">
-      <p>إذا $\mathbf F = P\,\mathbf i + Q\,\mathbf j$ فإن $\mathbf F\cdot d\mathbf r$ يساوي:</p>
+      <p><span lang="ar">إذا $\mathbf F = P\,\mathbf i + Q\,\mathbf j$ فإن $\mathbf F\cdot d\mathbf r$ يساوي:</span><span lang="en">If $\mathbf F = P\,\mathbf i + Q\,\mathbf j$, then $\mathbf F\cdot d\mathbf r$ equals:</span></p>
       <button>$P\,dy + Q\,dx$</button><button>$P\,dx + Q\,dy$</button><button>$(P+Q)\,ds$</button><button>$P\,Q\,dx\,dy$</button>
-      <p class="q-why">$d\mathbf r = dx\,\mathbf i + dy\,\mathbf j$، والضرب النقطي يضرب i مع i و j مع j.</p>
+      <p class="q-why"><span lang="ar">$d\mathbf r = dx\,\mathbf i + dy\,\mathbf j$، والضرب النقطي يضرب i مع i و j مع j.</span><span lang="en">$d\mathbf r = dx\,\mathbf i + dy\,\mathbf j$, and the dot product multiplies i with i and j with j.</span></p>
     </div>
     <div class="q" data-answer="4">
-      <p>إذا $y = 2t^2$ فإن $dy$:</p>
+      <p><span lang="ar">إذا $y = 2t^2$ فإن $dy$:</span><span lang="en">If $y = 2t^2$, then $dy$ is:</span></p>
       <button>$2t\,dt$</button><button>$dt$</button><button>$2t^2\,dt$</button><button>$4t\,dt$</button>
-      <p class="q-why">مشتقة $2t^2$ هي $4t$، فـ $dy = 4t\,dt$.</p>
+      <p class="q-why"><span lang="ar">مشتقة $2t^2$ هي $4t$، فـ $dy = 4t\,dt$.</span><span lang="en">The derivative of $2t^2$ is $4t$, so $dy = 4t\,dt$.</span></p>
     </div>
     <div class="q" data-answer="1">
-      <p>على قطعة رأسية $x = 0$ من مسار مضلّع:</p>
-      <button>$dx = 0$</button><button>$dy = 0$</button><button>$dx = dt$</button><button>التكامل ما ينحسب</button>
-      <p class="q-why">$x$ ثابت، فمشتقته صفر.</p>
+      <p><span lang="ar">على قطعة رأسية $x = 0$ من مسار مضلّع:</span><span lang="en">On a vertical piece $x = 0$ of a polygonal path:</span></p>
+      <button>$dx = 0$</button><button>$dy = 0$</button><button>$dx = dt$</button><button><span lang="ar">التكامل ما ينحسب</span><span lang="en">the integral can't be computed</span></button>
+      <p class="q-why"><span lang="ar">$x$ ثابت، فمشتقته صفر.</span><span lang="en">$x$ is constant, so its derivative is zero.</span></p>
     </div>
     <div class="q" data-answer="3">
-      <p>$\int_C \mathbf F\cdot\mathbf T\,ds$ إذا $\mathbf F$ قوة يمثل:</p>
-      <button>طول المنحنى</button><button>مساحة تحت المنحنى</button><button>الشغل</button><button>متوسط القوة</button>
-      <p class="q-why">مركّبة القوة على اتجاه الحركة × المسافة الصغيرة، مجموعة على المسار = الشغل $W$.</p>
+      <p><span lang="ar">$\int_C \mathbf F\cdot\mathbf T\,ds$ إذا $\mathbf F$ قوة يمثل:</span><span lang="en">If $\mathbf F$ is a force, $\int_C \mathbf F\cdot\mathbf T\,ds$ represents:</span></p>
+      <button><span lang="ar">طول المنحنى</span><span lang="en">the length of the curve</span></button><button><span lang="ar">مساحة تحت المنحنى</span><span lang="en">the area under the curve</span></button><button><span lang="ar">الشغل</span><span lang="en">the work</span></button><button><span lang="ar">متوسط القوة</span><span lang="en">the average force</span></button>
+      <p class="q-why"><span lang="ar">مركّبة القوة على اتجاه الحركة × المسافة الصغيرة، مجموعة على المسار = الشغل $W$.</span><span lang="en">Force component along the motion × tiny distance, summed along the path = the work $W$.</span></p>
     </div>
     <div class="q" data-answer="2">
-      <p>إذا القوة عمودية على اتجاه الحركة طول المسار، الشغل:</p>
-      <button>موجب</button><button>صفر</button><button>سالب</button><button>يساوي طول المسار</button>
-      <p class="q-why">$\mathbf F\cdot\mathbf T = 0$ عند كل نقطة، فالتكامل صفر (مثل تمرين ب).</p>
+      <p><span lang="ar">إذا القوة عمودية على اتجاه الحركة طول المسار، الشغل:</span><span lang="en">If the force is perpendicular to the motion all along the path, the work is:</span></p>
+      <button><span lang="ar">موجب</span><span lang="en">positive</span></button><button><span lang="ar">صفر</span><span lang="en">zero</span></button><button><span lang="ar">سالب</span><span lang="en">negative</span></button><button><span lang="ar">يساوي طول المسار</span><span lang="en">equal to the path length</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf F\cdot\mathbf T = 0$ عند كل نقطة، فالتكامل صفر (مثل تمرين ب).</span><span lang="en">$\mathbf F\cdot\mathbf T = 0$ at every point, so the integral is zero (like problem B).</span></p>
     </div>
   </div>
 </section>
 
 <!-- ================= بطاقات ================= -->
 <section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
-  <h2>بطاقات مراجعة سريعة</h2><p class="sub">اضغط على البطاقة تنقلب</p>
+  <h2><span lang="ar">بطاقات مراجعة سريعة</span><span lang="en">Quick review cards</span></h2><p class="sub"><span lang="ar">اضغط على البطاقة تنقلب</span><span lang="en">Tap a card to flip it</span></p>
   <div class="cards">
-    <div class="flash"><div>$\int_C \mathbf F\cdot d\mathbf r$ = ؟</div><div>$\int_C P\,dx + Q\,dy$</div></div>
-    <div class="flash"><div>$d\mathbf r$ = ؟</div><div>$dx\,\mathbf i + dy\,\mathbf j$</div></div>
-    <div class="flash"><div>$\mathbf T$ = ؟</div><div>$\dfrac{\mathbf r'(t)}{|\mathbf r'(t)|}$ (متجه وحدة مماس)</div></div>
-    <div class="flash"><div>الشغل $W$ = ؟</div><div>$\int_C \mathbf F\cdot\mathbf T\,ds = \int_C \mathbf F\cdot d\mathbf r$</div></div>
-    <div class="flash"><div>مسار من قطعتين؟</div><div>$\int_C = \int_{C_1} + \int_{C_2}$، كل قطعة بباراميتر وحدود</div></div>
-    <div class="flash"><div>قطعة أفقية $y$ ثابت؟</div><div>$dy = 0$، يبقى $\int P\,dx$</div></div>
-    <div class="flash"><div>قطعة رأسية $x$ ثابت؟</div><div>$dx = 0$، يبقى $\int Q\,dy$</div></div>
+    <div class="flash"><div>$\int_C \mathbf F\cdot d\mathbf r$ = ?</div><div>$\int_C P\,dx + Q\,dy$</div></div>
+    <div class="flash"><div>$d\mathbf r$ = ?</div><div>$dx\,\mathbf i + dy\,\mathbf j$</div></div>
+    <div class="flash"><div>$\mathbf T$ = ?</div><div><span lang="ar">$\dfrac{\mathbf r'(t)}{|\mathbf r'(t)|}$ (متجه وحدة مماس)</span><span lang="en">$\dfrac{\mathbf r'(t)}{|\mathbf r'(t)|}$ (unit tangent vector)</span></div></div>
+    <div class="flash"><div><span lang="ar">الشغل $W$ = ؟</span><span lang="en">Work $W$ = ?</span></div><div>$\int_C \mathbf F\cdot\mathbf T\,ds = \int_C \mathbf F\cdot d\mathbf r$</div></div>
+    <div class="flash"><div><span lang="ar">مسار من قطعتين؟</span><span lang="en">A path in two pieces?</span></div><div><span lang="ar">$\int_C = \int_{C_1} + \int_{C_2}$، كل قطعة بباراميتر وحدود</span><span lang="en">$\int_C = \int_{C_1} + \int_{C_2}$, each piece with its own parameter and limits</span></div></div>
+    <div class="flash"><div><span lang="ar">قطعة أفقية $y$ ثابت؟</span><span lang="en">Horizontal piece, $y$ constant?</span></div><div><span lang="ar">$dy = 0$، يبقى $\int P\,dx$</span><span lang="en">$dy = 0$, leaving $\int P\,dx$</span></div></div>
+    <div class="flash"><div><span lang="ar">قطعة رأسية $x$ ثابت؟</span><span lang="en">Vertical piece, $x$ constant?</span></div><div><span lang="ar">$dx = 0$، يبقى $\int Q\,dy$</span><span lang="en">$dx = 0$, leaving $\int Q\,dy$</span></div></div>
   </div>
 </section>
 
