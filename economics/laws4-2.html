@@ -31,10 +31,10 @@
 <section class="hero">
   <div class="hero-t">
     <span class="pill">ورقة القوانين · الفصل ٤ (٢)</span>
-    <h1>قوانين التدرجات والفائدة الفعالة</h1>
-    <p class="sub">الدفعات المؤجلة، والتدرج المنتظم والهندسي، والفائدة المتغيرة، والاسمية والفعالة، والتركيب المستمر، ودوال الإكسل.</p>
+    <h1>قوانين N و i والتدرجات والفائدة الفعالة</h1>
+    <p class="sub">إيجاد N و i بالاستكمال، والدفعات المؤجلة، والتدرج المنتظم والهندسي، والفائدة المتغيرة، والاسمية والفعالة، والتركيب المستمر، ودوال الإكسل.</p>
     <p class="sub-en" dir="ltr" lang="en">Chapter 4 formula sheet, part 2 · Gradients &amp; effective interest</p>
-    <div class="stats"><span><b>٨</b> قوانين</span><span><b>١٦</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
+    <div class="stats"><span><b>٩</b> قوانين</span><span><b>١٩</b> مثال محلول</span><span>بالإنجليزي + ترجمة عربي</span></div>
   </div>
   <div class="hero-card">\[\Z{i} = \left(1 + \dfrac{r}{M}\right)^M - 1\]</div>
 </section>
@@ -42,7 +42,7 @@
 <div class="cta-row">
 <a class="quiz-cta" href="quiz4-2.html">
   <span class="qc-ic" aria-hidden="true">🧠</span>
-  <span class="qc-t"><b>اختبر نفسك: أي قانون تستخدم؟</b><small>43 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
+  <span class="qc-t"><b>اختبر نفسك: أي قانون تستخدم؟</b><small>48 سؤال سيناريو بالإنجليزي مع زر ترجمة · بدون خيارات · زر جواب وعداد نقاط</small></span>
   <span class="qc-go">ابدأ الاختبار ←</span>
 </a>
 <a class="quiz-cta keys-cta" href="keys4-2.html">
@@ -62,13 +62,63 @@
 
 <section class="index" id="index">
   <h2>الفهرس <span dir="ltr" lang="en">Index</span></h2>
-  <div class="ix-grid"><a class="ix" href="#deferred"><span class="ix-n">١</span><b>الدفعات المؤجلة</b><small dir="ltr" lang="en">Deferred annuity</small><span class="ix-m">\(A(P/A)(P/F)\)</span></a><a class="ix" href="#pg"><span class="ix-n">٢</span><b>التدرج المنتظم: القيمة الحالية</b><small dir="ltr" lang="en">Uniform gradient present worth (P/G)</small><span class="ix-m">\(P = G(P/G)\)</span></a><a class="ix" href="#ag"><span class="ix-n">٣</span><b>التدرج المنتظم: الدفعة والمستقبل</b><small dir="ltr" lang="en">Gradient to annual &amp; future (A/G, F/G)</small><span class="ix-m">\(A = A_1 + G(A/G)\)</span></a><a class="ix" href="#geometric"><span class="ix-n">٤</span><b>التدرج الهندسي</b><small dir="ltr" lang="en">Geometric gradient</small><span class="ix-m">\(\tfrac{A_1[1 - (P/F)(F/P)]}{i - \bar f}\)</span></a><a class="ix" href="#varying"><span class="ix-n">٥</span><b>الفائدة المتغيرة مع الوقت</b><small dir="ltr" lang="en">Interest rate that varies over time</small><span class="ix-m">\(P = F_N / \textstyle\prod(1 + i_k)\)</span></a><a class="ix" href="#effective"><span class="ix-n">٦</span><b>الفائدة الاسمية والفعالة</b><small dir="ltr" lang="en">Nominal &amp; effective interest</small><span class="ix-m">\(i = (1 + r/M)^M - 1\)</span></a><a class="ix" href="#continuous"><span class="ix-n">٧</span><b>التركيب المستمر</b><small dir="ltr" lang="en">Continuous compounding</small><span class="ix-m">\(i = e^r - 1\)</span></a><a class="ix" href="#excel"><span class="ix-n">٨</span><b>دوال الإكسل المالية</b><small dir="ltr" lang="en">Excel financial functions</small><span class="ix-m">\(\texttt{PMT, NPER, RATE}\)</span></a></div>
+  <div class="ix-grid"><a class="ix" href="#interp"><span class="ix-n">١</span><b>الاستكمال الخطي (لما المجهول N أو i)</b><small dir="ltr" lang="en">Linear interpolation (unknown N or i)</small><span class="ix-m">\(x_1 + (x_2 - x_1)\tfrac{v - v_1}{v_2 - v_1}\)</span></a><a class="ix" href="#deferred"><span class="ix-n">٢</span><b>الدفعات المؤجلة</b><small dir="ltr" lang="en">Deferred annuity</small><span class="ix-m">\(A(P/A)(P/F)\)</span></a><a class="ix" href="#pg"><span class="ix-n">٣</span><b>التدرج المنتظم: القيمة الحالية</b><small dir="ltr" lang="en">Uniform gradient present worth (P/G)</small><span class="ix-m">\(P = G(P/G)\)</span></a><a class="ix" href="#ag"><span class="ix-n">٤</span><b>التدرج المنتظم: الدفعة والمستقبل</b><small dir="ltr" lang="en">Gradient to annual &amp; future (A/G, F/G)</small><span class="ix-m">\(A = A_1 + G(A/G)\)</span></a><a class="ix" href="#geometric"><span class="ix-n">٥</span><b>التدرج الهندسي</b><small dir="ltr" lang="en">Geometric gradient</small><span class="ix-m">\(\tfrac{A_1[1 - (P/F)(F/P)]}{i - \bar f}\)</span></a><a class="ix" href="#varying"><span class="ix-n">٦</span><b>الفائدة المتغيرة مع الوقت</b><small dir="ltr" lang="en">Interest rate that varies over time</small><span class="ix-m">\(P = F_N / \textstyle\prod(1 + i_k)\)</span></a><a class="ix" href="#effective"><span class="ix-n">٧</span><b>الفائدة الاسمية والفعالة</b><small dir="ltr" lang="en">Nominal &amp; effective interest</small><span class="ix-m">\(i = (1 + r/M)^M - 1\)</span></a><a class="ix" href="#continuous"><span class="ix-n">٨</span><b>التركيب المستمر</b><small dir="ltr" lang="en">Continuous compounding</small><span class="ix-m">\(i = e^r - 1\)</span></a><a class="ix" href="#excel"><span class="ix-n">٩</span><b>دوال الإكسل المالية</b><small dir="ltr" lang="en">Excel financial functions</small><span class="ix-m">\(\texttt{PMT, NPER, RATE}\)</span></a></div>
+</section>
+
+<section class="law" id="interp">
+<header class="law-h">
+  <span class="law-n" aria-hidden="true">١</span>
+  <div class="law-t"><h2>الاستكمال الخطي (لما المجهول N أو i)</h2><p class="law-en" dir="ltr" lang="en">Law 1 · Linear interpolation (unknown N or i)</p></div>
+  <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
+</header>
+<div class="formula-card"><div class="fc-math"><div class="eq big">\[x \approx x_1 + (x_2 - x_1)\,\frac{v - v_1}{v_2 - v_1}\]</div></div></div>
+<div class="block sym">
+  <h3><span>الرموز</span> <span class="h-en" dir="ltr" lang="en">Symbols</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>Symbol</th><th class="en" dir="ltr" lang="en">Meaning (English)</th><th class="ar">المعنى (عربي)</th></tr></thead>
+    <tbody><tr><td class="s">\(v\)</td><td class="en" dir="ltr" lang="en">The factor value you need (e.g. P/A = 12.5)</td><td class="ar">قيمة العامل اللي تبيها (مثلاً <bdi dir="ltr" class=nw>P/A = 12.5</bdi>)</td></tr><tr><td class="s">\(v_1,\ v_2\)</td><td class="en" dir="ltr" lang="en">Table values just below and just above v</td><td class="ar">قيم الجدول اللي تحت <bdi dir="ltr" class=nw>v</bdi> وفوقها على طول</td></tr><tr><td class="s">\(x_1,\ x_2\)</td><td class="en" dir="ltr" lang="en">The N (or i) that goes with v₁ and v₂</td><td class="ar">قيمة <bdi dir="ltr" class=nw>N</bdi> (أو <bdi dir="ltr" class=nw>i</bdi>) اللي تقابل <bdi dir="ltr" class=nw>v₁</bdi> و <bdi dir="ltr" class=nw>v₂</bdi></td></tr><tr><td class="s">\(x\)</td><td class="en" dir="ltr" lang="en">Estimated N or i</td><td class="ar">قيمة <bdi dir="ltr" class=nw>N</bdi> أو <bdi dir="ltr" class=nw>i</bdi> التقريبية</td></tr></tbody>
+  </table></div>
+</div>
+<div class="block use">
+  <h3><span>متى نستخدمه؟</span> <span class="h-en" dir="ltr" lang="en">When to use it</span></h3>
+  <p class="en " dir="ltr" lang="en">When N or i is the unknown: compute the factor value from the problem, find the two table rows around it, and interpolate between them.</p><p class="ar ">لما المجهول <bdi dir="ltr" class=nw>N</bdi> أو <bdi dir="ltr" class=nw>i</bdi>: احسب قيمة العامل من المسألة، ودوّر الصفين في الجدول اللي حولها، واستكمل بينهم.</p>
+</div>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ١ · <span dir="ltr" lang="en">Example 1</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>كم سنة لين يخلص القرض؟</b> <span dir="ltr" lang="en">How many years to repay?</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">A $100,000 loan at 7% is repaid with $8,000 a year. How many years does it take?</p><p class="ar ">قرض <bdi dir="ltr" class=nw>100,000$</bdi> بفائدة <bdi dir="ltr" class=nw>7%</bdi> يتسدد بـ <bdi dir="ltr" class=nw>8,000$</bdi> بالسنة. كم سنة يحتاج؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Needed factor:</p><p class="ar ">العامل المطلوب:</p><div class="eq ">\[(P/A, 7\%, N) = \frac{100{,}000}{8{,}000} = 12.5\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">From the 7% table: N = 30 gives 12.409, N = 31 gives 12.5318.</p><p class="ar ">من جدول <bdi dir="ltr" class=nw>7%: N = 30</bdi> تعطي <bdi dir="ltr" class=nw>12.409</bdi>، و <bdi dir="ltr" class=nw>N = 31</bdi> تعطي <bdi dir="ltr" class=nw>12.5318</bdi>.</p><div class="eq wide ">\[N \approx 30 + \frac{12.5 - 12.409}{12.5318 - 12.409} = 30 + \frac{0.0910}{0.1228} = 30.74\]</div><div class="eq narrow ">\[\begin{aligned}N &\approx 30 + \frac{12.5 - 12.409}{12.5318 - 12.409} \\ &= 30 + \frac{0.0910}{0.1228} = 30.74\end{aligned}\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 30.74 years (exact: 30.73), so 31 payments with a smaller last one.</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>30.74</bdi> سنة (الدقيق: <bdi dir="ltr" class=nw>30.73</bdi>)، يعني <bdi dir="ltr" class=nw>31</bdi> دفعة وآخرها أصغر.</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
+    <div class="ex-title"><b>كم عائد جيل؟</b> <span dir="ltr" lang="en">What return did Jill earn?</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">Jill invested $1,000 a year for 5 years and ended with $8,000. What interest rate did she earn?</p><p class="ar ">جيل استثمرت <bdi dir="ltr" class=nw>1,000$</bdi> بالسنة لمدة <bdi dir="ltr" class=nw>5</bdi> سنوات وطلع معها بالنهاية <bdi dir="ltr" class=nw>8,000$</bdi>. كم نسبة العائد؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Needed factor:</p><p class="ar ">العامل المطلوب:</p><div class="eq ">\[(F/A, i\%, 5) = \frac{8{,}000}{1{,}000} = 8\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Tables: i = 23% gives 7.8926, i = 24% gives 8.0484.</p><p class="ar ">من الجداول: <bdi dir="ltr" class=nw>i = 23%</bdi> تعطي <bdi dir="ltr" class=nw>7.8926</bdi>، و <bdi dir="ltr" class=nw>i = 24%</bdi> تعطي <bdi dir="ltr" class=nw>8.0484</bdi>.</p><div class="eq ">\[i \approx 23\% + 1\% \times \frac{8 - 7.8926}{8.0484 - 7.8926} = 23.69\%\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 23.69% per year (exact: 23.69%).</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>23.69%</bdi> بالسنة (الدقيق: <bdi dir="ltr" class=nw>23.69%</bdi>).</p></div></div>
+</article>
+<article class="ex">
+  <header class="ex-h">
+    <span class="ex-tag">مثال ٣ · <span dir="ltr" lang="en">Example 3</span></span><span class="ex-src new">مثال جديد · <span dir="ltr" lang="en">new example</span></span>
+    <div class="ex-title"><b>كم الفائدة اللي ياخذها المُقرض؟</b> <span dir="ltr" lang="en">What rate is the lender charging?</span></div>
+  </header>
+  <div class="q"><p class="en " dir="ltr" lang="en">You borrow 10,000 SAR today and repay 2,500 SAR at the end of each year for 5 years. What annual interest rate are you paying?</p><p class="ar ">تستلف <bdi dir="ltr" class=nw>10,000</bdi> ريال اليوم وترجع <bdi dir="ltr" class=nw>2,500</bdi> ريال نهاية كل سنة لمدة <bdi dir="ltr" class=nw>5</bdi> سنين. كم نسبة الفائدة السنوية اللي تدفعها؟</p></div>
+  <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
+  <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Needed factor:</p><p class="ar ">العامل المطلوب:</p><div class="eq ">\[(P/A, i\%, 5) = \frac{10{,}000}{2{,}500} = 4\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Tables: i = 7% gives 4.1002, i = 8% gives 3.9927 (P/A falls as i rises).</p><p class="ar ">من الجداول: <bdi dir="ltr" class=nw>i = 7%</bdi> تعطي <bdi dir="ltr" class=nw>4.1002</bdi>، و <bdi dir="ltr" class=nw>i = 8%</bdi> تعطي <bdi dir="ltr" class=nw>3.9927</bdi> (العامل <bdi dir="ltr" class=nw>P/A</bdi> ينقص لما <bdi dir="ltr" class=nw>i</bdi> تزيد).</p><div class="eq ">\[i \approx 7\% + 1\% \times \frac{4.1002 - 4}{4.1002 - 3.9927} = 7.93\%\]</div></div></li></ol>
+  <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: About 7.93% per year (exact: 7.93%).</p><p class="ar ">الجواب: تقريباً <bdi dir="ltr" class=nw>7.93%</bdi> بالسنة (الدقيق: <bdi dir="ltr" class=nw>7.93%</bdi>).</p></div></div>
+</article>
 </section>
 
 <section class="law" id="deferred">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">١</span>
-  <div class="law-t"><h2>الدفعات المؤجلة</h2><p class="law-en" dir="ltr" lang="en">Law 1 · Deferred annuity</p></div>
+  <span class="law-n" aria-hidden="true">٢</span>
+  <div class="law-t"><h2>الدفعات المؤجلة</h2><p class="law-en" dir="ltr" lang="en">Law 2 · Deferred annuity</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[\X{P_0} = \Y{A}\,(P/A,\ i\%,\ N - J)\,(P/F,\ i\%,\ J)\]</div><div class="eq narrow big">\[\begin{gathered}\X{P_0} = \Y{A}\,(P/A,\ i\%,\ N - J) \\ \times\,(P/F,\ i\%,\ J)\end{gathered}\]</div></div><figure class="fig"><svg class="cfd" data-cfd="7|0:-?:P_0:x|3:-?:P_J:x|4-7:1:A:y" data-ticks="0,1,…,J,J+1,J+2,…,N" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
@@ -111,8 +161,8 @@
 
 <section class="law" id="pg">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٢</span>
-  <div class="law-t"><h2>التدرج المنتظم: القيمة الحالية</h2><p class="law-en" dir="ltr" lang="en">Law 2 · Uniform gradient present worth (P/G)</p></div>
+  <span class="law-n" aria-hidden="true">٣</span>
+  <div class="law-t"><h2>التدرج المنتظم: القيمة الحالية</h2><p class="law-en" dir="ltr" lang="en">Law 3 · Uniform gradient present worth (P/G)</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[(P/G,\ i\%,\ N) = \frac{1}{i}\left[\frac{(1+i)^N - 1}{i(1+i)^N} - \frac{N}{(1+i)^N}\right]\]</div><div class="eq narrow big">\[\begin{aligned}(P/G,\ i\%,\ N) = \frac{1}{i}\Bigg[&\frac{(1+i)^N - 1}{i(1+i)^N} \\ &- \frac{N}{(1+i)^N}\Bigg]\end{aligned}\]</div><div class="eq ">\[\X{P} = \Y{G}\,(P/G,\ i\%,\ N) = \frac{\Y{G}}{i}\big[(P/A) - N(P/F)\big]\]</div></div><figure class="fig"><svg class="cfd" data-cfd="5|0:-?:P = ?:x|2:1:G:y|3:2:2G:y|4:3::y|5:4:(N−1)G:y" data-ticks="0,1,2,3,…,N" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
@@ -155,8 +205,8 @@
 
 <section class="law" id="ag">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٣</span>
-  <div class="law-t"><h2>التدرج المنتظم: الدفعة والمستقبل</h2><p class="law-en" dir="ltr" lang="en">Law 3 · Gradient to annual &amp; future (A/G, F/G)</p></div>
+  <span class="law-n" aria-hidden="true">٤</span>
+  <div class="law-t"><h2>التدرج المنتظم: الدفعة والمستقبل</h2><p class="law-en" dir="ltr" lang="en">Law 4 · Gradient to annual &amp; future (A/G, F/G)</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card"><div class="fc-math"><div class="eq big">\[(A/G,\ i\%,\ N) = \frac{1}{i} - \frac{N}{(1+i)^N - 1}\]</div><div class="eq ">\[(F/G,\ i\%,\ N) = \frac{1}{i}(F/A,\ i\%,\ N) - \frac{N}{i}\]</div><div class="eq ">\[\Y{A} = A_1 \pm \Y{G}\,(A/G,\ i\%,\ N)\]</div></div></div>
@@ -195,8 +245,8 @@
 
 <section class="law" id="geometric">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٤</span>
-  <div class="law-t"><h2>التدرج الهندسي</h2><p class="law-en" dir="ltr" lang="en">Law 4 · Geometric gradient</p></div>
+  <span class="law-n" aria-hidden="true">٥</span>
+  <div class="law-t"><h2>التدرج الهندسي</h2><p class="law-en" dir="ltr" lang="en">Law 5 · Geometric gradient</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card has-fig"><div class="fc-math"><div class="eq wide big">\[\X{P} = \frac{A_1\big[1 - (P/F,\ i\%,\ N)(F/P,\ \bar f\%,\ N)\big]}{i - \bar f}, \qquad \bar f \ne i\]</div><div class="eq narrow big">\[\begin{gathered}\X{P} = \frac{A_1\big[1 - (P/F,\ i\%,\ N)(F/P,\ \bar f\%,\ N)\big]}{i - \bar f} \\ \bar f \ne i\end{gathered}\]</div><div class="eq ">\[\X{P} = \frac{A_1 N}{1 + i}, \qquad \bar f = i\]</div><div class="eq ">\[A_k = A_1(1 + \bar f)^{k-1}, \qquad k = 1, 2, \dots, N\]</div></div><figure class="fig"><svg class="cfd" data-cfd="4|1:1000:$1,000:y|2:1200:$1,200:y|3:1440:$1,440:y|4:1728:$1,728:y" data-i="f = 20%" role="img" aria-label="مخطط التدفق النقدي · cash-flow diagram"></svg><figcaption>مخطط التدفق النقدي · <span dir="ltr" lang="en">Cash-flow diagram</span></figcaption></figure></div>
@@ -239,8 +289,8 @@
 
 <section class="law" id="varying">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٥</span>
-  <div class="law-t"><h2>الفائدة المتغيرة مع الوقت</h2><p class="law-en" dir="ltr" lang="en">Law 5 · Interest rate that varies over time</p></div>
+  <span class="law-n" aria-hidden="true">٦</span>
+  <div class="law-t"><h2>الفائدة المتغيرة مع الوقت</h2><p class="law-en" dir="ltr" lang="en">Law 6 · Interest rate that varies over time</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\X{P} = \frac{\Z{F_N}}{\prod_{k=1}^{N}(1 + i_k)} = \Z{F_N}\,(P/F, i_1, 1)(P/F, i_2, 1)\cdots(P/F, i_N, 1)\]</div><div class="eq narrow big">\[\begin{aligned}\X{P} &= \frac{\Z{F_N}}{\prod_{k=1}^{N}(1 + i_k)} \\ &= \Z{F_N}\,(P/F, i_1, 1)\cdots(P/F, i_N, 1)\end{aligned}\]</div></div></div>
@@ -283,8 +333,8 @@
 
 <section class="law" id="effective">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٦</span>
-  <div class="law-t"><h2>الفائدة الاسمية والفعالة</h2><p class="law-en" dir="ltr" lang="en">Law 6 · Nominal &amp; effective interest</p></div>
+  <span class="law-n" aria-hidden="true">٧</span>
+  <div class="law-t"><h2>الفائدة الاسمية والفعالة</h2><p class="law-en" dir="ltr" lang="en">Law 7 · Nominal &amp; effective interest</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{i} = \left(1 + \frac{r}{M}\right)^M - 1\]</div></div></div>
@@ -327,8 +377,8 @@
 
 <section class="law" id="continuous">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٧</span>
-  <div class="law-t"><h2>التركيب المستمر</h2><p class="law-en" dir="ltr" lang="en">Law 7 · Continuous compounding</p></div>
+  <span class="law-n" aria-hidden="true">٨</span>
+  <div class="law-t"><h2>التركيب المستمر</h2><p class="law-en" dir="ltr" lang="en">Law 8 · Continuous compounding</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card"><div class="fc-math"><div class="eq big">\[\Z{i} = e^{r} - 1\]</div><div class="eq wide ">\[(F/P, \underline{r}\%, N) = e^{rN}, \qquad (P/F, \underline{r}\%, N) = e^{-rN}\]</div><div class="eq narrow ">\[\begin{gathered}(F/P, \underline{r}\%, N) = e^{rN} \\ (P/F, \underline{r}\%, N) = e^{-rN}\end{gathered}\]</div><div class="eq wide ">\[(F/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{r} - 1}, \qquad (P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^{r} - 1)}\]</div><div class="eq narrow ">\[\begin{gathered}(F/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{r} - 1} \\ (P/A, \underline{r}\%, N) = \frac{e^{rN} - 1}{e^{rN}(e^{r} - 1)}\end{gathered}\]</div></div></div>
@@ -367,8 +417,8 @@
 
 <section class="law" id="excel">
 <header class="law-h">
-  <span class="law-n" aria-hidden="true">٨</span>
-  <div class="law-t"><h2>دوال الإكسل المالية</h2><p class="law-en" dir="ltr" lang="en">Law 8 · Excel financial functions</p></div>
+  <span class="law-n" aria-hidden="true">٩</span>
+  <div class="law-t"><h2>دوال الإكسل المالية</h2><p class="law-en" dir="ltr" lang="en">Law 9 · Excel financial functions</p></div>
   <a class="law-up" href="#index" aria-label="رجوع للفهرس">↑</a>
 </header>
 <div class="formula-card"><div class="fc-math"><div class="eq wide big">\[\begin{gathered}\texttt{=PV(i, n, A, F)} \qquad \texttt{=FV(i, n, A, P)} \qquad \texttt{=PMT(i, n, P, F)} \\ \texttt{=NPER(i, A, P, F)} \qquad \texttt{=RATE(n, A, P, F)}\end{gathered}\]</div><div class="eq narrow big">\[\begin{gathered}\texttt{=PV(i, n, A, F)} \\ \texttt{=FV(i, n, A, P)} \\ \texttt{=PMT(i, n, P, F)} \\ \texttt{=NPER(i, A, P, F)} \\ \texttt{=RATE(n, A, P, F)}\end{gathered}\]</div></div></div>
@@ -402,7 +452,7 @@
     <span class="ex-tag">مثال ٢ · <span dir="ltr" lang="en">Example 2</span></span><span class="ex-src lec">من المحاضرة · <span dir="ltr" lang="en">from the lecture</span></span>
     <div class="ex-title"><b><bdi dir="ltr" class=nw>N</bdi> و <bdi dir="ltr" class=nw>i</bdi> بدون جداول</b> <span dir="ltr" lang="en">N and i without tables</span></div>
   </header>
-  <div class="q"><p class="en " dir="ltr" lang="en">Redo the two interpolation examples from part 1 in Excel: the $100,000 loan repaid at $8,000/yr at 7%, and Jill's $1,000/yr that became $8,000 in 5 years.</p><p class="ar ">أعد مثالين الاستكمال من الجزء <bdi dir="ltr" class=nw>1</bdi> بالإكسل: قرض <bdi dir="ltr" class=nw>100,000$</bdi> يتسدد بـ <bdi dir="ltr" class=nw>8,000$</bdi> بالسنة بفائدة <bdi dir="ltr" class=nw>7%</bdi>، وجيل اللي حطت <bdi dir="ltr" class=nw>1,000$</bdi> بالسنة وصارت <bdi dir="ltr" class=nw>8,000$</bdi> بعد <bdi dir="ltr" class=nw>5</bdi> سنوات.</p></div>
+  <div class="q"><p class="en " dir="ltr" lang="en">Redo the two interpolation examples from law 1 in Excel: the $100,000 loan repaid at $8,000/yr at 7%, and Jill's $1,000/yr that became $8,000 in 5 years.</p><p class="ar ">أعد مثالين الاستكمال من القانون <bdi dir="ltr" class=nw>1</bdi> بالإكسل: قرض <bdi dir="ltr" class=nw>100,000$</bdi> يتسدد بـ <bdi dir="ltr" class=nw>8,000$</bdi> بالسنة بفائدة <bdi dir="ltr" class=nw>7%</bdi>، وجيل اللي حطت <bdi dir="ltr" class=nw>1,000$</bdi> بالسنة وصارت <bdi dir="ltr" class=nw>8,000$</bdi> بعد <bdi dir="ltr" class=nw>5</bdi> سنوات.</p></div>
   <div class="sol-h"><span>الحل</span> · <span dir="ltr" lang="en">Solution</span></div>
   <ol class="steps"><li><span class="sn">1</span><div class="st"><p class="en " dir="ltr" lang="en">Number of years:</p><p class="ar ">عدد السنوات:</p><div class="eq ">\[\texttt{=NPER(7\%, -8000, 100000)} \;\to\; 30.73\]</div></div></li><li><span class="sn">2</span><div class="st"><p class="en " dir="ltr" lang="en">Rate (P = 0, F = 8,000):</p><p class="ar ">النسبة (<bdi dir="ltr" class=nw>P = 0</bdi> و <bdi dir="ltr" class=nw>F = 8,000</bdi>):</p><div class="eq ">\[\texttt{=RATE(5, -1000, 0, 8000)} \;\to\; 23.69\%\]</div></div></li></ol>
   <div class="ans"><span class="ok" aria-hidden="true">✓</span><div><p class="en " dir="ltr" lang="en">Answer: N = 30.73 years and i = 23.69%, matching the interpolation.</p><p class="ar ">الجواب: <bdi dir="ltr" class=nw>N = 30.73</bdi> سنة و <bdi dir="ltr" class=nw>i = 23.69%</bdi>، نفس اللي طلع بالاستكمال.</p></div></div>

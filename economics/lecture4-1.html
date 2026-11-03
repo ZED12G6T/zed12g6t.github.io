@@ -405,6 +405,7 @@
   </div>
   <div class="callout key"><strong>🔑 علاقات تختصر الحفظ (إضافة):</strong> كل عامل مقلوب أخوه: $(A/F) = 1/(F/A)$ و $(A/P) = 1/(P/A)$. والسلسلة: $(P/A) = (P/F)(F/A)$. وحيلة للتأكد: $(A/P) = (A/F) + i$.</div>
   <div class="callout warn"><strong>⚠️ مكان $P$ و $F$:</strong> قوانين $A$ تفترض إن $P$ قبل أول دفعة بفترة كاملة، و $F$ بنفس وقت آخر دفعة. لو الدفعات بدأت متأخرة، لازم تعدّل (الدفعات المؤجلة في الجزء 2).</div>
+  <div class="callout"><strong>➡️ وبعدها:</strong> لو المعطى $P$ و $A$ (أو $F$ و $A$) والمجهول هو $N$ أو $i$، هذي أول شي في <a href="lecture4-2.html#ni">الجزء 2</a>.</div>
   <div class="econ-lab factor-lab" data-i="8" data-n="40" data-amt="3000" data-rows="FP,PF,FA,PA,AF,AP"></div>
 </section>
 
@@ -553,101 +554,6 @@
   </ol>
 </section>
 
-<!-- ================= 08 إيجاد N و i ================= -->
-<section class="card" id="ni" data-num="08" data-nav="إيجاد N و i|N, i">
-  <h2>لما المجهول $N$ أو $i$</h2>
-  <p class="sub">ما نقدر نعزلهم بسهولة، فنستخدم الجداول والاستكمال أو الإكسل</p>
-
-  <div class="grid-2">
-    <div class="tile"><div class="t-top">نعرف $P$ و $A$ و $i$</div><div class="t-name">نبي $N$</div><div class="t-desc">كم سنة لين يخلص القرض؟</div></div>
-    <div class="tile"><div class="t-top">نعرف $P$ و $A$ و $N$</div><div class="t-name">نبي $i$</div><div class="t-desc">كم العائد اللي كسبته؟</div></div>
-  </div>
-  <p>السلايدات تقول إن هالمسائل لها صعوبة خاصة، وأحسن شي تنحل بالجداول الحسابية (Spreadsheet). وباليد: تحسب العامل المطلوب، وتدور عليه في الجداول، وتستكمل خطياً (Interpolation) بين أقرب قيمتين.</p>
-  <h3>الاستكمال الخطي (Linear interpolation)</h3>
-  <p>لو قيمة العامل المطلوبة $v$ بين $v_1$ (عند $x_1$) و $v_2$ (عند $x_2$):</p>
-  <div class="m">\[x \approx x_1 + (x_2 - x_1)\,\frac{v - v_1}{v_2 - v_1}\]</div>
-  <div class="callout key"><strong>🔑 الفكرة:</strong> نفترض إن العامل يمشي على خط مستقيم بين نقطتين قريبات. كل ما كانت النقطتين أقرب، الجواب أدق. (القانون إضافة توضيحية لطريقة الاستكمال.)</div>
-</section>
-
-<!-- ================= مثال 11 ================= -->
-<section class="card" id="ex11" data-nav="مثال 11|Ex 11">
-  <div class="ex-head"><span class="ex-badge">مثال 11</span><h2>كم سنة لين يخلص القرض؟</h2></div>
-  <div class="tags"><span class="tag">إيجاد N</span><span class="tag">P/A</span></div>
-  <p>Acme اقترضت <span dir="ltr">\$100,000</span> من بنك يحسب 7% بالسنة. لو تدفع للبنك <span dir="ltr">\$8,000</span> كل سنة، كم سنة تحتاج عشان تسدد القرض؟</p>
-  <figure class="fig">
-    <svg class="cfd" data-cfd="20|0:100000:P = $100,000:x|1-20:-8000:A = $8,000:y" data-ticks="0,1,2,3,…,N−2,N−1,N" data-i="i = 7%" role="img" aria-label="سهم 100000 لفوق عند 0 وأسهم 8000 لتحت من 1 إلى N"></svg>
-  </figure>
-  <ol class="solve">
-    <li class="step read">
-      <h4>اقرأ المعطيات</h4>
-      <p class="why">$P = 100{,}000$ و $A = 8{,}000$ و $i = 7\%$، والمجهول $N$. القرض اليوم يكافئ الأقساط.</p>
-    </li>
-    <li class="step">
-      <h4>اكتب معادلة التكافؤ</h4>
-      <div class="m">\[100{,}000 = 8{,}000\,(P/A, 7\%, N)\]</div>
-    </li>
-    <li class="step">
-      <h4>اعزل العامل</h4>
-      <div class="m wide">\[(P/A, 7\%, N) = \frac{100{,}000}{8{,}000} = 12.5 = \frac{(1.07)^N - 1}{0.07\,(1.07)^N}\]</div>
-      <div class="m narrow">\[\begin{aligned}(P/A, 7\%, N) &= \frac{100{,}000}{8{,}000} = 12.5 \\ &= \frac{(1.07)^N - 1}{0.07\,(1.07)^N}\end{aligned}\]</div>
-    </li>
-    <li class="step">
-      <h4>دوّر في الجدول</h4>
-      <p class="why">في جدول 7%: $(P/A, 7\%, 30) = 12.4090$ و $(P/A, 7\%, 31) = 12.5318$. يعني $N$ بين 30 و 31.</p>
-    </li>
-    <li class="step">
-      <h4>استكمل</h4>
-      <div class="m wide">\[N \approx 30 + \frac{12.5 - 12.4090}{12.5318 - 12.4090} = 30 + \frac{0.0910}{0.1228} = 30.74\]</div>
-      <div class="m narrow">\[\begin{aligned}N &\approx 30 + \frac{12.5 - 12.4090}{12.5318 - 12.4090} \\ &= 30 + \frac{0.0910}{0.1228} = 30.74\end{aligned}\]</div>
-    </li>
-    <li class="step final">
-      <div class="result">$N \approx 30.7\ \text{years}$</div>
-      <p class="sanity">بالإكسل: <span dir="ltr">NPER(7%, -8000, 100000) = 30.73</span> ✓. وإضافة: هذي بالذات تنحل بالضبط باللوغاريتم: $1 - 1.07^{-N} = 0.07 \times 12.5 = 0.875$، فـ $N = \frac{\ln 8}{\ln 1.07} = 30.73$. يعني 30 قسط كامل وقسط أخير أصغر.</p>
-    </li>
-  </ol>
-</section>
-
-<!-- ================= مثال 12 ================= -->
-<section class="card" id="ex12" data-nav="مثال 12|Ex 12">
-  <div class="ex-head"><span class="ex-badge">مثال 12</span><h2>كم عائد جيل؟</h2></div>
-  <div class="tags"><span class="tag">إيجاد i</span><span class="tag">F/A</span></div>
-  <p>جيل استثمرت <span dir="ltr">\$1,000</span> كل سنة لمدة خمس سنين في شركة محلية، وباعت حصتها بعد الخمس سنين بـ <span dir="ltr">\$8,000</span>. كم معدل العائد السنوي اللي كسبته؟</p>
-  <figure class="fig">
-    <svg class="cfd" data-cfd="5|1-5:-1000:A = $1,000:y|5:8000:F = $8,000:z" data-i="i = ?" role="img" aria-label="أسهم 1000 لتحت من 1 إلى 5، وسهم 8000 لفوق عند 5"></svg>
-  </figure>
-  <ol class="solve">
-    <li class="step read">
-      <h4>اقرأ المعطيات</h4>
-      <p class="why">$A = 1000$ لمدة $N = 5$، وفي النهاية $F = 8000$. المجهول $i$.</p>
-    </li>
-    <li class="step">
-      <h4>معادلة التكافؤ</h4>
-      <div class="m wide">\[8{,}000 = 1{,}000\,(F/A, i\%, 5) \;\Rightarrow\; (F/A, i\%, 5) = 8 = \frac{(1+i)^5 - 1}{i}\]</div>
-      <div class="m narrow">\[\begin{aligned}8{,}000 &= 1{,}000\,(F/A, i\%, 5) \\ \Rightarrow\ (F/A, i\%, 5) &= 8 = \frac{(1+i)^5 - 1}{i}\end{aligned}\]</div>
-    </li>
-    <li class="step">
-      <h4>جرّب قيم (Trial and error)</h4>
-      <p class="why">بدون فائدة المجموع 5 بس، فنحتاج فائدة عالية عشان يصير 8.</p>
-      <div class="tbl-wrap">
-        <table class="tbl">
-          <tr><th class="n">$i$</th><th class="n">20%</th><th class="n">23%</th><th class="n">24%</th><th class="n">25%</th></tr>
-          <tr><td>$(F/A, i, 5)$</td><td class="n">7.4416</td><td class="n">7.8926</td><td class="n">8.0484</td><td class="n">8.2070</td></tr>
-        </table>
-      </div>
-      <p class="why">الـ 8 بين 23% و 24%.</p>
-    </li>
-    <li class="step">
-      <h4>استكمل</h4>
-      <div class="m wide">\[i \approx 23\% + 1\% \times \frac{8 - 7.8926}{8.0484 - 7.8926} = 23\% + 0.69\% = 23.69\%\]</div>
-      <div class="m narrow">\[\begin{aligned}i &\approx 23\% + 1\% \times \frac{8 - 7.8926}{8.0484 - 7.8926} \\ &= 23\% + 0.69\% = 23.69\%\end{aligned}\]</div>
-    </li>
-    <li class="step final">
-      <div class="result">$i \approx 23.7\%\ \text{per year}$</div>
-      <p class="sanity">بالإكسل: <span dir="ltr">RATE(5, -1000, 0, 8000) = 23.69%</span> ✓. ولو استكملت بين 20% و 25% مباشرة يطلع 23.65%، قريب بس أقل دقة.</p>
-    </li>
-  </ol>
-</section>
-
 <!-- ================= الطريقة ================= -->
 <section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
   <h2>طريقة حل أي مسألة تكافؤ</h2>
@@ -657,7 +563,7 @@
     <li><b>وحّد الفترة</b><span class="why">لو الأقساط شهرية لازم $i$ بالشهر و $N$ بالشهور (مثل مثال 10).</span></li>
     <li><b>حدد وش معطاك ووش تبي</b><span class="why">واكتب العامل: اللي تبيه قبل الشرطة واللي معطاك بعدها. مثلاً تبي $A$ ومعطاك $P$: $(A/P, i\%, N)$.</span></li>
     <li><b>تأكد من المواقع</b><span class="why">$P$ قبل أول $A$ بفترة، و $F$ مع آخر $A$. لو مو كذا، انقل على مرحلتين.</span></li>
-    <li><b>احسب العامل واضرب</b><span class="why">من القانون أو الجدول أو الحاسبة. ولو المجهول $N$ أو $i$: اعزل العامل ودوّر عليه واستكمل.</span></li>
+    <li><b>احسب العامل واضرب</b><span class="why">من القانون أو الجدول أو الحاسبة. ولو المجهول $N$ أو $i$ نفسه، هذي في الجزء 2 (إيجاد $N$ و $i$ بالاستكمال).</span></li>
   </ol>
   <div class="callout good"><strong>✅ افحص جوابك</strong>
     <ul class="checks">
@@ -720,17 +626,6 @@
     </ol>
   </div>
 
-  <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl hard">صعب</span></div>
-    <p>قرض <span dir="ltr">\$50,000</span> بفائدة 8%، وتسدد <span dir="ltr">\$6,000</span> كل سنة. كم سنة تقريباً لين يخلص؟ (اكتب الجواب بمنزلتين عشريتين)</p>
-    <div class="check" data-answer="14.275"></div>
-    <details class="hint"><p>$(P/A, 8\%, N) = 50{,}000/6{,}000 = 8.3333$. وفي الجدول: $(P/A, 8\%, 13) = 7.9038$ و $(P/A, 8\%, 14) = 8.2442$ و $(P/A, 8\%, 15) = 8.5595$.</p></details>
-    <ol class="solve" data-start="solution">
-      <li class="step"><h4>العامل المطلوب</h4><div class="m">\[(P/A, 8\%, N) = \frac{50{,}000}{6{,}000} = 8.3333\]</div></li>
-      <li class="step"><h4>بالضبط باللوغاريتم</h4><p class="why">$1 - 1.08^{-N} = 0.08 \times 8.3333 = 0.6667$، فـ $1.08^{-N} = 0.3333$.</p><div class="m">\[N = \frac{\ln 3}{\ln 1.08} = \frac{1.0986}{0.07696} = 14.27\]</div></li>
-      <li class="step final"><div class="result">$N \approx 14.27\ \text{years}$</div><p class="sanity">بالاستكمال بين 14 و 15: $14 + \frac{8.3333 - 8.2442}{8.5595 - 8.2442} = 14.28$ ✓</p></li>
-    </ol>
-  </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
@@ -775,9 +670,6 @@
     <div class="q" data-answer="2"><p>قسط شهري لقرض والفائدة 0.5% بالشهر لمدة سنتين. وش تحط في القانون؟</p>
       <button>$i = 0.5$ و $N = 2$</button><button>$i = 0.005$ و $N = 24$</button><button>$i = 0.06$ و $N = 24$</button><button>$i = 0.005$ و $N = 2$</button>
       <p class="q-why">الفترة شهر، فـ $i$ بالشهر كعدد عشري و $N$ بالشهور.</p></div>
-    <div class="q" data-answer="1"><p>أي دالة في الإكسل تعطيك $N$ مباشرة؟</p>
-      <button>NPER</button><button>RATE</button><button>PMT</button><button>FV</button>
-      <p class="q-why">NPER = Number of periods. و RATE تعطي $i$، و PMT تعطي $A$.</p></div>
   </div>
 </section>
 

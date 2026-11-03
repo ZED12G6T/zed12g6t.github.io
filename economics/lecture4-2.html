@@ -26,7 +26,7 @@
 <section class="hero" id="top">
   <p class="eyebrow">الفصل 4 · الجزء 2 · الاقتصاد الهندسي · <span class="ltr">Ch 4</span></p>
   <h1><span>التدرجات والفائدة الفعالة</span> <span class="h1-math ltr">$i = \left(1 + \tfrac{r}{M}\right)^M - 1$</span></h1>
-  <p class="lead">في الجزء 1 كانت الدفعات ثابتة وتبدأ من أول فترة، والفائدة ثابتة وسنوية. هنا نكسر هالافتراضات واحد واحد: دفعات تبدأ متأخرة، ودفعات تزيد بمقدار ثابت أو بنسبة ثابتة، وفائدة تتغير كل فترة، وفائدة تتركب أكثر من مرة في السنة.</p>
+  <p class="lead">في الجزء 1 كانت الدفعات ثابتة وتبدأ من أول فترة، والفائدة ثابتة وسنوية. هنا نبدأ بالعكس: لو المجهول المدة $N$ أو النسبة $i$. وبعدين نكسر هالافتراضات واحد واحد: دفعات تبدأ متأخرة، ودفعات تزيد بمقدار ثابت أو بنسبة ثابتة، وفائدة تتغير كل فترة، وفائدة تتركب أكثر من مرة في السنة.</p>
   <div class="xyz-bar">
     <span class="x">الحاضر $P$</span><span class="y">الدفعات $A$ و $G$</span><span class="z">المستقبل $F$ والفعالة $i$</span>
     <small>← نفس ألوان الجزء 1</small>
@@ -34,6 +34,7 @@
   <div class="tldr">
     <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
     <ol>
+      <li>لو المجهول $N$ أو $i$: اعزل العامل، مثل $(P/A, 7\%, N) = 12.5$، ودوّره في الجدول واستكمل خطياً بين أقرب صفين (أو NPER و RATE بالإكسل).</li>
       <li>الدفعات المؤجلة: انقلها على مرحلتين، $P_0 = A(P/A, i, N - J)(P/F, i, J)$. والتدرج المنتظم $G$ يبدأ بصفر في الفترة 1، ونفصله: دفعة ثابتة + تدرج.</li>
       <li>التدرج الهندسي يزيد بنسبة $\bar f$: $P = A_1\frac{1 - (P/F, i, N)(F/P, \bar f, N)}{i - \bar f}$، ولو $\bar f = i$ يصير $P = A_1 N/(1+i)$.</li>
       <li>الاسمية $r$ مقسومة على $M$ هي فائدة الفترة، والفعالة السنوية $i = (1 + r/M)^M - 1$، وبالتركيب المستمر $i = e^r - 1$.</li>
@@ -53,8 +54,111 @@
   </div>
 </section>
 
-<!-- ================= 01 المؤجلة ================= -->
-<section class="card" id="deferred" data-num="01" data-nav="الدفعات المؤجلة|Deferred">
+<!-- ================= 01 إيجاد N و i ================= -->
+<section class="card" id="ni" data-num="01" data-nav="إيجاد N و i|N, i">
+  <h2>لما المجهول $N$ أو $i$</h2>
+  <p class="sub">ما نقدر نعزلهم بسهولة، فنستخدم الجداول والاستكمال أو الإكسل</p>
+  <p>إلى الحين كنا نعرف $i$ و $N$ ونطلع $P$ أو $F$ أو $A$. هنا العكس: المبالغ معروفة، والمجهول المدة $N$ أو النسبة $i$. نفس معادلة التكافؤ، بس المجهول داخل العامل.</p>
+
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">نعرف $P$ و $A$ و $i$</div><div class="t-name">نبي $N$</div><div class="t-desc">كم سنة لين يخلص القرض؟</div></div>
+    <div class="tile"><div class="t-top">نعرف $P$ و $A$ و $N$</div><div class="t-name">نبي $i$</div><div class="t-desc">كم العائد اللي كسبته؟</div></div>
+  </div>
+  <p>السلايدات تقول إن هالمسائل لها صعوبة خاصة، وأحسن شي تنحل بالجداول الحسابية (Spreadsheet). وباليد: تحسب العامل المطلوب، وتدور عليه في الجداول، وتستكمل خطياً (Interpolation) بين أقرب قيمتين.</p>
+  <h3>الاستكمال الخطي (Linear interpolation)</h3>
+  <p>لو قيمة العامل المطلوبة $v$ بين $v_1$ (عند $x_1$) و $v_2$ (عند $x_2$):</p>
+  <div class="m">\[x \approx x_1 + (x_2 - x_1)\,\frac{v - v_1}{v_2 - v_1}\]</div>
+  <div class="callout key"><strong>🔑 الفكرة:</strong> نفترض إن العامل يمشي على خط مستقيم بين نقطتين قريبات. كل ما كانت النقطتين أقرب، الجواب أدق. (القانون إضافة توضيحية لطريقة الاستكمال.)</div>
+  <ol class="recipe">
+    <li><b>اكتب معادلة التكافؤ</b><span class="why">مثل $P = A(P/A, i\%, N)$، والمجهول داخل العامل.</span></li>
+    <li><b>اعزل العامل</b><span class="why">قيمته رقم: $(P/A) = P/A$، أو $(F/A) = F/A$، أو $(F/P) = F/P$.</span></li>
+    <li><b>دوّر عليه في الجدول</b><span class="why">لو المجهول $N$: نفس جدول $i$ وتنزل بالسنين. لو المجهول $i$: نفس $N$ وتقارن بين جداول النسب.</span></li>
+    <li><b>استكمل بين أقرب صفين</b><span class="why">بالقانون فوق، وتأكد إن الجواب بينهم فعلاً.</span></li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ الشكل الثاني:</strong> سؤال جيل تحت يبدأ بـ $8{,}000 = 1{,}000(F/A, i\%, 5)$ لأن المعطى دفعات ومبلغ بالنهاية، فالعامل $F/A$ مو $P/A$. اختار العامل من المعطيات مثل الجزء 1 بالضبط.</div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>كم سنة لين يخلص القرض؟</h2></div>
+  <div class="tags"><span class="tag">إيجاد N</span><span class="tag">P/A</span></div>
+  <p>Acme اقترضت <span dir="ltr">\$100,000</span> من بنك يحسب 7% بالسنة. لو تدفع للبنك <span dir="ltr">\$8,000</span> كل سنة، كم سنة تحتاج عشان تسدد القرض؟</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="20|0:100000:P = $100,000:x|1-20:-8000:A = $8,000:y" data-ticks="0,1,2,3,…,N−2,N−1,N" data-i="i = 7%" role="img" aria-label="سهم 100000 لفوق عند 0 وأسهم 8000 لتحت من 1 إلى N"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">$P = 100{,}000$ و $A = 8{,}000$ و $i = 7\%$، والمجهول $N$. القرض اليوم يكافئ الأقساط.</p>
+    </li>
+    <li class="step">
+      <h4>اكتب معادلة التكافؤ</h4>
+      <div class="m">\[100{,}000 = 8{,}000\,(P/A, 7\%, N)\]</div>
+    </li>
+    <li class="step">
+      <h4>اعزل العامل</h4>
+      <div class="m wide">\[(P/A, 7\%, N) = \frac{100{,}000}{8{,}000} = 12.5 = \frac{(1.07)^N - 1}{0.07\,(1.07)^N}\]</div>
+      <div class="m narrow">\[\begin{aligned}(P/A, 7\%, N) &= \frac{100{,}000}{8{,}000} = 12.5 \\ &= \frac{(1.07)^N - 1}{0.07\,(1.07)^N}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>دوّر في الجدول</h4>
+      <p class="why">في جدول 7%: $(P/A, 7\%, 30) = 12.4090$ و $(P/A, 7\%, 31) = 12.5318$. يعني $N$ بين 30 و 31.</p>
+    </li>
+    <li class="step">
+      <h4>استكمل</h4>
+      <div class="m wide">\[N \approx 30 + \frac{12.5 - 12.4090}{12.5318 - 12.4090} = 30 + \frac{0.0910}{0.1228} = 30.74\]</div>
+      <div class="m narrow">\[\begin{aligned}N &\approx 30 + \frac{12.5 - 12.4090}{12.5318 - 12.4090} \\ &= 30 + \frac{0.0910}{0.1228} = 30.74\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$N \approx 30.7\ \text{years}$</div>
+      <p class="sanity">بالإكسل: <span dir="ltr">NPER(7%, -8000, 100000) = 30.73</span> ✓. وإضافة: هذي بالذات تنحل بالضبط باللوغاريتم: $1 - 1.07^{-N} = 0.07 \times 12.5 = 0.875$، فـ $N = \frac{\ln 8}{\ln 1.07} = 30.73$. يعني 30 قسط كامل وقسط أخير أصغر.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>كم عائد جيل؟</h2></div>
+  <div class="tags"><span class="tag">إيجاد i</span><span class="tag">F/A</span></div>
+  <p>جيل استثمرت <span dir="ltr">\$1,000</span> كل سنة لمدة خمس سنين في شركة محلية، وباعت حصتها بعد الخمس سنين بـ <span dir="ltr">\$8,000</span>. كم معدل العائد السنوي اللي كسبته؟</p>
+  <figure class="fig">
+    <svg class="cfd" data-cfd="5|1-5:-1000:A = $1,000:y|5:8000:F = $8,000:z" data-i="i = ?" role="img" aria-label="أسهم 1000 لتحت من 1 إلى 5، وسهم 8000 لفوق عند 5"></svg>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المعطيات</h4>
+      <p class="why">$A = 1000$ لمدة $N = 5$، وفي النهاية $F = 8000$. المجهول $i$.</p>
+    </li>
+    <li class="step">
+      <h4>معادلة التكافؤ</h4>
+      <div class="m wide">\[8{,}000 = 1{,}000\,(F/A, i\%, 5) \;\Rightarrow\; (F/A, i\%, 5) = 8 = \frac{(1+i)^5 - 1}{i}\]</div>
+      <div class="m narrow">\[\begin{aligned}8{,}000 &= 1{,}000\,(F/A, i\%, 5) \\ \Rightarrow\ (F/A, i\%, 5) &= 8 = \frac{(1+i)^5 - 1}{i}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4>جرّب قيم (Trial and error)</h4>
+      <p class="why">بدون فائدة المجموع 5 بس، فنحتاج فائدة عالية عشان يصير 8.</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <tr><th class="n">$i$</th><th class="n">20%</th><th class="n">23%</th><th class="n">24%</th><th class="n">25%</th></tr>
+          <tr><td>$(F/A, i, 5)$</td><td class="n">7.4416</td><td class="n">7.8926</td><td class="n">8.0484</td><td class="n">8.2070</td></tr>
+        </table>
+      </div>
+      <p class="why">الـ 8 بين 23% و 24%.</p>
+    </li>
+    <li class="step">
+      <h4>استكمل</h4>
+      <div class="m wide">\[i \approx 23\% + 1\% \times \frac{8 - 7.8926}{8.0484 - 7.8926} = 23\% + 0.69\% = 23.69\%\]</div>
+      <div class="m narrow">\[\begin{aligned}i &\approx 23\% + 1\% \times \frac{8 - 7.8926}{8.0484 - 7.8926} \\ &= 23\% + 0.69\% = 23.69\%\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$i \approx 23.7\%\ \text{per year}$</div>
+      <p class="sanity">بالإكسل: <span dir="ltr">RATE(5, -1000, 0, 8000) = 23.69%</span> ✓. ولو استكملت بين 20% و 25% مباشرة يطلع 23.65%، قريب بس أقل دقة.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 02 المؤجلة ================= -->
+<section class="card" id="deferred" data-num="02" data-nav="الدفعات المؤجلة|Deferred">
   <h2>الدفعات المؤجلة (Deferred annuities)</h2>
   <p class="sub">سلسلة منتظمة ما تبدأ إلا بعد فترة</p>
 
@@ -72,9 +176,9 @@
   <div class="callout warn"><strong>⚠️ الفخ الأكبر:</strong> $(P/A)$ يحط القيمة <b>قبل أول دفعة بفترة</b>. أول دفعة عند $J + 1$، فالقيمة تطلع عند $J$، وترجعها $J$ فترة بس، مو $J + 1$.</div>
 </section>
 
-<!-- ================= مثال 1 ================= -->
-<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>صيانة سيارة آيرين</h2></div>
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>صيانة سيارة آيرين</h2></div>
   <div class="tags"><span class="tag">Pause and solve</span><span class="tag">دفعة مؤجلة</span></div>
   <p>آيرين اشترت سيارة رياضية جديدة، وتبي تحط فلوس على جنب لصيانتها. السيارة عليها ضمان شامل أول خمس سنين. وتتوقع تحتاج حوالي <span dir="ltr">\$2,000</span> بالسنة للصيانة من السنة 6 لين 10، وبعدها بتبيع السيارة. كم تحط اليوم في حساب بـ 8% بالسنة عشان يكفي مصاريف الصيانة؟</p>
   <figure class="fig">
@@ -104,8 +208,8 @@
   </ol>
 </section>
 
-<!-- ================= 02 التدرج المنتظم ================= -->
-<section class="card" id="gradient" data-num="02" data-nav="التدرج المنتظم|G">
+<!-- ================= 03 التدرج المنتظم ================= -->
+<section class="card" id="gradient" data-num="03" data-nav="التدرج المنتظم|G">
   <h2>التدرج المنتظم (Uniform gradient)</h2>
   <p class="sub">الدفعة تزيد بمقدار ثابت $G$ كل فترة</p>
 
@@ -134,9 +238,9 @@
   <div class="econ-lab factor-lab" data-i="8" data-n="4" data-rows="PA,PF,PG,AG"></div>
 </section>
 
-<!-- ================= مثال 2 ================= -->
-<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>الدفعة السنوية لتدرج</h2></div>
+<!-- ================= مثال 4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>الدفعة السنوية لتدرج</h2></div>
   <div class="tags"><span class="tag">A/G</span><span class="tag">دفعة + تدرج</span></div>
   <p>أوجد الدفعة السنوية المكافئة لهالتدفقات، بفائدة 8%:</p>
   <figure class="fig">
@@ -177,8 +281,8 @@
   </ol>
 </section>
 
-<!-- ================= 03 التدرج الهندسي ================= -->
-<section class="card" id="geometric" data-num="03" data-nav="التدرج الهندسي|f̄">
+<!-- ================= 04 التدرج الهندسي ================= -->
+<section class="card" id="geometric" data-num="04" data-nav="التدرج الهندسي|f̄">
   <h2>التدرج الهندسي (Geometric gradient)</h2>
   <p class="sub">الدفعة تزيد بنسبة ثابتة $\bar f$ كل فترة، مو بمقدار ثابت</p>
 
@@ -193,13 +297,13 @@
   <div class="m narrow">\[\begin{aligned}\X{P} &= \frac{A_1\big[1 - (P/F, i\%, N)(F/P, \bar f\%, N)\big]}{i - \bar f} \\ &\bar f \ne i\end{aligned}\]</div>
   <div class="m">\[\X{P} = A_1\,N\,(P/F, i\%, 1) = \frac{A_1 N}{1 + i},\qquad \bar f = i\]</div>
   <p>و $A_1$ هي أول دفعة في السلسلة.</p>
-  <div class="callout warn"><strong>⚠️ غلطة مطبعية في السلايد:</strong> مقام القانون الأول مكتوب $1 - \bar f$، والصح $i - \bar f$ (هذا اللي في الكتاب). وتقدر تتأكد: لو $\bar f = 0$ لازم يرجع $P = A_1(P/A, i\%, N)$، وهذا يطلع بس لو المقام $i$. وبمثال 3 تحت لو حطيت $1 - \bar f$ يطلع جواب أصغر بـ 17 مرة.</div>
+  <div class="callout warn"><strong>⚠️ غلطة مطبعية في السلايد:</strong> مقام القانون الأول مكتوب $1 - \bar f$، والصح $i - \bar f$ (هذا اللي في الكتاب). وتقدر تتأكد: لو $\bar f = 0$ لازم يرجع $P = A_1(P/A, i\%, N)$، وهذا يطلع بس لو المقام $i$. وبمثال 5 تحت لو حطيت $1 - \bar f$ يطلع جواب أصغر بـ 17 مرة.</div>
   <div class="callout key"><strong>🔑 ليش $\bar f = i$ حالة خاصة؟</strong> كل دفعة تكبر بنفس النسبة اللي تتخصم فيها، فكل وحدة لما ترجعها للصفر تطلع $\frac{A_1}{1+i}$ بالضبط. فالمجموع $N$ مرات هالرقم. (والقانون الأول ينقسم على صفر هنا، عشان كذا لها قانون لحالها.)</div>
 </section>
 
-<!-- ================= مثال 3 ================= -->
-<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>إيرادات حبوب LoseIt</h2></div>
+<!-- ================= مثال 5 ================= -->
+<section class="card" id="ex5" data-nav="مثال 5|Ex 5">
+  <div class="ex-head"><span class="ex-badge">مثال 5</span><h2>إيرادات حبوب LoseIt</h2></div>
   <div class="tags"><span class="tag">Pause and solve</span><span class="tag">تدرج هندسي</span></div>
   <p>Acme Miracle متفائلة بحبوب التنحيف الجديدة LoseIt. الإيرادات هالسنة متوقعة <span dir="ltr">\$1.1</span> مليون، وتتوقع تزيد 15% بالسنة للخمس سنين الجاية. كم القيمة الحالية والدفعة السنوية المكافئة للإيرادات المتوقعة؟ الشركة تستخدم فائدة 20%.</p>
   <figure class="fig">
@@ -239,8 +343,8 @@
   </ol>
 </section>
 
-<!-- ================= 04 الفائدة المتغيرة ================= -->
-<section class="card" id="varying" data-num="04" data-nav="الفائدة المتغيرة|Varying i">
+<!-- ================= 05 الفائدة المتغيرة ================= -->
+<section class="card" id="varying" data-num="05" data-nav="الفائدة المتغيرة|Varying i">
   <h2>لما الفائدة تتغير مع الوقت</h2>
   <p class="sub">ننقل الفلوس فترة فترة، وكل فترة بنسبتها</p>
 
@@ -250,9 +354,9 @@
   <div class="callout key"><strong>🔑 نفس فكرة $(P/F)$:</strong> لو كل النسب متساوية، الضرب يصير $(1+i)^N$ ونرجع لـ $P = F(1+i)^{-N}$. يعني القانون هذا تعميم بسيط.</div>
 </section>
 
-<!-- ================= مثال 4 ================= -->
-<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
-  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>ثلاث نسب مختلفة</h2></div>
+<!-- ================= مثال 6 ================= -->
+<section class="card" id="ex6" data-nav="مثال 6|Ex 6">
+  <div class="ex-head"><span class="ex-badge">مثال 6</span><h2>ثلاث نسب مختلفة</h2></div>
   <div class="tags"><span class="tag">من السلايدات</span><span class="tag">فائدة متغيرة</span></div>
   <p>تدفق <span dir="ltr">\$2,500</span> في المستقبل، والفائدة 8% في الفترة الأولى، و 10% في الثانية، و 11% في الثالثة. كم قيمته الحالية؟</p>
   <figure class="fig">
@@ -280,8 +384,8 @@
   <div class="callout warn"><strong>⚠️ ملاحظة على السلايد:</strong> السلايد كاتب $F_4 = \$2{,}500$ بس الحساب فيه ثلاث نسب، يعني ثلاث فترات. فالأرقام تمشي لو التدفق في نهاية الفترة 3. لو فعلاً في نهاية الفترة 4، تحتاج نسبة رابعة $i_4$ وعامل رابع.</div>
 </section>
 
-<!-- ================= 05 الاسمية والفعالة ================= -->
-<section class="card" id="nominal" data-num="05" data-nav="الاسمية والفعالة|r vs i">
+<!-- ================= 06 الاسمية والفعالة ================= -->
+<section class="card" id="nominal" data-num="06" data-nav="الاسمية والفعالة|r vs i">
   <h2>الفائدة الاسمية والفعالة (Nominal &amp; effective)</h2>
   <p class="sub">الفائدة تتركب أكثر من مرة في السنة، فالفعلية أكبر من المكتوبة</p>
 
@@ -318,9 +422,9 @@
   </div>
 </section>
 
-<!-- ================= مثال 5 ================= -->
-<section class="card" id="ex5" data-nav="مثال 5|Ex 5">
-  <div class="ex-head"><span class="ex-badge">مثال 5</span><h2>18% مركبة ربع سنوياً</h2></div>
+<!-- ================= مثال 7 ================= -->
+<section class="card" id="ex7" data-nav="مثال 7|Ex 7">
+  <div class="ex-head"><span class="ex-badge">مثال 7</span><h2>18% مركبة ربع سنوياً</h2></div>
   <div class="tags"><span class="tag">من السلايدات</span><span class="tag">الفعالة</span></div>
   <p>كم الفائدة الفعالة لنسبة اسمية 18%، مركبة كل ربع سنة؟</p>
   <ol class="solve">
@@ -343,9 +447,9 @@
   </ol>
 </section>
 
-<!-- ================= مثال 6 ================= -->
-<section class="card" id="ex6" data-nav="مثال 6|Ex 6">
-  <div class="ex-head"><span class="ex-badge">مثال 6</span><h2>7% مركبة شهرياً</h2></div>
+<!-- ================= مثال 8 ================= -->
+<section class="card" id="ex8" data-nav="مثال 8|Ex 8">
+  <div class="ex-head"><span class="ex-badge">مثال 8</span><h2>7% مركبة شهرياً</h2></div>
   <div class="tags"><span class="tag">من السلايدات</span><span class="tag">الفعالة</span></div>
   <p>كم الفائدة الفعالة لنسبة اسمية 7%، مركبة كل شهر؟</p>
   <ol class="solve">
@@ -363,13 +467,13 @@
     </li>
     <li class="step final">
       <div class="result">$i = 7.23\%$</div>
-      <p class="sanity">الفرق هنا 0.23% بس، أصغر من مثال 5، لأن النسبة نفسها أصغر ✓. يعني أثر التركيب يكبر مع كبر النسبة.</p>
+      <p class="sanity">الفرق هنا 0.23% بس، أصغر من مثال 7، لأن النسبة نفسها أصغر ✓. يعني أثر التركيب يكبر مع كبر النسبة.</p>
     </li>
   </ol>
 </section>
 
-<!-- ================= 06 التركيب المستمر ================= -->
-<section class="card" id="continuous" data-num="06" data-nav="التركيب المستمر|e^r">
+<!-- ================= 07 التركيب المستمر ================= -->
+<section class="card" id="continuous" data-num="07" data-nav="التركيب المستمر|e^r">
   <h2>التركيب المستمر (Continuous compounding)</h2>
   <p class="sub">لو $M$ يكبر بلا نهاية</p>
 
@@ -385,8 +489,8 @@
   <div class="callout"><strong>💡 كم الفرق؟</strong> بـ 12%: سنوي 12%، شهري 12.68%، يومي 12.747%، مستمر 12.750%. يعني من الشهري للمستمر أقل من عُشر بالمية. جربها في المختبر فوق.</div>
 </section>
 
-<!-- ================= 07 الإكسل ================= -->
-<section class="card" id="excel" data-num="07" data-nav="دوال الإكسل|Excel">
+<!-- ================= 08 الإكسل ================= -->
+<section class="card" id="excel" data-num="08" data-nav="دوال الإكسل|Excel">
   <h2>دوال الإكسل المالية</h2>
   <p class="sub">كل عامل له دالة، وتحل لك $N$ و $i$ بدون استكمال</p>
 
@@ -407,12 +511,12 @@
     <div class="tile"><div class="t-name ltr">RATE(nper, pmt, pv, fv)</div><div class="t-desc">نسبة الفائدة الثابتة لسلسلة <span class="ltr">pmt</span> مدتها <span class="ltr">nper</span> فترة، توصلها لقيمتها الحالية <span class="ltr">pv</span> أو المستقبلية <span class="ltr">fv</span>.</div></div>
   </div>
   <div class="callout warn"><strong>⚠️ الإشارات في الإكسل (إضافة):</strong> الإكسل يعتبر الفلوس اللي تستلمها موجبة واللي تدفعها سالبة، مثل مخطط التدفق. فلو حطيت <span class="ltr">pv = 5000</span> موجب، الدفعة تطلع سالبة <span class="ltr">−1,154.87</span>. وفي NPER و RATE لازم وحدة من القيم موجبة والثانية سالبة، وإلا يعطيك خطأ.</div>
-  <div class="callout"><strong>💡 أمثلة الجزء 1 بالإكسل:</strong> قرض Acme: <span class="ltr">NPER(7%, -8000, 100000) = 30.73</span> سنة. وعائد جيل: <span class="ltr">RATE(5, -1000, 0, 8000) = 23.69%</span>. نفس اللي طلع بالاستكمال.</div>
+  <div class="callout"><strong>💡 مثال 1 و 2 بالإكسل:</strong> قرض Acme: <span class="ltr">NPER(7%, -8000, 100000) = 30.73</span> سنة. وعائد جيل: <span class="ltr">RATE(5, -1000, 0, 8000) = 23.69%</span>. نفس اللي طلع بالاستكمال.</div>
 </section>
 
-<!-- ================= مثال 7 ================= -->
-<section class="card" id="ex7" data-nav="مثال 7|Ex 7">
-  <div class="ex-head"><span class="ex-badge">مثال 7</span><h2>الدفعة بالإكسل</h2></div>
+<!-- ================= مثال 9 ================= -->
+<section class="card" id="ex9" data-nav="مثال 9|Ex 9">
+  <div class="ex-head"><span class="ex-badge">مثال 9</span><h2>الدفعة بالإكسل</h2></div>
   <div class="tags"><span class="tag">من السلايدات</span><span class="tag">PMT</span></div>
   <p>التقديرات: $P = \$5{,}000$ و $n = 5$ سنين و $i = 5\%$ بالسنة. أوجد $A$ بالدولار في السنة.</p>
   <ol class="solve">
@@ -445,12 +549,14 @@
   <ol class="recipe">
     <li><b>ارسم المخطط وحدد الشكل</b><span class="why">ثابتة متأخرة؟ تزيد بمقدار (G)؟ تزيد بنسبة ($\bar f$)؟ نسب متغيرة؟</span></li>
     <li><b>وحّد الفائدة مع الفترة</b><span class="why">لو التركيب مو سنوي: فائدة الفترة $r/M$، أو الفعالة السنوية $(1 + r/M)^M - 1$ لو الدفعات سنوية.</span></li>
+    <li><b>المجهول $N$ أو $i$؟</b><span class="why">اعزل العامل، دوّره في الجدول، واستكمل بين أقرب صفين.</span></li>
     <li><b>مؤجلة؟</b><span class="why">عدّ الدفعات $N - J$، وانقل لـ $J$ بـ $(P/A)$، وبعدين للصفر بـ $(P/F, i, J)$.</span></li>
     <li><b>تزيد بمقدار ثابت؟</b><span class="why">افصل: الأساس $A_1$ دفعة ثابتة، والزيادة $G$ تدرج يبدأ بصفر. واجمع $(P/A)$ مع $(P/G)$، أو $A_1 + G(A/G)$.</span></li>
     <li><b>تزيد بنسبة؟</b><span class="why">قارن $\bar f$ مع $i$: مختلفين ← القانون بمقام $i - \bar f$، متساويين ← $A_1 N/(1+i)$.</span></li>
   </ol>
   <div class="callout good"><strong>✅ افحص جوابك</strong>
     <ul class="checks">
+      <li>الاستكمال: الجواب لازم يطلع بين الصفين اللي استكملت بينهم.</li>
       <li>المؤجلة: الخصم الأخير $J$ فترة، مو $J + 1$.</li>
       <li>التدرج: $G$ هو الفرق بين دفعتين، مو أول دفعة.</li>
       <li>الدفعة المكافئة لتدرج لازم تطلع بين أصغر وأكبر دفعة.</li>
@@ -524,6 +630,28 @@
       <li class="step final"><div class="m">\[P = 1000\,(3.7412)\]</div><div class="result">$P = \$3{,}741.24$</div><p class="sanity">أقل شوي من المنفصل $1000\,(P/A, 10\%, 5) = 3{,}790.79$، لأن المستمر يعطي فائدة فعالة أكبر (10.52%) ✓</p></li>
     </ol>
   </div>
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl hard">صعب</span></div>
+    <p>قرض <span dir="ltr">\$50,000</span> بفائدة 8%، وتسدد <span dir="ltr">\$6,000</span> كل سنة. كم سنة تقريباً لين يخلص؟ (اكتب عدد السنين بمنزلتين عشريتين)</p>
+    <div class="check" data-answer="14.275"></div>
+    <details class="hint"><p>$(P/A, 8\%, N) = 50{,}000/6{,}000 = 8.3333$. وفي الجدول: $(P/A, 8\%, 13) = 7.9038$ و $(P/A, 8\%, 14) = 8.2442$ و $(P/A, 8\%, 15) = 8.5595$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>العامل المطلوب</h4><div class="m">\[(P/A, 8\%, N) = \frac{50{,}000}{6{,}000} = 8.3333\]</div></li>
+      <li class="step"><h4>بالضبط باللوغاريتم</h4><p class="why">$1 - 1.08^{-N} = 0.08 \times 8.3333 = 0.6667$، فـ $1.08^{-N} = 0.3333$.</p><div class="m">\[N = \frac{\ln 3}{\ln 1.08} = \frac{1.0986}{0.07696} = 14.27\]</div></li>
+      <li class="step final"><div class="result">$N \approx 14.27\ \text{years}$</div><p class="sanity">بالاستكمال بين 14 و 15: $14 + \frac{8.3333 - 8.2442}{8.5595 - 8.2442} = 14.28$ ✓</p></li>
+    </ol>
+  </div>
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ز</b><span class="lvl hard">صعب</span></div>
+    <p>تستلف <span dir="ltr">\$10,000</span> اليوم وترجعها <span dir="ltr">\$2,500</span> كل سنة لمدة 5 سنين. كم نسبة الفائدة السنوية؟ (بالمية)</p>
+    <div class="check" data-answer="7.931"></div>
+    <details class="hint"><p>$(P/A, i\%, 5) = 10{,}000/2{,}500 = 4$. وفي الجداول: $(P/A, 7\%, 5) = 4.1002$ و $(P/A, 8\%, 5) = 3.9927$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>العامل المطلوب</h4><div class="m">\[(P/A, i\%, 5) = \frac{10{,}000}{2{,}500} = 4\]</div><p class="why">الـ 4 بين 7% و 8%. وانتبه: $(P/A)$ ينقص لما $i$ تزيد.</p></li>
+      <li class="step"><h4>استكمل</h4><div class="m wide">\[i \approx 7\% + 1\% \times \frac{4.1002 - 4}{4.1002 - 3.9927} = 7\% + 0.93\% = 7.93\%\]</div><div class="m narrow">\[\begin{aligned}i &\approx 7\% + 1\% \times \frac{4.1002 - 4}{4.1002 - 3.9927} \\ &= 7\% + 0.93\% = 7.93\%\end{aligned}\]</div></li>
+      <li class="step final"><div class="result">$i \approx 7.93\%\ \text{per year}$</div><p class="sanity">بالإكسل: <span dir="ltr">RATE(5, -2500, 10000) = 7.93%</span> ✓. ودفعت $12{,}500$ على $10{,}000$، يعني فوائد $2{,}500$ ✓</p></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
@@ -547,6 +675,12 @@
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
   <h2>اختبر نفسك</h2>
   <div class="quiz">
+    <div class="q" data-answer="3"><p>$(P/A, 7\%, N) = 12.5$، والجدول: $N = 30$ تعطي 12.409 و $N = 31$ تعطي 12.532. $N$ تقريباً:</p>
+      <button>30.07</button><button>31.5</button><button>30.74</button><button>12.5</button>
+      <p class="q-why">$30 + \frac{12.5 - 12.409}{12.532 - 12.409} = 30 + 0.74$، وهي بين 30 و 31 ✓.</p></div>
+    <div class="q" data-answer="1"><p>أي دالة في الإكسل تعطيك $N$ مباشرة؟</p>
+      <button>NPER</button><button>RATE</button><button>PMT</button><button>FV</button>
+      <p class="q-why">NPER = Number of periods. و RATE تعطي $i$، و PMT تعطي $A$.</p></div>
     <div class="q" data-answer="2"><p>دفعات من نهاية السنة 4 لين 9. كم $J$ وكم عدد الدفعات؟</p>
       <button>$J = 4$ و 6 دفعات</button><button>$J = 3$ و 6 دفعات</button><button>$J = 3$ و 5 دفعات</button><button>$J = 4$ و 5 دفعات</button>
       <p class="q-why">أول دفعة عند $J + 1 = 4$ فـ $J = 3$، والعدد $N - J = 9 - 3 = 6$.</p></div>
@@ -579,6 +713,7 @@
   <h2>بطاقات المراجعة</h2>
   <p class="sub">اضغط البطاقة وتنقلب</p>
   <div class="cards">
+    <div class="flash"><div>المجهول $N$ أو $i$</div><div>اعزل العامل، دوّره في الجدول، واستكمل: $x_1 + (x_2 - x_1)\frac{v - v_1}{v_2 - v_1}$</div></div>
     <div class="flash"><div>الدفعة المؤجلة $J$ فترة</div><div>$P_0 = A(P/A, i, N - J)(P/F, i, J)$</div></div>
     <div class="flash"><div>التدرج المنتظم</div><div>0، $G$، $2G$، ...، $(N-1)G$</div></div>
     <div class="flash"><div>$(P/G, i\%, N)$</div><div>$\frac{1}{i}\left[(P/A) - N(P/F)\right]$</div></div>
@@ -594,7 +729,7 @@
 
 </main>
 <script>
-/* الفصل 4 (2): مختبر الفائدة الفعالة (القسم 05) */
+/* الفصل 4 (2): مختبر الفائدة الفعالة (القسم 06) */
 (function () {
   const $ = id => document.getElementById(id);
   const MS = [1, 2, 4, 12, 52, 365, 0];                 // 0 = مستمر
