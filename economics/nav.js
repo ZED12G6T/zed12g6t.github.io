@@ -3,7 +3,8 @@ const lectures = [
   { name: "🏠 فهرس المادة", url: "index.html" },
   { name: "الفصل 2 · مفاهيم التكلفة", url: "lecture2.html" },
   { name: "الفصل 4 (1) · الفائدة وعوامل P و F و A", url: "lecture4-1.html" },
-  { name: "الفصل 4 (2) · N و i والتدرجات والفائدة الفعالة", url: "lecture4-2.html" }
+  { name: "الفصل 4 (2) · N و i والتدرجات والفائدة الفعالة", url: "lecture4-2.html" },
+  { name: "📝 حل اختبار الميد", url: "midterm1.html" }
 ];
 
 function renderNavigation() {

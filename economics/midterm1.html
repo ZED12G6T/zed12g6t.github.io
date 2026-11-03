@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-ar-only data-topic="الاقتصاد الهندسي" data-title-en="Engineering Economics Mid-term Exam - Solutions">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حل اختبار الميد - الاقتصاد الهندسي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css?v=4">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* نص السؤال الأصلي بالإنجليزي كما جا في ورقة الاختبار */
+  .q-en { direction: ltr; text-align: left; font-family: "Readex Pro", system-ui, sans-serif; font-size: .97rem; line-height: 1.75;
+          background: var(--surface-2); border: 1px solid var(--line); border-left: 4px solid var(--ink-2); border-radius: 10px; padding: 12px 16px; margin: 10px 0 14px; }
+  .q-en ul { margin: 6px 0 0; padding-left: 22px; }
+  .q-en .marks { float: right; font: 600 .78rem var(--f-mono, monospace); color: var(--ink-2); }
+  .q-ar { font-size: .9rem; color: var(--ink-2); margin: -6px 0 12px; }
+  .law-links { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 2px; }
+  .law-links a { font-size: .84rem; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; background: var(--surface-2); color: var(--ink); }
+  .law-links a:hover { border-color: var(--ink-2); }
+  .fig .dot-max { fill: var(--cz); }
+  .fig .dot-be { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">اختبار منتصف الفصل · جامعة الباحة · الفصل الأول <span class="ltr">2026-2027</span></p>
+  <h1><span>حل اختبار الميد <span class="ltr">Mid-term Exam</span></span> <span class="h1-math ltr">$20$ درجة</span></h1>
+  <p class="lead">أسئلة الميد في مادة <span class="ltr">Engineering Economics</span> بنصها الإنجليزي زي ما جت في الورقة، وتحت كل سؤال: وش القانون، وليش هو بالذات، والحل خطوة بخطوة. جرّب تحل بنفسك أول، وبعدين افتح الخطوات وقارن.</p>
+  <div class="xyz-bar">
+    <span class="x">س1: الفصل 2 (التكلفة والتعادل)</span><span class="y">س2: الفصل 4 (الفائدة والعوامل)</span><span class="z">الوقت: ساعة ونص</span>
+    <small>← كل الأرقام محسوبة ومتأكد منها</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الأجوبة النهائية</div>
+    <ol>
+      <li>س1 (أ): الإنتاج الأمثل $D^* = 45$ وحدة بالشهر، وأعلى ربح $\$820$ بالشهر، والتعادل عند $D'_1 \approx 4.08$ و $D'_2 \approx 495.92$ (يعني تربح من 5 إلى 495 وحدة).</li>
+      <li>س1 (ب): التعادل $\approx 2{,}424.2$ يعني $2{,}425$ مضخة بالشهر، وبعد التعديل $\approx 1{,}878.5$ يعني $1{,}879$ مضخة، والنقص $\approx 22.5\%$.</li>
+      <li>س2 (أ): $N = 15$ سنة.</li>
+      <li>س2 (ب): $F = \$95{,}317.45$ (بالجدول $\$95{,}317.50$).</li>
+      <li>س2 (ج): $P = \$25{,}164.76$ (بالجدول $\$25{,}165$).</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= س1 أ ================= -->
+<section class="card" id="q1a" data-nav="س1 أ|Q1a">
+  <div class="ex-head"><span class="ex-badge">س1 (أ)</span><h2>أعلى ربح والتعادل لطلب غير خطي</h2></div>
+  <div class="tags"><span class="tag">6 درجات</span><span class="tag">الفصل 2</span><span class="tag">Optimal demand · Breakeven</span></div>
+  <div class="q-en"><span class="marks">[6 marks]</span>(a) A company produces consumer product and is able to control the demand for the product by varying the selling price. The relationship between price and demand is P = \$58 + (2500/D) − (4050/D²), for D &gt; 1, where P is the price per unit in dollars and D is the demand per month. The company is seeking to maximize its profit. The fixed cost is \$1,500 per month and the variable cost is \$60 per unit.
+    <ul><li>What is the number of units that should be produced to maximize profits?</li><li>What is the maximum profit per month?</li><li>At what volumes breakeven occurs?</li></ul></div>
+  <p class="q-ar">الترجمة باختصار: الشركة تتحكم بالطلب عن طريق السعر، والسعر $p = 58 + \tfrac{2500}{D} - \tfrac{4050}{D^2}$. التكلفة الثابتة $1500$ بالشهر والمتغيرة $60$ للوحدة. المطلوب: كم وحدة تعطي أعلى ربح؟ وكم أعلى ربح؟ ووين التعادل؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال: أي قانون؟</h4>
+      <p class="why">كلمات <b>«maximize profit»</b> و <b>«breakeven»</b> و <b>«price and demand»</b> تقولك: الفصل 2، قانون الربح ثم الطلب الأمثل ثم التعادل. بس انتبه: علاقة السعر هنا <b>مو خطية</b> (مو بالشكل $p = a - bD$)، فما ينفع تعوض مباشرة في $D^* = \tfrac{a - c_v}{2b}$. نرجع لأصل القانون: نكتب الربح، ونشتقه ونساويه بصفر، وهذي نفس الطريقة اللي طلع منها القانون أصلاً.</p>
+    </li>
+    <li class="step">
+      <h4>الإيراد الكلي $TR = p \times D$</h4>
+      <div class="m">\[ \begin{aligned} TR &= \Big(58 + \frac{2500}{D} - \frac{4050}{D^2}\Big) D \\ &= 58D + 2500 - \frac{4050}{D} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>التكلفة الكلية $C_T = C_F + c_v D$</h4>
+      <div class="m">\[ C_T = 1500 + 60D \]</div>
+    </li>
+    <li class="step">
+      <h4>الربح = الإيراد − التكلفة</h4>
+      <div class="m">\[ \begin{aligned} \text{Profit} &= 58D + 2500 - \frac{4050}{D} - 1500 - 60D \\ &= -2D + 1000 - \frac{4050}{D} \end{aligned} \]</div>
+      <p class="why">⚠ انتبه للإشارة: التكلفة المتغيرة <b>تنطرح</b> ($-60D$). السلايدات فيها خطأ مطبعي كاتبة $+c_vD$، والصح $-c_vD$.</p>
+    </li>
+    <li class="step">
+      <h4>اشتق الربح وساويه بصفر</h4>
+      <div class="m">\[ \frac{d(\text{Profit})}{dD} = -2 + \frac{4050}{D^2} = 0 \]</div>
+      <div class="m">\[ D^2 = \frac{4050}{2} = 2025 \quad\Rightarrow\quad D^* = \sqrt{2025} = 45 \]</div>
+      <p class="why">مشتقة $-\tfrac{4050}{D}$ هي $+\tfrac{4050}{D^2}$ (لأن $\tfrac{1}{D} = D^{-1}$ ومشتقتها $-D^{-2}$، والسالبين يصيرون موجب). وناخذ الجذر الموجب لأن $D > 1$.</p>
+    </li>
+    <li class="step">
+      <h4>تأكد إنها أعلى قيمة (المشتقة الثانية)</h4>
+      <div class="m">\[ \begin{aligned} \frac{d^2(\text{Profit})}{dD^2} &= -\frac{8100}{D^3} \\ &= -\frac{8100}{45^3} \approx -0.089 &lt; 0 \end{aligned} \]</div>
+      <p class="why">سالبة، يعني المنحنى مقلوب (∩)، فـ $D = 45$ أعلى ربح مو أقل ربح ✓</p>
+    </li>
+    <li class="step">
+      <h4>أعلى ربح: عوّض $D = 45$</h4>
+      <div class="m">\[ \begin{aligned} \text{Profit}_{\max} &= -2(45) + 1000 - \frac{4050}{45} \\ &= -90 + 1000 - 90 = 820 \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>التعادل: الربح = صفر</h4>
+      <div class="m">\[ -2D + 1000 - \frac{4050}{D} = 0 \]</div>
+      <p class="why">اضرب الطرفين في $D$ (مسموح لأن $D > 1$) واقسم على $-2$ عشان تطلع معادلة تربيعية عادية:</p>
+      <div class="m">\[ D^2 - 500D + 2025 = 0 \]</div>
+      <div class="m">\[ \begin{aligned} D' &= \frac{500 \pm \sqrt{500^2 - 4(2025)}}{2} \\ &= \frac{500 \pm \sqrt{241{,}900}}{2} = \frac{500 \pm 491.83}{2} \end{aligned} \]</div>
+      <div class="m">\[ D'_1 \approx 4.08, \qquad D'_2 \approx 495.92 \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} D^* = 45 \text{ units/month} \\ \text{Profit}_{\max} = \$820/\text{month} \\ D'_1 \approx 4.08,\ \ D'_2 \approx 495.92 \end{gathered}$</div>
+      <p class="sanity">تحقق: عند $D = 45$ السعر $p = 58 + 55.56 - 2 = \$111.56$، والإيراد $45 \times 111.56 = \$5{,}020$، والتكلفة $1500 + 60(45) = \$4{,}200$، والفرق $\$820$ ✓. وعند $D'_2$ السعر $\approx \$63.02$ أكبر من $c_v = 60$، منطقي.</p>
+    </li>
+  </ol>
+  <figure class="fig">
+    <svg viewBox="0 0 600 260" role="img" aria-label="منحنى الربح مقابل الطلب: يطلع من تحت الصفر، يقطع الصفر عند 4.08 تقريباً، يوصل أعلى قيمة 820 عند 45 وحدة، وبعدين ينزل ويقطع الصفر مرة ثانية عند 495.92">
+  <path class="ax" d="M40 120.0H580"/><path class="ax" d="M50 236V18"/>
+  <text class="tick" x="582" y="112.0" text-anchor="end">D</text>
+  <text class="tick" x="56" y="16">Profit $</text>
+  <path class="guide" d="M95.0 120.0V38.0"/>
+  <path class="sk z" d="M52.5 182.5 L53.0 155.6 L53.5 136.4 L54.0 122.1 L54.5 110.9 L55.0 102.0 L55.5 94.7 L56.0 88.7 L56.5 83.6 L57.0 79.3 L57.5 75.5 L58.0 72.2 L58.5 69.3 L59.0 66.8 L59.5 64.5 L60.0 62.5 L60.5 60.7 L61.0 59.0 L61.5 57.5 L62.0 56.2 L62.5 54.9 L63.0 53.8 L63.5 52.7 L64.0 51.7 L64.5 50.8 L65.0 50.0 L65.5 49.2 L66.0 48.5 L66.5 47.8 L67.0 47.2 L67.5 46.6 L68.0 46.1 L68.5 45.6 L69.0 45.1 L69.5 44.7 L70.0 44.2 L74.0 41.7 L78.0 40.1 L82.0 39.1 L86.0 38.5 L90.0 38.1 L94.0 38.0 L98.0 38.0 L102.0 38.2 L106.0 38.4 L110.0 38.8 L114.0 39.1 L118.0 39.6 L122.0 40.0 L126.0 40.5 L130.0 41.1 L134.0 41.6 L138.0 42.2 L142.0 42.8 L146.0 43.4 L150.0 44.0 L154.0 44.7 L158.0 45.4 L162.0 46.0 L166.0 46.7 L170.0 47.4 L174.0 48.1 L178.0 48.8 L182.0 49.5 L186.0 50.2 L190.0 50.9 L194.0 51.6 L198.0 52.3 L202.0 53.1 L206.0 53.8 L210.0 54.5 L214.0 55.3 L218.0 56.0 L222.0 56.8 L226.0 57.5 L230.0 58.2 L234.0 59.0 L238.0 59.8 L242.0 60.5 L246.0 61.3 L250.0 62.0 L254.0 62.8 L258.0 63.5 L262.0 64.3 L266.0 65.1 L270.0 65.8 L274.0 66.6 L278.0 67.4 L282.0 68.1 L286.0 68.9 L290.0 69.7 L294.0 70.5 L298.0 71.2 L302.0 72.0 L306.0 72.8 L310.0 73.6 L314.0 74.3 L318.0 75.1 L322.0 75.9 L326.0 76.7 L330.0 77.4 L334.0 78.2 L338.0 79.0 L342.0 79.8 L346.0 80.6 L350.0 81.3 L354.0 82.1 L358.0 82.9 L362.0 83.7 L366.0 84.5 L370.0 85.3 L374.0 86.1 L378.0 86.8 L382.0 87.6 L386.0 88.4 L390.0 89.2 L394.0 90.0 L398.0 90.8 L402.0 91.6 L406.0 92.3 L410.0 93.1 L414.0 93.9 L418.0 94.7 L422.0 95.5 L426.0 96.3 L430.0 97.1 L434.0 97.9 L438.0 98.6 L442.0 99.4 L446.0 100.2 L450.0 101.0 L454.0 101.8 L458.0 102.6 L462.0 103.4 L466.0 104.2 L470.0 105.0 L474.0 105.8 L478.0 106.5 L482.0 107.3 L486.0 108.1 L490.0 108.9 L494.0 109.7 L498.0 110.5 L502.0 111.3 L506.0 112.1 L510.0 112.9 L514.0 113.7 L518.0 114.5 L522.0 115.3 L526.0 116.1 L530.0 116.8 L534.0 117.6 L538.0 118.4 L542.0 119.2 L546.0 120.0 L550.0 120.8 L554.0 121.6 L558.0 122.4 L562.0 123.2 L566.0 124.0 L570.0 124.8"/>
+  <circle cx="95.0" cy="38.0" r="5" class="dot-max"/>
+  <circle cx="54.1" cy="120.0" r="4.5" class="dot-be"/>
+  <circle cx="545.9" cy="120.0" r="4.5" class="dot-be"/>
+  <text class="lbl zt" x="108.0" y="60.0">max: D* = 45, $820</text>
+  <text class="lbl" x="62.1" y="140.0">D′₁ ≈ 4.08</text>
+  <text class="lbl" x="539.9" y="110.0" text-anchor="end">D′₂ ≈ 495.92</text>
+</svg>
+    <figcaption>منحنى الربح: تحت الصفر قبل $D'_1$ وبعد $D'_2$ (خسارة)، وفوقه بينهم، وقمته عند 45 وحدة.</figcaption>
+  </figure>
+  <div class="callout warn"><strong>⚠️ ملاحظة على نص السؤال:</strong> المعادلة مكتوبة $P = \$58 + (2500/D) - (4050/D^2)$، وحرف $P$ هنا معناه <b>السعر</b> مو القيمة الحالية. حليناها زي ما هي مكتوبة، والأرقام طلعت نظيفة ($D^* = 45$ بالضبط، والربح $820$ بالضبط)، وهذا يأكد إن هذي القراءة المقصودة. والتعادل يطلع كسور، فلو بغيت وحدات كاملة: الربح موجب من $D = 5$ إلى $D = 495$.</div>
+  <div class="law-links"><a href="laws2.html#profit">📐 قانون الربح</a><a href="laws2.html#optimal">📐 الطلب الأمثل</a><a href="laws2.html#breakeven">📐 نقطة التعادل</a><a href="keys2.html">🔑 كلمات الفصل 2</a></div>
+</section>
+
+<!-- ================= س1 ب ================= -->
+<section class="card" id="q1b" data-nav="س1 ب|Q1b">
+  <div class="ex-head"><span class="ex-badge">س1 (ب)</span><h2>تعادل المضخات ونسبة التغير</h2></div>
+  <div class="tags"><span class="tag">4 درجات</span><span class="tag">الفصل 2</span><span class="tag">Linear breakeven</span></div>
+  <div class="q-en"><span class="marks">[4 marks]</span>(b) A plant has capacity of 3200 hydraulic pumps per month. The fixed cost is \$400000 per month. The variable cost is \$155 per pump, and sales price is \$320 per pump.
+    <ul><li>What is breakeven point in number of pumps per month?</li><li>What percentage reduction will occur in the breakeven point in number if fixed costs are reduced by 15% and the price increased by 5%?</li></ul></div>
+  <p class="q-ar">الترجمة: مصنع طاقته 3200 مضخة بالشهر، الثابتة $400{,}000$ والمتغيرة $155$ للمضخة والسعر $320$. كم نقطة التعادل؟ وبكم بالمية تنقص لو الثابتة نقصت 15% والسعر زاد 5%؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال: أي قانون؟</h4>
+      <p class="why">هنا السعر <b>ثابت</b> ($320$ لكل مضخة، ما يتغير مع الكمية)، فالإيراد خطي $TR = pD$ والتكلفة خطية. يعني التعادل بالقانون الخطي البسيط: كل مضخة تساهم بـ $p - c_v$ في تغطية الثابتة، وتحتاج مضخات لين تغطيها كلها:</p>
+      <div class="m">\[ pD' = C_F + c_v D' \quad\Rightarrow\quad D' = \frac{C_F}{p - c_v} \]</div>
+    </li>
+    <li class="step">
+      <h4>التعادل الأصلي</h4>
+      <div class="m">\[ D' = \frac{400{,}000}{320 - 155} = \frac{400{,}000}{165} \approx 2{,}424.24 \]</div>
+      <p class="why">ما فيه نص مضخة، فنقرّب <b>لفوق</b>: $2{,}425$ مضخة (عند 2,424 لسا خسران شوي). وهي أقل من الطاقة 3200، يعني التعادل ممكن ✓</p>
+    </li>
+    <li class="step">
+      <h4>القيم الجديدة</h4>
+      <div class="m">\[ \begin{aligned} C_F^{new} &= 400{,}000 \times (1 - 0.15) = 340{,}000 \\ p^{new} &= 320 \times (1 + 0.05) = 336 \end{aligned} \]</div>
+      <p class="why">التكلفة المتغيرة ما تغيرت، باقية $155$.</p>
+    </li>
+    <li class="step">
+      <h4>التعادل الجديد</h4>
+      <div class="m">\[ D'_{new} = \frac{340{,}000}{336 - 155} = \frac{340{,}000}{181} \approx 1{,}878.45 \]</div>
+      <p class="why">يعني $1{,}879$ مضخة.</p>
+    </li>
+    <li class="step">
+      <h4>نسبة النقص</h4>
+      <div class="m">\[ \begin{aligned} \%\ \text{reduction} &= \frac{D'_{old} - D'_{new}}{D'_{old}} \times 100 \\ &= \frac{2424.24 - 1878.45}{2424.24} \times 100 \\ &= \frac{545.79}{2424.24} \times 100 \approx 22.51\% \end{aligned} \]</div>
+      <p class="why">نقسم على <b>القديم</b> دايماً، لأن السؤال يسأل «بكم نقص عن الأصل». وبالأرقام المقرّبة $\tfrac{2425 - 1879}{2425} = 22.52\%$، نفس الجواب تقريباً.</p>
+    </li>
+    <li class="step final">
+      <div class="result">$\begin{gathered} D' \approx 2{,}425 \text{ pumps/month} \\ D'_{new} \approx 1{,}879 \text{ pumps/month} \\ \text{reduction} \approx 22.5\% \end{gathered}$</div>
+      <p class="sanity">منطقي: الثابتة نقصت (البسط صغر) والسعر زاد (المقام كبر من 165 إلى 181)، فالاثنين ينزلون التعادل. لاحظ إن النقص (22.5%) أكبر من 15%، لأن زيادة السعر ضاعفت الأثر.</p>
+    </li>
+  </ol>
+  <div class="callout key"><strong>🔑 لا تخلط:</strong> في (أ) السعر يتغير مع الكمية فطلع التعادل من معادلة تربيعية بنقطتين. وفي (ب) السعر ثابت فالتعادل نقطة وحدة $D' = \tfrac{C_F}{p - c_v}$. وطاقة المصنع (3200) بس للتأكد إن التعادل ممكن.</div>
+  <div class="law-links"><a href="laws2.html#breakeven">📐 نقطة التعادل</a><a href="laws2.html#total-cost">📐 التكلفة الكلية</a><a href="laws2.html#revenue">📐 الإيراد</a></div>
+</section>
+
+<!-- ================= س2 أ ================= -->
+<section class="card" id="q2a" data-nav="س2 أ|Q2a">
+  <div class="ex-head"><span class="ex-badge">س2 (أ)</span><h2>كم سنة بالفائدة البسيطة؟</h2></div>
+  <div class="tags"><span class="tag">3 درجات</span><span class="tag">الفصل 4 (1)</span><span class="tag">Simple interest</span></div>
+  <div class="q-en"><span class="marks">[3 marks]</span>(a) A man invested \$4300 in account earns 5% simple interest rate per year. How long will it take for his account to reach \$7525?</div>
+  <p class="q-ar">الترجمة: واحد حط $4300$ في حساب بفائدة <b>بسيطة</b> 5% بالسنة. متى يوصل الحساب $7525$؟</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال: أي قانون؟</h4>
+      <p class="why">كلمة <b>«simple interest»</b> صريحة: الفائدة على المبلغ الأصلي بس، ما تتركب. فالقانون $F = P(1 + Ni)$، والمجهول هنا $N$ (How long).</p>
+    </li>
+    <li class="step">
+      <h4>ارسم المعطيات</h4>
+      <figure class="fig">
+        <svg class="cfd" data-cfd="6|0:-4300:P = $4,300:x|6:7525:F = $7,525:z" data-ticks="0,1,2,…,…,N−1,N = ?" data-i="i = 5% simple" role="img" aria-label="سهم لتحت 4300 عند 0 وسهم لفوق 7525 عند N المجهول"></svg>
+      </figure>
+    </li>
+    <li class="step">
+      <h4>عوّض في القانون</h4>
+      <div class="m">\[ 7525 = 4300\,(1 + 0.05N) \]</div>
+      <div class="m">\[ 1 + 0.05N = \frac{7525}{4300} = 1.75 \]</div>
+    </li>
+    <li class="step">
+      <h4>اعزل $N$</h4>
+      <div class="m">\[ 0.05N = 0.75 \quad\Rightarrow\quad N = \frac{0.75}{0.05} = 15 \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$N = 15 \text{ years}$</div>
+      <p class="sanity">تحقق: الفائدة بالسنة $4300 \times 0.05 = \$215$، وفي 15 سنة $215 \times 15 = \$3{,}225$، و $4300 + 3225 = \$7{,}525$ ✓</p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ الفخ:</strong> لو استخدمت الفائدة المركبة $F = P(1+i)^N$ بيطلع لك $N \approx 11.5$ سنة، وهذا غلط هنا لأن السؤال قال simple.</div>
+  <div class="law-links"><a href="laws4-1.html#simple">📐 الفائدة البسيطة</a><a href="keys4-1.html">🔑 كلمات الفصل 4 (1)</a></div>
+</section>
+
+<!-- ================= س2 ب ================= -->
+<section class="card" id="q2b" data-nav="س2 ب|Q2b">
+  <div class="ex-head"><span class="ex-badge">س2 (ب)</span><h2>دفعة كل سنة: كم تجمع بعد 15 سنة؟</h2></div>
+  <div class="tags"><span class="tag">3 درجات</span><span class="tag">الفصل 4 (1)</span><span class="tag">F/A</span></div>
+  <div class="q-en"><span class="marks">[3 marks]</span>(b) How much would you have in 15 years if you set aside \$3000 each year and your account earns 10% interest each year? Draw cash flow diagram.</div>
+  <p class="q-ar">الترجمة: لو حطيت $3000$ كل سنة في حساب يعطي 10% بالسنة، كم بيصير عندك بعد 15 سنة؟ ارسم مخطط التدفق.</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال: أي قانون؟</h4>
+      <p class="why"><b>«set aside \$3000 each year»</b> = دفعات متساوية $A$، و <b>«How much would you have in 15 years»</b> = المستقبل $F$. يعني من $A$ إلى $F$: عامل $(F/A, i\%, N)$. والفائدة مركبة (ما قال simple).</p>
+      <p class="why">افتراض: الدفعة في <b>نهاية</b> كل سنة (من 1 إلى 15)، وهذا الافتراض الافتراضي في الكتاب (end-of-period).</p>
+    </li>
+    <li class="step">
+      <h4>مخطط التدفق النقدي</h4>
+      <figure class="fig">
+        <svg class="cfd" data-cfd="15|1-15:-3000:A = $3,000:y|15:+6000?:F = ?:z" data-i="i = 10%" data-h="260" role="img" aria-label="خط زمن من 0 إلى 15، أسهم لتحت 3000 من السنة 1 إلى 15، وسهم F مجهول لفوق عند 15"></svg>
+        <figcaption>الدفعات طالعة من جيبك (لتحت)، والمبلغ المتجمع يرجع لك عند 15 (لفوق). لاحظ إن آخر دفعة وسهم $F$ في نفس النقطة.</figcaption>
+      </figure>
+    </li>
+    <li class="step">
+      <h4>احسب العامل</h4>
+      <div class="m">\[ \begin{aligned} (F/A, 10\%, 15) &= \frac{(1 + 0.10)^{15} - 1}{0.10} \\ &= \frac{4.177248 - 1}{0.10} = 31.7725 \end{aligned} \]</div>
+      <p class="why">ومن جدول 10% صف $N = 15$ عمود F/A: <b>31.7725</b>، نفس القيمة ✓</p>
+    </li>
+    <li class="step">
+      <h4>اضرب في الدفعة</h4>
+      <div class="m">\[ F = 3000 \times 31.7725 = 95{,}317.45 \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$F \approx \$95{,}317.45$</div>
+      <p class="sanity">مجموع اللي حطيته $3000 \times 15 = \$45{,}000$، والباقي ($\approx \$50{,}317$) فوائد. منطقي إنه أكثر من الضعف لأن 15 سنة بـ 10% مدة طويلة.</p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong>⚠️ لو كانت الدفعة في بداية كل سنة:</strong> السؤال ما حددها، فالأصل نهاية السنة. لكن لو قصد البداية (من 0 إلى 14) تضرب الجواب في $1.10$: $F = \$104{,}849.19$. اكتب افتراضك في الورقة دايماً، والسؤال نفسه قال «assuming missing data».</div>
+  <div class="law-links"><a href="laws4-1.html#fa">📐 قانون F/A</a><a href="lecture4-1.html">📖 شرح الفصل 4 (1)</a></div>
+</section>
+
+<!-- ================= س2 ج ================= -->
+<section class="card" id="q2c" data-nav="س2 ج|Q2c">
+  <div class="ex-head"><span class="ex-badge">س2 (ج)</span><h2>كم تحتاج اليوم عشان تسحب كل سنة؟</h2></div>
+  <div class="tags"><span class="tag">4 درجات</span><span class="tag">الفصل 4 (1)</span><span class="tag">P/A</span></div>
+  <div class="q-en"><span class="marks">[4 marks]</span>(c) How much would is needed today to provide an annual amount of \$5000 each year for 7 years, at 9% interest each year? And cheek your answer using interest factors tables, Draw cash flow diagram.</div>
+  <p class="q-ar">الترجمة: كم مبلغ تحتاجه اليوم عشان يعطيك $5000$ كل سنة لمدة 7 سنين بفائدة 9%؟ وتأكد من جوابك بالجداول، وارسم المخطط. (في الورقة «would is» و «cheek» أخطاء مطبعية، المقصود «would be» و «check».)</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال: أي قانون؟</h4>
+      <p class="why"><b>«needed today»</b> = الحاضر $P$ (المجهول)، و <b>«annual amount of \$5000 each year for 7 years»</b> = دفعات متساوية $A$. يعني من $A$ إلى $P$: عامل $(P/A, i\%, N)$. والسؤال يطلب طريقتين: بالقانون، وبالجدول.</p>
+    </li>
+    <li class="step">
+      <h4>مخطط التدفق النقدي</h4>
+      <figure class="fig">
+        <svg class="cfd" data-cfd="7|0:-25165?:P = ?:x|1-7:5000:A = $5,000:y" data-i="i = 9%" role="img" aria-label="خط زمن من 0 إلى 7، سهم P مجهول لتحت عند 0، وأسهم لفوق 5000 من السنة 1 إلى 7"></svg>
+        <figcaption>تحط $P$ اليوم (لتحت)، وتسحب $5000$ في نهاية كل سنة من 1 إلى 7 (لفوق). أول سحبة بعد سنة من الإيداع، وهذا شرط قانون P/A.</figcaption>
+      </figure>
+    </li>
+    <li class="step">
+      <h4>الطريقة 1: بالقانون</h4>
+      <div class="m">\[ \begin{aligned} (P/A, 9\%, 7) &= \frac{(1.09)^7 - 1}{0.09\,(1.09)^7} \\ &= \frac{1.828039 - 1}{0.09 \times 1.828039} = 5.03295 \end{aligned} \]</div>
+      <div class="m">\[ P = 5000 \times 5.03295 = 25{,}164.76 \]</div>
+    </li>
+    <li class="step">
+      <h4>الطريقة 2: بجدول العوامل (التحقق)</h4>
+      <p class="why">افتح جدول $i = 9\%$، صف $N = 7$، عمود P/A: تلقى <b>5.0330</b>.</p>
+      <div class="m">\[ \begin{aligned} P &= 5000\,(P/A, 9\%, 7) \\ &= 5000 \times 5.0330 = 25{,}165 \end{aligned} \]</div>
+      <p class="why">الفرق بين الطريقتين أقل من دولار، وسببه إن الجدول مقرّب لأربع منازل بس ✓</p>
+    </li>
+    <li class="step final">
+      <div class="result">$P \approx \$25{,}164.76 \ \ (\text{table: } \$25{,}165)$</div>
+      <p class="sanity">مجموع السحبات $5000 \times 7 = \$35{,}000$، والمبلغ اللي تحتاجه اليوم أقل ($\$25{,}165$) لأن الباقي ينبني من الفائدة وهو في الحساب ✓</p>
+    </li>
+  </ol>
+  <div class="law-links"><a href="laws4-1.html#pa">📐 قانون P/A</a><a href="keys4-1.html">🔑 كلمات الفصل 4 (1)</a></div>
+  <div class="econ-lab factor-lab" data-i="9" data-n="7" data-amt="5000" data-rows="FA,PA"></div>
+</section>
+
+<!-- ================= أخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2>الأخطاء اللي تضيّع درجات في هذا الاختبار</h2><p class="sub">كل خطأ جنبه التصحيح</p>
+  <div class="mk"><div class="mk-title">تطبيق $D^* = \tfrac{a - c_v}{2b}$ على طلب مو خطي</div>
+    <div class="pair"><div class="no"><div class="mm">$a = 58$ و $b = ?$</div>العلاقة في س1 (أ) فيها $\tfrac{1}{D}$ و $\tfrac{1}{D^2}$، ما فيه $b$.</div><div class="yes"><div class="mm">$\tfrac{d}{dD}(\text{Profit}) = 0$</div>اكتب الربح واشتقه.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">إشارة التكلفة المتغيرة</div>
+    <div class="pair"><div class="no"><div class="mm">$58D + 60D$</div>جمعت التكلفة مع الإيراد.</div><div class="yes"><div class="mm">$58D - 60D = -2D$</div>الربح = الإيراد − التكلفة.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">تقريب التعادل لتحت</div>
+    <div class="pair"><div class="no"><div class="mm">$2{,}424$ مضخة</div>عندها لسا الربح سالب شوي.</div><div class="yes"><div class="mm">$2{,}425$ مضخة</div>أول عدد كامل يغطي التكاليف.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">النسبة على الرقم الغلط</div>
+    <div class="pair"><div class="no"><div class="mm">$\tfrac{545.8}{1878.5} = 29\%$</div>قسمت على الجديد.</div><div class="yes"><div class="mm">$\tfrac{545.8}{2424.2} = 22.5\%$</div>النقص دايماً من الأصل.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">مركبة بدل بسيطة</div>
+    <div class="pair"><div class="no"><div class="mm">$1.75 = 1.05^N$</div>هذي مركبة، تعطي 11.5 سنة.</div><div class="yes"><div class="mm">$1.75 = 1 + 0.05N$</div>simple ← $N = 15$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">مكان $P$ في المخطط</div>
+    <div class="pair"><div class="no"><div class="mm">$P$ عند 1</div>حطيته مع أول دفعة.</div><div class="yes"><div class="mm">$P$ عند 0</div>$P$ قبل أول $A$ بفترة وحدة.</div></div>
+  </div>
+</section>
+
+<!-- ================= بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>القوانين اللي جت في الاختبار</h2><p class="sub">اضغط على البطاقة تنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>الربح؟</div><div>$\text{Profit} = TR - C_T = pD - (C_F + c_v D)$</div></div>
+    <div class="flash"><div>أعلى ربح؟</div><div>$\tfrac{d(\text{Profit})}{dD} = 0$، والمشتقة الثانية سالبة</div></div>
+    <div class="flash"><div>التعادل بسعر ثابت؟</div><div>$D' = \dfrac{C_F}{p - c_v}$</div></div>
+    <div class="flash"><div>التعادل بسعر متغير؟</div><div>$\text{Profit} = 0$ (غالباً معادلة تربيعية بحلين)</div></div>
+    <div class="flash"><div>الفائدة البسيطة؟</div><div>$F = P(1 + Ni)$</div></div>
+    <div class="flash"><div>من $A$ للمستقبل؟</div><div>$F = A\,\dfrac{(1+i)^N - 1}{i}$</div></div>
+    <div class="flash"><div>من $A$ للحاضر؟</div><div>$P = A\,\dfrac{(1+i)^N - 1}{i(1+i)^N}$</div></div>
+  </div>
+</section>
+
+</main>
+<script src="econ.js?v=4"></script>
+<script src="nav.js"></script>
+</body>
+</html>
