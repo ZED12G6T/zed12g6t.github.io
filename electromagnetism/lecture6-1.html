@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Plane Waves in Special Media" data-title-en="Lecture 6 Part 1 Summary - Plane Waves: Lossless, Free Space, Good Conductors">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 6 الجزء الأول - الموجات في العازل المثالي والفراغ والموصل الجيد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 6 · الجزء 1 · كهرومغناطيسية (2) · الفصل 10 (10.4–10.6)</span><span lang="en">LECTURE 6 · PART 1 · ELECTROMAGNETICS (2) · CH 10.4–10.6</span></p>
+  <h1><span lang="ar">الموجة في العازل المثالي والفراغ والموصل الجيد</span><span lang="en">Plane Waves in Lossless Dielectrics, Free Space and Good Conductors</span></h1>
+  <p class="lead">
+    <span lang="ar">في <a href="lecture5.html">المحاضرة 5</a> طلّعنا القوانين العامة للعازل الفقّاد: $\Z{\alpha}$ و $\beta$ و $\eta$. هالمحاضرة ما فيها قوانين جديدة من الصفر، كلها <b>حالات خاصة</b>: نعوّض قيم معينة لـ $\sigma$ و $\varepsilon$ و $\mu$ في نفس القوانين ونشوف وش يصير. ثلاث حالات: عازل بدون فقد، والفراغ، والموصل الجيد، وبعدها عمق الاختراق والمقاومة عند الترددات العالية.</span>
+    <span lang="en">In <a href="lecture5.html">Lecture 5</a> we derived the general lossy-dielectric formulas for $\Z{\alpha}$, $\beta$ and $\eta$. This lecture adds no new formulas from scratch; everything is a <b>special case</b>: plug particular values of $\sigma$, $\varepsilon$ and $\mu$ into the same formulas and see what happens. Three cases: lossless dielectric, free space and good conductor, then skin depth and high-frequency resistance.</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · <span lang="ar">المجال الكهربائي</span><span lang="en">electric field</span></span><span class="y">H · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">α · <span lang="ar">التوهين</span><span lang="en">attenuation</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">كل شي يتحدد من نسبة وحدة: $\sigma/\omega\varepsilon$. صفر تقريباً ← عازل مثالي: $\Z{\alpha}=0$ و $\beta=\omega\sqrt{\mu\varepsilon}$ و $\eta=\sqrt{\mu/\varepsilon}\angle0^\circ$ (الفراغ نفس الشي مع $\varepsilon_0,\mu_0$: $u=c$ و $\eta_0=120\pi\approx377\ \Omega$).</span><span lang="en">One ratio decides everything: $\sigma/\omega\varepsilon$. Near zero → lossless: $\Z{\alpha}=0$, $\beta=\omega\sqrt{\mu\varepsilon}$, $\eta=\sqrt{\mu/\varepsilon}\angle0^\circ$ (free space is the same with $\varepsilon_0,\mu_0$: $u=c$, $\eta_0=120\pi\approx377\ \Omega$).</span></li>
+      <li><span lang="ar">كبيرة جداً ← موصل جيد: $\Z{\alpha}=\beta=\sqrt{\pi f\mu\sigma}$ و $\eta=\sqrt{\omega\mu/\sigma}\angle45^\circ$، يعني $\X{\mathbf E}$ يسبق $\Y{\mathbf H}$ بـ 45°، والموجة تموت بسرعة.</span><span lang="en">Very large → good conductor: $\Z{\alpha}=\beta=\sqrt{\pi f\mu\sigma}$, $\eta=\sqrt{\omega\mu/\sigma}\angle45^\circ$, so $\X{\mathbf E}$ leads $\Y{\mathbf H}$ by 45° and the wave dies out fast.</span></li>
+      <li><span lang="ar">عمق الاختراق $\delta=1/\Z{\alpha}$: المسافة اللي تنزل فيها السعة إلى 37%. التيار في الترددات العالية يمشي في قشرة سمكها $\delta$، فالمقاومة تصير $R_{ac}=\ell/(\sigma\delta w)$، أكبر بكثير من $R_{dc}$.</span><span lang="en">Skin depth $\delta=1/\Z{\alpha}$: the distance over which the amplitude drops to 37%. At high frequency the current flows in a skin of thickness $\delta$, so $R_{ac}=\ell/(\sigma\delta w)$, far larger than $R_{dc}$.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 العازل المثالي ================= -->
+<section class="card" id="lossless" data-num="01" data-nav="العازل المثالي|Lossless">
+  <h2><span lang="ar">10.4 الموجة في عازل بدون فقد</span><span lang="en">10.4 Plane waves in lossless dielectrics</span></h2>
+  <p class="sub"><span lang="ar">السلايد 2</span><span lang="en">Slide 2</span></p>
+  <p><span lang="ar"><b>العازل المثالي (lossless)</b> هو اللي فيه $\sigma\ll\omega\varepsilon$، يعني تيار التوصيل صغير جداً جنب تيار الإزاحة (تذكّر من المحاضرة 5: $\sigma/\omega\varepsilon=|\mathbf J_{cs}|/|\mathbf J_{ds}|$). أمثلة: الهواء، الزجاج، البولي إيثيلين، الميكا. نعامله كحالة خاصة من العازل الفقّاد بهالقيم:</span><span lang="en">A <b>lossless dielectric</b> is one with $\sigma\ll\omega\varepsilon$: the conduction current is tiny next to the displacement current (recall from Lecture 5: $\sigma/\omega\varepsilon=|\mathbf J_{cs}|/|\mathbf J_{ds}|$). Examples: air, glass, polyethylene, mica. We treat it as a special case of the lossy dielectric with:</span></p>
+  <div class="m big">\[\sigma\simeq0,\qquad \varepsilon=\varepsilon_0\varepsilon_r,\qquad \mu=\mu_0\mu_r\]</div>
+  <p><span lang="ar">القوانين العامة اللي بنعوّض فيها (من المحاضرة 5):</span><span lang="en">The general formulas we plug into (from Lecture 5):</span></p>
+  <div class="m">\[\Z{\alpha}=\omega\sqrt{\frac{\mu\varepsilon}{2}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}-1\right]}\]</div>
+  <div class="m">\[\beta=\omega\sqrt{\frac{\mu\varepsilon}{2}\left[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}+1\right]}\]</div>
+  <div class="m">\[\eta=\sqrt{\frac{j\omega\mu}{\sigma+j\omega\varepsilon}}=|\eta|\angle\theta_\eta\]</div>
+
+  <h3><span lang="ar">التعويض خطوة خطوة</span><span lang="en">Substituting step by step</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">النسبة تصير صفر</span><span lang="en">The ratio becomes zero</span></h4>
+      <p class="why"><span lang="ar">$\sigma=0$ في البسط، فالنسبة كلها صفر، ومربعها صفر.</span><span lang="en">$\sigma=0$ in the numerator makes the ratio, and its square, zero.</span></p>
+      <div class="m">\[\frac{\sigma}{\omega\varepsilon}=0\ \Rightarrow\ \sqrt{1+0^2}=1\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">ثابت التوهين</span><span lang="en">Attenuation constant</span></h4>
+      <p class="why"><span lang="ar">داخل القوس: $1-1=0$، وجذر الصفر صفر.</span><span lang="en">Inside the bracket: $1-1=0$, and the root of zero is zero.</span></p>
+      <div class="m">\[\Z{\alpha}=\omega\sqrt{\frac{\mu\varepsilon}{2}\,[1-1]}=0\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">ثابت الطور</span><span lang="en">Phase constant</span></h4>
+      <p class="why"><span lang="ar">داخل القوس: $1+1=2$، والـ 2 تروح مع الـ 2 اللي في المقام.</span><span lang="en">Inside the bracket: $1+1=2$, which cancels the 2 in the denominator.</span></p>
+      <div class="m">\[\beta=\omega\sqrt{\frac{\mu\varepsilon}{2}\cdot2}=\omega\sqrt{\mu\varepsilon}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السرعة والطول الموجي</span><span lang="en">Speed and wavelength</span></h4>
+      <p class="why"><span lang="ar">نفس التعاريف من المحاضرة 5، بس نعوّض $\beta$ الجديدة.</span><span lang="en">Same definitions as Lecture 5, with the new $\beta$.</span></p>
+      <div class="m">\[\begin{gathered}u=\frac{\omega}{\beta}=\frac{\omega}{\omega\sqrt{\mu\varepsilon}}=\frac{1}{\sqrt{\mu\varepsilon}}\\ \lambda=\frac{2\pi}{\beta}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الممانعة: $\sigma$ تختفي من المقام</span><span lang="en">Impedance: $\sigma$ drops out of the denominator</span></h4>
+      <p class="why"><span lang="ar">المقام يصير $j\omega\varepsilon$، و $j\omega$ فوق تروح مع $j\omega$ تحت.</span><span lang="en">The denominator becomes $j\omega\varepsilon$, and $j\omega$ on top cancels $j\omega$ below.</span></p>
+      <div class="m">\[\eta=\sqrt{\frac{j\omega\mu}{0+j\omega\varepsilon}}=\sqrt{\frac{\mu}{\varepsilon}}\angle0^\circ\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="العازل المثالي|Lossless">$\Z{\alpha}=0,\ \ \beta=\omega\sqrt{\mu\varepsilon},\ \ \eta=\sqrt{\mu/\varepsilon}\angle0^\circ$</div>
+      <p class="sanity"><span lang="ar">$\theta_\eta=0$ يعني $\X{\mathbf E}$ و $\Y{\mathbf H}$ <b>في نفس الطور</b> (in time phase): يوصلون القمة في نفس اللحظة. ومن $\tan2\theta_\eta=\sigma/\omega\varepsilon=0$ يطلع نفس الكلام.</span><span lang="en">$\theta_\eta=0$ means $\X{\mathbf E}$ and $\Y{\mathbf H}$ are <b>in time phase</b>: they peak at the same instant. $\tan2\theta_\eta=\sigma/\omega\varepsilon=0$ says the same.</span></p>
+    </li>
+  </ol>
+  <div class="callout key"><strong><span lang="ar">🔑 وش الفرق عن الفقّاد بالمعنى؟</span><span lang="en">🔑 What changes physically?</span></strong>
+    <p><span lang="ar">$\Z{\alpha}=0$ يعني <b>السعة ما تنقص أبداً</b> مع المسافة: $\X{\mathbf E}=E_0\cos(\omega t-\beta z)\,\mathbf a_x$ بدون $e^{-\alpha z}$. الموجة تمشي للأبد بنفس القوة، والطاقة ما تتحول لحرارة. والسرعة $1/\sqrt{\mu\varepsilon}$ أقل من سرعة الضوء لأن $\varepsilon_r\ge1$.</span><span lang="en">$\Z{\alpha}=0$ means <b>the amplitude never decays</b> with distance: $\X{\mathbf E}=E_0\cos(\omega t-\beta z)\,\mathbf a_x$ with no $e^{-\alpha z}$. The wave travels on with the same strength and no energy turns into heat. The speed $1/\sqrt{\mu\varepsilon}$ is below light speed since $\varepsilon_r\ge1$.</span></p>
+  </div>
+</section>
+
+<!-- ================= 02 الفراغ ================= -->
+<section class="card" id="free" data-num="02" data-nav="الفراغ|Free space">
+  <h2><span lang="ar">10.5 الموجة في الفراغ</span><span lang="en">10.5 Plane waves in free space</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 3 إلى 5</span><span lang="en">Slides 3 to 5</span></p>
+  <p><span lang="ar">الفراغ حالة خاصة من العازل الفقّاد، وبنفس الوقت حالة خاصة من العازل المثالي: بس نحط $\varepsilon_r=1$ و $\mu_r=1$. يعني نبدّل $\varepsilon$ بـ $\varepsilon_0$ و $\mu$ بـ $\mu_0$:</span><span lang="en">Free space is a special case of the lossy dielectric, and also of the lossless one: just set $\varepsilon_r=1$ and $\mu_r=1$. That is, replace $\varepsilon$ by $\varepsilon_0$ and $\mu$ by $\mu_0$:</span></p>
+  <div class="m big">\[\sigma=0,\qquad \varepsilon=\varepsilon_0,\qquad \mu=\mu_0\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">التوهين والطور</span><span lang="en">Attenuation and phase</span></h4>
+      <p class="why"><span lang="ar">نفس نتيجة العازل المثالي بعد التبديل. و $1/\sqrt{\mu_0\varepsilon_0}$ هي بالضبط $c$.</span><span lang="en">The lossless result after the swap. And $1/\sqrt{\mu_0\varepsilon_0}$ is exactly $c$.</span></p>
+      <div class="m">\[\Z{\alpha}=0,\qquad \beta=\omega\sqrt{\mu_0\varepsilon_0}=\frac{\omega}{c}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السرعة = سرعة الضوء</span><span lang="en">Speed = speed of light</span></h4>
+      <div class="m">\[u=\frac{1}{\sqrt{\mu_0\varepsilon_0}}=c,\qquad \lambda=\frac{2\pi}{\beta}\]</div>
+      <p class="why"><span lang="ar">نتأكد بالأرقام: $\mu_0=4\pi\times10^{-7}$ و $\varepsilon_0=\dfrac{10^{-9}}{36\pi}$.</span><span lang="en">Check with numbers: $\mu_0=4\pi\times10^{-7}$ and $\varepsilon_0=\dfrac{10^{-9}}{36\pi}$.</span></p>
+      <div class="m">\[\mu_0\varepsilon_0=\frac{4\pi\times10^{-7}\times10^{-9}}{36\pi}=\frac{10^{-16}}{9}\]</div>
+      <div class="m">\[\begin{aligned}c&=\frac{1}{\sqrt{10^{-16}/9}}=\frac{3}{10^{-8}}\\&=3\times10^8\ \text{m/s}\end{aligned}\]</div>
+    </li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ ليش هالنتيجة مهمة؟ (السلايد 4)</span><span lang="en">✅ Why this result matters (slide 4)</span></strong>
+    <p><span lang="ar">ماكسويل حسب سرعة الموجة الكهرومغناطيسية من $\mu_0$ و $\varepsilon_0$ بس (أرقام جاية من تجارب الكهرباء والمغناطيس)، وطلعت $3\times10^8\ \text{m/s}$، نفس سرعة الضوء المقاسة. هذا كان أول دليل إن <b>الضوء نفسه موجة كهرومغناطيسية</b>.</span><span lang="en">Maxwell computed the speed of an EM wave from $\mu_0$ and $\varepsilon_0$ alone (numbers from electricity and magnetism experiments) and got $3\times10^8\ \text{m/s}$, the measured speed of light. That was the first evidence that <b>light itself is an EM wave</b>.</span></p>
+  </div>
+
+  <h3><span lang="ar">ممانعة الفراغ $\eta_0$</span><span lang="en">The impedance of free space $\eta_0$</span></h3>
+  <p><span lang="ar">نعوّض $\sigma=0$ في قانوني المقدار والزاوية:</span><span lang="en">Put $\sigma=0$ into the magnitude and angle formulas:</span></p>
+  <div class="m">\[|\eta|=\frac{\sqrt{\mu/\varepsilon}}{\left[1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2\right]^{1/4}},\qquad \tan2\theta_\eta=\frac{\sigma}{\omega\varepsilon}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الزاوية</span><span lang="en">The angle</span></h4>
+      <div class="m">\[\tan2\theta_\eta=0\ \Rightarrow\ \theta_\eta=0\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المقام يصير 1</span><span lang="en">The denominator becomes 1</span></h4>
+      <div class="m">\[|\eta|=\frac{\sqrt{\mu_0/\varepsilon_0}}{[1+0]^{1/4}}=\sqrt{\frac{\mu_0}{\varepsilon_0}}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض الأرقام</span><span lang="en">Plug in the numbers</span></h4>
+      <p class="why"><span lang="ar">القسمة على كسر = ضرب في مقلوبه، فالـ $36\pi$ تطلع فوق.</span><span lang="en">Dividing by a fraction = multiplying by its reciprocal, so $36\pi$ goes upstairs.</span></p>
+      <div class="m">\[\begin{aligned}\frac{\mu_0}{\varepsilon_0}&=4\pi\times10^{-7}\times\frac{36\pi}{10^{-9}}\\&=144\pi^2\times10^{2}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الجذر</span><span lang="en">The root</span></h4>
+      <div class="m">\[\sqrt{144\pi^2\times10^2}=12\pi\times10=120\pi\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="ممانعة الفراغ|Free-space impedance">$\eta_0=\sqrt{\mu_0/\varepsilon_0}=120\pi\approx377\ \Omega$</div>
+      <p class="sanity"><span lang="ar">هذا الرقم احفظه، يطلع في كل مسألة فراغ أو هواء. وفي أي عازل مثالي غير مغناطيسي ($\mu_r=1$): $\eta=120\pi/\sqrt{\varepsilon_r}$.</span><span lang="en">Memorize it; it appears in every free-space or air problem. For any non-magnetic lossless dielectric ($\mu_r=1$): $\eta=120\pi/\sqrt{\varepsilon_r}$.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">من $\X{\mathbf E}$ إلى $\Y{\mathbf H}$ في الفراغ</span><span lang="en">From $\X{\mathbf E}$ to $\Y{\mathbf H}$ in free space</span></h3>
+  <p><span lang="ar">لو عندك:</span><span lang="en">If you have</span></p>
+  <div class="m big">\[\X{\mathbf E}=E_0\cos(\omega t-\beta z)\,\mathbf a_x\]</div>
+  <p><span lang="ar">فـ $\Y{\mathbf H}$ له نفس الطور بالضبط (لأن $\theta_\eta=0$)، وسعته $E_0/\eta_0$، واتجاهه $\mathbf a_y$:</span><span lang="en">then $\Y{\mathbf H}$ has exactly the same phase (since $\theta_\eta=0$), amplitude $E_0/\eta_0$ and direction $\mathbf a_y$:</span></p>
+  <div class="m big">\[\begin{aligned}\Y{\mathbf H}&=H_0\cos(\omega t-\beta z)\,\mathbf a_y\\&=\frac{E_0}{\eta_0}\cos(\omega t-\beta z)\,\mathbf a_y\end{aligned}\]</div>
+
+  <h3><span lang="ar">قاعدة الاتجاهات: $\mathbf a_E\times\mathbf a_H=\mathbf a_k$</span><span lang="en">The direction rule: $\mathbf a_E\times\mathbf a_H=\mathbf a_k$</span></h3>
+  <p><span lang="ar">لو $\mathbf a_E$ اتجاه المجال الكهربائي، و $\mathbf a_H$ اتجاه المغناطيسي، و $\mathbf a_k$ اتجاه الانتشار:</span><span lang="en">If $\mathbf a_E$ is along $\mathbf E$, $\mathbf a_H$ along $\mathbf H$ and $\mathbf a_k$ along the propagation:</span></p>
+  <div class="m big">\[\mathbf a_E\times\mathbf a_H=\mathbf a_k\]</div>
+  <p><span lang="ar">نتأكد في مثالنا: $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ ✓، والموجة فعلاً تمشي باتجاه $+z$ (الإشارة بين $\omega t$ و $\beta z$ مختلفة). ومنها تطلع صيغتين نستخدمهم كثير في الأمثلة (بالتبديل الدوري للضرب الاتجاهي):</span><span lang="en">Check with our example: $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ ✓, and the wave indeed travels toward $+z$ (opposite signs on $\omega t$ and $\beta z$). Two forms follow (by cyclic rotation of the cross product) that the examples use a lot:</span></p>
+  <div class="m">\[\begin{aligned}\mathbf a_H&=\mathbf a_k\times\mathbf a_E\\ \mathbf a_E&=\mathbf a_H\times\mathbf a_k=-(\mathbf a_k\times\mathbf a_H)\end{aligned}\]</div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ ترتيب الضرب الاتجاهي مهم</span><span lang="en">⚠️ Cross-product order matters</span></strong>
+    <p><span lang="ar">$\mathbf a_k\times\mathbf a_H=-(\mathbf a_H\times\mathbf a_k)$. عشان كذا الدكتور يكتب $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$ بإشارة سالب. تذكّر الدورة: $x\to y\to z\to x$. مع الدورة موجب ($\mathbf a_z\times\mathbf a_x=\mathbf a_y$)، وعكسها سالب ($\mathbf a_z\times\mathbf a_y=-\mathbf a_x$).</span><span lang="en">$\mathbf a_k\times\mathbf a_H=-(\mathbf a_H\times\mathbf a_k)$. That is why the doctor writes $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$ with a minus. Remember the cycle $x\to y\to z\to x$: with the cycle is positive ($\mathbf a_z\times\mathbf a_x=\mathbf a_y$), against it is negative ($\mathbf a_z\times\mathbf a_y=-\mathbf a_x$).</span></p>
+  </div>
+
+  <figure class="wv">
+    <div class="wv-head"><div class="wv-title"><span lang="ar">الشكل 10.7(a) مبسّط: $\mathbf E$ و $\mathbf H$ عند $t=0$ على طول $z$</span><span lang="en">Figure 10.7(a) simplified: $\mathbf E$ and $\mathbf H$ at $t=0$ along $z$</span></div>
+      <div class="legend"><span><i class="c-e"></i><span class="ltr">E<sub>x</sub> / E<sub>0</sub></span></span><span><i class="c-h"></i><span class="ltr">H<sub>y</sub> / H<sub>0</sub></span></span></div></div>
+    <div class="wv-plot" id="fs-plot"></div>
+    <figcaption><span lang="ar">كل مجال مقسوم على سعته. المنحنيين فوق بعض تماماً لأن $\theta_\eta=0$: نفس الطور. في الرسمة الأصلية $\mathbf E$ رأسي (على $x$) و $\mathbf H$ أفقي (على $y$)، والاثنين عموديين على $z$.</span><span lang="en">Each field divided by its amplitude. The curves sit exactly on top of each other because $\theta_\eta=0$: same phase. In the original figure $\mathbf E$ is vertical (along $x$) and $\mathbf H$ horizontal (along $y$), both perpendicular to $z$.</span></figcaption>
+  </figure>
+</section>
+
+<!-- ================= 03 TEM ================= -->
+<section class="card" id="tem" data-num="03" data-nav="TEM والاستقطاب|TEM">
+  <h2><span lang="ar">الموجة المستعرضة TEM، والموجة المستوية المنتظمة، والاستقطاب</span><span lang="en">TEM waves, uniform plane waves and polarization</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 5 إلى 7: تعاريف تجي أسئلة نظرية</span><span lang="en">Slides 5 to 7: definitions that show up as theory questions</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">المجالين عموديين على اتجاه الانتشار</span><span lang="en">Both fields are normal to the propagation</span></b><span class="why"><span lang="ar">$\X{\mathbf E}$ و $\Y{\mathbf H}$ (يعني الموجة الكهرومغناطيسية) في كل مكان عموديين على $\mathbf a_k$. يعني المجالين موجودين في مستوى <b>مستعرض</b> (transverse) أو متعامد على اتجاه الانتشار. في مثالنا: $\mathbf E$ على $x$، و $\mathbf H$ على $y$، والانتشار على $z$.</span><span lang="en">$\X{\mathbf E}$ and $\Y{\mathbf H}$ (the EM wave) are everywhere normal to $\mathbf a_k$, so the fields lie in a plane <b>transverse</b> (orthogonal) to the propagation. In our example: $\mathbf E$ on $x$, $\mathbf H$ on $y$, travel on $z$.</span></span></li>
+    <li><b><span lang="ar">موجة TEM</span><span lang="en">TEM wave</span></b><span class="why"><span lang="ar">موجة <b>ما فيها أي مركّبة</b> كهربائية ولا مغناطيسية على اتجاه الانتشار تسمى <b>Transverse ElectroMagnetic (TEM)</b>: "كهرومغناطيسية مستعرضة". يعني ما فيه $E_z$ ولا $H_z$ لو تمشي على $z$.</span><span lang="en">A wave with <b>no</b> electric or magnetic component along the propagation direction is a <b>Transverse ElectroMagnetic (TEM)</b> wave: no $E_z$ and no $H_z$ when it travels along $z$.</span></span></li>
+    <li><b><span lang="ar">موجة مستوية منتظمة (uniform plane wave)</span><span lang="en">Uniform plane wave</span></b><span class="why"><span lang="ar">لأن $\mathbf E$ (أو $\mathbf H$) له <b>نفس المقدار</b> في أي مستوى مستعرض معرّف بـ $z=\text{const}$. شوف المعادلة: $E_0\cos(\omega t-\beta z)$ ما فيها $x$ ولا $y$، فلو ثبّتت $z$ القيمة نفسها في كل نقاط المستوى.</span><span lang="en">Because $\mathbf E$ (or $\mathbf H$) has the <b>same magnitude</b> throughout any transverse plane $z=\text{const}$. Look at $E_0\cos(\omega t-\beta z)$: no $x$, no $y$, so at fixed $z$ the value is the same at every point of the plane.</span></span></li>
+    <li><b><span lang="ar">الاستقطاب (polarization)</span><span lang="en">Polarization</span></b><span class="why"><span lang="ar">هو <b>الاتجاه اللي يأشّر له المجال الكهربائي</b> في موجة TEM. الموجة $E_0\cos(\omega t-\beta z)\,\mathbf a_x$ مستقطبة باتجاه $x$. انتبه: الاستقطاب يتحدد من $\mathbf E$ مو من $\mathbf H$.</span><span lang="en">The <b>direction in which the electric field points</b> in a TEM wave. $E_0\cos(\omega t-\beta z)\,\mathbf a_x$ is polarized in $x$. Note: polarization comes from $\mathbf E$, not $\mathbf H$.</span></span></li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">⚠️ الموجة المستوية المنتظمة مثالية (السلايد 7)</span><span lang="en">⚠️ The uniform plane wave is an idealization (slide 7)</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">ما تقدر توجد فيزيائياً: لأنها ممتدة لما لا نهاية في المستوى، فتحتاج <b>طاقة لا نهائية</b>.</span><span lang="en">It cannot exist physically: it stretches to infinity across the plane, so it would carry <b>infinite energy</b>.</span></li>
+      <li><span lang="ar">بس مفيدة جداً: بسيطة، وتقرّب الموجات الحقيقية زي موجة هوائي راديو <b>على مسافة بعيدة</b> من المصدر (هناك جبهة الموجة الكروية تبان مستوية تقريباً).</span><span lang="en">Still very useful: simple, and a good approximation to real waves such as a radio antenna's <b>far from the source</b> (there the spherical wavefront looks nearly flat).</span></li>
+      <li><span lang="ar">الكلام هذا عن الفراغ، بس ينطبق على أي وسط <b>متماثل الخواص</b> (isotropic).</span><span lang="en">The discussion is for free space but holds for any <b>isotropic</b> medium.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 04 الموصل الجيد ================= -->
+<section class="card" id="conductor" data-num="04" data-nav="الموصل الجيد|Good conductor">
+  <h2><span lang="ar">10.6 الموجة في الموصل الجيد</span><span lang="en">10.6 Plane waves in good conductors</span></h2>
+  <p class="sub"><span lang="ar">السلايد 8: الحالة الخاصة الثانية، عكس العازل المثالي تماماً</span><span lang="en">Slide 8: the second special case, the exact opposite of the lossless one</span></p>
+  <p><span lang="ar"><b>الموصل المثالي أو الجيد</b> هو اللي فيه $\sigma\gg\omega\varepsilon$، يعني تيار التوصيل هو المسيطر وتيار الإزاحة ما يذكر. ومنها $\dfrac{\sigma}{\omega\varepsilon}\gg1$. أمثلة: النحاس، الفضة، الألمنيوم (وأحياناً ماء البحر في الترددات المنخفضة). نعامله بهالقيم:</span><span lang="en">A <b>perfect or good conductor</b> has $\sigma\gg\omega\varepsilon$: conduction current dominates and displacement current is negligible, so $\dfrac{\sigma}{\omega\varepsilon}\gg1$. Examples: copper, silver, aluminum (and seawater at low frequencies). We use:</span></p>
+  <div class="m big">\[\sigma\simeq\infty,\qquad \varepsilon=\varepsilon_0,\qquad \mu=\mu_0\mu_r\]</div>
+  <p class="why"><span lang="ar">$\varepsilon=\varepsilon_0$ لأن المعادن عملياً $\varepsilon_r\approx1$، و $\mu_r$ نخليه لأن فيه معادن مغناطيسية زي الحديد. و "$\sigma\simeq\infty$" معناها كبيرة جداً، مو لا نهائية حرفياً (لو لا نهائية تطلع $\delta=0$).</span><span lang="en">$\varepsilon=\varepsilon_0$ because metals effectively have $\varepsilon_r\approx1$; $\mu_r$ is kept because some metals, like iron, are magnetic. "$\sigma\simeq\infty$" means very large, not literally infinite (that would give $\delta=0$).</span></p>
+
+  <h3><span lang="ar">التعويض خطوة خطوة</span><span lang="en">Substituting step by step</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الـ 1 تنهمل جنب المربع الكبير</span><span lang="en">The 1 is negligible next to the big square</span></h4>
+      <p class="why"><span lang="ar">لو النسبة مثلاً 3000، مربعها 9 ملايين، وإضافة 1 ما تفرق شي.</span><span lang="en">If the ratio is, say, 3000, its square is 9 million; adding 1 changes nothing.</span></p>
+      <div class="m">\[\sqrt{1+\left(\frac{\sigma}{\omega\varepsilon}\right)^2}\approx\sqrt{\left(\frac{\sigma}{\omega\varepsilon}\right)^2}=\frac{\sigma}{\omega\varepsilon}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">والـ $\pm1$ داخل القوس كمان تنهمل</span><span lang="en">The $\pm1$ inside the bracket is negligible too</span></h4>
+      <p class="why"><span lang="ar">$3000-1$ و $3000+1$ تقريباً نفس الشي، فالقوسين في $\Z{\alpha}$ و $\beta$ يصيرون متساويين.</span><span lang="en">$3000-1$ and $3000+1$ are practically equal, so the brackets in $\Z{\alpha}$ and $\beta$ become the same.</span></p>
+      <div class="m">\[\frac{\sigma}{\omega\varepsilon}\mp1\approx\frac{\sigma}{\omega\varepsilon}\ \Rightarrow\ \Z{\alpha}\approx\beta\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض ونختصر</span><span lang="en">Substitute and simplify</span></h4>
+      <p class="why"><span lang="ar">ندخّل $\omega$ تحت الجذر كـ $\omega^2$، وبعدين $\varepsilon$ تروح مع $\varepsilon$، و $\omega$ وحدة تروح من $\omega^2$.</span><span lang="en">Bring $\omega$ under the root as $\omega^2$; then $\varepsilon$ cancels $\varepsilon$ and one $\omega$ cancels from $\omega^2$.</span></p>
+      <div class="m">\[\begin{aligned}\Z{\alpha}=\beta&=\sqrt{\omega^2\frac{\mu\varepsilon}{2}\cdot\frac{\sigma}{\omega\varepsilon}}\\&=\sqrt{\frac{\omega\mu\sigma}{2}}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نكتبها بالتردد $f$</span><span lang="en">Write it with frequency $f$</span></h4>
+      <p class="why"><span lang="ar">$\omega=2\pi f$، والـ 2 تروح مع الـ 2.</span><span lang="en">$\omega=2\pi f$, and the 2 cancels the 2.</span></p>
+      <div class="m">\[\Z{\alpha}=\beta=\sqrt{\frac{2\pi f\mu\sigma}{2}}=\sqrt{\pi f\mu\sigma}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السرعة والطول الموجي</span><span lang="en">Speed and wavelength</span></h4>
+      <p class="why"><span lang="ar">ندخّل $\omega$ تحت الجذر كـ $\omega^2$ ونقسم.</span><span lang="en">Put $\omega$ under the root as $\omega^2$ and divide.</span></p>
+      <div class="m">\[\begin{gathered}u=\frac{\omega}{\beta}=\sqrt{\frac{\omega^2\cdot2}{\omega\mu\sigma}}=\sqrt{\frac{2\omega}{\mu\sigma}}\\ \lambda=\frac{2\pi}{\beta}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الممانعة: $j\omega\varepsilon$ تنهمل جنب $\sigma$</span><span lang="en">Impedance: $j\omega\varepsilon$ is negligible next to $\sigma$</span></h4>
+      <div class="m">\[\begin{aligned}\eta&=\sqrt{\frac{j\omega\mu}{\sigma+j\omega\varepsilon}}\approx\sqrt{\frac{j\omega\mu}{\sigma}}\\&=\sqrt{\frac{\omega\mu}{\sigma}}\cdot\sqrt{j}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">جذر $j$ = زاوية 45°</span><span lang="en">The root of $j$ is a 45° angle</span></h4>
+      <p class="why"><span lang="ar">$j$ زاويته 90°، والجذر ينصّف الزاوية.</span><span lang="en">$j$ has angle 90°, and the square root halves the angle.</span></p>
+      <div class="m">\[j=1\angle90^\circ\ \Rightarrow\ \sqrt{j}=1\angle45^\circ\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="الموصل الجيد|Good conductor">$\Z{\alpha}=\beta=\sqrt{\pi f\mu\sigma},\ \ \eta=\sqrt{\dfrac{\omega\mu}{\sigma}}\angle45^\circ$</div>
+      <p class="sanity"><span lang="ar">$\theta_\eta=45^\circ$، وهي أكبر زاوية ممكنة (من المحاضرة 5: $0\le\theta_\eta\le45^\circ$). يعني <b>$\X{\mathbf E}$ يسبق $\Y{\mathbf H}$ بـ 45°</b>.</span><span lang="en">$\theta_\eta=45^\circ$, the largest possible (Lecture 5: $0\le\theta_\eta\le45^\circ$). So <b>$\X{\mathbf E}$ leads $\Y{\mathbf H}$ by 45°</b>.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">المجالين داخل الموصل (السلايد 9)</span><span lang="en">The fields inside the conductor (slide 9)</span></h3>
+  <p><span lang="ar">لو:</span><span lang="en">If</span></p>
+  <div class="m big">\[\X{\mathbf E}=E_0\,e^{-\Z{\alpha}z}\cos(\omega t-\beta z)\,\mathbf a_x\]</div>
+  <p><span lang="ar">فـ $\Y{\mathbf H}$: نقسم السعة على $|\eta|=\sqrt{\omega\mu/\sigma}$، ونطرح 45° من الطور (لأن $\mathbf H$ متأخر)، والاتجاه $\mathbf a_y$:</span><span lang="en">then for $\Y{\mathbf H}$: divide the amplitude by $|\eta|=\sqrt{\omega\mu/\sigma}$, subtract 45° from the phase ($\mathbf H$ lags), direction $\mathbf a_y$:</span></p>
+  <div class="m big">\[\begin{aligned}\Y{\mathbf H}=\ &\frac{E_0}{\sqrt{\omega\mu/\sigma}}\,e^{-\Z{\alpha}z}\\&\times\cos(\omega t-\beta z-45^\circ)\,\mathbf a_y\end{aligned}\]</div>
+  <p><span lang="ar">وهنا الفرق الكبير: الموجة وهي تمشي داخل الموصل، <b>سعتها تنقص</b> بالمعامل $e^{-\Z{\alpha}z}$. ولأن $\sigma$ كبيرة جداً، $\Z{\alpha}$ كبيرة جداً، فالموجة تموت خلال مسافة صغيرة جداً.</span><span lang="en">And here is the big difference: as the wave travels in the conductor its <b>amplitude is attenuated</b> by $e^{-\Z{\alpha}z}$. Since $\sigma$ is huge, $\Z{\alpha}$ is huge, and the wave dies within a tiny distance.</span></p>
+</section>
+
+<!-- ================= 05 عمق الاختراق ================= -->
+<section class="card" id="skin" data-num="05" data-nav="عمق الاختراق|Skin depth">
+  <h2><span lang="ar">عمق الاختراق $\delta$ (skin depth)</span><span lang="en">Skin depth $\delta$</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 9 إلى 11: أهم مفهوم في المحاضرة</span><span lang="en">Slides 9 to 11: the most important idea in the lecture</span></p>
+  <p><span lang="ar"><b>عمق الاختراق</b> (أو penetration depth) هو المسافة $\delta$ اللي تنزل فيها سعة الموجة إلى $e^{-1}$ من قيمتها الأصلية، يعني تقريباً <b>37%</b>. نطلّعه:</span><span lang="en">The <b>skin depth</b> (or penetration depth) is the distance $\delta$ over which the wave amplitude falls to $e^{-1}$ of its original value, about <b>37%</b>. Deriving it:</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الشرط</span><span lang="en">The condition</span></h4>
+      <p class="why"><span lang="ar">السعة عند $z=\delta$ تساوي $E_0e^{-1}$.</span><span lang="en">The amplitude at $z=\delta$ equals $E_0e^{-1}$.</span></p>
+      <div class="m">\[E_0\,e^{-\Z{\alpha}\delta}=E_0\,e^{-1}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نشطب $E_0$ ونقارن الأسس</span><span lang="en">Cancel $E_0$ and compare exponents</span></h4>
+      <div class="m">\[\Z{\alpha}\delta=1\ \Rightarrow\ \delta=\frac{1}{\Z{\alpha}}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="عمق الاختراق|Skin depth">$\delta=\dfrac{1}{\Z{\alpha}}\quad\text{(m)}$</div>
+      <p class="sanity"><span lang="ar">$e^{-1}=0.368$. وبعد $5\delta$: $e^{-5}=0.0067$، يعني أقل من 1% باقي، الموجة عملياً انتهت.</span><span lang="en">$e^{-1}=0.368$. After $5\delta$: $e^{-5}=0.0067$, under 1% left; the wave is practically gone.</span></p>
+    </li>
+  </ol>
+
+  <figure class="wv">
+    <div class="wv-head"><div class="wv-title"><span lang="ar">الشكل 10.8: الموجة داخل الموصل عند $t=0$</span><span lang="en">Figure 10.8: the wave inside the conductor at $t=0$</span></div>
+      <div class="legend"><span><i class="c-e"></i><span class="ltr">E / E<sub>0</sub></span></span><span><i class="dash c-a"></i><span class="ltr">±e<sup>−z/δ</sup></span></span></div></div>
+    <div class="wv-plot" id="sd-plot"></div>
+    <figcaption><span lang="ar">المحور الأفقي بوحدات $\delta$. الغلاف المنقّط $e^{-z/\delta}$ يوصل 0.368 عند $z=\delta$ بالضبط. ولاحظ إن في موصل جيد $\beta=\Z{\alpha}=1/\delta$، فالطول الموجي داخل الموصل $\lambda=2\pi\delta$: الموجة تموت قبل ما تكمل دورة وحدة.</span><span lang="en">The horizontal axis is in units of $\delta$. The dotted envelope $e^{-z/\delta}$ hits 0.368 exactly at $z=\delta$. In a good conductor $\beta=\Z{\alpha}=1/\delta$, so the wavelength inside is $\lambda=2\pi\delta$: the wave dies before completing a single cycle.</span></figcaption>
+  </figure>
+
+  <h3><span lang="ar">متى أي قانون؟ (السلايد 10)</span><span lang="en">Which formula when? (slide 10)</span></h3>
+  <ul class="clean">
+    <li><span lang="ar">$\delta=1/\Z{\alpha}$ <b>صحيح لأي وسط</b>: تحسب $\Z{\alpha}$ من القانون المناسب وتقلبه.</span><span lang="en">$\delta=1/\Z{\alpha}$ <b>holds for any medium</b>: compute $\Z{\alpha}$ with the right formula and invert it.</span></li>
+    <li><span lang="ar">في <b>الموصل الجيد</b> بس نقدر نكتب:</span><span lang="en">Only in a <b>good conductor</b> can we write:</span></li>
+  </ul>
+  <div class="m big">\[\delta=\frac{1}{\sqrt{\pi f\mu\sigma}}=\frac{1}{\Z{\alpha}}\]</div>
+  <ul class="clean">
+    <li><span lang="ar">في الوسط <b>الموصل جزئياً</b> (σ مو كبيرة)، $\Z{\alpha}$ صغيرة، فـ $\delta$ ممكن تكون <b>كبيرة جداً</b>. والعازل المثالي ($\Z{\alpha}=0$) يعطي $\delta=\infty$: الموجة تخترق للأبد.</span><span lang="en">In a <b>partially conducting</b> medium (σ not large) $\Z{\alpha}$ is small, so $\delta$ can be <b>quite large</b>. A lossless dielectric ($\Z{\alpha}=0$) gives $\delta=\infty$: the wave penetrates forever.</span></li>
+  </ul>
+
+  <h3><span lang="ar">$\eta$ بدلالة $\delta$</span><span lang="en">$\eta$ in terms of $\delta$</span></h3>
+  <p><span lang="ar">الدكتور يكتب $\eta$ للموصل الجيد بصيغة ثانية حلوة. نطلّعها:</span><span lang="en">The doctor writes the good-conductor $\eta$ in a neat alternative form. Deriving it:</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">نضرب ونقسم على $\sigma$</span><span lang="en">Multiply and divide by $\sigma$</span></h4>
+      <p class="why"><span lang="ar">$\sqrt{\omega\mu/\sigma}=\sqrt{\omega\mu\sigma}/\sigma$ (لأن $\sigma=\sqrt{\sigma^2}$).</span><span lang="en">$\sqrt{\omega\mu/\sigma}=\sqrt{\omega\mu\sigma}/\sigma$ (since $\sigma=\sqrt{\sigma^2}$).</span></p>
+      <div class="m">\[\sqrt{\frac{\omega\mu}{\sigma}}=\frac{\sqrt{\omega\mu\sigma}}{\sigma}=\frac{\sqrt2\,\sqrt{\omega\mu\sigma/2}}{\sigma}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعرف إن $\sqrt{\omega\mu\sigma/2}=\Z{\alpha}=1/\delta$</span><span lang="en">We know $\sqrt{\omega\mu\sigma/2}=\Z{\alpha}=1/\delta$</span></h4>
+      <div class="m">\[\sqrt{\frac{\omega\mu}{\sigma}}=\frac{\sqrt2\,\Z{\alpha}}{\sigma}=\frac{\sqrt2}{\sigma\delta}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نرجّع الزاوية 45° = $\pi/4$</span><span lang="en">Put back the 45° = $\pi/4$ angle</span></h4>
+      <div class="m">\[\eta=\frac{1}{\sigma\delta}\sqrt2\,e^{j\pi/4}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نفك $e^{j\pi/4}$ بأويلر</span><span lang="en">Expand $e^{j\pi/4}$ with Euler</span></h4>
+      <p class="why"><span lang="ar">$\cos45^\circ=\sin45^\circ=\tfrac{1}{\sqrt2}$، فالـ $\sqrt2$ تروح.</span><span lang="en">$\cos45^\circ=\sin45^\circ=\tfrac{1}{\sqrt2}$, so the $\sqrt2$ cancels.</span></p>
+      <div class="m">\[\begin{aligned}\sqrt2\,e^{j\pi/4}&=\sqrt2\left(\tfrac{1}{\sqrt2}+j\tfrac{1}{\sqrt2}\right)\\&=1+j\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="ممانعة الموصل|Conductor η">$\eta=\dfrac{1+j}{\sigma\delta}=(1+j)\dfrac{\Z{\alpha}}{\sigma}$</div>
+      <p class="sanity"><span lang="ar">الجزء الحقيقي = الجزء التخيلي ← زاوية 45° ✓. والصيغة الثانية هي اللي في جدول 10.3.</span><span lang="en">Real part = imaginary part → 45° ✓. The second form is the one in Table 10.3.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">$\mathbf E$ بدلالة $\delta$ (السلايد 11)</span><span lang="en">$\mathbf E$ in terms of $\delta$ (slide 11)</span></h3>
+  <p><span lang="ar">في الموصل الجيد $\Z{\alpha}=\beta=1/\delta$، نعوّضها في الاثنين:</span><span lang="en">In a good conductor $\Z{\alpha}=\beta=1/\delta$; substitute in both places:</span></p>
+  <div class="m big">\[\X{\mathbf E}=E_0\,e^{-z/\delta}\cos\!\left(\omega t-\frac{z}{\delta}\right)\mathbf a_x\]</div>
+  <p><span lang="ar">هذي تبيّن إن $\delta$ تقيس <b>التخامد الأسّي</b> للموجة وهي تمشي داخل الموصل: كل ما مشت مسافة $\delta$ السعة تنضرب في 0.368.</span><span lang="en">This shows $\delta$ measures the <b>exponential damping</b> of the wave in the conductor: every $\delta$ travelled multiplies the amplitude by 0.368.</span></p>
+
+  <h3><span lang="ar">جدول 10.2: عمق الاختراق في النحاس</span><span lang="en">Table 10.2: skin depth in copper</span></h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th><span lang="ar">التردد (Hz)</span><span lang="en">Frequency (Hz)</span></th><th class="ltr">10</th><th class="ltr">60</th><th class="ltr">100</th><th class="ltr">500</th><th class="ltr">10⁴</th><th class="ltr">10⁸</th><th class="ltr">10¹⁰</th></tr></thead>
+    <tbody><tr><td><span lang="ar">δ (mm)</span><span lang="en">δ (mm)</span></td><td class="ltr">20.8</td><td class="ltr">8.6</td><td class="ltr">6.6</td><td class="ltr">2.99</td><td class="ltr">0.66</td><td class="ltr">6.6×10⁻³</td><td class="ltr">6.6×10⁻⁴</td></tr></tbody>
+  </table></div>
+  <p><span lang="ar">من وين جت هالأرقام؟ النحاس: $\sigma=5.8\times10^7\ \text{S/m}$ و $\mu=\mu_0$:</span><span lang="en">Where do these numbers come from? Copper: $\sigma=5.8\times10^7\ \text{S/m}$, $\mu=\mu_0$:</span></p>
+  <div class="m">\[\begin{aligned}\pi\mu_0\sigma&=\pi(4\pi\times10^{-7})(5.8\times10^7)\\&=4\pi^2(5.8)=229\end{aligned}\]</div>
+  <div class="m">\[\delta=\frac{1}{\sqrt{229\,f}}=\frac{0.0661}{\sqrt f}\ \text{m}=\frac{66.1}{\sqrt f}\ \text{mm}\]</div>
+  <p><span lang="ar">مثلاً عند <span dir="ltr">100 Hz</span>: $66.1/\sqrt{100}=66.1/10=6.6\ \text{mm}$ ✓ نفس الجدول.</span><span lang="en">E.g. at 100 Hz: $66.1/\sqrt{100}=66.1/10=6.6\ \text{mm}$ ✓ matches the table.</span></p>
+  <div class="callout key"><strong><span lang="ar">🔑 الاستنتاج من الجدول</span><span lang="en">🔑 What the table tells you</span></strong>
+    <p><span lang="ar">$\delta$ <b>تنقص لما التردد يزيد</b> (لأن $\delta\propto1/\sqrt f$): تكبّر التردد 100 مرة، $\delta$ تصغر 10 مرات. وعند الترددات العالية $\delta$ صارت ميكرومترات، يعني $\X{\mathbf E}$ و $\Y{\mathbf H}$ <b>بالكاد يقدرون يمشون</b> داخل الموصل الجيد.</span><span lang="en">$\delta$ <b>decreases as frequency increases</b> ($\delta\propto1/\sqrt f$): 100× the frequency means $\delta$ is 10× smaller. At high frequencies $\delta$ is micrometers, so $\X{\mathbf E}$ and $\Y{\mathbf H}$ <b>can hardly propagate</b> through a good conductor.</span></p>
+  </div>
+
+  <div class="wlab" id="cu-lab">
+    <div class="lab-controls">
+      <div class="field"><label><span lang="ar">التردد</span><span lang="en">Frequency</span> · <span class="rv ltr" data-o="f">1 MHz</span></label><input type="range" min="1" max="10" step="0.05" value="6" aria-label="log10 of frequency"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">جرّب بنفسك: $\delta$ في النحاس مقابل التردد</span><span lang="en">Try it: $\delta$ in copper versus frequency</span></div>
+        <div class="legend"><span><i class="c-a"></i><span class="ltr">δ = 66.1/√f mm</span></span></div></div>
+      <div class="wv-plot" id="cu-plot"></div>
+      <figcaption><span lang="ar">المحورين لوغاريتميين، فالخط مستقيم بميل $-\tfrac12$. حرّك الشريط أو اضغط على الرسمة. والسلك المفترض نصف قطره $a=1\ \text{mm}$.</span><span lang="en">Both axes are logarithmic, so the line is straight with slope $-\tfrac12$. Move the slider or tap the chart. The assumed wire has radius $a=1\ \text{mm}$.</span></figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k"><span lang="ar">عمق الاختراق</span><span lang="en">Skin depth</span></span><span class="v" data-o="d">66.1 µm</span></div>
+      <div><span class="k"><span lang="ar">مقاومة السطح</span><span lang="en">Surface resistance</span> <span class="ltr">R<sub>s</sub></span></span><span class="v" data-o="rs">0.26 mΩ</span></div>
+      <div><span class="k"><span class="ltr">R<sub>ac</sub>/R<sub>dc</sub></span> <span lang="ar">(سلك <span dir="ltr">a = 1 mm</span>)</span><span lang="en">(1 mm wire)</span></span><span class="v" data-o="ratio">7.56</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 ظاهرة القشرة ================= -->
+<section class="card" id="effect" data-num="06" data-nav="ظاهرة القشرة|Skin effect">
+  <h2><span lang="ar">ظاهرة القشرة (skin effect) وتطبيقاتها</span><span lang="en">The skin effect and its uses</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 12 و 13</span><span lang="en">Slides 12 and 13</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">التعريف</span><span lang="en">Definition</span></b><span class="why"><span lang="ar">الظاهرة اللي فيها <b>شدة المجال داخل الموصل تنقص بسرعة</b> مع العمق تسمى skin effect.</span><span lang="en">The phenomenon in which <b>the field intensity in a conductor decreases rapidly</b> with depth is the skin effect.</span></span></li>
+    <li><b><span lang="ar">وش يصير للشحنات؟</span><span lang="en">What happens to the charges?</span></b><span class="why"><span lang="ar">الشحنات تميل إنها تهاجر من جسم المادة (الداخل) إلى <b>السطح</b>. فالتيار يتزاحم في مساحة أصغر ← <b>مقاومة أعلى</b>.</span><span lang="en">Charges tend to migrate from the bulk of the material to the <b>surface</b>. The current crowds into a smaller area → <b>higher resistance</b>.</span></span></li>
+    <li><b><span lang="ar">القشرة</span><span lang="en">The skin</span></b><span class="why"><span lang="ar">المجالات والتيارات المرتبطة فيها محصورة في <b>طبقة رقيقة جداً</b> (القشرة) على سطح الموصل. ومن هنا الاسم.</span><span lang="en">The fields and their currents are confined to a <b>very thin layer</b> (the skin) at the conductor surface, hence the name.</span></span></li>
+    <li><b><span lang="ar">سلك نصف قطره $a$</span><span lang="en">A wire of radius $a$</span></b><span class="why"><span lang="ar">في الترددات العالية نفترض (تقريب ممتاز) إن <b>كل التيار</b> يمشي في حلقة دائرية سمكها $\delta$ على السطح الخارجي، والداخل فاضي من التيار.</span><span lang="en">At high frequencies it is a good approximation that <b>all the current</b> flows in a circular ring of thickness $\delta$ at the outer surface; the inside carries none.</span></span></li>
+  </ol>
+  <svg class="ring-svg" viewBox="0 0 300 150" role="img" aria-label="Cross-section of a wire of radius a: current flows only in an outer ring of thickness delta" style="display:block;margin:6px auto;max-width:300px;width:100%">
+    <circle cx="80" cy="75" r="60" fill="none" stroke="currentColor" stroke-opacity=".35" stroke-width="1.5"/>
+    <circle cx="80" cy="75" r="54" fill="none" stroke="var(--w-e)" stroke-width="12" stroke-opacity=".55"/>
+    <line x1="80" y1="75" x2="140" y2="75" stroke="currentColor" stroke-width="1.2"/>
+    <text x="104" y="70" font-size="13" fill="currentColor" font-style="italic">a</text>
+    <line x1="152" y1="21" x2="200" y2="21" stroke="currentColor" stroke-width="1"/>
+    <text x="205" y="25" font-size="13" fill="currentColor">δ (current)</text>
+    <path d="M131 30 L152 21" stroke="currentColor" stroke-width="1" fill="none"/>
+    <text x="205" y="80" font-size="12" fill="currentColor">w = 2πa</text>
+    <text x="205" y="100" font-size="12" fill="currentColor">S ≈ δ·w</text>
+  </svg>
+
+  <h3><span lang="ar">وين تطلع ظاهرة القشرة؟</span><span lang="en">Where the skin effect shows up</span></h3>
+  <ul class="clean">
+    <li><span lang="ar">تطلع بأشكال مختلفة في: <b>التوهين في الـ waveguides</b>، و<b>المقاومة الفعّالة (ac) لخطوط النقل</b>، و<b>الحجب الكهرومغناطيسي</b> (shielding).</span><span lang="en">It appears in different guises in: <b>attenuation in waveguides</b>, the <b>effective (ac) resistance of transmission lines</b>, and <b>electromagnetic shielding</b>.</span></li>
+    <li><span lang="ar"><b>الطلاء بالفضة:</b> عمق الاختراق في الفضة صغير جداً، فالتيار كله يمشي في الطبقة السطحية. فقطعة فضة صافية وقطعة نحاس أصفر (brass) مطلية بالفضة <b>أداؤهم تقريباً نفس الشي</b>، فيطلون قطع الـ waveguide بالفضة بدل ما يصنعونها فضة كاملة، ويوفرون التكلفة.</span><span lang="en"><b>Silver plating:</b> the skin depth in silver is tiny, so all the current flows in the surface layer. A pure-silver part and a silver-plated brass part <b>perform almost the same</b>, so waveguide components are silver-plated rather than solid silver, saving cost.</span></li>
+    <li><span lang="ar"><b>الأنابيب المجوفة:</b> لنفس السبب، هوائيات التلفزيون الخارجية تُصنع من <b>أنابيب مجوفة</b> بدل موصلات مصمتة: الداخل ما يشيل تيار أصلاً، فليش تحط معدن فيه؟ (أخف وأرخص).</span><span lang="en"><b>Hollow tubes:</b> for the same reason, outdoor TV antennas use <b>hollow tubular conductors</b> instead of solid ones: the inside carries no current anyway (lighter and cheaper).</span></li>
+    <li><span lang="ar"><b>الحجب:</b> تقدر تحجب جهاز كهربائي عن المجالات بغلاف موصل سمكه <b>كم $\delta$</b> بس (بعد $5\delta$ يبقى أقل من 1%).</span><span lang="en"><b>Shielding:</b> a conductive enclosure only <b>a few $\delta$</b> thick shields a device effectively (after $5\delta$ under 1% remains).</span></li>
+    <li><span lang="ar"><b>المقاومة المترددة:</b> $\delta$ تفيدنا في حساب مقاومة الـ ac الناتجة عن ظاهرة القشرة، القسم الجاي.</span><span lang="en"><b>AC resistance:</b> $\delta$ lets us compute the ac resistance caused by the skin effect, next section.</span></li>
+  </ul>
+</section>
+
+<!-- ================= 07 المقاومة ================= -->
+<section class="card" id="rac" data-num="07" data-nav="مقاومة ac|AC resistance">
+  <h2><span lang="ar">مقاومة السطح $R_s$ ومقاومة الـ ac</span><span lang="en">Surface resistance $R_s$ and ac resistance</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 13 إلى 15</span><span lang="en">Slides 13 to 15</span></p>
+  <p><span lang="ar">المقاومة العادية اللي تعرفها من الكهرومغناطيسية 1 (معادلة 5.16) هي <b>مقاومة الـ dc</b>: التيار موزع بانتظام على كل المقطع $S$:</span><span lang="en">The usual resistance from Electromagnetics 1 (eq. 5.16) is the <b>dc resistance</b>: current spread uniformly over the whole cross-section $S$:</span></p>
+  <div class="m big">\[R_{dc}=\frac{\ell}{\sigma S}\]</div>
+
+  <h3><span lang="ar">مقاومة السطح $R_s$</span><span lang="en">Surface resistance $R_s$</span></h3>
+  <p><span lang="ar">نعرّف <b>مقاومة السطح أو القشرة</b> $R_s$ (بالأوم) إنها <b>الجزء الحقيقي من $\eta$</b> للموصل الجيد. من $\eta=\dfrac{1+j}{\sigma\delta}$ الجزء الحقيقي $\dfrac{1}{\sigma\delta}$:</span><span lang="en">We define the <b>surface or skin resistance</b> $R_s$ (in Ω) as the <b>real part of $\eta$</b> for a good conductor. From $\eta=\dfrac{1+j}{\sigma\delta}$ the real part is $\dfrac{1}{\sigma\delta}$:</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الجزء الحقيقي</span><span lang="en">The real part</span></h4>
+      <div class="m">\[R_s=\mathrm{Re}\{\eta\}=\frac{1}{\sigma\delta}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض $1/\delta=\sqrt{\pi f\mu\sigma}$</span><span lang="en">Substitute $1/\delta=\sqrt{\pi f\mu\sigma}$</span></h4>
+      <p class="why"><span lang="ar">ندخّل $\sigma$ اللي في المقام تحت الجذر كـ $\sigma^2$، فوحدة تروح.</span><span lang="en">Move the $\sigma$ in the denominator under the root as $\sigma^2$; one cancels.</span></p>
+      <div class="m">\[\begin{aligned}R_s&=\frac{\sqrt{\pi f\mu\sigma}}{\sigma}=\sqrt{\frac{\pi f\mu\sigma}{\sigma^2}}\\&=\sqrt{\frac{\pi f\mu}{\sigma}}\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="مقاومة السطح|Surface resistance">$R_s=\dfrac{1}{\sigma\delta}=\sqrt{\dfrac{\pi f\mu}{\sigma}}\ \ \Omega$</div>
+      <p class="sanity"><span lang="ar"><b>معناها:</b> مقاومة قطعة من الموصل عرضها 1 وطولها 1. وتساوي مقاومة الـ dc لطول 1 من موصل مقطعه $1\times\delta$: $\dfrac{\ell}{\sigma S}=\dfrac{1}{\sigma(1\cdot\delta)}$ ✓.</span><span lang="en"><b>Meaning:</b> the resistance of a unit-width, unit-length piece of conductor. It equals the dc resistance of a unit length with cross-section $1\times\delta$: $\dfrac{\ell}{\sigma S}=\dfrac{1}{\sigma(1\cdot\delta)}$ ✓.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">مقاومة الـ ac لعرض $w$ وطول $\ell$</span><span lang="en">AC resistance for width $w$ and length $\ell$</span></h3>
+  <p><span lang="ar">نستخدم نفس قانون الـ dc، بس نفترض إن التيار موزع بانتظام في طبقة سمكها $\delta$ بس، يعني المقطع $S\simeq\delta w$:</span><span lang="en">Use the familiar dc relation, but assume uniform current only in a layer of thickness $\delta$, so the cross-section is $S\simeq\delta w$:</span></p>
+  <div class="m big">\[R_{ac}=\frac{\ell}{\sigma\delta w}=\frac{R_s\,\ell}{w}\]</div>
+  <p class="why"><span lang="ar">الصيغة الثانية جت من $\dfrac{1}{\sigma\delta}=R_s$. ولاحظ $\ell/w$ = عدد "المربعات" اللي كل واحد مقاومته $R_s$.</span><span lang="en">The second form comes from $\dfrac{1}{\sigma\delta}=R_s$. Note $\ell/w$ = the number of "squares", each of resistance $R_s$.</span></p>
+
+  <h3><span lang="ar">سلك نصف قطره $a$: النسبة $R_{ac}/R_{dc}$</span><span lang="en">A wire of radius $a$: the ratio $R_{ac}/R_{dc}$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">العرض = محيط السلك</span><span lang="en">The width = the wire's circumference</span></h4>
+      <p class="why"><span lang="ar">التيار يمشي على السطح الخارجي، فلو "فرشنا" القشرة يصير عرضها المحيط.</span><span lang="en">Current flows at the outer surface; unrolling the skin, its width is the circumference.</span></p>
+      <div class="m">\[w=2\pi a\ \Rightarrow\ R_{ac}=\frac{\ell}{\sigma\,2\pi a\,\delta}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مقاومة الـ dc: كل المقطع الدائري</span><span lang="en">DC resistance: the full circular section</span></h4>
+      <div class="m">\[S=\pi a^2\ \Rightarrow\ R_{dc}=\frac{\ell}{\sigma\pi a^2}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نقسم</span><span lang="en">Divide</span></h4>
+      <p class="why"><span lang="ar">$\ell$ و $\sigma$ يروحون، وتبقى نسبة المساحتين: $\pi a^2$ على $2\pi a\delta$.</span><span lang="en">$\ell$ and $\sigma$ cancel, leaving the ratio of the two areas: $\pi a^2$ over $2\pi a\delta$.</span></p>
+      <div class="m">\[\frac{R_{ac}}{R_{dc}}=\frac{\ell/(\sigma2\pi a\delta)}{\ell/(\sigma\pi a^2)}=\frac{\pi a^2}{2\pi a\delta}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نختصر $\pi a$</span><span lang="en">Cancel $\pi a$</span></h4>
+      <div class="m">\[\frac{R_{ac}}{R_{dc}}=\frac{a}{2\delta}=\frac{a}{2}\sqrt{\pi f\mu\sigma}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="النسبة|Ratio">$\dfrac{R_{ac}}{R_{dc}}=\dfrac{a}{2\delta}$</div>
+      <p class="sanity"><span lang="ar">بما إن $\delta\ll a$ في الترددات العالية، $R_{ac}\gg R_{dc}$. وبشكل عام النسبة تبدأ من <b>1</b> عند الـ dc والترددات المنخفضة (التيار مالي المقطع) وتزيد مع التردد.</span><span lang="en">Since $\delta\ll a$ at high frequencies, $R_{ac}\gg R_{dc}$. In general the ratio starts at <b>1</b> at dc and very low frequencies (current fills the section) and grows with frequency.</span></p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">⚠️ القانون $a/2\delta$ له شرط</span><span lang="en">⚠️ $a/2\delta$ has a condition</span></strong>
+    <p><span lang="ar">يصلح بس لما $\delta\ll a$. مثلاً سلك نحاس $a=1\ \text{mm}$ عند <span dir="ltr">60 Hz</span>: $\delta=8.6\ \text{mm}$ أكبر من السلك نفسه! هنا التيار مالي المقطع والنسبة ≈ 1، ولو عوّضت بالقانون يطلع لك 0.06 وهذا غلط (المقاومة ما تقدر تصير أقل من الـ dc).</span><span lang="en">It only applies when $\delta\ll a$. E.g. a copper wire $a=1\ \text{mm}$ at 60 Hz: $\delta=8.6\ \text{mm}$, bigger than the wire! The current fills the section and the ratio ≈ 1; plugging in the formula gives 0.06, which is wrong (the resistance can't drop below dc).</span></p>
+  </div>
+  <div class="callout key"><strong><span lang="ar">🔑 سبب ثاني للاسم "skin depth"</span><span lang="en">🔑 Another reason for the name "skin depth"</span></strong>
+    <p><span lang="ar">في الحقيقة التيار موزّع <b>بشكل غير منتظم</b> على سمك تقريباً $5\delta$ (يضعف أسّياً مع العمق). بس <b>الفقد في القدرة</b> يطلع نفس ما لو التيار موزع <b>بانتظام</b> على سمك $\delta$ بالضبط وصفر في الباقي. عشان كذا الافتراض $S=\delta w$ يعطي جواب صحيح، وهذا سبب ثاني لتسمية $\delta$ "عمق القشرة".</span><span lang="en">In reality the current is <b>nonuniformly</b> spread over roughly $5\delta$ (decaying exponentially with depth). But the <b>power loss</b> is the same as if it were <b>uniform</b> over exactly $\delta$ and zero elsewhere. That is why $S=\delta w$ gives the right answer, and one more reason $\delta$ is called the skin depth.</span></p>
+  </div>
+</section>
+
+<!-- ================= 08 جدول 10.3 ================= -->
+<section class="card" id="table" data-num="08" data-nav="جدول 10.3|Table 10.3">
+  <h2><span lang="ar">جدول 10.3: كل القوانين في مكان واحد</span><span lang="en">Table 10.3: all the formulas in one place</span></h2>
+  <p class="sub"><span lang="ar">السلايد 16: احفظه، هو ملخص المحاضرتين 5 و 6</span><span lang="en">Slide 16: memorize it; it sums up Lectures 5 and 6</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th></th><th><span lang="ar">فقّاد</span><span lang="en">Lossy</span></th><th><span lang="ar">بدون فقد</span><span lang="en">Lossless</span></th><th><span lang="ar">الفراغ</span><span lang="en">Free space</span></th><th><span lang="ar">موصل</span><span lang="en">Conductor</span></th></tr></thead>
+    <tbody>
+      <tr><td>$\Z{\alpha}$</td><td><span lang="ar">القانون الكامل ($-1$)</span><span lang="en">Full formula ($-1$)</span></td><td>$0$</td><td>$0$</td><td>$\sqrt{\pi f\mu\sigma}$</td></tr>
+      <tr><td>$\beta$</td><td><span lang="ar">القانون الكامل ($+1$)</span><span lang="en">Full formula ($+1$)</span></td><td>$\omega\sqrt{\mu\varepsilon}$</td><td>$\omega\sqrt{\mu_0\varepsilon_0}$</td><td>$\sqrt{\pi f\mu\sigma}$</td></tr>
+      <tr><td>$\eta$</td><td>$\sqrt{\dfrac{j\omega\mu}{\sigma+j\omega\varepsilon}}$</td><td>$\sqrt{\dfrac{\mu}{\varepsilon}}$</td><td>$\sqrt{\dfrac{\mu_0}{\varepsilon_0}}\simeq377$</td><td>$(1+j)\dfrac{\Z{\alpha}}{\sigma}$</td></tr>
+      <tr><td>$\theta_\eta$</td><td>$0\to45^\circ$</td><td>$0$</td><td>$0$</td><td>$45^\circ$</td></tr>
+    </tbody>
+  </table></div>
+  <div class="m">\[u=\frac{\omega}{\beta},\qquad \lambda=\frac{2\pi}{\beta}\qquad\text{(all media)}\]</div>
+  <p class="why"><span lang="ar">صف $\theta_\eta$ مو في جدول الدكتور، أضفته لأنه يلخص فرق الطور بين $\mathbf E$ و $\mathbf H$ في كل وسط.</span><span lang="en">The $\theta_\eta$ row is not in the doctor's table; I added it because it sums up the E–H phase difference in each medium.</span></p>
+  <div class="callout good"><strong><span lang="ar">✅ أول سؤال في أي مسألة: أي وسط؟</span><span lang="en">✅ First question in any problem: which medium?</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">$\sigma=0$ أو مكتوب lossless ← عمود "بدون فقد" (والفراغ لو $\varepsilon_r=\mu_r=1$).</span><span lang="en">$\sigma=0$ or "lossless" → the lossless column (free space if $\varepsilon_r=\mu_r=1$).</span></li>
+      <li><span lang="ar">$\sigma\ne0$ ← احسب $\sigma/\omega\varepsilon$: لو $\gg1$ (تقريباً أكبر من 100) موصل جيد، ولو $\ll1$ (أقل من 0.01) عازل جيد، وبين هذا وهذا استخدم القانون الكامل.</span><span lang="en">$\sigma\ne0$ → compute $\sigma/\omega\varepsilon$: $\gg1$ (above ~100) good conductor, $\ll1$ (below ~0.01) good dielectric, in between use the full formula.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= مثال 10.3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 10.3|Ex 10.3">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.3</span><span lang="en">Example 10.3</span></span><h2><span lang="ar">عازل مثالي: أوجد $\varepsilon_r$ و $\omega$ و $\mathbf E$ من $\mathbf H$</span><span lang="en">Lossless dielectric: find $\varepsilon_r$, $\omega$ and $\mathbf E$ from $\mathbf H$</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.3</span></div>
+  <p><span lang="ar">في عازل بدون فقد فيه $\eta=60\pi$ و $\mu_r=1$، والمجال المغناطيسي:</span><span lang="en">In a lossless dielectric with $\eta=60\pi$ and $\mu_r=1$, the magnetic field is</span></p>
+  <div class="m big">\[\begin{aligned}\Y{\mathbf H}=&-0.1\cos(\omega t-z)\,\mathbf a_x\\&+0.5\sin(\omega t-z)\,\mathbf a_y\ \ \text{A/m}\end{aligned}\]</div>
+  <p><span lang="ar">احسب $\varepsilon_r$ و $\omega$ و $\X{\mathbf E}$.</span><span lang="en">Calculate $\varepsilon_r$, $\omega$ and $\X{\mathbf E}$.</span></p>
+
+  <h3><span lang="ar">(1) قيمة $\varepsilon_r$</span><span lang="en">(1) Finding $\varepsilon_r$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ المعطيات</span><span lang="en">Read the givens</span></h4>
+      <p class="why"><span lang="ar">بدون فقد ← $\sigma=0$ و $\Z{\alpha}=0$. والطور $(\omega t-z)$: معامل $z$ هو $\beta$، يعني $\beta=1\ \text{rad/m}$، والإشارة مختلفة ← الموجة تمشي باتجاه $+z$.</span><span lang="en">Lossless → $\sigma=0$, $\Z{\alpha}=0$. Phase $(\omega t-z)$: the coefficient of $z$ is $\beta$, so $\beta=1\ \text{rad/m}$, and opposite signs → travel toward $+z$.</span></p>
+      <div class="map"><span class="x">σ = 0</span><span class="x">α = 0</span><span class="x">β = 1 rad/m</span><span class="x">a_k = +a_z</span><span class="x">η = 60π</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قانون $\eta$ للعازل المثالي</span><span lang="en">The lossless $\eta$ formula</span></h4>
+      <p class="why"><span lang="ar">نفصل $\mu$ و $\varepsilon$ لجزء الفراغ وجزء النسبي. جزء الفراغ $\sqrt{\mu_0/\varepsilon_0}=120\pi$.</span><span lang="en">Split $\mu$ and $\varepsilon$ into free-space and relative parts. The free-space part is $\sqrt{\mu_0/\varepsilon_0}=120\pi$.</span></p>
+      <div class="m">\[\eta=\sqrt{\frac{\mu}{\varepsilon}}=\sqrt{\frac{\mu_0}{\varepsilon_0}}\sqrt{\frac{\mu_r}{\varepsilon_r}}=\frac{120\pi}{\sqrt{\varepsilon_r}}\]</div>
+      <p class="why"><span lang="ar">($\mu_r=1$ فـ $\sqrt{\mu_r}=1$.)</span><span lang="en">($\mu_r=1$ so $\sqrt{\mu_r}=1$.)</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نطلّع $\sqrt{\varepsilon_r}$</span><span lang="en">Solve for $\sqrt{\varepsilon_r}$</span></h4>
+      <p class="why"><span lang="ar">نبدّل مكان $\eta$ و $\sqrt{\varepsilon_r}$، والـ $\pi$ تروح مع $\pi$.</span><span lang="en">Swap $\eta$ and $\sqrt{\varepsilon_r}$; $\pi$ cancels $\pi$.</span></p>
+      <div class="m">\[\sqrt{\varepsilon_r}=\frac{120\pi}{\eta}=\frac{120\pi}{60\pi}=2\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نربّع</span><span lang="en">Square</span></h4>
+      <div class="m">\[\varepsilon_r=2^2=4\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(1)">$\varepsilon_r=4$</div>
+      <p class="sanity"><span lang="ar">$\varepsilon_r\gt1$ منطقي لعازل، و $\eta=60\pi$ نص ممانعة الفراغ لأن $\sqrt{\varepsilon_r}=2$ ✓.</span><span lang="en">$\varepsilon_r\gt1$ is sensible for a dielectric, and $\eta=60\pi$ is half the free-space value because $\sqrt{\varepsilon_r}=2$ ✓.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(2) قيمة $\omega$</span><span lang="en">(2) Finding $\omega$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">قانون $\beta$ للعازل المثالي</span><span lang="en">The lossless $\beta$ formula</span></h4>
+      <p class="why"><span lang="ar">نفس الفصل: جزء الفراغ $\omega\sqrt{\mu_0\varepsilon_0}=\omega/c$.</span><span lang="en">Same split: the free-space part is $\omega\sqrt{\mu_0\varepsilon_0}=\omega/c$.</span></p>
+      <div class="m">\[\begin{aligned}\beta&=\omega\sqrt{\mu\varepsilon}=\omega\sqrt{\mu_0\varepsilon_0}\,\sqrt{\mu_r\varepsilon_r}\\&=\frac{\omega}{c}\sqrt{1\cdot4}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\sqrt4=2$</span><span lang="en">$\sqrt4=2$</span></h4>
+      <div class="m">\[\beta=\frac{2\omega}{c}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نطلّع $\omega$ ونعوّض $\beta=1$</span><span lang="en">Solve for $\omega$ with $\beta=1$</span></h4>
+      <div class="m">\[\omega=\frac{\beta c}{2}=\frac{1\,(3\times10^8)}{2}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(2)">$\omega=1.5\times10^8\ \text{rad/s}$</div>
+      <p class="sanity"><span lang="ar">السرعة $u=\omega/\beta=1.5\times10^8=c/2$، وهذا صح لأن $u=c/\sqrt{\varepsilon_r}=c/2$ ✓.</span><span lang="en">The speed $u=\omega/\beta=1.5\times10^8=c/2$, correct since $u=c/\sqrt{\varepsilon_r}=c/2$ ✓.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(3) المجال $\X{\mathbf E}$: الطريقة الأولى (تقنيات هالفصل)</span><span lang="en">(3) The field $\X{\mathbf E}$: Method 1 (this chapter's techniques)</span></h3>
+  <p><span lang="ar">الدكتور يقول فيه طريقتين: بالتقنيات اللي أخذناها هنا ($\eta$ والاتجاهات)، أو مباشرة بمعادلات ماكسويل زي الفصل 9. نبدأ بالأولى. الفكرة: $\mathbf H$ فيه حدين مختلفين (واحد $\cos$ على $x$ والثاني $\sin$ على $y$)، فنقسمه ونتعامل مع كل حد لحاله، وبعدين نجمع (التراكب، لأن المعادلات خطية):</span><span lang="en">The doctor says there are two ways: with this chapter's techniques ($\eta$ and directions), or directly with Maxwell's equations as in Chapter 9. Start with the first. The idea: $\mathbf H$ has two different terms (a $\cos$ along $x$ and a $\sin$ along $y$), so split it, handle each term alone, then add (superposition, since the equations are linear):</span></p>
+  <div class="m">\[\Y{\mathbf H}=\Y{\mathbf H_1}+\Y{\mathbf H_2},\qquad \X{\mathbf E}=\X{\mathbf E_1}+\X{\mathbf E_2}\]</div>
+  <div class="m">\[\begin{aligned}\Y{\mathbf H_1}&=-0.1\cos(\omega t-z)\,\mathbf a_x\\ \Y{\mathbf H_2}&=0.5\sin(\omega t-z)\,\mathbf a_y\end{aligned}\]</div>
+  <div class="m">\[\begin{aligned}\X{\mathbf E_1}&=E_{10}\cos(\omega t-z)\,\mathbf a_{E_1}\\ \X{\mathbf E_2}&=E_{20}\sin(\omega t-z)\,\mathbf a_{E_2}\end{aligned}\]</div>
+  <p class="why"><span lang="ar">ليش نفس الدالة ($\cos$ مع $\cos$، $\sin$ مع $\sin$) ونفس الطور؟ لأن العازل مثالي: $\theta_\eta=0$، فـ $\mathbf E$ و $\mathbf H$ في نفس الطور. ولاحظ إن $\mathbf H$ ما فيه مركبة على $z$ (اتجاه الانتشار) ← موجة TEM.</span><span lang="en">Why the same function ($\cos$ with $\cos$, $\sin$ with $\sin$) and the same phase? The medium is lossless: $\theta_\eta=0$, so $\mathbf E$ and $\mathbf H$ are in phase. Note that $\mathbf H$ has no $z$ component (the propagation direction) → a TEM wave.</span></p>
+
+  <h3><span lang="ar">الحد الأول $\X{\mathbf E_1}$</span><span lang="en">The first term $\X{\mathbf E_1}$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الإشارة السالبة = اتجاه</span><span lang="en">The minus sign is a direction</span></h4>
+      <p class="why"><span lang="ar">السعة دايماً موجبة. فنكتب $-0.1\,\mathbf a_x$ كسعة $0.1$ باتجاه $-\mathbf a_x$.</span><span lang="en">Amplitudes are always positive, so read $-0.1\,\mathbf a_x$ as amplitude $0.1$ along $-\mathbf a_x$.</span></p>
+      <div class="map"><span class="y">H₁₀ = 0.1</span><span class="y">a_H₁ = −a_x</span><span class="x">a_k = a_z</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قانون اتجاه $\mathbf E$</span><span lang="en">The direction rule for $\mathbf E$</span></h4>
+      <p class="why"><span lang="ar">من $\mathbf a_E\times\mathbf a_H=\mathbf a_k$ يطلع $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$.</span><span lang="en">From $\mathbf a_E\times\mathbf a_H=\mathbf a_k$ we get $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$.</span></p>
+      <div class="m">\[\begin{aligned}\mathbf a_{E_1}&=-(\mathbf a_k\times\mathbf a_{H_1})\\&=-\big(\mathbf a_z\times(-\mathbf a_x)\big)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نطلّع السالب الداخلي برا</span><span lang="en">Pull the inner minus out</span></h4>
+      <p class="why"><span lang="ar">سالب × سالب = موجب.</span><span lang="en">Minus times minus = plus.</span></p>
+      <div class="m">\[\mathbf a_{E_1}=+(\mathbf a_z\times\mathbf a_x)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الضرب الاتجاهي مع الدورة</span><span lang="en">Cross product along the cycle</span></h4>
+      <p class="why"><span lang="ar">$z\to x\to y$ مع الدورة ← موجب.</span><span lang="en">$z\to x\to y$ follows the cycle → positive.</span></p>
+      <div class="m">\[\mathbf a_z\times\mathbf a_x=\mathbf a_y\ \Rightarrow\ \mathbf a_{E_1}=\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السعة: $E_0=\eta H_0$</span><span lang="en">Amplitude: $E_0=\eta H_0$</span></h4>
+      <div class="m">\[E_{10}=\eta H_{10}=60\pi(0.1)=6\pi\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="E₁">$\X{\mathbf E_1}=6\pi\cos(\omega t-z)\,\mathbf a_y$</div>
+      <p class="sanity"><span lang="ar">نتأكد: $\mathbf a_E\times\mathbf a_H=\mathbf a_y\times(-\mathbf a_x)$ $=-(\mathbf a_y\times\mathbf a_x)=-(-\mathbf a_z)=\mathbf a_z$ ✓ نفس اتجاه الانتشار.</span><span lang="en">Check: $\mathbf a_E\times\mathbf a_H=\mathbf a_y\times(-\mathbf a_x)$ $=-(\mathbf a_y\times\mathbf a_x)=-(-\mathbf a_z)=\mathbf a_z$ ✓ the propagation direction.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">الحد الثاني $\X{\mathbf E_2}$</span><span lang="en">The second term $\X{\mathbf E_2}$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المعطيات</span><span lang="en">The givens</span></h4>
+      <div class="map"><span class="y">H₂₀ = 0.5</span><span class="y">a_H₂ = a_y</span><span class="x">a_k = a_z</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الاتجاه</span><span lang="en">The direction</span></h4>
+      <div class="m">\[\mathbf a_{E_2}=-(\mathbf a_k\times\mathbf a_{H_2})=-(\mathbf a_z\times\mathbf a_y)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الضرب عكس الدورة ← سالب</span><span lang="en">Against the cycle → negative</span></h4>
+      <p class="why"><span lang="ar">$z\to y$ عكس الدورة $x\to y\to z$.</span><span lang="en">$z\to y$ runs against the cycle $x\to y\to z$.</span></p>
+      <div class="m">\[\mathbf a_z\times\mathbf a_y=-\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">سالب × سالب</span><span lang="en">Minus times minus</span></h4>
+      <div class="m">\[\mathbf a_{E_2}=-(-\mathbf a_x)=\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السعة</span><span lang="en">Amplitude</span></h4>
+      <div class="m">\[E_{20}=\eta H_{20}=60\pi(0.5)=30\pi\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="E₂">$\X{\mathbf E_2}=30\pi\sin(\omega t-z)\,\mathbf a_x$</div>
+      <p class="sanity"><span lang="ar">نتأكد: $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ ✓.</span><span lang="en">Check: $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ ✓.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">نجمع</span><span lang="en">Add them</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الأرقام العشرية</span><span lang="en">Decimal values</span></h4>
+      <div class="m">\[\begin{gathered}30\pi=94.25,\qquad 6\pi=18.85\\ \omega=1.5\times10^8\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="E">$\X{\mathbf E}=94.25\sin(1.5\times10^8t-z)\,\mathbf a_x$<br>$+\,18.85\cos(1.5\times10^8t-z)\,\mathbf a_y\ \text{V/m}$</div>
+      <p class="sanity"><span lang="ar">لاحظ التبديل: $\mathbf H$ على $x$ صار $\mathbf E$ على $y$، و $\mathbf H$ على $y$ صار $\mathbf E$ على $x$. وكل سعة انضربت في $\eta=60\pi$.</span><span lang="en">Notice the swap: $\mathbf H$ along $x$ became $\mathbf E$ along $y$, and $\mathbf H$ along $y$ became $\mathbf E$ along $x$. Each amplitude was multiplied by $\eta=60\pi$.</span></p>
+    </li>
+  </ol>
+
+  <details class="tv"><summary><span lang="ar">الطريقة الثانية: بمعادلات ماكسويل مباشرة (تأكيد)</span><span lang="en">Method 2: directly with Maxwell's equations (a check)</span></summary>
+    <p><span lang="ar">في عازل مثالي ($\sigma=0$، $\mathbf J=0$) معادلة أمبير-ماكسويل تصير $\nabla\times\mathbf H=\varepsilon\,\partial\mathbf E/\partial t$.</span><span lang="en">In a lossless medium ($\sigma=0$, $\mathbf J=0$) the Ampère–Maxwell equation becomes $\nabla\times\mathbf H=\varepsilon\,\partial\mathbf E/\partial t$.</span></p>
+    <ol class="solve">
+      <li class="step read">
+        <h4><span lang="ar">الكيرل لمجال يعتمد على $z$ بس</span><span lang="en">Curl of a field that depends on $z$ only</span></h4>
+        <p class="why"><span lang="ar">$H_x$ و $H_y$ دوال في $z$ و $t$ بس، فالمشتقات على $x$ و $y$ صفر.</span><span lang="en">$H_x$ and $H_y$ depend on $z$ and $t$ only, so $x$ and $y$ derivatives vanish.</span></p>
+        <div class="m">\[\nabla\times\mathbf H=-\frac{\partial H_y}{\partial z}\,\mathbf a_x+\frac{\partial H_x}{\partial z}\,\mathbf a_y\]</div>
+      </li>
+      <li class="step">
+        <h4><span lang="ar">نشتق (قاعدة السلسلة، مشتقة $(\omega t-z)$ على $z$ = $-1$)</span><span lang="en">Differentiate (chain rule: $d(\omega t-z)/dz=-1$)</span></h4>
+        <div class="m">\[\begin{aligned}\frac{\partial H_y}{\partial z}&=0.5\cos(\omega t-z)(-1)\\&=-0.5\cos(\omega t-z)\end{aligned}\]</div>
+        <div class="m">\[\begin{aligned}\frac{\partial H_x}{\partial z}&=-0.1\big(-\sin(\omega t-z)\big)(-1)\\&=-0.1\sin(\omega t-z)\end{aligned}\]</div>
+      </li>
+      <li class="step">
+        <h4><span lang="ar">الكيرل</span><span lang="en">The curl</span></h4>
+        <div class="m">\[\begin{aligned}\nabla\times\mathbf H=\ &0.5\cos(\omega t-z)\,\mathbf a_x\\&-0.1\sin(\omega t-z)\,\mathbf a_y\end{aligned}\]</div>
+      </li>
+      <li class="step">
+        <h4><span lang="ar">نكامل على $t$ ونقسم على $\varepsilon$</span><span lang="en">Integrate over $t$ and divide by $\varepsilon$</span></h4>
+        <p class="why"><span lang="ar">$\int\cos(\omega t-z)\,dt=\tfrac1\omega\sin(\omega t-z)$ و $\int-\sin(\omega t-z)\,dt=\tfrac1\omega\cos(\omega t-z)$.</span><span lang="en">$\int\cos(\omega t-z)\,dt=\tfrac1\omega\sin(\omega t-z)$ and $\int-\sin(\omega t-z)\,dt=\tfrac1\omega\cos(\omega t-z)$.</span></p>
+        <div class="m">\[\begin{aligned}\mathbf E=\frac{1}{\omega\varepsilon}\big[&0.5\sin(\omega t-z)\,\mathbf a_x\\&+0.1\cos(\omega t-z)\,\mathbf a_y\big]\end{aligned}\]</div>
+      </li>
+      <li class="step">
+        <h4><span lang="ar">نحسب $1/\omega\varepsilon$</span><span lang="en">Compute $1/\omega\varepsilon$</span></h4>
+        <div class="m">\[\begin{aligned}\omega\varepsilon&=1.5\times10^8\times4\times\frac{10^{-9}}{36\pi}\\&=\frac{1}{60\pi}\\ \frac{1}{\omega\varepsilon}&=60\pi=\eta\end{aligned}\]</div>
+      </li>
+      <li class="step final">
+        <div class="result">$\X{\mathbf E}=30\pi\sin(\omega t-z)\,\mathbf a_x$<br>$+\,6\pi\cos(\omega t-z)\,\mathbf a_y$</div>
+        <p class="sanity"><span lang="ar">نفس جواب الطريقة الأولى بالضبط ✓.</span><span lang="en">Exactly the Method 1 answer ✓.</span></p>
+      </li>
+    </ol>
+  </details>
+</section>
+
+<!-- ================= مثال 10.4 ================= -->
+<section class="card" id="ex4" data-nav="مثال 10.4|Ex 10.4">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.4</span><span lang="en">Example 10.4</span></span><h2><span lang="ar">موجة في وسط مغناطيسي موصل: أوجد $\Z{\alpha}$ و $\beta$ و $\mathbf H$</span><span lang="en">A wave in a conducting magnetic medium: find $\Z{\alpha}$, $\beta$ and $\mathbf H$</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.4</span></div>
+  <p><span lang="ar">موجة مستوية منتظمة تنتشر في وسط:</span><span lang="en">A uniform plane wave propagating in a medium has</span></p>
+  <div class="m big">\[\X{\mathbf E}=2e^{-\Z{\alpha}z}\sin(10^8t-\beta z)\,\mathbf a_y\ \ \text{V/m}\]</div>
+  <p><span lang="ar">الوسط: $\varepsilon_r=1$ و $\mu_r=20$ و $\sigma=3\ \text{S/m}$. أوجد $\Z{\alpha}$ و $\beta$ و $\Y{\mathbf H}$.</span><span lang="en">The medium: $\varepsilon_r=1$, $\mu_r=20$, $\sigma=3\ \text{S/m}$. Find $\Z{\alpha}$, $\beta$ and $\Y{\mathbf H}$.</span></p>
+
+  <h3><span lang="ar">(1) أي نوع وسط؟ ظل الفقد</span><span lang="en">(1) Which medium? The loss tangent</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ المعطيات</span><span lang="en">Read the givens</span></h4>
+      <p class="why"><span lang="ar">قبل لا نختار أي قانون لازم نعرف: الوسط عازل فقّاد ولا موصل جيد؟ وهذا يحدده $\sigma/\omega\varepsilon$.</span><span lang="en">Before choosing formulas we must know: lossy dielectric or good conductor? $\sigma/\omega\varepsilon$ decides.</span></p>
+      <div class="map"><span class="x">E₀ = 2</span><span class="x">ω = 10⁸</span><span class="x">a_E = a_y</span><span class="x">a_k = +a_z</span><span class="z">σ = 3</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نحسب $\omega\varepsilon$</span><span lang="en">Compute $\omega\varepsilon$</span></h4>
+      <p class="why"><span lang="ar">$\varepsilon=\varepsilon_0\varepsilon_r=\dfrac{10^{-9}}{36\pi}\times1$.</span><span lang="en">$\varepsilon=\varepsilon_0\varepsilon_r=\dfrac{10^{-9}}{36\pi}\times1$.</span></p>
+      <div class="m">\[\begin{aligned}\omega\varepsilon&=10^8\times1\times\frac{10^{-9}}{36\pi}\\&=8.84\times10^{-4}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النسبة</span><span lang="en">The ratio</span></h4>
+      <div class="m">\[\frac{\sigma}{\omega\varepsilon}=\frac{3}{8.84\times10^{-4}}=3393\gg1\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(1)"><span lang="ar">موصل جيد</span><span lang="en">Good conductor</span></div>
+      <p class="sanity"><span lang="ar">تيار التوصيل أكبر من تيار الإزاحة 3393 مرة عند هالتردد، فنستخدم قوانين الموصل الجيد.</span><span lang="en">Conduction current is 3393 times the displacement current at this frequency, so we use the good-conductor formulas.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(2) $\Z{\alpha}$ و $\beta$</span><span lang="en">(2) $\Z{\alpha}$ and $\beta$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">قانون الموصل الجيد</span><span lang="en">The good-conductor formula</span></h4>
+      <p class="why"><span lang="ar">هنا معطينا $\omega$ مو $f$، فنستخدم صيغة $\omega$. وانتبه: $\mu=\mu_0\mu_r$ و $\mu_r=20$، لا تنساها!</span><span lang="en">We're given $\omega$, not $f$, so use the $\omega$ form. Careful: $\mu=\mu_0\mu_r$ with $\mu_r=20$; don't forget it!</span></p>
+      <div class="m">\[\Z{\alpha}=\beta=\sqrt{\frac{\mu\omega\sigma}{2}}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض</span><span lang="en">Substitute</span></h4>
+      <div class="m">\[\Z{\alpha}=\left[\frac{4\pi\times10^{-7}\times20\,(10^8)(3)}{2}\right]^{1/2}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">داخل القوس</span><span lang="en">Inside the bracket</span></h4>
+      <p class="why"><span lang="ar">$4\pi\times10^{-7}\times20=2.513\times10^{-5}$، في $10^8$ = $2513$، في 3 = $7540$، على 2 = $3770$.</span><span lang="en">$4\pi\times10^{-7}\times20=2.513\times10^{-5}$, times $10^8$ = $2513$, times 3 = $7540$, over 2 = $3770$.</span></p>
+      <div class="m">\[\Z{\alpha}=\sqrt{3770}=61.4\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(2)">$\Z{\alpha}=61.4\ \text{Np/m},\qquad \beta=61.4\ \text{rad/m}$</div>
+      <p class="sanity"><span lang="ar">نفس الرقم بوحدتين مختلفتين: Np/m للتوهين و rad/m للطور. وعمق الاختراق $\delta=1/61.4=16.3\ \text{mm}$.</span><span lang="en">Same number, two units: Np/m for attenuation, rad/m for phase. The skin depth is $\delta=1/61.4=16.3\ \text{mm}$.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(3) المجال $\Y{\mathbf H}$</span><span lang="en">(3) The field $\Y{\mathbf H}$</span></h3>
+  <p><span lang="ar">نحتاج ثلاث أشياء: السعة $H_0=E_0/|\eta|$، والطور (تأخير $\theta_\eta$)، والاتجاه $\mathbf a_H$. الشكل العام:</span><span lang="en">We need three things: the amplitude $H_0=E_0/|\eta|$, the phase (lag $\theta_\eta$) and the direction $\mathbf a_H$. The general form:</span></p>
+  <div class="m">\[\Y{\mathbf H}=H_0\,e^{-\Z{\alpha}z}\sin(\omega t-\beta z-\theta_\eta)\,\mathbf a_H\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">مقدار $\eta$</span><span lang="en">The magnitude of $\eta$</span></h4>
+      <div class="m">\[\begin{aligned}|\eta|&=\sqrt{\frac{\mu\omega}{\sigma}}\\&=\left[\frac{4\pi\times10^{-7}\times20\,(10^8)}{3}\right]^{1/2}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نبسّط</span><span lang="en">Simplify</span></h4>
+      <p class="why"><span lang="ar">$4\pi\times20\times10^{-7}\times10^8=800\pi$.</span><span lang="en">$4\pi\times20\times10^{-7}\times10^8=800\pi$.</span></p>
+      <div class="m">\[|\eta|=\sqrt{\frac{800\pi}{3}}=28.94\ \Omega\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">زاوية $\eta$</span><span lang="en">The angle of $\eta$</span></h4>
+      <p class="why"><span lang="ar">$\tan^{-1}(3393)$ تقريباً $90^\circ$ (89.98°)، ونقسم على 2.</span><span lang="en">$\tan^{-1}(3393)$ is about $90^\circ$ (89.98°); halve it.</span></p>
+      <div class="m">\[\begin{gathered}\tan2\theta_\eta=\frac{\sigma}{\omega\varepsilon}=3393\\ \Rightarrow\ \theta_\eta=45^\circ=\frac{\pi}{4}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اتجاه $\mathbf H$</span><span lang="en">The direction of $\mathbf H$</span></h4>
+      <p class="why"><span lang="ar">$\mathbf a_H=\mathbf a_k\times\mathbf a_E$، و $z\to y$ عكس الدورة ← سالب.</span><span lang="en">$\mathbf a_H=\mathbf a_k\times\mathbf a_E$, and $z\to y$ runs against the cycle → negative.</span></p>
+      <div class="m">\[\mathbf a_H=\mathbf a_k\times\mathbf a_E=\mathbf a_z\times\mathbf a_y=-\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السعة</span><span lang="en">The amplitude</span></h4>
+      <p class="why"><span lang="ar">القسمة على $\sqrt{800\pi/3}$ = الضرب في $\sqrt{3/800\pi}$.</span><span lang="en">Dividing by $\sqrt{800\pi/3}$ = multiplying by $\sqrt{3/800\pi}$.</span></p>
+      <div class="m">\[\begin{aligned}H_0=\frac{E_0}{|\eta|}&=2\sqrt{\frac{3}{800\pi}}\\&=69.1\times10^{-3}\ \text{A/m}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نجمع كل شي</span><span lang="en">Put it all together</span></h4>
+      <p class="why"><span lang="ar">$\Y{\mathbf H}$ يتأخر عن $\X{\mathbf E}$ بـ $\pi/4$ فنطرحها من الطور، ونفس معامل التوهين $e^{-61.4z}$.</span><span lang="en">$\Y{\mathbf H}$ lags $\X{\mathbf E}$ by $\pi/4$, so subtract it from the phase; same attenuation factor $e^{-61.4z}$.</span></p>
+      <div class="m">\[\begin{aligned}\Y{\mathbf H}=\ &69.1\,e^{-61.4z}\\&\times\sin\!\left(10^8t-61.4z-\frac{\pi}{4}\right)\\&\times(-\mathbf a_x)\ \text{mA/m}\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(3)">$\Y{\mathbf H}=-69.1\,e^{-61.4z}$<br>$\times\sin\!\left(10^8t-61.4z-\tfrac{\pi}{4}\right)\mathbf a_x\ \text{mA/m}$</div>
+      <p class="sanity"><span lang="ar">نتأكد من الاتجاه: $\mathbf a_E\times\mathbf a_H=\mathbf a_y\times(-\mathbf a_x)=\mathbf a_z$ ✓. (في السلايد مكتوب $61.42z$ داخل الـ sin، هي نفسها $\beta=61.4$ بتقريب ثاني.)</span><span lang="en">Direction check: $\mathbf a_E\times\mathbf a_H=\mathbf a_y\times(-\mathbf a_x)=\mathbf a_z$ ✓. (The slide writes $61.42z$ inside the sine; it's the same $\beta=61.4$ rounded differently.)</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 10.6 ================= -->
+<section class="card" id="ex6" data-nav="مثال 10.6|Ex 10.6">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.6</span><span lang="en">Example 10.6</span></span><h2><span lang="ar">مقاومة كيبل محوري نحاس عند dc وعند <span dir="ltr">100 MHz</span></span><span lang="en">Resistance of a copper coax at dc and at 100 MHz</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.6</span></div>
+  <p><span lang="ar">للكيبل المحوري النحاسي في الشكل 7.12: $a=2\ \text{mm}$ و $b=6\ \text{mm}$ و $t=1\ \text{mm}$. احسب مقاومة طول <span dir="ltr">2 m</span> من الكيبل عند dc وعند <span dir="ltr">100 MHz</span>، إذا $\sigma=5.8\times10^7\ \text{S/m}$.</span><span lang="en">For the copper coaxial cable of Figure 7.12, let $a=2\ \text{mm}$, $b=6\ \text{mm}$ and $t=1\ \text{mm}$. Calculate the resistance of a 2 m length at dc and at 100 MHz, with $\sigma=5.8\times10^7\ \text{S/m}$.</span></p>
+  <svg viewBox="0 0 300 160" role="img" aria-label="Coax cross-section: solid inner conductor of radius a, outer conductor ring from radius b to b plus t" style="display:block;margin:6px auto;max-width:300px;width:100%">
+    <circle cx="80" cy="80" r="70" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-opacity=".5"/>
+    <circle cx="80" cy="80" r="60" fill="var(--surface)" stroke="currentColor" stroke-opacity=".5"/>
+    <circle cx="80" cy="80" r="20" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-opacity=".5"/>
+    <line x1="80" y1="80" x2="100" y2="80" stroke="currentColor"/><text x="84" y="76" font-size="11" fill="currentColor" font-style="italic">a</text>
+    <line x1="80" y1="80" x2="80" y2="20" stroke="currentColor"/><text x="84" y="48" font-size="11" fill="currentColor" font-style="italic">b</text>
+    <text x="160" y="40" font-size="12" fill="currentColor">a = 2 mm (inner)</text>
+    <text x="160" y="62" font-size="12" fill="currentColor">b = 6 mm</text>
+    <text x="160" y="84" font-size="12" fill="currentColor">t = 1 mm (outer)</text>
+    <text x="160" y="106" font-size="12" fill="currentColor">ℓ = 2 m</text>
+  </svg>
+  <p><span lang="ar"><b>الفكرة:</b> الكيبل فيه موصلين: <b>داخلي</b> مصمت نصف قطره $a$، و<b>خارجي</b> أنبوب يبدأ من $b$ وسمكه $t$ (يعني ينتهي عند $b+t$). التيار يروح في الداخلي ويرجع في الخارجي، فالمقاومتين على التوالي:</span><span lang="en"><b>The idea:</b> the cable has two conductors: a solid <b>inner</b> one of radius $a$, and an <b>outer</b> tube starting at $b$ with thickness $t$ (ending at $b+t$). Current goes out on the inner and back on the outer, so the resistances are in series:</span></p>
+  <div class="m">\[R=R_i+R_o\]</div>
+  <p class="why"><span lang="ar">$R_i$ للموصل الداخلي (inner) و $R_o$ للخارجي (outer). (في السلايد الترتيب مكتوب بالعكس "inner and outer"، المقصود $R_o$ الخارجي و $R_i$ الداخلي.)</span><span lang="en">$R_i$ is the inner conductor, $R_o$ the outer. (The slide lists them in the opposite order; $R_o$ is outer and $R_i$ inner.)</span></p>
+
+  <h3><span lang="ar">(1) عند dc: التيار مالي المقطع كله</span><span lang="en">(1) At dc: current fills the whole section</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الموصل الداخلي: مقطع دائري</span><span lang="en">Inner conductor: a circular section</span></h4>
+      <div class="m">\[R_i=\frac{\ell}{\sigma S}=\frac{\ell}{\sigma\pi a^2}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المساحة (حوّل mm إلى m)</span><span lang="en">The area (convert mm to m)</span></h4>
+      <div class="m">\[\begin{aligned}\pi a^2&=\pi(2\times10^{-3})^2\\&=1.257\times10^{-5}\ \text{m}^2\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض</span><span lang="en">Substitute</span></h4>
+      <div class="m">\[\begin{aligned}R_i&=\frac{2}{5.8\times10^7\times1.257\times10^{-5}}\\&=\frac{2}{728.8}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النتيجة</span><span lang="en">Result</span></h4>
+      <div class="m">\[R_i=2.744\times10^{-3}\ \Omega=2.744\ \text{m}\Omega\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الموصل الخارجي: مقطع حلقي</span><span lang="en">Outer conductor: a ring section</span></h4>
+      <p class="why"><span lang="ar">مساحة الحلقة = الدائرة الكبيرة ($b+t$) ناقص الصغيرة ($b$).</span><span lang="en">Ring area = big circle ($b+t$) minus small circle ($b$).</span></p>
+      <div class="m">\[R_o=\frac{\ell}{\sigma S}=\frac{\ell}{\sigma\pi\left[(b+t)^2-b^2\right]}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نفك القوس</span><span lang="en">Expand the bracket</span></h4>
+      <p class="why"><span lang="ar">$(b+t)^2=b^2+2bt+t^2$، و $b^2$ تروح مع $-b^2$.</span><span lang="en">$(b+t)^2=b^2+2bt+t^2$; $b^2$ cancels $-b^2$.</span></p>
+      <div class="m">\[(b+t)^2-b^2=t^2+2bt\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الأرقام بالـ mm أول</span><span lang="en">Numbers in mm first</span></h4>
+      <div class="m">\[\begin{aligned}t^2+2bt&=1+2(6)(1)=13\ \text{mm}^2\\&=13\times10^{-6}\ \text{m}^2\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض</span><span lang="en">Substitute</span></h4>
+      <div class="m">\[\begin{aligned}R_o&=\frac{2}{5.8\times10^7\,\pi\,[13]\times10^{-6}}\\&=\frac{2}{2369}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النتيجة</span><span lang="en">Result</span></h4>
+      <div class="m">\[R_o=0.844\ \text{m}\Omega\]</div>
+      <p class="why"><span lang="ar">في السلايد $0.8429$، والحساب الدقيق $0.8443$. فرق تقريب بسيط، أي واحد منهم مقبول.</span><span lang="en">The slide has $0.8429$; the exact value is $0.8443$. A small rounding difference; either is fine.</span></p>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="R dc">$R_{dc}=2.744+0.8429=3.587\ \text{m}\Omega$</div>
+      <p class="sanity"><span lang="ar">الداخلي أكبر مقاومة لأن مقطعه أصغر ($4\pi$ مقابل $13\pi\ \text{mm}^2$).</span><span lang="en">The inner has more resistance because its section is smaller ($4\pi$ versus $13\pi\ \text{mm}^2$).</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(2) عند <span dir="ltr">100 MHz</span>: التيار في القشرة بس</span><span lang="en">(2) At 100 MHz: current only in the skin</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">أول شي: نتأكد إن $\delta$ صغيرة</span><span lang="en">First: check that $\delta$ is small</span></h4>
+      <p class="why"><span lang="ar">من قانون النحاس $\delta=66.1/\sqrt f$ mm.</span><span lang="en">From the copper rule $\delta=66.1/\sqrt f$ mm.</span></p>
+      <div class="m">\[\delta=\frac{66.1}{\sqrt{10^8}}=\frac{66.1}{10^4}\ \text{mm}=6.6\ \mu\text{m}\]</div>
+      <p class="why"><span lang="ar">$6.6\ \mu\text{m}\ll a=2\ \text{mm}$ و $\ll t=1\ \text{mm}$، فقانون القشرة $R_{ac}=R_s\ell/w$ يصلح للاثنين.</span><span lang="en">$6.6\ \mu\text{m}\ll a=2\ \text{mm}$ and $\ll t=1\ \text{mm}$, so the skin formula $R_{ac}=R_s\ell/w$ holds for both.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مقاومة السطح $R_s$ (مشتركة للاثنين)</span><span lang="en">Surface resistance $R_s$ (shared by both)</span></h4>
+      <div class="m">\[\begin{aligned}R_s&=\sqrt{\frac{\pi f\mu}{\sigma}}\\&=\sqrt{\frac{\pi\times10^8\times4\pi\times10^{-7}}{5.8\times10^7}}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نحسب</span><span lang="en">Compute</span></h4>
+      <p class="why"><span lang="ar">البسط: $4\pi^2\times10=394.8$. على $5.8\times10^7$ = $6.81\times10^{-6}$، والجذر:</span><span lang="en">Numerator: $4\pi^2\times10=394.8$. Over $5.8\times10^7$ = $6.81\times10^{-6}$; the root:</span></p>
+      <div class="m">\[R_s=2.61\times10^{-3}\ \Omega\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الداخلي: التيار على سطحه الخارجي ← $w=2\pi a$</span><span lang="en">Inner: current on its outer surface → $w=2\pi a$</span></h4>
+      <p class="why"><span lang="ar">المجالات موجودة في الفراغ <b>بين</b> الموصلين، فتدخل كل موصل من الجهة اللي تطالع هالفراغ. الداخلي يطالعه سطحه الخارجي عند $a$.</span><span lang="en">The fields live in the space <b>between</b> the conductors, so they enter each conductor from the side facing that space. For the inner, that's its outer surface at $a$.</span></p>
+      <div class="m">\[R_i=\frac{R_s\ell}{w}=\frac{\ell}{2\pi a}\sqrt{\frac{\pi f\mu}{\sigma}}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض</span><span lang="en">Substitute</span></h4>
+      <div class="m">\[\begin{aligned}R_i&=\frac{2}{2\pi\times2\times10^{-3}}\\&\quad\times2.61\times10^{-3}\\&=159.2\times2.61\times10^{-3}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النتيجة</span><span lang="en">Result</span></h4>
+      <div class="m">\[R_i=0.415\ \Omega\approx0.41\ \Omega\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الخارجي: التيار على سطحه الداخلي ← $w=2\pi b$</span><span lang="en">Outer: current on its inner surface → $w=2\pi b$</span></h4>
+      <p class="why"><span lang="ar">الموصل الخارجي يطالع الفراغ بسطحه الداخلي عند $b$. ولأن $\delta=6.6\ \mu\text{m}\ll t=1\ \text{mm}$، التيار ما يوصل لسطحه الخارجي أصلاً، فـ $t$ ما تدخل في الحساب.</span><span lang="en">The outer conductor faces the gap with its inner surface at $b$. Since $\delta=6.6\ \mu\text{m}\ll t=1\ \text{mm}$, the current never reaches its outer surface, so $t$ plays no role.</span></p>
+      <div class="m">\[\begin{aligned}R_o&=\frac{\ell}{2\pi b}\sqrt{\frac{\pi f\mu}{\sigma}}\\&=\frac{2}{2\pi\times6\times10^{-3}}\\&\quad\times2.61\times10^{-3}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النتيجة</span><span lang="en">Result</span></h4>
+      <p class="why"><span lang="ar">طريقة أسرع: $b=3a$ فـ $R_o=R_i/3$.</span><span lang="en">Quicker: $b=3a$ so $R_o=R_i/3$.</span></p>
+      <div class="m">\[\begin{aligned}R_o&=53.05\times2.61\times10^{-3}\\&=0.1384\ \Omega\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نجمع</span><span lang="en">Add</span></h4>
+      <div class="m">\[R_{ac}=R_i+R_o=0.41+0.1384\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="R ac">$R_{ac}=0.5484\ \Omega$</div>
+      <p class="sanity"><span lang="ar">(لو ما قرّبت $R_i$ يطلع $0.553\ \Omega$، نفس الفكرة.) نقارن: $0.55/3.587\times10^{-3}\approx150$. يعني عند <span dir="ltr">100 MHz</span> المقاومة <b>أكبر 150 مرة</b> من الـ dc، ولنفس التيار الفعّال $i$، فقد الحرارة $i^2R$ أكبر 150 مرة.</span><span lang="en">(Without rounding $R_i$ you get $0.553\ \Omega$; same idea.) Compare: $0.55/3.587\times10^{-3}\approx150$. At 100 MHz the resistance is <b>about 150 times</b> the dc value, so for the same effective current $i$ the ohmic loss $i^2R$ is 150 times larger.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2><span lang="ar">طريقة حل أي مسألة في هالمحاضرة</span><span lang="en">How to solve any problem in this lecture</span></h2>
+  <ol class="recipe">
+    <li><b><span lang="ar">حدّد الوسط</span><span lang="en">Identify the medium</span></b><span class="why"><span lang="ar">lossless أو $\sigma=0$ ← عازل مثالي. فراغ/هواء ← $\varepsilon_r=\mu_r=1$. غير كذا احسب $\sigma/\omega\varepsilon$ (ولا تنسى $\varepsilon=\varepsilon_0\varepsilon_r$ و $\varepsilon_0=10^{-9}/36\pi$).</span><span lang="en">Lossless or $\sigma=0$ → lossless dielectric. Free space/air → $\varepsilon_r=\mu_r=1$. Otherwise compute $\sigma/\omega\varepsilon$ (with $\varepsilon=\varepsilon_0\varepsilon_r$, $\varepsilon_0=10^{-9}/36\pi$).</span></span></li>
+    <li><b><span lang="ar">اقرأ الطور</span><span lang="en">Read the phase</span></b><span class="why"><span lang="ar">معامل $t$ = $\omega$، ومعامل $z$ = $\beta$، والإشارة بينهم = الاتجاه $\mathbf a_k$.</span><span lang="en">Coefficient of $t$ = $\omega$, of $z$ = $\beta$, and the sign between them = the direction $\mathbf a_k$.</span></span></li>
+    <li><b><span lang="ar">طبّق عمود الجدول</span><span lang="en">Use the table column</span></b><span class="why"><span lang="ar">عازل مثالي: $\eta=120\pi\sqrt{\mu_r/\varepsilon_r}$ و $\beta=(\omega/c)\sqrt{\mu_r\varepsilon_r}$. موصل جيد: $\Z{\alpha}=\beta=\sqrt{\pi f\mu\sigma}$ و $|\eta|=\sqrt{\omega\mu/\sigma}$ و $\theta_\eta=45^\circ$ (و $\mu=\mu_0\mu_r$!).</span><span lang="en">Lossless: $\eta=120\pi\sqrt{\mu_r/\varepsilon_r}$, $\beta=(\omega/c)\sqrt{\mu_r\varepsilon_r}$. Good conductor: $\Z{\alpha}=\beta=\sqrt{\pi f\mu\sigma}$, $|\eta|=\sqrt{\omega\mu/\sigma}$, $\theta_\eta=45^\circ$ (and $\mu=\mu_0\mu_r$!).</span></span></li>
+    <li><b><span lang="ar">من مجال للثاني</span><span lang="en">From one field to the other</span></b><span class="why"><span lang="ar">السعة $E_0=|\eta|H_0$. الطور: $\mathbf H$ يتأخر بـ $\theta_\eta$. الاتجاه: $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ أو $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$. والإشارة السالبة في السعة = اتجاه معكوس. ولو فيه حدين، كل حد لحاله.</span><span lang="en">Amplitude $E_0=|\eta|H_0$. Phase: $\mathbf H$ lags by $\theta_\eta$. Direction: $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ or $\mathbf a_E=-(\mathbf a_k\times\mathbf a_H)$. A minus on the amplitude = reversed direction. Two terms → handle each alone.</span></span></li>
+    <li><b><span lang="ar">مسائل المقاومة</span><span lang="en">Resistance problems</span></b><span class="why"><span lang="ar">dc: $\ell/(\sigma S)$ بالمقطع الكامل. ac: احسب $\delta$ وتأكد إنها $\ll$ الأبعاد، بعدين $R_{ac}=R_s\ell/w$ و $w$ = محيط السطح اللي يمشي عليه التيار.</span><span lang="en">dc: $\ell/(\sigma S)$ with the full section. ac: compute $\delta$, check it is $\ll$ the dimensions, then $R_{ac}=R_s\ell/w$ with $w$ = the perimeter of the surface carrying the current.</span></span></li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ افحص جوابك</span><span lang="en">✅ Check your answer</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">$\mathbf a_E\times\mathbf a_H$ لازم يطلع $\mathbf a_k$.</span><span lang="en">$\mathbf a_E\times\mathbf a_H$ must give $\mathbf a_k$.</span></li>
+      <li><span lang="ar">عازل مثالي: نفس الدالة ونفس الطور في $\mathbf E$ و $\mathbf H$. موصل جيد: $-\pi/4$ في طور $\mathbf H$.</span><span lang="en">Lossless: same function and phase in $\mathbf E$ and $\mathbf H$. Good conductor: $-\pi/4$ in the phase of $\mathbf H$.</span></li>
+      <li><span lang="ar">$R_{ac}\ge R_{dc}$ دايماً.</span><span lang="en">Always $R_{ac}\ge R_{dc}$.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين: كل وحدة تدرّب فكرة</span><span lang="en">Practice: each one trains one idea</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · ممانعة عازل</span><span lang="en">Exercise A · dielectric impedance</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">عازل مثالي فيه $\varepsilon_r=9$ و $\mu_r=1$. أوجد $\eta$ بالأوم (تقدر تكتب pi).</span><span lang="en">A lossless dielectric has $\varepsilon_r=9$, $\mu_r=1$. Find $\eta$ in ohms (you may type pi).</span></p>
+    <div class="check" data-answer="40*pi"></div>
+    <details class="hint"><p><span lang="ar">$\eta=120\pi/\sqrt{\varepsilon_r}$.</span><span lang="en">$\eta=120\pi/\sqrt{\varepsilon_r}$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[\eta=120\pi\sqrt{\frac{\mu_r}{\varepsilon_r}}=\frac{120\pi}{\sqrt9}\]</div></li>
+      <li class="step final"><div class="result">$\eta=40\pi\approx125.7\ \Omega$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · من E إلى H في الفراغ</span><span lang="en">Exercise B · from E to H in free space</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">في الفراغ: $\mathbf E=60\pi\cos(\omega t-\beta z)\,\mathbf a_x\ \text{V/m}$. أوجد سعة $\mathbf H$ بـ A/m. وش اتجاهه؟</span><span lang="en">In free space: $\mathbf E=60\pi\cos(\omega t-\beta z)\,\mathbf a_x\ \text{V/m}$. Find the amplitude of $\mathbf H$ in A/m. Which direction?</span></p>
+    <div class="check" data-answer="0.5"></div>
+    <details class="hint"><p><span lang="ar">$H_0=E_0/\eta_0$ و $\mathbf a_H=\mathbf a_k\times\mathbf a_E$.</span><span lang="en">$H_0=E_0/\eta_0$ and $\mathbf a_H=\mathbf a_k\times\mathbf a_E$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">السعة</span><span lang="en">Amplitude</span></h4><div class="m">\[H_0=\frac{E_0}{\eta_0}=\frac{60\pi}{120\pi}=0.5\ \text{A/m}\]</div></li>
+      <li class="step"><h4><span lang="ar">الاتجاه</span><span lang="en">Direction</span></h4><div class="m">\[\mathbf a_H=\mathbf a_z\times\mathbf a_x=\mathbf a_y\]</div></li>
+      <li class="step final"><div class="result">$\mathbf H=0.5\cos(\omega t-\beta z)\,\mathbf a_y\ \text{A/m}$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · عمق الاختراق في النحاس</span><span lang="en">Exercise C · skin depth in copper</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">أوجد $\delta$ للنحاس عند <span dir="ltr">1 MHz</span> بالميكرومتر (µm).</span><span lang="en">Find $\delta$ for copper at 1 MHz in micrometers (µm).</span></p>
+    <div class="check" data-answer="66.1"></div>
+    <details class="hint"><p><span lang="ar">$\delta=66.1/\sqrt f$ mm، و <span dir="ltr">1 mm = 1000 µm</span>.</span><span lang="en">$\delta=66.1/\sqrt f$ mm, and 1 mm = 1000 µm.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[\delta=\frac{66.1}{\sqrt{10^6}}=\frac{66.1}{1000}\ \text{mm}\]</div></li>
+      <li class="step final"><div class="result">$\delta=0.0661\ \text{mm}=66.1\ \mu\text{m}$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين د · نسبة المقاومة لسلك</span><span lang="en">Exercise D · wire resistance ratio</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">سلك نحاس نصف قطره <span dir="ltr">1 mm</span> عند <span dir="ltr">1 MHz</span>. أوجد $R_{ac}/R_{dc}$.</span><span lang="en">A copper wire of radius 1 mm at 1 MHz. Find $R_{ac}/R_{dc}$.</span></p>
+    <div class="check" data-answer="7.566"></div>
+    <details class="hint"><p><span lang="ar">استخدم $\delta$ من التمرين ج، و $R_{ac}/R_{dc}=a/2\delta$.</span><span lang="en">Use $\delta$ from Exercise C, and $R_{ac}/R_{dc}=a/2\delta$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الشرط</span><span lang="en">The condition</span></h4><p class="why"><span lang="ar">$\delta=66.1\ \mu\text{m}\ll a=1000\ \mu\text{m}$ ✓ القانون يصلح.</span><span lang="en">$\delta=66.1\ \mu\text{m}\ll a=1000\ \mu\text{m}$ ✓ the formula applies.</span></p></li>
+      <li class="step"><h4><span lang="ar">النسبة</span><span lang="en">The ratio</span></h4><div class="m">\[\frac{R_{ac}}{R_{dc}}=\frac{a}{2\delta}=\frac{1\times10^{-3}}{2\times66.1\times10^{-6}}\]</div></li>
+      <li class="step final"><div class="result">$R_{ac}/R_{dc}\approx7.57$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين هـ · ماء البحر والغواصات</span><span lang="en">Exercise E · seawater and submarines</span></b><span class="lvl"><span lang="ar">صعب</span><span lang="en">hard</span></span></div>
+    <p><span lang="ar">ماء البحر: $\sigma=4\ \text{S/m}$ و $\varepsilon_r=81$ و $\mu_r=1$. عند <span dir="ltr">1 kHz</span>: تأكد إنه موصل جيد، وبعدين أوجد $\delta$ بالمتر.</span><span lang="en">Seawater: $\sigma=4\ \text{S/m}$, $\varepsilon_r=81$, $\mu_r=1$. At 1 kHz: confirm it is a good conductor, then find $\delta$ in meters.</span></p>
+    <div class="check" data-answer="7.958"></div>
+    <details class="hint"><p><span lang="ar">$\omega\varepsilon=2\pi f\cdot81\varepsilon_0$. وبعدين $\delta=1/\sqrt{\pi f\mu_0\sigma}$.</span><span lang="en">$\omega\varepsilon=2\pi f\cdot81\varepsilon_0$, then $\delta=1/\sqrt{\pi f\mu_0\sigma}$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">ظل الفقد</span><span lang="en">Loss tangent</span></h4><div class="m">\[\begin{aligned}\omega\varepsilon&=2\pi(10^3)(81)\\&\quad\times\frac{10^{-9}}{36\pi}\\&=4.5\times10^{-6}\\ \frac{\sigma}{\omega\varepsilon}&=\frac{4}{4.5\times10^{-6}}=8.9\times10^5\gg1\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">تحت الجذر</span><span lang="en">Under the root</span></h4><div class="m">\[\begin{aligned}\pi f\mu_0\sigma&=\pi(10^3)(4\pi\times10^{-7})(4)\\&=0.0158\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">عمق الاختراق</span><span lang="en">Skin depth</span></h4><div class="m">\[\delta=\frac{1}{\sqrt{0.0158}}=\frac{1}{0.1257}\]</div></li>
+      <li class="step final"><div class="result">$\delta\approx7.96\ \text{m}$</div><p class="sanity"><span lang="ar">عشان كذا الاتصال بالغواصات يكون بترددات منخفضة جداً: عند الترددات العالية $\delta$ تصير سنتيمترات والموجة ما توصل.</span><span lang="en">That's why submarine communication uses very low frequencies: at high frequencies $\delta$ shrinks to centimeters and the wave never arrives.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">8 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">8 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="3">
+      <p><span lang="ar">في عازل مثالي، فرق الطور بين $\mathbf E$ و $\mathbf H$:</span><span lang="en">In a lossless dielectric, the phase difference between $\mathbf E$ and $\mathbf H$ is:</span></p>
+      <button>$45^\circ$</button><button>$90^\circ$</button><button>$0^\circ$</button><button>$180^\circ$</button>
+      <p class="q-why"><span lang="ar">$\eta=\sqrt{\mu/\varepsilon}\angle0^\circ$، فهم في نفس الطور.</span><span lang="en">$\eta=\sqrt{\mu/\varepsilon}\angle0^\circ$, so they are in phase.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">في موصل جيد:</span><span lang="en">In a good conductor:</span></p>
+      <button><span lang="ar">$\mathbf H$ يسبق $\mathbf E$ بـ 45°</span><span lang="en">$\mathbf H$ leads $\mathbf E$ by 45°</span></button><button><span lang="ar">$\mathbf E$ يسبق $\mathbf H$ بـ 45°</span><span lang="en">$\mathbf E$ leads $\mathbf H$ by 45°</span></button><button><span lang="ar">في نفس الطور</span><span lang="en">In phase</span></button><button><span lang="ar">$\mathbf E$ يسبق $\mathbf H$ بـ 90°</span><span lang="en">$\mathbf E$ leads $\mathbf H$ by 90°</span></button>
+      <p class="q-why"><span lang="ar">$\theta_\eta=45^\circ$ و $\mathbf H$ هو المتأخر.</span><span lang="en">$\theta_\eta=45^\circ$ and $\mathbf H$ is the one that lags.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">ممانعة الفراغ $\eta_0$ تساوي:</span><span lang="en">The free-space impedance $\eta_0$ equals:</span></p>
+      <button>$60\pi\ \Omega$</button><button><span dir="ltr">3×10⁸ Ω</span></button><button>$36\pi\ \Omega$</button><button>$120\pi\approx377\ \Omega$</button>
+      <p class="q-why">$\sqrt{\mu_0/\varepsilon_0}=120\pi$</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">الاستقطاب لموجة TEM هو اتجاه:</span><span lang="en">The polarization of a TEM wave is the direction of:</span></p>
+      <button><span lang="ar">المجال الكهربائي</span><span lang="en">The electric field</span></button><button><span lang="ar">المجال المغناطيسي</span><span lang="en">The magnetic field</span></button><button><span lang="ar">الانتشار</span><span lang="en">Propagation</span></button><button><span lang="ar">$\mathbf E\times\mathbf H$</span><span lang="en">$\mathbf E\times\mathbf H$</span></button>
+      <p class="q-why"><span lang="ar">التعريف: الاتجاه اللي يأشّر له $\mathbf E$.</span><span lang="en">By definition: the direction $\mathbf E$ points in.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">لو كبّرنا التردد 4 مرات، عمق الاختراق في موصل:</span><span lang="en">If the frequency is quadrupled, the skin depth in a conductor:</span></p>
+      <button><span lang="ar">يكبر مرتين</span><span lang="en">Doubles</span></button><button><span lang="ar">يصغر 4 مرات</span><span lang="en">Drops 4×</span></button><button><span lang="ar">يصغر مرتين</span><span lang="en">Halves</span></button><button><span lang="ar">ما يتغير</span><span lang="en">Unchanged</span></button>
+      <p class="q-why"><span lang="ar">$\delta\propto1/\sqrt f$ و $\sqrt4=2$.</span><span lang="en">$\delta\propto1/\sqrt f$ and $\sqrt4=2$.</span></p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">بعد مسافة $\delta$ داخل الموصل، سعة الموجة تصير تقريباً:</span><span lang="en">After a distance $\delta$ inside the conductor, the amplitude is about:</span></p>
+      <button><span dir="ltr">50%</span></button><button><span dir="ltr">37%</span></button><button><span dir="ltr">1%</span></button><button><span dir="ltr">0%</span></button>
+      <p class="q-why">$e^{-1}=0.368$</p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">ليش هوائيات التلفزيون الخارجية تُصنع من أنابيب مجوفة؟</span><span lang="en">Why are outdoor TV antennas made of hollow tubes?</span></p>
+      <button><span lang="ar">عشان تزيد المقاومة</span><span lang="en">To raise the resistance</span></button><button><span lang="ar">عشان تمنع الصدأ</span><span lang="en">To prevent rust</span></button><button><span lang="ar">عشان تكبّر $\delta$</span><span lang="en">To enlarge $\delta$</span></button><button><span lang="ar">لأن التيار يمشي على السطح بس</span><span lang="en">Because the current only flows at the surface</span></button>
+      <p class="q-why"><span lang="ar">ظاهرة القشرة: الداخل ما يشيل تيار، فالمعدن فيه ما له فايدة.</span><span lang="en">Skin effect: the inside carries no current, so metal there is wasted.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">لسلك نصف قطره $a$ و $\delta\ll a$، النسبة $R_{ac}/R_{dc}$:</span><span lang="en">For a wire of radius $a$ with $\delta\ll a$, the ratio $R_{ac}/R_{dc}$ is:</span></p>
+      <button>$a/2\delta$</button><button>$2\delta/a$</button><button>$a/\delta$</button><button>$\delta/a$</button>
+      <p class="q-why"><span lang="ar">$\pi a^2/(2\pi a\delta)=a/2\delta$، وهي أكبر من 1 لأن $\delta\ll a$.</span><span lang="en">$\pi a^2/(2\pi a\delta)=a/2\delta$, greater than 1 since $\delta\ll a$.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب</span><span lang="en">Click a card to flip it</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">العازل المثالي</span><span lang="en">Lossless dielectric</span></div><div>$\alpha=0,\ \beta=\omega\sqrt{\mu\varepsilon},\ \eta=\sqrt{\mu/\varepsilon}\angle0^\circ$</div></div>
+    <div class="flash"><div><span lang="ar">الفراغ</span><span lang="en">Free space</span></div><div>$\beta=\omega/c,\ u=c,\ \eta_0=120\pi\approx377\ \Omega$</div></div>
+    <div class="flash"><div><span lang="ar">قاعدة الاتجاهات</span><span lang="en">Direction rule</span></div><div>$\mathbf a_E\times\mathbf a_H=\mathbf a_k$</div></div>
+    <div class="flash"><div><span lang="ar">موجة TEM</span><span lang="en">TEM wave</span></div><div><span lang="ar">ما فيها مركبة لـ E ولا H على اتجاه الانتشار</span><span lang="en">No E or H component along the propagation</span></div></div>
+    <div class="flash"><div><span lang="ar">الموصل الجيد: α و β</span><span lang="en">Good conductor: α and β</span></div><div>$\alpha=\beta=\sqrt{\omega\mu\sigma/2}=\sqrt{\pi f\mu\sigma}$</div></div>
+    <div class="flash"><div><span lang="ar">الموصل الجيد: η</span><span lang="en">Good conductor: η</span></div><div>$\eta=\sqrt{\omega\mu/\sigma}\angle45^\circ=\dfrac{1+j}{\sigma\delta}$</div></div>
+    <div class="flash"><div><span lang="ar">عمق الاختراق</span><span lang="en">Skin depth</span></div><div>$\delta=\dfrac1\alpha=\dfrac{1}{\sqrt{\pi f\mu\sigma}}$</div></div>
+    <div class="flash"><div><span lang="ar">النحاس</span><span lang="en">Copper</span></div><div>$\delta=66.1/\sqrt f\ \text{mm}$</div></div>
+    <div class="flash"><div><span lang="ar">مقاومة السطح</span><span lang="en">Surface resistance</span></div><div>$R_s=\dfrac{1}{\sigma\delta}=\sqrt{\dfrac{\pi f\mu}{\sigma}}$</div></div>
+    <div class="flash"><div><span lang="ar">مقاومة ac</span><span lang="en">AC resistance</span></div><div>$R_{ac}=\dfrac{\ell}{\sigma\delta w}=\dfrac{R_s\ell}{w}$</div></div>
+    <div class="flash"><div><span lang="ar">سلك نصف قطره a</span><span lang="en">Wire of radius a</span></div><div>$\dfrac{R_{ac}}{R_{dc}}=\dfrac{a}{2\delta}$</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">⬅️ قبلها</span><span lang="en">⬅️ Before this</span></strong>
+    <p><span lang="ar">القوانين العامة للعازل الفقّاد في <a href="lecture5.html">المحاضرة 5</a>.</span><span lang="en">The general lossy-dielectric formulas are in <a href="lecture5.html">Lecture 5</a>.</span></p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const { $, L, TL, N, TAU, chart, grid, path, P, axName, sig } = EM;
+
+  /* ---------- الشكل 10.7: E و H في الفراغ عند t = 0 ---------- */
+  chart($('#fs-plot'), {
+    label: 'Free space at t = 0: Ex/E0 and Hy/H0 versus z over two wavelengths; the two curves coincide because they are in phase',
+    h: () => 190, pad: () => ({ l: 34, r: 30, t: 16, b: 30 }), x: [0, 2], y: [-1.15, 1.15],
+    st: s => grid(s, { yt: [[1, '1'], [0, '0'], [-1, '−1']], xt: [[0, '0'], [0.5, 'λ/2'], [1, 'λ'], [1.5, '3λ/2'], [2, '2λ']], xgrid: true }) + axName(s, 'z') +
+      P('ln c-h', path(z => Math.cos(TAU * z), 0, 2, 200, s.X, s.Y)) + P('ln dash c-e', path(z => Math.cos(TAU * z), 0, 2, 200, s.X, s.Y)),
+    hover: (z, s) => ({ hd: `z = ${N(z)} λ`, rows: [{ c: 'c-e', k: 'E/E<sub>0</sub>', v: N(Math.cos(TAU * z), 3) }, { c: 'c-h', k: 'H/H<sub>0</sub>', v: N(Math.cos(TAU * z), 3) }], pts: [{ c: 'c-e', y: s.Y(Math.cos(TAU * z)) }] })
+  });
+
+  /* ---------- الشكل 10.8: الموجة داخل الموصل بوحدات δ ---------- */
+  const env = x => Math.exp(-x), ew = x => env(x) * Math.cos(x);
+  chart($('#sd-plot'), {
+    label: 'Inside a good conductor at t = 0: E/E0 = e^(-z/δ) cos(z/δ) for z from 0 to 6δ, with the dashed envelope reaching 0.368 at z = δ',
+    h: () => 210, pad: () => ({ l: 40, r: 40, t: 16, b: 30 }), x: [0, 6], y: [-0.45, 1.05],
+    st: s => grid(s, { yt: [[1, '1'], [0.368, '0.368'], [0, '0']], xt: [[0, '0'], [1, 'δ'], [2, '2δ'], [3, '3δ'], [4, '4δ'], [5, '5δ'], [6, '6δ']], xgrid: true }) + axName(s, 'z') +
+      P('ln dash c-a', path(env, 0, 6, 120, s.X, s.Y)) + P('ln dash c-a', path(x => -env(x), 0, 6, 120, s.X, s.Y)) +
+      P('ln c-e', path(ew, 0, 6, 240, s.X, s.Y)) +
+      `<line class="gl" x1="${s.X(1).toFixed(1)}" x2="${s.X(1).toFixed(1)}" y1="${s.Y(0.368).toFixed(1)}" y2="${s.Y(0).toFixed(1)}" stroke-dasharray="3 3"/>` +
+      `<circle class="dot c-a" cx="${s.X(1).toFixed(1)}" cy="${s.Y(0.368).toFixed(1)}" r="4.5"/>`,
+    hover: (x, s) => ({ hd: `z = ${N(x)} δ`, rows: [{ c: 'c-e', k: 'E/E<sub>0</sub>', v: N(ew(x), 3) }, { c: 'c-a', dash: 1, k: 'e<sup>−z/δ</sup>', v: N(env(x), 3) + ' (' + (env(x) * 100).toFixed(1) + '%)' }], pts: [{ c: 'c-e', y: s.Y(ew(x)) }, { c: 'c-a', y: s.Y(env(x)) }] })
+  });
+
+  /* ---------- مختبر النحاس: δ مقابل التردد ---------- */
+  const MU0 = 4e-7 * Math.PI, SIG = 5.8e7, A = 1e-3;
+  const dCu = f => 1 / Math.sqrt(Math.PI * f * MU0 * SIG);          // m
+  const fmtF = f => f >= 1e9 ? N(f / 1e9, f >= 1e10 ? 0 : 1) + ' GHz' : f >= 1e6 ? N(f / 1e6, f >= 1e7 ? 0 : 1) + ' MHz' : f >= 1e3 ? N(f / 1e3, f >= 1e4 ? 0 : 1) + ' kHz' : N(f, 0) + ' Hz';
+  const fmtD = d => d >= 1e-3 ? N(d * 1e3, 2) + ' mm' : d >= 1e-6 ? N(d * 1e6, d >= 1e-5 ? 1 : 2) + ' µm' : N(d * 1e9, 0) + ' nm';
+  const lab = $('#cu-lab'), rng = $('input[type=range]', lab), o = k => $(`[data-o="${k}"]`, lab);
+  let fSel = 1e6;
+  const cu = chart($('#cu-plot'), {
+    label: 'Skin depth of copper versus frequency on log-log axes, from 10 Hz to 10 GHz: a straight line falling from about 21 mm to 0.66 micrometers',
+    h: () => 220, pad: () => ({ l: 50, r: 18, t: 14, b: 30 }), x: [10, 1e10], y: [1e-4, 30], xlog: true, ylog: true,
+    st: s => grid(s, { ylog: true, yt: [[10, '10 mm'], [1, '1 mm'], [0.1, '0.1 mm'], [0.01, '10 µm'], [1e-3, '1 µm'], [1e-4, '0.1 µm']], xt: [[10, '10'], [1e3, '1k'], [1e5, '100k'], [1e7, '10M'], [1e9, '1G']], xgrid: true }) +
+      P('ln c-a', path(f => dCu(f) * 1e3, 10, 1e10, 60, s.X, s.Y, true)),
+    dy: s => `<circle class="dot c-a" cx="${s.X(fSel).toFixed(1)}" cy="${s.Y(dCu(fSel) * 1e3).toFixed(1)}" r="5.5"/>`,
+    hover: (f, s) => ({ hd: fmtF(f), rows: [{ c: 'c-a', k: 'δ', v: fmtD(dCu(f)) }], pts: [{ c: 'c-a', y: s.Y(dCu(f) * 1e3) }] }),
+    click: f => { rng.value = Math.log10(f).toFixed(2); upd(); }
+  });
+  function upd() {
+    fSel = Math.pow(10, +rng.value);
+    const d = dCu(fSel), rs = 1 / (SIG * d), ratio = d < A / 5 ? A / (2 * d) : null;
+    o('f').textContent = fmtF(fSel);
+    o('d').textContent = fmtD(d);
+    o('rs').textContent = rs >= 1e-3 ? N(rs * 1e3, 2) + ' mΩ' : N(rs * 1e6, 1) + ' µΩ';
+    o('ratio').innerHTML = ratio ? N(ratio, ratio < 100 ? 2 : 0) : L('≈ 1 (δ مو ≪ a)', '≈ 1 (δ not ≪ a)');
+    if (cu) cu.drawDyn();
+  }
+  rng.addEventListener('input', upd);
+  upd();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
