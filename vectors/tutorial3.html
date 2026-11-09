@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-ar-only data-topic="Tutorial 3" data-title-en="Tutorial 3 - Line Integrals">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حل Tutorial 3 - Applied Vector Calculus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">تمارين · المحاضرات 9 و 10</p>
+  <h1><span>حل Tutorial 3 <span class="ltr">Line Integrals</span></span> <span class="h1-math ltr">$\int_C P\,dx + Q\,dy$</span></h1>
+  <p class="lead">سؤالين من التكامل الخطي محلولين خطوة بخطوة: الأول نحسبه على ثلاث مسارات، والثاني نثبت أنه ما يعتمد على المسار ونحسبه بدالة الجهد. جرّب تحل أول، وبعدين قارن.</p>
+  <div class="xyz-bar">
+    <span class="x">المسار (أ) خط</span><span class="y">المسار (ب) قطع مكافئ</span><span class="z">المسار (ج) متقطع</span>
+    <small>← كلهم من $(0,1)$ إلى $(1,2)$</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الأجوبة النهائية</div>
+    <ol>
+      <li>س1: (أ) $\tfrac53$، (ب) $2$، (ج) $\tfrac83$. الأجوبة اختلفت لأن الحقل مو conservative.</li>
+      <li>س2: $\partial P/\partial y = \partial Q/\partial x = 12xy - 3y^2$، إذن التكامل ما يعتمد على المسار.</li>
+      <li>دالة الجهد $f = 3x^2y^2 - xy^3$، والتكامل $= f(3,4) - f(1,2) = 240 - 4 = 236$.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= س1 ================= -->
+<section class="card" id="q1" data-num="1" data-nav="س1|Q1">
+  <div class="ex-head"><span class="ex-badge">س1</span><h2>احسب التكامل على ثلاث مسارات</h2></div>
+  <div class="m big">\[ \int_C (x^2 - y)\,dx + (y^2 + x)\,dy \]</div>
+  <div class="m">\[ \begin{gathered} \text{(a)}\ \ x = t,\ y = t + 1,\ 0 \le t \le 1 \\ \text{(b)}\ \ x = t,\ y = t^2 + 1,\ 0 \le t \le 1 \\ \text{(c)}\ \ (0,1) \to (1,1) \to (1,2) \end{gathered} \]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 330 290" role="img" aria-label="ثلاث مسارات من (0,1) إلى (1,2): خط مستقيم، وقطع مكافئ، ومسار متقطع أفقي ثم عمودي" style="max-width:340px">
+    <path class="ax" style="stroke-width:2" d="M50 250 H260 M70 266 V15"/><text class="lbl" x="264" y="255">x</text><text class="lbl" x="66" y="9">y</text>
+    <path class="ax" d="M220 246 V254"/><text class="tick" x="220" y="268" text-anchor="middle">1</text>
+    <path class="ax" d="M66 150 H74"/><text class="tick" x="60" y="154" text-anchor="end">1</text>
+    <path class="ax" d="M66 50 H74"/><text class="tick" x="60" y="54" text-anchor="end">2</text>
+    <path class="sk" style="--c:var(--cz);stroke-width:4" d="M70 150 H220 V50"/>
+    <path class="sk" style="--c:var(--cy);stroke-width:4" d="M70 150 L85 149 L100 146 L115 141 L130 134 L145 125 L160 114 L175 101 L190 86 L205 69 L220 50"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M70 150 L220 50"/>
+    <circle cx="70" cy="150" r="5.5" class="fi" style="--c:var(--ink)"/><circle cx="220" cy="50" r="5.5" class="fi" style="--c:var(--ink)"/><circle cx="220" cy="150" r="4.5" class="fi" style="--c:var(--cz)"/>
+    <text class="lbl" x="22" y="140">(0,1)</text><text class="lbl" x="200" y="36">(1,2)</text><text class="lbl" x="228" y="170">(1,1)</text>
+    <text class="lbl" x="112" y="104" style="fill:var(--cx);font-size:14px">(a)</text>
+    <text class="lbl" x="160" y="132" style="fill:var(--cy);font-size:14px">(b)</text>
+    <text class="lbl" x="140" y="172" style="fill:var(--cz);font-size:14px">C₁</text><text class="lbl" x="230" y="105" style="fill:var(--cz);font-size:14px">C₂</text>
+    </svg>
+    <figcaption>الثلاث مسارات نفس البداية $(0,1)$ ونفس النهاية $(1,2)$: الأزرق خط مستقيم، والأخضر قطع مكافئ، والبرتقالي أفقي ثم عمودي.</figcaption>
+  </figure>
+  <div class="callout key"><strong>🔑 الطريقة في كل مسار:</strong> عوّض $x$ و $y$ بدلالة $t$، وجهّز $dx$ و $dy$، وبعدين صار تكامل عادي على $t$.</div>
+
+  <h3>(أ) الخط المستقيم $x = t,\ y = t + 1$</h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <div class="map"><span class="y">P = x² − y</span><span class="y">Q = y² + x</span><span class="x">x = t, y = t + 1</span><span class="z">t: 0 → 1</span></div>
+    </li>
+    <li class="step">
+      <h4>جهّز $dx$ و $dy$</h4>
+      <div class="m">\[ x = t \Rightarrow dx = dt \qquad y = t + 1 \Rightarrow dy = dt \]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض في $P$ و $Q$</h4>
+      <div class="m">\[ \begin{aligned} P &= t^2 - (t + 1) = t^2 - t - 1 \\ Q &= (t + 1)^2 + t = t^2 + 3t + 1 \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>اجمع وكامل</h4>
+      <p class="why">$dx$ و $dy$ كلهم $dt$، فنجمع $P + Q$ مباشرة.</p>
+      <div class="m">\[ \begin{aligned} \int_0^1 (2t^2 + 2t)\,dt &= \Big[\tfrac{2t^3}{3} + t^2\Big]_0^1 \\ &= \tfrac23 + 1 = \tfrac53 \end{aligned} \]</div>
+    </li>
+    <li class="step final"><div class="result">$\tfrac53$</div></li>
+  </ol>
+
+  <h3>(ب) القطع المكافئ $x = t,\ y = t^2 + 1$</h3>
+  <ol class="solve">
+    <li class="step">
+      <h4>جهّز $dx$ و $dy$</h4>
+      <div class="m">\[ dx = dt \qquad dy = 2t\,dt \]</div>
+    </li>
+    <li class="step">
+      <h4>الجزء الأول: $P\,dx$</h4>
+      <div class="m">\[ P = t^2 - (t^2 + 1) = -1 \]</div>
+    </li>
+    <li class="step">
+      <h4>الجزء الثاني: $Q\,dy$</h4>
+      <div class="m">\[ \begin{aligned} Q &= (t^2 + 1)^2 + t = t^4 + 2t^2 + t + 1 \\ Q \cdot 2t &= 2t^5 + 4t^3 + 2t^2 + 2t \end{aligned} \]</div>
+      <p class="why">⚠ لا تنسى تضرب في $2t$ اللي جاية من $dy$.</p>
+    </li>
+    <li class="step">
+      <h4>اجمع وكامل</h4>
+      <div class="m">\[ \begin{aligned} &\int_0^1 (-1 + 2t^5 + 4t^3 + 2t^2 + 2t)\,dt \\ &= -1 + \tfrac13 + 1 + \tfrac23 + 1 = 2 \end{aligned} \]</div>
+    </li>
+    <li class="step final"><div class="result">$2$</div></li>
+  </ol>
+
+  <h3>(ج) المسار المتقطع $C = C_1 \cup C_2$</h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4><p class="why">المسار قطعتين، فنحسب كل قطعة لحالها ونجمع: $\int_C = \int_{C_1} + \int_{C_2}$</p>
+    </li>
+    <li class="step">
+      <h4>$C_1$: من $(0,1)$ إلى $(1,1)$ أفقي</h4>
+      <div class="m">\[ x = t,\ y = 1,\ 0 \le t \le 1 \quad\Rightarrow\quad dx = dt,\ dy = 0 \]</div>
+      <p class="why">$y$ ثابت، فـ $dy = 0$ ويختفي جزء $Q$ كله.</p>
+      <div class="m">\[ \int_0^1 (t^2 - 1)\,dt = \tfrac13 - 1 = -\tfrac23 \]</div>
+    </li>
+    <li class="step">
+      <h4>$C_2$: من $(1,1)$ إلى $(1,2)$ عمودي</h4>
+      <div class="m">\[ x = 1,\ y = t,\ 1 \le t \le 2 \quad\Rightarrow\quad dx = 0,\ dy = dt \]</div>
+      <p class="why">$x$ ثابت، فـ $dx = 0$ ويختفي جزء $P$. وانتبه: $t$ من $1$ إلى $2$.</p>
+      <div class="m">\[ \begin{aligned} \int_1^2 (t^2 + 1)\,dt &= \Big(\tfrac83 + 2\Big) - \Big(\tfrac13 + 1\Big) \\ &= \tfrac{14}{3} - \tfrac43 = \tfrac{10}{3} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>اجمع القطعتين</h4>
+      <div class="m">\[ \int_C = -\tfrac23 + \tfrac{10}{3} = \tfrac83 \]</div>
+    </li>
+    <li class="step final"><div class="result">$\tfrac83$</div></li>
+  </ol>
+  <div class="callout warn"><strong>💡 ليش الأجوبة اختلفت؟</strong> نفس البداية ونفس النهاية، بس طلع $\tfrac53$ ثم $2$ ثم $\tfrac83$. السبب: $\partial P/\partial y = -1$ و $\partial Q/\partial x = +1$، ما يساوون بعض، فالحقل مو conservative والجواب يعتمد على الطريق. السؤال الثاني عكسه بالضبط.</div>
+</section>
+
+<!-- ================= س2 ================= -->
+<section class="card" id="q2" data-num="2" data-nav="س2|Q2">
+  <div class="ex-head"><span class="ex-badge">س2</span><h2>أثبت أنه ما يعتمد على المسار واحسبه</h2></div>
+  <div class="m big">\[ \int_C (6xy^2 - y^3)\,dx + (6x^2y - 3xy^2)\,dy \]</div>
+  <p>من النقطة $A(1,2)$ إلى النقطة $B(3,4)$.</p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <div class="map"><span class="y">P = 6xy² − y³</span><span class="y">Q = 6x²y − 3xy²</span><span class="x">A(1,2)</span><span class="z">B(3,4)</span></div>
+      <p class="why">"Independent of path" يعني نلقى دالة $f$ بحيث $\nabla f = [P, Q]$، وبعدها التكامل = $f(B) - f(A)$ بدون ما نحتاج المسار.</p>
+    </li>
+    <li class="step">
+      <h4>الاختبار السريع</h4>
+      <div class="m">\[ \frac{\partial P}{\partial y} = 12xy - 3y^2 \qquad \frac{\partial Q}{\partial x} = 12xy - 3y^2 \]</div>
+      <p class="why">متساويين ✓ إذن الحقل conservative والتكامل ما يعتمد على المسار.</p>
+    </li>
+    <li class="step">
+      <h4>كامل $P$ على $x$</h4>
+      <div class="m">\[ \begin{aligned} f &= \int (6xy^2 - y^3)\,dx \\ &= 3x^2y^2 - xy^3 + g(y) \end{aligned} \]</div>
+      <p class="why">الثابت هنا $g(y)$ مو رقم، لأن أي شي فيه $y$ بس يختفي لما نشتق على $x$.</p>
+    </li>
+    <li class="step">
+      <h4>اشتق على $y$ وساوِ بـ $Q$</h4>
+      <div class="m">\[ \begin{gathered} \frac{\partial f}{\partial y} = 6x^2y - 3xy^2 + g'(y) = 6x^2y - 3xy^2 \\ \Rightarrow g'(y) = 0 \Rightarrow g(y) = c \end{gathered} \]</div>
+      <div class="m">\[ f(x,y) = 3x^2y^2 - xy^3 \]</div>
+    </li>
+    <li class="step">
+      <h4>عوّض النهاية ناقص البداية</h4>
+      <div class="m">\[ \begin{aligned} f(3,4) &= 3(9)(16) - 3(64) = 432 - 192 = 240 \\ f(1,2) &= 3(1)(4) - 1(8) = 12 - 8 = 4 \end{aligned} \]</div>
+      <div class="m">\[ \int_C = f(B) - f(A) = 240 - 4 = 236 \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$236$</div>
+      <p class="sanity">تأكد: $\partial f/\partial x = 6xy^2 - y^3 = P$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ جرّب|✏ Try">
+  <h2>دورك: نفس الأفكار بأرقام ثانية</h2><p class="sub">اكتب الكسر هكذا: 2/3</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">متوسط</span></div>
+    <p>نفس تكامل س1، بس على المسار الثاني: $(0,1) \to (0,2) \to (1,2)$ (عمودي ثم أفقي).</p>
+    <div class="m">\[ \int_C (x^2 - y)\,dx + (y^2 + x)\,dy \]</div>
+    <div class="check" data-answer="2/3"></div>
+    <details class="hint"><p>القطعة الأولى $x = 0$ فـ $dx = 0$. والثانية $y = 2$ فـ $dy = 0$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>$C_1$: $x = 0,\ y = t,\ 1 \le t \le 2$</h4><div class="m">\[ \int_1^2 t^2\,dt = \tfrac83 - \tfrac13 = \tfrac73 \]</div></li>
+      <li class="step"><h4>$C_2$: $x = t,\ y = 2,\ 0 \le t \le 1$</h4><div class="m">\[ \int_0^1 (t^2 - 2)\,dt = \tfrac13 - 2 = -\tfrac53 \]</div></li>
+      <li class="step final"><div class="result">$\tfrac73 - \tfrac53 = \tfrac23$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
+    <p>أثبت أنه ما يعتمد على المسار، واحسبه من $(1,1)$ إلى $(2,3)$:</p>
+    <div class="m">\[ \int_C (2xy + y^2)\,dx + (x^2 + 2xy)\,dy \]</div>
+    <div class="check" data-answer="28"></div>
+    <details class="hint"><p>$\partial P/\partial y = 2x + 2y = \partial Q/\partial x$. كامل $P$ على $x$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>دالة الجهد</h4><div class="m">\[ f = x^2y + xy^2 + g(y),\quad g'(y) = 0 \]</div></li>
+      <li class="step"><h4>النهاية ناقص البداية</h4><div class="m">\[ f(2,3) - f(1,1) = (12 + 18) - (1 + 1) = 28 \]</div></li>
+      <li class="step final"><div class="result">$28$</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= أخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2>أخطاء شائعة في هالتمرين</h2><p class="sub">كل خطأ جنبه التصحيح</p>
+  <div class="mk"><div class="mk-title">نسيان $dy = 2t\,dt$</div>
+    <div class="pair"><div class="no"><div class="mm">$\int Q\,dt$</div>كتبت $dy = dt$ في (ب).</div><div class="yes"><div class="mm">$\int Q \cdot 2t\,dt$</div>اشتق $y = t^2 + 1$ أول.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">حدود القطعة العمودية</div>
+    <div class="pair"><div class="no"><div class="mm">$\int_0^1 (t^2 + 1)\,dt$</div>خذت $t$ من $0$ إلى $1$.</div><div class="yes"><div class="mm">$\int_1^2 (t^2 + 1)\,dt$</div>$y$ يمشي من $1$ إلى $2$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">الثابت في دالة الجهد</div>
+    <div class="pair"><div class="no"><div class="mm">$f = 3x^2y^2 - xy^3 + c$</div>من أول خطوة، بدون تحقق.</div><div class="yes"><div class="mm">$+\,g(y)$</div>ثم اشتق على $y$ وتأكد أن $g' = 0$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">ترتيب الطرح</div>
+    <div class="pair"><div class="no"><div class="mm">$f(A) - f(B) = -236$</div>البداية ناقص النهاية.</div><div class="yes"><div class="mm">$f(B) - f(A) = 236$</div>النهاية ناقص البداية.</div></div>
+  </div>
+</section>
+
+<!-- ================= اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2><p class="sub">اضغط على الجواب اللي تشوفه صح</p>
+  <div class="quiz">
+    <div class="q" data-answer="3">
+      <p>على قطعة أفقية $y = 1$، كم يساوي $dy$؟</p>
+      <button>$dt$</button><button>$1$</button><button>$0$</button><button>$y\,dt$</button>
+      <p class="q-why">$y$ ثابت، ومشتقة الثابت صفر.</p>
+    </div>
+    <div class="q" data-answer="1">
+      <p>متى يكون $\int_C P\,dx + Q\,dy$ ما يعتمد على المسار؟</p>
+      <button>$\partial P/\partial y = \partial Q/\partial x$</button><button>$\partial P/\partial x = \partial Q/\partial y$</button><button>$P = Q$</button><button>دايماً</button>
+      <p class="q-why">الشرط يقارن مشتقة $P$ على $y$ مع مشتقة $Q$ على $x$ (متقاطعة).</p>
+    </div>
+    <div class="q" data-answer="4">
+      <p>إذا لقينا $f$ بحيث $\nabla f = [P, Q]$، التكامل من $A$ إلى $B$ يساوي:</p>
+      <button>$f(A) - f(B)$</button><button>$f(A) + f(B)$</button><button>$f(B) \cdot f(A)$</button><button>$f(B) - f(A)$</button>
+      <p class="q-why">مثل التكامل العادي: قيمة النهاية ناقص قيمة البداية.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2>اللي لازم تحفظه</h2><p class="sub">اضغط على البطاقة تنقلب</p>
+  <div class="cards">
+    <div class="flash"><div>كيف أحسب $\int_C P\,dx + Q\,dy$؟</div><div>عوّض $x(t), y(t)$ و $dx = x'\,dt$ و $dy = y'\,dt$، ثم كامل على $t$.</div></div>
+    <div class="flash"><div>المسار المتقطع؟</div><div>$\int_C = \int_{C_1} + \int_{C_2}$، كل قطعة لحالها.</div></div>
+    <div class="flash"><div>شرط عدم الاعتماد على المسار؟</div><div>$\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$</div></div>
+    <div class="flash"><div>كيف ألقى دالة الجهد؟</div><div>$f = \int P\,dx + g(y)$، ثم $f_y = Q$ يعطيك $g(y)$.</div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
