@@ -125,6 +125,7 @@
     <figcaption>Figure 10.21: مكافئ نورتن (Norton equivalent). الدائرة كلها صارت مصدر تيار على التوازي مع معاوقة.</figcaption>
   </figure>
   <div class="callout key"><strong>🔑 نفس الـ DC بالضبط:</strong> الخطوات ما تغيرت. الفرق إن المقاومة $R$ صارت معاوقة $\mathbf{Z}$، والجهد والتيار صاروا فيزورات. يعني الشغل الزايد كله في حساب الأعداد المركبة (Complex numbers).</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 ثيفنن ================= -->
@@ -184,6 +185,125 @@
   <div class="m">\[\Z{\mathbf{Z}_{Th}} = \frac{\mathbf{V}_s}{\mathbf{I}_s}\]</div>
   <div class="callout key"><strong>🔑 اختار رقم مريح:</strong> قيمة $\mathbf{I}_s$ ما تفرق لأن الدائرة خطية، فالجهد يتناسب معها والقسمة تطلع نفسها. اختار رقم يخلي الحساب سهل، مثل ما سوا الكتاب في مثال 2 لما اختار <span class="ltr">3 A</span>.</div>
   <div class="callout warn"><strong>⚠️ مصادر بترددات مختلفة:</strong> لو الدائرة فيها مصادر تشتغل على أكثر من تردد، المعاوقات تختلف مع كل تردد. فتطلع مكافئ ثيفنن أو نورتن لكل تردد لحاله، مو مكافئ واحد للكل.</div>
+</section>
+
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: معاوقة ثيفنن $\mathbf{Z}_{Th}$</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar ak as1 aa1 ao">مسار: مستقلة بس</button>
+      <button class="btn small" type="button" data-path="ar ak as2 aa2 ab2 ao">مسار: فيه مصدر تابع</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد $\mathbf{Z}_{Th}$ أو $\mathbf{Z}_N$ عند $a$-$b$»</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ak" data-from="ar"><span class="fb-k">شيل الحمل، وصفّر المستقلة</span><span class="fb-f">جهد ← سلك، تيار ← فتح</span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ak"><span class="fb-k">مصادر مستقلة بس</span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ak"><span class="fb-k">فيه مصدر تابع</span></button>
+      <button type="button" class="fb-node prev c1" data-id="aa1" data-from="as1"><span class="fb-k">توالي وتوازي من $a$-$b$</span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span class="fb-b">المحاضرة 5</span></button>
+      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k">حط مصدر اختبار</span><span class="fb-f">$\mathbf{I}_s$ عند $a$-$b$</span></button>
+      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k">اقسم</span><span class="fb-f">$\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k">الناتج: $\mathbf{Z}_{Th} = \mathbf{Z}_N$ بالأوم</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">Thevenin / Norton equivalent at terminals a-b</span>.</dd>
+      <dt>تذكّر</dt><dd>$\mathbf{Z}_N = \mathbf{Z}_{Th}$، ما تحسبها مرتين.</dd></dl></div>
+    <div class="fb-info" data-for="ak" hidden><h4>شيل الحمل وصفّر المصادر المستقلة</h4><dl>
+      <dt>كيف؟</dt><dd>مصدر الجهد المستقل يصير سلك، ومصدر التيار المستقل يصير فتح.</dd>
+      <dt>الخطأ الشائع</dt><dd>تصفّر المصدر التابع. التابع يبقى مثل ما هو.</dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4>مصادر مستقلة بس</h4><dl>
+      <dt>متى؟</dt><dd>ما فيه مصدر قيمته مثل $2\mathbf{V}_x$ أو $0.5\mathbf{I}_o$.</dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4>فيه مصدر تابع</h4><dl>
+      <dt>متى؟</dt><dd>فيه مصدر قيمته تعتمد على جهد أو تيار في الدائرة.</dd></dl></div>
+    <div class="fb-info" data-for="aa1" hidden><h4>توالي وتوازي من $a$-$b$: $\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
+      <dt>كيف؟</dt><dd>طالع من الطرفين $a$ و $b$ واجمع المعاوقات.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{Z}_{Th} = 6.48 - j2.64\ \Omega$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحسبها من جهة المصدر بدل جهة الطرفين.</dd></dl></div>
+    <div class="fb-info" data-for="aa2" hidden><h4>حط مصدر اختبار $\mathbf{I}_s$ عند الطرفين</h4><dl>
+      <dt>الحيلة</dt><dd>اختار رقم مريح، مثل $3\ \text{A}$ في مثال 2. القيمة ما تفرق لأن الدائرة خطية.</dd>
+      <dt>كيف؟</dt><dd>حلل الدائرة (عقد أو حلقات) واحسب الجهد $\mathbf{V}_s$ على طرفيه.</dd></dl></div>
+    <div class="fb-info" data-for="ab2" hidden><h4>اقسم: $\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\mathbf{I}_s = 3$ و $\mathbf{V}_s = 12 - j2$: $\mathbf{Z}_{Th} = 4 - j0.667\ \Omega$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>الجزء الحقيقي موجب لو ما فيه مصدر تابع.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: جهد ثيفنن وتيار نورتن</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bs1 ba1 beq bo">مسار: ثيفنن</button>
+      <button class="btn small" type="button" data-path="br bs2 ba2 beq bo">مسار: نورتن</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد $\mathbf{V}_{Th}$» أو «$\mathbf{I}_N$»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">ثيفنن: الطرفين مفتوحين</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">نورتن: الطرفين مقصورين</span></button>
+      <button type="button" class="fb-node prev c1" data-id="ba1" data-from="bs1"><span class="fb-k">جهد الأطراف المفتوحة</span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{V}_{oc}$</span><span class="fb-b">المحاضرة 5 و 6</span></button>
+      <button type="button" class="fb-node prev c2" data-id="ba2" data-from="bs2"><span class="fb-k">تيار سلك القصر</span><span class="fb-f">$\mathbf{I}_N = \mathbf{I}_{sc}$</span><span class="fb-b">المحاضرة 5 و 6</span></button>
+      <button type="button" class="fb-node c12" data-id="beq" data-from="ba1 ba2"><span class="fb-k">ارسم المكافئ، وبدّل بينهم</span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="beq"><span class="fb-k">الناتج: $\mathbf{V}_{Th}$ توالي مع $\mathbf{Z}_{Th}$، أو $\mathbf{I}_N$ توازي مع $\mathbf{Z}_N$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الفكرة</dt><dd>الدائرة كلها تصير مصدر ومعاوقة، والحمل ما يحس بالفرق.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>ثيفنن: الطرفين مفتوحين</h4><dl>
+      <dt>متى؟</dt><dd>المطلوب جهد، أو مكافئ بمصدر جهد على التوالي.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>نورتن: الطرفين مقصورين</h4><dl>
+      <dt>متى؟</dt><dd>المطلوب تيار، أو مكافئ بمصدر تيار على التوازي.</dd></dl></div>
+    <div class="fb-info" data-for="ba1" hidden><h4>جهد الأطراف المفتوحة: $\mathbf{V}_{Th} = \mathbf{V}_{oc}$</h4><dl>
+      <dt>كيف؟</dt><dd>بمقسم جهد، أو عقد، أو حلقات. المصادر كلها شغالة هنا.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{V}_{Th} = 37.95\angle 220.31^\circ\ \text{V}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تصفّر المصادر هنا. التصفير لـ $\mathbf{Z}_{Th}$ بس.</dd></dl></div>
+    <div class="fb-info" data-for="ba2" hidden><h4>تيار سلك القصر: $\mathbf{I}_N = \mathbf{I}_{sc}$</h4><dl>
+      <dt>كيف؟</dt><dd>وصّل $a$ مع $b$ بسلك واحسب تياره.</dd></dl></div>
+    <div class="fb-info" data-for="beq" hidden><h4>ارسم المكافئ، وبدّل بينهم: $\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</h4><dl>
+      <dt>الحيلة</dt><dd>لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث بالضرب أو القسمة.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{I}_N = 2\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$: $\mathbf{V}_{Th} = 10\angle 53.13^\circ\ \text{V}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تقسم الحقيقي على الحقيقي والتخيلي على التخيلي. القسمة بالقطبي.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>وش ترسم؟</dt><dd>ثيفنن: مصدر جهد ومعاوقة على التوالي. نورتن: مصدر تيار ومعاوقة على التوازي.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: تيار الحمل</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr ct ci co">مسار: الحمل</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: «أوجد تيار الحمل» أو «جرّب أكثر من حمل»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k">طلّع مكافئ ثيفنن</span><span class="fb-f">$\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</span><span class="fb-b">الشجرة 1 و 2</span></button>
+      <button type="button" class="fb-node c12" data-id="ci" data-from="ct"><span class="fb-k">تيار الحمل</span><span class="fb-f">$\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="ci"><span class="fb-k">الناتج: $\mathbf{I}_L$، ومنه جهد الحمل $\mathbf{Z}_L\mathbf{I}_L$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الفكرة</dt><dd>تحسب ثيفنن مرة وحدة، وكل حمل جديد سطر واحد.</dd></dl></div>
+    <div class="fb-info" data-for="ct" hidden><h4>طلّع مكافئ ثيفنن: $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</h4><dl>
+      <dt>كيف؟</dt><dd>بالشجرتين فوق.</dd></dl></div>
+    <div class="fb-info" data-for="ci" hidden><h4>تيار الحمل: $\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\mathbf{V}_{Th} = 10\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$ و $\mathbf{Z}_L = 3 - j4$: $\mathbf{I}_L = \dfrac{10}{6} = 1.667\angle 0^\circ\ \text{A}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى $\mathbf{Z}_{Th}$ في المقام.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>بعدها</dt><dd>نفس المكافئ نستخدمه في المحاضرة 9 لأقصى قدرة.</dd></dl></div>
+  </div>
+
 </section>
 
 <!-- ================= 05 المختبر ================= -->
@@ -268,6 +388,7 @@
     </svg>
     <figcaption>Figure 10.22: القنطرة مرسومة كفرعين. الطرف $a$ بين المكثف والمقاومة 8&nbsp;Ω، والطرف $b$ بين المقاومة 4&nbsp;Ω والملف.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as1 aa1 ao">$\mathbf{Z}_{Th}$ بالتوالي والتوازي</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بمقسم الجهد</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -347,6 +468,7 @@
     </svg>
     <figcaption>Figure 10.25: المصدر التابع $0.5\mathbf{I}_o$ يعتمد على التيار $\mathbf{I}_o$ اللي نازل في الفرع الأوسط.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as2 aa2 ab2 ao">$\mathbf{Z}_{Th}$ بمصدر اختبار</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بالأطراف المفتوحة</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -528,6 +650,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* حاسبة ثيفنن ونورتن لدائرة القنطرة في القسم 05 */
 (function () {
@@ -610,6 +733,7 @@
   load('ex1');
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

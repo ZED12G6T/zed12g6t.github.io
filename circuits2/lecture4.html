@@ -107,6 +107,7 @@
     </svg>
     <figcaption>Figure 9.15: الملف (فوق) والمكثف (تحت) في التيار المستمر (DC) وفي التردد العالي.</figcaption>
   </figure>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 R + jX ================= -->
@@ -199,6 +200,146 @@
   <div class="callout warn"><strong>⚠️ انتبه: $G \neq 1/R$</strong> إلا لما $X = 0$. مثال: $\mathbf{Z} = 3 + j4$ تعطي $\mathbf{Y} = \dfrac{3 - j4}{25} = 0.12 - j0.16$ S، يعني $G = 0.12$ مو $1/3$.</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: تيار وجهد دائرة فيها R و L و C</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar an az as ai av ao">مسار: التيار ثم جهد عنصر</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: مصدر $v_s(t)$ وعناصر R و L و C، أوجد $i(t)$ أو $v(t)$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k">حوّل المصدر لفيزور</span><span class="fb-f">$10\cos 4t \Rightarrow 10\angle 0^\circ$</span><span class="fb-b">المحاضرة 2</span></button>
+      <button type="button" class="fb-node c12" data-id="az" data-from="an"><span class="fb-k">معاوقة كل عنصر</span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="as" data-from="az"><span class="fb-k">اجمع اللي على التوالي</span><span class="fb-f">$\mathbf{Z} = 5 - j2.5\ \Omega$</span></button>
+      <button type="button" class="fb-node c12" data-id="ai" data-from="as"><span class="fb-k">قانون أوم</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span></button>
+      <button type="button" class="fb-node c12" data-id="av" data-from="ai"><span class="fb-k">جهد عنصر</span><span class="fb-f">$\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="av"><span class="fb-k">الناتج: رجّع للزمن بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الشكل</dt><dd>دائرة بسيطة ومصدر جيبي، والمطلوب موجة زمنية.</dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4>حوّل المصدر لفيزور: $10\cos 4t \Rightarrow 10\angle 0^\circ$</h4><dl>
+      <dt>الحيلة</dt><dd>خذ $\omega$ من المصدر، لأنك بتحتاجها لكل معاوقة.</dd></dl></div>
+    <div class="fb-info" data-for="az" hidden><h4>معاوقة كل عنصر: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\omega = 4$ و $C = 0.1$: $\dfrac{1}{j0.4} = -j2.5\ \Omega$. و $L = 0.5$: $j2\ \Omega$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $j\omega C$ للمكثف. المعاوقة مقلوبها.</dd></dl></div>
+    <div class="fb-info" data-for="as" hidden><h4>اجمع اللي على التوالي: $\mathbf{Z} = 5 - j2.5\ \Omega$</h4><dl>
+      <dt>الحيلة</dt><dd>العناصر على التوالي معاوقاتها تنجمع، مثل المقاومات (تفاصيلها في المحاضرة 5).</dd></dl></div>
+    <div class="fb-info" data-for="ai" hidden><h4>قانون أوم: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\dfrac{10\angle 0^\circ}{5 - j2.5} = 1.789\angle 26.57^\circ\ \text{A}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>$\mathbf{Z}$ مو فيزور. ما ترجعها لموجة زمنية.</dd></dl></div>
+    <div class="fb-info" data-for="av" hidden><h4>جهد عنصر: $\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$1.789\angle 26.57^\circ \times 2.5\angle{-90^\circ}$ $= 4.47\angle{-63.43^\circ}\ \text{V}$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>$i(t) = 1.789\cos(4t + 26.57^\circ)$ و $v(t) = 4.47\cos(4t - 63.43^\circ)$.</dd>
+      <dt>تأكد</dt><dd>جهد المكثف متأخر عن تياره <span class="ltr">90°</span>: $26.57 - 90 = -63.43$ ✓</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: نوع المعاوقة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bp bs1 bo">مسار: حثّية</button>
+      <button class="btn small" type="button" data-path="br bp bs2 bo">مسار: سعوية</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «$\mathbf{Z}$ معطاة، حثّية ولا سعوية؟» أو «أوجد R و X»</span></button>
+      <button type="button" class="fb-node c12" data-id="bp" data-from="br"><span class="fb-k">أجزاء المعاوقة</span><span class="fb-f">$\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</span></button>
+      <button type="button" class="fb-node c1" data-id="bs1" data-from="bp"><span class="fb-k">حثّية</span><span class="fb-f">$X > 0$</span></button>
+      <button type="button" class="fb-node c2" data-id="bs2" data-from="bp"><span class="fb-k">سعوية</span><span class="fb-f">$X < 0$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bs1 bs2"><span class="fb-k">الناتج: R و X بالأوم، والنوع</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">resistance, reactance, inductive, capacitive</span>.</dd></dl></div>
+    <div class="fb-info" data-for="bp" hidden><h4>أجزاء المعاوقة: $\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</h4><dl>
+      <dt>الرموز</dt><dd>$R$ المقاومة (الحقيقي)، $X$ المفاعلة (التخيلي)، وكلهم بالأوم.</dd>
+      <dt>التحويل</dt><dd>$|\mathbf{Z}| = \sqrt{R^2 + X^2}$ و $\theta = \tan^{-1}\dfrac{X}{R}$.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4 = 5\angle 53.13^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>حثّية: $X > 0$</h4><dl>
+      <dt>المعنى</dt><dd>مثل الملف. التيار يتأخر عن الجهد، و $\theta$ موجبة.</dd>
+      <dt>مثال سريع</dt><dd>$3 + j4$ حثّية.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>سعوية: $X < 0$</h4><dl>
+      <dt>المعنى</dt><dd>مثل المكثف. التيار يسبق الجهد، و $\theta$ سالبة.</dd>
+      <dt>مثال سريع</dt><dd>$5 - j2.5$ سعوية.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>ليش الزاوية تقول مين يسبق؟</dt><dd>لأن $\mathbf{V} = \mathbf{Z}\mathbf{I}$: زاوية الجهد = زاوية التيار + $\theta$.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: DC والتردد العالي</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr cl cc co">مسار: الملف والمكثف</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: «$\omega = 0$» (DC) أو «$\omega \to \infty$»</span></button>
+      <button type="button" class="fb-node c1" data-id="cl" data-from="cr"><span class="fb-k">الملف $j\omega L$</span><span class="fb-f">DC: قصر<br>عالي: فتح</span></button>
+      <button type="button" class="fb-node c2" data-id="cc" data-from="cr"><span class="fb-k">المكثف $\dfrac{1}{j\omega C}$</span><span class="fb-f">DC: فتح<br>عالي: قصر</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cl cc"><span class="fb-k">الناتج: ارسم الدائرة من جديد بالسلك أو الفتح</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الشكل</dt><dd>يسألك وش يصير للملف أو المكثف عند الأطراف.</dd></dl></div>
+    <div class="fb-info" data-for="cl" hidden><h4>الملف: $\mathbf{Z} = j\omega L$</h4><dl>
+      <dt>DC</dt><dd>$\omega = 0$ فـ $\mathbf{Z} = 0$: سلك (Short circuit).</dd>
+      <dt>التردد العالي</dt><dd>$\mathbf{Z} \to \infty$: دائرة مفتوحة (Open circuit).</dd></dl></div>
+    <div class="fb-info" data-for="cc" hidden><h4>المكثف: $\mathbf{Z} = \dfrac{1}{j\omega C}$</h4><dl>
+      <dt>DC</dt><dd>$\mathbf{Z} \to \infty$: دائرة مفتوحة.</dd>
+      <dt>التردد العالي</dt><dd>$\mathbf{Z} \to 0$: سلك.</dd>
+      <dt>الخطأ الشائع</dt><dd>تعكسهم. تذكّر: المكثف يسد التيار المستمر.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>بعدها</dt><dd>حل الدائرة الجديدة كأنها مقاومات بس.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 4 ===== -->
+  <div class="fboard" id="board4">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 4: المسامحة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="dr dy dg db do">مسار: من Z إلى Y</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k">إذا جاك: «أوجد المسامحة $\mathbf{Y}$» أو «$G$ و $B$»</span></button>
+      <button type="button" class="fb-node c12" data-id="dy" data-from="dr"><span class="fb-k">المقلوب</span><span class="fb-f">$\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</span></button>
+      <button type="button" class="fb-node trick c1" data-id="dg" data-from="dy"><span class="fb-k">اضرب في المرافق</span><span class="fb-f">$G = \dfrac{R}{R^2 + X^2}$</span></button>
+      <button type="button" class="fb-node c2" data-id="db" data-from="dy"><span class="fb-k">الجزء التخيلي</span><span class="fb-f">$B = -\dfrac{X}{R^2 + X^2}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="do" data-from="dg db"><span class="fb-k">الناتج: $\mathbf{Y} = G + jB$ بالسيمنز</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="dr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">admittance, conductance, susceptance</span>، والوحدة سيمنز (S).</dd></dl></div>
+    <div class="fb-info" data-for="dy" hidden><h4>المقلوب: $\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</h4><dl>
+      <dt>لكل عنصر</dt><dd>$R \to \dfrac{1}{R}$، الملف $\dfrac{1}{j\omega L}$، المكثف $j\omega C$.</dd></dl></div>
+    <div class="fb-info" data-for="dg" hidden><h4>اضرب في المرافق: $G = \dfrac{R}{R^2 + X^2}$</h4><dl>
+      <dt>الحيلة</dt><dd>فوق وتحت في $R - jX$ عشان تشيل $j$ من المقام.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4$: $G = \dfrac{3}{25} = 0.12\ \text{S}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>$G = \dfrac{1}{R}$. هذا صح بس لما $X = 0$.</dd></dl></div>
+    <div class="fb-info" data-for="db" hidden><h4>المطاوعة: $B = -\dfrac{X}{R^2 + X^2}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4$: $B = -\dfrac{4}{25} = -0.16\ \text{S}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى السالب.</dd></dl></div>
+    <div class="fb-info" data-for="do" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>$\mathbf{Y} \times \mathbf{Z} = 1$. مثلًا $(0.12 - j0.16)(3 + j4) = 1$ ✓</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>دائرة RC: أوجد التيار والجهد</h2></div>
@@ -220,6 +361,7 @@
     </svg>
     <figcaption>Figure 9.16: مقاومة ومكثف على التوالي مع مصدر جهد.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an az as ai av ao">فيزور، ثم المعاوقات، ثم أوم، ثم جهد المكثف</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -343,6 +485,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* مختبر مثلث المعاوقة: Z = R + jX لمقاومة مع ملف أو مكثف على التوالي */
 (function () {
@@ -398,6 +541,7 @@
   mq.addEventListener('change', fit); fit();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

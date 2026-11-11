@@ -89,6 +89,7 @@
   <p>هنا $A - B = \theta_v - \theta_i$ (الوقت يروح)، و $A + B = 2\omega t + \theta_v + \theta_i$. فيطلع:</p>
   <div class="m">\[\begin{gathered}\Z{p(t)} = \underbrace{\tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)}_{\text{ثابت}} \\ + \underbrace{\tfrac{1}{2}V_m I_m\cos(2\omega t + \theta_v + \theta_i)}_{\text{جيبي بتردد } 2\omega}\end{gathered}\]</div>
   <div class="callout key"><strong>🔑 جزئين:</strong> الأول ثابت ما يتغير مع الوقت، وقيمته تعتمد على فرق الطور بين الجهد والتيار. والثاني موجة جيبية تردده $2\omega$، يعني لو الجهد يعيد نفسه كل $T$، القدرة تعيد نفسها كل $T/2$.</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 ليش تصير سالبة ================= -->
@@ -173,6 +174,128 @@
   <div class="callout key"><strong>🔑 الخلاصة:</strong> الحمل المقاوم ($R$) ياخذ قدرة في كل الأوقات، والحمل المفاعل ($L$ أو $C$) متوسط قدرته صفر. يعني في أي دائرة، القدرة المتوسطة كلها تروح للمقاومات.</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: القدرة اللحظية $p(t)$</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar an ap at ao">مسار: القدرة اللحظية</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد القدرة اللحظية $p(t)$»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k">خل $v$ و $i$ بصيغة cos</span><span class="fb-f">$V_m\cos(\omega t + \theta_v)$</span><span class="fb-b">المحاضرة 1</span></button>
+      <button type="button" class="fb-node c12" data-id="ap" data-from="an"><span class="fb-k">اضرب</span><span class="fb-f">$p(t) = v(t)\,i(t)$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="at" data-from="ap"><span class="fb-k">متطابقة الضرب</span><span class="fb-f">$\tfrac{1}{2}[\cos(A - B) + \cos(A + B)]$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="at"><span class="fb-k">الناتج: ثابت + موجة بتردد $2\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">instantaneous power</span>، والجواب دالة في الزمن.</dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4>خل $v$ و $i$ بصيغة cos: $V_m\cos(\omega t + \theta_v)$</h4><dl>
+      <dt>الخطأ الشائع</dt><dd>تترك وحدة sin. الزوايا لازم من نفس الشكل.</dd></dl></div>
+    <div class="fb-info" data-for="ap" hidden><h4>اضرب: $p(t) = v(t)\,i(t)$</h4><dl>
+      <dt>الرموز</dt><dd>بالواط (W)، والتيار داخل من طرف الموجب.</dd></dl></div>
+    <div class="fb-info" data-for="at" hidden><h4>متطابقة الضرب</h4><dl>
+      <dt>القانون</dt><dd>$\cos A\cos B =$ $\tfrac{1}{2}[\cos(A - B) + \cos(A + B)]$</dd>
+      <dt>مثال سريع</dt><dd>$v = 120\cos(377t + 45^\circ)$ و $i = 10\cos(377t - 10^\circ)$: $p =$ $344.2 + 600\cos(754t + 35^\circ)\ \text{W}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى إن تردد الجزء الثاني $2\omega$ مو $\omega$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>المعنى</dt><dd>الثابت هو القدرة المتوسطة $P$. ولما $p &lt; 0$ الدائرة ترجّع طاقة للمصدر.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: القدرة المتوسطة $P$</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bs1 ba1 bo">مسار: من الزمن</button>
+      <button class="btn small" type="button" data-path="br bs2 bi2 ba2 bo">مسار: من الفيزورات</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد القدرة المتوسطة $P$»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">معطاك $v(t)$ و $i(t)$</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">معطاك فيزورات أو دائرة</span></button>
+      <button type="button" class="fb-node c1" data-id="ba1" data-from="bs1"><span class="fb-k">من الزمن</span><span class="fb-f">$\tfrac{1}{2}V_mI_m$<br>$\times\cos(\theta_v - \theta_i)$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="bi2" data-from="bs2"><span class="fb-k">احسب التيار</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span><span class="fb-b">المحاضرة 4</span></button>
+      <button type="button" class="fb-node c2" data-id="ba2" data-from="bi2"><span class="fb-k">من الفيزورات</span><span class="fb-f">$\tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="ba1 ba2"><span class="fb-k">الناتج: $P$ بالواط</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">average power</span>، والجواب رقم بالواط بدون $t$.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>معطاك $v(t)$ و $i(t)$</h4><dl>
+      <dt>متى؟</dt><dd>الجهد والتيار مكتوبين كموجات.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>معطاك فيزورات أو دائرة</h4><dl>
+      <dt>متى؟</dt><dd>معطاك $\mathbf{V}$ و $\mathbf{Z}$ أو دائرة كاملة.</dd></dl></div>
+    <div class="fb-info" data-for="ba1" hidden><h4>من الزمن: $P = \tfrac{1}{2}V_mI_m\cos(\theta_v - \theta_i)$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\tfrac{1}{2}(120)(10)\cos 55^\circ = 344.2\ \text{W}$.</dd>
+      <dt>الحيلة</dt><dd>ما يفرق مين تطرح من مين، لأن $\cos$ زوجية.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى النص، أو تجمع الزاويتين بدل ما تطرحهم.</dd></dl></div>
+    <div class="fb-info" data-for="bi2" hidden><h4>احسب التيار: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$\dfrac{120\angle 0^\circ}{30 - j70} = 1.576\angle 66.8^\circ\ \text{A}$.</dd>
+      <dt>كيف؟</dt><dd>ولو الدائرة كبيرة: عقد أو حلقات (المحاضرة 6).</dd></dl></div>
+    <div class="fb-info" data-for="ba2" hidden><h4>من الفيزورات: $P = \tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</h4><dl>
+      <dt>الرموز</dt><dd>$\mathbf{I}^*$ المرافق: نفس السعة والزاوية بعكس الإشارة.</dd>
+      <dt>مثال سريع</dt><dd>$\tfrac{1}{2}(120)(1.576)\cos(-66.8^\circ)$ $= 37.24\ \text{W}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى النجمة، فيطلع $\cos(\theta_v + \theta_i)$ وهذا غلط.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>في معاوقة $R + jX$: لازم $P = \tfrac{1}{2}|\mathbf{I}|^2R$. مثلًا $\tfrac{1}{2}(1.576)^2(30) = 37.24$ ✓</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: قدرة كل عنصر وحفظ القدرة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr ci cs1 cs2 ca1 ca2 ck co">مسار: كل العناصر</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: «أوجد القدرة لكل عنصر» أو «المعطاة والمأخوذة»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="ci" data-from="cr"><span class="fb-k">احسب تيار كل فرع</span><span class="fb-f">عقد أو حلقات</span><span class="fb-b">المحاضرة 5 و 6</span></button>
+      <button type="button" class="fb-node ask c1" data-id="cs1" data-from="ci"><span class="fb-k">عنصر سلبي R أو L أو C</span></button>
+      <button type="button" class="fb-node ask c2" data-id="cs2" data-from="ci"><span class="fb-k">مصدر</span></button>
+      <button type="button" class="fb-node c1" data-id="ca1" data-from="cs1"><span class="fb-k">المقاومة بس تاخذ</span><span class="fb-f">$\tfrac{1}{2}|\mathbf{I}|^2R$</span></button>
+      <button type="button" class="fb-node c2" data-id="ca2" data-from="cs2"><span class="fb-k">المصدر</span><span class="fb-f">$\tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ck" data-from="ca1 ca2"><span class="fb-k">تأكد بحفظ القدرة</span><span class="fb-f">$\sum P = 0$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="ck"><span class="fb-k">الناتج: قدرة كل عنصر بالواط وإشارتها</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">power supplied, power absorbed, each element</span>.</dd></dl></div>
+    <div class="fb-info" data-for="ci" hidden><h4>احسب تيار كل فرع: عقد أو حلقات</h4><dl>
+      <dt>كيف؟</dt><dd>مقسم تيار أو جهد لو الدائرة بسيطة، وحلقات لو أكبر.</dd></dl></div>
+    <div class="fb-info" data-for="cs1" hidden><h4>عنصر سلبي R أو L أو C</h4><dl>
+      <dt>متى؟</dt><dd>مقاومة، ملف، مكثف، أو معاوقة $R + jX$.</dd></dl></div>
+    <div class="fb-info" data-for="cs2" hidden><h4>مصدر</h4><dl>
+      <dt>متى؟</dt><dd>مصدر جهد أو تيار، مستقل أو تابع.</dd></dl></div>
+    <div class="fb-info" data-for="ca1" hidden><h4>المقاومة: $P = \tfrac{1}{2}|\mathbf{I}|^2R$، والملف والمكثف $P = 0$</h4><dl>
+      <dt>مثال سريع</dt><dd>$|\mathbf{I}| = 2\ \text{A}$ و $R = 5\ \Omega$: $P = 10\ \text{W}$.</dd>
+      <dt>الملف والمكثف</dt><dd>فرق الطور <span class="ltr">±90°</span> فـ $P = 0$. يخزنون ويرجعون.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحسب قدرة للمكثف لأن عليه جهد وتيار.</dd></dl></div>
+    <div class="fb-info" data-for="ca2" hidden><h4>المصدر: $P = \tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</h4><dl>
+      <dt>الإشارة</dt><dd>بالاصطلاح السلبي (التيار داخل من الموجب). لو طلعت سالبة يعني المصدر يعطي قدرة.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 4: $P_1 = -367.8\ \text{W}$، يعني المصدر يعطي $367.8\ \text{W}$.</dd></dl></div>
+    <div class="fb-info" data-for="ck" hidden><h4>حفظ القدرة: $\sum P = 0$</h4><dl>
+      <dt>القاعدة</dt><dd>اللي تعطيه المصادر = اللي تاخذه المقاومات.</dd>
+      <dt>مثال سريع</dt><dd>$-367.8 + 160 + 207.8 = 0$ ✓</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>صيغة الجواب</dt><dd>موجبة = تاخذ، سالبة = تعطي.</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= 06 المختبر ================= -->
 <section class="card" id="lab" data-num="06" data-nav="المختبر|Lab">
   <h2>شوف القدرة وهي تتغير</h2>
@@ -226,6 +349,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>القدرة اللحظية والمتوسطة</h2></div>
   <div class="tags"><span class="tag">Example 11.1</span><span class="tag">من مجال الزمن</span></div>
   <p>لو $v(t) = 120\cos(377t + 45^\circ)$ V و $i(t) = 10\cos(377t - 10^\circ)$ A، أوجد القدرة اللحظية والقدرة المتوسطة اللي تاخذها الدائرة السلبية في Figure 11.1.</p>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an ap at ao">$p(t)$ بالمتطابقة</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 bo">$P$ من الزمن</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ المعطيات</h4>
@@ -260,6 +384,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>القدرة في معاوقة</h2></div>
   <div class="tags"><span class="tag">Example 11.2</span><span class="tag">من الفيزورات</span></div>
   <p>احسب القدرة المتوسطة اللي تاخذها معاوقة $\mathbf{Z} = 30 - j70\ \Omega$ لما نحط عليها جهد $\mathbf{V} = 120\angle 0^\circ$ V.</p>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs2 bi2 ba2 bo">التيار من المعاوقة، ثم $\tfrac{1}{2}\mathrm{Re}[\mathbf{V}\mathbf{I}^*]$</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ المعطيات</h4>
@@ -305,6 +430,7 @@
     </svg>
     <figcaption>Figure 11.3: دائرة توالي، فيها تيار واحد $\mathbf{I}$.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr ci cs1 cs2 ca1 ca2 ck co">قدرة المصدر والمقاومة والمكثف، ثم حفظ القدرة</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -360,6 +486,7 @@
     </svg>
     <figcaption>Figure 11.5: الحلقة 1 فيها مصدر التيار، والحلقة 2 فيها مصدر الجهد. والملف $j10$ مشترك بينهم.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr ci cs1 cs2 ca1 ca2 ck co">تيارات الحلقات، ثم قدرة كل عنصر، ثم حفظ القدرة</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -510,6 +637,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* القدرة اللحظية: الرسمة الثابتة في القسم 02، ومختبر القسم 06 */
 (function () {
@@ -569,6 +697,7 @@
   draw();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

@@ -71,6 +71,7 @@
     <li><b>ارجع للقطبي ثم للزمن</b>، بنفس $\omega$ الأصلية. <span class="why">انتبه لربع النقطة وأنت تحسب الزاوية.</span></li>
   </ol>
   <div class="callout key"><strong>🔑 ليش لازم نفس $\omega$؟</strong> الفيزور ما يحفظ $\omega$، لأنه يفترض إن كل الأسهم تدور بنفس السرعة. لو الترددين مختلفين، الأسهم تدور بسرعات مختلفة والزاوية بينها تتغير مع الوقت، فما ينفع تجمعهم كأرقام ثابتة.</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= مثال 1 ================= -->
@@ -78,6 +79,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>اجمع تيارين</h2></div>
   <div class="tags"><span class="tag">Example 9.6</span><span class="tag">جمع موجات</span></div>
   <div class="m big">\[\begin{gathered}i_1(t) = 4\cos(\omega t + 30^\circ)\ \text{A} \\ i_2(t) = 5\sin(\omega t - 20^\circ)\ \text{A} \\ i_1 + i_2 = \ ?\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an ax ab ao">فيزور، ثم ديكارتي واجمع، ثم قطبي</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -179,6 +181,124 @@
   <div class="callout good"><strong>🧠 حيلة للحفظ: ELI the ICE man.</strong> الحرف E يرمز للجهد، و I للتيار. في الملف <b>L</b>: الجهد قبل التيار (<b>E</b>L<b>I</b>). وفي المكثف <b>C</b>: التيار قبل الجهد (<b>I</b>C<b>E</b>).</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: جمع موجتين</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar an ax ab ao">مسار: الخطوات الأربع</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «اجمع موجتين» أو «تيارين داخلين نفس العقدة»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k">وحّد الشكل وحوّل لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">المحاضرة 1 و 2</span></button>
+      <button type="button" class="fb-node c12" data-id="ax" data-from="an"><span class="fb-k">حوّل للديكارتي واجمع</span><span class="fb-f">$(x_1 + x_2) + j(y_1 + y_2)$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ab" data-from="ax"><span class="fb-k">ارجع للقطبي وانتبه للربع</span><span class="fb-f">$r\angle\phi$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="ab"><span class="fb-k">الناتج: $r\cos(\omega t + \phi)$ بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>شرط</dt><dd>الموجتين بنفس $\omega$. لو مختلفة ما ينفع الفيزور.</dd>
+      <dt>مثال</dt><dd>$i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$.</dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4>وحّد الشكل وحوّل لفيزور: $V_m\angle\phi$</h4><dl>
+      <dt>مثال سريع</dt><dd>$i_2 = 5\sin(\omega t - 20^\circ)$ $= 5\cos(\omega t - 110^\circ)$، وفيزورها $5\angle{-110^\circ}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحوّل sin لفيزور بنفس زاويتها بدون ما تنقص <span class="ltr">90°</span>.</dd></dl></div>
+    <div class="fb-info" data-for="ax" hidden><h4>حوّل للديكارتي واجمع: $(x_1 + x_2) + j(y_1 + y_2)$</h4><dl>
+      <dt>متى؟</dt><dd>دايمًا في الجمع، لأن القطبي ما ينجمع.</dd>
+      <dt>مثال سريع</dt><dd>$4\angle 30^\circ = 3.464 + j2$ و $5\angle{-110^\circ} = -1.710 - j4.698$. المجموع $1.754 - j2.698$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع السعات: $4 + 5 = 9$. هذا غلط لأن الزوايا مختلفة.</dd></dl></div>
+    <div class="fb-info" data-for="ab" hidden><h4>ارجع للقطبي وانتبه للربع: $r\angle\phi$</h4><dl>
+      <dt>الحيلة</dt><dd>شوف إشارة $x$ و $y$ قبل ما تصدّق الحاسبة.</dd>
+      <dt>مثال سريع</dt><dd>$1.754 - j2.698$ $= 3.218\angle{-56.97^\circ}$ (الربع الرابع).</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>$i(t) =$ $3.218\cos(\omega t - 56.97^\circ)\ \text{A}$.</dd>
+      <dt>تأكد</dt><dd>المجموع لازم يكون بين $|4 - 5| = 1$ و $4 + 5 = 9$.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: جهد وتيار عنصر واحد</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bn be2 bd bo">مسار: ملف L</button>
+      <button class="btn small" type="button" data-path="br bn be3 bd bo">مسار: مكثف C</button>
+      <button class="btn small" type="button" data-path="br bn be1 bd bo">مسار: مقاومة R</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «عنصر معطى جهده، أوجد تياره» أو العكس</span></button>
+      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k">حوّل الموجة لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">المحاضرة 2</span></button>
+      <button type="button" class="fb-node c1" data-id="be1" data-from="bn"><span class="fb-k">مقاومة R</span><span class="fb-f">$\mathbf{V} = R\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node c2" data-id="be2" data-from="bn"><span class="fb-k">ملف L</span><span class="fb-f">$\mathbf{V} = j\omega L\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node c12" data-id="be3" data-from="bn"><span class="fb-k">مكثف C</span><span class="fb-f">$\mathbf{I} = j\omega C\,\mathbf{V}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="bd" data-from="be1 be2 be3"><span class="fb-k">اقسم بالقطبي</span><span class="fb-f">$\dfrac{12\angle 45^\circ}{6\angle 90^\circ} = 2\angle{-45^\circ}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bd"><span class="fb-k">الناتج: رجّع الفيزور لموجة بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الشكل</dt><dd>عنصر واحد (R أو L أو C) ومعطاك موجة الجهد أو التيار.</dd>
+      <dt>الاصطلاح</dt><dd>التيار داخل من طرف الموجب (Passive Sign Convention).</dd></dl></div>
+    <div class="fb-info" data-for="bn" hidden><h4>حوّل الموجة لفيزور: $V_m\angle\phi$</h4><dl>
+      <dt>مثال سريع</dt><dd>$v = 12\cos(60t + 45^\circ)$ فيزوره $12\angle 45^\circ$ و $\omega = 60$.</dd></dl></div>
+    <div class="fb-info" data-for="be1" hidden><h4>مقاومة R: $\mathbf{V} = R\,\mathbf{I}$</h4><dl>
+      <dt>الطور</dt><dd>الجهد والتيار متفقين في الطور (in phase).</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 30^\circ$ و $R = 5$: $\mathbf{I} = 2\angle 30^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="be2" hidden><h4>ملف L: $\mathbf{V} = j\omega L\,\mathbf{I}$</h4><dl>
+      <dt>الطور</dt><dd>التيار يتأخر عن الجهد <span class="ltr">90°</span>. تذكّر ELI: الجهد E قبل التيار I.</dd>
+      <dt>مثال سريع</dt><dd>$\omega = 60$ و $L = 0.1$: $j\omega L = j6 = 6\angle 90^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى $j$ وتكتب $\omega L$ بس، فتضيع الزاوية.</dd></dl></div>
+    <div class="fb-info" data-for="be3" hidden><h4>مكثف C: $\mathbf{I} = j\omega C\,\mathbf{V}$</h4><dl>
+      <dt>الطور</dt><dd>التيار يسبق الجهد <span class="ltr">90°</span>. تذكّر ICE: التيار I قبل الجهد E.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 0^\circ$ و $\omega = 100$ و $C = 1\ \text{mF}$: $\mathbf{I} = j0.1 \times 10 = 1\angle 90^\circ\ \text{A}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تضرب في $j\omega C$ وأنت تبي الجهد. الجهد $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$.</dd></dl></div>
+    <div class="fb-info" data-for="bd" hidden><h4>اقسم بالقطبي</h4><dl>
+      <dt>الحيلة</dt><dd>السعات تنقسم والزوايا تنطرح (المحاضرة 2).</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>$i(t) = 2\cos(60t - 45^\circ)\ \text{A}$.</dd>
+      <dt>تأكد</dt><dd>في الملف زاوية التيار = زاوية الجهد ناقص <span class="ltr">90°</span>. في المكثف زائد <span class="ltr">90°</span>.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: معادلة تفاضلية تكاملية</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr ct cf cd co">مسار: الحل بالفيزور</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: معادلة فيها $i$ و $\dfrac{di}{dt}$ و $\displaystyle\int i\,dt$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k">بدّل كل عملية</span><span class="fb-f">$\dfrac{d}{dt} \to j\omega,\ \displaystyle\int \to \frac{1}{j\omega}$</span><span class="fb-b">المحاضرة 2</span></button>
+      <button type="button" class="fb-node trick c12" data-id="cf" data-from="ct"><span class="fb-k">اطلع $\mathbf{I}$ عامل مشترك</span><span class="fb-f">$\mathbf{I}\,(4 - j10) = 50\angle 75^\circ$</span></button>
+      <button type="button" class="fb-node c12" data-id="cd" data-from="cf"><span class="fb-k">اقسم</span><span class="fb-f">$\mathbf{I} = \dfrac{50\angle 75^\circ}{10.77\angle{-68.2^\circ}}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cd"><span class="fb-k">الناتج: $i(t)$ بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>مثال</dt><dd>$4i + 8\displaystyle\int i\,dt - 3\dfrac{di}{dt}$ $= 50\cos(2t + 75^\circ)$.</dd>
+      <dt>شرط</dt><dd>الطرف الثاني موجة جيبية، فنعرف $\omega$ منه.</dd></dl></div>
+    <div class="fb-info" data-for="ct" hidden><h4>بدّل: $\dfrac{d}{dt} \to j\omega$ و $\displaystyle\int \to \dfrac{1}{j\omega}$</h4><dl>
+      <dt>مثال سريع</dt><dd>مع $\omega = 2$: $4\mathbf{I} + \dfrac{8\mathbf{I}}{j2} - j6\mathbf{I}$ $= 50\angle 75^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى إن $\dfrac{1}{j} = -j$.</dd></dl></div>
+    <div class="fb-info" data-for="cf" hidden><h4>اطلع $\mathbf{I}$ عامل مشترك</h4><dl>
+      <dt>الحيلة</dt><dd>$\dfrac{8}{j2} = -j4$، فالقوس $4 - j4 - j6 = 4 - j10$.</dd></dl></div>
+    <div class="fb-info" data-for="cd" hidden><h4>اقسم بالقطبي</h4><dl>
+      <dt>مثال سريع</dt><dd>$\mathbf{I} = 4.642\angle 143.2^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>$i(t) = 4.642\cos(2t + 143.2^\circ)\ \text{A}$.</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= 03 المختبر ================= -->
 <section class="card" id="lab" data-num="03" data-nav="المختبر|Lab">
   <h2>شوف الفرق بعينك</h2>
@@ -228,6 +348,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>تيار الملف</h2></div>
   <div class="tags"><span class="tag">Example 9.8</span><span class="tag">ملف L</span></div>
   <p>الجهد $v = 12\cos(60t + 45^\circ)$ V موصّل على ملف قيمته $0.1$ H. أوجد التيار في الحالة المستقرة (steady-state).</p>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn be2 bd bo">فيزور، ثم قانون الملف، ثم القسمة</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -254,6 +375,7 @@
   <div class="tags"><span class="tag">Example 9.7</span><span class="tag">تفاضل وتكامل</span></div>
   <p>باستخدام الفيزورات، أوجد التيار $i(t)$ في دائرة معادلتها:</p>
   <div class="m big">\[\begin{gathered}4i + 8\int i\,dt - 3\frac{di}{dt} \\ = 50\cos(2t + 75^\circ)\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr ct cf cd co">بدّل بـ $j\omega$، ثم عامل مشترك، ثم القسمة</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -371,6 +493,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* مختبر R و L و C: الجهد ثابت V = 10∠0°، والتيار يتغير حسب العنصر و ω */
 (function () {
@@ -424,6 +547,7 @@
   draw();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

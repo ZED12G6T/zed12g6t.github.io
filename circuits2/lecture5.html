@@ -85,6 +85,7 @@
   </div>
   <div class="callout warn"><strong>⚠️ الفيزورات تنجمع، القراءات لا:</strong> مقاومة ومكثف على التوالي مع مصدر سعته 10&nbsp;V. الفولتميتر على المقاومة يقرأ 6&nbsp;V، وعلى المكثف 8&nbsp;V. المجموع 14 مو 10! لأن الجهدين بينهم <span class="ltr">90°</span>، فينجمعون مثل أضلاع مثلث قائم: $\sqrt{6^2 + 8^2} = 10$. جرّبها بنفسك في المختبر تحت.</div>
   <div class="callout key"><strong>🔑 النتيجة:</strong> كل أدوات DC ترجع تشتغل: توصيل المعاوقات ومقسم الجهد والتيار (هذي المحاضرة)، وتحليل العقد والحلقات (المحاضرة 6)، وثيفنن ونورتن (المحاضرة 7). بس بدل $R$ حط $\mathbf{Z}$، وبدل الأرقام العادية حط فيزورات.</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 التوالي ================= -->
@@ -270,6 +271,139 @@
   <div class="callout key"><strong>🔑 الشبكة المتزنة (Balanced):</strong> إذا الفروع الثلاثة متساوية، القوانين كلها تختصر لسطر واحد (Eq. 9.69): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ أو $\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$. والدلتا دايماً هي الأكبر.</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: المعاوقة المكافئة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar az as1 ae1 ao">مسار: توالي</button>
+      <button class="btn small" type="button" data-path="ar az as2 ae2 ao">مسار: توازي</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="az" data-from="ar"><span class="fb-k">حوّل كل عنصر لمعاوقة</span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span><span class="fb-b">المحاضرة 4</span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="az"><span class="fb-k">توالي: نفس التيار</span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="az"><span class="fb-k">توازي: نفس الجهد</span></button>
+      <button type="button" class="fb-node c1" data-id="ae1" data-from="as1"><span class="fb-k">اجمع</span><span class="fb-f">$\mathbf{Z}_1 + \mathbf{Z}_2$</span></button>
+      <button type="button" class="fb-node c2" data-id="ae2" data-from="as2"><span class="fb-k">الضرب على الجمع</span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="ae1 ae2"><span class="fb-k">الناتج: كرر لين تبقى معاوقة وحدة $\mathbf{Z}_{in}$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">input impedance, equivalent impedance</span>.</dd>
+      <dt>الطريقة</dt><dd>ابدأ من أبعد نقطة عن الطرفين، واجمع خطوة خطوة لين تقرب منهم.</dd></dl></div>
+    <div class="fb-info" data-for="az" hidden><h4>حوّل كل عنصر لمعاوقة: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</h4><dl>
+      <dt>الخطأ الشائع</dt><dd>تنسى تاخذ $\omega$ من المصدر، أو تحسب المكثف $j\omega C$.</dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4>توالي: نفس التيار</h4><dl>
+      <dt>متى؟</dt><dd>المعاوقتين في نفس المسار، وما بينهم تفرع.</dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4>توازي: نفس الجهد</h4><dl>
+      <dt>متى؟</dt><dd>المعاوقتين بين نفس العقدتين.</dd></dl></div>
+    <div class="fb-info" data-for="ae1" hidden><h4>التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</h4><dl>
+      <dt>مثال سريع</dt><dd>$(3 + j4) + (2 - j6) = 5 - j2\ \Omega$.</dd></dl></div>
+    <div class="fb-info" data-for="ae2" hidden><h4>التوازي: $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
+      <dt>الحيلة</dt><dd>لأكثر من اثنين اجمع المسامحات: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$</dd>
+      <dt>مثال سريع</dt><dd>$4 \parallel j4 = \dfrac{j16}{4 + j4} = 2 + j2\ \Omega$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع المعاوقات اللي على التوازي.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{Z}_{in} = 3.22 - j11.07\ \Omega$.</dd>
+      <dt>تأكد</dt><dd>الجزء الحقيقي ما يطلع سالب أبدًا في دائرة R و L و C.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: جهد أو تيار جزء من الدائرة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bn bs1 bd1 bk bo">مسار: مقسم الجهد</button>
+      <button class="btn small" type="button" data-path="br bn bs2 bd2 bk bo">مسار: مقسم التيار</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد $v_o$» أو «تيار فرع»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k">فيزورات ومعاوقات</span><span class="fb-f">$\mathbf{V}_s$ و $\mathbf{Z}$</span><span class="fb-b">المحاضرة 2 و 4</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="bn"><span class="fb-k">معاوقتين توالي، والمطلوب جهد</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="bn"><span class="fb-k">معاوقتين توازي، والمطلوب تيار</span></button>
+      <button type="button" class="fb-node c1" data-id="bd1" data-from="bs1"><span class="fb-k">مقسم الجهد</span><span class="fb-f">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</span></button>
+      <button type="button" class="fb-node c2" data-id="bd2" data-from="bs2"><span class="fb-k">مقسم التيار</span><span class="fb-f">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="bk" data-from="bd1 bd2"><span class="fb-k">تأكد بكيرشوف: الفيزورات تنجمع</span><span class="fb-f">$\sum\mathbf{V} = 0,\quad \sum\mathbf{I} = 0$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bk"><span class="fb-k">الناتج: رجّع للزمن بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الشكل</dt><dd>مصدر واحد، والمطلوب جهد عنصر أو تيار فرع بس، مو كل الدائرة.</dd></dl></div>
+    <div class="fb-info" data-for="bn" hidden><h4>حوّل المصدر لفيزور والعناصر لمعاوقات</h4><dl>
+      <dt>الحيلة</dt><dd>لو فيه مجموعة على التوازي، اختصرها أول بالشجرة 1، عشان يبقى عندك معاوقتين بس.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>معاوقتين توالي، والمطلوب جهد</h4><dl>
+      <dt>متى؟</dt><dd>نفس التيار يمر في الاثنين.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>معاوقتين توازي، والمطلوب تيار</h4><dl>
+      <dt>متى؟</dt><dd>نفس الجهد على الاثنين.</dd></dl></div>
+    <div class="fb-info" data-for="bd1" hidden><h4>مقسم الجهد: $\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</h4><dl>
+      <dt>الفكرة</dt><dd>كل معاوقة تاخذ من الجهد بنسبة حجمها.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{V}_2 = \dfrac{j4}{3 + j4}(10) = 8\angle 36.87^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="bd2" hidden><h4>مقسم التيار: $\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</h4><dl>
+      <dt>الفكرة</dt><dd>التيار يروح أكثر للطريق الأسهل، فالمعاوقة الثانية هي اللي فوق.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{I} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{I}_1 = 8\angle 36.87^\circ$ و $\mathbf{I}_2 = 6\angle{-53.13^\circ}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحط $\mathbf{Z}_1$ فوق مثل مقسم الجهد.</dd></dl></div>
+    <div class="fb-info" data-for="bk" hidden><h4>تأكد بـ KVL أو KCL</h4><dl>
+      <dt>القانون</dt><dd>KVL: مجموع فيزورات الجهد حول أي حلقة صفر. KCL: مجموع فيزورات التيار عند أي عقدة صفر.</dd>
+      <dt>مثال سريع</dt><dd>$8\angle 36.87^\circ + 6\angle{-53.13^\circ}$ $= (6.4 + j4.8) + (3.6 - j4.8)$ $= 10$ ✓</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع القراءات (السعات): $6 + 8 = 14$ مو $10$.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>في مثال 2: $v_o(t) =$ $17.15\cos(4t + 15.96^\circ)\ \text{V}$.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: ما فيه توالي ولا توازي</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr cs1 ca1 csp co">مسار: عندك Δ</button>
+      <button class="btn small" type="button" data-path="cr cs2 ca2 csp co">مسار: عندك Y</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: ثلاث معاوقات على شكل مثلث Δ أو نجمة Y، وما تنجمع</span></button>
+      <button type="button" class="fb-node ask c1" data-id="cs1" data-from="cr"><span class="fb-k">عندك Δ</span></button>
+      <button type="button" class="fb-node ask c2" data-id="cs2" data-from="cr"><span class="fb-k">عندك Y</span></button>
+      <button type="button" class="fb-node c1" data-id="ca1" data-from="cs1"><span class="fb-k">Δ إلى Y</span><span class="fb-f">$\mathbf{Z}_1 =$<br>$\dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</span></button>
+      <button type="button" class="fb-node c2" data-id="ca2" data-from="cs2"><span class="fb-k">Y إلى Δ</span><span class="fb-f">$\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="csp" data-from="ca1 ca2"><span class="fb-k">صار فيه توالي وتوازي</span><span class="fb-f">$\mathbf{Z}_{eq}$</span><span class="fb-b">الشجرة 1</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="csp"><span class="fb-k">الناتج: $\mathbf{Z}_{eq}$، ثم $\mathbf{I} = \mathbf{V}/\mathbf{Z}_{eq}$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>العلامة</dt><dd>تحاول تلقى معاوقتين توالي أو توازي وما تلقى. غالبًا قنطرة.</dd>
+      <dt>الحيلة</dt><dd>لو الثلاث متساوية (متزنة): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ وخلصت.</dd></dl></div>
+    <div class="fb-info" data-for="cs1" hidden><h4>عندك Δ</h4><dl>
+      <dt>متى؟</dt><dd>ثلاث معاوقات على أضلاع مثلث بين ثلاث عقد.</dd></dl></div>
+    <div class="fb-info" data-for="cs2" hidden><h4>عندك Y</h4><dl>
+      <dt>متى؟</dt><dd>ثلاث معاوقات من ثلاث عقد لمركز واحد.</dd></dl></div>
+    <div class="fb-info" data-for="ca1" hidden><h4>من Δ إلى Y: $\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</h4><dl>
+      <dt>القاعدة</dt><dd>ضرب الضلعين اللي جنب العقدة ÷ مجموع الثلاثة.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z}_a = 2$ و $\mathbf{Z}_b = \mathbf{Z}_c = 4$: $\mathbf{Z}_1 = \dfrac{16}{10} = 1.6\ \Omega$.</dd>
+      <dt>متزنة</dt><dd>$\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$: $6 + j9 \to 2 + j3$.</dd></dl></div>
+    <div class="fb-info" data-for="ca2" hidden><h4>من Y إلى Δ: $\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</h4><dl>
+      <dt>الرموز</dt><dd>$N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1$، وكل ضلع يقسم على فرع الـ Y اللي يقابله.</dd>
+      <dt>مثال سريع</dt><dd>الثلاث $2\ \Omega$: $N = 12$ و $\mathbf{Z}_a = 6 = 3 \times 2$ ✓</dd>
+      <dt>الخطأ الشائع</dt><dd>تقسم على الفرع اللي جنب الضلع بدل اللي يقابله.</dd></dl></div>
+    <div class="fb-info" data-for="csp" hidden><h4>صار فيه توالي وتوازي: $\mathbf{Z}_{eq}$</h4><dl>
+      <dt>الحيلة</dt><dd>بعد التحويل تطلع لك معاوقات توالي وتوازي واضحة. كمّل بالشجرة 1.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>في مثال 3: $\mathbf{I} = 3.666\angle{-4.204^\circ}\ \text{A}$.</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>المعاوقة الداخلة لدائرة</h2></div>
@@ -295,6 +429,7 @@
     </svg>
     <figcaption>Figure 9.23: الدائرة اللي نبي معاوقتها من طرفي الدخل.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar az as1 ae1 as2 ae2 ao">معاوقات، ثم توالي وتوازي</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -342,6 +477,7 @@
     </svg>
     <figcaption>Figure 9.25: مقاومة على التوالي مع ملف ومكثف على التوازي.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn bs1 bd1 bk bo">اختصر التوازي، ثم مقسم الجهد</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -402,6 +538,7 @@
     </svg>
     <figcaption>Figure 9.28: بين العقد $a$ و $b$ و $c$ ثلاث معاوقات على شكل مثلث (Δ).</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr cs1 ca1 csp co">Δ إلى Y، ثم توالي وتوازي</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -563,6 +700,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* مختبر KVL و KCL: مقاومة مع ملف أو مكثف، توالي أو توازي، ومصدر 10∠0° */
 (function () {
@@ -643,6 +781,7 @@
   mq.addEventListener('change', fit); fit();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

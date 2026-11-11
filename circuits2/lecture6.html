@@ -109,6 +109,7 @@
     <div class="tile"><div class="t-name">KCL عند العقدة 2</div><div class="t-math">$\dfrac{\mathbf{V}_1 - \mathbf{V}_2}{\mathbf{Z}_2} = \dfrac{\mathbf{V}_2}{\mathbf{Z}_3}$</div><div class="t-desc">نفس تيار $\mathbf{Z}_2$، بس هنا هو الداخل.</div></div>
   </div>
   <div class="callout key"><strong>🔑 كم معادلة؟</strong> دائرة فيها $n$ عقد تحتاج $n - 1$ معادلة، يعني كل العقد ما عدا المرجع. وكل عقدة جهدها معروف (مصدر جهد بينها وبين المرجع) تنقص معادلة.</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 العقدة الفائقة ================= -->
@@ -260,6 +261,118 @@
   <div class="callout warn"><strong>⚠️ لو طلع $\Delta = 0$:</strong> ما فيه حل وحيد، وغالباً فيه غلط في كتابة المعادلات. راجع الإشارات.</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: تحليل العقد</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar az ak as1 aa1 ac ao">مسار: عادي</button>
+      <button class="btn small" type="button" data-path="ar az ak as2 aa2 ac ao">مسار: عقدة فائقة</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد جهد أو تيار» بتحليل العقد، أو الدائرة فيها مصادر تيار</span></button>
+      <button type="button" class="fb-node prev c12" data-id="az" data-from="ar"><span class="fb-k">حوّل لمجال التردد</span><span class="fb-f">$\mathbf{V}_s,\ \mathbf{I}_s,\ \mathbf{Z}$</span><span class="fb-b">المحاضرة 4</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ak" data-from="az"><span class="fb-k">اختر المرجع وسمّ العقد</span><span class="fb-f">$\mathbf{V}_1,\ \mathbf{V}_2,\ \dots$</span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ak"><span class="fb-k">بين العقد معاوقات ومصادر تيار</span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ak"><span class="fb-k">مصدر جهد بين عقدتين</span></button>
+      <button type="button" class="fb-node c1" data-id="aa1" data-from="as1"><span class="fb-k">KCL عند كل عقدة</span><span class="fb-f">$\dfrac{\mathbf{V}_a - \mathbf{V}_b}{\mathbf{Z}}$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k">عقدة فائقة + القيد</span><span class="fb-f">$\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_s$</span></button>
+      <button type="button" class="fb-node c12" data-id="ac" data-from="aa1 aa2"><span class="fb-k">حل بكرامر</span><span class="fb-f">$x_1 = \dfrac{\Delta_1}{\Delta},\quad x_2 = \dfrac{\Delta_2}{\Delta}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="ac"><span class="fb-k">الناتج: جهود العقد، ومنها أي تيار أو جهد مطلوب</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>متى تختار العقد؟</dt><dd>لو مكتوب <span class="ltr">nodal analysis</span>، أو عدد العقد أقل من عدد الحلقات، أو مصادر الجهد مربوطة بالمرجع (تعطيك جهود جاهزة).</dd></dl></div>
+    <div class="fb-info" data-for="az" hidden><h4>حوّل لمجال التردد: $\mathbf{V}_s,\ \mathbf{I}_s,\ \mathbf{Z}$</h4><dl>
+      <dt>كيف؟</dt><dd>كل مصدر فيزور، وكل عنصر معاوقة: $R$ و $j\omega L$ و $\dfrac{1}{j\omega C}$.</dd></dl></div>
+    <div class="fb-info" data-for="ak" hidden><h4>اختر المرجع وسمّ العقد: $\mathbf{V}_1,\ \mathbf{V}_2,\ \dots$</h4><dl>
+      <dt>كم معادلة؟</dt><dd>$n - 1$ معادلة، وكل عقدة جهدها معروف من مصدر تنقص وحدة.</dd>
+      <dt>مصدر تابع؟</dt><dd>اكتب الجهد أو التيار اللي يتحكم فيه بدلالة جهود العقد. مثل $\mathbf{I}_x = \mathbf{V}_1/(-j2.5)$.</dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4>بين العقد معاوقات ومصادر تيار</h4><dl>
+      <dt>متى؟</dt><dd>ما فيه مصدر جهد بين عقدتين غير المرجع.</dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4>مصدر جهد بين عقدتين</h4><dl>
+      <dt>متى؟</dt><dd>ولا وحدة من العقدتين هي المرجع. تياره مجهول.</dd></dl></div>
+    <div class="fb-info" data-for="aa1" hidden><h4>KCL عند كل عقدة: التيار الطالع $\dfrac{\mathbf{V}_a - \mathbf{V}_b}{\mathbf{Z}}$</h4><dl>
+      <dt>القاعدة</dt><dd>الداخل = الطالع. ولو الطرف الثاني المرجع يصير $\dfrac{\mathbf{V}_a}{\mathbf{Z}}$.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V}_1 = 10$ و $\mathbf{V}_2 = 4$ و $\mathbf{Z} = 2$: التيار من 1 إلى 2 هو $3\ \text{A}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $\mathbf{V}_b - \mathbf{V}_a$ في معادلة وحدة و $\mathbf{V}_a - \mathbf{V}_b$ في نفس المعادلة لنفس الفرع.</dd></dl></div>
+    <div class="fb-info" data-for="aa2" hidden><h4>العقدة الفائقة: KCL حول الحدود + $\mathbf{V}_1 - \mathbf{V}_2 = \mathbf{V}_s$</h4><dl>
+      <dt>كيف؟</dt><dd>حط العقدتين مع المصدر في حدود وحدة، واكتب KCL للتيارات اللي تقطع الحدود بس.</dd>
+      <dt>القيد</dt><dd>الموجب عند $\mathbf{V}_1$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تدخّل عنصر موازي لمصدر الجهد في KCL. تياره ما يقطع الحدود.</dd></dl></div>
+    <div class="fb-info" data-for="ac" hidden><h4>حل بكرامر: $x_1 = \dfrac{\Delta_1}{\Delta},\quad x_2 = \dfrac{\Delta_2}{\Delta}$</h4><dl>
+      <dt>الخطوات</dt><dd>$\Delta$ من المعاملات، و $\Delta_1$ بتبديل العمود الأول بعمود $b$، و $\Delta_2$ بتبديل الثاني. والحل $x_1 = \Delta_1/\Delta$ و $x_2 = \Delta_2/\Delta$.</dd>
+      <dt>مثال سريع</dt><dd>$2x + y = 5$ و $x - y = 1$: $\Delta = -3$ و $\Delta_1 = -6$ و $\Delta_2 = -3$، فـ $x = 2$ و $y = 1$.</dd>
+      <dt>الحيلة</dt><dd>المحددات بالديكارتي (فيها جمع وطرح)، والقسمة بالقطبي.</dd>
+      <dt>الخطأ الشائع</dt><dd>لو $\Delta = 0$ فيه غلط في الإشارات. راجع المعادلات.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>مثال سريع</dt><dd>في مثال 1: $i_x = 7.59\cos(4t + 108.43^\circ)\ \text{A}$.</dd>
+      <dt>تأكد</dt><dd>عوّض الجهود في معادلة KCL وحدة وشوف إنها تتحقق.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: تحليل الحلقات</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bz bk bt1 bb1 bc bo">مسار: عادي</button>
+      <button class="btn small" type="button" data-path="br bz bk bt2 bb2 bc bo">مسار: حلقة فائقة</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد تيار» بتحليل الحلقات، أو الدائرة مستوية فيها مصادر جهد</span></button>
+      <button type="button" class="fb-node prev c12" data-id="bz" data-from="br"><span class="fb-k">حوّل لمجال التردد</span><span class="fb-f">$\mathbf{V}_s,\ \mathbf{I}_s,\ \mathbf{Z}$</span><span class="fb-b">المحاضرة 4</span></button>
+      <button type="button" class="fb-node trick c12" data-id="bk" data-from="bz"><span class="fb-k">تيار لكل حلقة مع عقارب الساعة</span><span class="fb-f">$\mathbf{I}_1,\ \mathbf{I}_2,\ \dots$</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bt1" data-from="bk"><span class="fb-k">ما فيه مصدر تيار مشترك</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bt2" data-from="bk"><span class="fb-k">مصدر تيار بين حلقتين</span></button>
+      <button type="button" class="fb-node c1" data-id="bb1" data-from="bt1"><span class="fb-k">KVL حول كل حلقة</span><span class="fb-f">$\mathbf{Z}(\mathbf{I}_1 - \mathbf{I}_2)$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="bb2" data-from="bt2"><span class="fb-k">حلقة فائقة + القيد</span><span class="fb-f">$\mathbf{I}_2 - \mathbf{I}_1 = \mathbf{I}_s$</span></button>
+      <button type="button" class="fb-node c12" data-id="bc" data-from="bb1 bb2"><span class="fb-k">حل بكرامر</span><span class="fb-f">$x_1 = \dfrac{\Delta_1}{\Delta},\quad x_2 = \dfrac{\Delta_2}{\Delta}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bc"><span class="fb-k">الناتج: تيارات الحلقات، ومنها تيار أي فرع</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>متى تختار الحلقات؟</dt><dd>لو مكتوب <span class="ltr">mesh analysis</span>، أو عدد الحلقات أقل، أو مصادر التيار على أطراف الحلقات (تعطيك تيارات جاهزة).</dd>
+      <dt>شرط</dt><dd>الدائرة مستوية (Planar).</dd></dl></div>
+    <div class="fb-info" data-for="bz" hidden><h4>حوّل لمجال التردد: $\mathbf{V}_s,\ \mathbf{I}_s,\ \mathbf{Z}$</h4><dl>
+      <dt>كيف؟</dt><dd>نفس تحليل العقد.</dd></dl></div>
+    <div class="fb-info" data-for="bk" hidden><h4>تيار لكل حلقة مع عقارب الساعة: $\mathbf{I}_1,\ \mathbf{I}_2,\ \dots$</h4><dl>
+      <dt>مصدر تيار على طرف حلقة لحالها</dt><dd>يعطيك تيارها مباشرة، وسالب لو سهمه عكس الحلقة.</dd>
+      <dt>مصدر تابع؟</dt><dd>اكتب متحكمه بدلالة تيارات الحلقات.</dd></dl></div>
+    <div class="fb-info" data-for="bt1" hidden><h4>ما فيه مصدر تيار مشترك</h4><dl>
+      <dt>متى؟</dt><dd>كل الفروع المشتركة فيها معاوقات أو مصادر جهد.</dd></dl></div>
+    <div class="fb-info" data-for="bt2" hidden><h4>مصدر تيار بين حلقتين</h4><dl>
+      <dt>متى؟</dt><dd>مصدر التيار في الفرع المشترك، فجهده مجهول.</dd></dl></div>
+    <div class="fb-info" data-for="bb1" hidden><h4>KVL حول كل حلقة: المشتركة $\mathbf{Z}(\mathbf{I}_1 - \mathbf{I}_2)$</h4><dl>
+      <dt>القاعدة</dt><dd>امشِ مع تيار حلقتك. المعاوقة المشتركة: تيارك ناقص تيار الجارة.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 2$ و $\mathbf{I}_1 = 3$ و $\mathbf{I}_2 = 1$: جهدها $2(3 - 1) = 4\ \text{V}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $\mathbf{I}_1 - \mathbf{I}_2$ في معادلة الحلقة 2. هناك تصير $\mathbf{I}_2 - \mathbf{I}_1$.</dd></dl></div>
+    <div class="fb-info" data-for="bb2" hidden><h4>الحلقة الفائقة: KVL حول المسار الخارجي + $\mathbf{I}_2 - \mathbf{I}_1 = \mathbf{I}_s$</h4><dl>
+      <dt>كيف؟</dt><dd>تجاهل فرع مصدر التيار، وامشِ حول الحلقتين كأنهم وحدة.</dd>
+      <dt>القيد</dt><dd>اللي مع سهم المصدر موجب، واللي عكسه سالب.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب KVL يمر في مصدر التيار. جهده مجهول.</dd></dl></div>
+    <div class="fb-info" data-for="bc" hidden><h4>حل بكرامر: $x_1 = \dfrac{\Delta_1}{\Delta},\quad x_2 = \dfrac{\Delta_2}{\Delta}$</h4><dl>
+      <dt>الخطوات</dt><dd>$\Delta$ من المعاملات، و $\Delta_1$ بتبديل العمود الأول بعمود $b$، و $\Delta_2$ بتبديل الثاني. والحل $x_1 = \Delta_1/\Delta$ و $x_2 = \Delta_2/\Delta$.</dd>
+      <dt>مثال سريع</dt><dd>$2x + y = 5$ و $x - y = 1$: $\Delta = -3$ و $\Delta_1 = -6$ و $\Delta_2 = -3$، فـ $x = 2$ و $y = 1$.</dd>
+      <dt>الحيلة</dt><dd>المحددات بالديكارتي (فيها جمع وطرح)، والقسمة بالقطبي.</dd>
+      <dt>الخطأ الشائع</dt><dd>لو $\Delta = 0$ فيه غلط في الإشارات. راجع المعادلات.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>تيار الفرع</dt><dd>في فرع لحلقة وحدة هو تيارها. في الفرع المشترك هو الفرق بينهم.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 3: $\mathbf{I}_o = -\mathbf{I}_2 = 6.12\angle 144.78^\circ\ \text{A}$.</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= 06 المختبر ================= -->
 <section class="card" id="lab" data-num="06" data-nav="المختبر|Lab">
   <h2>حاسبة كرامر</h2>
@@ -334,6 +447,7 @@
     </svg>
     <figcaption>Figure 10.1: الدائرة في مجال الزمن.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar az ak as1 aa1 ac ao">KCL عند كل عقدة مع المصدر التابع، ثم كرامر</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -435,6 +549,7 @@
     </svg>
     <figcaption>Figure 10.4: العقدتين 1 و 2 مع مصدر الجهد يكونون عقدة فائقة (الحدود المتقطعة، Figure 10.5).</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar az ak as2 aa2 ac ao">عقدة فائقة والقيد، ثم كرامر</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -510,6 +625,7 @@
     </svg>
     <figcaption>Figure 10.7: ثلاث حلقات، وكل تياراتها مع عقارب الساعة.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bz bk bt1 bb1 bc bo">KVL حول الحلقات، ثم كرامر</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -600,6 +716,7 @@
     </svg>
     <figcaption>Figure 10.10: الحلقتين 3 و 4 يكونون حلقة فائقة بسبب مصدر 4&nbsp;A بينهم.</figcaption>
   </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bz bk bt2 bb2 bc bo">حلقة فائقة والقيد، ثم كرامر</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ الدائرة</h4>
@@ -759,6 +876,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* حاسبة كرامر: معادلتين بمجهولين بأرقام مركبة، والحل كفيزورين */
 (function () {
@@ -864,6 +982,7 @@
   load(document.querySelector('.cr-lab [data-preset="1"]'));
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>
