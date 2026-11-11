@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 9 - Maximum Power Transfer & RMS Value" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 9 - نقل أقصى قدرة والقيمة الفعالة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر والموجات ومختبر نقل القدرة: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .box { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+  .fig .lbox { fill: color-mix(in srgb, var(--cy) 16%, transparent); stroke: var(--cy); stroke-width: 2; }
+  .fig .dot { fill: var(--ink-2); }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.yt { fill: var(--cy); }
+  .fig text.lbl.zt { fill: var(--cz); }
+  .fig text.lbl.xt { fill: var(--cx); }
+  .fig .area { fill: color-mix(in srgb, var(--cx) 16%, transparent); stroke: none; }
+  .fig .dash { stroke: var(--cz); stroke-width: 1.8; stroke-dasharray: 6 4; fill: none; }
+  .fig .ideal { stroke: var(--ink-3); stroke-width: 1.6; stroke-dasharray: 5 5; fill: none; }
+  .fig .mk { fill: var(--cz); stroke: var(--surface); stroke-width: 2; }
+  .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+  .three > div { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+  .three b { display: block; color: var(--accent); }
+  .mp-lab .lab-controls { align-items: center; }
+  .mp-lab .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .mp-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .mp-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mp-lab .mp-say { margin: 10px 0 0; text-align: center; font-weight: 500; color: var(--ink-2); }
+  @media (max-width: 560px) { .mp-lab .ml-read, .three { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 9 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.3–11.4</span></p>
+  <h1><span>نقل أقصى قدرة والقيمة الفعالة</span> <span class="h1-math ltr">$\mathbf{Z}_L = \mathbf{Z}_{Th}^*$</span></h1>
+  <p class="lead">في المحاضرة 8 عرفنا كيف نحسب القدرة المتوسطة. اليوم سؤالين جدد: أي حمل ياخذ <b>أكبر</b> قدرة من الدائرة؟ وكيف نوصف موجة تتغير كل لحظة برقم واحد يقول لنا "قوتها" الحقيقية؟</p>
+  <div class="xyz-bar">
+    <span class="x">جهة المصدر $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</span><span class="y">الحمل $\mathbf{Z}_L$ و $R_L$</span><span class="z">القدرة $P$ والقيمة الفعالة</span>
+    <small>← نفس الألوان في القوانين والرسومات</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>الحمل ياخذ أكبر قدرة متوسطة لما يكون مرافق معاوقة ثيفنن: $\mathbf{Z}_L = \mathbf{Z}_{Th}^*$، والقدرة وقتها $P_{\max} = \dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$.</li>
+      <li>لو الحمل مقاومة بس، أفضل قيمة لها $R_L = |\mathbf{Z}_{Th}|$.</li>
+      <li>القيمة الفعالة (rms) لأي موجة: ربّع، خذ المتوسط، ثم الجذر. وللموجة الجيبية فقط: $V_{rms} = V_m/\sqrt{2}$.</li>
+    </ol>
+  </div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+</section>
+
+<!-- ================= 01 ليش ================= -->
+<section class="card" id="why" data-num="01" data-nav="ليش؟|Why">
+  <h2>ليش نحتاج هذا الدرس؟</h2>
+  <p class="sub">مسألتين من الواقع</p>
+
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">المسألة الأولى</div><div class="t-desc">عندك مكبّر صوت (المصدر) وتبغى تركّب عليه سماعة (الحمل). أي سماعة تطلّع أعلى صوت؟ يعني أي معاوقة تسحب أكبر قدرة من المكبّر؟ نفس السؤال في الهوائي (Antenna) والراديو.</div></div>
+    <div class="tile"><div class="t-top">المسألة الثانية</div><div class="t-desc">جهد الفيش يطلع وينزل ويمر بالصفر مرتين كل دورة. طيب كيف نقول "جهد الفيش كذا فولت" برقم واحد؟ وأي رقم نحطه في قانون القدرة؟</div></div>
+  </div>
+  <p>الجواب الأول اسمه <b>نظرية نقل أقصى قدرة متوسطة</b> <span class="ltr">(Maximum average power transfer)</span>، والثاني اسمه <b>القيمة الفعالة</b> <span class="ltr">(Effective value)</span> أو rms.</p>
+  <div class="callout"><strong>💡 اللي تحتاجه من قبل:</strong> مكافئ ثيفنن (المحاضرة 7)، والقدرة المتوسطة $P = \tfrac{1}{2}|\mathbf{I}|^2 R$ (المحاضرة 8).</div>
+</section>
+
+<!-- ================= 02 نقل أقصى قدرة ================= -->
+<section class="card" id="maxp" data-num="02" data-nav="أقصى قدرة|Max power">
+  <h2>نقل أقصى قدرة متوسطة</h2>
+  <p class="sub">الحمل المناسب هو مرافق معاوقة ثيفنن</p>
+
+  <h3>الفكرة قبل المعادلات</h3>
+  <p>أي دائرة خطية نقدر نبدلها بمكافئ ثيفنن: مصدر $\X{\mathbf{V}_{Th}}$ على التوالي مع معاوقة $\X{\mathbf{Z}_{Th}}$. والحمل $\Y{\mathbf{Z}_L}$ يتركب على الطرفين.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 340 170" role="img" aria-label="مكافئ ثيفنن: مصدر جهد V_Th على التوالي مع معاوقة Z_Th، وموصول بالحمل Z_L، والتيار I يمشي في الحلقة" style="max-width:360px">
+      <circle class="wire" cx="70" cy="95" r="16"/>
+      <text class="lbl" x="70" y="92" text-anchor="middle">+</text><text class="lbl" x="70" y="107" text-anchor="middle">−</text>
+      <path class="wire" d="M70 79V40H115M175 40H270V65M270 125V150H70V111"/>
+      <rect class="box" x="115" y="27" width="60" height="26" rx="4"/>
+      <rect class="lbox" x="255" y="65" width="30" height="60" rx="4"/>
+      <path class="sk e2" d="M200 30H232M226 25L232 30L226 35"/>
+      <text class="lbl" x="216" y="20" text-anchor="middle">I</text>
+      <text class="lbl xt" x="145" y="18" text-anchor="middle">Z<tspan class="sb" dy="3">Th</tspan></text>
+      <text class="lbl xt" x="46" y="99" text-anchor="end">V<tspan class="sb" dy="3">Th</tspan></text>
+      <text class="lbl yt" x="293" y="99">Z<tspan class="sb" dy="3">L</tspan></text>
+    </svg>
+    <figcaption>Figure 11.7: الدائرة كلها صارت مصدر ومعاوقة، والحمل هو اللي نختاره.</figcaption>
+  </figure>
+  <p>نكتب المعاوقتين بالصورة المستطيلة <span class="ltr">(Rectangular form)</span>:</p>
+  <div class="m">\[\begin{gathered}\X{\mathbf{Z}_{Th}} = R_{Th} + jX_{Th} \\ \Y{\mathbf{Z}_L} = R_L + jX_L\end{gathered}\]</div>
+  <p>اللي بيدنا نغيره شيئين: مقاومة الحمل $R_L$ ومفاعلة الحمل $X_L$. نبدأ بسؤال:</p>
+
+  <details class="think"><summary>🤔 فكّر قبل تكمل: المفاعلة ما تاخذ قدرة متوسطة. طيب وش أفضل قيمة لمفاعلة الحمل $X_L$؟</summary>
+    <p>المفاعلة ما تاخذ قدرة، بس <b>تعطّل التيار</b>. وكل ما قل التيار قلت قدرة المقاومة. فأفضل شي نخلي مجموع المفاعلات في الحلقة صفر: $X_L = -X_{Th}$. يعني لو جهة المصدر فيها ملف، نحط في الحمل مكثف يلغيه، والعكس.</p>
+  </details>
+
+  <p>بعد ما تلغي المفاعلات بعض، تبقى مقاومتين بس: $R_{Th}$ و $R_L$. وهذي نفس مسألة DC اللي تعرفها:</p>
+  <div class="three">
+    <div><b>$R_L$ صغيرة مرة</b>التيار كبير، بس جهد الحمل صغير، فالقدرة قليلة.</div>
+    <div><b>$R_L$ كبيرة مرة</b>جهد الحمل كبير، بس التيار صغير، فالقدرة قليلة.</div>
+    <div><b>$R_L = R_{Th}$</b>النقطة اللي في النص، وعندها القدرة أكبر شي.</div>
+  </div>
+
+  <h3>القانون</h3>
+  <p>نجمع الشرطين: $R_L = R_{Th}$ و $X_L = -X_{Th}$. يعني الحمل نفس معاوقة ثيفنن بس إشارة الجزء التخيلي معكوسة، وهذا هو المرافق <span class="ltr">(Complex conjugate)</span>:</p>
+  <div class="m">\[\Y{\mathbf{Z}_L} = R_{Th} - jX_{Th} = \X{\mathbf{Z}_{Th}^*}\]</div>
+  <p>لما يتحقق هذا نقول إن الحمل <b>متوافق</b> مع المصدر <span class="ltr">(Matched load)</span>.</p>
+
+  <h3>من وين جاء $P_{\max}$؟</h3>
+  <p>نمشيها خطوة خطوة. التيار في الحلقة:</p>
+  <div class="m">\[\mathbf{I} = \frac{\X{\mathbf{V}_{Th}}}{\X{\mathbf{Z}_{Th}} + \Y{\mathbf{Z}_L}}\]</div>
+  <p>والقدرة المتوسطة في الحمل من المحاضرة 8:</p>
+  <div class="m">\[\begin{gathered}\Z{P} = \tfrac{1}{2}|\mathbf{I}|^2 R_L \\ = \frac{|\mathbf{V}_{Th}|^2 R_L / 2}{(R_{Th} + R_L)^2 + (X_{Th} + X_L)^2}\end{gathered}\]</div>
+  <p>نعوّض $X_L = -X_{Th}$ فيختفي القوس الثاني، ونعوّض $R_L = R_{Th}$:</p>
+  <div class="m">\[\begin{gathered}\Z{P_{\max}} = \frac{|\mathbf{V}_{Th}|^2 R_{Th} / 2}{(2R_{Th})^2} \\ = \frac{|\mathbf{V}_{Th}|^2}{8R_{Th}}\end{gathered}\]</div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">الرموز</div><div class="t-desc">$|\mathbf{V}_{Th}|$: القيمة العظمى لجهد ثيفنن (V). $R_{Th}$: الجزء الحقيقي من $\mathbf{Z}_{Th}$ (Ω). $P_{\max}$: بالواط (W).</div></div>
+    <div class="tile"><div class="t-top">ليش 8؟</div><div class="t-desc">النص من $\tfrac{1}{2}$ حق القيمة العظمى، والأربعة من $(2R_{Th})^2$. اثنين في أربعة يساوي ثمانية.</div></div>
+  </div>
+
+  <h3>لو الحمل مقاومة بس</h3>
+  <p>أحيانًا المسألة تقول الحمل مقاومة $R_L$ وما تقدر تحط مفاعلة. يعني $X_L = 0$ وما نقدر نلغي $X_{Th}$. وقتها أفضل مقاومة:</p>
+  <div class="m">\[\Y{R_L} = \sqrt{R_{Th}^2 + X_{Th}^2} = |\X{\mathbf{Z}_{Th}}|\]</div>
+  <div class="callout warn"><strong>⚠️ انتبه:</strong> في هذي الحالة لا تستخدم $\dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$ لأن الحمل مو متوافق. احسب التيار أول، وبعدها $P = \tfrac{1}{2}|\mathbf{I}|^2 R_L$.</div>
+  <div class="callout key"><strong>🔑 الخلاصة:</strong> حمل معاوقة: خذ المرافق. حمل مقاومة بس: خذ المقدار (Magnitude).</div>
+</section>
+
+<!-- ================= 03 القيمة الفعالة ================= -->
+<section class="card" id="rms" data-num="03" data-nav="القيمة الفعالة|rms">
+  <h2>القيمة الفعالة (Effective / rms value)</h2>
+  <p class="sub">التيار المستمر اللي يسخّن المقاومة نفس التسخين</p>
+
+  <h3>الفكرة قبل المعادلات</h3>
+  <p>تخيّل سخّان (مقاومة $R$). مرة نشغّله على تيار متردد $i(t)$، ومرة على تيار مستمر ثابت. <b>القيمة الفعالة</b> للتيار المتردد هي قيمة التيار المستمر اللي يعطي المقاومة نفس القدرة المتوسطة بالضبط.</p>
+
+  <details class="think"><summary>🤔 فكّر قبل تكمل: ليش ما ناخذ متوسط الموجة العادي ونرتاح؟</summary>
+    <p>لأن متوسط الموجة الجيبية <b>صفر</b>: النص الموجب يلغي النص السالب. بس السخّان يسخن في النصين! القدرة تعتمد على $i^2$، والتربيع يخلي السالب موجب. عشان كذا نربّع أول.</p>
+  </details>
+
+  <h3>القانون</h3>
+  <p>قدرة المقاومة مع التيار المتردد هي متوسط $i^2R$ على دورة كاملة $T$، ومع المستمر $I_{eff}^2 R$. نساوي الاثنين:</p>
+  <div class="m">\[\begin{gathered}\frac{R}{T}\int_0^T i^2\,dt = I_{eff}^2\,R \\[4pt] \Z{I_{rms}} = \sqrt{\frac{1}{T}\int_0^T i^2\,dt}\end{gathered}\]</div>
+  <p>ونفس الشي للجهد أو لأي موجة دورية $x(t)$:</p>
+  <div class="m">\[\Z{X_{rms}} = \sqrt{\frac{1}{T}\int_0^T x^2\,dt}\]</div>
+  <p>الاسم rms هو ترتيب الحل بالمقلوب: Root (جذر) Mean (متوسط) Square (تربيع). وأنت تحل من اليمين:</p>
+  <div class="three">
+    <div><b>1. ربّع</b>اضرب الموجة في نفسها: $x^2$</div>
+    <div><b>2. خذ المتوسط</b>كامل على دورة واقسم على $T$</div>
+    <div><b>3. خذ الجذر</b>وهذي القيمة الفعالة</div>
+  </div>
+
+  <h3>الموجة الجيبية: اختصار جاهز</h3>
+  <p>لو $i(t) = I_m\cos\omega t$، نطبق الخطوات الثلاث ونستخدم $\cos^2 x = \tfrac{1}{2}(1 + \cos 2x)$. متوسط $\cos 2\omega t$ على دورة صفر، فيبقى النص:</p>
+  <div class="m">\[\begin{gathered}I_{rms}^2 = \frac{1}{T}\int_0^T I_m^2\cos^2\omega t\,dt = \frac{I_m^2}{2} \\[4pt] \Z{I_{rms}} = \frac{I_m}{\sqrt{2}} \qquad \Z{V_{rms}} = \frac{V_m}{\sqrt{2}}\end{gathered}\]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 360 170" role="img" aria-label="موجة جيبية قيمتها العظمى V_m، وخط متقطع عند 0.707 من القيمة العظمى يمثل القيمة الفعالة">
+      <path class="ax" d="M30 90H340M30 15V165"/>
+      <path class="sk e1" d="M30 90.0L35 74.9L40 60.4L45 47.2L50 35.6L55 26.4L60 19.7L65 15.9L70 15.1L75 17.4L80 22.7L85 30.7L90 41.1L95 53.6L100 67.5L105 82.4L110 97.6L115 112.5L120 126.4L125 138.9L130 149.3L135 157.3L140 162.6L145 164.9L150 164.1L155 160.3L160 153.6L165 144.4L170 132.8L175 119.6L180 105.1L185 90.0L190 74.9L195 60.4L200 47.2L205 35.6L210 26.4L215 19.7L220 15.9L225 15.1L230 17.4L235 22.7L240 30.7L245 41.1L250 53.6L255 67.5L260 82.4L265 97.6L270 112.5L275 126.4L280 138.9L285 149.3L290 157.3L295 162.6L300 164.9L305 164.1L310 160.3L315 153.6L320 144.4L325 132.8L330 119.6L335 105.1L340 90.0"/>
+      <path class="dash" d="M30 37H340"/>
+      <text class="lbl" x="36" y="13">V<tspan class="sb" dy="3">m</tspan></text>
+      <text class="lbl zt" x="338" y="31" text-anchor="end">V<tspan class="sb" dy="3">rms</tspan><tspan dy="-3"> = 0.707 V</tspan><tspan class="sb" dy="3">m</tspan></text>
+      <text x="344" y="94">t</text>
+    </svg>
+    <figcaption>القيمة الفعالة للموجة الجيبية تساوي 70.7% من القيمة العظمى.</figcaption>
+  </figure>
+  <div class="callout warn"><strong>⚠️ مهم:</strong> القسمة على $\sqrt{2}$ للموجة الجيبية <b>فقط</b>. أي موجة ثانية (مثلث، مربعة، نص موجة) لازم لها التكامل.</div>
+
+  <h3>القدرة بالقيمة الفعالة</h3>
+  <p>من المحاضرة 8: $P = \tfrac{1}{2}V_m I_m\cos(\theta_v - \theta_i)$. نوزع النص على الاثنين: $\tfrac{1}{2} = \tfrac{1}{\sqrt{2}}\cdot\tfrac{1}{\sqrt{2}}$:</p>
+  <div class="m">\[\begin{gathered}\Z{P} = \frac{V_m}{\sqrt{2}}\cdot\frac{I_m}{\sqrt{2}}\cos(\theta_v - \theta_i) \\ = V_{rms}\,I_{rms}\cos(\theta_v - \theta_i)\end{gathered}\]</div>
+  <p>وللمقاومة $R$، وهذا القانون يمشي مع <b>أي</b> موجة دورية مو بس الجيبية:</p>
+  <div class="m">\[\Z{P} = I_{rms}^2\,R = \frac{V_{rms}^2}{R}\]</div>
+  <div class="callout key"><strong>🔑 الفايدة:</strong> بالقيمة الفعالة ترجع قوانين القدرة مثل قوانين DC بالضبط، بدون النص.</div>
+  <div class="callout"><strong>💡 من الواقع:</strong> جهد البيت اللي تعطيه شركة الكهرباء هو قيمة فعالة، وأجهزة القياس (Voltmeter و Ammeter) تقرأ القيمة الفعالة. الكتاب يذكر 110 V. (معلومة إضافية مو من المقرر: عندنا الفيش تقريبًا 220 V، يعني القيمة العظمى $220\sqrt{2} \approx 311\ \text{V}$.)</div>
+</section>
+
+<!-- ================= 04 لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: أكبر قدرة للحمل</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="r1 th a1 p1 o1">مسار: الحمل معاوقة</button>
+      <button class="btn small" type="button" data-path="r1 th a2 i2 p2 o1">مسار: الحمل مقاومة بس</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k">إذا جاك: «أوجد الحمل اللي ياخذ أكبر قدرة متوسطة»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="th" data-from="r1"><span class="fb-k">مكافئ ثيفنن عند طرفي الحمل</span><span class="fb-f">$\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th} = R_{Th} + jX_{Th}$</span><span class="fb-b">المحاضرة 7</span></button>
+      <button type="button" class="fb-node c1" data-id="a1" data-from="th"><span class="fb-k">الحمل معاوقة</span><span class="fb-f">$\mathbf{Z}_L = \mathbf{Z}_{Th}^*$</span></button>
+      <button type="button" class="fb-node c2" data-id="a2" data-from="th"><span class="fb-k">الحمل مقاومة بس</span><span class="fb-f">$R_L = |\mathbf{Z}_{Th}|$</span></button>
+      <button type="button" class="fb-node c1" data-id="p1" data-from="a1"><span class="fb-k">أقصى قدرة</span><span class="fb-f">$P_{\max} = \dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="i2" data-from="a2"><span class="fb-k">احسب التيار</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + R_L}$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="p2" data-from="i2"><span class="fb-k">قدرة المقاومة</span><span class="fb-f">$P = \tfrac{1}{2}|\mathbf{I}|^2 R_L$</span><span class="fb-b">المحاضرة 8</span></button>
+      <button type="button" class="fb-node out c12" data-id="o1" data-from="p1 p2"><span class="fb-k">الناتج: قيمة الحمل، و $P_{\max}$ بالواط</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="r1" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">maximum average power</span> أو "أكبر قدرة متوسطة". الحمل مجهول وأنت اللي تختاره.</dd>
+      <dt>أول شي تسويه</dt><dd>شيل الحمل من الدائرة، واشتغل على الطرفين اللي كان مركب عليهم.</dd></dl></div>
+    <div class="fb-info" data-for="th" hidden><h4>مكافئ ثيفنن عند طرفي الحمل</h4><dl>
+      <dt>متى؟</dt><dd>دايمًا أول خطوة في مسائل أقصى قدرة. بدونه ما تقدر تكمل.</dd>
+      <dt>كيف؟</dt><dd>$\mathbf{Z}_{Th}$: طفّي المصادر (مصدر الجهد يصير سلك) واحسب المعاوقة من جهة الحمل. $\mathbf{V}_{Th}$: جهد الطرفين وهم مفتوحين.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{Z}_{Th} = 2.933 + j4.467\ \Omega$ و $\mathbf{V}_{Th} = 7.454\angle{-10.3^\circ}\ \text{V}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى تشيل الحمل قبل ما تحسب، أو تنسى تطفّي المصدر في $\mathbf{Z}_{Th}$.</dd></dl></div>
+    <div class="fb-info" data-for="a1" hidden><h4>الحمل معاوقة: $\mathbf{Z}_L = \mathbf{Z}_{Th}^*$</h4><dl>
+      <dt>متى؟</dt><dd>لما المطلوب معاوقة الحمل $\mathbf{Z}_L$ <span class="ltr">(load impedance)</span>، يعني مسموح لك تختار المقاومة والمفاعلة.</dd>
+      <dt>الرموز</dt><dd>النجمة يعني المرافق: نفس الجزء الحقيقي، وإشارة الجزء التخيلي معكوسة.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z}_{Th} = 3 + j4$ فالحمل $\mathbf{Z}_L = 3 - j4\ \Omega$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $\mathbf{Z}_L = \mathbf{Z}_{Th}$ بدون ما تعكس الإشارة.</dd></dl></div>
+    <div class="fb-info" data-for="a2" hidden><h4>الحمل مقاومة بس: $R_L = |\mathbf{Z}_{Th}|$</h4><dl>
+      <dt>متى؟</dt><dd>لما المطلوب مقاومة $R_L$، أو مكتوب <span class="ltr">purely resistive load</span>، يعني ما فيه مفاعلة في الحمل.</dd>
+      <dt>الرموز</dt><dd>$|\mathbf{Z}_{Th}| = \sqrt{R_{Th}^2 + X_{Th}^2}$، وهو مقدار معاوقة ثيفنن.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{Z}_{Th} = 3 + j4$ فالحمل $R_L = \sqrt{9 + 16} = 5\ \Omega$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تاخذ $R_L = R_{Th}$. هذا صح في DC بس، أو لما $X_{Th} = 0$.</dd></dl></div>
+    <div class="fb-info" data-for="p1" hidden><h4>أقصى قدرة: $P_{\max} = \dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$</h4><dl>
+      <dt>متى؟</dt><dd>فقط لما الحمل متوافق، يعني $\mathbf{Z}_L = \mathbf{Z}_{Th}^*$.</dd>
+      <dt>الرموز</dt><dd>$|\mathbf{V}_{Th}|$ القيمة العظمى (المقدار بس بدون الزاوية). $R_{Th}$ الجزء الحقيقي من $\mathbf{Z}_{Th}$.</dd>
+      <dt>مثال سريع</dt><dd>$|\mathbf{V}_{Th}| = 20\ \text{V}$ و $R_{Th} = 5\ \Omega$: $P_{\max} = \dfrac{400}{40} = 10\ \text{W}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحط $|\mathbf{Z}_{Th}|$ بدل $R_{Th}$ في المقام. ولو $\mathbf{V}_{Th}$ معطى rms، المقام يصير $4R_{Th}$.</dd></dl></div>
+    <div class="fb-info" data-for="i2" hidden><h4>احسب التيار: $\mathbf{I} = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + R_L}$</h4><dl>
+      <dt>متى؟</dt><dd>لما الحمل مقاومة بس. ما عندنا قانون جاهز للقدرة، فنحسب التيار أول.</dd>
+      <dt>الحيلة</dt><dd>تحتاج المقدار $|\mathbf{I}|$ بس، فاقسم المقادير: $|\mathbf{I}| = \dfrac{|\mathbf{V}_{Th}|}{|\mathbf{Z}_{Th} + R_L|}$، وما يهمك الزوايا.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع المقادير: $|\mathbf{Z}_{Th}| + R_L$. الصح تجمع $R_L$ على الجزء الحقيقي أول، وبعدها تاخذ المقدار.</dd></dl></div>
+    <div class="fb-info" data-for="p2" hidden><h4>قدرة المقاومة: $P = \tfrac{1}{2}|\mathbf{I}|^2 R_L$</h4><dl>
+      <dt>متى؟</dt><dd>أي مقاومة تعرف تيارها بالقيمة العظمى. من المحاضرة 8.</dd>
+      <dt>مثال سريع</dt><dd>$|\mathbf{I}| = 1.8\ \text{A}$ و $R_L = 24.25\ \Omega$: $P = \tfrac{1}{2}(1.8)^2(24.25) = 39.29\ \text{W}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى النص. النص يروح بس لو التيار rms.</dd></dl></div>
+    <div class="fb-info" data-for="o1" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>قيمة الحمل بالأوم ($\mathbf{Z}_L$ أو $R_L$)، والقدرة بالواط.</dd>
+      <dt>تأكد</dt><dd>القدرة لازم تطلع موجبة. ولو الحمل مقاومة بس، قدرته لازم تكون أقل من $\dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: القيمة الفعالة وقدرة الموجة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="r2 s1 f1 pw o2">مسار: موجة جيبية</button>
+      <button class="btn small" type="button" data-path="r2 s2 k1 f2 pw o2">مسار: موجة ثانية</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k">إذا جاك: «أوجد القيمة الفعالة rms» أو «قدرة موجة في مقاومة»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="s1" data-from="r2"><span class="fb-k">الموجة جيبية: $\sin$ أو $\cos$</span></button>
+      <button type="button" class="fb-node ask c2" data-id="s2" data-from="r2"><span class="fb-k">أي موجة دورية ثانية</span></button>
+      <button type="button" class="fb-node c1" data-id="f1" data-from="s1"><span class="fb-k">الاختصار</span><span class="fb-f">$X_{rms} = \dfrac{X_m}{\sqrt{2}}$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="k1" data-from="s2"><span class="fb-k">حدد الدورة $T$ واكتب معادلة كل جزء</span></button>
+      <button type="button" class="fb-node c2" data-id="f2" data-from="k1"><span class="fb-k">ربّع، متوسط، جذر</span><span class="fb-f">$\sqrt{\dfrac{1}{T}\displaystyle\int_0^T x^2\,dt}$</span></button>
+      <button type="button" class="fb-node c12" data-id="pw" data-from="f1 f2"><span class="fb-k">القدرة في مقاومة</span><span class="fb-f">$P = I_{rms}^2 R = \dfrac{V_{rms}^2}{R}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="o2" data-from="pw"><span class="fb-k">الناتج: القيمة الفعالة (A أو V)، والقدرة بالواط</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="r2" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">rms value</span> أو <span class="ltr">effective value</span>، أو معطيك رسمة موجة ويطلب القدرة في مقاومة.</dd>
+      <dt>أول شي تسويه</dt><dd>شوف شكل الموجة: جيبية كاملة ولا شي ثاني؟ هذا يحدد الفرع.</dd></dl></div>
+    <div class="fb-info" data-for="s1" hidden><h4>الموجة جيبية</h4><dl>
+      <dt>متى؟</dt><dd>الموجة $\sin$ أو $\cos$ كاملة: $X_m\cos(\omega t + \phi)$. الزاوية والتردد ما يأثرون على القيمة الفعالة.</dd>
+      <dt>انتبه</dt><dd>نص موجة جيبية <span class="ltr">(Half-wave rectified)</span> مو جيبية كاملة، فتروح للفرع الثاني.</dd></dl></div>
+    <div class="fb-info" data-for="s2" hidden><h4>أي موجة دورية ثانية</h4><dl>
+      <dt>متى؟</dt><dd>مثلث، منشار، مربعة، نص موجة، أو أي شكل يتكرر.</dd>
+      <dt>القاعدة</dt><dd>ما فيه اختصار. لازم التكامل.</dd></dl></div>
+    <div class="fb-info" data-for="f1" hidden><h4>الاختصار: $X_{rms} = \dfrac{X_m}{\sqrt{2}}$</h4><dl>
+      <dt>متى؟</dt><dd>للموجة الجيبية فقط.</dd>
+      <dt>الرموز</dt><dd>$X_m$ القيمة العظمى (Peak)، وهي الرقم اللي قدام الـ $\cos$.</dd>
+      <dt>مثال سريع</dt><dd>$v = 311\cos(377t)\ \text{V}$: $V_{rms} = \dfrac{311}{\sqrt{2}} = 219.9\ \text{V}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تستخدمه مع موجة مثلث أو مربعة.</dd></dl></div>
+    <div class="fb-info" data-for="k1" hidden><h4>حدد الدورة واكتب معادلة كل جزء</h4><dl>
+      <dt>ليش؟</dt><dd>التكامل يبغى معادلة، والرسمة ما تتكامل. فتحوّل الرسمة لمعادلات.</dd>
+      <dt>كيف؟</dt><dd>الدورة $T$ هي المسافة لين الشكل يتكرر. وكل جزء مستقيم له معادلة خط: الميل ضرب $t$ زائد ثابت.</dd>
+      <dt>مثال سريع</dt><dd>في مثال 3: $T = 4$، والموجة $5t$ من 0 إلى 2، و $-10$ من 2 إلى 4.</dd>
+      <dt>الخطأ الشائع</dt><dd>تاخذ $T$ غلط، أو تنسى جزء من الدورة قيمته صفر (يدخل في القسمة على $T$).</dd></dl></div>
+    <div class="fb-info" data-for="f2" hidden><h4>القانون العام: $X_{rms} = \sqrt{\dfrac{1}{T}\displaystyle\int_0^T x^2\,dt}$</h4><dl>
+      <dt>متى؟</dt><dd>يمشي مع أي موجة دورية، حتى الجيبية.</dd>
+      <dt>الحيلة</dt><dd>قسّم التكامل على الأجزاء: كامل كل جزء لحاله واجمع، وبعدها اقسم على $T$ مرة وحدة.</dd>
+      <dt>مثال سريع</dt><dd>موجة قيمتها 4 نص الدورة وصفر النص الثاني: $\sqrt{\tfrac{1}{T}(16)(\tfrac{T}{2})} = \sqrt{8} = 2.83$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكامل $x$ بدل $x^2$، أو تنسى الجذر في الآخر.</dd></dl></div>
+    <div class="fb-info" data-for="pw" hidden><h4>القدرة في مقاومة: $P = I_{rms}^2 R = \dfrac{V_{rms}^2}{R}$</h4><dl>
+      <dt>متى؟</dt><dd>لما تعرف القيمة الفعالة للتيار أو الجهد على مقاومة. يمشي مع أي موجة.</dd>
+      <dt>مثال سريع</dt><dd>$I_{rms} = 8.165\ \text{A}$ و $R = 2\ \Omega$: $P = (8.165)^2(2) = 133.3\ \text{W}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحط نص قدامه. النص للقيمة العظمى بس: $\tfrac{1}{2}I_m^2R$.</dd></dl></div>
+    <div class="fb-info" data-for="o2" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>القيمة الفعالة بوحدتها (A أو V)، والقدرة بالواط.</dd>
+      <dt>تأكد</dt><dd>القيمة الفعالة دايمًا موجبة، وما تزيد عن أعلى قيمة في الموجة.</dd></dl></div>
+  </div>
+</section>
+
+<!-- ================= 05 المختبر ================= -->
+<section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
+  <h2>جرّب بنفسك: دوّر على أكبر قدرة</h2>
+  <p class="sub">غيّر الحمل وشوف متى توصل القدرة لأعلى قيمة</p>
+
+  <div class="mp-lab">
+    <h3>🎛️ حرّك مقاومة الحمل ومفاعلته</h3>
+    <p class="lab-note">جهة المصدر ثابتة ومأخوذة من المثال الأول. جهد ثيفنن $|\mathbf{V}_{Th}| = 7.454\ \text{V}$، ومعاوقته $\mathbf{Z}_{Th} = 2.933 + j4.467\ \Omega$. المنحنى يرسم قدرة الحمل مقابل $R_L$ عند قيمة $X_L$ اللي اخترتها.</p>
+    <div class="lab-controls">
+      <div class="field"><label>حمل جاهز</label><span class="seg"><button class="btn small" type="button" data-pre="m">المرافق $\mathbf{Z}_{Th}^*$</button><button class="btn small" type="button" data-pre="r">مقاومة $|\mathbf{Z}_{Th}|$</button><button class="btn small" type="button" data-pre="d">غلط شائع $R_L = R_{Th}$</button></span></div>
+      <div class="field"><label>$R_L$ (Ω)</label><input type="range" dir="ltr" id="rlS" min="0.2" max="12" step="0.001" value="6"><span class="rv" id="rlSv"></span></div>
+      <div class="field"><label>$X_L$ (Ω)</label><input type="range" dir="ltr" id="xlS" min="-10" max="10" step="0.001" value="0"><span class="rv" id="xlSv"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 290" role="img" aria-label="منحنى قدرة الحمل مقابل مقاومة الحمل، مع نقطة تمثل الحمل الحالي وخط متقطع لأفضل حالة ممكنة">
+        <path class="ax" d="M50 250H580M50 250V15"/>
+        <text x="570" y="270" text-anchor="end">R<tspan class="sb" dy="3">L</tspan><tspan dy="-3"> (Ω)</tspan></text>
+        <text class="tick" x="50" y="266" text-anchor="middle">0</text><text class="tick" x="182" y="266" text-anchor="middle">3</text><text class="tick" x="314" y="266" text-anchor="middle">6</text><text class="tick" x="446" y="266" text-anchor="middle">9</text>
+        <text class="lbl zt" x="56" y="14">P (W)</text>
+        <path class="ideal" id="mpIdeal"/>
+        <path class="dash" id="mpTop"/>
+        <path class="sk z" id="mpCurve"/>
+        <circle class="mk" id="mpDot" r="7"/>
+        <text class="lbl zt" id="mpTopT" x="576" text-anchor="end">P<tspan class="sb" dy="3">max</tspan></text>
+      </svg>
+      <figcaption>الخط الرمادي المتقطع: المنحنى لو المفاعلات ملغية ($X_L = -X_{Th}$). الخط الملوّن: المنحنى مع $X_L$ الحالية. النقطة: حملك الحين.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k">قدرة الحمل $P$</span><span class="v" id="mpP"></span></div>
+      <div><span class="k">أقصى قدرة ممكنة $P_{\max}$</span><span class="v" id="mpMax"></span></div>
+      <div><span class="k">نسبة قدرتك من $P_{\max}$</span><span class="v" id="mpPct"></span></div>
+      <div><span class="k">الحمل الحالي $\mathbf{Z}_L$</span><span class="v ltr" id="mpZ"></span></div>
+      <div><span class="k">تيار الحمل $|\mathbf{I}|$</span><span class="v" id="mpI"></span></div>
+      <div><span class="k">أفضل $R_L$ مع هذي $X_L$</span><span class="v" id="mpBest"></span></div>
+    </div>
+    <p class="mp-say" id="mpSay"></p>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> اضغط "مقاومة $|\mathbf{Z}_{Th}|$" وشوف القدرة كم نسبتها. بعدها حرّك $X_L$ لليسار شوي شوي وشوف المنحنى الملوّن يرتفع لين يركب على الرمادي. هذا معنى إلغاء المفاعلة.</div>
+</section>
+
+<!-- ================= الأمثلة ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>حمل معاوقة لأقصى قدرة</h2></div>
+  <div class="tags"><span class="tag">Example 11.5</span><span class="tag">ثيفنن ثم المرافق</span></div>
+  <p>أوجد معاوقة الحمل $\mathbf{Z}_L$ اللي تاخذ أكبر قدرة متوسطة من الدائرة. وكم أقصى قدرة متوسطة؟</p>
+  <figure class="fig">
+    <svg viewBox="0 0 385 185" role="img" aria-label="مصدر جهد 10 بزاوية صفر، بعده مقاومة 4 أوم على التوالي، ثم فرع نازل فيه مقاومة 8 أوم ومكثف سالب j6 أوم، ثم ملف j5 أوم على التوالي يوصل للحمل Z_L" style="max-width:400px">
+      <circle class="wire" cx="85" cy="105" r="16"/>
+      <text class="lbl" x="85" y="102" text-anchor="middle">+</text><text class="lbl" x="85" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M85 89V40H110M150 40H205M245 40H320V70M320 120V160H85V121M180 40V55M180 95V108M180 116V160"/>
+      <path class="elm" d="M110 40l3.33-8 6.67 16 6.67-16 6.67 16 6.67-16 6.67 16 3.33-8"/>
+      <path class="elm" d="M205 40a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0"/>
+      <path class="elm" d="M180 55l8 3.33-16 6.67 16 6.67-16 6.67 16 6.67-16 6.67 8 3.33"/>
+      <path class="elm" d="M168 108H192M168 116H192"/>
+      <rect class="lbox" x="305" y="70" width="30" height="50" rx="4"/>
+      <circle class="dot" cx="180" cy="40" r="3"/><circle class="dot" cx="180" cy="160" r="3"/>
+      <text class="lbl" x="62" y="109" text-anchor="end">10∠0° V</text>
+      <text class="lbl" x="130" y="24" text-anchor="middle">4 Ω</text>
+      <text class="lbl" x="225" y="26" text-anchor="middle">j5 Ω</text>
+      <text class="lbl" x="196" y="79">8 Ω</text>
+      <text class="lbl" x="198" y="118">−j6 Ω</text>
+      <text class="lbl yt" x="342" y="99">Z<tspan class="sb" dy="3">L</tspan></text>
+    </svg>
+    <figcaption>Figure 11.8: الحمل $\mathbf{Z}_L$ على أقصى اليمين.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 th a1 p1 o1">ثيفنن، ثم المرافق، ثم $P_{\max}$</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">المطلوب "أكبر قدرة" والحمل معاوقة $\mathbf{Z}_L$. يعني الشجرة 1، فرع "الحمل معاوقة". نحتاج $\mathbf{Z}_{Th}$ و $\mathbf{V}_{Th}$ عند طرفي الحمل.</p>
+    </li>
+    <li class="step">
+      <h4>جهّز لحساب $\mathbf{Z}_{Th}$</h4>
+      <p class="why">نشيل الحمل، ونطفّي المصدر (يصير سلك). لو وقفت مكان الحمل وطالعت في الدائرة: الملف $j5$ على التوالي مع مجموعة، والمجموعة هي $4\ \Omega$ على التوازي مع الفرع $(8 - j6)$.</p>
+      <div class="m">\[\mathbf{Z}_{Th} = j5 + 4 \parallel (8 - j6)\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب التوازي</h4>
+      <p class="why">قانون التوازي: حاصل الضرب على المجموع.</p>
+      <div class="m">\[\begin{gathered}4 \parallel (8 - j6) = \frac{4(8 - j6)}{4 + 8 - j6} \\ = \frac{32 - j24}{12 - j6} \\ = 2.933 - j0.533\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>أضف الملف</h4>
+      <div class="m">\[\begin{gathered}\X{\mathbf{Z}_{Th}} = j5 + 2.933 - j0.533 \\ = 2.933 + j4.467\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب $\mathbf{V}_{Th}$</h4>
+      <p class="why">نرجّع المصدر ونخلي الطرفين مفتوحين. ما فيه تيار يمر في الملف $j5$، فما عليه جهد. يعني $\mathbf{V}_{Th}$ هو جهد الفرع $(8 - j6)$، ونطلعه بمجزئ الجهد <span class="ltr">(Voltage divider)</span>.</p>
+      <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = \frac{8 - j6}{4 + 8 - j6}(10) \\ = 7.454\angle{-10.3^\circ}\ \text{V}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>اختر الحمل</h4>
+      <p class="why">الحمل معاوقة، فناخذ المرافق: نعكس إشارة الجزء التخيلي.</p>
+      <div class="m">\[\begin{gathered}\Y{\mathbf{Z}_L} = \mathbf{Z}_{Th}^* \\ = 2.933 - j4.467\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب أقصى قدرة</h4>
+      <p class="why">الحمل متوافق، فنستخدم القانون الجاهز. ناخذ مقدار $\mathbf{V}_{Th}$ بس، والزاوية ما تدخل.</p>
+      <div class="m">\[\begin{gathered}\Z{P_{\max}} = \frac{|\mathbf{V}_{Th}|^2}{8R_{Th}} \\ = \frac{(7.454)^2}{8(2.933)}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\mathbf{Z}_L = 2.933 - j4.467\ \Omega$، $P_{\max} = 2.368$ W</div>
+      <p class="sanity">جهة المصدر فيها مفاعلة موجبة (ملف)، والحمل طلع بمفاعلة سالبة (مكثف) تلغيها ✓</p>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>حمل مقاومة بس</h2></div>
+  <div class="tags"><span class="tag">Example 11.6</span><span class="tag">$R_L = |\mathbf{Z}_{Th}|$</span></div>
+  <p>أوجد قيمة $R_L$ اللي تاخذ أكبر قدرة متوسطة، واحسب هذي القدرة.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 385 185" role="img" aria-label="مصدر جهد 150 بزاوية 30 درجة، على التوالي مع مقاومة 40 أوم ومكثف سالب j30 أوم، ثم ملف j20 أوم على التوازي مع مقاومة الحمل R_L" style="max-width:400px">
+      <circle class="wire" cx="85" cy="105" r="16"/>
+      <text class="lbl" x="85" y="102" text-anchor="middle">+</text><text class="lbl" x="85" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M85 89V40H110M150 40H175M183 40H320V80M320 120V160H85V121M250 40V80M250 120V160"/>
+      <path class="elm" d="M110 40l3.33-8 6.67 16 6.67-16 6.67 16 6.67-16 6.67 16 3.33-8"/>
+      <path class="elm" d="M175 28V52M183 28V52"/>
+      <path class="elm" d="M250 80a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <path class="sk y" d="M320 80l8 3.33-16 6.67 16 6.67-16 6.67 16 6.67-16 6.67 8 3.33"/>
+      <circle class="dot" cx="250" cy="40" r="3"/><circle class="dot" cx="250" cy="160" r="3"/>
+      <text class="lbl" x="62" y="109" text-anchor="end">150∠30° V</text>
+      <text class="lbl" x="130" y="24" text-anchor="middle">40 Ω</text>
+      <text class="lbl" x="179" y="20" text-anchor="middle">−j30 Ω</text>
+      <text class="lbl" x="240" y="104" text-anchor="end">j20 Ω</text>
+      <text class="lbl yt" x="336" y="104">R<tspan class="sb" dy="3">L</tspan></text>
+    </svg>
+    <figcaption>Figure 11.11: الحمل مقاومة $R_L$ على التوازي مع الملف.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 th a2 i2 p2 o1">ثيفنن، ثم المقدار، ثم التيار، ثم القدرة</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">المطلوب "أكبر قدرة" بس الحمل مقاومة $R_L$ فقط. يعني الشجرة 1، فرع "الحمل مقاومة بس". ما نقدر نلغي المفاعلة، فما نستخدم قانون $P_{\max}$ الجاهز.</p>
+    </li>
+    <li class="step">
+      <h4>احسب $\mathbf{Z}_{Th}$</h4>
+      <p class="why">نشيل $R_L$ ونطفّي المصدر. من جهة الحمل: الملف $j20$ على التوازي مع الفرع $(40 - j30)$.</p>
+      <div class="m">\[\begin{gathered}\X{\mathbf{Z}_{Th}} = \frac{j20(40 - j30)}{j20 + 40 - j30} \\ = \frac{600 + j800}{40 - j10} \\ = 9.412 + j22.35\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب $\mathbf{V}_{Th}$</h4>
+      <p class="why">الطرفين مفتوحين، و $\mathbf{V}_{Th}$ هو جهد الملف $j20$. نطلعه بمجزئ الجهد.</p>
+      <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = \frac{j20}{j20 + 40 - j30} \\ \times(150\angle 30^\circ) \\ = 72.76\angle 134^\circ\ \text{V}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>اختر المقاومة</h4>
+      <p class="why">الحمل مقاومة بس، فناخذ مقدار $\mathbf{Z}_{Th}$.</p>
+      <div class="m">\[\begin{gathered}\Y{R_L} = |\mathbf{Z}_{Th}| \\ = \sqrt{9.412^2 + 22.35^2} \\ = 24.25\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب تيار الحمل</h4>
+      <p class="why">نجمع $R_L$ على الجزء الحقيقي من $\mathbf{Z}_{Th}$: $9.412 + 24.25 = 33.66$.</p>
+      <div class="m">\[\begin{gathered}\mathbf{I} = \frac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + R_L} \\ = \frac{72.76\angle 134^\circ}{33.66 + j22.35} \\ = 1.8\angle 100.42^\circ\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب القدرة</h4>
+      <p class="why">قدرة المقاومة من المحاضرة 8، ونحتاج مقدار التيار بس.</p>
+      <div class="m">\[\begin{gathered}\Z{P} = \tfrac{1}{2}|\mathbf{I}|^2 R_L \\ = \tfrac{1}{2}(1.8)^2(24.25)\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$R_L = 24.25\ \Omega$، $P_{\max} = 39.29$ W</div>
+      <p class="sanity">لو كان مسموح حمل معاوقة كانت القدرة $\dfrac{(72.76)^2}{8(9.412)} = 70.3\ \text{W}$. المقاومة لحالها أخذت أقل، وهذا منطقي ✓</p>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>القيمة الفعالة لموجة من رسمة</h2></div>
+  <div class="tags"><span class="tag">Example 11.7</span><span class="tag">تكامل على جزئين</span></div>
+  <p>أوجد القيمة الفعالة (rms) لموجة التيار في الرسمة. ولو مر هذا التيار في مقاومة $2\ \Omega$، كم القدرة المتوسطة اللي تاخذها؟</p>
+  <figure class="fig">
+    <svg viewBox="0 0 380 170" role="img" aria-label="موجة تيار دورية: تطلع بخط مستقيم من صفر إلى 10 خلال ثانيتين، ثم تنزل فجأة إلى سالب 10 وتبقى ثانيتين، وتتكرر كل 4 ثواني">
+      <path class="ax" d="M40 85H365M40 10V160"/>
+      <path class="sk e1" d="M40 85L100 35V135H160V85L220 35V135H280V85L340 35"/>
+      <text class="tick" x="100" y="100" text-anchor="middle">2</text><text class="tick" x="160" y="100" text-anchor="middle">4</text><text class="tick" x="220" y="100" text-anchor="middle">6</text><text class="tick" x="280" y="100" text-anchor="middle">8</text><text class="tick" x="340" y="100" text-anchor="middle">10</text>
+      <text class="tick" x="34" y="39" text-anchor="end">10</text><text class="tick" x="34" y="139" text-anchor="end">−10</text>
+      <text class="lbl" x="46" y="14">i(t)</text><text x="368" y="89">t</text>
+    </svg>
+    <figcaption>Figure 11.14: الشكل يتكرر كل 4 ثواني.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 s2 k1 f2 pw o2">موجة ثانية، ثم المعادلات، ثم التكامل، ثم القدرة</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">الموجة مو جيبية، فما نقدر نقسم على $\sqrt{2}$. يعني الشجرة 2، فرع "موجة ثانية": نكتب المعادلات ثم نكامل.</p>
+    </li>
+    <li class="step">
+      <h4>حدد الدورة واكتب المعادلات</h4>
+      <p class="why">الشكل يتكرر كل 4، فـ $T = 4$. الجزء الأول خط يطلع من 0 إلى 10 في ثانيتين، ميله $10/2 = 5$. والجزء الثاني ثابت عند $-10$.</p>
+      <div class="m">\[i(t) = \begin{cases} 5t, & 0 < t < 2 \\ -10, & 2 < t < 4 \end{cases}\]</div>
+    </li>
+    <li class="step">
+      <h4>اكتب القانون وقسّم التكامل</h4>
+      <div class="m">\[\begin{gathered}I_{rms}^2 = \frac{1}{T}\int_0^T i^2\,dt \\ = \frac{1}{4}\Big[\int_0^2 (5t)^2\,dt \\ +\int_2^4 (-10)^2\,dt\Big]\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>كامل الجزء الأول</h4>
+      <div class="m">\[\begin{gathered}\int_0^2 25t^2\,dt = 25\cdot\frac{t^3}{3}\Big|_0^2 \\ = \frac{200}{3} = 66.67\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>كامل الجزء الثاني</h4>
+      <p class="why">التربيع خلّى السالب موجب: $(-10)^2 = 100$.</p>
+      <div class="m">\[\int_2^4 100\,dt = 100(4 - 2) = 200\]</div>
+    </li>
+    <li class="step">
+      <h4>المتوسط ثم الجذر</h4>
+      <div class="m">\[\begin{gathered}I_{rms}^2 = \frac{1}{4}(66.67 + 200) \\ = 66.67 \\[4pt] \Z{I_{rms}} = \sqrt{66.67} = 8.165\ \text{A}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>احسب القدرة</h4>
+      <p class="why">قدرة المقاومة بالقيمة الفعالة، بدون نص.</p>
+      <div class="m">\[\begin{gathered}\Z{P} = I_{rms}^2\,R \\ = (8.165)^2(2)\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$I_{rms} = 8.165$ A، $P = 133.3$ W</div>
+      <p class="sanity">القيمة الفعالة 8.165 أقل من أعلى قيمة في الموجة (10) ✓</p>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="ex4" data-nav="مثال 4|Ex 4">
+  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>نص موجة جيبية</h2></div>
+  <div class="tags"><span class="tag">Example 11.8</span><span class="tag">Half-wave rectified</span></div>
+  <p>الموجة في الرسمة نص موجة جيبية <span class="ltr">(Half-wave rectified sine)</span>. أوجد القيمة الفعالة، والقدرة المتوسطة في مقاومة $10\ \Omega$.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 380 150" role="img" aria-label="موجة جهد: قوس جيبي موجب قمته 10 من صفر إلى باي، ثم صفر من باي إلى 2 باي، وتتكرر">
+      <path class="ax" d="M40 120H365M40 10V140"/>
+      <path class="area" d="M40 120.0L44 108.7L48 97.6L52 86.9L56 76.6L60 67.1L64 58.4L68 50.7L72 44.0L76 38.6L80 34.4L84 31.6L88 30.2L92 30.2L96 31.6L100 34.4L104 38.6L108 44.0L112 50.7L116 58.4L120 67.1L124 76.6L128 86.9L132 97.6L136 108.7L140 120.0Z"/><path class="area" d="M240 120.0L244 108.7L248 97.6L252 86.9L256 76.6L260 67.1L264 58.4L268 50.7L272 44.0L276 38.6L280 34.4L284 31.6L288 30.2L292 30.2L296 31.6L300 34.4L304 38.6L308 44.0L312 50.7L316 58.4L320 67.1L324 76.6L328 86.9L332 97.6L336 108.7L340 120.0Z"/>
+      <path class="sk e1" d="M40 120.0L44 108.7L48 97.6L52 86.9L56 76.6L60 67.1L64 58.4L68 50.7L72 44.0L76 38.6L80 34.4L84 31.6L88 30.2L92 30.2L96 31.6L100 34.4L104 38.6L108 44.0L112 50.7L116 58.4L120 67.1L124 76.6L128 86.9L132 97.6L136 108.7L140 120.0H240L240 120.0L244 108.7L248 97.6L252 86.9L256 76.6L260 67.1L264 58.4L268 50.7L272 44.0L276 38.6L280 34.4L284 31.6L288 30.2L292 30.2L296 31.6L300 34.4L304 38.6L308 44.0L312 50.7L316 58.4L320 67.1L324 76.6L328 86.9L332 97.6L336 108.7L340 120.0H365"/>
+      <text class="tick" x="40" y="136" text-anchor="middle">0</text><text class="tick" x="140" y="136" text-anchor="middle">π</text><text class="tick" x="240" y="136" text-anchor="middle">2π</text><text class="tick" x="340" y="136" text-anchor="middle">3π</text>
+      <text class="tick" x="34" y="34" text-anchor="end">10</text>
+      <text class="lbl" x="46" y="14">v(t)</text><text x="368" y="124">t</text>
+    </svg>
+    <figcaption>Figure 11.16: النص السالب مقصوص وصار صفر.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 s2 k1 f2 pw o2">موجة ثانية، ثم المعادلات، ثم التكامل، ثم القدرة</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">شكلها جيبي بس نصها مقصوص، فهي مو موجة جيبية كاملة. لا تقسم على $\sqrt{2}$. نروح للتكامل.</p>
+    </li>
+    <li class="step">
+      <h4>حدد الدورة واكتب المعادلات</h4>
+      <p class="why">الشكل يتكرر كل $2\pi$. القوس قمته 10، والنص الثاني صفر.</p>
+      <div class="m">\[v(t) = \begin{cases} 10\sin t, & 0 < t < \pi \\ 0, & \pi < t < 2\pi \end{cases}\]</div>
+    </li>
+    <li class="step">
+      <h4>اكتب القانون</h4>
+      <p class="why">الجزء الثاني صفر فتكامله صفر، بس القسمة تبقى على الدورة كاملة $2\pi$.</p>
+      <div class="m">\[\begin{gathered}V_{rms}^2 = \frac{1}{T}\int_0^T v^2\,dt \\ = \frac{1}{2\pi}\int_0^{\pi} (10\sin t)^2\,dt\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>استخدم المتطابقة</h4>
+      <p class="why">ما نعرف نكامل $\sin^2$ مباشرة، فنبدلها بـ $\sin^2 t = \tfrac{1}{2}(1 - \cos 2t)$.</p>
+      <div class="m">\[\begin{gathered}V_{rms}^2 = \frac{1}{2\pi} \\ \times\int_0^{\pi} \frac{100}{2}(1 - \cos 2t)\,dt\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>كامل</h4>
+      <div class="m">\[\begin{gathered}V_{rms}^2 = \frac{50}{2\pi}\left(t - \frac{\sin 2t}{2}\right)\Big|_0^{\pi} \\ = \frac{50}{2\pi}(\pi - 0) = 25\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>الجذر ثم القدرة</h4>
+      <div class="m">\[\begin{gathered}\Z{V_{rms}} = \sqrt{25} = 5\ \text{V} \\ \Z{P} = \frac{V_{rms}^2}{R} = \frac{25}{10}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$V_{rms} = 5$ V، $P = 2.5$ W</div>
+      <p class="sanity">لو كانت موجة كاملة كان $V_{rms} = 10/\sqrt{2} = 7.07\ \text{V}$ والقدرة 5 W. قصّينا النص فنزلت القدرة للنص بالضبط ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس. قرّب لمنزلة عشرية وحدة على الأقل. وقبل ما تحل، حدد مسارك في لوحة القوانين.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>مكافئ ثيفنن لدائرة: $\mathbf{V}_{Th} = 20\angle 0^\circ\ \text{V}$ و $\mathbf{Z}_{Th} = 5 + j12\ \Omega$. الحمل معاوقة متوافقة. كم $P_{\max}$ بالواط؟</p>
+    <div class="check" data-answer="10"></div>
+    <details class="hint"><p>الحمل متوافق، فالقانون الجاهز يمشي. المقام فيه $R_{Th}$ بس.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}P_{\max} = \frac{|\mathbf{V}_{Th}|^2}{8R_{Th}} \\ = \frac{(20)^2}{8(5)}\end{gathered}\]</div><div class="result">$P_{\max} = 10$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
+    <p>نفس الدائرة ($\mathbf{Z}_{Th} = 5 + j12\ \Omega$)، بس الحمل مقاومة فقط. كم $R_L$ بالأوم عشان تاخذ أكبر قدرة؟</p>
+    <div class="check" data-answer="13"></div>
+    <details class="hint"><p>مقاومة بس: خذ المقدار، مو المرافق.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}R_L = |\mathbf{Z}_{Th}| \\ = \sqrt{5^2 + 12^2}\end{gathered}\]</div><div class="result">$R_L = 13\ \Omega$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">وسط</span></div>
+    <p>كمّل تمرين ب: كم القدرة المتوسطة بالواط في $R_L = 13\ \Omega$؟ (تذكير: $\mathbf{V}_{Th} = 20\angle 0^\circ\ \text{V}$)</p>
+    <div class="check" data-answer="5.556"></div>
+    <details class="hint"><p>اجمع 13 على الجزء الحقيقي: $\mathbf{Z}_{Th} + R_L = 18 + j12$. بعدها $|\mathbf{I}|^2 = \dfrac{400}{18^2 + 12^2}$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}|\mathbf{I}|^2 = \frac{20^2}{18^2 + 12^2} \\ = \frac{400}{468} = 0.8547 \\[4pt] P = \tfrac{1}{2}(0.8547)(13)\end{gathered}\]</div><div class="result">$P = 5.56$ W</div><p class="sanity">أقل من 10 W حق الحمل المتوافق في تمرين أ ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">سهل</span></div>
+    <p>جهد $v(t) = 311\cos(377t + 20^\circ)\ \text{V}$. كم قيمته الفعالة بالفولت؟</p>
+    <div class="check" data-answer="219.9"></div>
+    <details class="hint"><p>موجة جيبية كاملة، فالاختصار يمشي. الزاوية والتردد ما لهم دخل.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[V_{rms} = \frac{V_m}{\sqrt{2}} = \frac{311}{\sqrt{2}}\]</div><div class="result">$V_{rms} = 219.9$ V</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">وسط</span></div>
+    <p>تيار دوري دورته $T = 3\ \text{s}$: قيمته $6\ \text{A}$ من $t = 0$ إلى $1$، و $-3\ \text{A}$ من $t = 1$ إلى $3$. كم قيمته الفعالة بالأمبير؟</p>
+    <div class="check" data-answer="4.243"></div>
+    <details class="hint"><p>الموجة ثابتة في كل جزء، فالتكامل يصير ضرب: المربع ضرب المدة.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}I_{rms}^2 = \frac{1}{3}\big[(6)^2(1) \\ +(-3)^2(2)\big] \\ = \frac{36 + 18}{3} = 18\end{gathered}\]</div><div class="result">$I_{rms} = \sqrt{18}$ $= 4.24$ A</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
+    <p>موجة تيار منشارية (Sawtooth): تطلع بخط مستقيم من $0$ إلى $4\ \text{A}$ خلال ثانيتين، ثم ترجع فجأة للصفر وتتكرر ($T = 2\ \text{s}$). كم القدرة المتوسطة بالواط لو مرت في مقاومة $9\ \Omega$؟</p>
+    <div class="check" data-answer="48"></div>
+    <details class="hint"><p>ميل الخط $4/2 = 2$، فالمعادلة $i = 2t$ من 0 إلى 2. احسب $I_{rms}^2$ ثم اضربه في $R$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}I_{rms}^2 = \frac{1}{2}\int_0^2 (2t)^2\,dt \\ = \frac{1}{2}\cdot\frac{4t^3}{3}\Big|_0^2 = \frac{16}{3} \\[4pt] P = I_{rms}^2\,R = \frac{16}{3}(9)\end{gathered}\]</div><div class="result">$P = 48$ W</div><p class="sanity">$I_{rms} = 2.309\ \text{A}$، أقل من القمة 4 A ✓</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تنسى تعكس الإشارة</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_{Th} = 3 + j4$ فالحمل $\mathbf{Z}_L = 3 + j4$</div><div class="yes">الحمل المرافق: $\mathbf{Z}_L = 3 - j4$</div></div></div>
+  <div class="mk"><div class="mk-title">تاخذ $R_L = R_{Th}$ والحمل مقاومة بس</div>
+    <div class="pair"><div class="no">$\mathbf{Z}_{Th} = 3 + j4$ فالمقاومة $R_L = 3$</div><div class="yes">$R_L = |\mathbf{Z}_{Th}| = 5\ \Omega$</div></div></div>
+  <div class="mk"><div class="mk-title">تستخدم قانون $P_{\max}$ الجاهز مع حمل مقاومة</div>
+    <div class="pair"><div class="no">$P = \dfrac{|\mathbf{V}_{Th}|^2}{8R_{Th}}$ والحمل $R_L$ بس</div><div class="yes">احسب $\mathbf{I}$ أول، ثم $P = \tfrac{1}{2}|\mathbf{I}|^2 R_L$</div></div></div>
+  <div class="mk"><div class="mk-title">تحط المقدار في المقام</div>
+    <div class="pair"><div class="no">$P_{\max} = \dfrac{|\mathbf{V}_{Th}|^2}{8|\mathbf{Z}_{Th}|}$</div><div class="yes">المقام فيه الجزء الحقيقي بس: $8R_{Th}$</div></div></div>
+  <div class="mk"><div class="mk-title">تقسم على $\sqrt{2}$ مع أي موجة</div>
+    <div class="pair"><div class="no">موجة مثلث قمتها 10، فـ $I_{rms} = 10/\sqrt{2}$</div><div class="yes">الاختصار للجيبية فقط. الباقي بالتكامل</div></div></div>
+  <div class="mk"><div class="mk-title">تقسم على مدة الجزء بدل الدورة</div>
+    <div class="pair"><div class="no">نص موجة: تقسم على $\pi$ لأن الباقي صفر</div><div class="yes">القسمة دايمًا على الدورة كاملة $T = 2\pi$</div></div></div>
+  <div class="mk"><div class="mk-title">تخلط النص مع القيمة الفعالة</div>
+    <div class="pair"><div class="no">$P = \tfrac{1}{2}I_{rms}^2 R$</div><div class="yes">$P = I_{rms}^2 R$، أو $P = \tfrac{1}{2}I_m^2 R$. النص مع القيمة العظمى بس</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="3"><p>معاوقة ثيفنن $6 + j8\ \Omega$. الحمل اللي ياخذ أكبر قدرة متوسطة:</p>
+      <button>$6 + j8\ \Omega$</button><button>$10\ \Omega$</button><button>$6 - j8\ \Omega$</button><button>$-6 - j8\ \Omega$</button>
+      <p class="q-why">المرافق: نفس الجزء الحقيقي، وإشارة التخيلي معكوسة.</p></div>
+    <div class="q" data-answer="2"><p>نفس الدائرة ($6 + j8\ \Omega$)، بس الحمل مقاومة فقط. أفضل $R_L$:</p>
+      <button>$6\ \Omega$</button><button>$10\ \Omega$</button><button>$8\ \Omega$</button><button>$14\ \Omega$</button>
+      <p class="q-why">$R_L = |\mathbf{Z}_{Th}| = \sqrt{36 + 64} = 10\ \Omega$.</p></div>
+    <div class="q" data-answer="1"><p>ليش مفاعلة الحمل لازم تكون $-X_{Th}$؟</p>
+      <button>عشان تلغي مفاعلة المصدر ويكبر التيار</button><button>لأن المفاعلة تاخذ قدرة</button><button>عشان يصير الجهد صفر</button><button>ما لها سبب، بس قانون</button>
+      <p class="q-why">المفاعلة ما تاخذ قدرة بس تقلل التيار. لما تنلغي، يبقى في الحلقة مقاومات بس.</p></div>
+    <div class="q" data-answer="4"><p>ترتيب حساب القيمة الفعالة (rms):</p>
+      <button>جذر، متوسط، تربيع</button><button>متوسط، تربيع، جذر</button><button>تربيع، جذر، متوسط</button><button>تربيع، متوسط، جذر</button>
+      <p class="q-why">الاسم Root Mean Square يُقرأ من اليمين: ربّع، خذ المتوسط، ثم الجذر.</p></div>
+    <div class="q" data-answer="2"><p>موجة جيبية قيمتها العظمى 100 V. قيمتها الفعالة:</p>
+      <button>50 V</button><button>70.7 V</button><button>100 V</button><button>141.4 V</button>
+      <p class="q-why">$100/\sqrt{2} = 70.7\ \text{V}$.</p></div>
+    <div class="q" data-answer="3"><p>تيار قيمته الفعالة 3 A يمر في مقاومة $4\ \Omega$. القدرة المتوسطة:</p>
+      <button>12 W</button><button>18 W</button><button>36 W</button><button>72 W</button>
+      <p class="q-why">$P = I_{rms}^2 R = 9 \times 4 = 36\ \text{W}$، بدون نص.</p></div>
+    <div class="q" data-answer="1"><p>القيمة الفعالة لجهد مستمر ثابت 12 V:</p>
+      <button>12 V</button><button>8.49 V</button><button>6 V</button><button>صفر</button>
+      <p class="q-why">القيمة الفعالة للثابت هي نفسه: تربيعه 144، متوسطه 144، وجذره 12.</p></div>
+  </div>
+</section>
+
+</main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
+<script>
+/* مختبر نقل أقصى قدرة: جهة المصدر من مثال 1 */
+(function () {
+  const $ = id => document.getElementById(id);
+  const VT = 7.454, RT = 2.933, XT = 4.467, PMAX = VT * VT / (8 * RT);
+  const X0 = 50, W = 530, RMAX = 12, Y0 = 250, H = 215, PTOP = PMAX * 1.08;
+  const f = n => n.toFixed(1);
+  const fmt = (n, d) => { const v = n.toFixed(d); return (n < 0 ? '−' : '') + v.replace('-', ''); };
+  const P = (rl, xl) => 0.5 * VT * VT * rl / ((RT + rl) ** 2 + (XT + xl) ** 2);
+  const px = r => X0 + W * r / RMAX, py = p => Y0 - H * p / PTOP;
+  const curve = xl => { let d = ''; for (let r = 0; r <= RMAX + 1e-9; r += 0.1) d += (r ? 'L' : 'M') + f(px(r)) + ' ' + f(py(P(r, xl))); return d; };
+  $('mpIdeal').setAttribute('d', curve(-XT));
+  $('mpTop').setAttribute('d', `M${X0} ${f(py(PMAX))}H${X0 + W}`);
+  $('mpTopT').setAttribute('y', f(py(PMAX) - 6));
+  function draw() {
+    const rl = +$('rlS').value, xl = +$('xlS').value, p = P(rl, xl);
+    $('rlSv').textContent = fmt(rl, 2); $('xlSv').textContent = fmt(xl, 2);
+    $('mpCurve').setAttribute('d', curve(xl));
+    $('mpDot').setAttribute('cx', f(px(rl))); $('mpDot').setAttribute('cy', f(py(p)));
+    const best = Math.hypot(RT, XT + xl), I = VT / Math.hypot(RT + rl, XT + xl), pct = 100 * p / PMAX;
+    $('mpP').textContent = fmt(p, 3) + ' W';
+    $('mpMax').textContent = fmt(PMAX, 3) + ' W';
+    $('mpPct').textContent = Math.round(pct) + '%';
+    $('mpZ').textContent = fmt(rl, 2) + (xl < 0 ? ' − j' : ' + j') + Math.abs(xl).toFixed(2) + ' Ω';
+    $('mpI').textContent = fmt(I, 3) + ' A';
+    $('mpBest').textContent = fmt(best, 2) + ' Ω';
+    $('mpSay').textContent = pct > 99.5 ? 'وصلت! الحمل متوافق: مرافق معاوقة ثيفنن.'
+      : Math.abs(xl + XT) < 0.05 ? 'المفاعلات ملغية. بقي تخلي مقاومة الحمل تساوي مقاومة ثيفنن.'
+      : Math.abs(rl - best) < 0.05 ? 'هذي أفضل مقاومة مع هذي المفاعلة، بس لسى تحت الأقصى لأن المفاعلة ما انلغت.'
+      : 'حرّك المؤشرات وحاول توصل النقطة للخط المتقطع فوق.';
+  }
+  const PRE = { m: [RT, -XT], r: [Math.hypot(RT, XT), 0], d: [RT, 0] };
+  document.querySelectorAll('.mp-lab [data-pre]').forEach(b => b.addEventListener('click', () => {
+    const [r, x] = PRE[b.dataset.pre];
+    $('rlS').value = r; $('xlS').value = x; draw();
+  }));
+  ['rlS', 'xlS'].forEach(id => $(id).addEventListener('input', draw));
+  draw();
+})();
+</script>
+<script src="board.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>
