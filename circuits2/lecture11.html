@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 11 - Conservation of AC Power & Power Factor Correction" data-ar-only>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة 11 - حفظ القدرة وتصحيح معامل القدرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<link rel="stylesheet" href="course.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  /* رسومات الدوائر ومثلث التصحيح ومختبره: خاص بهذي الصفحة */
+  .grid-2 > .tile { min-width: 0; }
+  .fig .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .elm { stroke: var(--accent); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .fig .lbox { fill: color-mix(in srgb, var(--cy) 16%, transparent); stroke: var(--cy); stroke-width: 2; }
+  .fig .grp { fill: none; stroke: var(--ink-3); stroke-width: 1.4; stroke-dasharray: 5 4; }
+  .fig .dot { fill: var(--ink-2); }
+  .fig tspan.sb { font-size: 9px; }
+  .fig text.lbl.yt { fill: var(--cy); }
+  .fig text.lbl.zt { fill: var(--cz); }
+  .fig text.lbl.xt { fill: var(--cx); }
+  .fig text.lbl.at { fill: var(--accent); }
+  .fig .dash { stroke: var(--cz); stroke-width: 2; stroke-dasharray: 6 4; fill: none; }
+  .fig .qc { stroke: var(--accent); stroke-width: 3; fill: none; stroke-linecap: round; }
+  .fig .arc { stroke: var(--ink-3); stroke-width: 1.5; fill: none; }
+  .three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+  .three > div { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; }
+  .three b { display: block; color: var(--accent); }
+  .pc-lab .lab-controls { align-items: center; }
+  .pc-lab .lab-note { font-size: .85rem; color: var(--ink-3); margin: 0 0 6px; }
+  .pc-lab .ml-read { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pc-lab .pc-say { margin: 10px 0 0; text-align: center; font-weight: 500; color: var(--ink-2); }
+  .pc-lab .fig text { font-size: 22px; }
+  .pc-lab .fig .sk { stroke-width: 4; }
+  .pc-lab .fig .qc { stroke-width: 6; }
+  @media (max-width: 560px) { .pc-lab .ml-read, .three { grid-template-columns: 1fr; } .field input[type=range] { width: 140px; } }
+</style>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow">المحاضرة 11 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.7–11.8</span></p>
+  <h1><span>حفظ القدرة وتصحيح معامل القدرة</span> <span class="h1-math ltr">$C = \dfrac{Q_C}{\omega V_{rms}^2}$</span></h1>
+  <p class="lead">في المحاضرة 10 وصفنا قدرة حمل واحد. اليوم: كيف نحسب القدرة لدائرة فيها أكثر من حمل؟ وكيف نرفع معامل القدرة لحمل ضعيف عشان نخفف التيار على الخطوط؟</p>
+  <div class="xyz-bar">
+    <span class="x">القدرة الحقيقية $P$ (W)</span><span class="y">القدرة غير الفعالة $Q$ (VAR)</span><span class="z">القدرة الظاهرية والمركبة $S$ (VA)</span>
+    <small>← نفس ألوان المحاضرة 10</small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <ol>
+      <li>حفظ القدرة: القدرة المركبة اللي يعطيها المصدر تساوي مجموع قدرات كل العناصر: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$. ونفس الشي لـ $P$ و $Q$، بس <b>مو</b> للقدرة الظاهرية.</li>
+      <li>تصحيح معامل القدرة: نركّب مكثف <b>على التوازي</b> مع الحمل الحثي. $P$ ما تتغير، و $Q$ ينزل، فيقل تيار الخط.</li>
+      <li>$Q_C = P(\tan\theta_1 - \tan\theta_2)$ و $C = \dfrac{Q_C}{\omega V_{rms}^2}$.</li>
+    </ol>
+  </div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+</section>
+
+<!-- ================= 01 ليش ================= -->
+<section class="card" id="why" data-num="01" data-nav="ليش؟|Why">
+  <h2>ليش نحتاج هذا الدرس؟</h2>
+  <p class="sub">مسألتين من الواقع</p>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">المسألة الأولى</div><div class="t-desc">بيت فيه مكيف وثلاجة وإضاءة، كلها على نفس المصدر. نبغى القدرة الكلية اللي تسحبها البيت. نجمع؟ وأي قدرة نجمع: الظاهرية ولا المركبة؟</div></div>
+    <div class="tile"><div class="t-top">المسألة الثانية</div><div class="t-desc">مصنع مليان مواتير (أحمال حثية) ومعامل قدرته 0.8 متأخر. يسحب تيار أكبر من اللي يحتاجه، والأسلاك تسخن وتضيّع طاقة. كيف نخفف التيار بدون ما نغير المواتير؟</div></div>
+  </div>
+  <p>الجواب الأول اسمه <b>حفظ القدرة المترددة</b> <span class="ltr">(Conservation of AC power)</span>، والثاني اسمه <b>تصحيح معامل القدرة</b> <span class="ltr">(Power factor correction)</span>.</p>
+  <div class="callout"><strong>💡 اللي تحتاجه من قبل:</strong> القدرة المركبة $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$ ومثلث القدرة (المحاضرة 10)، وكيرشوف (المحاضرة 5).</div>
+  <div class="callout warn"><strong>⚠️ من الحين:</strong> الكتاب يقول إن كل الجهود والتيارات في هذي الأقسام <b>قيم فعالة</b> (rms) إلا لو انقال غير كذا. فنكتب $\mathbf{S} = \mathbf{V}\mathbf{I}^*$ بدون النص.</div>
+</section>
+
+<!-- ================= 02 حفظ القدرة ================= -->
+<section class="card" id="cons" data-num="02" data-nav="حفظ القدرة|Conservation">
+  <h2>حفظ القدرة المترددة</h2>
+  <p class="sub">اللي يعطيه المصدر = اللي تاخذه الأحمال</p>
+
+  <h3>الفكرة قبل المعادلات</h3>
+  <p>فكّر فيها مثل الفاتورة: المبلغ اللي دفعه المصدر لازم يساوي مجموع اللي صرفته كل العناصر، ولا ريال يضيع. هذا كان صحيح في DC، ونبغى نتأكد إنه صحيح في AC بعد.</p>
+
+  <h3>من وين جاء القانون؟ الأحمال على التوازي</h3>
+  <figure class="fig">
+    <svg viewBox="0 0 360 180" role="img" aria-label="مصدر V موصول على حملين Z1 و Z2 على التوازي، التيار الكلي I يتقسم إلى I1 و I2" style="max-width:360px">
+      <circle class="wire" cx="70" cy="105" r="16"/>
+      <text class="lbl" x="70" y="102" text-anchor="middle">+</text><text class="lbl" x="70" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M70 89V40H290V75M290 125V160H70V121M190 40V75M190 125V160"/>
+      <rect class="lbox" x="175" y="75" width="30" height="50" rx="4"/><rect class="lbox" x="275" y="75" width="30" height="50" rx="4"/>
+      <circle class="dot" cx="190" cy="40" r="3"/><circle class="dot" cx="190" cy="160" r="3"/>
+      <path class="sk e2" d="M110 30H140M134 25L140 30L134 35"/><text class="lbl" x="125" y="20" text-anchor="middle">I</text>
+      <path class="sk e2" d="M178 48V66M173 60L178 66L183 60"/><text class="lbl" x="170" y="62" text-anchor="end">I<tspan class="sb" dy="3">1</tspan></text>
+      <path class="sk e2" d="M278 48V66M273 60L278 66L283 60"/><text class="lbl" x="270" y="62" text-anchor="end">I<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl yt" x="212" y="104">Z<tspan class="sb" dy="3">1</tspan></text><text class="lbl yt" x="312" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="46" y="109" text-anchor="end">V</text>
+    </svg>
+    <figcaption>Figure 11.23(a): حملين على التوازي.</figcaption>
+  </figure>
+  <p>من KCL التيار يتقسم: $\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2$. والمرافق يتوزع على الجمع، فنعوّض:</p>
+  <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \mathbf{V}\mathbf{I}^* = \mathbf{V}(\mathbf{I}_1^* + \mathbf{I}_2^*) \\ = \mathbf{V}\mathbf{I}_1^* + \mathbf{V}\mathbf{I}_2^* \\ = \mathbf{S}_1 + \mathbf{S}_2\end{gathered}\]</div>
+  <p>ولو الأحمال على التوالي، من KVL الجهد يتقسم $\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2$ والتيار واحد:</p>
+  <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = (\mathbf{V}_1 + \mathbf{V}_2)\mathbf{I}^* \\ = \mathbf{S}_1 + \mathbf{S}_2\end{gathered}\]</div>
+
+  <h3>القانون</h3>
+  <p>توالي أو توازي أو أي شكل، والمصدر موصول على $N$ حمل:</p>
+  <div class="m">\[\Z{\mathbf{S}} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots + \mathbf{S}_N\]</div>
+  <p>ولأن العدد المركب ينجمع جزء حقيقي مع حقيقي وتخيلي مع تخيلي:</p>
+  <div class="m">\[\begin{gathered}\X{P} = P_1 + P_2 + \cdots \\ \Y{Q} = Q_1 + Q_2 + \cdots\end{gathered}\]</div>
+
+  <details class="think"><summary>🤔 فكّر قبل تكمل: طيب والقدرة الظاهرية؟ هل $S = S_1 + S_2$؟</summary>
+    <p><b>لا.</b> القدرة الظاهرية مقدار، والمقادير ما تنجمع. مثال: حمل $\mathbf{S}_1 = 3 + j4$ (مقداره 5) وحمل $\mathbf{S}_2 = 3 - j4$ (مقداره 5). المجموع $\mathbf{S} = 6$، ومقداره 6 مو 10. الملف والمكثف لغوا بعض في $Q$.</p>
+  </details>
+  <div class="callout key"><strong>🔑 القاعدة:</strong> اجمع $\mathbf{S}$ المركبة (أو $P$ و $Q$ كل واحد لحاله)، وبعدها خذ المقدار. لا تجمع المقادير أبدًا.</div>
+</section>
+
+<!-- ================= 03 التصحيح ================= -->
+<section class="card" id="pfc" data-num="03" data-nav="التصحيح|PF correction">
+  <h2>تصحيح معامل القدرة (Power factor correction)</h2>
+  <p class="sub">نرفع pf بدون ما نغيّر الحمل</p>
+
+  <h3>الفكرة قبل المعادلات</h3>
+  <p>أغلب الأحمال حثية: غسالات، مكيفات، ثلاجات، مواتير. والملف في الحمل يبغى $Q$ تروح وترجع بينه وبين المصدر. هذي الطاقة ما تنصرف، بس تمشي في الأسلاك كل دورة وتكبّر التيار.</p>
+  <p>الحل: نحط <b>مكثف جنب الحمل</b>. المكثف يعطي $Q$ سالبة، يعني يتبادل الطاقة مع الملف <b>محليًا</b>. فبدل ما تروح الطاقة للمحطة البعيدة وترجع، تروح للمكثف اللي جنبها وترجع. والخط يشيل بس اللي يحتاجه الحمل فعلًا.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 180" role="img" aria-label="مصدر V موصول على حمل حثي (مقاومة وملف على التوالي داخل مربع متقطع)، ومكثف C على التوازي معه" style="max-width:360px">
+      <circle class="wire" cx="70" cy="105" r="16"/>
+      <text class="lbl" x="70" y="102" text-anchor="middle">+</text><text class="lbl" x="70" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M70 89V40H300V96M300 104V160H70V121M210 40V55M210 125V160"/>
+      <path class="elm" d="M210 55l8 3.33-16 6.67 16 6.67-16 6.67 16 6.67-16 6.67 8 3.33"/>
+      <path class="elm" d="M210 95a5 5 0 0 1 0 10a5 5 0 0 1 0 10a5 5 0 0 1 0 10"/>
+      <path class="elm" d="M288 96H312M288 104H312"/>
+      <rect class="grp" x="188" y="50" width="44" height="80" rx="6"/>
+      <circle class="dot" cx="210" cy="40" r="3"/><circle class="dot" cx="210" cy="160" r="3"/>
+      <path class="sk e2" d="M110 30H140M134 25L140 30L134 35"/><text class="lbl" x="125" y="20" text-anchor="middle">I</text>
+      <text class="lbl" x="182" y="94" text-anchor="end">حمل</text><text class="lbl" x="182" y="110" text-anchor="end">حثي</text>
+      <text class="lbl at" x="320" y="104">C</text>
+      <text class="lbl" x="46" y="109" text-anchor="end">V</text>
+    </svg>
+    <figcaption>Figure 11.27(b): المكثف على التوازي مع الحمل الحثي.</figcaption>
+  </figure>
+
+  <details class="think"><summary>🤔 فكّر قبل تكمل: ليش المكثف على <b>التوازي</b>، مو على التوالي؟</summary>
+    <p>لأن التعريف يقول: نرفع pf <b>بدون ما نغير جهد أو تيار الحمل نفسه</b>. على التوازي، الحمل يبقى موصول على نفس الجهد ويشتغل نفس ما كان. أما على التوالي، المكثف ياخذ جزء من الجهد ويتغير تشغيل الحمل.</p>
+  </details>
+
+  <h3>القانون</h3>
+  <p>نستخدم مثلث القدرة. قبل التصحيح: الحمل قدرته الظاهرية $S_1$ وزاويته $\theta_1$:</p>
+  <div class="m">\[\begin{gathered}\X{P} = S_1\cos\theta_1 \\ \Y{Q_1} = S_1\sin\theta_1 = P\tan\theta_1\end{gathered}\]</div>
+  <p>المكثف ما ياخذ قدرة حقيقية، فـ $P$ <b>تبقى نفسها</b>. نبغى زاوية جديدة أصغر $\theta_2$، فالـ $Q$ الجديدة:</p>
+  <div class="m">\[\Y{Q_2} = P\tan\theta_2\]</div>
+  <p>الفرق بينهم هو اللي لازم يعطيه المكثف:</p>
+  <div class="m">\[\begin{gathered}Q_C = Q_1 - Q_2 \\ = P(\tan\theta_1 - \tan\theta_2)\end{gathered}\]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 360 200" role="img" aria-label="مثلث تصحيح معامل القدرة: نفس القدرة الحقيقية P، والوتر S1 بزاوية ثيتا 1 قبل التصحيح، و S2 بزاوية ثيتا 2 أصغر بعده، والفرق في الضلع الرأسي هو Q_C" style="max-width:380px">
+      <path class="sk x" d="M40 175H260"/>
+      <path class="sk y" d="M260 175V110"/>
+      <path class="qc" d="M268 110V40"/>
+      <path class="dash" d="M40 175L260 40"/>
+      <path class="sk z" d="M40 175L260 110"/>
+      <path class="ydash" d="M282 175V40" style="stroke:var(--cy);stroke-width:1.5;stroke-dasharray:4 4;fill:none"/>
+      <path class="arc" d="M100 175A60 60 0 0 0 91.2 143.6"/>
+      <path class="arc" d="M120 175A80 80 0 0 0 116.7 151.4"/>
+      <text class="lbl" x="98" y="150">θ<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl" x="124" y="166">θ<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl xt" x="150" y="194" text-anchor="middle">P</text>
+      <text class="lbl zt" x="128" y="98" text-anchor="middle">S<tspan class="sb" dy="3">1</tspan></text>
+      <text class="lbl zt" x="190" y="126" text-anchor="middle">S<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl yt" x="252" y="148" text-anchor="end">Q<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl at" x="252" y="80" text-anchor="end">Q<tspan class="sb" dy="3">C</tspan></text>
+      <text class="lbl yt" x="290" y="112">Q<tspan class="sb" dy="3">1</tspan></text>
+    </svg>
+    <figcaption>Figure 11.29: $P$ ثابتة، والمكثف يقص من $Q_1$ الجزء $Q_C$ فينزل الوتر من $S_1$ إلى $S_2$.</figcaption>
+  </figure>
+  <p>ومن المحاضرة 10: قدرة المكثف $Q_C = \dfrac{V_{rms}^2}{|X_C|} = \omega C V_{rms}^2$. نطلّع منها $C$:</p>
+  <div class="m">\[\begin{gathered}C = \frac{Q_C}{\omega V_{rms}^2} \\ = \frac{P(\tan\theta_1 - \tan\theta_2)}{\omega V_{rms}^2}\end{gathered}\]</div>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">الرموز</div><div class="t-desc">$\theta_1$ و $\theta_2$: زاوية pf قبل وبعد. $\omega = 2\pi f$ بالـ rad/s. $V_{rms}$: جهد الحمل (V). $C$ بالفاراد (F).</div></div>
+    <div class="tile"><div class="t-top">ليش يستاهل؟</div><div class="t-desc">نفس $P$ بتيار أقل. وخسارة الأسلاك $I^2R$، يعني لو التيار نزل شوي، الخسارة تنزل بالتربيع. ينفع الشركة والمستهلك.</div></div>
+  </div>
+
+  <h3>لو الحمل سعوي (متقدم)</h3>
+  <p>أقل شيوعًا، بس ممكن. وقتها نحط <b>ملف</b> على التوازي بدل المكثف:</p>
+  <div class="m">\[\begin{gathered}Q_L = \frac{V_{rms}^2}{X_L} = \frac{V_{rms}^2}{\omega L} \\ L = \frac{V_{rms}^2}{\omega Q_L}\end{gathered}\]</div>
+  <p>حيث $Q_L = Q_1 - Q_2$ بالمقدار، الفرق بين $Q$ القديمة والجديدة.</p>
+  <div class="callout warn"><strong>⚠️ انتبه:</strong> $Q_2$ تنحسب من $P$ (الثابتة): $Q_2 = P\tan\theta_2$. لا تستخدم $S_1$ القديمة معها.</div>
+</section>
+
+<!-- ================= 04 لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: قدرة دائرة فيها أكثر من حمل</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="r1 g1 i1 s1 sm o1">مسار: توالي</button>
+      <button class="btn small" type="button" data-path="r1 g2 s2 sm pf o1">مسار: توازي</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k">إذا جاك: «أوجد قدرة كل عنصر» أو «القدرة الكلية اللي يعطيها المصدر»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="g1" data-from="r1"><span class="fb-k">الأحمال على التوالي: <b>تيار واحد</b></span></button>
+      <button type="button" class="fb-node ask c2" data-id="g2" data-from="r1"><span class="fb-k">الأحمال على التوازي: <b>جهد واحد</b></span></button>
+      <button type="button" class="fb-node trick c1" data-id="i1" data-from="g1"><span class="fb-k">احسب التيار من المعاوقة الكلية</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="s2" data-from="g2"><span class="fb-k">قدرة كل حمل</span><span class="fb-f">$\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</span><span class="fb-b">المحاضرة 10</span></button>
+      <button type="button" class="fb-node prev c1" data-id="s1" data-from="i1"><span class="fb-k">قدرة كل حمل</span><span class="fb-f">$\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</span><span class="fb-b">المحاضرة 10</span></button>
+      <button type="button" class="fb-node c12" data-id="sm" data-from="s1 s2"><span class="fb-k">حفظ القدرة</span><span class="fb-f">$\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="pf" data-from="sm"><span class="fb-k">الظاهرية ومعامل القدرة للكل</span><span class="fb-f">$S = |\mathbf{S}|$ و $\text{pf} = \dfrac{P}{S}$</span><span class="fb-b">المحاضرة 10</span></button>
+      <button type="button" class="fb-node out c12" data-id="o1" data-from="sm pf"><span class="fb-k">الناتج: $P$ و $Q$ لكل عنصر وللكل، و $S$ و pf</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="r1" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd>دائرة فيها أكثر من حمل، أو "خط نقل وحمل"، والمطلوب قدرة كل جزء أو القدرة الكلية.</dd>
+      <dt>أول شي تسويه</dt><dd>شوف وش المشترك بين الأحمال: التيار (توالي) ولا الجهد (توازي)؟ هذا يحدد القانون الأسهل.</dd></dl></div>
+    <div class="fb-info" data-for="g1" hidden><h4>توالي: تيار واحد</h4><dl>
+      <dt>متى؟</dt><dd>الأحمال ورا بعض في نفس الحلقة، مثل خط النقل والحمل اللي بعده.</dd>
+      <dt>الحيلة</dt><dd>التيار نفسه يمر في الكل، فقانون $|\mathbf{I}|^2\mathbf{Z}$ يخليك ما تحتاج جهد كل حمل.</dd></dl></div>
+    <div class="fb-info" data-for="g2" hidden><h4>توازي: جهد واحد</h4><dl>
+      <dt>متى؟</dt><dd>كل الأحمال موصولة على نفس الطرفين، مثل أجهزة البيت على الفيش.</dd>
+      <dt>الحيلة</dt><dd>الجهد نفسه على الكل، فقانون $V^2/\mathbf{Z}^*$ يخليك ما تحتاج تيار كل حمل.</dd></dl></div>
+    <div class="fb-info" data-for="i1" hidden><h4>التيار: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
+      <dt>متى؟</dt><dd>أحمال على التوالي. اجمع المعاوقات (المحاضرة 5) واقسم.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V} = 220\angle 0^\circ$ و $\mathbf{Z} = 19 - j8 = 20.62\angle{-22.83^\circ}$: $\mathbf{I} = 10.67\angle 22.83^\circ\ \text{A}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع مقادير المعاوقات بدل ما تجمعها مركبة.</dd></dl></div>
+    <div class="fb-info" data-for="s1" hidden><h4>قدرة حمل على التوالي: $\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</h4><dl>
+      <dt>الرموز</dt><dd>$|\mathbf{I}|^2$ رقم موجب (مقدار التيار الفعال تربيع)، و $\mathbf{Z}_k$ معاوقة الحمل نفسه.</dd>
+      <dt>مثال سريع</dt><dd>$|\mathbf{I}|^2 = 113.9$ و $\mathbf{Z} = 4 + j2$: $\mathbf{S} = 455.5 + j227.8\ \text{VA}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تربّع $\mathbf{I}$ كعدد مركب (يعني تضاعف زاويته). اللي ينربّع هو المقدار بس.</dd></dl></div>
+    <div class="fb-info" data-for="s2" hidden><h4>قدرة حمل على التوازي: $\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</h4><dl>
+      <dt>الرموز</dt><dd>$V$ مقدار الجهد الفعال، و $\mathbf{Z}_k^*$ مرافق معاوقة الحمل.</dd>
+      <dt>مثال سريع</dt><dd>$V = 120$ و $\mathbf{Z} = 60\angle{-30^\circ}$: $\mathbf{S} = \dfrac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ}\ \text{VA}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تنسى المرافق، فتطلع $Q$ بإشارة غلط.</dd></dl></div>
+    <div class="fb-info" data-for="sm" hidden><h4>حفظ القدرة: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</h4><dl>
+      <dt>متى؟</dt><dd>دايمًا: المصدر يعطي مجموع اللي تاخذه العناصر. تستخدمه للحل أو للتأكد من حلك.</dd>
+      <dt>كيف؟</dt><dd>اكتب كل $\mathbf{S}_k$ بالصورة المستطيلة واجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي.</dd>
+      <dt>مثال سريع</dt><dd>$(207.8 - j120)$ $+ (254.6 + j254.6)$ $= 462.4 + j134.6\ \text{VA}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع بالصورة القطبية (تجمع المقادير والزوايا). الجمع بالمستطيلة بس.</dd></dl></div>
+    <div class="fb-info" data-for="pf" hidden><h4>الظاهرية ومعامل القدرة للكل</h4><dl>
+      <dt>متى؟</dt><dd>بعد ما تجمع $\mathbf{S}$. خذ المقدار، وبعدها pf $= P/S$، والنوع من إشارة $Q$ الكلية.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{S} = 462.4 + j134.6$: $S = 481.6\ \text{VA}$ و pf $= 0.960$ متأخر.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع $S_1 + S_2$ (المقادير). هذا غلط دايمًا تقريبًا.</dd></dl></div>
+    <div class="fb-info" data-for="o1" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>$P$ بالواط و $Q$ بالـ VAR لكل عنصر، والكلية، و $S$ بالـ VA، و pf مع نوعه.</dd>
+      <dt>تأكد</dt><dd>مجموع قدرات العناصر لازم يطلع نفس قدرة المصدر (فرق تقريب بسيط عادي).</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: تصحيح معامل القدرة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="r2 pp an qd cc o2">مسار: حمل حثي (مكثف)</button>
+      <button class="btn small" type="button" data-path="r2 pp an qd cl o2">مسار: حمل سعوي (ملف)</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k">إذا جاك: «ارفع معامل القدرة من pf<sub>1</sub> إلى pf<sub>2</sub>، وش قيمة المكثف؟»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="pp" data-from="r2"><span class="fb-k">جهّز $P$ (ما تتغير بالتصحيح)</span><span class="fb-f">$P = S_1\cos\theta_1$</span><span class="fb-b">المحاضرة 10</span></button>
+      <button type="button" class="fb-node trick c12" data-id="an" data-from="pp"><span class="fb-k">الزاويتين</span><span class="fb-f">$\theta_1 = \cos^{-1}\text{pf}_1$ و $\theta_2 = \cos^{-1}\text{pf}_2$</span></button>
+      <button type="button" class="fb-node c12" data-id="qd" data-from="an"><span class="fb-k">الـ $Q$ اللي لازم نلغيها</span><span class="fb-f">$Q_1 - Q_2 = P(\tan\theta_1 - \tan\theta_2)$</span></button>
+      <button type="button" class="fb-node c1" data-id="cc" data-from="qd"><span class="fb-k">حثي: مكثف على التوازي</span><span class="fb-f">$C = \dfrac{Q_C}{\omega V^2}$</span></button>
+      <button type="button" class="fb-node c2" data-id="cl" data-from="qd"><span class="fb-k">سعوي: ملف على التوازي</span><span class="fb-f">$L = \dfrac{V^2}{\omega Q_L}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="o2" data-from="cc cl"><span class="fb-k">الناتج: $C$ بالفاراد أو $L$ بالهنري</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="r2" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">raise the pf to</span> أو <span class="ltr">power factor correction</span> أو "كم المكثف اللازم".</dd>
+      <dt>أول شي تسويه</dt><dd>شوف الحمل متأخر (حثي) ولا متقدم (سعوي)، وطلّع $P$.</dd></dl></div>
+    <div class="fb-info" data-for="pp" hidden><h4>جهّز $P$</h4><dl>
+      <dt>ليش؟</dt><dd>$P$ هي الضلع الثابت في المثلث، والتصحيح ما يغيرها لأن المكثف ما ياخذ قدرة حقيقية.</dd>
+      <dt>كيف؟</dt><dd>لو معطيك $P$ (مثل 4 kW) خذها مباشرة. لو معطيك $S_1$: $P = S_1\cos\theta_1$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تفكر إن $P$ تتغير بعد التصحيح.</dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4>الزاويتين</h4><dl>
+      <dt>مثال سريع</dt><dd>$\cos^{-1}(0.8) = 36.87^\circ$ و $\cos^{-1}(0.95) = 18.19^\circ$.</dd>
+      <dt>حيلة</dt><dd>لو المطلوب pf $= 1$، فـ $\theta_2 = 0$ و $\tan\theta_2 = 0$، يعني المكثف يلغي $Q_1$ كاملة.</dd>
+      <dt>الخطأ الشائع</dt><dd>الآلة على الراديان. خلها على الدرجات.</dd></dl></div>
+    <div class="fb-info" data-for="qd" hidden><h4>$Q_C = Q_1 - Q_2 = P(\tan\theta_1 - \tan\theta_2)$</h4><dl>
+      <dt>من وين؟</dt><dd>من مثلث القدرة: $Q = P\tan\theta$. نحسبها مرة بالزاوية القديمة ومرة بالجديدة ونطرح.</dd>
+      <dt>مثال سريع</dt><dd>$P = 4000$: $Q_1 = 3000$ و $Q_2 = 1314.7$، فـ $Q_C = 1685.3\ \text{VAR}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحسب $Q_2 = S_1\sin\theta_2$ بالقدرة الظاهرية القديمة. الصح من $P$ لأن $S$ تغيرت.</dd></dl></div>
+    <div class="fb-info" data-for="cc" hidden><h4>المكثف: $C = \dfrac{Q_C}{\omega V_{rms}^2}$</h4><dl>
+      <dt>متى؟</dt><dd>الحمل حثي (pf متأخر)، وهذي أغلب المسائل.</dd>
+      <dt>الرموز</dt><dd>$\omega = 2\pi f$. مع 60 Hz: $\omega = 377\ \text{rad/s}$. و $V_{rms}$ جهد الحمل.</dd>
+      <dt>مثال سريع</dt><dd>$\dfrac{1685.3}{377 \times 120^2} = 310.4\ \mu\text{F}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تحط $f$ بدل $\omega$، أو تنسى تربّع الجهد، أو تستخدم القيمة العظمى للجهد.</dd></dl></div>
+    <div class="fb-info" data-for="cl" hidden><h4>الملف: $L = \dfrac{V_{rms}^2}{\omega Q_L}$</h4><dl>
+      <dt>متى؟</dt><dd>الحمل سعوي (pf متقدم). أقل شيوعًا.</dd>
+      <dt>الرموز</dt><dd>$Q_L$ مقدار الفرق بين $Q$ القديمة والجديدة.</dd>
+      <dt>مثال سريع</dt><dd>$V_{rms} = 120$ و $Q_L = 1500$ و 60 Hz: $L = \dfrac{14400}{377 \times 1500} = 25.46\ \text{mH}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تقلب القانون وتكتبه مثل المكثف: الملف $\omega$ و $Q$ في المقام.</dd></dl></div>
+    <div class="fb-info" data-for="o2" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>$C$ بالميكروفاراد غالبًا، أو $L$ بالملي هنري.</dd>
+      <dt>تأكد</dt><dd>المكثف يتركب على <b>التوازي</b>، و $P$ قبل وبعد نفسها، والتيار بعد التصحيح أقل.</dd></dl></div>
+  </div>
+</section>
+
+<!-- ================= 05 المختبر ================= -->
+<section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
+  <h2>جرّب بنفسك: صحّح معامل القدرة</h2>
+  <p class="sub">اختر pf قبل وبعد، وشوف كم مكثف تحتاج وكم ينزل التيار</p>
+  <div class="pc-lab">
+    <h3>🎛️ حرّك معامل القدرة القديم والجديد</h3>
+    <p class="lab-note">الحمل من المثال 3: $P = 4\ \text{kW}$ حثي، على خط $120\ \text{V rms}$ و $60\ \text{Hz}$. المثلث الكبير قبل التصحيح، والملوّن بعده، والخط النحاسي هو $Q_C$ اللي يعطيها المكثف.</p>
+    <div class="lab-controls">
+      <div class="field"><label>pf<sub>1</sub> (قبل)</label><input type="range" dir="ltr" id="pc1" min="0.5" max="0.99" step="0.01" value="0.8"><span class="rv" id="pc1v"></span></div>
+      <div class="field"><label>pf<sub>2</sub> (بعد)</label><input type="range" dir="ltr" id="pc2" min="0.5" max="1" step="0.01" value="0.95"><span class="rv" id="pc2v"></span></div>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 600 300" role="img" aria-label="مثلث القدرة قبل وبعد التصحيح: P أفقية ثابتة، Q1 قبل و Q2 بعد، والفرق Q_C">
+        <path class="ax" d="M40 270H585"/>
+        <path class="sk x" id="pcP"/>
+        <path class="dash" id="pcS1"/>
+        <path class="sk z" id="pcS2"/>
+        <path class="sk y" id="pcQ2"/>
+        <path class="qc" id="pcQc"/>
+        <text class="lbl xt" id="pcPl" text-anchor="middle">P</text>
+        <text class="lbl zt" id="pcS1l" text-anchor="middle">S₁</text>
+        <text class="lbl zt" id="pcS2l" text-anchor="middle">S₂</text>
+        <text class="lbl at" id="pcQcl">Qc</text>
+      </svg>
+      <figcaption>المتقطع: $S_1$ قبل. المتصل: $S_2$ بعد. النحاسي: $Q_C$.</figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k">سعة المكثف $C$</span><span class="v" id="pcC"></span></div>
+      <div><span class="k">$Q_C$ اللي يعطيها المكثف</span><span class="v" id="pcQcv"></span></div>
+      <div><span class="k">$Q$ قبل ← بعد</span><span class="v ltr" id="pcQ"></span></div>
+      <div><span class="k">$S$ قبل ← بعد</span><span class="v ltr" id="pcS"></span></div>
+      <div><span class="k">تيار الخط قبل ← بعد</span><span class="v ltr" id="pcI"></span></div>
+      <div class="hl"><span class="k">خسارة الأسلاك $I^2R$ تنزل</span><span class="v" id="pcL"></span></div>
+    </div>
+    <p class="pc-say" id="pcSay"></p>
+  </div>
+  <div class="callout key"><strong>🔑 جرّب:</strong> خل pf<sub>2</sub> $= 1$ وشوف المثلث يصير خط، والمكثف يلغي $Q_1$ كاملة. بعدها قارن: من 0.95 إلى 1 كم زاد المكثف؟ وكم نزل التيار زيادة؟ عشان كذا في الواقع غالبًا يكتفون بـ 0.95.</div>
+</section>
+
+<!-- ================= الأمثلة ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>القدرة في المصدر والخط والحمل</h2></div>
+  <div class="tags"><span class="tag">Example 11.13</span><span class="tag">توالي: تيار واحد</span></div>
+  <p>حمل يتغذى من مصدر جهد عن طريق خط نقل <span class="ltr">(Transmission line)</span> معاوقته $4 + j2\ \Omega$. أوجد القدرة الحقيقية وغير الفعالة في: (أ) المصدر، (ب) الخط، (ج) الحمل.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 385 200" role="img" aria-label="مصدر 220 بزاوية صفر قيمة فعالة، بعده خط فيه مقاومة 4 أوم وملف j2 أوم، ثم حمل فيه مقاومة 15 أوم ومكثف سالب j10 أوم على التوالي" style="max-width:400px">
+      <circle class="wire" cx="70" cy="105" r="16"/>
+      <text class="lbl" x="70" y="102" text-anchor="middle">+</text><text class="lbl" x="70" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M70 89V40H120M160 40H185M225 40H320V60M320 100V118M320 126V165H70V121"/>
+      <path class="elm" d="M120 40l3.33-8 6.67 16 6.67-16 6.67 16 6.67-16 6.67 16 3.33-8"/>
+      <path class="elm" d="M185 40a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0a5 5 0 0 1 10 0"/>
+      <path class="elm" d="M320 60l8 3.33-16 6.67 16 6.67-16 6.67 16 6.67-16 6.67 8 3.33"/>
+      <path class="elm" d="M308 118H332M308 126H332"/>
+      <path class="sk e2" d="M95 28H115M109 23L115 28L109 33"/><text class="lbl" x="100" y="18" text-anchor="middle">I</text>
+      <text class="lbl" x="46" y="102" text-anchor="end">220∠0° V</text><text class="lbl" x="46" y="118" text-anchor="end">rms</text>
+      <text class="lbl" x="140" y="24" text-anchor="middle">4 Ω</text><text class="lbl" x="205" y="24" text-anchor="middle">j2 Ω</text>
+      <text class="lbl" x="336" y="84">15 Ω</text><text class="lbl" x="338" y="126">−j10 Ω</text>
+      <text class="lbl" x="70" y="190" text-anchor="middle">المصدر</text><text class="lbl" x="172" y="190" text-anchor="middle">الخط</text><text class="lbl" x="320" y="190" text-anchor="middle">الحمل</text>
+    </svg>
+    <figcaption>Figure 11.24: الخط والحمل على التوالي مع المصدر.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 i1 s1 sm o1">توالي، ثم التيار، ثم $|\mathbf{I}|^2\mathbf{Z}$، ثم الجمع</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">الخط والحمل ورا بعض، فالتيار واحد. يعني الشجرة 1، فرع "توالي". نحسب التيار، وبعدها قدرة كل جزء بـ $|\mathbf{I}|^2\mathbf{Z}$.</p>
+    </li>
+    <li class="step">
+      <h4>المعاوقة الكلية</h4>
+      <div class="m">\[\begin{gathered}\mathbf{Z} = (4 + j2) + (15 - j10) \\ = 19 - j8 \\ = 20.62\angle{-22.83^\circ}\ \Omega\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>التيار</h4>
+      <div class="m">\[\begin{gathered}\mathbf{I} = \frac{220\angle 0^\circ}{20.62\angle{-22.83^\circ}} \\ = 10.67\angle 22.83^\circ\ \text{A}\end{gathered}\]</div>
+      <p class="why">ونحتاج المقدار تربيع: $|\mathbf{I}|^2 = (10.67)^2 = 113.9$.</p>
+    </li>
+    <li class="step">
+      <h4>(أ) المصدر</h4>
+      <p class="why">قدرة المصدر $\mathbf{V}_s\mathbf{I}^*$. مرافق التيار زاويته $-22.83^\circ$.</p>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{S}_s} = (220\angle 0^\circ) \\ \times(10.67\angle{-22.83^\circ}) \\ = 2347.7\angle{-22.83^\circ} \\ = 2163.8 - j911.1\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>(ب) الخط</h4>
+      <p class="why">بدل ما نحسب جهد الخط، نستخدم الاختصار: التيار نفسه يمر فيه.</p>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{S}_{line}} = |\mathbf{I}|^2\mathbf{Z}_{line} \\ = 113.9(4 + j2) \\ = 455.5 + j227.8\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>(ج) الحمل</h4>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{S}_L} = |\mathbf{I}|^2\mathbf{Z}_L \\ = 113.9(15 - j10) \\ = 1708.2 - j1138.8\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>تأكد بحفظ القدرة</h4>
+      <p class="why">قبل ما تقرأ: لو جمعنا الخط والحمل، وش لازم يطلع؟ قدرة المصدر بالضبط.</p>
+      <div class="m">\[\begin{gathered}\mathbf{S}_{line} + \mathbf{S}_L \\ = (455.5 + 1708.2) \\ + j(227.8 - 1138.8) \\ = 2163.7 - j911\ \text{VA} \\ = \mathbf{S}_s\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">المصدر: $P = 2163.8$ W و $Q = -911.1$ VAR. الخط: $455.5$ W و $227.8$ VAR. الحمل: $1708.2$ W و $-1138.8$ VAR</div>
+      <p class="sanity">الخط حثي ($Q$ موجب)، والحمل سعوي ($Q$ سالب) وأكبر، فالكل سعوي والمصدر يشوف pf متقدم ✓ (الكتاب يطلع 2163.5 و 910.8 بسبب التقريب.)</p>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>القدرة الكلية لحملين على التوازي</h2></div>
+  <div class="tags"><span class="tag">Example 11.14</span><span class="tag">توازي: جهد واحد</span></div>
+  <p>في الدائرة، $\mathbf{Z}_1 = 60\angle{-30^\circ}\ \Omega$ و $\mathbf{Z}_2 = 40\angle 45^\circ\ \Omega$. احسب للمصدر: (أ) القدرة الظاهرية الكلية، (ب) الحقيقية، (ج) غير الفعالة، (د) معامل القدرة.</p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 180" role="img" aria-label="مصدر 120 بزاوية 10 درجات قيمة فعالة موصول على Z1 و Z2 على التوازي" style="max-width:360px">
+      <circle class="wire" cx="85" cy="105" r="16"/>
+      <text class="lbl" x="85" y="102" text-anchor="middle">+</text><text class="lbl" x="85" y="117" text-anchor="middle">−</text>
+      <path class="wire" d="M85 89V40H300V75M300 125V160H85V121M200 40V75M200 125V160"/>
+      <rect class="lbox" x="185" y="75" width="30" height="50" rx="4"/><rect class="lbox" x="285" y="75" width="30" height="50" rx="4"/>
+      <circle class="dot" cx="200" cy="40" r="3"/><circle class="dot" cx="200" cy="160" r="3"/>
+      <path class="sk e2" d="M115 30H145M139 25L145 30L139 35"/><text class="lbl" x="130" y="20" text-anchor="middle">I<tspan class="sb" dy="3">t</tspan></text>
+      <text class="lbl yt" x="222" y="104">Z<tspan class="sb" dy="3">1</tspan></text><text class="lbl yt" x="322" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
+      <text class="lbl" x="62" y="102" text-anchor="end">120∠10° V</text><text class="lbl" x="62" y="118" text-anchor="end">rms</text>
+    </svg>
+    <figcaption>Figure 11.26: الحملين على نفس الجهد.</figcaption>
+  </figure>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g2 s2 sm pf o1">توازي، ثم $V^2/\mathbf{Z}^*$، ثم الجمع، ثم pf</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">الحملين على نفس الطرفين، فالجهد واحد. الشجرة 1، فرع "توازي". نستخدم $V^2/\mathbf{Z}^*$ لكل حمل، وما نحتاج التيارات.</p>
+    </li>
+    <li class="step">
+      <h4>قدرة الحمل الأول</h4>
+      <p class="why">$V^2 = 120^2 = 14400$. ومرافق $60\angle{-30^\circ}$ هو $60\angle 30^\circ$.</p>
+      <div class="m">\[\begin{gathered}\mathbf{S}_1 = \frac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ} \\ = 207.8 - j120\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>قدرة الحمل الثاني</h4>
+      <div class="m">\[\begin{gathered}\mathbf{S}_2 = \frac{14400}{40\angle{-45^\circ}} = 360\angle 45^\circ \\ = 254.6 + j254.6\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>اجمع (حفظ القدرة)</h4>
+      <p class="why">الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</p>
+      <div class="m">\[\begin{gathered}\Z{\mathbf{S}_t} = \mathbf{S}_1 + \mathbf{S}_2 \\ = 462.4 + j134.6\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>(أ) الظاهرية الكلية</h4>
+      <p class="why">قبل ما تقرأ: ليش ما نجمع $240 + 360 = 600$؟ لأن المقادير ما تنجمع. ناخذ مقدار المجموع.</p>
+      <div class="m">\[\begin{gathered}\Z{S_t} = |\mathbf{S}_t| \\ = \sqrt{462.4^2 + 134.6^2} \\ = 481.6\ \text{VA}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>(ب) و (ج) الحقيقية وغير الفعالة</h4>
+      <div class="m">\[\begin{gathered}\X{P_t} = 462.4\ \text{W} \\ \Y{Q_t} = 134.6\ \text{VAR}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>(د) معامل القدرة</h4>
+      <p class="why">$Q_t$ موجب، فالكل حثي والـ pf متأخر.</p>
+      <div class="m">\[\text{pf} = \frac{462.4}{481.6} = 0.960\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$S_t = 481.6$ VA، $P_t = 462.4$ W، $Q_t = 134.6$ VAR، pf $= 0.96$ متأخر</div>
+      <p class="sanity">تأكد من المصدر: $\mathbf{I}_t = 2\angle 40^\circ + 3\angle{-35^\circ}$ $= 4.013\angle{-6.22^\circ}$، و $\mathbf{V}\mathbf{I}_t^*$ $= 481.6\angle 16.22^\circ$ $= 462.4 + j134.6$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>مكثف يرفع pf إلى 0.95</h2></div>
+  <div class="tags"><span class="tag">Example 11.15</span><span class="tag">تصحيح بمكثف</span></div>
+  <p>حمل موصول على خط <span class="ltr">120 V rms</span> و <span class="ltr">60 Hz</span>، ياخذ <span class="ltr">4 kW</span> بمعامل قدرة 0.8 متأخر. أوجد قيمة المكثف اللازمة عشان يرتفع معامل القدرة إلى 0.95.</p>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 pp an qd cc o2">$P$، ثم الزاويتين، ثم $Q_C$، ثم $C$</a></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ المسألة</h4>
+      <p class="why">"ارفع pf" والحمل متأخر (حثي)، يعني الشجرة 2، فرع المكثف. و $P = 4000\ \text{W}$ معطاة مباشرة.</p>
+    </li>
+    <li class="step">
+      <h4>الزاوية القديمة</h4>
+      <div class="m">\[\theta_1 = \cos^{-1}(0.8) = 36.87^\circ\]</div>
+    </li>
+    <li class="step">
+      <h4>$S_1$ و $Q_1$ قبل التصحيح</h4>
+      <div class="m">\[\begin{gathered}S_1 = \frac{P}{\cos\theta_1} = \frac{4000}{0.8} \\ = 5000\ \text{VA} \\[6pt] \Y{Q_1} = 5000\sin 36.87^\circ \\ = 3000\ \text{VAR}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>الزاوية الجديدة</h4>
+      <div class="m">\[\theta_2 = \cos^{-1}(0.95) = 18.19^\circ\]</div>
+    </li>
+    <li class="step">
+      <h4>$S_2$ و $Q_2$ بعد التصحيح</h4>
+      <p class="why">$P$ ما تغيرت، فنقسمها على الـ pf الجديد.</p>
+      <div class="m">\[\begin{gathered}S_2 = \frac{4000}{0.95} \\ = 4210.5\ \text{VA} \\[6pt] \Y{Q_2} = S_2\sin\theta_2 \\ = 4210.5\sin 18.19^\circ \\ = 1314.7\ \text{VAR}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>$Q_C$ اللي يعطيها المكثف</h4>
+      <div class="m">\[\begin{gathered}Q_C = Q_1 - Q_2 \\ = 3000 - 1314.7 \\ = 1685.3\ \text{VAR}\end{gathered}\]</div>
+    </li>
+    <li class="step">
+      <h4>سعة المكثف</h4>
+      <p class="why">$\omega = 2\pi(60) = 377\ \text{rad/s}$، والجهد يتربع.</p>
+      <div class="m">\[\begin{gathered}C = \frac{Q_C}{\omega V_{rms}^2} \\ = \frac{1685.3}{2\pi \times 60 \times 120^2}\end{gathered}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$C = 310.4\ \mu$F على التوازي مع الحمل</div>
+      <p class="sanity">إضافة: تيار الخط كان $5000/120 = 41.7\ \text{A}$ وصار $4210.5/120 = 35.1\ \text{A}$، والقدرة الحقيقية نفسها 4 kW ✓ (الكتاب يقرّب فيطلع 1314.4 و 310.5 μF.)</p>
+      <p class="sanity">ملاحظة الكتاب: القيمة العظمى لجهد المكثف $120\sqrt{2} \approx 170\ \text{V}$، فيشتري مكثف يتحمل 200 V مثلًا.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= التمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2>دورك: تمارين</h2>
+  <p class="sub">اكتب الرقم بس. وقبل ما تحل، حدد مسارك في لوحة القوانين.</p>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
+    <p>حملين على التوازي: $\mathbf{S}_1 = 1000 + j500\ \text{VA}$ و $\mathbf{S}_2 = 600 - j800\ \text{VA}$. كم القدرة الحقيقية الكلية بالواط؟</p>
+    <div class="check" data-answer="1600"></div>
+    <details class="hint"><p>حفظ القدرة: اجمع الأجزاء الحقيقية.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[P_t = 1000 + 600\]</div><div class="result">$P_t = 1600$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ب</b><span class="lvl">وسط</span></div>
+    <p>نفس الحملين. كم معامل القدرة الكلي؟ (لثلاث منازل عشرية)</p>
+    <div class="check" data-answer="0.983"></div>
+    <details class="hint"><p>$Q_t = 500 - 800 = -300$. بعدها $S_t = \sqrt{P_t^2 + Q_t^2}$، ولا تجمع المقادير.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}S_t = \sqrt{1600^2 + 300^2} \\ = 1627.9 \\ \text{pf} = \frac{1600}{1627.9}\end{gathered}\]</div><div class="result">pf $= 0.983$ متقدم</div><p class="sanity">$Q_t$ سالب، فهو متقدم ✓</p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">وسط</span></div>
+    <p>مصدر $120\ \text{V rms}$ يغذي حملين على التوالي: $\mathbf{Z}_1 = 4 + j3\ \Omega$ و $\mathbf{Z}_2 = 8 - j8\ \Omega$. كم القدرة الحقيقية في $\mathbf{Z}_1$ بالواط؟</p>
+    <div class="check" data-answer="340.83"></div>
+    <details class="hint"><p>المعاوقة الكلية $12 - j5$ ومقدارها 13. احسب $|\mathbf{I}|^2$ واضربه في $R_1 = 4$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}|\mathbf{I}| = \frac{120}{13} = 9.231\ \text{A} \\ P_1 = |\mathbf{I}|^2 R_1 = 85.21 \times 4\end{gathered}\]</div><div class="result">$P_1 = 340.8$ W</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">وسط</span></div>
+    <p>حمل $10\ \text{kW}$ بمعامل قدرة 0.6 متأخر. نبغى نرفعه إلى 0.9. كم $Q_C$ بالـ VAR؟</p>
+    <div class="check" data-answer="8490"></div>
+    <details class="hint"><p>$\tan(\cos^{-1}0.6) = 1.3333$ و $\tan(\cos^{-1}0.9) = 0.4843$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}Q_C = P(\tan\theta_1 - \tan\theta_2) \\ = 10000(1.3333 - 0.4843)\end{gathered}\]</div><div class="result">$Q_C = 8490$ VAR</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">وسط</span></div>
+    <p>كمّل تمرين د: الجهد $240\ \text{V rms}$ والتردد $60\ \text{Hz}$. كم سعة المكثف بالميكروفاراد (μF)؟</p>
+    <div class="check" data-answer="391"></div>
+    <details class="hint"><p>$C = \dfrac{Q_C}{\omega V_{rms}^2}$ و $\omega = 377$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}C = \frac{8490}{377 \times 240^2} \\ = 3.91 \times 10^{-4}\ \text{F}\end{gathered}\]</div><div class="result">$C = 391\ \mu$F</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
+    <p>حمل سعوي $2\ \text{kW}$ بمعامل قدرة 0.8 <b>متقدم</b>، على $120\ \text{V rms}$ و $60\ \text{Hz}$. نبغى pf $= 1$. كم الملف اللازم على التوازي بالملي هنري (mH)؟ (تمرين إضافي على قانون 11.61)</p>
+    <div class="check" data-answer="25.46"></div>
+    <details class="hint"><p>pf $= 1$ يعني $Q_2 = 0$، فـ $Q_L = |Q_1| = P\tan\theta_1$. بعدها $L = \dfrac{V_{rms}^2}{\omega Q_L}$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step final"><div class="m">\[\begin{gathered}Q_L = 2000\tan 36.87^\circ \\ = 1500\ \text{VAR} \\ L = \frac{120^2}{377 \times 1500} \\ = 0.02546\ \text{H}\end{gathered}\]</div><div class="result">$L = 25.46$ mH</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= الأخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
+  <h2>الأخطاء اللي تضيّع الدرجات</h2>
+  <div class="mk"><div class="mk-title">تجمع القدرات الظاهرية</div>
+    <div class="pair"><div class="no">$S_t = S_1 + S_2 = 240 + 360 = 600\ \text{VA}$</div><div class="yes">اجمع $\mathbf{S}$ المركبة، وخذ المقدار: $481.6\ \text{VA}$</div></div></div>
+  <div class="mk"><div class="mk-title">تجمع بالصورة القطبية</div>
+    <div class="pair"><div class="no">$240\angle{-30^\circ} + 360\angle 45^\circ = 600\angle 15^\circ$</div><div class="yes">حوّل كل واحد لمستطيلة أول، وبعدها اجمع</div></div></div>
+  <div class="mk"><div class="mk-title">تحسب $Q_2$ من $S_1$ القديمة</div>
+    <div class="pair"><div class="no">$Q_2 = S_1\sin\theta_2$</div><div class="yes">$Q_2 = P\tan\theta_2$ لأن $P$ هي الثابتة</div></div></div>
+  <div class="mk"><div class="mk-title">تحط $f$ بدل $\omega$</div>
+    <div class="pair"><div class="no">$C = \dfrac{Q_C}{60 \times 120^2}$</div><div class="yes">$\omega = 2\pi f = 377$، و $C = \dfrac{Q_C}{377 \times 120^2}$</div></div></div>
+  <div class="mk"><div class="mk-title">تنسى تربّع الجهد</div>
+    <div class="pair"><div class="no">$C = \dfrac{Q_C}{\omega V_{rms}}$</div><div class="yes">$C = \dfrac{Q_C}{\omega V_{rms}^2}$</div></div></div>
+  <div class="mk"><div class="mk-title">تركّب المكثف على التوالي</div>
+    <div class="pair"><div class="no">المكثف بين المصدر والحمل</div><div class="yes">على <b>التوازي</b> مع الحمل، عشان جهد الحمل ما يتغير</div></div></div>
+  <div class="mk"><div class="mk-title">تربّع التيار المركب</div>
+    <div class="pair"><div class="no">$\mathbf{S} = \mathbf{I}^2\mathbf{Z}$ وتضاعف زاوية التيار</div><div class="yes">$\mathbf{S} = |\mathbf{I}|^2\mathbf{Z}$، المقدار بس</div></div></div>
+</section>
+
+<!-- ================= الاختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2>اختبر نفسك</h2>
+  <div class="quiz">
+    <div class="q" data-answer="2"><p>حملين: $\mathbf{S}_1 = 3 + j4$ و $\mathbf{S}_2 = 3 - j4\ \text{kVA}$. القدرة الظاهرية الكلية:</p>
+      <button>10 kVA</button><button>6 kVA</button><button>8 kVA</button><button>صفر</button>
+      <p class="q-why">المجموع $6 + j0$، ومقداره 6. المقادير (5 و 5) ما تنجمع.</p></div>
+    <div class="q" data-answer="3"><p>بعد ما نصحح معامل القدرة بمكثف، القدرة الحقيقية للحمل:</p>
+      <button>تزيد</button><button>تقل</button><button>ما تتغير</button><button>تصير صفر</button>
+      <p class="q-why">المكثف ما ياخذ قدرة حقيقية، والحمل نفس الجهد، فـ $P$ نفسها.</p></div>
+    <div class="q" data-answer="2"><p>الشي اللي يقل بعد التصحيح:</p>
+      <button>جهد الحمل</button><button>تيار الخط</button><button>القدرة الحقيقية</button><button>التردد</button>
+      <p class="q-why">$S$ نزلت والجهد ثابت، فالتيار $S/V$ نزل، وخسارة الأسلاك معه.</p></div>
+    <div class="q" data-answer="4"><p>حمل معامل قدرته متقدم. نصححه بـ:</p>
+      <button>مكثف على التوازي</button><button>مقاومة على التوالي</button><button>مكثف على التوالي</button><button>ملف على التوازي</button>
+      <p class="q-why">الحمل سعوي و $Q$ سالبة، فنحتاج $Q$ موجبة من ملف.</p></div>
+    <div class="q" data-answer="1"><p>ليش المكثف يتركب على التوازي؟</p>
+      <button>عشان جهد الحمل وتشغيله ما يتغيرون</button><button>عشان يزيد التيار</button><button>عشان ياخذ قدرة حقيقية</button><button>عشان التوالي أغلى</button>
+      <p class="q-why">التعريف: نرفع pf بدون ما نغير جهد أو تيار الحمل نفسه.</p></div>
+    <div class="q" data-answer="3"><p>$Q_1 = 3000\ \text{VAR}$ و $Q_2 = 1000\ \text{VAR}$. المكثف يعطي:</p>
+      <button>4000 VAR</button><button>1000 VAR</button><button>2000 VAR</button><button>3000 VAR</button>
+      <p class="q-why">$Q_C = Q_1 - Q_2 = 2000\ \text{VAR}$.</p></div>
+    <div class="q" data-answer="2"><p>نبغى pf $= 1$ بالضبط. قدرة المكثف $Q_C$ تساوي:</p>
+      <button>صفر</button><button>$Q_1$ كاملة</button><button>$P$</button><button>$S_1$</button>
+      <p class="q-why">pf $= 1$ يعني $\theta_2 = 0$ و $Q_2 = 0$، فالمكثف يلغي $Q_1$ كلها.</p></div>
+  </div>
+</section>
+
+</main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
+<script>
+/* مختبر تصحيح معامل القدرة: حمل 4 kW على 120 V و 60 Hz */
+(function () {
+  const $ = id => document.getElementById(id);
+  const P = 4000, V = 120, W = 2 * Math.PI * 60, OX = 60, OY = 270;
+  const f = n => n.toFixed(1);
+  const n0 = n => Math.round(n).toLocaleString('en-US');
+  function draw() {
+    let p1 = +$('pc1').value, p2 = +$('pc2').value;
+    $('pc1v').textContent = p1.toFixed(2); $('pc2v').textContent = p2.toFixed(2);
+    const t1 = Math.acos(p1), t2 = Math.acos(p2);
+    const Q1 = P * Math.tan(t1), Q2 = P * Math.tan(t2), Qc = Q1 - Q2;
+    const k = Math.min(440 / P, 240 / Q1);
+    const ex = OX + k * P, y1 = OY - k * Q1, y2 = OY - k * Q2;
+    $('pcP').setAttribute('d', `M${OX} ${OY}H${f(ex)}`);
+    $('pcS1').setAttribute('d', `M${OX} ${OY}L${f(ex)} ${f(y1)}`);
+    $('pcS2').setAttribute('d', `M${OX} ${OY}L${f(ex)} ${f(y2)}`);
+    $('pcQ2').setAttribute('d', Q2 > 1 ? `M${f(ex)} ${OY}V${f(y2)}` : '');
+    $('pcQc').setAttribute('d', Qc > 1 ? `M${f(ex + 8)} ${f(y2)}V${f(y1)}` : '');
+    const L = (id, x, y) => { $(id).setAttribute('x', f(x)); $(id).setAttribute('y', f(y)); };
+    L('pcPl', (OX + ex) / 2, OY + 24); L('pcS1l', (OX + ex) / 2 - 18, (OY + y1) / 2 - 8);
+    L('pcS2l', (OX + ex) / 2 + 22, (OY + y2) / 2 + 26); L('pcQcl', Math.min(ex + 18, 560), (y1 + y2) / 2 + 8);
+    $('pcQcl').style.display = Qc > 1 ? '' : 'none';
+    const S1 = P / p1, S2 = P / p2, I1 = S1 / V, I2 = S2 / V;
+    const C = Qc / (W * V * V) * 1e6;
+    $('pcC').textContent = p2 > p1 ? C.toFixed(1) + ' μF' : '—';
+    $('pcQcv').textContent = p2 > p1 ? n0(Qc) + ' VAR' : '—';
+    $('pcQ').textContent = n0(Q1) + ' → ' + n0(Q2) + ' VAR';
+    $('pcS').textContent = n0(S1) + ' → ' + n0(S2) + ' VA';
+    $('pcI').textContent = I1.toFixed(1) + ' → ' + I2.toFixed(1) + ' A';
+    $('pcL').textContent = p2 > p1 ? Math.round(100 * (1 - (I2 / I1) ** 2)) + '%' : '—';
+    $('pcSay').textContent = p2 <= p1 ? 'pf الجديد لازم يكون أكبر من القديم، وإلا ما فيه تصحيح.'
+      : p2 >= 0.995 ? 'pf = 1: المكثف لغى Q كاملة، والخط يشيل P بس.'
+      : 'P ثابتة، و Q نزلت من ' + n0(Q1) + ' إلى ' + n0(Q2) + '، فالتيار نزل.';
+  }
+  ['pc1', 'pc2'].forEach(id => $(id).addEventListener('input', draw));
+  draw();
+})();
+</script>
+<script src="board.js"></script>
+<script src="nav.js"></script>
+</body>
+</html>

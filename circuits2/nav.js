@@ -10,7 +10,8 @@ const lectures = [
   { name: "المحاضرة 7 · مكافئ ثيفنن ونورتن", url: "lecture7.html" },
   { name: "المحاضرة 8 · القدرة اللحظية والمتوسطة", url: "lecture8.html" },
   { name: "المحاضرة 9 · أقصى قدرة والقيمة الفعالة", url: "lecture9.html" },
-  { name: "المحاضرة 10 · القدرة المركبة ومعامل القدرة", url: "lecture10.html" }
+  { name: "المحاضرة 10 · القدرة المركبة ومعامل القدرة", url: "lecture10.html" },
+  { name: "المحاضرة 11 · حفظ القدرة وتصحيح معامل القدرة", url: "lecture11.html" }
 ];
 
 function renderNavigation() {
