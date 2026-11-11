@@ -8,7 +8,8 @@ const lectures = [
   { name: "المحاضرة 5 · كيرشوف وتوصيل المعاوقات", url: "lecture5.html" },
   { name: "المحاضرة 6 · تحليل العقد والحلقات", url: "lecture6.html" },
   { name: "المحاضرة 7 · مكافئ ثيفنن ونورتن", url: "lecture7.html" },
-  { name: "المحاضرة 8 · القدرة اللحظية والمتوسطة", url: "lecture8.html" }
+  { name: "المحاضرة 8 · القدرة اللحظية والمتوسطة", url: "lecture8.html" },
+  { name: "المحاضرة 9 · أقصى قدرة والقيمة الفعالة", url: "lecture9.html" }
 ];
 
 function renderNavigation() {
