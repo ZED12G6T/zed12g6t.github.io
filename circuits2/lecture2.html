@@ -105,6 +105,7 @@
     <div class="tile"><div class="t-name">Time Domain · المجال الزمني</div><div class="t-desc">الموجة مكتوبة كدالة في الزمن، مثل $v(t)$.</div></div>
     <div class="tile"><div class="t-name">Phasor Domain · مجال الفيزور</div><div class="t-desc">نفس الموجة مكتوبة كفيزور ثابت مثل $\mathbf{V}$. ويسمونه كمان مجال التردد (Frequency Domain).</div></div>
   </div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= مثال 1 ================= -->
@@ -112,6 +113,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>احسب الأرقام المركبة</h2></div>
   <div class="tags"><span class="tag">Example 9.3</span><span class="tag">جمع · ضرب · قسمة · جذر</span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ \left(40\angle 50^\circ + 20\angle{-30^\circ}\right)^{1/2} \\[6pt] \text{(b)}\ \ \frac{10\angle{-30^\circ} + (3 - j4)}{(2 + j4)(3 - j5)^*}\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar as1 aa1 as2 aa2 ab2 ao">جمع بالديكارتي، ثم قطبي للضرب والقسمة والجذر</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -243,11 +245,165 @@
   <div class="callout warn"><strong>⚠️ قبل ما تقارن:</strong> لازم الموجتين بنفس التردد $\omega$، وكل وحدة محوّلة لفيزور من صيغة cos برقم موجب قدامها. نفس شرط المقارنة في المحاضرة 1.</div>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: الحساب بالأرقام المركبة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar as1 aa1 ao">مسار: جمع أو طرح</button>
+      <button class="btn small" type="button" data-path="ar as2 aa2 ab2 ao">مسار: ضرب أو قسمة أو جذر</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «احسب» وفيه أرقام مركبة</span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ar"><span class="fb-k">جمع أو طرح</span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ar"><span class="fb-k">ضرب، قسمة، جذر، مقلوب</span></button>
+      <button type="button" class="fb-node c1" data-id="aa1" data-from="as1"><span class="fb-k">بالديكارتي</span><span class="fb-f">$(x_1 + x_2)$<br>$+ j(y_1 + y_2)$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k">حوّل للقطبي</span><span class="fb-f">$r = \sqrt{x^2 + y^2}$<br>$\phi = \tan^{-1}\tfrac{y}{x}$</span></button>
+      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k">الأطوال والزوايا</span><span class="fb-f">$r_1 r_2\angle(\phi_1 + \phi_2)$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k">الناتج: بالشكل اللي يطلبه السؤال، وغالبًا قطبي</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الشكل</dt><dd>أرقام مثل $3 + j4$ أو $40\angle 50^\circ$ وبينها عمليات.</dd>
+      <dt>القاعدة</dt><dd>قبل كل عملية، حوّل للشكل الأسهل لها.</dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4>جمع أو طرح</h4><dl>
+      <dt>متى؟</dt><dd>فيه $+$ أو $-$ بين رقمين مركبين.</dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4>ضرب، قسمة، جذر، مقلوب</h4><dl>
+      <dt>متى؟</dt><dd>فيه ضرب أو قسمة أو أس.</dd></dl></div>
+    <div class="fb-info" data-for="aa1" hidden><h4>الجمع بالديكارتي</h4><dl>
+      <dt>كيف؟</dt><dd>لو الرقم قطبي حوّله: $x = r\cos\phi$ و $y = r\sin\phi$. وبعدها الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</dd>
+      <dt>مثال سريع</dt><dd>$(1 + j2) + (3 - j5) = 4 - j3$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تجمع الأطوال والزوايا في القطبي. هذا غلط.</dd></dl></div>
+    <div class="fb-info" data-for="aa2" hidden><h4>حوّل للقطبي: $r = \sqrt{x^2 + y^2}$ و $\phi = \tan^{-1}\tfrac{y}{x}$</h4><dl>
+      <dt>مثال سريع</dt><dd>$3 + j4 = 5\angle 53.13^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>لو $x$ سالب، الحاسبة تعطيك زاوية غلط. شوف الربع: $-3 + j4$ زاويته <span class="ltr">126.87°</span> مو <span class="ltr">−53.13°</span>.</dd></dl></div>
+    <div class="fb-info" data-for="ab2" hidden><h4>الضرب والقسمة والجذر بالقطبي</h4><dl>
+      <dt>الضرب</dt><dd>اضرب الأطوال واجمع الزوايا: $5\angle 53.13^\circ \times 2\angle 10^\circ$ $= 10\angle 63.13^\circ$.</dd>
+      <dt>القسمة</dt><dd>اقسم الأطوال واطرح الزوايا: $\dfrac{10\angle 30^\circ}{2\angle{-20^\circ}}$ $= 5\angle 50^\circ$.</dd>
+      <dt>الجذر والمقلوب</dt><dd>$\sqrt{4\angle 60^\circ} = 2\angle 30^\circ$ و $\dfrac{1}{5\angle 53.13^\circ} = 0.2\angle{-53.13^\circ}$.</dd>
+      <dt>المرافق</dt><dd>$z^* = x - jy = r\angle{-\phi}$: $(3 + j4)^* = 3 - j4$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>لو فيه جمع وضرب مع بعض، تمشي في المسارين: تجمع بالديكارتي، ثم تحوّل وتضرب بالقطبي.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: من موجة إلى فيزور وبالعكس</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bs1 bn1 bp1 bo">مسار: موجة إلى فيزور</button>
+      <button class="btn small" type="button" data-path="br bs2 bp2 bt2 bo">مسار: فيزور إلى موجة</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «حوّل لفيزور» أو «اكتب الموجة الزمنية»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">معطاك موجة $v(t)$</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">معطاك فيزور</span></button>
+      <button type="button" class="fb-node prev c1" data-id="bn1" data-from="bs1"><span class="fb-k">وحّد الشكل: cos ورقم موجب</span><span class="fb-f">$\sin A$<br>$= \cos(A - 90^\circ)$</span><span class="fb-b">المحاضرة 1</span></button>
+      <button type="button" class="fb-node c1" data-id="bp1" data-from="bn1"><span class="fb-k">انقل السعة والزاوية</span><span class="fb-f">$V_m\angle\phi$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="bp2" data-from="bs2"><span class="fb-k">حوّله للقطبي</span><span class="fb-f">$r\angle\phi$</span><span class="fb-b">المحاضرة 2</span></button>
+      <button type="button" class="fb-node c2" data-id="bt2" data-from="bp2"><span class="fb-k">رجّع cos بنفس $\omega$</span><span class="fb-f">$r\cos(\omega t + \phi)$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bp1 bt2"><span class="fb-k">الناتج: فيزور $V_m\angle\phi$ أو موجة $V_m\cos(\omega t + \phi)$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">phasor, sinusoid, time domain</span>.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>معطاك موجة $v(t)$</h4><dl>
+      <dt>متى؟</dt><dd>مثل $6\cos(50t - 40^\circ)$ أو $-4\sin(30t + 50^\circ)$.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>معطاك فيزور</h4><dl>
+      <dt>متى؟</dt><dd>مثل $\mathbf{I} = -3 + j4$ أو $\mathbf{V} = j8e^{-j20^\circ}$.</dd></dl></div>
+    <div class="fb-info" data-for="bn1" hidden><h4>وحّد الشكل: cos ورقم موجب</h4><dl>
+      <dt>متى؟</dt><dd>لو الموجة sin أو قدامها سالب.</dd>
+      <dt>الحيلة</dt><dd>$-\sin A = \cos(A + 90^\circ)$ مباشرة.</dd>
+      <dt>مثال سريع</dt><dd>$-4\sin(30t + 50^\circ)$ تصير $4\cos(30t + 140^\circ)$.</dd></dl></div>
+    <div class="fb-info" data-for="bp1" hidden><h4>انقل السعة والزاوية: $V_m\cos(\omega t + \phi) \Rightarrow V_m\angle\phi$</h4><dl>
+      <dt>الرموز</dt><dd>الفيزور طوله السعة وزاويته الطور. ما فيه $\omega$ ولا $t$.</dd>
+      <dt>مثال سريع</dt><dd>$6\cos(50t - 40^\circ) \Rightarrow 6\angle{-40^\circ}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $t$ داخل الفيزور.</dd></dl></div>
+    <div class="fb-info" data-for="bp2" hidden><h4>حوّله للقطبي (الشجرة 1)</h4><dl>
+      <dt>مثال سريع</dt><dd>$-3 + j4 = 5\angle 126.87^\circ$. و $j8e^{-j20^\circ}$ $= 8\angle 90^\circ \times 1\angle{-20^\circ}$ $= 8\angle 70^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>$j$ نفسها $1\angle 90^\circ$. لا تنساها.</dd></dl></div>
+    <div class="fb-info" data-for="bt2" hidden><h4>رجّع cos بنفس $\omega$: $r\cos(\omega t + \phi)$</h4><dl>
+      <dt>مثال سريع</dt><dd>$5\angle 126.87^\circ$ تصير $5\cos(\omega t + 126.87^\circ)$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تغيّر $\omega$ أو ترجّعها sin.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>الفيزور ثابت ما فيه $t$، والموجة فيها $t$ ودايمًا حقيقية.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 3 ===== -->
+  <div class="fboard" id="board3">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 3: التفاضل والتكامل بالفيزور</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="cr cd1 co">مسار: تفاضل</button>
+      <button class="btn small" type="button" data-path="cr cd2 co">مسار: تكامل</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: $\dfrac{dv}{dt}$ أو $\displaystyle\int v\,dt$ لموجة جيبية</span></button>
+      <button type="button" class="fb-node c1" data-id="cd1" data-from="cr"><span class="fb-k">التفاضل</span><span class="fb-f">$\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</span></button>
+      <button type="button" class="fb-node c2" data-id="cd2" data-from="cr"><span class="fb-k">التكامل</span><span class="fb-f">$\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cd1 cd2"><span class="fb-k">الناتج: فيزور جديد، ترجّعه لموجة بنفس $\omega$</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الفكرة</dt><dd>بدل التفاضل والتكامل الطويل، اضرب أو اقسم على $j\omega$.</dd></dl></div>
+    <div class="fb-info" data-for="cd1" hidden><h4>التفاضل: $\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</h4><dl>
+      <dt>وش يسوي؟</dt><dd>يضرب السعة في $\omega$ ويزيد الزاوية <span class="ltr">90°</span>.</dd>
+      <dt>مثال سريع</dt><dd>$v = 10\cos(2t + 30^\circ)$: $j2 \times 10\angle 30^\circ = 20\angle 120^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="cd2" hidden><h4>التكامل: $\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</h4><dl>
+      <dt>وش يسوي؟</dt><dd>يقسم السعة على $\omega$ وينقص الزاوية <span class="ltr">90°</span>.</dd>
+      <dt>مثال سريع</dt><dd>$\dfrac{10\angle 30^\circ}{j2} = 5\angle{-60^\circ}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تقسم على $\omega$ وتنسى $j$، فتطلع الزاوية غلط.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
+      <dt>تأكد</dt><dd>التفاضل يكبّر السعة لو $\omega > 1$، والتكامل يصغّرها.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 4 ===== -->
+  <div class="fboard" id="board4">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 4: مين يسبق في مخطط الفيزورات؟</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="dr dn dc do">مسار: المقارنة</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k">إذا جاك: «ارسم مخطط الفيزورات» أو «مين يسبق؟»</span></button>
+      <button type="button" class="fb-node prev c12" data-id="dn" data-from="dr"><span class="fb-k">حوّل كل موجة لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">الشجرة 2</span></button>
+      <button type="button" class="fb-node c12" data-id="dc" data-from="dn"><span class="fb-k">قارن الزوايا</span><span class="fb-f">$\theta_V - \theta_I$</span></button>
+      <button type="button" class="fb-node out c12" data-id="do" data-from="dc"><span class="fb-k">الناتج: مين يسبق وبكم درجة</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="dr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">phasor diagram, leads, lags</span>.</dd></dl></div>
+    <div class="fb-info" data-for="dn" hidden><h4>حوّل كل موجة لفيزور: $V_m\angle\phi$</h4><dl>
+      <dt>متى؟</dt><dd>الموجات لازم بنفس $\omega$، ومن صيغة cos برقم موجب.</dd></dl></div>
+    <div class="fb-info" data-for="dc" hidden><h4>قارن الزوايا: $\theta_V - \theta_I$</h4><dl>
+      <dt>القاعدة</dt><dd>الدوران عكس عقارب الساعة. اللي زاويته أكبر قدّام، يعني يسبق.</dd>
+      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$: الجهد يسبق بـ <span class="ltr">50°</span>.</dd>
+      <dt>الخطأ الشائع</dt><dd>تقارن الأطوال. الطول سعة، ما له دخل في السبق.</dd></dl></div>
+    <div class="fb-info" data-for="do" hidden><h4>الناتج</h4><dl>
+      <dt>صيغة الجواب</dt><dd>«الجهد يسبق التيار بـ <span class="ltr">50°</span>» أو «التيار يتأخر عن الجهد بـ <span class="ltr">50°</span>».</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
   <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>حوّل الموجات إلى فيزورات</h2></div>
   <div class="tags"><span class="tag">Example 9.4</span><span class="tag">زمني ← فيزور</span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ i = 6\cos(50t - 40^\circ)\ \text{A} \\ \text{(b)}\ \ v = -4\sin(30t + 50^\circ)\ \text{V}\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs1 bn1 bp1 bo">وحّد الشكل، ثم انقل السعة والزاوية</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -279,6 +435,7 @@
   <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>من فيزور إلى موجة</h2></div>
   <div class="tags"><span class="tag">Example 9.5</span><span class="tag">فيزور ← زمني</span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ \mathbf{I} = -3 + j4\ \text{A} \\ \text{(b)}\ \ \mathbf{V} = j8\,e^{-j20^\circ}\ \text{V}\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs2 bp2 bt2 bo">حوّل للقطبي، ثم رجّع cos</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -396,6 +553,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* مختبر الفيزور الدوّار: السهم Vm∠(φ + ωt) وظله على Re = v(t) */
 (function () {
@@ -438,6 +596,7 @@
   draw();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>

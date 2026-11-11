@@ -83,6 +83,7 @@
     <div class="tile hl"><div class="t-top">الرابط بينهم</div><div class="t-math">$\Y{\omega} = 2\pi f$</div></div>
   </div>
   <div class="callout key"><strong>🔑 لا تخلط:</strong> $\omega$ بالـ rad/s، و $f$ بالـ Hz. كهرباء البيت $f = 60\text{ Hz}$ يعني $\omega = 2\pi(60) \approx 377\text{ rad/s}$.</div>
+  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
 </section>
 
 <!-- ================= 02 الطور ================= -->
@@ -152,12 +153,109 @@
   </ol>
 </section>
 
+<!-- ================= لوحة القوانين ================= -->
+<section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
+  <h2>لوحة القوانين</h2>
+  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
+  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <div class="fb-legend">
+    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+  </div>
+
+  <!-- ===== الشجرة 1 ===== -->
+  <div class="fboard" id="board1">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 1: قراءة الموجة</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="ar ak at af ao">مسار: سعة وطور وزمن دوري وتردد</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد السعة والطور والزمن الدوري والتردد»</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ak" data-from="ar"><span class="fb-k">قارن بالشكل العام</span><span class="fb-f">$V_m\cos(\omega t + \phi)$</span></button>
+      <button type="button" class="fb-node c12" data-id="at" data-from="ak"><span class="fb-k">الزمن الدوري</span><span class="fb-f">$T = \dfrac{2\pi}{\omega}$</span></button>
+      <button type="button" class="fb-node c12" data-id="af" data-from="at"><span class="fb-k">التردد</span><span class="fb-f">$f = \dfrac{1}{T} = \dfrac{\omega}{2\pi}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="af"><span class="fb-k">الناتج: $V_m$ و $\phi$ و $T$ و $f$ كل واحد بوحدته</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">amplitude, phase, period, frequency</span>، ومعطاك موجة وحدة مثل $v(t) = 12\cos(50t + 10^\circ)$.</dd>
+      <dt>أول شي تسويه</dt><dd>تأكد إنها cos والرقم اللي قدامها موجب. لو لا، صلّحها بالشجرة 2 أول.</dd></dl></div>
+    <div class="fb-info" data-for="ak" hidden><h4>قارن بالشكل العام: $V_m\cos(\omega t + \phi)$</h4><dl>
+      <dt>متى؟</dt><dd>أول خطوة في أي سؤال عن موجة وحدة.</dd>
+      <dt>الرموز</dt><dd>$V_m$ السعة (V أو A)، $\omega$ التردد الزاوي (rad/s)، $\phi$ الطور (درجات أو راديان).</dd>
+      <dt>مثال سريع</dt><dd>$12\cos(50t + 10^\circ)$: $V_m = 12$ و $\omega = 50$ و $\phi = 10^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تاخذ الرقم اللي قدام $t$ على إنه $f$. هذا $\omega$ مو $f$.</dd></dl></div>
+    <div class="fb-info" data-for="at" hidden><h4>الزمن الدوري: $T = \dfrac{2\pi}{\omega}$</h4><dl>
+      <dt>متى؟</dt><dd>لما يطلب الزمن الدوري، أو تحتاجه عشان توصل للتردد.</dd>
+      <dt>الرموز</dt><dd>$T$ بالثواني: وقت دورة وحدة كاملة.</dd>
+      <dt>مثال سريع</dt><dd>$\omega = 377$: $T = \dfrac{2\pi}{377} = 0.01667\ \text{s}$.</dd>
+      <dt>الخطأ الشائع</dt><dd>الحاسبة على degree. هنا $2\pi$ راديان، فخلها على radian.</dd></dl></div>
+    <div class="fb-info" data-for="af" hidden><h4>التردد: $f = \dfrac{1}{T} = \dfrac{\omega}{2\pi}$</h4><dl>
+      <dt>متى؟</dt><dd>لما يطلب التردد بالهيرتز.</dd>
+      <dt>الرموز</dt><dd>$f$ عدد الدورات في الثانية (Hz).</dd>
+      <dt>مثال سريع</dt><dd>$T = 0.01667\ \text{s}$: $f = 60\ \text{Hz}$. وبالعكس $\omega = 2\pi f$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تكتب $f = 2\pi\omega$. الصح $\omega = 2\pi f$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>السعة بالفولت، الطور بالدرجات، $T$ بالثواني، $f$ بالهيرتز.</dd>
+      <dt>تأكد</dt><dd>$T \times f = 1$ دايمًا.</dd></dl></div>
+  </div>
+
+  <!-- ===== الشجرة 2 ===== -->
+  <div class="fboard" id="board2">
+    <svg class="fb-lines" aria-hidden="true"></svg>
+    <h3>الشجرة 2: مين يسبق؟ وبكم؟</h3>
+    <div class="fb-paths">
+      <button class="btn small" type="button" data-path="br bs1 bn1 bd bo">مسار: إشارة سالبة</button>
+      <button class="btn small" type="button" data-path="br bs2 bn2 bd bo">مسار: sin</button>
+      <button class="btn small" type="button" data-path="br bs1 bs2 bn1 bn2 bd bo">مسار: الاثنين مع بعض</button>
+    </div>
+    <div class="fb-grid">
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد فرق الطور بين موجتين، ومين يسبق»</span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">قدامها إشارة سالبة</span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">مكتوبة sin</span></button>
+      <button type="button" class="fb-node trick c1" data-id="bn1" data-from="bs1"><span class="fb-k">شيل السالب</span><span class="fb-f">$-\cos A$<br>$= \cos(A \pm 180^\circ)$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="bn2" data-from="bs2"><span class="fb-k">sin إلى cos</span><span class="fb-f">$\sin A$<br>$= \cos(A - 90^\circ)$</span></button>
+      <button type="button" class="fb-node c12" data-id="bd" data-from="bn1 bn2"><span class="fb-k">اطرح الزاويتين</span><span class="fb-f">$\phi_2 - \phi_1$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bd"><span class="fb-k">الناتج: اللي زاويته أكبر يسبق بالفرق</span></button>
+    </div>
+    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+
+    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
+      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">phase angle between, leads, lags</span>.</dd>
+      <dt>شرط</dt><dd>الموجتين بنفس $\omega$. ولو الاثنين أصلًا cos ورقمهم موجب، روح على طول للطرح.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4>قدامها إشارة سالبة</h4><dl>
+      <dt>متى؟</dt><dd>مثل $-10\cos(\omega t + 50^\circ)$.</dd>
+      <dt>ليش مشكلة؟</dt><dd>السالب يقلب الموجة، يعني يغيّر طورها بـ <span class="ltr">180°</span>.</dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4>مكتوبة sin</h4><dl>
+      <dt>متى؟</dt><dd>مثل $12\sin(\omega t - 10^\circ)$ والثانية cos.</dd>
+      <dt>ليش مشكلة؟</dt><dd>ما تقارن زاوية sin مع زاوية cos مباشرة.</dd></dl></div>
+    <div class="fb-info" data-for="bn1" hidden><h4>شيل السالب: $-\cos A = \cos(A \pm 180^\circ)$</h4><dl>
+      <dt>الحيلة</dt><dd>زِد أو انقص <span class="ltr">180°</span>، واختر اللي يخلي الزاوية بين <span class="ltr">−180°</span> و <span class="ltr">180°</span>.</dd>
+      <dt>مثال سريع</dt><dd>$-10\cos(\omega t + 50^\circ)$ تصير $10\cos(\omega t - 130^\circ)$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تشيل السالب وتنسى تغيّر الزاوية.</dd></dl></div>
+    <div class="fb-info" data-for="bn2" hidden><h4>sin إلى cos: $\sin A = \cos(A - 90^\circ)$</h4><dl>
+      <dt>الحيلة</dt><dd>انقص <span class="ltr">90°</span>، لأن sin متأخرة عن cos بـ <span class="ltr">90°</span>.</dd>
+      <dt>مثال سريع</dt><dd>$12\sin(\omega t - 10^\circ)$ تصير $12\cos(\omega t - 100^\circ)$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تزيد <span class="ltr">90°</span> بدل ما تنقص.</dd></dl></div>
+    <div class="fb-info" data-for="bd" hidden><h4>اطرح الزاويتين: $\phi_2 - \phi_1$</h4><dl>
+      <dt>متى؟</dt><dd>بعد ما تصير الموجتين cos ورقمهم موجب.</dd>
+      <dt>مثال سريع</dt><dd>$(-100^\circ) - (-130^\circ) = 30^\circ$.</dd>
+      <dt>الخطأ الشائع</dt><dd>تدخّل السعات في المقارنة. السعة ما لها دخل في الطور.</dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
+      <dt>وش تكتب في الجواب؟</dt><dd>مثل: $v_2$ تسبق $v_1$ بـ <span class="ltr">30°</span>. ونفس الكلام: $v_1$ تتأخر عن $v_2$ بـ <span class="ltr">30°</span>.</dd>
+      <dt>تأكد</dt><dd>الفرق بين <span class="ltr">0°</span> و <span class="ltr">180°</span>. لو طلع أكبر، فيه زاوية ما رجعتها للمدى الصح.</dd></dl></div>
+  </div>
+
+</section>
+
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
   <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>اقرأ بطاقة تعريف الموجة</h2></div>
   <div class="tags"><span class="tag">Example 9.1</span><span class="tag">سعة · طور · زمن دوري · تردد</span></div>
   <p>أوجد السعة والطور والزمن الدوري والتردد للموجة:</p>
   <div class="m big">\[v(t) = 12\cos(50t + 10^\circ)\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak at af ao">قارن بالشكل العام، ثم $T$، ثم $f$</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -190,6 +288,7 @@
   <div class="tags"><span class="tag">Example 9.2</span><span class="tag">إشارة سالبة + sin</span></div>
   <p>احسب فرق الطور بين الموجتين، ومين فيهم يسبق:</p>
   <div class="m big">\[\begin{gathered}v_1 = -10\cos(\omega t + 50^\circ) \\ v_2 = 12\sin(\omega t - 10^\circ)\end{gathered}\]</div>
+  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs1 bs2 bn1 bn2 bd bo">شيل السالب، وحوّل sin، ثم اطرح</a></p>
   <ol class="solve">
     <li class="step read">
       <h4>اقرأ السؤال</h4>
@@ -291,6 +390,7 @@
 </section>
 
 </main>
+<a class="fb-fab" href="#board">🌳 القوانين</a>
 <script>
 /* مختبر الطور: يرسم A·cos(ωt + φ) مقابل المرجع 6·cos(ωt) */
 (function () {
@@ -321,6 +421,7 @@
   draw();
 })();
 </script>
+<script src="board.js"></script>
 <script src="nav.js"></script>
 </body>
 </html>
