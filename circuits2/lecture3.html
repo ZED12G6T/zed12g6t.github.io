@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 3 - Phasor Relationships for R, L, C" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 3 - Phasor Relationships for R, L, C">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,114 +27,114 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 3 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.3–9.4</span></p>
-  <h1><span>علاقات R و L و C بالفيزورات</span> <span class="h1-math ltr">$\dfrac{\mathbf{V}}{\mathbf{I}} = R,\ \ \Y{j\omega} L,\ \ \dfrac{1}{\Y{j\omega} C}$</span></h1>
-  <p class="lead">في المحاضرة 2 تعلمنا نحوّل الموجة إلى فيزور. هنا نستخدمه في شغلتين: <b>نجمع موجات</b> بنفس التردد بجمع أرقام مركبة بدل قوانين المثلثات، و<b>نكتب علاقة الجهد بالتيار</b> لكل عنصر في الدائرة: المقاومة (R) والملف (L) والمكثف (C). وبعدها كل قانون فيه تفاضل أو تكامل يصير ضرب أو قسمة بسيطة.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 3 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.3–9.4</span></span><span lang="en">Lecture 3 · Circuit Analysis 2 · <span class="ltr">Ch 9.3–9.4</span></span></p>
+  <h1><span><span lang="ar">علاقات R و L و C بالفيزورات</span><span lang="en">Phasor relations for R, L and C</span></span> <span class="h1-math ltr">$\dfrac{\mathbf{V}}{\mathbf{I}} = R,\ \ \Y{j\omega} L,\ \ \dfrac{1}{\Y{j\omega} C}$</span></h1>
+  <p class="lead"><span lang="ar">في المحاضرة 2 تعلمنا نحوّل الموجة إلى فيزور. هنا نستخدمه في شغلتين: <b>نجمع موجات</b> بنفس التردد بجمع أرقام مركبة بدل قوانين المثلثات، و<b>نكتب علاقة الجهد بالتيار</b> لكل عنصر في الدائرة: المقاومة (R) والملف (L) والمكثف (C). وبعدها كل قانون فيه تفاضل أو تكامل يصير ضرب أو قسمة بسيطة.</span><span lang="en">In lecture 2 we learned to turn a wave into a phasor. Here we use it for two things: <b>adding waves</b> of the same frequency by adding complex numbers instead of trig identities, and <b>writing the voltage–current relation</b> for each circuit element: the resistor (R), the inductor (L) and the capacitor (C). After that, every law with a derivative or an integral becomes a simple multiplication or division.</span></p>
   <div class="xyz-bar">
-    <span class="x">المقدار</span><span class="y">$j\omega$</span><span class="z">الزاوية</span>
-    <small>← نفس ألوان المحاضرات اللي قبل: كل رقم له لون ثابت</small>
+    <span class="x"><span lang="ar">المقدار</span><span lang="en">Magnitude</span></span><span class="y">$j\omega$</span><span class="z"><span lang="ar">الزاوية</span><span lang="en">The angle</span></span>
+    <small><span lang="ar">← نفس ألوان المحاضرات اللي قبل: كل رقم له لون ثابت</span><span lang="en">← same colors as the earlier lectures: each number keeps its color</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>موجتين بنفس $\omega$؟ حوّل كل وحدة لفيزور، اجمعهم كأرقام مركبة، وارجع للزمن. بدون أي قانون مثلثات.</li>
-      <li>المقاومة: $\mathbf{V} = R\,\mathbf{I}$، والجهد والتيار <b>متفقين في الطور</b> (in phase).</li>
-      <li>الملف: $\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$، والتيار <b>يتأخر</b> عن الجهد <span class="ltr">90°</span>. المكثف: $\mathbf{I} = \Y{j\omega} C\,\mathbf{V}$، والتيار <b>يسبق</b> الجهد <span class="ltr">90°</span>.</li>
+      <li><span lang="ar">موجتين بنفس $\omega$؟ حوّل كل وحدة لفيزور، اجمعهم كأرقام مركبة، وارجع للزمن. بدون أي قانون مثلثات.</span><span lang="en">Two waves with the same $\omega$? Turn each into a phasor, add them as complex numbers, and go back to time. No trig identities at all.</span></li>
+      <li><span lang="ar">المقاومة: $\mathbf{V} = R\,\mathbf{I}$، والجهد والتيار <b>متفقين في الطور</b> (in phase).</span><span lang="en">Resistor: $\mathbf{V} = R\,\mathbf{I}$, and voltage and current are <b>in phase</b>.</span></li>
+      <li><span lang="ar">الملف: $\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$، والتيار <b>يتأخر</b> عن الجهد <span class="ltr">90°</span>. المكثف: $\mathbf{I} = \Y{j\omega} C\,\mathbf{V}$، والتيار <b>يسبق</b> الجهد <span class="ltr">90°</span>.</span><span lang="en">Inductor: $\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$, and the current <b>lags</b> the voltage by <span class="ltr">90°</span>. Capacitor: $\mathbf{I} = \Y{j\omega} C\,\mathbf{V}$, and the current <b>leads</b> the voltage by <span class="ltr">90°</span>.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يشرح جمع الموجات وعلاقات R و L و C ومين يسبق مين، مع الأمثلة الثلاثة والتمارين خطوة بخطوة في 10 دقائق</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يشرح جمع الموجات وعلاقات R و L و C ومين يسبق مين، مع الأمثلة الثلاثة والتمارين خطوة بخطوة في 10 دقائق</span><span lang="en">A video explaining adding waves, the R, L and C relations and who leads whom, with the three examples and the exercises step by step in 10 minutes</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture3.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture3.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture3.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture3.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 جمع الموجات ================= -->
 <section class="card" id="sum" data-num="01" data-nav="جمع الموجات|Sum">
-  <h2>جمع موجتين = جمع سهمين</h2>
-  <p class="sub">بشرط وحيد: الموجتين بنفس التردد $\omega$</p>
+  <h2><span lang="ar">جمع موجتين = جمع سهمين</span><span lang="en">Adding two waves = adding two arrows</span></h2>
+  <p class="sub"><span lang="ar">بشرط وحيد: الموجتين بنفس التردد $\omega$</span><span lang="en">With one condition: both waves have the same frequency $\omega$</span></p>
 
-  <p>لو عندك تيارين يدخلون نفس النقطة، مثل $i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$، وتبي مجموعهم. بالطريقة المباشرة تحتاج قوانين مثلثات طويلة. بالفيزورات الموضوع أسهل بكثير: كل موجة تصير سهم (رقم مركب)، وجمع الموجات يصير جمع الأسهم.</p>
+  <p><span lang="ar">لو عندك تيارين يدخلون نفس النقطة، مثل $i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$، وتبي مجموعهم. بالطريقة المباشرة تحتاج قوانين مثلثات طويلة. بالفيزورات الموضوع أسهل بكثير: كل موجة تصير سهم (رقم مركب)، وجمع الموجات يصير جمع الأسهم.</span><span lang="en">Say two currents enter the same point, like $i_1 = 4\cos(\omega t + 30^\circ)$ and $i_2 = 5\sin(\omega t - 20^\circ)$, and you want their sum. Done directly, you need long trig identities. With phasors it's much easier: each wave becomes an arrow (a complex number), and adding waves becomes adding arrows.</span></p>
 
-  <h3>الطريقة: أربع خطوات</h3>
+  <h3><span lang="ar">الطريقة: أربع خطوات</span><span lang="en">The method: four steps</span></h3>
   <ol class="recipe">
-    <li><b>وحّد الشكل</b>: حوّل كل موجة لـ cos برقم موجب قدامها. <span class="why">sin تنقص <span class="ltr">90°</span>، والإشارة السالبة تزيد أو تنقص <span class="ltr">180°</span>.</span></li>
-    <li><b>حوّل لفيزورات</b>، واكتب كل واحد بالشكل الديكارتي $x + jy$. <span class="why">لأن الجمع أسهل بالديكارتي.</span></li>
-    <li><b>اجمع</b> الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</li>
-    <li><b>ارجع للقطبي ثم للزمن</b>، بنفس $\omega$ الأصلية. <span class="why">انتبه لربع النقطة وأنت تحسب الزاوية.</span></li>
+    <li><span lang="ar"><b>وحّد الشكل</b>: حوّل كل موجة لـ cos برقم موجب قدامها. <span class="why">sin تنقص <span class="ltr">90°</span>، والإشارة السالبة تزيد أو تنقص <span class="ltr">180°</span>.</span></span><span lang="en"><b>Use the same form</b>: turn each wave into cos with a positive number in front. <span class="why">sin subtracts <span class="ltr">90°</span>, and a negative sign adds or subtracts <span class="ltr">180°</span>.</span></span></li>
+    <li><span lang="ar"><b>حوّل لفيزورات</b>، واكتب كل واحد بالشكل الديكارتي $x + jy$. <span class="why">لأن الجمع أسهل بالديكارتي.</span></span><span lang="en"><b>Convert to phasors</b>, and write each one in rectangular form $x + jy$. <span class="why">Because adding is easier in rectangular.</span></span></li>
+    <li><span lang="ar"><b>اجمع</b> الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</span><span lang="en"><b>Add</b> real to real, and imaginary to imaginary.</span></li>
+    <li><span lang="ar"><b>ارجع للقطبي ثم للزمن</b>، بنفس $\omega$ الأصلية. <span class="why">انتبه لربع النقطة وأنت تحسب الزاوية.</span></span><span lang="en"><b>Go back to polar, then to time</b>, with the same original $\omega$. <span class="why">Watch the quadrant of the point when finding the angle.</span></span></li>
   </ol>
-  <div class="callout key"><strong>🔑 ليش لازم نفس $\omega$؟</strong> الفيزور ما يحفظ $\omega$، لأنه يفترض إن كل الأسهم تدور بنفس السرعة. لو الترددين مختلفين، الأسهم تدور بسرعات مختلفة والزاوية بينها تتغير مع الوقت، فما ينفع تجمعهم كأرقام ثابتة.</div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <div class="callout key"><span lang="ar"><strong>🔑 ليش لازم نفس $\omega$؟</strong> الفيزور ما يحفظ $\omega$، لأنه يفترض إن كل الأسهم تدور بنفس السرعة. لو الترددين مختلفين، الأسهم تدور بسرعات مختلفة والزاوية بينها تتغير مع الوقت، فما ينفع تجمعهم كأرقام ثابتة.</span><span lang="en"><strong>🔑 Why the same $\omega$?</strong> A phasor doesn't store $\omega$, because it assumes all arrows rotate at the same speed. If the frequencies differ, the arrows rotate at different speeds and the angle between them changes with time, so you can't add them as fixed numbers.</span></div>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>اجمع تيارين</h2></div>
-  <div class="tags"><span class="tag">Example 9.6</span><span class="tag">جمع موجات</span></div>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">اجمع تيارين</span><span lang="en">Add two currents</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.6</span><span class="tag"><span lang="ar">جمع موجات</span><span lang="en">adding waves</span></span></div>
   <div class="m big">\[\begin{gathered}i_1(t) = 4\cos(\omega t + 30^\circ)\ \text{A} \\ i_2(t) = 5\sin(\omega t - 20^\circ)\ \text{A} \\ i_1 + i_2 = \ ?\end{gathered}\]</div>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an ax ab ao">فيزور، ثم ديكارتي واجمع، ثم قطبي</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an ax ab ao">فيزور، ثم ديكارتي واجمع، ثم قطبي</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar an ax ab ao">phasor, then rectangular and add, then polar</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">نفس $\omega$ في الاثنين، فنقدر نستخدم الفيزورات. $i_1$ جاهزة (cos)، و $i_2$ لازم تتحول من sin إلى cos أول.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">نفس $\omega$ في الاثنين، فنقدر نستخدم الفيزورات. $i_1$ جاهزة (cos)، و $i_2$ لازم تتحول من sin إلى cos أول.</span><span lang="en">Both have the same $\omega$, so we can use phasors. $i_1$ is ready (cos), and $i_2$ must be turned from sin into cos first.</span></p>
     </li>
     <li class="step">
-      <h4>فيزور $i_1$</h4>
+      <h4><span lang="ar">فيزور $i_1$</span><span lang="en">Phasor of $i_1$</span></h4>
       <div class="m">\[\mathbf{I}_1 = \X{4}\angle\Z{30^\circ}\]</div>
     </li>
     <li class="step">
-      <h4>حوّل $i_2$ لـ cos <span class="const">sin: انقص <span class="ltr">90°</span></span></h4>
+      <h4><span lang="ar">حوّل $i_2$ لـ cos <span class="const">sin: انقص <span class="ltr">90°</span></span></span><span lang="en">Turn $i_2$ into cos <span class="const">sin: subtract <span class="ltr">90°</span></span></span></h4>
       <div class="m">\[\begin{gathered}i_2 = 5\cos(\omega t - 20^\circ - 90^\circ) = 5\cos(\omega t - 110^\circ) \\ \mathbf{I}_2 = \X{5}\angle\Z{-110^\circ}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>حوّل للديكارتي واجمع</h4>
+      <h4><span lang="ar">حوّل للديكارتي واجمع</span><span lang="en">Convert to rectangular and add</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{I}_1 = 3.464 + j2, \qquad \mathbf{I}_2 = -1.710 - j4.698 \\ \mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2 = 1.754 - j2.698\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>ارجع للقطبي</h4>
+      <h4><span lang="ar">ارجع للقطبي</span><span lang="en">Back to polar</span></h4>
       <div class="m">\[\mathbf{I} = \X{3.218}\angle\Z{-56.97^\circ}\ \text{A}\]</div>
-      <p class="why">النقطة $(1.754, -2.698)$ في الربع الرابع، فالزاوية سالبة، والحاسبة تعطيها صح مباشرة.</p>
+      <p class="why"><span lang="ar">النقطة $(1.754, -2.698)$ في الربع الرابع، فالزاوية سالبة، والحاسبة تعطيها صح مباشرة.</span><span lang="en">The point $(1.754, -2.698)$ is in the fourth quadrant, so the angle is negative, and the calculator gets it right directly.</span></p>
     </li>
     <li class="step final">
       <div class="result">$i(t) =$ $3.218\cos(\omega t - 56.97^\circ)$ A</div>
-      <p class="sanity">لاحظ إن المجموع (3.218) أصغر بكثير من $4 + 5 = 9$. السبب إن الفرق بين زاويتي الموجتين <span class="ltr">140°</span>، فهم تقريباً عكس بعض ويلغون بعض جزئياً ✓</p>
+      <p class="sanity"><span lang="ar">لاحظ إن المجموع (3.218) أصغر بكثير من $4 + 5 = 9$. السبب إن الفرق بين زاويتي الموجتين <span class="ltr">140°</span>، فهم تقريباً عكس بعض ويلغون بعض جزئياً ✓</span><span lang="en">Notice the sum (3.218) is much smaller than $4 + 5 = 9$. That's because the two waves are <span class="ltr">140°</span> apart, so they are almost opposite and partly cancel ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= 02 R و L و C ================= -->
 <section class="card" id="rlc" data-num="02" data-nav="R و L و C|R L C">
-  <h2>كل عنصر وعلاقة الجهد بالتيار فيه</h2>
-  <p class="sub">نحوّل قانون كل عنصر من الزمن إلى الفيزور</p>
+  <h2><span lang="ar">كل عنصر وعلاقة الجهد بالتيار فيه</span><span lang="en">Each element and its voltage–current relation</span></h2>
+  <p class="sub"><span lang="ar">نحوّل قانون كل عنصر من الزمن إلى الفيزور</span><span lang="en">We turn each element's law from time into phasor form</span></p>
 
-  <p>في كل العناصر نفترض إن التيار يدخل العنصر من الطرف الموجب (+) للجهد. هذا اسمه <b>اصطلاح الإشارة للعنصر السلبي</b> (Passive Sign Convention)، وعليه تنبني كل القوانين تحت.</p>
+  <p><span lang="ar">في كل العناصر نفترض إن التيار يدخل العنصر من الطرف الموجب (+) للجهد. هذا اسمه <b>اصطلاح الإشارة للعنصر السلبي</b> (Passive Sign Convention)، وعليه تنبني كل القوانين تحت.</span><span lang="en">For every element we assume the current enters at the positive (+) terminal of the voltage. This is the <b>passive sign convention</b>, and all the laws below are built on it.</span></p>
 
-  <h3>المقاومة R (Resistor)</h3>
+  <h3><span lang="ar">المقاومة R (Resistor)</span><span lang="en">Resistor R</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">في الزمن (قانون أوم)</div><div class="t-math">$v = R\,i$</div></div>
-    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{V} = R\,\mathbf{I}$</div><div class="t-desc">$R$ رقم حقيقي ما يغيّر الزاوية، فالجهد والتيار <b>متفقين في الطور</b> (in phase).</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">في الزمن (قانون أوم)</span><span lang="en">In time (Ohm's law)</span></div><div class="t-math">$v = R\,i$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">في الفيزور</span><span lang="en">As phasors</span></div><div class="t-math">$\mathbf{V} = R\,\mathbf{I}$</div><div class="t-desc"><span lang="ar">$R$ رقم حقيقي ما يغيّر الزاوية، فالجهد والتيار <b>متفقين في الطور</b> (in phase).</span><span lang="en">$R$ is a real number that doesn't change the angle, so voltage and current are <b>in phase</b>.</span></div></div>
   </div>
 
-  <h3>الملف L (Inductor)</h3>
+  <h3><span lang="ar">الملف L (Inductor)</span><span lang="en">Inductor L</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">في الزمن</div><div class="t-math">$v = L\,\dfrac{di}{dt}$</div></div>
-    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$</div><div class="t-desc">الضرب في $j$ يزيد زاوية الجهد <span class="ltr">90°</span>، يعني <b>التيار يتأخر</b> عن الجهد <span class="ltr">90°</span> (lags).</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">في الزمن</span><span lang="en">In time</span></div><div class="t-math">$v = L\,\dfrac{di}{dt}$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">في الفيزور</span><span lang="en">As phasors</span></div><div class="t-math">$\mathbf{V} = \Y{j\omega} L\,\mathbf{I}$</div><div class="t-desc"><span lang="ar">الضرب في $j$ يزيد زاوية الجهد <span class="ltr">90°</span>، يعني <b>التيار يتأخر</b> عن الجهد <span class="ltr">90°</span> (lags).</span><span lang="en">Multiplying by $j$ adds <span class="ltr">90°</span> to the voltage angle, so <b>the current lags</b> the voltage by <span class="ltr">90°</span>.</span></div></div>
   </div>
-  <p><b>من وين جت؟</b> لو التيار $i = I_m\cos(\omega t + \phi)$، نفاضل ونستخدم $-\sin A = \cos(A + 90^\circ)$:</p>
+  <p><span lang="ar"><b>من وين جت؟</b> لو التيار $i = I_m\cos(\omega t + \phi)$، نفاضل ونستخدم $-\sin A = \cos(A + 90^\circ)$:</span><span lang="en"><b>Where does it come from?</b> If the current is $i = I_m\cos(\omega t + \phi)$, we differentiate and use $-\sin A = \cos(A + 90^\circ)$:</span></p>
   <div class="m">\[\begin{gathered}v = L\frac{di}{dt} = -\omega L I_m \sin(\omega t + \phi) \\ = \omega L I_m\cos(\omega t + \phi + 90^\circ) \\[6pt] \mathbf{V} = \omega L I_m\angle(\phi + 90^\circ) \\ = \Y{j\omega} L\,\mathbf{I}\end{gathered}\]</div>
-  <p>لأن $I_m\angle\phi = \mathbf{I}$، و $1\angle 90^\circ = j$. نفس قاعدة المحاضرة 2: التفاضل = ضرب في $j\omega$.</p>
+  <p><span lang="ar">لأن $I_m\angle\phi = \mathbf{I}$، و $1\angle 90^\circ = j$. نفس قاعدة المحاضرة 2: التفاضل = ضرب في $j\omega$.</span><span lang="en">Because $I_m\angle\phi = \mathbf{I}$, and $1\angle 90^\circ = j$. Same rule as lecture 2: derivative = multiply by $j\omega$.</span></p>
 
-  <h3>المكثف C (Capacitor)</h3>
+  <h3><span lang="ar">المكثف C (Capacitor)</span><span lang="en">Capacitor C</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">في الزمن</div><div class="t-math">$i = C\,\dfrac{dv}{dt}$</div></div>
-    <div class="tile hl"><div class="t-top">في الفيزور</div><div class="t-math">$\mathbf{I} = \Y{j\omega} C\,\mathbf{V} \;\Rightarrow\; \mathbf{V} = \dfrac{\mathbf{I}}{\Y{j\omega} C}$</div><div class="t-desc">هنا التيار هو اللي مضروب في $j$، يعني <b>التيار يسبق</b> الجهد <span class="ltr">90°</span> (leads).</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">في الزمن</span><span lang="en">In time</span></div><div class="t-math">$i = C\,\dfrac{dv}{dt}$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">في الفيزور</span><span lang="en">As phasors</span></div><div class="t-math">$\mathbf{I} = \Y{j\omega} C\,\mathbf{V} \;\Rightarrow\; \mathbf{V} = \dfrac{\mathbf{I}}{\Y{j\omega} C}$</div><div class="t-desc"><span lang="ar">هنا التيار هو اللي مضروب في $j$، يعني <b>التيار يسبق</b> الجهد <span class="ltr">90°</span> (leads).</span><span lang="en">Here it's the current that is multiplied by $j$, so <b>the current leads</b> the voltage by <span class="ltr">90°</span>.</span></div></div>
   </div>
 
   <figure class="fig">
@@ -166,150 +166,150 @@
       <path class="gl" d="M82.4 144.8L77.2 137.5L69.8 142.6" style="stroke:var(--ink-3)"/>
       <text class="tick" x="100" y="182" text-anchor="middle">C · I leads V</text>
     </svg>
-    <figcaption>مخطط الفيزورات لكل عنصر (Figures 9.10 و 9.12 و 9.14). تذكّر إن الأسهم تدور عكس عقارب الساعة، فاللي قدّام في الدوران هو اللي يسبق.</figcaption>
+    <figcaption><span lang="ar">مخطط الفيزورات لكل عنصر (Figures 9.10 و 9.12 و 9.14). تذكّر إن الأسهم تدور عكس عقارب الساعة، فاللي قدّام في الدوران هو اللي يسبق.</span><span lang="en">Phasor diagram for each element (Figures 9.10, 9.12 and 9.14). Remember the arrows rotate counterclockwise, so the one ahead in the rotation is the one that leads.</span></figcaption>
   </figure>
 
-  <h3>الملخص (Table 9.2)</h3>
+  <h3><span lang="ar">الملخص (Table 9.2)</span><span lang="en">Summary (Table 9.2)</span></h3>
   <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th>العنصر</th><th>في الزمن</th><th>في الفيزور</th><th>التيار مقارنة بالجهد</th></tr>
-      <tr><td>المقاومة R</td><td>$v = R\,i$</td><td>$\mathbf{V} = R\,\mathbf{I}$</td><td>متفقين في الطور</td></tr>
-      <tr><td>الملف L</td><td>$v = L\,\dfrac{di}{dt}$</td><td>$\mathbf{V} = j\omega L\,\mathbf{I}$</td><td>يتأخر <span class="ltr">90°</span></td></tr>
-      <tr><td>المكثف C</td><td>$i = C\,\dfrac{dv}{dt}$</td><td>$\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$</td><td>يسبق <span class="ltr">90°</span></td></tr>
+      <tr><th><span lang="ar">العنصر</span><span lang="en">Element</span></th><th><span lang="ar">في الزمن</span><span lang="en">In time</span></th><th><span lang="ar">في الفيزور</span><span lang="en">As phasors</span></th><th><span lang="ar">التيار مقارنة بالجهد</span><span lang="en">Current compared with voltage</span></th></tr>
+      <tr><td><span lang="ar">المقاومة R</span><span lang="en">Resistor R</span></td><td>$v = R\,i$</td><td>$\mathbf{V} = R\,\mathbf{I}$</td><td><span lang="ar">متفقين في الطور</span><span lang="en">In phase</span></td></tr>
+      <tr><td><span lang="ar">الملف L</span><span lang="en">Inductor L</span></td><td>$v = L\,\dfrac{di}{dt}$</td><td>$\mathbf{V} = j\omega L\,\mathbf{I}$</td><td><span lang="ar">يتأخر <span class="ltr">90°</span></span><span lang="en">Lags <span class="ltr">90°</span></span></td></tr>
+      <tr><td><span lang="ar">المكثف C</span><span lang="en">Capacitor C</span></td><td>$i = C\,\dfrac{dv}{dt}$</td><td>$\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$</td><td><span lang="ar">يسبق <span class="ltr">90°</span></span><span lang="en">Leads <span class="ltr">90°</span></span></td></tr>
     </table>
   </div>
-  <div class="callout good"><strong>🧠 حيلة للحفظ: ELI the ICE man.</strong> الحرف E يرمز للجهد، و I للتيار. في الملف <b>L</b>: الجهد قبل التيار (<b>E</b>L<b>I</b>). وفي المكثف <b>C</b>: التيار قبل الجهد (<b>I</b>C<b>E</b>).</div>
+  <div class="callout good"><span lang="ar"><strong>🧠 حيلة للحفظ: ELI the ICE man.</strong> الحرف E يرمز للجهد، و I للتيار. في الملف <b>L</b>: الجهد قبل التيار (<b>E</b>L<b>I</b>). وفي المكثف <b>C</b>: التيار قبل الجهد (<b>I</b>C<b>E</b>).</span><span lang="en"><strong>🧠 Memory trick: ELI the ICE man.</strong> E stands for voltage and I for current. In the inductor <b>L</b>: voltage comes before current (<b>E</b>L<b>I</b>). In the capacitor <b>C</b>: current comes before voltage (<b>I</b>C<b>E</b>).</span></div>
 </section>
 
 <!-- ================= لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: جمع موجتين</h3>
+    <h3><span lang="ar">الشجرة 1: جمع موجتين</span><span lang="en">Tree 1: adding two waves</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="ar an ax ab ao">مسار: الخطوات الأربع</button>
+      <button class="btn small" type="button" data-path="ar an ax ab ao"><span lang="ar">مسار: الخطوات الأربع</span><span lang="en">Path: the four steps</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «اجمع موجتين» أو «تيارين داخلين نفس العقدة»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k">وحّد الشكل وحوّل لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">المحاضرة 1 و 2</span></button>
-      <button type="button" class="fb-node c12" data-id="ax" data-from="an"><span class="fb-k">حوّل للديكارتي واجمع</span><span class="fb-f">$(x_1 + x_2) + j(y_1 + y_2)$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="ab" data-from="ax"><span class="fb-k">ارجع للقطبي وانتبه للربع</span><span class="fb-f">$r\angle\phi$</span></button>
-      <button type="button" class="fb-node out c12" data-id="ao" data-from="ab"><span class="fb-k">الناتج: $r\cos(\omega t + \phi)$ بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k"><span lang="ar">إذا جاك: «اجمع موجتين» أو «تيارين داخلين نفس العقدة»</span><span lang="en">If you get: “Add two waves” or “two currents entering the same node”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k"><span lang="ar">وحّد الشكل وحوّل لفيزور</span><span lang="en">Same form, then convert to phasors</span></span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b"><span lang="ar">المحاضرة 1 و 2</span><span lang="en">Lectures 1 and 2</span></span></button>
+      <button type="button" class="fb-node c12" data-id="ax" data-from="an"><span class="fb-k"><span lang="ar">حوّل للديكارتي واجمع</span><span lang="en">Convert to rectangular and add</span></span><span class="fb-f">$(x_1 + x_2) + j(y_1 + y_2)$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ab" data-from="ax"><span class="fb-k"><span lang="ar">ارجع للقطبي وانتبه للربع</span><span lang="en">Back to polar, watch the quadrant</span></span><span class="fb-f">$r\angle\phi$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="ab"><span class="fb-k"><span lang="ar">الناتج: $r\cos(\omega t + \phi)$ بنفس $\omega$</span><span lang="en">Result: $r\cos(\omega t + \phi)$ with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>شرط</dt><dd>الموجتين بنفس $\omega$. لو مختلفة ما ينفع الفيزور.</dd>
-      <dt>مثال</dt><dd>$i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$.</dd></dl></div>
-    <div class="fb-info" data-for="an" hidden><h4>وحّد الشكل وحوّل لفيزور: $V_m\angle\phi$</h4><dl>
-      <dt>مثال سريع</dt><dd>$i_2 = 5\sin(\omega t - 20^\circ)$ $= 5\cos(\omega t - 110^\circ)$، وفيزورها $5\angle{-110^\circ}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحوّل sin لفيزور بنفس زاويتها بدون ما تنقص <span class="ltr">90°</span>.</dd></dl></div>
-    <div class="fb-info" data-for="ax" hidden><h4>حوّل للديكارتي واجمع: $(x_1 + x_2) + j(y_1 + y_2)$</h4><dl>
-      <dt>متى؟</dt><dd>دايمًا في الجمع، لأن القطبي ما ينجمع.</dd>
-      <dt>مثال سريع</dt><dd>$4\angle 30^\circ = 3.464 + j2$ و $5\angle{-110^\circ} = -1.710 - j4.698$. المجموع $1.754 - j2.698$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع السعات: $4 + 5 = 9$. هذا غلط لأن الزوايا مختلفة.</dd></dl></div>
-    <div class="fb-info" data-for="ab" hidden><h4>ارجع للقطبي وانتبه للربع: $r\angle\phi$</h4><dl>
-      <dt>الحيلة</dt><dd>شوف إشارة $x$ و $y$ قبل ما تصدّق الحاسبة.</dd>
-      <dt>مثال سريع</dt><dd>$1.754 - j2.698$ $= 3.218\angle{-56.97^\circ}$ (الربع الرابع).</dd></dl></div>
-    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>$i(t) =$ $3.218\cos(\omega t - 56.97^\circ)\ \text{A}$.</dd>
-      <dt>تأكد</dt><dd>المجموع لازم يكون بين $|4 - 5| = 1$ و $4 + 5 = 9$.</dd></dl></div>
+    <div class="fb-info" data-for="ar" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">شرط</span><span lang="en">Condition</span></dt><dd><span lang="ar">الموجتين بنفس $\omega$. لو مختلفة ما ينفع الفيزور.</span><span lang="en">Both waves have the same $\omega$. If they differ, phasors don't work.</span></dd>
+      <dt><span lang="ar">مثال</span><span lang="en">Example</span></dt><dd><span lang="ar">$i_1 = 4\cos(\omega t + 30^\circ)$ و $i_2 = 5\sin(\omega t - 20^\circ)$.</span><span lang="en">$i_1 = 4\cos(\omega t + 30^\circ)$ and $i_2 = 5\sin(\omega t - 20^\circ)$.</span></dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4><span lang="ar">وحّد الشكل وحوّل لفيزور: $V_m\angle\phi$</span><span lang="en">Same form, then convert to phasors: $V_m\angle\phi$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$i_2 = 5\sin(\omega t - 20^\circ)$ $= 5\cos(\omega t - 110^\circ)$، وفيزورها $5\angle{-110^\circ}$.</span><span lang="en">$i_2 = 5\sin(\omega t - 20^\circ)$ $= 5\cos(\omega t - 110^\circ)$, and its phasor is $5\angle{-110^\circ}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحوّل sin لفيزور بنفس زاويتها بدون ما تنقص <span class="ltr">90°</span>.</span><span lang="en">Turning sin into a phasor with its own angle, without subtracting <span class="ltr">90°</span>.</span></dd></dl></div>
+    <div class="fb-info" data-for="ax" hidden><h4><span lang="ar">حوّل للديكارتي واجمع: $(x_1 + x_2) + j(y_1 + y_2)$</span><span lang="en">Convert to rectangular and add: $(x_1 + x_2) + j(y_1 + y_2)$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">دايمًا في الجمع، لأن القطبي ما ينجمع.</span><span lang="en">Always for addition, because polar numbers can't be added.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$4\angle 30^\circ = 3.464 + j2$ و $5\angle{-110^\circ} = -1.710 - j4.698$. المجموع $1.754 - j2.698$.</span><span lang="en">$4\angle 30^\circ = 3.464 + j2$ and $5\angle{-110^\circ} = -1.710 - j4.698$. The sum is $1.754 - j2.698$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع السعات: $4 + 5 = 9$. هذا غلط لأن الزوايا مختلفة.</span><span lang="en">Adding the amplitudes: $4 + 5 = 9$. Wrong, because the angles differ.</span></dd></dl></div>
+    <div class="fb-info" data-for="ab" hidden><h4><span lang="ar">ارجع للقطبي وانتبه للربع: $r\angle\phi$</span><span lang="en">Back to polar, watch the quadrant: $r\angle\phi$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">شوف إشارة $x$ و $y$ قبل ما تصدّق الحاسبة.</span><span lang="en">Look at the signs of $x$ and $y$ before trusting the calculator.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$1.754 - j2.698$ $= 3.218\angle{-56.97^\circ}$ (الربع الرابع).</span><span lang="en">$1.754 - j2.698$ $= 3.218\angle{-56.97^\circ}$ (fourth quadrant).</span></dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$i(t) =$ $3.218\cos(\omega t - 56.97^\circ)\ \text{A}$.</dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">المجموع لازم يكون بين $|4 - 5| = 1$ و $4 + 5 = 9$.</span><span lang="en">The sum must be between $|4 - 5| = 1$ and $4 + 5 = 9$.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: جهد وتيار عنصر واحد</h3>
+    <h3><span lang="ar">الشجرة 2: جهد وتيار عنصر واحد</span><span lang="en">Tree 2: voltage and current of one element</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="br bn be2 bd bo">مسار: ملف L</button>
-      <button class="btn small" type="button" data-path="br bn be3 bd bo">مسار: مكثف C</button>
-      <button class="btn small" type="button" data-path="br bn be1 bd bo">مسار: مقاومة R</button>
+      <button class="btn small" type="button" data-path="br bn be2 bd bo"><span lang="ar">مسار: ملف L</span><span lang="en">Path: inductor L</span></button>
+      <button class="btn small" type="button" data-path="br bn be3 bd bo"><span lang="ar">مسار: مكثف C</span><span lang="en">Path: capacitor C</span></button>
+      <button class="btn small" type="button" data-path="br bn be1 bd bo"><span lang="ar">مسار: مقاومة R</span><span lang="en">Path: resistor R</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «عنصر معطى جهده، أوجد تياره» أو العكس</span></button>
-      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k">حوّل الموجة لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">المحاضرة 2</span></button>
-      <button type="button" class="fb-node c1" data-id="be1" data-from="bn"><span class="fb-k">مقاومة R</span><span class="fb-f">$\mathbf{V} = R\,\mathbf{I}$</span></button>
-      <button type="button" class="fb-node c2" data-id="be2" data-from="bn"><span class="fb-k">ملف L</span><span class="fb-f">$\mathbf{V} = j\omega L\,\mathbf{I}$</span></button>
-      <button type="button" class="fb-node c12" data-id="be3" data-from="bn"><span class="fb-k">مكثف C</span><span class="fb-f">$\mathbf{I} = j\omega C\,\mathbf{V}$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="bd" data-from="be1 be2 be3"><span class="fb-k">اقسم بالقطبي</span><span class="fb-f">$\dfrac{12\angle 45^\circ}{6\angle 90^\circ} = 2\angle{-45^\circ}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="bo" data-from="bd"><span class="fb-k">الناتج: رجّع الفيزور لموجة بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k"><span lang="ar">إذا جاك: «عنصر معطى جهده، أوجد تياره» أو العكس</span><span lang="en">If you get: “An element with a given voltage, find its current” or the reverse</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k"><span lang="ar">حوّل الموجة لفيزور</span><span lang="en">Convert the wave to a phasor</span></span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b"><span lang="ar">المحاضرة 2</span><span lang="en">Lecture 2</span></span></button>
+      <button type="button" class="fb-node c1" data-id="be1" data-from="bn"><span class="fb-k"><span lang="ar">مقاومة R</span><span lang="en">Resistor R</span></span><span class="fb-f">$\mathbf{V} = R\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node c2" data-id="be2" data-from="bn"><span class="fb-k"><span lang="ar">ملف L</span><span lang="en">Inductor L</span></span><span class="fb-f">$\mathbf{V} = j\omega L\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node c12" data-id="be3" data-from="bn"><span class="fb-k"><span lang="ar">مكثف C</span><span lang="en">Capacitor C</span></span><span class="fb-f">$\mathbf{I} = j\omega C\,\mathbf{V}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="bd" data-from="be1 be2 be3"><span class="fb-k"><span lang="ar">اقسم بالقطبي</span><span lang="en">Divide in polar</span></span><span class="fb-f">$\dfrac{12\angle 45^\circ}{6\angle 90^\circ} = 2\angle{-45^\circ}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bd"><span class="fb-k"><span lang="ar">الناتج: رجّع الفيزور لموجة بنفس $\omega$</span><span lang="en">Result: turn the phasor back into a wave with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الشكل</dt><dd>عنصر واحد (R أو L أو C) ومعطاك موجة الجهد أو التيار.</dd>
-      <dt>الاصطلاح</dt><dd>التيار داخل من طرف الموجب (Passive Sign Convention).</dd></dl></div>
-    <div class="fb-info" data-for="bn" hidden><h4>حوّل الموجة لفيزور: $V_m\angle\phi$</h4><dl>
-      <dt>مثال سريع</dt><dd>$v = 12\cos(60t + 45^\circ)$ فيزوره $12\angle 45^\circ$ و $\omega = 60$.</dd></dl></div>
-    <div class="fb-info" data-for="be1" hidden><h4>مقاومة R: $\mathbf{V} = R\,\mathbf{I}$</h4><dl>
-      <dt>الطور</dt><dd>الجهد والتيار متفقين في الطور (in phase).</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 30^\circ$ و $R = 5$: $\mathbf{I} = 2\angle 30^\circ$.</dd></dl></div>
-    <div class="fb-info" data-for="be2" hidden><h4>ملف L: $\mathbf{V} = j\omega L\,\mathbf{I}$</h4><dl>
-      <dt>الطور</dt><dd>التيار يتأخر عن الجهد <span class="ltr">90°</span>. تذكّر ELI: الجهد E قبل التيار I.</dd>
-      <dt>مثال سريع</dt><dd>$\omega = 60$ و $L = 0.1$: $j\omega L = j6 = 6\angle 90^\circ$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى $j$ وتكتب $\omega L$ بس، فتضيع الزاوية.</dd></dl></div>
-    <div class="fb-info" data-for="be3" hidden><h4>مكثف C: $\mathbf{I} = j\omega C\,\mathbf{V}$</h4><dl>
-      <dt>الطور</dt><dd>التيار يسبق الجهد <span class="ltr">90°</span>. تذكّر ICE: التيار I قبل الجهد E.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 0^\circ$ و $\omega = 100$ و $C = 1\ \text{mF}$: $\mathbf{I} = j0.1 \times 10 = 1\angle 90^\circ\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تضرب في $j\omega C$ وأنت تبي الجهد. الجهد $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$.</dd></dl></div>
-    <div class="fb-info" data-for="bd" hidden><h4>اقسم بالقطبي</h4><dl>
-      <dt>الحيلة</dt><dd>السعات تنقسم والزوايا تنطرح (المحاضرة 2).</dd></dl></div>
-    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>$i(t) = 2\cos(60t - 45^\circ)\ \text{A}$.</dd>
-      <dt>تأكد</dt><dd>في الملف زاوية التيار = زاوية الجهد ناقص <span class="ltr">90°</span>. في المكثف زائد <span class="ltr">90°</span>.</dd></dl></div>
+    <div class="fb-info" data-for="br" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الشكل</span><span lang="en">Form</span></dt><dd><span lang="ar">عنصر واحد (R أو L أو C) ومعطاك موجة الجهد أو التيار.</span><span lang="en">One element (R, L or C) and you're given the voltage or current wave.</span></dd>
+      <dt><span lang="ar">الاصطلاح</span><span lang="en">Convention</span></dt><dd><span lang="ar">التيار داخل من طرف الموجب (Passive Sign Convention).</span><span lang="en">Current enters at the positive terminal (passive sign convention).</span></dd></dl></div>
+    <div class="fb-info" data-for="bn" hidden><h4><span lang="ar">حوّل الموجة لفيزور: $V_m\angle\phi$</span><span lang="en">Convert the wave to a phasor: $V_m\angle\phi$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$v = 12\cos(60t + 45^\circ)$ فيزوره $12\angle 45^\circ$ و $\omega = 60$.</span><span lang="en">$v = 12\cos(60t + 45^\circ)$ has phasor $12\angle 45^\circ$ and $\omega = 60$.</span></dd></dl></div>
+    <div class="fb-info" data-for="be1" hidden><h4><span lang="ar">مقاومة R: $\mathbf{V} = R\,\mathbf{I}$</span><span lang="en">Resistor R: $\mathbf{V} = R\,\mathbf{I}$</span></h4><dl>
+      <dt><span lang="ar">الطور</span><span lang="en">Phase</span></dt><dd><span lang="ar">الجهد والتيار متفقين في الطور (in phase).</span><span lang="en">Voltage and current are in phase.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V} = 10\angle 30^\circ$ و $R = 5$: $\mathbf{I} = 2\angle 30^\circ$.</span><span lang="en">$\mathbf{V} = 10\angle 30^\circ$ and $R = 5$: $\mathbf{I} = 2\angle 30^\circ$.</span></dd></dl></div>
+    <div class="fb-info" data-for="be2" hidden><h4><span lang="ar">ملف L: $\mathbf{V} = j\omega L\,\mathbf{I}$</span><span lang="en">Inductor L: $\mathbf{V} = j\omega L\,\mathbf{I}$</span></h4><dl>
+      <dt><span lang="ar">الطور</span><span lang="en">Phase</span></dt><dd><span lang="ar">التيار يتأخر عن الجهد <span class="ltr">90°</span>. تذكّر ELI: الجهد E قبل التيار I.</span><span lang="en">The current lags the voltage by <span class="ltr">90°</span>. Remember ELI: voltage E before current I.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\omega = 60$ و $L = 0.1$: $j\omega L = j6 = 6\angle 90^\circ$.</span><span lang="en">$\omega = 60$ and $L = 0.1$: $j\omega L = j6 = 6\angle 90^\circ$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى $j$ وتكتب $\omega L$ بس، فتضيع الزاوية.</span><span lang="en">Forgetting $j$ and writing only $\omega L$, so the angle is lost.</span></dd></dl></div>
+    <div class="fb-info" data-for="be3" hidden><h4><span lang="ar">مكثف C: $\mathbf{I} = j\omega C\,\mathbf{V}$</span><span lang="en">Capacitor C: $\mathbf{I} = j\omega C\,\mathbf{V}$</span></h4><dl>
+      <dt><span lang="ar">الطور</span><span lang="en">Phase</span></dt><dd><span lang="ar">التيار يسبق الجهد <span class="ltr">90°</span>. تذكّر ICE: التيار I قبل الجهد E.</span><span lang="en">The current leads the voltage by <span class="ltr">90°</span>. Remember ICE: current I before voltage E.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V} = 10\angle 0^\circ$ و $\omega = 100$ و $C = 1\ \text{mF}$: $\mathbf{I} = j0.1 \times 10 = 1\angle 90^\circ\ \text{A}$.</span><span lang="en">$\mathbf{V} = 10\angle 0^\circ$, $\omega = 100$ and $C = 1\ \text{mF}$: $\mathbf{I} = j0.1 \times 10 = 1\angle 90^\circ\ \text{A}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تضرب في $j\omega C$ وأنت تبي الجهد. الجهد $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$.</span><span lang="en">Multiplying by $j\omega C$ when you want the voltage. The voltage is $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bd" hidden><h4><span lang="ar">اقسم بالقطبي</span><span lang="en">Divide in polar</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">السعات تنقسم والزوايا تنطرح (المحاضرة 2).</span><span lang="en">Magnitudes divide and angles subtract (lecture 2).</span></dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$i(t) = 2\cos(60t - 45^\circ)\ \text{A}$.</dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">في الملف زاوية التيار = زاوية الجهد ناقص <span class="ltr">90°</span>. في المكثف زائد <span class="ltr">90°</span>.</span><span lang="en">In the inductor, current angle = voltage angle minus <span class="ltr">90°</span>. In the capacitor, plus <span class="ltr">90°</span>.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 3 ===== -->
   <div class="fboard" id="board3">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 3: معادلة تفاضلية تكاملية</h3>
+    <h3><span lang="ar">الشجرة 3: معادلة تفاضلية تكاملية</span><span lang="en">Tree 3: an integro-differential equation</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="cr ct cf cd co">مسار: الحل بالفيزور</button>
+      <button class="btn small" type="button" data-path="cr ct cf cd co"><span lang="ar">مسار: الحل بالفيزور</span><span lang="en">Path: solving with phasors</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: معادلة فيها $i$ و $\dfrac{di}{dt}$ و $\displaystyle\int i\,dt$</span></button>
-      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k">بدّل كل عملية</span><span class="fb-f">$\dfrac{d}{dt} \to j\omega,\ \displaystyle\int \to \frac{1}{j\omega}$</span><span class="fb-b">المحاضرة 2</span></button>
-      <button type="button" class="fb-node trick c12" data-id="cf" data-from="ct"><span class="fb-k">اطلع $\mathbf{I}$ عامل مشترك</span><span class="fb-f">$\mathbf{I}\,(4 - j10) = 50\angle 75^\circ$</span></button>
-      <button type="button" class="fb-node c12" data-id="cd" data-from="cf"><span class="fb-k">اقسم</span><span class="fb-f">$\mathbf{I} = \dfrac{50\angle 75^\circ}{10.77\angle{-68.2^\circ}}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="co" data-from="cd"><span class="fb-k">الناتج: $i(t)$ بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k"><span lang="ar">إذا جاك: معادلة فيها $i$ و $\dfrac{di}{dt}$ و $\displaystyle\int i\,dt$</span><span lang="en">If you get: an equation with $i$, $\dfrac{di}{dt}$ and $\displaystyle\int i\,dt$</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k"><span lang="ar">بدّل كل عملية</span><span lang="en">Replace each operation</span></span><span class="fb-f">$\dfrac{d}{dt} \to j\omega,\ \displaystyle\int \to \frac{1}{j\omega}$</span><span class="fb-b"><span lang="ar">المحاضرة 2</span><span lang="en">Lecture 2</span></span></button>
+      <button type="button" class="fb-node trick c12" data-id="cf" data-from="ct"><span class="fb-k"><span lang="ar">اطلع $\mathbf{I}$ عامل مشترك</span><span lang="en">Factor out $\mathbf{I}$</span></span><span class="fb-f">$\mathbf{I}\,(4 - j10) = 50\angle 75^\circ$</span></button>
+      <button type="button" class="fb-node c12" data-id="cd" data-from="cf"><span class="fb-k"><span lang="ar">اقسم</span><span lang="en">Divide</span></span><span class="fb-f">$\mathbf{I} = \dfrac{50\angle 75^\circ}{10.77\angle{-68.2^\circ}}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cd"><span class="fb-k"><span lang="ar">الناتج: $i(t)$ بنفس $\omega$</span><span lang="en">Result: $i(t)$ with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>مثال</dt><dd>$4i + 8\displaystyle\int i\,dt - 3\dfrac{di}{dt}$ $= 50\cos(2t + 75^\circ)$.</dd>
-      <dt>شرط</dt><dd>الطرف الثاني موجة جيبية، فنعرف $\omega$ منه.</dd></dl></div>
-    <div class="fb-info" data-for="ct" hidden><h4>بدّل: $\dfrac{d}{dt} \to j\omega$ و $\displaystyle\int \to \dfrac{1}{j\omega}$</h4><dl>
-      <dt>مثال سريع</dt><dd>مع $\omega = 2$: $4\mathbf{I} + \dfrac{8\mathbf{I}}{j2} - j6\mathbf{I}$ $= 50\angle 75^\circ$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى إن $\dfrac{1}{j} = -j$.</dd></dl></div>
-    <div class="fb-info" data-for="cf" hidden><h4>اطلع $\mathbf{I}$ عامل مشترك</h4><dl>
-      <dt>الحيلة</dt><dd>$\dfrac{8}{j2} = -j4$، فالقوس $4 - j4 - j6 = 4 - j10$.</dd></dl></div>
-    <div class="fb-info" data-for="cd" hidden><h4>اقسم بالقطبي</h4><dl>
-      <dt>مثال سريع</dt><dd>$\mathbf{I} = 4.642\angle 143.2^\circ$.</dd></dl></div>
-    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>$i(t) = 4.642\cos(2t + 143.2^\circ)\ \text{A}$.</dd></dl></div>
+    <div class="fb-info" data-for="cr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">مثال</span><span lang="en">Example</span></dt><dd>$4i + 8\displaystyle\int i\,dt - 3\dfrac{di}{dt}$ $= 50\cos(2t + 75^\circ)$.</dd>
+      <dt><span lang="ar">شرط</span><span lang="en">Condition</span></dt><dd><span lang="ar">الطرف الثاني موجة جيبية، فنعرف $\omega$ منه.</span><span lang="en">The right-hand side is a sinusoid, so we read $\omega$ from it.</span></dd></dl></div>
+    <div class="fb-info" data-for="ct" hidden><h4><span lang="ar">بدّل: $\dfrac{d}{dt} \to j\omega$ و $\displaystyle\int \to \dfrac{1}{j\omega}$</span><span lang="en">Replace: $\dfrac{d}{dt} \to j\omega$ and $\displaystyle\int \to \dfrac{1}{j\omega}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">مع $\omega = 2$: $4\mathbf{I} + \dfrac{8\mathbf{I}}{j2} - j6\mathbf{I}$ $= 50\angle 75^\circ$.</span><span lang="en">With $\omega = 2$: $4\mathbf{I} + \dfrac{8\mathbf{I}}{j2} - j6\mathbf{I}$ $= 50\angle 75^\circ$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى إن $\dfrac{1}{j} = -j$.</span><span lang="en">Forgetting that $\dfrac{1}{j} = -j$.</span></dd></dl></div>
+    <div class="fb-info" data-for="cf" hidden><h4><span lang="ar">اطلع $\mathbf{I}$ عامل مشترك</span><span lang="en">Factor out $\mathbf{I}$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">$\dfrac{8}{j2} = -j4$، فالقوس $4 - j4 - j6 = 4 - j10$.</span><span lang="en">$\dfrac{8}{j2} = -j4$, so the bracket is $4 - j4 - j6 = 4 - j10$.</span></dd></dl></div>
+    <div class="fb-info" data-for="cd" hidden><h4><span lang="ar">اقسم بالقطبي</span><span lang="en">Divide in polar</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\mathbf{I} = 4.642\angle 143.2^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$i(t) = 4.642\cos(2t + 143.2^\circ)\ \text{A}$.</dd></dl></div>
   </div>
 
 </section>
 
 <!-- ================= 03 المختبر ================= -->
 <section class="card" id="lab" data-num="03" data-nav="المختبر|Lab">
-  <h2>شوف الفرق بعينك</h2>
-  <p class="sub">نفس الجهد على المقاومة أو الملف أو المكثف، والتيار يتغير</p>
+  <h2><span lang="ar">شوف الفرق بعينك</span><span lang="en">See the difference for yourself</span></h2>
+  <p class="sub"><span lang="ar">نفس الجهد على المقاومة أو الملف أو المكثف، والتيار يتغير</span><span lang="en">The same voltage across a resistor, inductor or capacitor, and the current changes</span></p>
 
   <div class="rlc-lab">
-    <h3>🎛️ اختر العنصر وغيّر التردد</h3>
-    <p class="lab-note">الجهد ثابت $\mathbf{V} = 10\angle 0^\circ\ \text{V}$، والقيم: $R = 5\ \Omega$ و $L = 1\ \text{H}$ و $C = 0.04\ \text{F}$.</p>
+    <h3><span lang="ar">🎛️ اختر العنصر وغيّر التردد</span><span lang="en">🎛️ Pick the element and change the frequency</span></h3>
+    <p class="lab-note"><span lang="ar">الجهد ثابت $\mathbf{V} = 10\angle 0^\circ\ \text{V}$، والقيم: $R = 5\ \Omega$ و $L = 1\ \text{H}$ و $C = 0.04\ \text{F}$.</span><span lang="en">The voltage is fixed at $\mathbf{V} = 10\angle 0^\circ\ \text{V}$, with $R = 5\ \Omega$, $L = 1\ \text{H}$ and $C = 0.04\ \text{F}$.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>العنصر</label><span class="seg"><button class="btn small primary" type="button" data-el="R" aria-pressed="true">R</button><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small" type="button" data-el="C" aria-pressed="false">C</button></span></div>
-      <div class="field"><label>التردد ω (rad/s)</label><input type="range" dir="ltr" id="wS" min="1" max="20" step="1" value="5"><span class="rv" id="wSv"></span></div>
+      <div class="field"><label><span lang="ar">العنصر</span><span lang="en">Element</span></label><span class="seg"><button class="btn small primary" type="button" data-el="R" aria-pressed="true">R</button><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small" type="button" data-el="C" aria-pressed="false">C</button></span></div>
+      <div class="field"><label><span lang="ar">التردد ω (rad/s)</span><span lang="en">Frequency ω (rad/s)</span></label><input type="range" dir="ltr" id="wS" min="1" max="20" step="1" value="5"><span class="rv" id="wSv"></span></div>
     </div>
     <figure class="fig">
       <svg viewBox="0 0 600 245" role="img" aria-label="يسار: فيزور الجهد وفيزور التيار. يمين: موجة الجهد وموجة التيار، مع الفرق بين قمتيهما">
@@ -332,121 +332,121 @@
         <text class="lbl" x="285" y="238" style="fill:var(--e1)">v(t)</text>
         <text class="lbl" x="335" y="238" style="fill:var(--e2)">i(t)</text>
       </svg>
-      <figcaption>الموجات مرسومة بنفس الارتفاع عشان تقارن الطور بس، والأرقام الحقيقية تحت. النقطتين هم قمة كل موجة، والخط اللي فوقهم هو الفرق بينهم.</figcaption>
+      <figcaption><span lang="ar">الموجات مرسومة بنفس الارتفاع عشان تقارن الطور بس، والأرقام الحقيقية تحت. النقطتين هم قمة كل موجة، والخط اللي فوقهم هو الفرق بينهم.</span><span lang="en">The waves are drawn at the same height so you compare phase only; the real numbers are below. The two dots are each wave's peak, and the line above them is the gap between them.</span></figcaption>
     </figure>
     <div class="ml-read">
-      <div><span class="k">نسبة الجهد للتيار |V| / |I|</span><span class="v" id="rX"></span></div>
-      <div class="hl"><span class="k">التيار I</span><span class="v" id="rI"></span></div>
-      <div><span class="k">مين يسبق؟</span><span class="v" id="rLead" style="direction:rtl;font-family:var(--f-body)"></span></div>
+      <div><span class="k"><span lang="ar">نسبة الجهد للتيار |V| / |I|</span><span lang="en">Voltage-to-current ratio |V| / |I|</span></span><span class="v" id="rX"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">التيار I</span><span lang="en">Current I</span></span><span class="v" id="rI"></span></div>
+      <div><span class="k"><span lang="ar">مين يسبق؟</span><span lang="en">Who leads?</span></span><span class="v" id="rLead" style="direction:rtl;font-family:var(--f-body)"></span></div>
     </div>
   </div>
-  <div class="callout key"><strong>🔑 لاحظ مع التردد:</strong> في الملف، كل ما زاد $\omega$ كبرت $\omega L$ وقلّ التيار، يعني الملف يعاند التردد العالي. وفي المكثف العكس: كل ما زاد $\omega$ صغرت $1/(\omega C)$ وزاد التيار. والمقاومة ما تتأثر بالتردد أبداً. هذي النسبة هي بداية فكرة <b>المعاوقة</b> (Impedance) في المحاضرة الجاية.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 لاحظ مع التردد:</strong> في الملف، كل ما زاد $\omega$ كبرت $\omega L$ وقلّ التيار، يعني الملف يعاند التردد العالي. وفي المكثف العكس: كل ما زاد $\omega$ صغرت $1/(\omega C)$ وزاد التيار. والمقاومة ما تتأثر بالتردد أبداً. هذي النسبة هي بداية فكرة <b>المعاوقة</b> (Impedance) في المحاضرة الجاية.</span><span lang="en"><strong>🔑 Watch the frequency:</strong> in the inductor, as $\omega$ grows, $\omega L$ grows and the current drops, so the inductor resists high frequency. The capacitor is the opposite: as $\omega$ grows, $1/(\omega C)$ shrinks and the current rises. The resistor isn't affected by frequency at all. This ratio is the start of the idea of <b>impedance</b> in the next lecture.</span></div>
 </section>
 
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>تيار الملف</h2></div>
-  <div class="tags"><span class="tag">Example 9.8</span><span class="tag">ملف L</span></div>
-  <p>الجهد $v = 12\cos(60t + 45^\circ)$ V موصّل على ملف قيمته $0.1$ H. أوجد التيار في الحالة المستقرة (steady-state).</p>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn be2 bd bo">فيزور، ثم قانون الملف، ثم القسمة</a></p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">تيار الملف</span><span lang="en">Inductor current</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.8</span><span class="tag"><span lang="ar">ملف L</span><span lang="en">Inductor L</span></span></div>
+  <p><span lang="ar">الجهد $v = 12\cos(60t + 45^\circ)$ V موصّل على ملف قيمته $0.1$ H. أوجد التيار في الحالة المستقرة (steady-state).</span><span lang="en">The voltage $v = 12\cos(60t + 45^\circ)$ V is applied to a $0.1$ H inductor. Find the steady-state current.</span></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn be2 bd bo">فيزور، ثم قانون الملف، ثم القسمة</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="br bn be2 bd bo">phasor, then the inductor law, then divide</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">عندنا الجهد ونبي التيار، فنستخدم علاقة الملف ونقسم: $\mathbf{I} = \dfrac{\mathbf{V}}{j\omega L}$. ومن الموجة: $\omega = 60$ rad/s.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">عندنا الجهد ونبي التيار، فنستخدم علاقة الملف ونقسم: $\mathbf{I} = \dfrac{\mathbf{V}}{j\omega L}$. ومن الموجة: $\omega = 60$ rad/s.</span><span lang="en">We have the voltage and want the current, so we use the inductor relation and divide: $\mathbf{I} = \dfrac{\mathbf{V}}{j\omega L}$. From the wave: $\omega = 60$ rad/s.</span></p>
     </li>
     <li class="step">
-      <h4>اكتب الفيزور واحسب $j\omega L$</h4>
+      <h4><span lang="ar">اكتب الفيزور واحسب $j\omega L$</span><span lang="en">Write the phasor and find $j\omega L$</span></h4>
       <div class="m">\[\mathbf{V} = \X{12}\angle\Z{45^\circ}, \qquad \Y{j\omega} L = j(60)(0.1) = j6 = 6\angle 90^\circ\]</div>
     </li>
     <li class="step">
-      <h4>اقسم <span class="const">اقسم الأطوال واطرح الزوايا</span></h4>
+      <h4><span lang="ar">اقسم <span class="const">اقسم الأطوال واطرح الزوايا</span></span><span lang="en">Divide <span class="const">divide the lengths, subtract the angles</span></span></h4>
       <div class="m">\[\mathbf{I} = \frac{12\angle 45^\circ}{6\angle 90^\circ} = \X{2}\angle\Z{-45^\circ}\ \text{A}\]</div>
     </li>
     <li class="step final">
       <div class="result">$i(t) = 2\cos(60t - 45^\circ)\ \text{A}$</div>
-      <p class="sanity">زاوية التيار <span class="ltr">−45°</span> وزاوية الجهد <span class="ltr">45°</span>: التيار متأخر <span class="ltr">90°</span> بالضبط، مثل ما يقول قانون الملف ✓</p>
+      <p class="sanity"><span lang="ar">زاوية التيار <span class="ltr">−45°</span> وزاوية الجهد <span class="ltr">45°</span>: التيار متأخر <span class="ltr">90°</span> بالضبط، مثل ما يقول قانون الملف ✓</span><span lang="en">The current angle is <span class="ltr">−45°</span> and the voltage angle is <span class="ltr">45°</span>: the current lags by exactly <span class="ltr">90°</span>, just as the inductor law says ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= مثال 3 ================= -->
 <section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>حل معادلة تفاضلية تكاملية بالفيزورات</h2></div>
-  <div class="tags"><span class="tag">Example 9.7</span><span class="tag">تفاضل وتكامل</span></div>
-  <p>باستخدام الفيزورات، أوجد التيار $i(t)$ في دائرة معادلتها:</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 3</span></span><span lang="en"><span class="ex-badge">Example 3</span></span><h2><span lang="ar">حل معادلة تفاضلية تكاملية بالفيزورات</span><span lang="en">Solve an integro-differential equation with phasors</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.7</span><span class="tag"><span lang="ar">تفاضل وتكامل</span><span lang="en">derivative and integral</span></span></div>
+  <p><span lang="ar">باستخدام الفيزورات، أوجد التيار $i(t)$ في دائرة معادلتها:</span><span lang="en">Using phasors, find the current $i(t)$ in a circuit described by:</span></p>
   <div class="m big">\[\begin{gathered}4i + 8\int i\,dt - 3\frac{di}{dt} \\ = 50\cos(2t + 75^\circ)\end{gathered}\]</div>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr ct cf cd co">بدّل بـ $j\omega$، ثم عامل مشترك، ثم القسمة</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr ct cf cd co">بدّل بـ $j\omega$، ثم عامل مشترك، ثم القسمة</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board3" data-path="cr ct cf cd co">replace with $j\omega$, then factor out, then divide</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">بدل ما نحل معادلة تفاضلية، نحوّل كل حد للفيزور بقواعد المحاضرة 2: التكامل = قسمة على $j\omega$، والتفاضل = ضرب في $j\omega$. ومن الطرف اليمين: $\omega = 2$.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">بدل ما نحل معادلة تفاضلية، نحوّل كل حد للفيزور بقواعد المحاضرة 2: التكامل = قسمة على $j\omega$، والتفاضل = ضرب في $j\omega$. ومن الطرف اليمين: $\omega = 2$.</span><span lang="en">Instead of solving a differential equation, we turn each term into a phasor using the rules from lecture 2: integral = divide by $j\omega$, derivative = multiply by $j\omega$. From the right-hand side: $\omega = 2$.</span></p>
     </li>
     <li class="step">
-      <h4>حوّل كل حد للفيزور</h4>
+      <h4><span lang="ar">حوّل كل حد للفيزور</span><span lang="en">Turn each term into a phasor</span></h4>
       <div class="m">\[4\mathbf{I} + \frac{8\mathbf{I}}{\Y{j\omega}} - 3\Y{j\omega}\mathbf{I} = 50\angle 75^\circ\]</div>
     </li>
     <li class="step">
-      <h4>عوّض $\omega = 2$ <span class="const">1/j = −j</span></h4>
+      <h4><span lang="ar">عوّض $\omega = 2$ <span class="const">1/j = −j</span></span><span lang="en">Substitute $\omega = 2$ <span class="const">1/j = −j</span></span></h4>
       <div class="m">\[\begin{gathered}\frac{8}{j2} = \frac{4}{j} = -j4, \qquad 3j(2) = j6 \\ \mathbf{I}\,(4 - j4 - j6) = 50\angle 75^\circ\end{gathered}\]</div>
-      <p class="why">$\dfrac{1}{j} = -j$، لأن $j \times (-j) = -j^2 = 1$.</p>
+      <p class="why"><span lang="ar">$\dfrac{1}{j} = -j$، لأن $j \times (-j) = -j^2 = 1$.</span><span lang="en">$\dfrac{1}{j} = -j$, because $j \times (-j) = -j^2 = 1$.</span></p>
     </li>
     <li class="step">
-      <h4>اقسم</h4>
+      <h4><span lang="ar">اقسم</span><span lang="en">Divide</span></h4>
       <div class="m">\[\mathbf{I} = \frac{50\angle 75^\circ}{4 - j10} = \frac{50\angle 75^\circ}{10.77\angle{-68.2^\circ}} = \X{4.642}\angle\Z{143.2^\circ}\ \text{A}\]</div>
     </li>
     <li class="step final">
       <div class="result">$i(t) =$ $4.642\cos(2t + 143.2^\circ)$ A</div>
-      <p class="sanity">انتبه: هذا <b>الحل المستقر</b> (steady-state) بس، يعني شكل التيار بعد ما الدائرة تستقر. وعشان كذا ما احتجنا أي قيم ابتدائية.</p>
+      <p class="sanity"><span lang="ar">انتبه: هذا <b>الحل المستقر</b> (steady-state) بس، يعني شكل التيار بعد ما الدائرة تستقر. وعشان كذا ما احتجنا أي قيم ابتدائية.</span><span lang="en">Note: this is only the <b>steady-state</b> solution, the shape of the current after the circuit settles. That's why we didn't need any initial values.</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس، والزوايا بالدرجات. قرّب لمنزلتين عشريتين على الأقل.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس، والزوايا بالدرجات. قرّب لمنزلتين عشريتين على الأقل.</span><span lang="en">Type just the number, with angles in degrees. Round to at least two decimal places.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>كم مقدار (سعة) المجموع:</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">كم مقدار (سعة) المجموع:</span><span lang="en">What is the magnitude (amplitude) of the sum:</span></p>
     <div class="m">\[v = 3\cos(\omega t) + 4\sin(\omega t)\]</div>
     <div class="check" data-answer="5"></div>
-    <details class="hint"><p>$4\sin(\omega t)$ فيزورها $4\angle{-90^\circ} = -j4$.</p></details>
+    <details class="hint"><p><span lang="ar">$4\sin(\omega t)$ فيزورها $4\angle{-90^\circ} = -j4$.</span><span lang="en">$4\sin(\omega t)$ has phasor $4\angle{-90^\circ} = -j4$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>اجمع الفيزورين</h4><div class="m">\[3\angle 0^\circ + 4\angle{-90^\circ} = 3 - j4\]</div></li>
-      <li class="step final"><div class="result">$\sqrt{3^2 + 4^2} = 5$، يعني $v =$ $5\cos(\omega t - 53.13^\circ)$</div></li>
+      <li class="step"><h4><span lang="ar">اجمع الفيزورين</span><span lang="en">Add the two phasors</span></h4><div class="m">\[3\angle 0^\circ + 4\angle{-90^\circ} = 3 - j4\]</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$\sqrt{3^2 + 4^2} = 5$، يعني $v =$ $5\cos(\omega t - 53.13^\circ)$</span><span lang="en">$\sqrt{3^2 + 4^2} = 5$, so $v =$ $5\cos(\omega t - 53.13^\circ)$</span></div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">متوسط</span></div>
-    <p>ملف $L = 0.2$ H يمر فيه تيار $i = 5\cos(100t + 10^\circ)$ A. كم زاوية فيزور الجهد $\mathbf{V}$ بالدرجات؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">ملف $L = 0.2$ H يمر فيه تيار $i = 5\cos(100t + 10^\circ)$ A. كم زاوية فيزور الجهد $\mathbf{V}$ بالدرجات؟</span><span lang="en">An inductor $L = 0.2$ H carries the current $i = 5\cos(100t + 10^\circ)$ A. What is the angle of the voltage phasor $\mathbf{V}$ in degrees?</span></p>
     <div class="check" data-answer="100"></div>
-    <details class="hint"><p>$\mathbf{V} = j\omega L\,\mathbf{I}$، و $j$ تزيد الزاوية <span class="ltr">90°</span>.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{V} = j\omega L\,\mathbf{I}$، و $j$ تزيد الزاوية <span class="ltr">90°</span>.</span><span lang="en">$\mathbf{V} = j\omega L\,\mathbf{I}$, and $j$ adds <span class="ltr">90°</span> to the angle.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>احسب $j\omega L$</h4><div class="m">\[j(100)(0.2) = j20 = 20\angle 90^\circ\]</div></li>
+      <li class="step"><h4><span lang="ar">احسب $j\omega L$</span><span lang="en">Find $j\omega L$</span></h4><div class="m">\[j(100)(0.2) = j20 = 20\angle 90^\circ\]</div></li>
       <li class="step final"><div class="result">$\mathbf{V} = j\omega L\,\mathbf{I}$ $= (20\angle 90^\circ)(5\angle 10^\circ)$ $= 100\angle 100^\circ$ V</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
-    <p>مكثف $C = 50\ \mu\text{F}$ عليه جهد $v = 10\cos(1000t)$ V. كم سعة التيار $I_m$ بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">مكثف $C = 50\ \mu\text{F}$ عليه جهد $v = 10\cos(1000t)$ V. كم سعة التيار $I_m$ بالأمبير؟</span><span lang="en">A capacitor $C = 50\ \mu\text{F}$ has the voltage $v = 10\cos(1000t)$ V across it. What is the current amplitude $I_m$ in amperes?</span></p>
     <div class="check" data-answer="0.5"></div>
-    <details class="hint"><p>$\mathbf{I} = j\omega C\,\mathbf{V}$، و $50\ \mu\text{F} = 50 \times 10^{-6}$ F.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{I} = j\omega C\,\mathbf{V}$، و $50\ \mu\text{F} = 50 \times 10^{-6}$ F.</span><span lang="en">$\mathbf{I} = j\omega C\,\mathbf{V}$, and $50\ \mu\text{F} = 50 \times 10^{-6}$ F.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>احسب $j\omega C$</h4><div class="m">\[j(1000)(50 \times 10^{-6}) = j0.05\]</div></li>
-      <li class="step final"><div class="result">$\mathbf{I} = (j0.05)(10\angle 0^\circ)$ $= 0.5\angle 90^\circ$ A</div><p class="sanity">التيار يسبق الجهد <span class="ltr">90°</span>، مثل ما نتوقع في المكثف ✓</p></li>
+      <li class="step"><h4><span lang="ar">احسب $j\omega C$</span><span lang="en">Find $j\omega C$</span></h4><div class="m">\[j(1000)(50 \times 10^{-6}) = j0.05\]</div></li>
+      <li class="step final"><div class="result">$\mathbf{I} = (j0.05)(10\angle 0^\circ)$ $= 0.5\angle 90^\circ$ A</div><p class="sanity"><span lang="ar">التيار يسبق الجهد <span class="ltr">90°</span>، مثل ما نتوقع في المكثف ✓</span><span lang="en">The current leads the voltage by <span class="ltr">90°</span>, as expected for a capacitor ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">تطبيق</span></div>
-    <p>المعادلة $2i + 4\dfrac{di}{dt} = 20\cos(t)$. كم سعة التيار $|\mathbf{I}|$؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">تطبيق</span><span lang="en">Application</span></span></div>
+    <p><span lang="ar">المعادلة $2i + 4\dfrac{di}{dt} = 20\cos(t)$. كم سعة التيار $|\mathbf{I}|$؟</span><span lang="en">The equation is $2i + 4\dfrac{di}{dt} = 20\cos(t)$. What is the current magnitude $|\mathbf{I}|$?</span></p>
     <div class="check" data-answer="4.472"></div>
-    <details class="hint"><p>هنا $\omega = 1$، والتفاضل = ضرب في $j\omega$.</p></details>
+    <details class="hint"><p><span lang="ar">هنا $\omega = 1$، والتفاضل = ضرب في $j\omega$.</span><span lang="en">Here $\omega = 1$, and derivative = multiply by $j\omega$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>حوّل للفيزور</h4><div class="m">\[(2 + j4)\,\mathbf{I} = 20\angle 0^\circ\]</div></li>
+      <li class="step"><h4><span lang="ar">حوّل للفيزور</span><span lang="en">Convert to phasors</span></h4><div class="m">\[(2 + j4)\,\mathbf{I} = 20\angle 0^\circ\]</div></li>
       <li class="step final"><div class="result">$|\mathbf{I}| = \dfrac{20}{\sqrt{2^2 + 4^2}}$ $= \dfrac{20}{4.472} = 4.472$ A</div></li>
     </ol>
   </div>
@@ -454,46 +454,46 @@
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تنسى تحوّل sin قبل الجمع</div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تنسى تحوّل sin قبل الجمع</span><span lang="en">Forgetting to convert sin before adding</span></div>
     <div class="pair"><div class="no">$5\sin(\omega t - 20^\circ) \Rightarrow 5\angle{-20^\circ}$</div><div class="yes">$5\angle{-110^\circ}$</div></div></div>
-  <div class="mk"><div class="mk-title">تجمع موجات بترددات مختلفة</div>
-    <div class="pair"><div class="no">$\cos(10t) + \cos(20t) \Rightarrow 1\angle 0^\circ + 1\angle 0^\circ$</div><div class="yes">ما ينفع بالفيزورات، لازم نفس $\omega$</div></div></div>
-  <div class="mk"><div class="mk-title">تقلب علاقة المكثف</div>
-    <div class="pair"><div class="no">$\mathbf{V} = j\omega C\,\mathbf{I}$</div><div class="yes">$\mathbf{I} = j\omega C\,\mathbf{V}$، يعني $\mathbf{V} = \mathbf{I}/(j\omega C)$</div></div></div>
-  <div class="mk"><div class="mk-title">تخلط مين يسبق في الملف</div>
-    <div class="pair"><div class="no">في الملف التيار يسبق الجهد</div><div class="yes">في الملف التيار <b>يتأخر</b> <span class="ltr">90°</span> (ELI)</div></div></div>
-  <div class="mk"><div class="mk-title">تقسم على $j$ غلط</div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع موجات بترددات مختلفة</span><span lang="en">Adding waves with different frequencies</span></div>
+    <div class="pair"><div class="no">$\cos(10t) + \cos(20t) \Rightarrow 1\angle 0^\circ + 1\angle 0^\circ$</div><div class="yes"><span lang="ar">ما ينفع بالفيزورات، لازم نفس $\omega$</span><span lang="en">Phasors don't work; you need the same $\omega$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تقلب علاقة المكثف</span><span lang="en">Flipping the capacitor relation</span></div>
+    <div class="pair"><div class="no">$\mathbf{V} = j\omega C\,\mathbf{I}$</div><div class="yes"><span lang="ar">$\mathbf{I} = j\omega C\,\mathbf{V}$، يعني $\mathbf{V} = \mathbf{I}/(j\omega C)$</span><span lang="en">$\mathbf{I} = j\omega C\,\mathbf{V}$, so $\mathbf{V} = \mathbf{I}/(j\omega C)$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تخلط مين يسبق في الملف</span><span lang="en">Mixing up who leads in the inductor</span></div>
+    <div class="pair"><div class="no"><span lang="ar">في الملف التيار يسبق الجهد</span><span lang="en">In the inductor the current leads the voltage</span></div><div class="yes"><span lang="ar">في الملف التيار <b>يتأخر</b> <span class="ltr">90°</span> (ELI)</span><span lang="en">In the inductor the current <b>lags</b> by <span class="ltr">90°</span> (ELI)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تقسم على $j$ غلط</span><span lang="en">Dividing by $j$ wrongly</span></div>
     <div class="pair"><div class="no">$\dfrac{8}{j2} = j4$</div><div class="yes">$\dfrac{8}{j2} = \dfrac{4}{j} = -j4$</div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="1"><p>في المقاومة، الفرق في الطور بين $\mathbf{V}$ و $\mathbf{I}$:</p>
+    <div class="q" data-answer="1"><p><span lang="ar">في المقاومة، الفرق في الطور بين $\mathbf{V}$ و $\mathbf{I}$:</span><span lang="en">In a resistor, the phase difference between $\mathbf{V}$ and $\mathbf{I}$ is:</span></p>
       <button><span class="ltr">0°</span></button><button><span class="ltr">90°</span></button><button><span class="ltr">−90°</span></button><button><span class="ltr">180°</span></button>
-      <p class="q-why">$\mathbf{V} = R\,\mathbf{I}$ و $R$ رقم حقيقي موجب، فما يغيّر الزاوية.</p></div>
-    <div class="q" data-answer="2"><p>في الملف L:</p>
-      <button>التيار يسبق الجهد بـ <span class="ltr">90°</span></button><button>التيار يتأخر عن الجهد بـ <span class="ltr">90°</span></button><button>متفقين في الطور</button><button>التيار يتأخر بـ <span class="ltr">180°</span></button>
-      <p class="q-why">$\mathbf{V} = j\omega L\,\mathbf{I}$: الجهد قدام التيار <span class="ltr">90°</span> (ELI).</p></div>
-    <div class="q" data-answer="2"><p>علاقة المكثف في مجال الفيزور:</p>
+      <p class="q-why"><span lang="ar">$\mathbf{V} = R\,\mathbf{I}$ و $R$ رقم حقيقي موجب، فما يغيّر الزاوية.</span><span lang="en">$\mathbf{V} = R\,\mathbf{I}$ and $R$ is a positive real number, so it doesn't change the angle.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">في الملف L:</span><span lang="en">In an inductor L:</span></p>
+      <button><span lang="ar">التيار يسبق الجهد بـ <span class="ltr">90°</span></span><span lang="en">The current leads the voltage by <span class="ltr">90°</span></span></button><button><span lang="ar">التيار يتأخر عن الجهد بـ <span class="ltr">90°</span></span><span lang="en">The current lags the voltage by <span class="ltr">90°</span></span></button><button><span lang="ar">متفقين في الطور</span><span lang="en">In phase</span></button><button><span lang="ar">التيار يتأخر بـ <span class="ltr">180°</span></span><span lang="en">The current lags by <span class="ltr">180°</span></span></button>
+      <p class="q-why"><span lang="ar">$\mathbf{V} = j\omega L\,\mathbf{I}$: الجهد قدام التيار <span class="ltr">90°</span> (ELI).</span><span lang="en">$\mathbf{V} = j\omega L\,\mathbf{I}$: the voltage is <span class="ltr">90°</span> ahead of the current (ELI).</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">علاقة المكثف في مجال الفيزور:</span><span lang="en">The capacitor relation in the phasor domain:</span></p>
       <button>$\mathbf{V} = j\omega C\,\mathbf{I}$</button><button>$\mathbf{I} = j\omega C\,\mathbf{V}$</button><button>$\mathbf{V} = C\,\mathbf{I}$</button><button>$\mathbf{I} = \mathbf{V}/(j\omega C)$</button>
-      <p class="q-why">من $i = C\,dv/dt$: التفاضل يصير ضرب في $j\omega$، فالتيار = $j\omega C$ ضرب الجهد.</p></div>
-    <div class="q" data-answer="2"><p>لو كبّرنا $\omega$ والجهد ثابت، تيار <b>الملف</b>:</p>
-      <button>يزيد</button><button>يقل</button><button>ما يتغير</button><button>يصير صفر دايماً</button>
-      <p class="q-why">$|\mathbf{I}| = |\mathbf{V}|/(\omega L)$: كل ما كبر $\omega$ صغر التيار. جرّبها في المختبر.</p></div>
-    <div class="q" data-answer="2"><p>تقدر تجمع $\cos(5t)$ و $\cos(7t)$ بالفيزورات؟</p>
-      <button>نعم، دايماً</button><button>لا، لازم نفس التردد</button><button>بس لو السعات متساوية</button><button>بس لو الاثنين cos</button>
-      <p class="q-why">الفيزور يفترض نفس $\omega$ لكل الموجات.</p></div>
-    <div class="q" data-answer="2"><p>$\dfrac{1}{j}$ يساوي:</p>
+      <p class="q-why"><span lang="ar">من $i = C\,dv/dt$: التفاضل يصير ضرب في $j\omega$، فالتيار = $j\omega C$ ضرب الجهد.</span><span lang="en">From $i = C\,dv/dt$: the derivative becomes multiplying by $j\omega$, so current = $j\omega C$ times voltage.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">لو كبّرنا $\omega$ والجهد ثابت، تيار <b>الملف</b>:</span><span lang="en">If we increase $\omega$ with the voltage fixed, the <b>inductor</b> current:</span></p>
+      <button><span lang="ar">يزيد</span><span lang="en">Increases</span></button><button><span lang="ar">يقل</span><span lang="en">Decreases</span></button><button><span lang="ar">ما يتغير</span><span lang="en">Stays the same</span></button><button><span lang="ar">يصير صفر دايماً</span><span lang="en">Is always zero</span></button>
+      <p class="q-why"><span lang="ar">$|\mathbf{I}| = |\mathbf{V}|/(\omega L)$: كل ما كبر $\omega$ صغر التيار. جرّبها في المختبر.</span><span lang="en">$|\mathbf{I}| = |\mathbf{V}|/(\omega L)$: the bigger $\omega$, the smaller the current. Try it in the lab.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">تقدر تجمع $\cos(5t)$ و $\cos(7t)$ بالفيزورات؟</span><span lang="en">Can you add $\cos(5t)$ and $\cos(7t)$ with phasors?</span></p>
+      <button><span lang="ar">نعم، دايماً</span><span lang="en">Yes, always</span></button><button><span lang="ar">لا، لازم نفس التردد</span><span lang="en">No, they need the same frequency</span></button><button><span lang="ar">بس لو السعات متساوية</span><span lang="en">Only if the amplitudes are equal</span></button><button><span lang="ar">بس لو الاثنين cos</span><span lang="en">Only if both are cos</span></button>
+      <p class="q-why"><span lang="ar">الفيزور يفترض نفس $\omega$ لكل الموجات.</span><span lang="en">Phasors assume the same $\omega$ for all waves.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">$\dfrac{1}{j}$ يساوي:</span><span lang="en">$\dfrac{1}{j}$ equals:</span></p>
       <button>$j$</button><button>$-j$</button><button>$1$</button><button>$-1$</button>
-      <p class="q-why">$j \times (-j) = -j^2 = 1$، فمقلوب $j$ هو $-j$.</p></div>
+      <p class="q-why"><span lang="ar">$j \times (-j) = -j^2 = 1$، فمقلوب $j$ هو $-j$.</span><span lang="en">$j \times (-j) = -j^2 = 1$, so the reciprocal of $j$ is $-j$.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر R و L و C: الجهد ثابت V = 10∠0°، والتيار يتغير حسب العنصر و ω */
 (function () {
@@ -536,7 +536,7 @@
     }
     $('rX').textContent = el === 'R' ? `R = ${R} Ω` : el === 'L' ? `ωL = ${r2(X)} Ω` : `1/(ωC) = ${r2(X)} Ω`;
     $('rI').textContent = `${r2(VM / X)} ∠ ${th < 0 ? '−' : ''}${Math.abs(th)}° A`;
-    $('rLead').innerHTML = el === 'R' ? 'متفقين في الطور' : el === 'L' ? 'التيار يتأخر <span class="ltr">90°</span>' : 'التيار يسبق <span class="ltr">90°</span>';
+    $('rLead').innerHTML = el === 'R' ? Lec.L('متفقين في الطور', 'in phase') : el === 'L' ? Lec.L('التيار يتأخر <span class="ltr">90°</span>', 'current lags by 90°') : Lec.L('التيار يسبق <span class="ltr">90°</span>', 'current leads by 90°');
   }
   document.querySelectorAll('.rlc-lab [data-el]').forEach(b => b.addEventListener('click', () => {
     el = b.dataset.el;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 4 - Impedance & Admittance" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 4 - Impedance & Admittance">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,60 +31,60 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 4 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.5</span></p>
-  <h1><span>المعاوقة والمسامحة</span> <span class="h1-math ltr">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span></h1>
-  <p class="lead">في المحاضرة 3 شفنا إن نسبة الجهد للتيار في كل عنصر رقم ثابت: $R$ أو $j\omega L$ أو $\dfrac{1}{j\omega C}$. هذي النسبة لها اسم: <b>المعاوقة</b> (Impedance) ورمزها $\mathbf{Z}$. ومعها يرجع قانون أوم يشتغل في دوائر التيار المتردد بنفس شكله القديم: $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. ومقلوبها اسمه <b>المسامحة</b> (Admittance) ورمزها $\mathbf{Y}$.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 4 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.5</span></span><span lang="en">Lecture 4 · Circuit Analysis 2 · <span class="ltr">Ch 9.5</span></span></p>
+  <h1><span><span lang="ar">المعاوقة والمسامحة</span><span lang="en">Impedance and admittance</span></span> <span class="h1-math ltr">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span></h1>
+  <p class="lead"><span lang="ar">في المحاضرة 3 شفنا إن نسبة الجهد للتيار في كل عنصر رقم ثابت: $R$ أو $j\omega L$ أو $\dfrac{1}{j\omega C}$. هذي النسبة لها اسم: <b>المعاوقة</b> (Impedance) ورمزها $\mathbf{Z}$. ومعها يرجع قانون أوم يشتغل في دوائر التيار المتردد بنفس شكله القديم: $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. ومقلوبها اسمه <b>المسامحة</b> (Admittance) ورمزها $\mathbf{Y}$.</span><span lang="en">In lecture 3 we saw that the voltage-to-current ratio of each element is a constant: $R$, $j\omega L$ or $\dfrac{1}{j\omega C}$. This ratio has a name: <b>impedance</b>, symbol $\mathbf{Z}$. With it, Ohm's law works again in AC circuits in its old form: $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. Its reciprocal is called <b>admittance</b>, symbol $\mathbf{Y}$.</span></p>
   <div class="xyz-bar">
-    <span class="x">المقاومة $R$</span><span class="y">المفاعلة $X$</span><span class="z">الزاوية $\theta$</span>
-    <small>← نفس الألوان في الرسومات والمختبر</small>
+    <span class="x"><span lang="ar">المقاومة $R$</span><span lang="en">Resistance $R$</span></span><span class="y"><span lang="ar">المفاعلة $X$</span><span lang="en">Reactance $X$</span></span><span class="z"><span lang="ar">الزاوية $\theta$</span><span lang="en">Angle $\theta$</span></span>
+    <small><span lang="ar">← نفس الألوان في الرسومات والمختبر</span><span lang="en">← same colors in the drawings and the lab</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>المعاوقة $\mathbf{Z} = \mathbf{V}/\mathbf{I}$ بالأوم، وقانون أوم صار $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. ولكل عنصر: $R$ و $j\omega L$ و $\dfrac{1}{j\omega C}$.</li>
-      <li>$\mathbf{Z} = \X{R} + j\Y{X}$: الجزء الحقيقي <b>مقاومة</b>، والتخيلي <b>مفاعلة</b> (Reactance). $X$ موجبة = حثّية (التيار يتأخر)، و $X$ سالبة = سعوية (التيار يسبق).</li>
-      <li>المسامحة $\mathbf{Y} = 1/\mathbf{Z} = G + jB$ بالسيمنز (S). وانتبه: $G \neq 1/R$ إلا إذا كانت $X = 0$.</li>
+      <li><span lang="ar">المعاوقة $\mathbf{Z} = \mathbf{V}/\mathbf{I}$ بالأوم، وقانون أوم صار $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. ولكل عنصر: $R$ و $j\omega L$ و $\dfrac{1}{j\omega C}$.</span><span lang="en">Impedance $\mathbf{Z} = \mathbf{V}/\mathbf{I}$ in ohms, and Ohm's law becomes $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$. For each element: $R$, $j\omega L$ and $\dfrac{1}{j\omega C}$.</span></li>
+      <li><span lang="ar">$\mathbf{Z} = \X{R} + j\Y{X}$: الجزء الحقيقي <b>مقاومة</b>، والتخيلي <b>مفاعلة</b> (Reactance). $X$ موجبة = حثّية (التيار يتأخر)، و $X$ سالبة = سعوية (التيار يسبق).</span><span lang="en">$\mathbf{Z} = \X{R} + j\Y{X}$: the real part is <b>resistance</b>, the imaginary part is <b>reactance</b>. Positive $X$ = inductive (current lags), negative $X$ = capacitive (current leads).</span></li>
+      <li><span lang="ar">المسامحة $\mathbf{Y} = 1/\mathbf{Z} = G + jB$ بالسيمنز (S). وانتبه: $G \neq 1/R$ إلا إذا كانت $X = 0$.</span><span lang="en">Admittance $\mathbf{Y} = 1/\mathbf{Z} = G + jB$ in siemens (S). Careful: $G \neq 1/R$ unless $X = 0$.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يلخّص المحاضرة كاملة في 7 دقائق، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يلخّص المحاضرة كاملة في 7 دقائق، شوفه قبل أو بعد القراءة</span><span lang="en">A video that sums up the whole lecture in 7 minutes. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture4.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture4.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture4.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture4.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 المعاوقة ================= -->
 <section class="card" id="impedance" data-num="01" data-nav="المعاوقة|Impedance">
-  <h2>المعاوقة: قانون أوم للتيار المتردد</h2>
-  <p class="sub">نسبة فيزور الجهد إلى فيزور التيار</p>
+  <h2><span lang="ar">المعاوقة: قانون أوم للتيار المتردد</span><span lang="en">Impedance: Ohm's law for AC</span></h2>
+  <p class="sub"><span lang="ar">نسبة فيزور الجهد إلى فيزور التيار</span><span lang="en">The ratio of the voltage phasor to the current phasor</span></p>
 
-  <p>من المحاضرة 3 عندنا علاقة كل عنصر: $\mathbf{V} = R\,\mathbf{I}$ و $\mathbf{V} = j\omega L\,\mathbf{I}$ و $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$. لو قسمنا الجهد على التيار في كل وحدة، تطلع لنا نسبة ثابتة. هذي النسبة هي <b>المعاوقة</b> (Impedance):</p>
+  <p><span lang="ar">من المحاضرة 3 عندنا علاقة كل عنصر: $\mathbf{V} = R\,\mathbf{I}$ و $\mathbf{V} = j\omega L\,\mathbf{I}$ و $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$. لو قسمنا الجهد على التيار في كل وحدة، تطلع لنا نسبة ثابتة. هذي النسبة هي <b>المعاوقة</b> (Impedance):</span><span lang="en">From lecture 3 we have each element's relation: $\mathbf{V} = R\,\mathbf{I}$, $\mathbf{V} = j\omega L\,\mathbf{I}$ and $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$. If we divide voltage by current in each one, we get a constant ratio. This ratio is the <b>impedance</b>:</span></p>
   <div class="m big">\[\mathbf{Z} = \frac{\mathbf{V}}{\mathbf{I}} \quad \Leftrightarrow \quad \mathbf{V} = \mathbf{Z}\,\mathbf{I}\]</div>
-  <p>وحدتها الأوم (Ω) مثل المقاومة بالضبط، بس فيه فرقين: هي <b>رقم مركب</b> (لها مقدار وزاوية)، و<b>تتغير مع التردد</b> $\omega$ (إلا المقاومة).</p>
+  <p><span lang="ar">وحدتها الأوم (Ω) مثل المقاومة بالضبط، بس فيه فرقين: هي <b>رقم مركب</b> (لها مقدار وزاوية)، و<b>تتغير مع التردد</b> $\omega$ (إلا المقاومة).</span><span lang="en">Its unit is the ohm (Ω), exactly like resistance, with two differences: it is a <b>complex number</b> (it has a magnitude and an angle), and it <b>changes with frequency</b> $\omega$ (except for the resistor).</span></p>
 
-  <h3>معاوقة ومسامحة كل عنصر (Table 9.3)</h3>
+  <h3><span lang="ar">معاوقة ومسامحة كل عنصر (Table 9.3)</span><span lang="en">Impedance and admittance of each element (Table 9.3)</span></h3>
   <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th>العنصر</th><th>المعاوقة $\mathbf{Z}$</th><th>المسامحة $\mathbf{Y} = 1/\mathbf{Z}$</th></tr>
-      <tr><td>المقاومة R</td><td>$R$</td><td>$\dfrac{1}{R}$</td></tr>
-      <tr><td>الملف L</td><td>$j\omega L$</td><td>$\dfrac{1}{j\omega L}$</td></tr>
-      <tr><td>المكثف C</td><td>$\dfrac{1}{j\omega C}$</td><td>$j\omega C$</td></tr>
+      <tr><th><span lang="ar">العنصر</span><span lang="en">Element</span></th><th><span lang="ar">المعاوقة $\mathbf{Z}$</span><span lang="en">Impedance $\mathbf{Z}$</span></th><th><span lang="ar">المسامحة $\mathbf{Y} = 1/\mathbf{Z}$</span><span lang="en">Admittance $\mathbf{Y} = 1/\mathbf{Z}$</span></th></tr>
+      <tr><td><span lang="ar">المقاومة R</span><span lang="en">Resistor R</span></td><td>$R$</td><td>$\dfrac{1}{R}$</td></tr>
+      <tr><td><span lang="ar">الملف L</span><span lang="en">Inductor L</span></td><td>$j\omega L$</td><td>$\dfrac{1}{j\omega L}$</td></tr>
+      <tr><td><span lang="ar">المكثف C</span><span lang="en">Capacitor C</span></td><td>$\dfrac{1}{j\omega C}$</td><td>$j\omega C$</td></tr>
     </table>
   </div>
-  <div class="callout key"><strong>🔑 $\mathbf{Z}$ مو فيزور:</strong> هي رقم مركب، بس ما تمثل موجة في الزمن. هي نسبة بين فيزورين، فما لها $z(t)$.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 $\mathbf{Z}$ مو فيزور:</strong> هي رقم مركب، بس ما تمثل موجة في الزمن. هي نسبة بين فيزورين، فما لها $z(t)$.</span><span lang="en"><strong>🔑 $\mathbf{Z}$ is not a phasor:</strong> it is a complex number, but it doesn't represent a wave in time. It is a ratio of two phasors, so there is no $z(t)$.</span></div>
 
-  <h3>حالتين مهمتين: DC والتردد العالي</h3>
-  <p>معاوقة الملف $j\omega L$ تكبر مع التردد، ومعاوقة المكثف $\dfrac{1}{j\omega C}$ تصغر معه. فعند الأطراف يصير كل واحد منهم يا سلك (قصر) يا فتحة (دائرة مفتوحة):</p>
+  <h3><span lang="ar">حالتين مهمتين: DC والتردد العالي</span><span lang="en">Two important cases: DC and high frequency</span></h3>
+  <p><span lang="ar">معاوقة الملف $j\omega L$ تكبر مع التردد، ومعاوقة المكثف $\dfrac{1}{j\omega C}$ تصغر معه. فعند الأطراف يصير كل واحد منهم يا سلك (قصر) يا فتحة (دائرة مفتوحة):</span><span lang="en">The inductor's impedance $j\omega L$ grows with frequency, and the capacitor's impedance $\dfrac{1}{j\omega C}$ shrinks with it. So at the extremes each one becomes either a wire (short) or a gap (open circuit):</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">الملف L</div><div class="t-desc">في DC ($\omega = 0$): $\mathbf{Z} = 0$، يعني <b>قصر</b> (Short circuit).<br>في التردد العالي ($\omega \to \infty$): $\mathbf{Z} \to \infty$، يعني <b>دائرة مفتوحة</b> (Open circuit).</div></div>
-    <div class="tile"><div class="t-name">المكثف C</div><div class="t-desc">في DC ($\omega = 0$): $\mathbf{Z} \to \infty$، يعني <b>دائرة مفتوحة</b>.<br>في التردد العالي ($\omega \to \infty$): $\mathbf{Z} \to 0$، يعني <b>قصر</b>.</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">الملف L</span><span lang="en">Inductor L</span></div><div class="t-desc"><span lang="ar">في DC ($\omega = 0$): $\mathbf{Z} = 0$، يعني <b>قصر</b> (Short circuit).<br>في التردد العالي ($\omega \to \infty$): $\mathbf{Z} \to \infty$، يعني <b>دائرة مفتوحة</b> (Open circuit).</span><span lang="en">At DC ($\omega = 0$): $\mathbf{Z} = 0$, a <b>short circuit</b>.<br>At high frequency ($\omega \to \infty$): $\mathbf{Z} \to \infty$, an <b>open circuit</b>.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">المكثف C</span><span lang="en">Capacitor C</span></div><div class="t-desc"><span lang="ar">في DC ($\omega = 0$): $\mathbf{Z} \to \infty$، يعني <b>دائرة مفتوحة</b>.<br>في التردد العالي ($\omega \to \infty$): $\mathbf{Z} \to 0$، يعني <b>قصر</b>.</span><span lang="en">At DC ($\omega = 0$): $\mathbf{Z} \to \infty$, an <b>open circuit</b>.<br>At high frequency ($\omega \to \infty$): $\mathbf{Z} \to 0$, a <b>short circuit</b>.</span></div></div>
   </div>
   <figure class="fig">
     <svg viewBox="0 0 560 175" role="img" aria-label="الملف يصير قصر في التيار المستمر ومفتوح في التردد العالي، والمكثف العكس" style="max-width:600px">
@@ -105,47 +105,47 @@
       <path class="wire" d="M380 130H500"/><circle class="node" cx="395" cy="130" r="3.5"/><circle class="node" cx="485" cy="130" r="3.5"/>
       <text class="tick" x="440" y="155" text-anchor="middle">ω → ∞: short</text>
     </svg>
-    <figcaption>Figure 9.15: الملف (فوق) والمكثف (تحت) في التيار المستمر (DC) وفي التردد العالي.</figcaption>
+    <figcaption><span lang="ar">Figure 9.15: الملف (فوق) والمكثف (تحت) في التيار المستمر (DC) وفي التردد العالي.</span><span lang="en">Figure 9.15: the inductor (top) and the capacitor (bottom) at DC and at high frequency.</span></figcaption>
   </figure>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= 02 R + jX ================= -->
 <section class="card" id="parts" data-num="02" data-nav="R + jX|R + jX">
-  <h2>أجزاء المعاوقة: مقاومة ومفاعلة</h2>
-  <p class="sub">نفس الرقم المركب، بالشكل الديكارتي والقطبي</p>
+  <h2><span lang="ar">أجزاء المعاوقة: مقاومة ومفاعلة</span><span lang="en">Parts of impedance: resistance and reactance</span></h2>
+  <p class="sub"><span lang="ar">نفس الرقم المركب، بالشكل الديكارتي والقطبي</span><span lang="en">The same complex number, in rectangular and polar form</span></p>
 
   <div class="m big">\[\mathbf{Z} = \X{R} + j\Y{X} = |\mathbf{Z}|\angle\Z{\theta}\]</div>
   <div class="grid-2">
-    <div class="tile x"><div class="t-name">المقاومة $\X{R}$ (Resistance)</div><div class="t-desc">الجزء الحقيقي: $R = \text{Re}\,\mathbf{Z}$. دايماً موجبة أو صفر.</div></div>
-    <div class="tile y"><div class="t-name">المفاعلة $\Y{X}$ (Reactance)</div><div class="t-desc">الجزء التخيلي: $X = \text{Im}\,\mathbf{Z}$. ممكن تكون موجبة أو سالبة، وتجي من الملفات والمكثفات.</div></div>
+    <div class="tile x"><div class="t-name"><span lang="ar">المقاومة $\X{R}$ (Resistance)</span><span lang="en">Resistance $\X{R}$</span></div><div class="t-desc"><span lang="ar">الجزء الحقيقي: $R = \text{Re}\,\mathbf{Z}$. دايماً موجبة أو صفر.</span><span lang="en">The real part: $R = \text{Re}\,\mathbf{Z}$. Always positive or zero.</span></div></div>
+    <div class="tile y"><div class="t-name"><span lang="ar">المفاعلة $\Y{X}$ (Reactance)</span><span lang="en">Reactance $\Y{X}$</span></div><div class="t-desc"><span lang="ar">الجزء التخيلي: $X = \text{Im}\,\mathbf{Z}$. ممكن تكون موجبة أو سالبة، وتجي من الملفات والمكثفات.</span><span lang="en">The imaginary part: $X = \text{Im}\,\mathbf{Z}$. Can be positive or negative, and comes from inductors and capacitors.</span></div></div>
   </div>
-  <p>وكلهم بالأوم (Ω). والتحويل بين الشكلين نفس اللي في المحاضرة 2:</p>
+  <p><span lang="ar">وكلهم بالأوم (Ω). والتحويل بين الشكلين نفس اللي في المحاضرة 2:</span><span lang="en">All in ohms (Ω). Converting between the forms is the same as in lecture 2:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">من الديكارتي للقطبي</div><div class="t-math">$|\mathbf{Z}| = \sqrt{R^2 + X^2}, \quad \theta = \tan^{-1}\dfrac{X}{R}$</div></div>
-    <div class="tile"><div class="t-top">من القطبي للديكارتي</div><div class="t-math">$R = |\mathbf{Z}|\cos\theta, \quad X = |\mathbf{Z}|\sin\theta$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">من الديكارتي للقطبي</span><span lang="en">Rectangular to polar</span></div><div class="t-math">$|\mathbf{Z}| = \sqrt{R^2 + X^2}, \quad \theta = \tan^{-1}\dfrac{X}{R}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">من القطبي للديكارتي</span><span lang="en">Polar to rectangular</span></div><div class="t-math">$R = |\mathbf{Z}|\cos\theta, \quad X = |\mathbf{Z}|\sin\theta$</div></div>
   </div>
 
-  <h3>إشارة $X$ تقولك نوع المعاوقة</h3>
+  <h3><span lang="ar">إشارة $X$ تقولك نوع المعاوقة</span><span lang="en">The sign of $X$ tells you the type of impedance</span></h3>
   <div class="grid-2">
-    <div class="tile hl"><div class="t-name">حثّية (Inductive) · $X > 0$</div><div class="t-math">$\mathbf{Z} = R + jX$</div><div class="t-desc">مثل الملف. <b>التيار يتأخر</b> عن الجهد (lagging)، والزاوية $\theta$ موجبة.</div></div>
-    <div class="tile hl"><div class="t-name">سعوية (Capacitive) · $X < 0$</div><div class="t-math">$\mathbf{Z} = R - jX$</div><div class="t-desc">مثل المكثف. <b>التيار يسبق</b> الجهد (leading)، والزاوية $\theta$ سالبة.</div></div>
+    <div class="tile hl"><div class="t-name"><span lang="ar">حثّية (Inductive) · $X > 0$</span><span lang="en">Inductive · $X > 0$</span></div><div class="t-math">$\mathbf{Z} = R + jX$</div><div class="t-desc"><span lang="ar">مثل الملف. <b>التيار يتأخر</b> عن الجهد (lagging)، والزاوية $\theta$ موجبة.</span><span lang="en">Like an inductor. <b>The current lags</b> the voltage, and the angle $\theta$ is positive.</span></div></div>
+    <div class="tile hl"><div class="t-name"><span lang="ar">سعوية (Capacitive) · $X < 0$</span><span lang="en">Capacitive · $X < 0$</span></div><div class="t-math">$\mathbf{Z} = R - jX$</div><div class="t-desc"><span lang="ar">مثل المكثف. <b>التيار يسبق</b> الجهد (leading)، والزاوية $\theta$ سالبة.</span><span lang="en">Like a capacitor. <b>The current leads</b> the voltage, and the angle $\theta$ is negative.</span></div></div>
   </div>
-  <div class="callout key"><strong>🔑 ليش الزاوية $\theta$ تحدد مين يسبق؟</strong> لأن $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$، وفي الضرب الزوايا تنجمع: زاوية الجهد = زاوية التيار + $\theta$. لو $\theta$ موجبة الجهد قدّام والتيار متأخر، ولو سالبة التيار هو اللي قدّام.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 ليش الزاوية $\theta$ تحدد مين يسبق؟</strong> لأن $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$، وفي الضرب الزوايا تنجمع: زاوية الجهد = زاوية التيار + $\theta$. لو $\theta$ موجبة الجهد قدّام والتيار متأخر، ولو سالبة التيار هو اللي قدّام.</span><span lang="en"><strong>🔑 Why does the angle $\theta$ decide who leads?</strong> Because $\mathbf{V} = \mathbf{Z}\,\mathbf{I}$, and in multiplication the angles add: voltage angle = current angle + $\theta$. If $\theta$ is positive the voltage is ahead and the current lags; if negative, the current is ahead.</span></div>
 </section>
 
 <!-- ================= 03 المختبر ================= -->
 <section class="card" id="lab" data-num="03" data-nav="المختبر|Lab">
-  <h2>مثلث المعاوقة</h2>
-  <p class="sub">مقاومة R على التوالي مع ملف أو مكثف</p>
+  <h2><span lang="ar">مثلث المعاوقة</span><span lang="en">The impedance triangle</span></h2>
+  <p class="sub"><span lang="ar">مقاومة R على التوالي مع ملف أو مكثف</span><span lang="en">A resistor R in series with an inductor or a capacitor</span></p>
 
   <div class="z-lab">
-    <h3>🎛️ غيّر R والتردد، وشوف Z تتحرك</h3>
-    <p class="lab-note">القيم: $L = 0.5\ \text{H}$ و $C = 0.1\ \text{F}$. والبداية نفس مثال 1: $R = 5\ \Omega$ مع المكثف و $\omega = 4$.</p>
+    <h3><span lang="ar">🎛️ غيّر R والتردد، وشوف Z تتحرك</span><span lang="en">🎛️ Change R and the frequency, and watch Z move</span></h3>
+    <p class="lab-note"><span lang="ar">القيم: $L = 0.5\ \text{H}$ و $C = 0.1\ \text{F}$. والبداية نفس مثال 1: $R = 5\ \Omega$ مع المكثف و $\omega = 4$.</span><span lang="en">Values: $L = 0.5\ \text{H}$ and $C = 0.1\ \text{F}$. It starts like Example 1: $R = 5\ \Omega$ with the capacitor and $\omega = 4$.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>العنصر مع R</label><span class="seg"><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small primary" type="button" data-el="C" aria-pressed="true">C</button></span></div>
-      <div class="field"><label>المقاومة R (Ω)</label><input type="range" dir="ltr" id="zR" min="0" max="20" step="1" value="5"><span class="rv" id="zRv"></span></div>
-      <div class="field"><label>التردد ω (rad/s)</label><input type="range" dir="ltr" id="zW" min="1" max="20" step="1" value="4"><span class="rv" id="zWv"></span></div>
+      <div class="field"><label><span lang="ar">العنصر مع R</span><span lang="en">Element with R</span></label><span class="seg"><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small primary" type="button" data-el="C" aria-pressed="true">C</button></span></div>
+      <div class="field"><label><span lang="ar">المقاومة R (Ω)</span><span lang="en">Resistance R (Ω)</span></label><input type="range" dir="ltr" id="zR" min="0" max="20" step="1" value="5"><span class="rv" id="zRv"></span></div>
+      <div class="field"><label><span lang="ar">التردد ω (rad/s)</span><span lang="en">Frequency ω (rad/s)</span></label><input type="range" dir="ltr" id="zW" min="1" max="20" step="1" value="4"><span class="rv" id="zWv"></span></div>
     </div>
     <figure class="fig">
       <svg id="zSvg" viewBox="0 0 600 260" role="img" aria-label="المعاوقة Z كسهم في المستوى المركب، ضلعه الأفقي R وضلعه العمودي X، ومعه الدائرة">
@@ -170,181 +170,181 @@
           <text class="lbl" id="cLbl" x="580" y="135">C</text>
         </g>
       </svg>
-      <figcaption>الضلع الأفقي المقاومة $R$، والضلع العمودي المفاعلة $X$ (فوق للملف وتحت للمكثف)، والوتر هو $\mathbf{Z}$ وزاويته $\theta$. الرسم يصغر تلقائيًا لما تكبر القيم عشان يبقى داخل الإطار، والأرقام تحت هي المرجع.</figcaption>
+      <figcaption><span lang="ar">الضلع الأفقي المقاومة $R$، والضلع العمودي المفاعلة $X$ (فوق للملف وتحت للمكثف)، والوتر هو $\mathbf{Z}$ وزاويته $\theta$. الرسم يصغر تلقائيًا لما تكبر القيم عشان يبقى داخل الإطار، والأرقام تحت هي المرجع.</span><span lang="en">The horizontal side is the resistance $R$, the vertical side is the reactance $X$ (up for the inductor, down for the capacitor), and the hypotenuse is $\mathbf{Z}$ with its angle $\theta$. The drawing shrinks automatically as values grow so it stays in the frame; the numbers below are the reference.</span></figcaption>
     </figure>
     <div class="ml-read">
-      <div><span class="k">Z بالديكارتي</span><span class="v" id="rZ"></span></div>
-      <div class="hl"><span class="k">Z بالقطبي</span><span class="v" id="rZp"></span></div>
-      <div><span class="k">المسامحة Y = G + jB</span><span class="v" id="rY"></span></div>
-      <div><span class="k">النوع</span><span class="v" id="rT" style="direction:rtl;font-family:var(--f-body)"></span></div>
+      <div><span class="k"><span lang="ar">Z بالديكارتي</span><span lang="en">Z rectangular</span></span><span class="v" id="rZ"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">Z بالقطبي</span><span lang="en">Z polar</span></span><span class="v" id="rZp"></span></div>
+      <div><span class="k"><span lang="ar">المسامحة Y = G + jB</span><span lang="en">Admittance Y = G + jB</span></span><span class="v" id="rY"></span></div>
+      <div><span class="k"><span lang="ar">النوع</span><span lang="en">Type</span></span><span class="v" id="rT" style="direction:rtl;font-family:var(--f-body)"></span></div>
     </div>
   </div>
-  <div class="callout key"><strong>🔑 جرّب:</strong> مع الملف، كبّر $\omega$ وشوف $X$ تطلع لفوق وتكبر. مع المكثف، $X$ تحت المحور وتقرب من الصفر كل ما كبر $\omega$. ولو صفّرت $R$ تصير الزاوية <span class="ltr">90°</span> أو <span class="ltr">−90°</span> بالضبط، مثل المحاضرة 3.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 جرّب:</strong> مع الملف، كبّر $\omega$ وشوف $X$ تطلع لفوق وتكبر. مع المكثف، $X$ تحت المحور وتقرب من الصفر كل ما كبر $\omega$. ولو صفّرت $R$ تصير الزاوية <span class="ltr">90°</span> أو <span class="ltr">−90°</span> بالضبط، مثل المحاضرة 3.</span><span lang="en"><strong>🔑 Try it:</strong> with the inductor, increase $\omega$ and watch $X$ go up and grow. With the capacitor, $X$ is below the axis and gets closer to zero as $\omega$ grows. If you set $R$ to zero, the angle becomes exactly <span class="ltr">90°</span> or <span class="ltr">−90°</span>, as in lecture 3.</span></div>
 </section>
 
 <!-- ================= 04 المسامحة ================= -->
 <section class="card" id="admittance" data-num="04" data-nav="المسامحة|Admittance">
-  <h2>المسامحة: مقلوب المعاوقة</h2>
-  <p class="sub">أحياناً الحساب أسهل بالمقلوب، خصوصاً مع التوصيل على التوازي</p>
+  <h2><span lang="ar">المسامحة: مقلوب المعاوقة</span><span lang="en">Admittance: the reciprocal of impedance</span></h2>
+  <p class="sub"><span lang="ar">أحياناً الحساب أسهل بالمقلوب، خصوصاً مع التوصيل على التوازي</span><span lang="en">Sometimes the math is easier with the reciprocal, especially for parallel connections</span></p>
 
   <div class="m big">\[\mathbf{Y} = \frac{1}{\mathbf{Z}} = \frac{\mathbf{I}}{\mathbf{V}} = G + jB\]</div>
-  <p>وحدتها <b>السيمنز</b> (S)، واسمها القديم mho. والجزئين:</p>
+  <p><span lang="ar">وحدتها <b>السيمنز</b> (S)، واسمها القديم mho. والجزئين:</span><span lang="en">Its unit is the <b>siemens</b> (S), formerly called the mho. Its two parts:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">المواصلة $G$ (Conductance)</div><div class="t-desc">الجزء الحقيقي: $G = \text{Re}\,\mathbf{Y}$.</div></div>
-    <div class="tile"><div class="t-name">المطاوعة $B$ (Susceptance)</div><div class="t-desc">الجزء التخيلي: $B = \text{Im}\,\mathbf{Y}$.</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">المواصلة $G$ (Conductance)</span><span lang="en">Conductance $G$</span></div><div class="t-desc"><span lang="ar">الجزء الحقيقي: $G = \text{Re}\,\mathbf{Y}$.</span><span lang="en">The real part: $G = \text{Re}\,\mathbf{Y}$.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">المطاوعة $B$ (Susceptance)</span><span lang="en">Susceptance $B$</span></div><div class="t-desc"><span lang="ar">الجزء التخيلي: $B = \text{Im}\,\mathbf{Y}$.</span><span lang="en">The imaginary part: $B = \text{Im}\,\mathbf{Y}$.</span></div></div>
   </div>
 
-  <h3>العلاقة بين $G, B$ و $R, X$</h3>
-  <p>نقلب $\mathbf{Z}$ ونضرب فوق وتحت في المرافق $R - jX$ عشان نتخلص من $j$ في المقام:</p>
+  <h3><span lang="ar">العلاقة بين $G, B$ و $R, X$</span><span lang="en">The relation between $G, B$ and $R, X$</span></h3>
+  <p><span lang="ar">نقلب $\mathbf{Z}$ ونضرب فوق وتحت في المرافق $R - jX$ عشان نتخلص من $j$ في المقام:</span><span lang="en">We invert $\mathbf{Z}$ and multiply top and bottom by the conjugate $R - jX$ to remove $j$ from the denominator:</span></p>
   <div class="m">\[\begin{gathered}G + jB = \frac{1}{R + jX} \cdot \frac{R - jX}{R - jX} \\ = \frac{R - jX}{R^2 + X^2} \\[8pt] G = \frac{R}{R^2 + X^2} \\[4pt] B = -\frac{X}{R^2 + X^2}\end{gathered}\]</div>
-  <div class="callout warn"><strong>⚠️ انتبه: $G \neq 1/R$</strong> إلا لما $X = 0$. مثال: $\mathbf{Z} = 3 + j4$ تعطي $\mathbf{Y} = \dfrac{3 - j4}{25} = 0.12 - j0.16$ S، يعني $G = 0.12$ مو $1/3$.</div>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ انتبه: $G \neq 1/R$</strong> إلا لما $X = 0$. مثال: $\mathbf{Z} = 3 + j4$ تعطي $\mathbf{Y} = \dfrac{3 - j4}{25} = 0.12 - j0.16$ S، يعني $G = 0.12$ مو $1/3$.</span><span lang="en"><strong>⚠️ Careful: $G \neq 1/R$</strong> unless $X = 0$. Example: $\mathbf{Z} = 3 + j4$ gives $\mathbf{Y} = \dfrac{3 - j4}{25} = 0.12 - j0.16$ S, so $G = 0.12$, not $1/3$.</span></div>
 </section>
 
 <!-- ================= لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: تيار وجهد دائرة فيها R و L و C</h3>
+    <h3><span lang="ar">الشجرة 1: تيار وجهد دائرة فيها R و L و C</span><span lang="en">Tree 1: current and voltage in an R, L, C circuit</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="ar an az as ai av ao">مسار: التيار ثم جهد عنصر</button>
+      <button class="btn small" type="button" data-path="ar an az as ai av ao"><span lang="ar">مسار: التيار ثم جهد عنصر</span><span lang="en">Path: the current, then an element's voltage</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: مصدر $v_s(t)$ وعناصر R و L و C، أوجد $i(t)$ أو $v(t)$</span></button>
-      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k">حوّل المصدر لفيزور</span><span class="fb-f">$10\cos 4t \Rightarrow 10\angle 0^\circ$</span><span class="fb-b">المحاضرة 2</span></button>
-      <button type="button" class="fb-node c12" data-id="az" data-from="an"><span class="fb-k">معاوقة كل عنصر</span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="as" data-from="az"><span class="fb-k">اجمع اللي على التوالي</span><span class="fb-f">$\mathbf{Z} = 5 - j2.5\ \Omega$</span></button>
-      <button type="button" class="fb-node c12" data-id="ai" data-from="as"><span class="fb-k">قانون أوم</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span></button>
-      <button type="button" class="fb-node c12" data-id="av" data-from="ai"><span class="fb-k">جهد عنصر</span><span class="fb-f">$\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="ao" data-from="av"><span class="fb-k">الناتج: رجّع للزمن بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k"><span lang="ar">إذا جاك: مصدر $v_s(t)$ وعناصر R و L و C، أوجد $i(t)$ أو $v(t)$</span><span lang="en">If you get: a source $v_s(t)$ and R, L, C elements; find $i(t)$ or $v(t)$</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="an" data-from="ar"><span class="fb-k"><span lang="ar">حوّل المصدر لفيزور</span><span lang="en">Convert the source to a phasor</span></span><span class="fb-f">$10\cos 4t \Rightarrow 10\angle 0^\circ$</span><span class="fb-b"><span lang="ar">المحاضرة 2</span><span lang="en">Lecture 2</span></span></button>
+      <button type="button" class="fb-node c12" data-id="az" data-from="an"><span class="fb-k"><span lang="ar">معاوقة كل عنصر</span><span lang="en">Impedance of each element</span></span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="as" data-from="az"><span class="fb-k"><span lang="ar">اجمع اللي على التوالي</span><span lang="en">Add the series ones</span></span><span class="fb-f">$\mathbf{Z} = 5 - j2.5\ \Omega$</span></button>
+      <button type="button" class="fb-node c12" data-id="ai" data-from="as"><span class="fb-k"><span lang="ar">قانون أوم</span><span lang="en">Ohm's law</span></span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span></button>
+      <button type="button" class="fb-node c12" data-id="av" data-from="ai"><span class="fb-k"><span lang="ar">جهد عنصر</span><span lang="en">Element voltage</span></span><span class="fb-f">$\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="av"><span class="fb-k"><span lang="ar">الناتج: رجّع للزمن بنفس $\omega$</span><span lang="en">Result: back to time with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الشكل</dt><dd>دائرة بسيطة ومصدر جيبي، والمطلوب موجة زمنية.</dd></dl></div>
-    <div class="fb-info" data-for="an" hidden><h4>حوّل المصدر لفيزور: $10\cos 4t \Rightarrow 10\angle 0^\circ$</h4><dl>
-      <dt>الحيلة</dt><dd>خذ $\omega$ من المصدر، لأنك بتحتاجها لكل معاوقة.</dd></dl></div>
-    <div class="fb-info" data-for="az" hidden><h4>معاوقة كل عنصر: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$\omega = 4$ و $C = 0.1$: $\dfrac{1}{j0.4} = -j2.5\ \Omega$. و $L = 0.5$: $j2\ \Omega$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تكتب $j\omega C$ للمكثف. المعاوقة مقلوبها.</dd></dl></div>
-    <div class="fb-info" data-for="as" hidden><h4>اجمع اللي على التوالي: $\mathbf{Z} = 5 - j2.5\ \Omega$</h4><dl>
-      <dt>الحيلة</dt><dd>العناصر على التوالي معاوقاتها تنجمع، مثل المقاومات (تفاصيلها في المحاضرة 5).</dd></dl></div>
-    <div class="fb-info" data-for="ai" hidden><h4>قانون أوم: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$\dfrac{10\angle 0^\circ}{5 - j2.5} = 1.789\angle 26.57^\circ\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>$\mathbf{Z}$ مو فيزور. ما ترجعها لموجة زمنية.</dd></dl></div>
-    <div class="fb-info" data-for="av" hidden><h4>جهد عنصر: $\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$1.789\angle 26.57^\circ \times 2.5\angle{-90^\circ}$ $= 4.47\angle{-63.43^\circ}\ \text{V}$.</dd></dl></div>
-    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>$i(t) = 1.789\cos(4t + 26.57^\circ)$ و $v(t) = 4.47\cos(4t - 63.43^\circ)$.</dd>
-      <dt>تأكد</dt><dd>جهد المكثف متأخر عن تياره <span class="ltr">90°</span>: $26.57 - 90 = -63.43$ ✓</dd></dl></div>
+    <div class="fb-info" data-for="ar" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الشكل</span><span lang="en">Form</span></dt><dd><span lang="ar">دائرة بسيطة ومصدر جيبي، والمطلوب موجة زمنية.</span><span lang="en">A simple circuit with a sinusoidal source, and a time-domain wave is asked for.</span></dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4><span lang="ar">حوّل المصدر لفيزور: $10\cos 4t \Rightarrow 10\angle 0^\circ$</span><span lang="en">Convert the source to a phasor: $10\cos 4t \Rightarrow 10\angle 0^\circ$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">خذ $\omega$ من المصدر، لأنك بتحتاجها لكل معاوقة.</span><span lang="en">Take $\omega$ from the source, because you need it for every impedance.</span></dd></dl></div>
+    <div class="fb-info" data-for="az" hidden><h4><span lang="ar">معاوقة كل عنصر: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span><span lang="en">Impedance of each element: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\omega = 4$ و $C = 0.1$: $\dfrac{1}{j0.4} = -j2.5\ \Omega$. و $L = 0.5$: $j2\ \Omega$.</span><span lang="en">$\omega = 4$ and $C = 0.1$: $\dfrac{1}{j0.4} = -j2.5\ \Omega$. And $L = 0.5$: $j2\ \Omega$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تكتب $j\omega C$ للمكثف. المعاوقة مقلوبها.</span><span lang="en">Writing $j\omega C$ for the capacitor. The impedance is its reciprocal.</span></dd></dl></div>
+    <div class="fb-info" data-for="as" hidden><h4><span lang="ar">اجمع اللي على التوالي: $\mathbf{Z} = 5 - j2.5\ \Omega$</span><span lang="en">Add the series ones: $\mathbf{Z} = 5 - j2.5\ \Omega$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">العناصر على التوالي معاوقاتها تنجمع، مثل المقاومات (تفاصيلها في المحاضرة 5).</span><span lang="en">Series elements' impedances add, just like resistors (details in lecture 5).</span></dd></dl></div>
+    <div class="fb-info" data-for="ai" hidden><h4><span lang="ar">قانون أوم: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span><span lang="en">Ohm's law: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\dfrac{10\angle 0^\circ}{5 - j2.5} = 1.789\angle 26.57^\circ\ \text{A}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">$\mathbf{Z}$ مو فيزور. ما ترجعها لموجة زمنية.</span><span lang="en">$\mathbf{Z}$ is not a phasor. Don't turn it back into a time wave.</span></dd></dl></div>
+    <div class="fb-info" data-for="av" hidden><h4><span lang="ar">جهد عنصر: $\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</span><span lang="en">Element voltage: $\mathbf{V}_C = \mathbf{Z}_C\,\mathbf{I}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$1.789\angle 26.57^\circ \times 2.5\angle{-90^\circ}$ $= 4.47\angle{-63.43^\circ}\ \text{V}$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$i(t) = 1.789\cos(4t + 26.57^\circ)$ و $v(t) = 4.47\cos(4t - 63.43^\circ)$.</span><span lang="en">$i(t) = 1.789\cos(4t + 26.57^\circ)$ and $v(t) = 4.47\cos(4t - 63.43^\circ)$.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">جهد المكثف متأخر عن تياره <span class="ltr">90°</span>: $26.57 - 90 = -63.43$ ✓</span><span lang="en">The capacitor voltage lags its current by <span class="ltr">90°</span>: $26.57 - 90 = -63.43$ ✓</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: نوع المعاوقة</h3>
+    <h3><span lang="ar">الشجرة 2: نوع المعاوقة</span><span lang="en">Tree 2: type of impedance</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="br bp bs1 bo">مسار: حثّية</button>
-      <button class="btn small" type="button" data-path="br bp bs2 bo">مسار: سعوية</button>
+      <button class="btn small" type="button" data-path="br bp bs1 bo"><span lang="ar">مسار: حثّية</span><span lang="en">Path: inductive</span></button>
+      <button class="btn small" type="button" data-path="br bp bs2 bo"><span lang="ar">مسار: سعوية</span><span lang="en">Path: capacitive</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «$\mathbf{Z}$ معطاة، حثّية ولا سعوية؟» أو «أوجد R و X»</span></button>
-      <button type="button" class="fb-node c12" data-id="bp" data-from="br"><span class="fb-k">أجزاء المعاوقة</span><span class="fb-f">$\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</span></button>
-      <button type="button" class="fb-node c1" data-id="bs1" data-from="bp"><span class="fb-k">حثّية</span><span class="fb-f">$X > 0$</span></button>
-      <button type="button" class="fb-node c2" data-id="bs2" data-from="bp"><span class="fb-k">سعوية</span><span class="fb-f">$X < 0$</span></button>
-      <button type="button" class="fb-node out c12" data-id="bo" data-from="bs1 bs2"><span class="fb-k">الناتج: R و X بالأوم، والنوع</span></button>
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k"><span lang="ar">إذا جاك: «$\mathbf{Z}$ معطاة، حثّية ولا سعوية؟» أو «أوجد R و X»</span><span lang="en">If you get: “$\mathbf{Z}$ is given, inductive or capacitive?” or “Find R and X”</span></span></button>
+      <button type="button" class="fb-node c12" data-id="bp" data-from="br"><span class="fb-k"><span lang="ar">أجزاء المعاوقة</span><span lang="en">Parts of impedance</span></span><span class="fb-f">$\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</span></button>
+      <button type="button" class="fb-node c1" data-id="bs1" data-from="bp"><span class="fb-k"><span lang="ar">حثّية</span><span lang="en">Inductive</span></span><span class="fb-f">$X > 0$</span></button>
+      <button type="button" class="fb-node c2" data-id="bs2" data-from="bp"><span class="fb-k"><span lang="ar">سعوية</span><span lang="en">Capacitive</span></span><span class="fb-f">$X < 0$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bs1 bs2"><span class="fb-k"><span lang="ar">الناتج: R و X بالأوم، والنوع</span><span lang="en">Result: R and X in ohms, and the type</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">resistance, reactance, inductive, capacitive</span>.</dd></dl></div>
-    <div class="fb-info" data-for="bp" hidden><h4>أجزاء المعاوقة: $\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</h4><dl>
-      <dt>الرموز</dt><dd>$R$ المقاومة (الحقيقي)، $X$ المفاعلة (التخيلي)، وكلهم بالأوم.</dd>
-      <dt>التحويل</dt><dd>$|\mathbf{Z}| = \sqrt{R^2 + X^2}$ و $\theta = \tan^{-1}\dfrac{X}{R}$.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4 = 5\angle 53.13^\circ$.</dd></dl></div>
-    <div class="fb-info" data-for="bs1" hidden><h4>حثّية: $X > 0$</h4><dl>
-      <dt>المعنى</dt><dd>مثل الملف. التيار يتأخر عن الجهد، و $\theta$ موجبة.</dd>
-      <dt>مثال سريع</dt><dd>$3 + j4$ حثّية.</dd></dl></div>
-    <div class="fb-info" data-for="bs2" hidden><h4>سعوية: $X < 0$</h4><dl>
-      <dt>المعنى</dt><dd>مثل المكثف. التيار يسبق الجهد، و $\theta$ سالبة.</dd>
-      <dt>مثال سريع</dt><dd>$5 - j2.5$ سعوية.</dd></dl></div>
-    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
-      <dt>ليش الزاوية تقول مين يسبق؟</dt><dd>لأن $\mathbf{V} = \mathbf{Z}\mathbf{I}$: زاوية الجهد = زاوية التيار + $\theta$.</dd></dl></div>
+    <div class="fb-info" data-for="br" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span class="ltr">resistance, reactance, inductive, capacitive</span>.</dd></dl></div>
+    <div class="fb-info" data-for="bp" hidden><h4><span lang="ar">أجزاء المعاوقة: $\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</span><span lang="en">Parts of impedance: $\mathbf{Z} = R + jX = |\mathbf{Z}|\angle\theta$</span></h4><dl>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$R$ المقاومة (الحقيقي)، $X$ المفاعلة (التخيلي)، وكلهم بالأوم.</span><span lang="en">$R$ is the resistance (real), $X$ the reactance (imaginary), all in ohms.</span></dd>
+      <dt><span lang="ar">التحويل</span><span lang="en">Conversion</span></dt><dd><span lang="ar">$|\mathbf{Z}| = \sqrt{R^2 + X^2}$ و $\theta = \tan^{-1}\dfrac{X}{R}$.</span><span lang="en">$|\mathbf{Z}| = \sqrt{R^2 + X^2}$ and $\theta = \tan^{-1}\dfrac{X}{R}$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\mathbf{Z} = 3 + j4 = 5\angle 53.13^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4><span lang="ar">حثّية: $X > 0$</span><span lang="en">Inductive: $X > 0$</span></h4><dl>
+      <dt><span lang="ar">المعنى</span><span lang="en">Meaning</span></dt><dd><span lang="ar">مثل الملف. التيار يتأخر عن الجهد، و $\theta$ موجبة.</span><span lang="en">Like an inductor. The current lags the voltage, and $\theta$ is positive.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$3 + j4$ حثّية.</span><span lang="en">$3 + j4$ is inductive.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4><span lang="ar">سعوية: $X < 0$</span><span lang="en">Capacitive: $X < 0$</span></h4><dl>
+      <dt><span lang="ar">المعنى</span><span lang="en">Meaning</span></dt><dd><span lang="ar">مثل المكثف. التيار يسبق الجهد، و $\theta$ سالبة.</span><span lang="en">Like a capacitor. The current leads the voltage, and $\theta$ is negative.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$5 - j2.5$ سعوية.</span><span lang="en">$5 - j2.5$ is capacitive.</span></dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">ليش الزاوية تقول مين يسبق؟</span><span lang="en">Why does the angle tell who leads?</span></dt><dd><span lang="ar">لأن $\mathbf{V} = \mathbf{Z}\mathbf{I}$: زاوية الجهد = زاوية التيار + $\theta$.</span><span lang="en">Because $\mathbf{V} = \mathbf{Z}\mathbf{I}$: voltage angle = current angle + $\theta$.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 3 ===== -->
   <div class="fboard" id="board3">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 3: DC والتردد العالي</h3>
+    <h3><span lang="ar">الشجرة 3: DC والتردد العالي</span><span lang="en">Tree 3: DC and high frequency</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="cr cl cc co">مسار: الملف والمكثف</button>
+      <button class="btn small" type="button" data-path="cr cl cc co"><span lang="ar">مسار: الملف والمكثف</span><span lang="en">Path: inductor and capacitor</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: «$\omega = 0$» (DC) أو «$\omega \to \infty$»</span></button>
-      <button type="button" class="fb-node c1" data-id="cl" data-from="cr"><span class="fb-k">الملف $j\omega L$</span><span class="fb-f">DC: قصر<br>عالي: فتح</span></button>
-      <button type="button" class="fb-node c2" data-id="cc" data-from="cr"><span class="fb-k">المكثف $\dfrac{1}{j\omega C}$</span><span class="fb-f">DC: فتح<br>عالي: قصر</span></button>
-      <button type="button" class="fb-node out c12" data-id="co" data-from="cl cc"><span class="fb-k">الناتج: ارسم الدائرة من جديد بالسلك أو الفتح</span></button>
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k"><span lang="ar">إذا جاك: «$\omega = 0$» (DC) أو «$\omega \to \infty$»</span><span lang="en">If you get: “$\omega = 0$” (DC) or “$\omega \to \infty$”</span></span></button>
+      <button type="button" class="fb-node c1" data-id="cl" data-from="cr"><span class="fb-k"><span lang="ar">الملف $j\omega L$</span><span lang="en">Inductor $j\omega L$</span></span><span class="fb-f"><span lang="ar">DC: قصر<br>عالي: فتح</span><span lang="en">DC: short<br>High: open</span></span></button>
+      <button type="button" class="fb-node c2" data-id="cc" data-from="cr"><span class="fb-k"><span lang="ar">المكثف $\dfrac{1}{j\omega C}$</span><span lang="en">Capacitor $\dfrac{1}{j\omega C}$</span></span><span class="fb-f"><span lang="ar">DC: فتح<br>عالي: قصر</span><span lang="en">DC: open<br>High: short</span></span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cl cc"><span class="fb-k"><span lang="ar">الناتج: ارسم الدائرة من جديد بالسلك أو الفتح</span><span lang="en">Result: redraw the circuit with the wire or the gap</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الشكل</dt><dd>يسألك وش يصير للملف أو المكثف عند الأطراف.</dd></dl></div>
-    <div class="fb-info" data-for="cl" hidden><h4>الملف: $\mathbf{Z} = j\omega L$</h4><dl>
-      <dt>DC</dt><dd>$\omega = 0$ فـ $\mathbf{Z} = 0$: سلك (Short circuit).</dd>
-      <dt>التردد العالي</dt><dd>$\mathbf{Z} \to \infty$: دائرة مفتوحة (Open circuit).</dd></dl></div>
-    <div class="fb-info" data-for="cc" hidden><h4>المكثف: $\mathbf{Z} = \dfrac{1}{j\omega C}$</h4><dl>
-      <dt>DC</dt><dd>$\mathbf{Z} \to \infty$: دائرة مفتوحة.</dd>
-      <dt>التردد العالي</dt><dd>$\mathbf{Z} \to 0$: سلك.</dd>
-      <dt>الخطأ الشائع</dt><dd>تعكسهم. تذكّر: المكثف يسد التيار المستمر.</dd></dl></div>
-    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
-      <dt>بعدها</dt><dd>حل الدائرة الجديدة كأنها مقاومات بس.</dd></dl></div>
+    <div class="fb-info" data-for="cr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الشكل</span><span lang="en">Form</span></dt><dd><span lang="ar">يسألك وش يصير للملف أو المكثف عند الأطراف.</span><span lang="en">You're asked what happens to the inductor or capacitor at the extremes.</span></dd></dl></div>
+    <div class="fb-info" data-for="cl" hidden><h4><span lang="ar">الملف: $\mathbf{Z} = j\omega L$</span><span lang="en">Inductor: $\mathbf{Z} = j\omega L$</span></h4><dl>
+      <dt>DC</dt><dd><span lang="ar">$\omega = 0$ فـ $\mathbf{Z} = 0$: سلك (Short circuit).</span><span lang="en">$\omega = 0$ so $\mathbf{Z} = 0$: a wire (short circuit).</span></dd>
+      <dt><span lang="ar">التردد العالي</span><span lang="en">High frequency</span></dt><dd><span lang="ar">$\mathbf{Z} \to \infty$: دائرة مفتوحة (Open circuit).</span><span lang="en">$\mathbf{Z} \to \infty$: an open circuit.</span></dd></dl></div>
+    <div class="fb-info" data-for="cc" hidden><h4><span lang="ar">المكثف: $\mathbf{Z} = \dfrac{1}{j\omega C}$</span><span lang="en">Capacitor: $\mathbf{Z} = \dfrac{1}{j\omega C}$</span></h4><dl>
+      <dt>DC</dt><dd><span lang="ar">$\mathbf{Z} \to \infty$: دائرة مفتوحة.</span><span lang="en">$\mathbf{Z} \to \infty$: an open circuit.</span></dd>
+      <dt><span lang="ar">التردد العالي</span><span lang="en">High frequency</span></dt><dd><span lang="ar">$\mathbf{Z} \to 0$: سلك.</span><span lang="en">$\mathbf{Z} \to 0$: a wire.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تعكسهم. تذكّر: المكثف يسد التيار المستمر.</span><span lang="en">Swapping them. Remember: a capacitor blocks DC.</span></dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">بعدها</span><span lang="en">After that</span></dt><dd><span lang="ar">حل الدائرة الجديدة كأنها مقاومات بس.</span><span lang="en">Solve the new circuit as if it had only resistors.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 4 ===== -->
   <div class="fboard" id="board4">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 4: المسامحة</h3>
+    <h3><span lang="ar">الشجرة 4: المسامحة</span><span lang="en">Tree 4: admittance</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="dr dy dg db do">مسار: من Z إلى Y</button>
+      <button class="btn small" type="button" data-path="dr dy dg db do"><span lang="ar">مسار: من Z إلى Y</span><span lang="en">Path: from Z to Y</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k">إذا جاك: «أوجد المسامحة $\mathbf{Y}$» أو «$G$ و $B$»</span></button>
-      <button type="button" class="fb-node c12" data-id="dy" data-from="dr"><span class="fb-k">المقلوب</span><span class="fb-f">$\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</span></button>
-      <button type="button" class="fb-node trick c1" data-id="dg" data-from="dy"><span class="fb-k">اضرب في المرافق</span><span class="fb-f">$G = \dfrac{R}{R^2 + X^2}$</span></button>
-      <button type="button" class="fb-node c2" data-id="db" data-from="dy"><span class="fb-k">الجزء التخيلي</span><span class="fb-f">$B = -\dfrac{X}{R^2 + X^2}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="do" data-from="dg db"><span class="fb-k">الناتج: $\mathbf{Y} = G + jB$ بالسيمنز</span></button>
+      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد المسامحة $\mathbf{Y}$» أو «$G$ و $B$»</span><span lang="en">If you get: “Find the admittance $\mathbf{Y}$” or “$G$ and $B$”</span></span></button>
+      <button type="button" class="fb-node c12" data-id="dy" data-from="dr"><span class="fb-k"><span lang="ar">المقلوب</span><span lang="en">Reciprocal</span></span><span class="fb-f">$\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</span></button>
+      <button type="button" class="fb-node trick c1" data-id="dg" data-from="dy"><span class="fb-k"><span lang="ar">اضرب في المرافق</span><span lang="en">Multiply by the conjugate</span></span><span class="fb-f">$G = \dfrac{R}{R^2 + X^2}$</span></button>
+      <button type="button" class="fb-node c2" data-id="db" data-from="dy"><span class="fb-k"><span lang="ar">الجزء التخيلي</span><span lang="en">Imaginary part</span></span><span class="fb-f">$B = -\dfrac{X}{R^2 + X^2}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="do" data-from="dg db"><span class="fb-k"><span lang="ar">الناتج: $\mathbf{Y} = G + jB$ بالسيمنز</span><span lang="en">Result: $\mathbf{Y} = G + jB$ in siemens</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="dr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">admittance, conductance, susceptance</span>، والوحدة سيمنز (S).</dd></dl></div>
-    <div class="fb-info" data-for="dy" hidden><h4>المقلوب: $\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</h4><dl>
-      <dt>لكل عنصر</dt><dd>$R \to \dfrac{1}{R}$، الملف $\dfrac{1}{j\omega L}$، المكثف $j\omega C$.</dd></dl></div>
-    <div class="fb-info" data-for="dg" hidden><h4>اضرب في المرافق: $G = \dfrac{R}{R^2 + X^2}$</h4><dl>
-      <dt>الحيلة</dt><dd>فوق وتحت في $R - jX$ عشان تشيل $j$ من المقام.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4$: $G = \dfrac{3}{25} = 0.12\ \text{S}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>$G = \dfrac{1}{R}$. هذا صح بس لما $X = 0$.</dd></dl></div>
-    <div class="fb-info" data-for="db" hidden><h4>المطاوعة: $B = -\dfrac{X}{R^2 + X^2}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 3 + j4$: $B = -\dfrac{4}{25} = -0.16\ \text{S}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى السالب.</dd></dl></div>
-    <div class="fb-info" data-for="do" hidden><h4>الناتج</h4><dl>
-      <dt>تأكد</dt><dd>$\mathbf{Y} \times \mathbf{Z} = 1$. مثلًا $(0.12 - j0.16)(3 + j4) = 1$ ✓</dd></dl></div>
+    <div class="fb-info" data-for="dr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span lang="ar"><span class="ltr">admittance, conductance, susceptance</span>، والوحدة سيمنز (S).</span><span lang="en"><span class="ltr">admittance, conductance, susceptance</span>, and the unit is the siemens (S).</span></dd></dl></div>
+    <div class="fb-info" data-for="dy" hidden><h4><span lang="ar">المقلوب: $\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</span><span lang="en">Reciprocal: $\mathbf{Y} = \dfrac{1}{\mathbf{Z}} = G + jB$</span></h4><dl>
+      <dt><span lang="ar">لكل عنصر</span><span lang="en">For each element</span></dt><dd><span lang="ar">$R \to \dfrac{1}{R}$، الملف $\dfrac{1}{j\omega L}$، المكثف $j\omega C$.</span><span lang="en">$R \to \dfrac{1}{R}$, inductor $\dfrac{1}{j\omega L}$, capacitor $j\omega C$.</span></dd></dl></div>
+    <div class="fb-info" data-for="dg" hidden><h4><span lang="ar">اضرب في المرافق: $G = \dfrac{R}{R^2 + X^2}$</span><span lang="en">Multiply by the conjugate: $G = \dfrac{R}{R^2 + X^2}$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">فوق وتحت في $R - jX$ عشان تشيل $j$ من المقام.</span><span lang="en">Top and bottom by $R - jX$ to remove $j$ from the denominator.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\mathbf{Z} = 3 + j4$: $G = \dfrac{3}{25} = 0.12\ \text{S}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">$G = \dfrac{1}{R}$. هذا صح بس لما $X = 0$.</span><span lang="en">$G = \dfrac{1}{R}$. Only true when $X = 0$.</span></dd></dl></div>
+    <div class="fb-info" data-for="db" hidden><h4><span lang="ar">المطاوعة: $B = -\dfrac{X}{R^2 + X^2}$</span><span lang="en">Susceptance: $B = -\dfrac{X}{R^2 + X^2}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\mathbf{Z} = 3 + j4$: $B = -\dfrac{4}{25} = -0.16\ \text{S}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى السالب.</span><span lang="en">Forgetting the minus sign.</span></dd></dl></div>
+    <div class="fb-info" data-for="do" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">$\mathbf{Y} \times \mathbf{Z} = 1$. مثلًا $(0.12 - j0.16)(3 + j4) = 1$ ✓</span><span lang="en">$\mathbf{Y} \times \mathbf{Z} = 1$. For example $(0.12 - j0.16)(3 + j4) = 1$ ✓</span></dd></dl></div>
   </div>
 
 </section>
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>دائرة RC: أوجد التيار والجهد</h2></div>
-  <div class="tags"><span class="tag">Example 9.9</span><span class="tag">معاوقة · قانون أوم</span></div>
-  <p>أوجد $i(t)$ والجهد $v(t)$ على المكثف في الدائرة:</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">دائرة RC: أوجد التيار والجهد</span><span lang="en">RC circuit: find the current and voltage</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.9</span><span class="tag"><span lang="ar">معاوقة · قانون أوم</span><span lang="en">impedance · Ohm's law</span></span></div>
+  <p><span lang="ar">أوجد $i(t)$ والجهد $v(t)$ على المكثف في الدائرة:</span><span lang="en">Find $i(t)$ and the capacitor voltage $v(t)$ in the circuit:</span></p>
   <figure class="fig">
     <svg viewBox="0 0 330 200" role="img" aria-label="مصدر جهد 10 cos 4t، مع مقاومة 5 أوم ومكثف 0.1 فاراد على التوالي، والجهد v على المكثف" style="max-width:340px">
       <circle class="wire" cx="55" cy="100" r="18"/>
@@ -359,133 +359,133 @@
       <text class="lbl" x="292" y="70" text-anchor="middle">+</text><text class="lbl" x="292" y="104" text-anchor="middle">v</text><text class="lbl" x="292" y="140" text-anchor="middle">−</text>
       <text class="lbl" x="55" y="188" text-anchor="middle">vs = 10 cos 4t</text>
     </svg>
-    <figcaption>Figure 9.16: مقاومة ومكثف على التوالي مع مصدر جهد.</figcaption>
+    <figcaption><span lang="ar">Figure 9.16: مقاومة ومكثف على التوالي مع مصدر جهد.</span><span lang="en">Figure 9.16: a resistor and a capacitor in series with a voltage source.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an az as ai av ao">فيزور، ثم المعاوقات، ثم أوم، ثم جهد المكثف</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar an az as ai av ao">فيزور، ثم المعاوقات، ثم أوم، ثم جهد المكثف</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar an az as ai av ao">phasor, then impedances, then Ohm, then the capacitor voltage</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">من المصدر $10\cos 4t$: الفيزور $10\angle 0^\circ$ و $\omega = 4$. المقاومة والمكثف على التوالي، فالمعاوقة الكلية مجموع معاوقتيهم (تفاصيل التوصيل في المحاضرة 5). بعدها قانون أوم: $\mathbf{I} = \mathbf{V}_s/\mathbf{Z}$.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">من المصدر $10\cos 4t$: الفيزور $10\angle 0^\circ$ و $\omega = 4$. المقاومة والمكثف على التوالي، فالمعاوقة الكلية مجموع معاوقتيهم (تفاصيل التوصيل في المحاضرة 5). بعدها قانون أوم: $\mathbf{I} = \mathbf{V}_s/\mathbf{Z}$.</span><span lang="en">From the source $10\cos 4t$: the phasor is $10\angle 0^\circ$ and $\omega = 4$. The resistor and capacitor are in series, so the total impedance is the sum of their impedances (connection details in lecture 5). Then Ohm's law: $\mathbf{I} = \mathbf{V}_s/\mathbf{Z}$.</span></p>
     </li>
     <li class="step">
-      <h4>المعاوقة الكلية <span class="const">1/j = −j</span></h4>
+      <h4><span lang="ar">المعاوقة الكلية <span class="const">1/j = −j</span></span><span lang="en">Total impedance <span class="const">1/j = −j</span></span></h4>
       <div class="m">\[\mathbf{Z} = 5 + \frac{1}{j\omega C} = 5 + \frac{1}{j4 \times 0.1} = 5 + \frac{1}{j0.4} = \X{5} \Y{- j2.5}\ \Omega\]</div>
-      <p class="why">$X = -2.5$ سالبة، يعني معاوقة سعوية، فنتوقع التيار يسبق.</p>
+      <p class="why"><span lang="ar">$X = -2.5$ سالبة، يعني معاوقة سعوية، فنتوقع التيار يسبق.</span><span lang="en">$X = -2.5$ is negative, so the impedance is capacitive, and we expect the current to lead.</span></p>
     </li>
     <li class="step">
-      <h4>التيار: قانون أوم <span class="const">اضرب في المرافق</span></h4>
+      <h4><span lang="ar">التيار: قانون أوم <span class="const">اضرب في المرافق</span></span><span lang="en">Current: Ohm's law <span class="const">multiply by the conjugate</span></span></h4>
       <div class="m">\[\begin{gathered}\mathbf{I} = \frac{\mathbf{V}_s}{\mathbf{Z}} = \frac{10\angle 0^\circ}{5 - j2.5} = \frac{10(5 + j2.5)}{5^2 + 2.5^2} \\ = 1.6 + j0.8 = \X{1.789}\angle\Z{26.57^\circ}\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>جهد المكثف: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_C$</h4>
+      <h4><span lang="ar">جهد المكثف: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_C$</span><span lang="en">Capacitor voltage: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_C$</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{V} = \frac{\mathbf{I}}{j\omega C} = \frac{1.789\angle 26.57^\circ}{j4 \times 0.1} = \frac{1.789\angle 26.57^\circ}{0.4\angle 90^\circ} \\ = \X{4.47}\angle\Z{-63.43^\circ}\ \text{V}\end{gathered}\]</div>
     </li>
     <li class="step final">
       <div class="result">$i(t) =$ $1.789\cos(4t + 26.57^\circ)\ \text{A},$ $v(t) =$ $4.47\cos(4t - 63.43^\circ)\ \text{V}$</div>
-      <p class="sanity">الفرق بين الزاويتين $26.57^\circ - (-63.43^\circ) = 90^\circ$: التيار يسبق جهد المكثف <span class="ltr">90°</span> بالضبط، مثل ما نتوقع ✓ وتقدر تشوف نفس $\mathbf{Z}$ في المختبر فوق.</p>
+      <p class="sanity"><span lang="ar">الفرق بين الزاويتين $26.57^\circ - (-63.43^\circ) = 90^\circ$: التيار يسبق جهد المكثف <span class="ltr">90°</span> بالضبط، مثل ما نتوقع ✓ وتقدر تشوف نفس $\mathbf{Z}$ في المختبر فوق.</span><span lang="en">The difference between the angles is $26.57^\circ - (-63.43^\circ) = 90^\circ$: the current leads the capacitor voltage by exactly <span class="ltr">90°</span>, as expected ✓ You can see the same $\mathbf{Z}$ in the lab above.</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس، والزوايا بالدرجات. قرّب لمنزلتين عشريتين على الأقل.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس، والزوايا بالدرجات. قرّب لمنزلتين عشريتين على الأقل.</span><span lang="en">Type just the number, with angles in degrees. Round to at least two decimal places.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>ملف $L = 0.2$ H عند $\omega = 50$ rad/s. كم المفاعلة $X$ بالأوم؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">ملف $L = 0.2$ H عند $\omega = 50$ rad/s. كم المفاعلة $X$ بالأوم؟</span><span lang="en">An inductor $L = 0.2$ H at $\omega = 50$ rad/s. What is the reactance $X$ in ohms?</span></p>
     <div class="check" data-answer="10"></div>
-    <details class="hint"><p>$\mathbf{Z}_L = j\omega L$، والمفاعلة هي الرقم اللي مع $j$.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{Z}_L = j\omega L$، والمفاعلة هي الرقم اللي مع $j$.</span><span lang="en">$\mathbf{Z}_L = j\omega L$, and the reactance is the number with $j$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_L = j(50)(0.2)$ $= j10$، يعني $X = 10\ \Omega$</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$\mathbf{Z}_L = j(50)(0.2)$ $= j10$، يعني $X = 10\ \Omega$</span><span lang="en">$\mathbf{Z}_L = j(50)(0.2)$ $= j10$, so $X = 10\ \Omega$</span></div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
-    <p>مكثف $C = 0.01$ F عند $\omega = 20$ rad/s. كم المفاعلة $X$ بالأوم؟ (انتبه للإشارة)</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">مكثف $C = 0.01$ F عند $\omega = 20$ rad/s. كم المفاعلة $X$ بالأوم؟ (انتبه للإشارة)</span><span lang="en">A capacitor $C = 0.01$ F at $\omega = 20$ rad/s. What is the reactance $X$ in ohms? (watch the sign)</span></p>
     <div class="check" data-answer="-5"></div>
     <details class="hint"><p>$\dfrac{1}{j} = -j$.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_C = \dfrac{1}{j(20)(0.01)}$ $= \dfrac{1}{j0.2} = -j5$، يعني $X = -5\ \Omega$</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$\mathbf{Z}_C = \dfrac{1}{j(20)(0.01)}$ $= \dfrac{1}{j0.2} = -j5$، يعني $X = -5\ \Omega$</span><span lang="en">$\mathbf{Z}_C = \dfrac{1}{j(20)(0.01)}$ $= \dfrac{1}{j0.2} = -j5$, so $X = -5\ \Omega$</span></div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
-    <p>$\mathbf{Z} = 3 + j4\ \Omega$. كم الزاوية $\theta$ بالدرجات؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">$\mathbf{Z} = 3 + j4\ \Omega$. كم الزاوية $\theta$ بالدرجات؟</span><span lang="en">$\mathbf{Z} = 3 + j4\ \Omega$. What is the angle $\theta$ in degrees?</span></p>
     <div class="check" data-answer="53.13"></div>
     <details class="hint"><p>$\theta = \tan^{-1}(X/R)$.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z} = 5\angle 53.13^\circ\ \Omega$</div><p class="sanity">$X$ موجبة، فالمعاوقة حثّية والتيار يتأخر عن الجهد <span class="ltr">53.13°</span>.</p></li>
+      <li class="step final"><div class="result">$\mathbf{Z} = 5\angle 53.13^\circ\ \Omega$</div><p class="sanity"><span lang="ar">$X$ موجبة، فالمعاوقة حثّية والتيار يتأخر عن الجهد <span class="ltr">53.13°</span>.</span><span lang="en">$X$ is positive, so the impedance is inductive and the current lags the voltage by <span class="ltr">53.13°</span>.</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
-    <p>لنفس $\mathbf{Z} = 3 + j4\ \Omega$، كم المواصلة $G$ بالسيمنز؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">لنفس $\mathbf{Z} = 3 + j4\ \Omega$، كم المواصلة $G$ بالسيمنز؟</span><span lang="en">For the same $\mathbf{Z} = 3 + j4\ \Omega$, what is the conductance $G$ in siemens?</span></p>
     <div class="check" data-answer="0.12"></div>
-    <details class="hint"><p>$G = \dfrac{R}{R^2 + X^2}$، مو $1/R$.</p></details>
+    <details class="hint"><p><span lang="ar">$G = \dfrac{R}{R^2 + X^2}$، مو $1/R$.</span><span lang="en">$G = \dfrac{R}{R^2 + X^2}$, not $1/R$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="result">$G = \dfrac{3}{3^2 + 4^2}$ $= \dfrac{3}{25} = 0.12$ S</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">تطبيق</span></div>
-    <p>نفس دائرة مثال 1 ($v_s = 10\cos 4t$ و $R = 5\ \Omega$)، بس بدل المكثف ملف $L = 1.25$ H. كم سعة التيار $|\mathbf{I}|$ بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين هـ</span><span lang="en">Exercise E</span></b><span class="lvl"><span lang="ar">تطبيق</span><span lang="en">Application</span></span></div>
+    <p><span lang="ar">نفس دائرة مثال 1 ($v_s = 10\cos 4t$ و $R = 5\ \Omega$)، بس بدل المكثف ملف $L = 1.25$ H. كم سعة التيار $|\mathbf{I}|$ بالأمبير؟</span><span lang="en">Same circuit as Example 1 ($v_s = 10\cos 4t$ and $R = 5\ \Omega$), but with an inductor $L = 1.25$ H instead of the capacitor. What is the current magnitude $|\mathbf{I}|$ in amperes?</span></p>
     <div class="check" data-answer="1.414"></div>
-    <details class="hint"><p>$\mathbf{Z} = 5 + j\omega L$، وبعدها $|\mathbf{I}| = |\mathbf{V}_s| / |\mathbf{Z}|$.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{Z} = 5 + j\omega L$، وبعدها $|\mathbf{I}| = |\mathbf{V}_s| / |\mathbf{Z}|$.</span><span lang="en">$\mathbf{Z} = 5 + j\omega L$, then $|\mathbf{I}| = |\mathbf{V}_s| / |\mathbf{Z}|$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>المعاوقة</h4><div class="m">\[\mathbf{Z} = 5 + j(4)(1.25) = 5 + j5 = 7.071\angle 45^\circ\ \Omega\]</div></li>
-      <li class="step final"><div class="result">$\mathbf{I} = \dfrac{10\angle 0^\circ}{7.071\angle 45^\circ}$ $= 1.414\angle{-45^\circ}$ A</div><p class="sanity">المعاوقة حثّية، والتيار متأخر <span class="ltr">45°</span> عن المصدر ✓</p></li>
+      <li class="step"><h4><span lang="ar">المعاوقة</span><span lang="en">The impedance</span></h4><div class="m">\[\mathbf{Z} = 5 + j(4)(1.25) = 5 + j5 = 7.071\angle 45^\circ\ \Omega\]</div></li>
+      <li class="step final"><div class="result">$\mathbf{I} = \dfrac{10\angle 0^\circ}{7.071\angle 45^\circ}$ $= 1.414\angle{-45^\circ}$ A</div><p class="sanity"><span lang="ar">المعاوقة حثّية، والتيار متأخر <span class="ltr">45°</span> عن المصدر ✓</span><span lang="en">The impedance is inductive, and the current lags the source by <span class="ltr">45°</span> ✓</span></p></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تحسب المواصلة $G = 1/R$</div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحسب المواصلة $G = 1/R$</span><span lang="en">Computing conductance as $G = 1/R$</span></div>
     <div class="pair"><div class="no">$\mathbf{Z} = 3 + j4 \Rightarrow G = \dfrac{1}{3}$</div><div class="yes">$G = \dfrac{3}{3^2 + 4^2} = 0.12$ S</div></div></div>
-  <div class="mk"><div class="mk-title">تكتب معاوقة المكثف غلط</div>
-    <div class="pair"><div class="no">$\mathbf{Z}_C = j\omega C$</div><div class="yes">$\mathbf{Z}_C = \dfrac{1}{j\omega C} = -\dfrac{j}{\omega C}$ (و $j\omega C$ هي مسامحته)</div></div></div>
-  <div class="mk"><div class="mk-title">تعكس الحثّي والسعوي</div>
-    <div class="pair"><div class="no">$X < 0$ يعني حثّية</div><div class="yes">$X > 0$ حثّية (ملف)، و $X < 0$ سعوية (مكثف)</div></div></div>
-  <div class="mk"><div class="mk-title">تخلط القصر والفتح في DC</div>
-    <div class="pair"><div class="no">المكثف في DC قصر</div><div class="yes">المكثف في DC مفتوح، والملف في DC قصر</div></div></div>
-  <div class="mk"><div class="mk-title">تعامل $\mathbf{Z}$ كأنها موجة</div>
-    <div class="pair"><div class="no">$z(t) = |\mathbf{Z}|\cos(\omega t + \theta)$</div><div class="yes">$\mathbf{Z}$ نسبة بين فيزورين، ما لها موجة في الزمن</div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تكتب معاوقة المكثف غلط</span><span lang="en">Writing the capacitor impedance wrong</span></div>
+    <div class="pair"><div class="no">$\mathbf{Z}_C = j\omega C$</div><div class="yes"><span lang="ar">$\mathbf{Z}_C = \dfrac{1}{j\omega C} = -\dfrac{j}{\omega C}$ (و $j\omega C$ هي مسامحته)</span><span lang="en">$\mathbf{Z}_C = \dfrac{1}{j\omega C} = -\dfrac{j}{\omega C}$ (and $j\omega C$ is its admittance)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تعكس الحثّي والسعوي</span><span lang="en">Swapping inductive and capacitive</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$X < 0$ يعني حثّية</span><span lang="en">$X < 0$ means inductive</span></div><div class="yes"><span lang="ar">$X > 0$ حثّية (ملف)، و $X < 0$ سعوية (مكثف)</span><span lang="en">$X > 0$ is inductive (inductor), and $X < 0$ is capacitive (capacitor)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تخلط القصر والفتح في DC</span><span lang="en">Mixing up short and open at DC</span></div>
+    <div class="pair"><div class="no"><span lang="ar">المكثف في DC قصر</span><span lang="en">A capacitor at DC is a short</span></div><div class="yes"><span lang="ar">المكثف في DC مفتوح، والملف في DC قصر</span><span lang="en">A capacitor at DC is open, and an inductor at DC is a short</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تعامل $\mathbf{Z}$ كأنها موجة</span><span lang="en">Treating $\mathbf{Z}$ like a wave</span></div>
+    <div class="pair"><div class="no">$z(t) = |\mathbf{Z}|\cos(\omega t + \theta)$</div><div class="yes"><span lang="ar">$\mathbf{Z}$ نسبة بين فيزورين، ما لها موجة في الزمن</span><span lang="en">$\mathbf{Z}$ is a ratio of two phasors; it has no time wave</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="1"><p>وحدة المعاوقة $\mathbf{Z}$:</p>
-      <button>الأوم (Ω)</button><button>السيمنز (S)</button><button>الهنري (H)</button><button>الفاراد (F)</button>
-      <p class="q-why">$\mathbf{Z} = \mathbf{V}/\mathbf{I}$، فولت على أمبير = أوم.</p></div>
-    <div class="q" data-answer="2"><p>معاوقة المكثف:</p>
+    <div class="q" data-answer="1"><p><span lang="ar">وحدة المعاوقة $\mathbf{Z}$:</span><span lang="en">The unit of impedance $\mathbf{Z}$:</span></p>
+      <button><span lang="ar">الأوم (Ω)</span><span lang="en">Ohm (Ω)</span></button><button><span lang="ar">السيمنز (S)</span><span lang="en">Siemens (S)</span></button><button><span lang="ar">الهنري (H)</span><span lang="en">Henry (H)</span></button><button><span lang="ar">الفاراد (F)</span><span lang="en">Farad (F)</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf{Z} = \mathbf{V}/\mathbf{I}$، فولت على أمبير = أوم.</span><span lang="en">$\mathbf{Z} = \mathbf{V}/\mathbf{I}$, volts over amperes = ohms.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">معاوقة المكثف:</span><span lang="en">The capacitor's impedance:</span></p>
       <button>$j\omega C$</button><button>$\dfrac{1}{j\omega C}$</button><button>$j\omega L$</button><button>$\dfrac{1}{C}$</button>
-      <p class="q-why">من $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$، والنسبة $\mathbf{V}/\mathbf{I}$ هي المعاوقة.</p></div>
+      <p class="q-why"><span lang="ar">من $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$، والنسبة $\mathbf{V}/\mathbf{I}$ هي المعاوقة.</span><span lang="en">From $\mathbf{V} = \dfrac{\mathbf{I}}{j\omega C}$, and the ratio $\mathbf{V}/\mathbf{I}$ is the impedance.</span></p></div>
     <div class="q" data-answer="2"><p>$\mathbf{Z} = 4 - j3\ \Omega$:</p>
-      <button>حثّية، والتيار يتأخر</button><button>سعوية، والتيار يسبق</button><button>مقاومة بس</button><button>ما نقدر نحدد</button>
-      <p class="q-why">$X = -3$ سالبة، يعني سعوية، والتيار يسبق الجهد.</p></div>
-    <div class="q" data-answer="1"><p>الملف عند DC ($\omega = 0$) يتصرف كأنه:</p>
-      <button>قصر (Short)</button><button>دائرة مفتوحة (Open)</button><button>مقاومة 1 Ω</button><button>مكثف</button>
-      <p class="q-why">$\mathbf{Z}_L = j\omega L = 0$ لما $\omega = 0$، يعني سلك.</p></div>
-    <div class="q" data-answer="2"><p>وحدة المسامحة $\mathbf{Y}$:</p>
-      <button>الأوم (Ω)</button><button>السيمنز (S)</button><button>الهنري (H)</button><button>الفولت (V)</button>
-      <p class="q-why">$\mathbf{Y} = 1/\mathbf{Z}$، فوحدتها مقلوب الأوم، وهي السيمنز.</p></div>
-    <div class="q" data-answer="2"><p>لو $\mathbf{Z} = R + jX$ و $X \neq 0$، المواصلة $G$ تساوي:</p>
+      <button><span lang="ar">حثّية، والتيار يتأخر</span><span lang="en">Inductive, and the current lags</span></button><button><span lang="ar">سعوية، والتيار يسبق</span><span lang="en">Capacitive, and the current leads</span></button><button><span lang="ar">مقاومة بس</span><span lang="en">Resistance only</span></button><button><span lang="ar">ما نقدر نحدد</span><span lang="en">Can't tell</span></button>
+      <p class="q-why"><span lang="ar">$X = -3$ سالبة، يعني سعوية، والتيار يسبق الجهد.</span><span lang="en">$X = -3$ is negative, so it's capacitive and the current leads the voltage.</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">الملف عند DC ($\omega = 0$) يتصرف كأنه:</span><span lang="en">At DC ($\omega = 0$) an inductor behaves like:</span></p>
+      <button><span lang="ar">قصر (Short)</span><span lang="en">A short</span></button><button><span lang="ar">دائرة مفتوحة (Open)</span><span lang="en">An open circuit</span></button><button><span lang="ar">مقاومة 1 Ω</span><span lang="en">A 1 Ω resistor</span></button><button><span lang="ar">مكثف</span><span lang="en">A capacitor</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf{Z}_L = j\omega L = 0$ لما $\omega = 0$، يعني سلك.</span><span lang="en">$\mathbf{Z}_L = j\omega L = 0$ when $\omega = 0$, so it's a wire.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">وحدة المسامحة $\mathbf{Y}$:</span><span lang="en">The unit of admittance $\mathbf{Y}$:</span></p>
+      <button><span lang="ar">الأوم (Ω)</span><span lang="en">Ohm (Ω)</span></button><button><span lang="ar">السيمنز (S)</span><span lang="en">Siemens (S)</span></button><button><span lang="ar">الهنري (H)</span><span lang="en">Henry (H)</span></button><button><span lang="ar">الفولت (V)</span><span lang="en">Volt (V)</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf{Y} = 1/\mathbf{Z}$، فوحدتها مقلوب الأوم، وهي السيمنز.</span><span lang="en">$\mathbf{Y} = 1/\mathbf{Z}$, so its unit is the inverse ohm, the siemens.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">لو $\mathbf{Z} = R + jX$ و $X \neq 0$، المواصلة $G$ تساوي:</span><span lang="en">If $\mathbf{Z} = R + jX$ and $X \neq 0$, the conductance $G$ equals:</span></p>
       <button>$\dfrac{1}{R}$</button><button>$\dfrac{R}{R^2 + X^2}$</button><button>$\dfrac{1}{X}$</button><button>$-\dfrac{X}{R^2 + X^2}$</button>
-      <p class="q-why">من ضرب المقلوب في المرافق. والخيار الأخير هو $B$ مو $G$.</p></div>
+      <p class="q-why"><span lang="ar">من ضرب المقلوب في المرافق. والخيار الأخير هو $B$ مو $G$.</span><span lang="en">From multiplying the reciprocal by the conjugate. The last option is $B$, not $G$.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر مثلث المعاوقة: Z = R + jX لمقاومة مع ملف أو مكثف على التوالي */
 (function () {
@@ -524,7 +524,7 @@
     $('rZ').textContent = `${r2(R)} ${X < 0 ? '−' : '+'} j${r2(Math.abs(X))} Ω`;
     $('rZp').textContent = `${r2(mag)} ∠ ${th < 0 ? '−' : ''}${Math.abs(th).toFixed(2)}° Ω`;
     $('rY').textContent = `${r3(G)} ${B < 0 ? '−' : '+'} j${r3(Math.abs(B))} S`;
-    $('rT').textContent = X > 0 ? 'حثّية: التيار يتأخر عن الجهد' : 'سعوية: التيار يسبق الجهد';
+    $('rT').innerHTML = X > 0 ? Lec.L('حثّية: التيار يتأخر عن الجهد', 'Inductive: current lags voltage') : Lec.L('سعوية: التيار يسبق الجهد', 'Capacitive: current leads voltage');
   }
   document.querySelectorAll('.z-lab [data-el]').forEach(b => b.addEventListener('click', () => {
     el = b.dataset.el;

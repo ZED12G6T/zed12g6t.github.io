@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 2 - Complex Numbers & Phasors" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 2 - Complex Numbers & Phasors">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,46 +25,46 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 2 · تحليل دوائر كهربائية 2 · Ch 9.3</p>
-  <h1><span>الفيزورات (Phasors)</span> <span class="h1-math ltr">$V_m\cos(\omega t + \phi) \;\Leftrightarrow\; \X{V_m}\angle\Z{\phi}$</span></h1>
-  <p class="lead">في المحاضرة 1 عرفنا إن أي موجة تنوصف بثلاث أرقام: السعة والتردد والطور. بس الحساب المباشر على الموجات متعب: جمع موجتين يحتاج قوانين مثلثات، والتفاضل يقلب cos إلى sin. الحل إننا نكتب كل موجة <b>كرقم مركب</b> (Complex Number) واحد يحمل السعة والطور، واسمه <b>فيزور</b> (Phasor). بعدها يصير الحساب جمع وضرب أرقام عادية.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 2 · تحليل دوائر كهربائية 2 · Ch 9.3</span><span lang="en">Lecture 2 · Circuit Analysis 2 · Ch 9.3</span></p>
+  <h1><span><span lang="ar">الفيزورات (Phasors)</span><span lang="en">Phasors</span></span> <span class="h1-math ltr">$V_m\cos(\omega t + \phi) \;\Leftrightarrow\; \X{V_m}\angle\Z{\phi}$</span></h1>
+  <p class="lead"><span lang="ar">في المحاضرة 1 عرفنا إن أي موجة تنوصف بثلاث أرقام: السعة والتردد والطور. بس الحساب المباشر على الموجات متعب: جمع موجتين يحتاج قوانين مثلثات، والتفاضل يقلب cos إلى sin. الحل إننا نكتب كل موجة <b>كرقم مركب</b> (Complex Number) واحد يحمل السعة والطور، واسمه <b>فيزور</b> (Phasor). بعدها يصير الحساب جمع وضرب أرقام عادية.</span><span lang="en">In lecture 1 we saw that any wave is described by three numbers: amplitude, frequency and phase. But working directly with waves is tiring: adding two waves needs trig identities, and differentiating turns cos into sin. The fix is to write each wave as one <b>complex number</b> that carries the amplitude and the phase. It's called a <b>phasor</b>. After that, the math becomes ordinary adding and multiplying of numbers.</span></p>
   <div class="xyz-bar">
-    <span class="x">المقدار $V_m$</span><span class="y">$\omega$ و $j$</span><span class="z">الزاوية $\phi$</span>
-    <small>← نفس ألوان المحاضرة 1: كل رقم له لون ثابت</small>
+    <span class="x"><span lang="ar">المقدار $V_m$</span><span lang="en">Magnitude $V_m$</span></span><span class="y"><span lang="ar">$\omega$ و $j$</span><span lang="en">$\omega$ and $j$</span></span><span class="z"><span lang="ar">الزاوية $\phi$</span><span lang="en">Angle $\phi$</span></span>
+    <small><span lang="ar">← نفس ألوان المحاضرة 1: كل رقم له لون ثابت</span><span lang="en">← same colors as lecture 1: each number keeps its color</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>الفيزور رقم مركب فيه السعة والطور: $V_m\cos(\omega t + \phi) \Rightarrow \X{V_m}\angle\Z{\phi}$. التردد $\omega$ ما نكتبه، لأنه نفسه لكل الجهود والتيارات في الدائرة.</li>
-      <li>قبل التحويل لازم تكون الموجة <b>cos</b> وقدامها رقم موجب. لو كانت sin: انقص <span class="ltr">90°</span> من الزاوية.</li>
-      <li>الجمع والطرح أسهل بالشكل الديكارتي $x + jy$، والضرب والقسمة أسهل بالشكل القطبي $r\angle\phi$. والتفاضل يصير ضرب في $\Y{j\omega}$، والتكامل قسمة عليه.</li>
+      <li><span lang="ar">الفيزور رقم مركب فيه السعة والطور: $V_m\cos(\omega t + \phi) \Rightarrow \X{V_m}\angle\Z{\phi}$. التردد $\omega$ ما نكتبه، لأنه نفسه لكل الجهود والتيارات في الدائرة.</span><span lang="en">A phasor is a complex number holding the amplitude and phase: $V_m\cos(\omega t + \phi) \Rightarrow \X{V_m}\angle\Z{\phi}$. We don't write the frequency $\omega$, because it is the same for every voltage and current in the circuit.</span></li>
+      <li><span lang="ar">قبل التحويل لازم تكون الموجة <b>cos</b> وقدامها رقم موجب. لو كانت sin: انقص <span class="ltr">90°</span> من الزاوية.</span><span lang="en">Before converting, the wave must be <b>cos</b> with a positive number in front. If it is sin: subtract <span class="ltr">90°</span> from the angle.</span></li>
+      <li><span lang="ar">الجمع والطرح أسهل بالشكل الديكارتي $x + jy$، والضرب والقسمة أسهل بالشكل القطبي $r\angle\phi$. والتفاضل يصير ضرب في $\Y{j\omega}$، والتكامل قسمة عليه.</span><span lang="en">Adding and subtracting are easier in rectangular form $x + jy$; multiplying and dividing are easier in polar form $r\angle\phi$. Differentiating becomes multiplying by $\Y{j\omega}$, and integrating becomes dividing by it.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يشرح الأعداد المركبة والفيزورات والأمثلة الثلاثة خطوة بخطوة في 10 دقائق، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يشرح الأعداد المركبة والفيزورات والأمثلة الثلاثة خطوة بخطوة في 10 دقائق، شوفه قبل أو بعد القراءة</span><span lang="en">A video explaining complex numbers, phasors and the three examples step by step in 10 minutes. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture2.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture2.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture2.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture2.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 الأعداد المركبة ================= -->
 <section class="card" id="complex" data-num="01" data-nav="الأعداد المركبة|Complex">
-  <h2>الرقم المركب: رقم له جزئين</h2>
-  <p class="sub">تذكير سريع باللي تحتاجه من الرياضيات بس</p>
+  <h2><span lang="ar">الرقم المركب: رقم له جزئين</span><span lang="en">A complex number: a number with two parts</span></h2>
+  <p class="sub"><span lang="ar">تذكير سريع باللي تحتاجه من الرياضيات بس</span><span lang="en">A quick reminder of just the math you need</span></p>
 
-  <p>الرقم المركب (Complex Number) يتكون من جزئين: <b>جزء حقيقي</b> (Real part) $x$، و<b>جزء تخيلي</b> (Imaginary part) $y$ مضروب في $j$، و $j = \sqrt{-1}$ يعني $j^2 = -1$. في الكهرباء نكتب $j$ بدل $i$، لأن $i$ محجوزة للتيار. وتقدر تتخيل الرقم المركب كسهم في مستوى: المحور الأفقي للجزء الحقيقي، والمحور العمودي للجزء التخيلي. وهذا السهم نقدر نكتبه بثلاث طرق:</p>
+  <p><span lang="ar">الرقم المركب (Complex Number) يتكون من جزئين: <b>جزء حقيقي</b> (Real part) $x$، و<b>جزء تخيلي</b> (Imaginary part) $y$ مضروب في $j$، و $j = \sqrt{-1}$ يعني $j^2 = -1$. في الكهرباء نكتب $j$ بدل $i$، لأن $i$ محجوزة للتيار. وتقدر تتخيل الرقم المركب كسهم في مستوى: المحور الأفقي للجزء الحقيقي، والمحور العمودي للجزء التخيلي. وهذا السهم نقدر نكتبه بثلاث طرق:</span><span lang="en">A complex number has two parts: a <b>real part</b> $x$, and an <b>imaginary part</b> $y$ multiplied by $j$, where $j = \sqrt{-1}$, so $j^2 = -1$. In electrical engineering we write $j$ instead of $i$, because $i$ is taken for current. You can picture a complex number as an arrow in a plane: the horizontal axis is the real part and the vertical axis is the imaginary part. We can write this arrow in three ways:</span></p>
 
   <div class="grid-3">
-    <div class="tile"><div class="t-top">الشكل الديكارتي (Rectangular)</div><div class="t-math">$z = x + jy$</div><div class="t-desc">كم تمشي يمين ($x$)، وكم تطلع فوق ($y$). الأسهل للجمع والطرح.</div></div>
-    <div class="tile hl"><div class="t-top">الشكل القطبي (Polar)</div><div class="t-math">$z = \X{r}\angle\Z{\phi}$</div><div class="t-desc">طول السهم $r$، وزاويته $\phi$ من المحور الأفقي. الأسهل للضرب والقسمة.</div></div>
-    <div class="tile"><div class="t-top">الشكل الأسي (Exponential)</div><div class="t-math">$z = \X{r}\,e^{j\Z{\phi}}$</div><div class="t-desc">نفس القطبي بالضبط بكتابة ثانية، ومنه تطلع فكرة الفيزور.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">الشكل الديكارتي (Rectangular)</span><span lang="en">Rectangular form</span></div><div class="t-math">$z = x + jy$</div><div class="t-desc"><span lang="ar">كم تمشي يمين ($x$)، وكم تطلع فوق ($y$). الأسهل للجمع والطرح.</span><span lang="en">How far you go right ($x$), and how far you go up ($y$). Easiest for adding and subtracting.</span></div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">الشكل القطبي (Polar)</span><span lang="en">Polar form</span></div><div class="t-math">$z = \X{r}\angle\Z{\phi}$</div><div class="t-desc"><span lang="ar">طول السهم $r$، وزاويته $\phi$ من المحور الأفقي. الأسهل للضرب والقسمة.</span><span lang="en">The arrow's length $r$, and its angle $\phi$ from the horizontal axis. Easiest for multiplying and dividing.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">الشكل الأسي (Exponential)</span><span lang="en">Exponential form</span></div><div class="t-math">$z = \X{r}\,e^{j\Z{\phi}}$</div><div class="t-desc"><span lang="ar">نفس القطبي بالضبط بكتابة ثانية، ومنه تطلع فكرة الفيزور.</span><span lang="en">Exactly the same as polar, written another way. The phasor idea comes from it.</span></div></div>
   </div>
 
   <figure class="fig">
@@ -82,92 +82,92 @@
       <text class="lbl" x="160" y="198" text-anchor="middle">x = r cos φ</text>
       <text class="lbl" x="258" y="124">y = r sin φ</text>
     </svg>
-    <figcaption>التحويل بين الشكلين: $r = \sqrt{x^2+y^2}$ و $\phi = \tan^{-1}(y/x)$، والعكس $x = r\cos\phi$ و $y = r\sin\phi$</figcaption>
+    <figcaption><span lang="ar">التحويل بين الشكلين: $r = \sqrt{x^2+y^2}$ و $\phi = \tan^{-1}(y/x)$، والعكس $x = r\cos\phi$ و $y = r\sin\phi$</span><span lang="en">Converting between the forms: $r = \sqrt{x^2+y^2}$ and $\phi = \tan^{-1}(y/x)$, and back: $x = r\cos\phi$ and $y = r\sin\phi$</span></figcaption>
   </figure>
 
-  <h3>العمليات: كل عملية لها شكل أسهل</h3>
+  <h3><span lang="ar">العمليات: كل عملية لها شكل أسهل</span><span lang="en">Operations: each one has an easier form</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">الجمع والطرح · بالديكارتي</div><div class="t-math">$z_1 \pm z_2 = (x_1 \pm x_2) + j(y_1 \pm y_2)$</div><div class="t-desc">اجمع الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</div></div>
-    <div class="tile"><div class="t-name">الضرب · بالقطبي</div><div class="t-math">$z_1 z_2 = \X{r_1 r_2}\angle\Z{(\phi_1 + \phi_2)}$</div><div class="t-desc">اضرب الأطوال، واجمع الزوايا.</div></div>
-    <div class="tile"><div class="t-name">القسمة · بالقطبي</div><div class="t-math">$\dfrac{z_1}{z_2} = \X{\dfrac{r_1}{r_2}}\angle\Z{(\phi_1 - \phi_2)}$</div><div class="t-desc">اقسم الأطوال، واطرح الزوايا.</div></div>
-    <div class="tile"><div class="t-name">المرافق (Conjugate)</div><div class="t-math">$z^* = x - jy = \X{r}\angle\Z{-\phi}$</div><div class="t-desc">اعكس إشارة الجزء التخيلي، يعني اعكس إشارة الزاوية.</div></div>
-    <div class="tile"><div class="t-name">المقلوب (Reciprocal)</div><div class="t-math">$\dfrac{1}{z} = \X{\dfrac{1}{r}}\angle\Z{-\phi}$</div><div class="t-desc">اقلب الطول، واعكس إشارة الزاوية.</div></div>
-    <div class="tile"><div class="t-name">الجذر (Square Root)</div><div class="t-math">$\sqrt{z} = \X{\sqrt{r}}\angle\Z{\dfrac{\phi}{2}}$</div><div class="t-desc">جذر الطول، ونص الزاوية.</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">الجمع والطرح · بالديكارتي</span><span lang="en">Add and subtract · in rectangular</span></div><div class="t-math">$z_1 \pm z_2 = (x_1 \pm x_2) + j(y_1 \pm y_2)$</div><div class="t-desc"><span lang="ar">اجمع الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</span><span lang="en">Add real to real, and imaginary to imaginary.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">الضرب · بالقطبي</span><span lang="en">Multiply · in polar</span></div><div class="t-math">$z_1 z_2 = \X{r_1 r_2}\angle\Z{(\phi_1 + \phi_2)}$</div><div class="t-desc"><span lang="ar">اضرب الأطوال، واجمع الزوايا.</span><span lang="en">Multiply the lengths, add the angles.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">القسمة · بالقطبي</span><span lang="en">Divide · in polar</span></div><div class="t-math">$\dfrac{z_1}{z_2} = \X{\dfrac{r_1}{r_2}}\angle\Z{(\phi_1 - \phi_2)}$</div><div class="t-desc"><span lang="ar">اقسم الأطوال، واطرح الزوايا.</span><span lang="en">Divide the lengths, subtract the angles.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">المرافق (Conjugate)</span><span lang="en">Conjugate</span></div><div class="t-math">$z^* = x - jy = \X{r}\angle\Z{-\phi}$</div><div class="t-desc"><span lang="ar">اعكس إشارة الجزء التخيلي، يعني اعكس إشارة الزاوية.</span><span lang="en">Flip the sign of the imaginary part, which flips the sign of the angle.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">المقلوب (Reciprocal)</span><span lang="en">Reciprocal</span></div><div class="t-math">$\dfrac{1}{z} = \X{\dfrac{1}{r}}\angle\Z{-\phi}$</div><div class="t-desc"><span lang="ar">اقلب الطول، واعكس إشارة الزاوية.</span><span lang="en">Invert the length, and flip the sign of the angle.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">الجذر (Square Root)</span><span lang="en">Square root</span></div><div class="t-math">$\sqrt{z} = \X{\sqrt{r}}\angle\Z{\dfrac{\phi}{2}}$</div><div class="t-desc"><span lang="ar">جذر الطول، ونص الزاوية.</span><span lang="en">Square root of the length, and half the angle.</span></div></div>
   </div>
-  <div class="callout good"><strong>🧮 من السلايد:</strong> الدكتور كاتب إن طرق التحويل والعمليات موجودة في الكتاب، و<b>تقدر تستخدم الآلة الحاسبة</b>. أغلب الحاسبات العلمية فيها Pol و Rec أو وضع Complex، فتدرّب عليها قبل الاختبار.</div>
+  <div class="callout good"><span lang="ar"><strong>🧮 من السلايد:</strong> الدكتور كاتب إن طرق التحويل والعمليات موجودة في الكتاب، و<b>تقدر تستخدم الآلة الحاسبة</b>. أغلب الحاسبات العلمية فيها Pol و Rec أو وضع Complex، فتدرّب عليها قبل الاختبار.</span><span lang="en"><strong>🧮 From the slides:</strong> the instructor notes that the conversion methods and operations are in the textbook, and <b>you may use the calculator</b>. Most scientific calculators have Pol and Rec or a Complex mode, so practice with it before the exam.</span></div>
 
-  <h3>المصطلحات بكلام بسيط</h3>
+  <h3><span lang="ar">المصطلحات بكلام بسيط</span><span lang="en">The terms in plain words</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">Complex Number · رقم مركب</div><div class="t-desc">رقم له جزء حقيقي وجزء تخيلي، مثل $3 + j4$.</div></div>
-    <div class="tile"><div class="t-name">Phasor · فيزور</div><div class="t-desc">رقم مركب يمثل موجة جيبية: طوله سعة الموجة، وزاويته طورها.</div></div>
-    <div class="tile"><div class="t-name">Conjugate · المرافق</div><div class="t-desc">نفس الرقم، بس إشارة الجزء التخيلي معكوسة.</div></div>
-    <div class="tile"><div class="t-name">Phasor Diagram · مخطط الفيزورات</div><div class="t-desc">رسم يجمع الفيزورات كأسهم في مستوى واحد، عشان تقارن بينها بالنظر.</div></div>
-    <div class="tile"><div class="t-name">Time Domain · المجال الزمني</div><div class="t-desc">الموجة مكتوبة كدالة في الزمن، مثل $v(t)$.</div></div>
-    <div class="tile"><div class="t-name">Phasor Domain · مجال الفيزور</div><div class="t-desc">نفس الموجة مكتوبة كفيزور ثابت مثل $\mathbf{V}$. ويسمونه كمان مجال التردد (Frequency Domain).</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Complex Number · رقم مركب</span><span lang="en">Complex number</span></div><div class="t-desc"><span lang="ar">رقم له جزء حقيقي وجزء تخيلي، مثل $3 + j4$.</span><span lang="en">A number with a real part and an imaginary part, like $3 + j4$.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Phasor · فيزور</span><span lang="en">Phasor</span></div><div class="t-desc"><span lang="ar">رقم مركب يمثل موجة جيبية: طوله سعة الموجة، وزاويته طورها.</span><span lang="en">A complex number that represents a sinusoid: its length is the wave's amplitude, and its angle is the wave's phase.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Conjugate · المرافق</span><span lang="en">Conjugate</span></div><div class="t-desc"><span lang="ar">نفس الرقم، بس إشارة الجزء التخيلي معكوسة.</span><span lang="en">The same number, with the sign of the imaginary part flipped.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Phasor Diagram · مخطط الفيزورات</span><span lang="en">Phasor diagram</span></div><div class="t-desc"><span lang="ar">رسم يجمع الفيزورات كأسهم في مستوى واحد، عشان تقارن بينها بالنظر.</span><span lang="en">A drawing that puts phasors as arrows in one plane, so you can compare them at a glance.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Time Domain · المجال الزمني</span><span lang="en">Time domain</span></div><div class="t-desc"><span lang="ar">الموجة مكتوبة كدالة في الزمن، مثل $v(t)$.</span><span lang="en">The wave written as a function of time, like $v(t)$.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">Phasor Domain · مجال الفيزور</span><span lang="en">Phasor domain</span></div><div class="t-desc"><span lang="ar">نفس الموجة مكتوبة كفيزور ثابت مثل $\mathbf{V}$. ويسمونه كمان مجال التردد (Frequency Domain).</span><span lang="en">The same wave written as a constant phasor like $\mathbf{V}$. Also called the frequency domain.</span></div></div>
   </div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>احسب الأرقام المركبة</h2></div>
-  <div class="tags"><span class="tag">Example 9.3</span><span class="tag">جمع · ضرب · قسمة · جذر</span></div>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">احسب الأرقام المركبة</span><span lang="en">Evaluate the complex numbers</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.3</span><span class="tag"><span lang="ar">جمع · ضرب · قسمة · جذر</span><span lang="en">add · multiply · divide · root</span></span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ \left(40\angle 50^\circ + 20\angle{-30^\circ}\right)^{1/2} \\[6pt] \text{(b)}\ \ \frac{10\angle{-30^\circ} + (3 - j4)}{(2 + j4)(3 - j5)^*}\end{gathered}\]</div>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar as1 aa1 as2 aa2 ab2 ao">جمع بالديكارتي، ثم قطبي للضرب والقسمة والجذر</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar as1 aa1 as2 aa2 ab2 ao">جمع بالديكارتي، ثم قطبي للضرب والقسمة والجذر</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar as1 aa1 as2 aa2 ab2 ao">add in rectangular, then polar to multiply, divide and take roots</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">القاعدة: قبل كل عملية، حوّل للشكل الأسهل لها. (a) فيها جمع (نحتاج الديكارتي) وبعده جذر (نحتاج القطبي). (b) فيها جمع في البسط، وضرب في المقام، وبعدها قسمة.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">القاعدة: قبل كل عملية، حوّل للشكل الأسهل لها. (a) فيها جمع (نحتاج الديكارتي) وبعده جذر (نحتاج القطبي). (b) فيها جمع في البسط، وضرب في المقام، وبعدها قسمة.</span><span lang="en">The rule: before each operation, convert to the form that makes it easiest. (a) has an addition (needs rectangular) and then a root (needs polar). (b) has an addition in the numerator, a multiplication in the denominator, then a division.</span></p>
     </li>
     <li class="step">
-      <h4>(a) حوّل للديكارتي عشان تجمع</h4>
+      <h4><span lang="ar">(a) حوّل للديكارتي عشان تجمع</span><span lang="en">(a) Convert to rectangular to add</span></h4>
       <div class="m">\[\begin{gathered}40\angle 50^\circ = 40(\cos 50^\circ + j\sin 50^\circ) = 25.71 + j30.64 \\ 20\angle{-30^\circ} = 17.32 - j10\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(a) اجمع، وبعدها ارجع للقطبي</h4>
+      <h4><span lang="ar">(a) اجمع، وبعدها ارجع للقطبي</span><span lang="en">(a) Add, then go back to polar</span></h4>
       <div class="m">\[43.03 + j20.64 = \X{47.72}\angle\Z{25.63^\circ}\]</div>
     </li>
     <li class="step">
-      <h4>(a) الجذر <span class="const">جذر الطول ونص الزاوية</span></h4>
+      <h4><span lang="ar">(a) الجذر <span class="const">جذر الطول ونص الزاوية</span></span><span lang="en">(a) The root <span class="const">root of the length, half the angle</span></span></h4>
       <div class="m">\[\sqrt{47.72}\;\angle\,\frac{25.63^\circ}{2} = \X{6.91}\angle\Z{12.81^\circ}\]</div>
     </li>
     <li class="step">
-      <h4>(b) البسط: حوّل واجمع</h4>
+      <h4><span lang="ar">(b) البسط: حوّل واجمع</span><span lang="en">(b) Numerator: convert and add</span></h4>
       <div class="m">\[\begin{gathered}8.66 - j5 + (3 - j4) = 11.66 - j9 \\ = \X{14.73}\angle\Z{-37.66^\circ}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(b) المقام: المرافق أول، وبعدها اضرب</h4>
+      <h4><span lang="ar">(b) المقام: المرافق أول، وبعدها اضرب</span><span lang="en">(b) Denominator: conjugate first, then multiply</span></h4>
       <div class="m">\[\begin{gathered}(3 - j5)^* = 3 + j5 \\ (2 + j4)(3 + j5) = 6 + j10 + j12 + j^2\,20 \\ = -14 + j22 = \X{26.08}\angle\Z{122.47^\circ}\end{gathered}\]</div>
-      <p class="why">تذكّر إن $j^2 = -1$، فـ $j^2\,20$ تصير $-20$. والنقطة $(-14, 22)$ في الربع الثاني، فالزاوية $180^\circ - 57.53^\circ = 122.47^\circ$.</p>
+      <p class="why"><span lang="ar">تذكّر إن $j^2 = -1$، فـ $j^2\,20$ تصير $-20$. والنقطة $(-14, 22)$ في الربع الثاني، فالزاوية $180^\circ - 57.53^\circ = 122.47^\circ$.</span><span lang="en">Remember $j^2 = -1$, so $j^2\,20$ becomes $-20$. The point $(-14, 22)$ is in the second quadrant, so the angle is $180^\circ - 57.53^\circ = 122.47^\circ$.</span></p>
     </li>
     <li class="step">
-      <h4>(b) اقسم <span class="const">اقسم الأطوال واطرح الزوايا</span></h4>
+      <h4><span lang="ar">(b) اقسم <span class="const">اقسم الأطوال واطرح الزوايا</span></span><span lang="en">(b) Divide <span class="const">divide the lengths, subtract the angles</span></span></h4>
       <div class="m">\[\frac{14.73\angle{-37.66^\circ}}{26.08\angle 122.47^\circ} = \X{0.565}\angle\Z{-160.13^\circ}\]</div>
     </li>
     <li class="step final">
       <div class="result">(a) $6.91\angle 12.81^\circ$ &nbsp;·&nbsp; (b) $0.565\angle{-160.13^\circ}$</div>
-      <p class="sanity">تأكد من (a): $6.91^2 \approx 47.7$ و $2 \times 12.81^\circ \approx 25.6^\circ$، يعني رجعنا لنفس الرقم قبل الجذر ✓</p>
+      <p class="sanity"><span lang="ar">تأكد من (a): $6.91^2 \approx 47.7$ و $2 \times 12.81^\circ \approx 25.6^\circ$، يعني رجعنا لنفس الرقم قبل الجذر ✓</span><span lang="en">Check (a): $6.91^2 \approx 47.7$ and $2 \times 12.81^\circ \approx 25.6^\circ$, so we get back the number before the root ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= 02 الفيزور ================= -->
 <section class="card" id="phasor" data-num="02" data-nav="الفيزور|Phasor">
-  <h2>من موجة إلى سهم</h2>
-  <p class="sub">الفيزور = صورة للموجة عند اللحظة $t = 0$</p>
+  <h2><span lang="ar">من موجة إلى سهم</span><span lang="en">From a wave to an arrow</span></h2>
+  <p class="sub"><span lang="ar">الفيزور = صورة للموجة عند اللحظة $t = 0$</span><span lang="en">The phasor = a snapshot of the wave at $t = 0$</span></p>
 
-  <p>الربط بين الموجات والأرقام المركبة يجي من <b>متطابقة أويلر</b> (Euler's Identity): $e^{j\phi} = \cos\phi + j\sin\phi$. يعني $\cos\phi$ هو الجزء الحقيقي (Re) من $e^{j\phi}$. فأي موجة نقدر نكتبها كذا:</p>
+  <p><span lang="ar">الربط بين الموجات والأرقام المركبة يجي من <b>متطابقة أويلر</b> (Euler's Identity): $e^{j\phi} = \cos\phi + j\sin\phi$. يعني $\cos\phi$ هو الجزء الحقيقي (Re) من $e^{j\phi}$. فأي موجة نقدر نكتبها كذا:</span><span lang="en">The link between waves and complex numbers comes from <b>Euler's identity</b>: $e^{j\phi} = \cos\phi + j\sin\phi$. So $\cos\phi$ is the real part (Re) of $e^{j\phi}$. That means any wave can be written like this:</span></p>
   <div class="m big">\[\begin{gathered}V_m\cos(\omega t + \phi) \\ = \text{Re}\big(\,\underbrace{\X{V_m}e^{j\Z{\phi}}}_{\mathbf{V}}\; e^{j\Y{\omega} t}\big)\end{gathered}\]</div>
-  <p>الجزء $e^{j\omega t}$ موجود في كل الجهود والتيارات في الدائرة، لأنهم كلهم يتذبذبون بنفس تردد المصدر $\omega$، فما يفرّق بينهم شي. اللي يفرّق موجة عن موجة هو الرقم $\mathbf{V} = V_m\angle\phi$، وهذا هو <b>الفيزور</b>: طوله سعة الموجة، وزاويته طورها.</p>
+  <p><span lang="ar">الجزء $e^{j\omega t}$ موجود في كل الجهود والتيارات في الدائرة، لأنهم كلهم يتذبذبون بنفس تردد المصدر $\omega$، فما يفرّق بينهم شي. اللي يفرّق موجة عن موجة هو الرقم $\mathbf{V} = V_m\angle\phi$، وهذا هو <b>الفيزور</b>: طوله سعة الموجة، وزاويته طورها.</span><span lang="en">The factor $e^{j\omega t}$ appears in every voltage and current in the circuit, because they all oscillate at the same source frequency $\omega$, so it doesn't tell them apart. What makes one wave different from another is the number $\mathbf{V} = V_m\angle\phi$, and that is the <b>phasor</b>: its length is the wave's amplitude, and its angle is the wave's phase.</span></p>
 
   <div class="ph-lab">
-    <h3>🎛️ الفيزور الدوّار (Sinor): شوف السهم يدور ويرسم الموجة</h3>
-    <p>لو ضربنا الفيزور في $e^{j\omega t}$ يصير سهم يدور عكس عقارب الساعة بسرعة $\omega$. ظل هذا السهم على المحور الحقيقي هو قيمة الموجة $v(t)$ في كل لحظة. غيّر الأرقام، أو اضغط شغّل:</p>
+    <h3><span lang="ar">🎛️ الفيزور الدوّار (Sinor): شوف السهم يدور ويرسم الموجة</span><span lang="en">🎛️ The rotating phasor (sinor): watch the arrow spin and draw the wave</span></h3>
+    <p><span lang="ar">لو ضربنا الفيزور في $e^{j\omega t}$ يصير سهم يدور عكس عقارب الساعة بسرعة $\omega$. ظل هذا السهم على المحور الحقيقي هو قيمة الموجة $v(t)$ في كل لحظة. غيّر الأرقام، أو اضغط شغّل:</span><span lang="en">If we multiply the phasor by $e^{j\omega t}$, it becomes an arrow spinning counterclockwise at speed $\omega$. Its shadow on the real axis is the value of the wave $v(t)$ at every instant. Change the numbers, or press Play:</span></p>
     <div class="lab-controls">
-      <div class="field"><label>المقدار Vm</label><input type="range" dir="ltr" id="pM" min="1" max="10" step="1" value="8"><span class="rv" id="pMv"></span></div>
-      <div class="field"><label>الزاوية φ (°)</label><input type="range" dir="ltr" id="pP" min="-180" max="180" step="5" value="40"><span class="rv" id="pPv"></span></div>
-      <div class="field"><label>الزمن ωt (°)</label><input type="range" dir="ltr" id="pT" min="0" max="360" step="2" value="0"><span class="rv" id="pTv"></span></div>
-      <button class="btn small" id="pPlay" type="button">▶ شغّل</button>
+      <div class="field"><label><span lang="ar">المقدار Vm</span><span lang="en">Magnitude Vm</span></label><input type="range" dir="ltr" id="pM" min="1" max="10" step="1" value="8"><span class="rv" id="pMv"></span></div>
+      <div class="field"><label><span lang="ar">الزاوية φ (°)</span><span lang="en">Angle φ (°)</span></label><input type="range" dir="ltr" id="pP" min="-180" max="180" step="5" value="40"><span class="rv" id="pPv"></span></div>
+      <div class="field"><label><span lang="ar">الزمن ωt (°)</span><span lang="en">Time ωt (°)</span></label><input type="range" dir="ltr" id="pT" min="0" max="360" step="2" value="0"><span class="rv" id="pTv"></span></div>
+      <button class="btn small" id="pPlay" type="button"><span lang="ar">▶ شغّل</span><span lang="en">▶ Play</span></button>
     </div>
     <figure class="fig">
       <svg viewBox="0 0 600 240" role="img" aria-label="فيزور يدور في المستوى المركب، وظله على المحور الحقيقي يرسم الموجة">
@@ -186,37 +186,37 @@
         <path class="sk x" id="pBar" style="stroke-width:6;opacity:.45"/>
         <circle class="fi e1" id="pDot" r="5"/>
       </svg>
-      <figcaption>السهم الباهت هو الفيزور نفسه (عند $t = 0$)، والسهم الغامق هو نفس السهم بعد ما دار بزاوية $\omega t$. الشريط الأزرق يسار هو ظل السهم على المحور الحقيقي، وطوله نفس ارتفاع الموجة يمين.</figcaption>
+      <figcaption><span lang="ar">السهم الباهت هو الفيزور نفسه (عند $t = 0$)، والسهم الغامق هو نفس السهم بعد ما دار بزاوية $\omega t$. الشريط الأزرق يسار هو ظل السهم على المحور الحقيقي، وطوله نفس ارتفاع الموجة يمين.</span><span lang="en">The faded arrow is the phasor itself (at $t = 0$), and the dark arrow is the same arrow after rotating by $\omega t$. The blue bar on the left is the arrow's shadow on the real axis, and its length equals the height of the wave on the right.</span></figcaption>
     </figure>
     <div class="ml-read">
-      <div><span class="k">الموجة (زمني)</span><span class="v" id="pEq"></span></div>
-      <div class="hl"><span class="k">الفيزور V</span><span class="v" id="pV"></span></div>
-      <div><span class="k">الشكل الديكارتي</span><span class="v" id="pR"></span></div>
+      <div><span class="k"><span lang="ar">الموجة (زمني)</span><span lang="en">Wave (time)</span></span><span class="v" id="pEq"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">الفيزور V</span><span lang="en">Phasor V</span></span><span class="v" id="pV"></span></div>
+      <div><span class="k"><span lang="ar">الشكل الديكارتي</span><span lang="en">Rectangular form</span></span><span class="v" id="pR"></span></div>
     </div>
   </div>
 
-  <h3>جدول التحويل</h3>
+  <h3><span lang="ar">جدول التحويل</span><span lang="en">Conversion table</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">cos: انقلها مباشرة</div><div class="t-math">$V_m\cos(\omega t + \phi) \;\Rightarrow\; \X{V_m}\angle\Z{\phi}$</div></div>
-    <div class="tile hl"><div class="t-top">sin: انقص <span class="ltr">90°</span> أول</div><div class="t-math">$V_m\sin(\omega t + \phi) \;\Rightarrow\; \X{V_m}\angle\Z{\phi - 90^\circ}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">cos: انقلها مباشرة</span><span lang="en">cos: copy it directly</span></div><div class="t-math">$V_m\cos(\omega t + \phi) \;\Rightarrow\; \X{V_m}\angle\Z{\phi}$</div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">sin: انقص <span class="ltr">90°</span> أول</span><span lang="en">sin: subtract <span class="ltr">90°</span> first</span></div><div class="t-math">$V_m\sin(\omega t + \phi) \;\Rightarrow\; \X{V_m}\angle\Z{\phi - 90^\circ}$</div></div>
   </div>
-  <p>ونفس الشي للتيار: $I_m\cos(\omega t + \theta) \Rightarrow I_m\angle\theta$. ولو قدام الموجة إشارة سالبة، تخلّص منها أول: $-\cos A = \cos(A + 180^\circ)$، و $-\sin A = \cos(A + 90^\circ)$ (شوف مثال 2).</p>
+  <p><span lang="ar">ونفس الشي للتيار: $I_m\cos(\omega t + \theta) \Rightarrow I_m\angle\theta$. ولو قدام الموجة إشارة سالبة، تخلّص منها أول: $-\cos A = \cos(A + 180^\circ)$، و $-\sin A = \cos(A + 90^\circ)$ (شوف مثال 2).</span><span lang="en">The same goes for current: $I_m\cos(\omega t + \theta) \Rightarrow I_m\angle\theta$. If the wave has a negative sign in front, get rid of it first: $-\cos A = \cos(A + 180^\circ)$, and $-\sin A = \cos(A + 90^\circ)$ (see Example 2).</span></p>
 
-  <h3>الحساب الثقيل يصير بسيط: التفاضل والتكامل</h3>
+  <h3><span lang="ar">الحساب الثقيل يصير بسيط: التفاضل والتكامل</span><span lang="en">Heavy math becomes simple: derivatives and integrals</span></h3>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">التفاضل</div><div class="t-math">$\dfrac{dv}{dt} \;\Leftrightarrow\; \Y{j\omega}\,\mathbf{V}$</div><div class="t-desc">يضرب السعة في $\omega$، ويزيد الزاوية <span class="ltr">90°</span>.</div></div>
-    <div class="tile"><div class="t-name">التكامل</div><div class="t-math">$\displaystyle\int v\,dt \;\Leftrightarrow\; \frac{\mathbf{V}}{\Y{j\omega}}$</div><div class="t-desc">يقسم السعة على $\omega$، وينقص الزاوية <span class="ltr">90°</span>.</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">التفاضل</span><span lang="en">Derivative</span></div><div class="t-math">$\dfrac{dv}{dt} \;\Leftrightarrow\; \Y{j\omega}\,\mathbf{V}$</div><div class="t-desc"><span lang="ar">يضرب السعة في $\omega$، ويزيد الزاوية <span class="ltr">90°</span>.</span><span lang="en">Multiplies the amplitude by $\omega$ and adds <span class="ltr">90°</span> to the angle.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">التكامل</span><span lang="en">Integral</span></div><div class="t-math">$\displaystyle\int v\,dt \;\Leftrightarrow\; \frac{\mathbf{V}}{\Y{j\omega}}$</div><div class="t-desc"><span lang="ar">يقسم السعة على $\omega$، وينقص الزاوية <span class="ltr">90°</span>.</span><span lang="en">Divides the amplitude by $\omega$ and subtracts <span class="ltr">90°</span> from the angle.</span></div></div>
   </div>
-  <p>ليش؟ لأن تفاضل $e^{j\omega t}$ هو $j\omega\,e^{j\omega t}$. وهذا اللي يحوّل تحليل دوائر التيار المتردد من معادلات تفاضلية إلى جبر عادي.</p>
-  <div class="callout key"><strong>🔑 لا تخلط بين المجالين:</strong> $v(t)$ في <b>المجال الزمني</b> (Time Domain): تتغير مع الزمن، ودايماً رقم حقيقي. أما $\mathbf{V}$ في <b>مجال الفيزور</b> (Phasor Domain): ثابت ما فيه $t$، وغالباً رقم مركب. لو شفت $t$ داخل فيزور، فيه غلط.</div>
+  <p><span lang="ar">ليش؟ لأن تفاضل $e^{j\omega t}$ هو $j\omega\,e^{j\omega t}$. وهذا اللي يحوّل تحليل دوائر التيار المتردد من معادلات تفاضلية إلى جبر عادي.</span><span lang="en">Why? Because the derivative of $e^{j\omega t}$ is $j\omega\,e^{j\omega t}$. This is what turns AC circuit analysis from differential equations into ordinary algebra.</span></p>
+  <div class="callout key"><span lang="ar"><strong>🔑 لا تخلط بين المجالين:</strong> $v(t)$ في <b>المجال الزمني</b> (Time Domain): تتغير مع الزمن، ودايماً رقم حقيقي. أما $\mathbf{V}$ في <b>مجال الفيزور</b> (Phasor Domain): ثابت ما فيه $t$، وغالباً رقم مركب. لو شفت $t$ داخل فيزور، فيه غلط.</span><span lang="en"><strong>🔑 Don't mix the two domains:</strong> $v(t)$ is in the <b>time domain</b>: it changes with time and is always a real number. $\mathbf{V}$ is in the <b>phasor domain</b>: it is constant with no $t$, and usually complex. If you see $t$ inside a phasor, something is wrong.</span></div>
 </section>
 
 <!-- ================= 03 مخطط الفيزورات ================= -->
 <section class="card" id="diagram" data-num="03" data-nav="مخطط الفيزورات|Diagram">
-  <h2>مخطط الفيزورات: مين يسبق مين؟</h2>
-  <p class="sub">نفس سؤال المحاضرة 1، بس الجواب صار بالنظر</p>
+  <h2><span lang="ar">مخطط الفيزورات: مين يسبق مين؟</span><span lang="en">Phasor diagram: who leads whom?</span></h2>
+  <p class="sub"><span lang="ar">نفس سؤال المحاضرة 1، بس الجواب صار بالنظر</span><span lang="en">The same question as lecture 1, but now you answer it by looking</span></p>
 
-  <p><b>مخطط الفيزورات</b> (Phasor Diagram) يرسم الفيزورات كأسهم في مستوى واحد. كل الأسهم تدور مع بعض بنفس السرعة $\omega$ عكس عقارب الساعة، فالزاوية بينها ما تتغير أبداً، وعشان كذا يكفي نرسمها عند $t = 0$.</p>
+  <p><span lang="ar"><b>مخطط الفيزورات</b> (Phasor Diagram) يرسم الفيزورات كأسهم في مستوى واحد. كل الأسهم تدور مع بعض بنفس السرعة $\omega$ عكس عقارب الساعة، فالزاوية بينها ما تتغير أبداً، وعشان كذا يكفي نرسمها عند $t = 0$.</span><span lang="en">A <b>phasor diagram</b> draws phasors as arrows in one plane. All the arrows rotate together counterclockwise at the same speed $\omega$, so the angle between them never changes. That's why drawing them at $t = 0$ is enough.</span></p>
 
   <figure class="fig">
     <svg viewBox="0 0 380 235" role="img" aria-label="مخطط فيزورات: الجهد V فوق المحور الحقيقي بزاوية phi، والتيار I تحته بزاوية سالب theta" style="max-width:440px">
@@ -237,323 +237,323 @@
       <text class="tick" x="284" y="78">Leading</text>
       <text class="tick" x="284" y="190">Lagging</text>
     </svg>
-    <figcaption>$\mathbf{V} = V_m\angle\phi$ فوق المحور، و $\mathbf{I} = I_m\angle{-\theta}$ تحته (Figure 9.8). الدوران عكس عقارب الساعة هو اتجاه <b>السبق</b> (Leading)، ومع عقارب الساعة اتجاه <b>التأخر</b> (Lagging).</figcaption>
+    <figcaption><span lang="ar">$\mathbf{V} = V_m\angle\phi$ فوق المحور، و $\mathbf{I} = I_m\angle{-\theta}$ تحته (Figure 9.8). الدوران عكس عقارب الساعة هو اتجاه <b>السبق</b> (Leading)، ومع عقارب الساعة اتجاه <b>التأخر</b> (Lagging).</span><span lang="en">$\mathbf{V} = V_m\angle\phi$ above the axis, and $\mathbf{I} = I_m\angle{-\theta}$ below it (Figure 9.8). Counterclockwise is the <b>leading</b> direction, and clockwise is the <b>lagging</b> direction.</span></figcaption>
   </figure>
 
-  <p><b>طريقة القراءة:</b> السهم اللي قدّام في اتجاه الدوران (عكس عقارب الساعة) هو اللي <b>يسبق</b>، والفرق بين زاويتي السهمين هو مقدار السبق. في الرسم، $\mathbf{V}$ يسبق $\mathbf{I}$ بزاوية $\phi + \theta$.</p>
-  <p><b>مثال سريع:</b> $\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$. زاوية $\mathbf{V}$ أكبر، فالجهد يسبق التيار بـ $30^\circ - (-20^\circ) = 50^\circ$. ونقدر نقولها بالعكس: التيار يتأخر عن الجهد بـ <span class="ltr">50°</span>.</p>
-  <div class="callout warn"><strong>⚠️ قبل ما تقارن:</strong> لازم الموجتين بنفس التردد $\omega$، وكل وحدة محوّلة لفيزور من صيغة cos برقم موجب قدامها. نفس شرط المقارنة في المحاضرة 1.</div>
+  <p><span lang="ar"><b>طريقة القراءة:</b> السهم اللي قدّام في اتجاه الدوران (عكس عقارب الساعة) هو اللي <b>يسبق</b>، والفرق بين زاويتي السهمين هو مقدار السبق. في الرسم، $\mathbf{V}$ يسبق $\mathbf{I}$ بزاوية $\phi + \theta$.</span><span lang="en"><b>How to read it:</b> the arrow that is ahead in the direction of rotation (counterclockwise) is the one that <b>leads</b>, and the difference between the two angles is how much it leads. In the drawing, $\mathbf{V}$ leads $\mathbf{I}$ by $\phi + \theta$.</span></p>
+  <p><span lang="ar"><b>مثال سريع:</b> $\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$. زاوية $\mathbf{V}$ أكبر، فالجهد يسبق التيار بـ $30^\circ - (-20^\circ) = 50^\circ$. ونقدر نقولها بالعكس: التيار يتأخر عن الجهد بـ <span class="ltr">50°</span>.</span><span lang="en"><b>Quick example:</b> $\mathbf{V} = 10\angle 30^\circ$ and $\mathbf{I} = 2\angle{-20^\circ}$. The angle of $\mathbf{V}$ is larger, so the voltage leads the current by $30^\circ - (-20^\circ) = 50^\circ$. Or the other way round: the current lags the voltage by <span class="ltr">50°</span>.</span></p>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ قبل ما تقارن:</strong> لازم الموجتين بنفس التردد $\omega$، وكل وحدة محوّلة لفيزور من صيغة cos برقم موجب قدامها. نفس شرط المقارنة في المحاضرة 1.</span><span lang="en"><strong>⚠️ Before comparing:</strong> both waves must have the same frequency $\omega$, and each must be converted to a phasor from cos form with a positive number in front. Same condition as in lecture 1.</span></div>
 </section>
 
 <!-- ================= لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: الحساب بالأرقام المركبة</h3>
+    <h3><span lang="ar">الشجرة 1: الحساب بالأرقام المركبة</span><span lang="en">Tree 1: math with complex numbers</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="ar as1 aa1 ao">مسار: جمع أو طرح</button>
-      <button class="btn small" type="button" data-path="ar as2 aa2 ab2 ao">مسار: ضرب أو قسمة أو جذر</button>
+      <button class="btn small" type="button" data-path="ar as1 aa1 ao"><span lang="ar">مسار: جمع أو طرح</span><span lang="en">Path: add or subtract</span></button>
+      <button class="btn small" type="button" data-path="ar as2 aa2 ab2 ao"><span lang="ar">مسار: ضرب أو قسمة أو جذر</span><span lang="en">Path: multiply, divide or root</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «احسب» وفيه أرقام مركبة</span></button>
-      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ar"><span class="fb-k">جمع أو طرح</span></button>
-      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ar"><span class="fb-k">ضرب، قسمة، جذر، مقلوب</span></button>
-      <button type="button" class="fb-node c1" data-id="aa1" data-from="as1"><span class="fb-k">بالديكارتي</span><span class="fb-f">$(x_1 + x_2)$<br>$+ j(y_1 + y_2)$</span></button>
-      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k">حوّل للقطبي</span><span class="fb-f">$r = \sqrt{x^2 + y^2}$<br>$\phi = \tan^{-1}\tfrac{y}{x}$</span></button>
-      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k">الأطوال والزوايا</span><span class="fb-f">$r_1 r_2\angle(\phi_1 + \phi_2)$</span></button>
-      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k">الناتج: بالشكل اللي يطلبه السؤال، وغالبًا قطبي</span></button>
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k"><span lang="ar">إذا جاك: «احسب» وفيه أرقام مركبة</span><span lang="en">If you get: “Evaluate” with complex numbers</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ar"><span class="fb-k"><span lang="ar">جمع أو طرح</span><span lang="en">Add or subtract</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ar"><span class="fb-k"><span lang="ar">ضرب، قسمة، جذر، مقلوب</span><span lang="en">Multiply, divide, root, reciprocal</span></span></button>
+      <button type="button" class="fb-node c1" data-id="aa1" data-from="as1"><span class="fb-k"><span lang="ar">بالديكارتي</span><span lang="en">In rectangular</span></span><span class="fb-f">$(x_1 + x_2)$<br>$+ j(y_1 + y_2)$</span></button>
+      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k"><span lang="ar">حوّل للقطبي</span><span lang="en">Convert to polar</span></span><span class="fb-f">$r = \sqrt{x^2 + y^2}$<br>$\phi = \tan^{-1}\tfrac{y}{x}$</span></button>
+      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k"><span lang="ar">الأطوال والزوايا</span><span lang="en">Lengths and angles</span></span><span class="fb-f">$r_1 r_2\angle(\phi_1 + \phi_2)$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k"><span lang="ar">الناتج: بالشكل اللي يطلبه السؤال، وغالبًا قطبي</span><span lang="en">Result: in the form the question asks for, usually polar</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الشكل</dt><dd>أرقام مثل $3 + j4$ أو $40\angle 50^\circ$ وبينها عمليات.</dd>
-      <dt>القاعدة</dt><dd>قبل كل عملية، حوّل للشكل الأسهل لها.</dd></dl></div>
-    <div class="fb-info" data-for="as1" hidden><h4>جمع أو طرح</h4><dl>
-      <dt>متى؟</dt><dd>فيه $+$ أو $-$ بين رقمين مركبين.</dd></dl></div>
-    <div class="fb-info" data-for="as2" hidden><h4>ضرب، قسمة، جذر، مقلوب</h4><dl>
-      <dt>متى؟</dt><dd>فيه ضرب أو قسمة أو أس.</dd></dl></div>
-    <div class="fb-info" data-for="aa1" hidden><h4>الجمع بالديكارتي</h4><dl>
-      <dt>كيف؟</dt><dd>لو الرقم قطبي حوّله: $x = r\cos\phi$ و $y = r\sin\phi$. وبعدها الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</dd>
-      <dt>مثال سريع</dt><dd>$(1 + j2) + (3 - j5) = 4 - j3$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع الأطوال والزوايا في القطبي. هذا غلط.</dd></dl></div>
-    <div class="fb-info" data-for="aa2" hidden><h4>حوّل للقطبي: $r = \sqrt{x^2 + y^2}$ و $\phi = \tan^{-1}\tfrac{y}{x}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$3 + j4 = 5\angle 53.13^\circ$.</dd>
-      <dt>الخطأ الشائع</dt><dd>لو $x$ سالب، الحاسبة تعطيك زاوية غلط. شوف الربع: $-3 + j4$ زاويته <span class="ltr">126.87°</span> مو <span class="ltr">−53.13°</span>.</dd></dl></div>
-    <div class="fb-info" data-for="ab2" hidden><h4>الضرب والقسمة والجذر بالقطبي</h4><dl>
-      <dt>الضرب</dt><dd>اضرب الأطوال واجمع الزوايا: $5\angle 53.13^\circ \times 2\angle 10^\circ$ $= 10\angle 63.13^\circ$.</dd>
-      <dt>القسمة</dt><dd>اقسم الأطوال واطرح الزوايا: $\dfrac{10\angle 30^\circ}{2\angle{-20^\circ}}$ $= 5\angle 50^\circ$.</dd>
-      <dt>الجذر والمقلوب</dt><dd>$\sqrt{4\angle 60^\circ} = 2\angle 30^\circ$ و $\dfrac{1}{5\angle 53.13^\circ} = 0.2\angle{-53.13^\circ}$.</dd>
-      <dt>المرافق</dt><dd>$z^* = x - jy = r\angle{-\phi}$: $(3 + j4)^* = 3 - j4$.</dd></dl></div>
-    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
-      <dt>تأكد</dt><dd>لو فيه جمع وضرب مع بعض، تمشي في المسارين: تجمع بالديكارتي، ثم تحوّل وتضرب بالقطبي.</dd></dl></div>
+    <div class="fb-info" data-for="ar" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الشكل</span><span lang="en">Form</span></dt><dd><span lang="ar">أرقام مثل $3 + j4$ أو $40\angle 50^\circ$ وبينها عمليات.</span><span lang="en">Numbers like $3 + j4$ or $40\angle 50^\circ$ with operations between them.</span></dd>
+      <dt><span lang="ar">القاعدة</span><span lang="en">The rule</span></dt><dd><span lang="ar">قبل كل عملية، حوّل للشكل الأسهل لها.</span><span lang="en">Before each operation, convert to the form that makes it easiest.</span></dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4><span lang="ar">جمع أو طرح</span><span lang="en">Add or subtract</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">فيه $+$ أو $-$ بين رقمين مركبين.</span><span lang="en">There is a $+$ or $-$ between two complex numbers.</span></dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4><span lang="ar">ضرب، قسمة، جذر، مقلوب</span><span lang="en">Multiply, divide, root, reciprocal</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">فيه ضرب أو قسمة أو أس.</span><span lang="en">There is multiplication, division or a power.</span></dd></dl></div>
+    <div class="fb-info" data-for="aa1" hidden><h4><span lang="ar">الجمع بالديكارتي</span><span lang="en">Adding in rectangular</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">لو الرقم قطبي حوّله: $x = r\cos\phi$ و $y = r\sin\phi$. وبعدها الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</span><span lang="en">If a number is polar, convert it: $x = r\cos\phi$ and $y = r\sin\phi$. Then real with real, and imaginary with imaginary.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$(1 + j2) + (3 - j5) = 4 - j3$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع الأطوال والزوايا في القطبي. هذا غلط.</span><span lang="en">Adding lengths and angles in polar. That's wrong.</span></dd></dl></div>
+    <div class="fb-info" data-for="aa2" hidden><h4><span lang="ar">حوّل للقطبي: $r = \sqrt{x^2 + y^2}$ و $\phi = \tan^{-1}\tfrac{y}{x}$</span><span lang="en">Convert to polar: $r = \sqrt{x^2 + y^2}$ and $\phi = \tan^{-1}\tfrac{y}{x}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$3 + j4 = 5\angle 53.13^\circ$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">لو $x$ سالب، الحاسبة تعطيك زاوية غلط. شوف الربع: $-3 + j4$ زاويته <span class="ltr">126.87°</span> مو <span class="ltr">−53.13°</span>.</span><span lang="en">If $x$ is negative, the calculator gives a wrong angle. Check the quadrant: $-3 + j4$ has angle <span class="ltr">126.87°</span>, not <span class="ltr">−53.13°</span>.</span></dd></dl></div>
+    <div class="fb-info" data-for="ab2" hidden><h4><span lang="ar">الضرب والقسمة والجذر بالقطبي</span><span lang="en">Multiply, divide and root in polar</span></h4><dl>
+      <dt><span lang="ar">الضرب</span><span lang="en">Multiply</span></dt><dd><span lang="ar">اضرب الأطوال واجمع الزوايا: $5\angle 53.13^\circ \times 2\angle 10^\circ$ $= 10\angle 63.13^\circ$.</span><span lang="en">Multiply the lengths and add the angles: $5\angle 53.13^\circ \times 2\angle 10^\circ$ $= 10\angle 63.13^\circ$.</span></dd>
+      <dt><span lang="ar">القسمة</span><span lang="en">Divide</span></dt><dd><span lang="ar">اقسم الأطوال واطرح الزوايا: $\dfrac{10\angle 30^\circ}{2\angle{-20^\circ}}$ $= 5\angle 50^\circ$.</span><span lang="en">Divide the lengths and subtract the angles: $\dfrac{10\angle 30^\circ}{2\angle{-20^\circ}}$ $= 5\angle 50^\circ$.</span></dd>
+      <dt><span lang="ar">الجذر والمقلوب</span><span lang="en">Root and reciprocal</span></dt><dd><span lang="ar">$\sqrt{4\angle 60^\circ} = 2\angle 30^\circ$ و $\dfrac{1}{5\angle 53.13^\circ} = 0.2\angle{-53.13^\circ}$.</span><span lang="en">$\sqrt{4\angle 60^\circ} = 2\angle 30^\circ$ and $\dfrac{1}{5\angle 53.13^\circ} = 0.2\angle{-53.13^\circ}$.</span></dd>
+      <dt><span lang="ar">المرافق</span><span lang="en">Conjugate</span></dt><dd>$z^* = x - jy = r\angle{-\phi}$: $(3 + j4)^* = 3 - j4$.</dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">لو فيه جمع وضرب مع بعض، تمشي في المسارين: تجمع بالديكارتي، ثم تحوّل وتضرب بالقطبي.</span><span lang="en">If there is addition and multiplication together, follow both paths: add in rectangular, then convert and multiply in polar.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: من موجة إلى فيزور وبالعكس</h3>
+    <h3><span lang="ar">الشجرة 2: من موجة إلى فيزور وبالعكس</span><span lang="en">Tree 2: from a wave to a phasor and back</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="br bs1 bn1 bp1 bo">مسار: موجة إلى فيزور</button>
-      <button class="btn small" type="button" data-path="br bs2 bp2 bt2 bo">مسار: فيزور إلى موجة</button>
+      <button class="btn small" type="button" data-path="br bs1 bn1 bp1 bo"><span lang="ar">مسار: موجة إلى فيزور</span><span lang="en">Path: wave to phasor</span></button>
+      <button class="btn small" type="button" data-path="br bs2 bp2 bt2 bo"><span lang="ar">مسار: فيزور إلى موجة</span><span lang="en">Path: phasor to wave</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «حوّل لفيزور» أو «اكتب الموجة الزمنية»</span></button>
-      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">معطاك موجة $v(t)$</span></button>
-      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">معطاك فيزور</span></button>
-      <button type="button" class="fb-node prev c1" data-id="bn1" data-from="bs1"><span class="fb-k">وحّد الشكل: cos ورقم موجب</span><span class="fb-f">$\sin A$<br>$= \cos(A - 90^\circ)$</span><span class="fb-b">المحاضرة 1</span></button>
-      <button type="button" class="fb-node c1" data-id="bp1" data-from="bn1"><span class="fb-k">انقل السعة والزاوية</span><span class="fb-f">$V_m\angle\phi$</span></button>
-      <button type="button" class="fb-node prev c2" data-id="bp2" data-from="bs2"><span class="fb-k">حوّله للقطبي</span><span class="fb-f">$r\angle\phi$</span><span class="fb-b">المحاضرة 2</span></button>
-      <button type="button" class="fb-node c2" data-id="bt2" data-from="bp2"><span class="fb-k">رجّع cos بنفس $\omega$</span><span class="fb-f">$r\cos(\omega t + \phi)$</span></button>
-      <button type="button" class="fb-node out c12" data-id="bo" data-from="bp1 bt2"><span class="fb-k">الناتج: فيزور $V_m\angle\phi$ أو موجة $V_m\cos(\omega t + \phi)$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k"><span lang="ar">إذا جاك: «حوّل لفيزور» أو «اكتب الموجة الزمنية»</span><span lang="en">If you get: “Convert to a phasor” or “Write the time-domain wave”</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k"><span lang="ar">معطاك موجة $v(t)$</span><span lang="en">You're given a wave $v(t)$</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k"><span lang="ar">معطاك فيزور</span><span lang="en">You're given a phasor</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="bn1" data-from="bs1"><span class="fb-k"><span lang="ar">وحّد الشكل: cos ورقم موجب</span><span lang="en">Same form: cos with a positive number</span></span><span class="fb-f">$\sin A$<br>$= \cos(A - 90^\circ)$</span><span class="fb-b"><span lang="ar">المحاضرة 1</span><span lang="en">Lecture 1</span></span></button>
+      <button type="button" class="fb-node c1" data-id="bp1" data-from="bn1"><span class="fb-k"><span lang="ar">انقل السعة والزاوية</span><span lang="en">Copy the amplitude and angle</span></span><span class="fb-f">$V_m\angle\phi$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="bp2" data-from="bs2"><span class="fb-k"><span lang="ar">حوّله للقطبي</span><span lang="en">Convert it to polar</span></span><span class="fb-f">$r\angle\phi$</span><span class="fb-b"><span lang="ar">المحاضرة 2</span><span lang="en">Lecture 2</span></span></button>
+      <button type="button" class="fb-node c2" data-id="bt2" data-from="bp2"><span class="fb-k"><span lang="ar">رجّع cos بنفس $\omega$</span><span lang="en">Back to cos with the same $\omega$</span></span><span class="fb-f">$r\cos(\omega t + \phi)$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bp1 bt2"><span class="fb-k"><span lang="ar">الناتج: فيزور $V_m\angle\phi$ أو موجة $V_m\cos(\omega t + \phi)$</span><span lang="en">Result: a phasor $V_m\angle\phi$ or a wave $V_m\cos(\omega t + \phi)$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">phasor, sinusoid, time domain</span>.</dd></dl></div>
-    <div class="fb-info" data-for="bs1" hidden><h4>معطاك موجة $v(t)$</h4><dl>
-      <dt>متى؟</dt><dd>مثل $6\cos(50t - 40^\circ)$ أو $-4\sin(30t + 50^\circ)$.</dd></dl></div>
-    <div class="fb-info" data-for="bs2" hidden><h4>معطاك فيزور</h4><dl>
-      <dt>متى؟</dt><dd>مثل $\mathbf{I} = -3 + j4$ أو $\mathbf{V} = j8e^{-j20^\circ}$.</dd></dl></div>
-    <div class="fb-info" data-for="bn1" hidden><h4>وحّد الشكل: cos ورقم موجب</h4><dl>
-      <dt>متى؟</dt><dd>لو الموجة sin أو قدامها سالب.</dd>
-      <dt>الحيلة</dt><dd>$-\sin A = \cos(A + 90^\circ)$ مباشرة.</dd>
-      <dt>مثال سريع</dt><dd>$-4\sin(30t + 50^\circ)$ تصير $4\cos(30t + 140^\circ)$.</dd></dl></div>
-    <div class="fb-info" data-for="bp1" hidden><h4>انقل السعة والزاوية: $V_m\cos(\omega t + \phi) \Rightarrow V_m\angle\phi$</h4><dl>
-      <dt>الرموز</dt><dd>الفيزور طوله السعة وزاويته الطور. ما فيه $\omega$ ولا $t$.</dd>
-      <dt>مثال سريع</dt><dd>$6\cos(50t - 40^\circ) \Rightarrow 6\angle{-40^\circ}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تكتب $t$ داخل الفيزور.</dd></dl></div>
-    <div class="fb-info" data-for="bp2" hidden><h4>حوّله للقطبي (الشجرة 1)</h4><dl>
-      <dt>مثال سريع</dt><dd>$-3 + j4 = 5\angle 126.87^\circ$. و $j8e^{-j20^\circ}$ $= 8\angle 90^\circ \times 1\angle{-20^\circ}$ $= 8\angle 70^\circ$.</dd>
-      <dt>الخطأ الشائع</dt><dd>$j$ نفسها $1\angle 90^\circ$. لا تنساها.</dd></dl></div>
-    <div class="fb-info" data-for="bt2" hidden><h4>رجّع cos بنفس $\omega$: $r\cos(\omega t + \phi)$</h4><dl>
-      <dt>مثال سريع</dt><dd>$5\angle 126.87^\circ$ تصير $5\cos(\omega t + 126.87^\circ)$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تغيّر $\omega$ أو ترجّعها sin.</dd></dl></div>
-    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
-      <dt>تأكد</dt><dd>الفيزور ثابت ما فيه $t$، والموجة فيها $t$ ودايمًا حقيقية.</dd></dl></div>
+    <div class="fb-info" data-for="br" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span class="ltr">phasor, sinusoid, time domain</span>.</dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4><span lang="ar">معطاك موجة $v(t)$</span><span lang="en">You're given a wave $v(t)$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">مثل $6\cos(50t - 40^\circ)$ أو $-4\sin(30t + 50^\circ)$.</span><span lang="en">Like $6\cos(50t - 40^\circ)$ or $-4\sin(30t + 50^\circ)$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4><span lang="ar">معطاك فيزور</span><span lang="en">You're given a phasor</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">مثل $\mathbf{I} = -3 + j4$ أو $\mathbf{V} = j8e^{-j20^\circ}$.</span><span lang="en">Like $\mathbf{I} = -3 + j4$ or $\mathbf{V} = j8e^{-j20^\circ}$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bn1" hidden><h4><span lang="ar">وحّد الشكل: cos ورقم موجب</span><span lang="en">Same form: cos with a positive number</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لو الموجة sin أو قدامها سالب.</span><span lang="en">If the wave is sin or has a negative sign in front.</span></dd>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">$-\sin A = \cos(A + 90^\circ)$ مباشرة.</span><span lang="en">$-\sin A = \cos(A + 90^\circ)$ directly.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$-4\sin(30t + 50^\circ)$ تصير $4\cos(30t + 140^\circ)$.</span><span lang="en">$-4\sin(30t + 50^\circ)$ becomes $4\cos(30t + 140^\circ)$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bp1" hidden><h4><span lang="ar">انقل السعة والزاوية: $V_m\cos(\omega t + \phi) \Rightarrow V_m\angle\phi$</span><span lang="en">Copy the amplitude and angle: $V_m\cos(\omega t + \phi) \Rightarrow V_m\angle\phi$</span></h4><dl>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">الفيزور طوله السعة وزاويته الطور. ما فيه $\omega$ ولا $t$.</span><span lang="en">The phasor's length is the amplitude and its angle is the phase. No $\omega$ and no $t$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$6\cos(50t - 40^\circ) \Rightarrow 6\angle{-40^\circ}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تكتب $t$ داخل الفيزور.</span><span lang="en">Writing $t$ inside the phasor.</span></dd></dl></div>
+    <div class="fb-info" data-for="bp2" hidden><h4><span lang="ar">حوّله للقطبي (الشجرة 1)</span><span lang="en">Convert it to polar (tree 1)</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$-3 + j4 = 5\angle 126.87^\circ$. و $j8e^{-j20^\circ}$ $= 8\angle 90^\circ \times 1\angle{-20^\circ}$ $= 8\angle 70^\circ$.</span><span lang="en">$-3 + j4 = 5\angle 126.87^\circ$. And $j8e^{-j20^\circ}$ $= 8\angle 90^\circ \times 1\angle{-20^\circ}$ $= 8\angle 70^\circ$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">$j$ نفسها $1\angle 90^\circ$. لا تنساها.</span><span lang="en">$j$ itself is $1\angle 90^\circ$. Don't forget it.</span></dd></dl></div>
+    <div class="fb-info" data-for="bt2" hidden><h4><span lang="ar">رجّع cos بنفس $\omega$: $r\cos(\omega t + \phi)$</span><span lang="en">Back to cos with the same $\omega$: $r\cos(\omega t + \phi)$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$5\angle 126.87^\circ$ تصير $5\cos(\omega t + 126.87^\circ)$.</span><span lang="en">$5\angle 126.87^\circ$ becomes $5\cos(\omega t + 126.87^\circ)$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تغيّر $\omega$ أو ترجّعها sin.</span><span lang="en">Changing $\omega$ or turning it back into sin.</span></dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">الفيزور ثابت ما فيه $t$، والموجة فيها $t$ ودايمًا حقيقية.</span><span lang="en">A phasor is constant with no $t$; a wave has $t$ and is always real.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 3 ===== -->
   <div class="fboard" id="board3">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 3: التفاضل والتكامل بالفيزور</h3>
+    <h3><span lang="ar">الشجرة 3: التفاضل والتكامل بالفيزور</span><span lang="en">Tree 3: derivatives and integrals with phasors</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="cr cd1 co">مسار: تفاضل</button>
-      <button class="btn small" type="button" data-path="cr cd2 co">مسار: تكامل</button>
+      <button class="btn small" type="button" data-path="cr cd1 co"><span lang="ar">مسار: تفاضل</span><span lang="en">Path: derivative</span></button>
+      <button class="btn small" type="button" data-path="cr cd2 co"><span lang="ar">مسار: تكامل</span><span lang="en">Path: integral</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: $\dfrac{dv}{dt}$ أو $\displaystyle\int v\,dt$ لموجة جيبية</span></button>
-      <button type="button" class="fb-node c1" data-id="cd1" data-from="cr"><span class="fb-k">التفاضل</span><span class="fb-f">$\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</span></button>
-      <button type="button" class="fb-node c2" data-id="cd2" data-from="cr"><span class="fb-k">التكامل</span><span class="fb-f">$\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="co" data-from="cd1 cd2"><span class="fb-k">الناتج: فيزور جديد، ترجّعه لموجة بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k"><span lang="ar">إذا جاك: $\dfrac{dv}{dt}$ أو $\displaystyle\int v\,dt$ لموجة جيبية</span><span lang="en">If you get: $\dfrac{dv}{dt}$ or $\displaystyle\int v\,dt$ of a sinusoid</span></span></button>
+      <button type="button" class="fb-node c1" data-id="cd1" data-from="cr"><span class="fb-k"><span lang="ar">التفاضل</span><span lang="en">Derivative</span></span><span class="fb-f">$\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</span></button>
+      <button type="button" class="fb-node c2" data-id="cd2" data-from="cr"><span class="fb-k"><span lang="ar">التكامل</span><span lang="en">Integral</span></span><span class="fb-f">$\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="cd1 cd2"><span class="fb-k"><span lang="ar">الناتج: فيزور جديد، ترجّعه لموجة بنفس $\omega$</span><span lang="en">Result: a new phasor, converted back to a wave with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الفكرة</dt><dd>بدل التفاضل والتكامل الطويل، اضرب أو اقسم على $j\omega$.</dd></dl></div>
-    <div class="fb-info" data-for="cd1" hidden><h4>التفاضل: $\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</h4><dl>
-      <dt>وش يسوي؟</dt><dd>يضرب السعة في $\omega$ ويزيد الزاوية <span class="ltr">90°</span>.</dd>
-      <dt>مثال سريع</dt><dd>$v = 10\cos(2t + 30^\circ)$: $j2 \times 10\angle 30^\circ = 20\angle 120^\circ$.</dd></dl></div>
-    <div class="fb-info" data-for="cd2" hidden><h4>التكامل: $\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</h4><dl>
-      <dt>وش يسوي؟</dt><dd>يقسم السعة على $\omega$ وينقص الزاوية <span class="ltr">90°</span>.</dd>
-      <dt>مثال سريع</dt><dd>$\dfrac{10\angle 30^\circ}{j2} = 5\angle{-60^\circ}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقسم على $\omega$ وتنسى $j$، فتطلع الزاوية غلط.</dd></dl></div>
-    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
-      <dt>تأكد</dt><dd>التفاضل يكبّر السعة لو $\omega > 1$، والتكامل يصغّرها.</dd></dl></div>
+    <div class="fb-info" data-for="cr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الفكرة</span><span lang="en">The idea</span></dt><dd><span lang="ar">بدل التفاضل والتكامل الطويل، اضرب أو اقسم على $j\omega$.</span><span lang="en">Instead of long calculus, multiply or divide by $j\omega$.</span></dd></dl></div>
+    <div class="fb-info" data-for="cd1" hidden><h4><span lang="ar">التفاضل: $\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</span><span lang="en">Derivative: $\dfrac{dv}{dt} \Leftrightarrow j\omega\mathbf{V}$</span></h4><dl>
+      <dt><span lang="ar">وش يسوي؟</span><span lang="en">What does it do?</span></dt><dd><span lang="ar">يضرب السعة في $\omega$ ويزيد الزاوية <span class="ltr">90°</span>.</span><span lang="en">Multiplies the amplitude by $\omega$ and adds <span class="ltr">90°</span> to the angle.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$v = 10\cos(2t + 30^\circ)$: $j2 \times 10\angle 30^\circ = 20\angle 120^\circ$.</dd></dl></div>
+    <div class="fb-info" data-for="cd2" hidden><h4><span lang="ar">التكامل: $\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</span><span lang="en">Integral: $\displaystyle\int v\,dt \Leftrightarrow \frac{\mathbf{V}}{j\omega}$</span></h4><dl>
+      <dt><span lang="ar">وش يسوي؟</span><span lang="en">What does it do?</span></dt><dd><span lang="ar">يقسم السعة على $\omega$ وينقص الزاوية <span class="ltr">90°</span>.</span><span lang="en">Divides the amplitude by $\omega$ and subtracts <span class="ltr">90°</span> from the angle.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\dfrac{10\angle 30^\circ}{j2} = 5\angle{-60^\circ}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقسم على $\omega$ وتنسى $j$، فتطلع الزاوية غلط.</span><span lang="en">Dividing by $\omega$ and forgetting $j$, so the angle comes out wrong.</span></dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">التفاضل يكبّر السعة لو $\omega > 1$، والتكامل يصغّرها.</span><span lang="en">The derivative makes the amplitude bigger if $\omega > 1$, and the integral makes it smaller.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 4 ===== -->
   <div class="fboard" id="board4">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 4: مين يسبق في مخطط الفيزورات؟</h3>
+    <h3><span lang="ar">الشجرة 4: مين يسبق في مخطط الفيزورات؟</span><span lang="en">Tree 4: who leads on the phasor diagram?</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="dr dn dc do">مسار: المقارنة</button>
+      <button class="btn small" type="button" data-path="dr dn dc do"><span lang="ar">مسار: المقارنة</span><span lang="en">Path: comparison</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k">إذا جاك: «ارسم مخطط الفيزورات» أو «مين يسبق؟»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="dn" data-from="dr"><span class="fb-k">حوّل كل موجة لفيزور</span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b">الشجرة 2</span></button>
-      <button type="button" class="fb-node c12" data-id="dc" data-from="dn"><span class="fb-k">قارن الزوايا</span><span class="fb-f">$\theta_V - \theta_I$</span></button>
-      <button type="button" class="fb-node out c12" data-id="do" data-from="dc"><span class="fb-k">الناتج: مين يسبق وبكم درجة</span></button>
+      <button type="button" class="fb-node ask c12" data-id="dr"><span class="fb-k"><span lang="ar">إذا جاك: «ارسم مخطط الفيزورات» أو «مين يسبق؟»</span><span lang="en">If you get: “Draw the phasor diagram” or “Who leads?”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="dn" data-from="dr"><span class="fb-k"><span lang="ar">حوّل كل موجة لفيزور</span><span lang="en">Convert each wave to a phasor</span></span><span class="fb-f">$V_m\angle\phi$</span><span class="fb-b"><span lang="ar">الشجرة 2</span><span lang="en">Tree 2</span></span></button>
+      <button type="button" class="fb-node c12" data-id="dc" data-from="dn"><span class="fb-k"><span lang="ar">قارن الزوايا</span><span lang="en">Compare the angles</span></span><span class="fb-f">$\theta_V - \theta_I$</span></button>
+      <button type="button" class="fb-node out c12" data-id="do" data-from="dc"><span class="fb-k"><span lang="ar">الناتج: مين يسبق وبكم درجة</span><span lang="en">Result: who leads and by how many degrees</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="dr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">phasor diagram, leads, lags</span>.</dd></dl></div>
-    <div class="fb-info" data-for="dn" hidden><h4>حوّل كل موجة لفيزور: $V_m\angle\phi$</h4><dl>
-      <dt>متى؟</dt><dd>الموجات لازم بنفس $\omega$، ومن صيغة cos برقم موجب.</dd></dl></div>
-    <div class="fb-info" data-for="dc" hidden><h4>قارن الزوايا: $\theta_V - \theta_I$</h4><dl>
-      <dt>القاعدة</dt><dd>الدوران عكس عقارب الساعة. اللي زاويته أكبر قدّام، يعني يسبق.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$: الجهد يسبق بـ <span class="ltr">50°</span>.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقارن الأطوال. الطول سعة، ما له دخل في السبق.</dd></dl></div>
-    <div class="fb-info" data-for="do" hidden><h4>الناتج</h4><dl>
-      <dt>صيغة الجواب</dt><dd>«الجهد يسبق التيار بـ <span class="ltr">50°</span>» أو «التيار يتأخر عن الجهد بـ <span class="ltr">50°</span>».</dd></dl></div>
+    <div class="fb-info" data-for="dr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span class="ltr">phasor diagram, leads, lags</span>.</dd></dl></div>
+    <div class="fb-info" data-for="dn" hidden><h4><span lang="ar">حوّل كل موجة لفيزور: $V_m\angle\phi$</span><span lang="en">Convert each wave to a phasor: $V_m\angle\phi$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">الموجات لازم بنفس $\omega$، ومن صيغة cos برقم موجب.</span><span lang="en">The waves must have the same $\omega$, and come from cos form with a positive number.</span></dd></dl></div>
+    <div class="fb-info" data-for="dc" hidden><h4><span lang="ar">قارن الزوايا: $\theta_V - \theta_I$</span><span lang="en">Compare the angles: $\theta_V - \theta_I$</span></h4><dl>
+      <dt><span lang="ar">القاعدة</span><span lang="en">The rule</span></dt><dd><span lang="ar">الدوران عكس عقارب الساعة. اللي زاويته أكبر قدّام، يعني يسبق.</span><span lang="en">Rotation is counterclockwise. The larger angle is ahead, so it leads.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$: الجهد يسبق بـ <span class="ltr">50°</span>.</span><span lang="en">$\mathbf{V} = 10\angle 30^\circ$ and $\mathbf{I} = 2\angle{-20^\circ}$: the voltage leads by <span class="ltr">50°</span>.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقارن الأطوال. الطول سعة، ما له دخل في السبق.</span><span lang="en">Comparing the lengths. Length is amplitude and has nothing to do with leading.</span></dd></dl></div>
+    <div class="fb-info" data-for="do" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">صيغة الجواب</span><span lang="en">How to write the answer</span></dt><dd><span lang="ar">«الجهد يسبق التيار بـ <span class="ltr">50°</span>» أو «التيار يتأخر عن الجهد بـ <span class="ltr">50°</span>».</span><span lang="en">“The voltage leads the current by <span class="ltr">50°</span>” or “the current lags the voltage by <span class="ltr">50°</span>”.</span></dd></dl></div>
   </div>
 
 </section>
 
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>حوّل الموجات إلى فيزورات</h2></div>
-  <div class="tags"><span class="tag">Example 9.4</span><span class="tag">زمني ← فيزور</span></div>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">حوّل الموجات إلى فيزورات</span><span lang="en">Convert the waves to phasors</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.4</span><span class="tag"><span lang="ar">زمني ← فيزور</span><span lang="en">time → phasor</span></span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ i = 6\cos(50t - 40^\circ)\ \text{A} \\ \text{(b)}\ \ v = -4\sin(30t + 50^\circ)\ \text{V}\end{gathered}\]</div>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs1 bn1 bp1 bo">وحّد الشكل، ثم انقل السعة والزاوية</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs1 bn1 bp1 bo">وحّد الشكل، ثم انقل السعة والزاوية</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="br bs1 bn1 bp1 bo">fix the form, then copy the amplitude and angle</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">(a) جاهزة: cos وقدامها رقم موجب. (b) فيها مشكلتين: إشارة سالبة، و sin بدل cos. لازم نوصلها لصيغة $V_m\cos(\omega t+\phi)$ قبل التحويل.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">(a) جاهزة: cos وقدامها رقم موجب. (b) فيها مشكلتين: إشارة سالبة، و sin بدل cos. لازم نوصلها لصيغة $V_m\cos(\omega t+\phi)$ قبل التحويل.</span><span lang="en">(a) is ready: cos with a positive number in front. (b) has two problems: a negative sign, and sin instead of cos. We must bring it to the form $V_m\cos(\omega t+\phi)$ before converting.</span></p>
     </li>
     <li class="step">
-      <h4>(a) انقل السعة والزاوية</h4>
+      <h4><span lang="ar">(a) انقل السعة والزاوية</span><span lang="en">(a) Copy the amplitude and angle</span></h4>
       <div class="m">\[i = \X{6}\cos(50t \Z{- 40^\circ}) \;\Rightarrow\; \mathbf{I} = \X{6}\angle\Z{-40^\circ}\ \text{A}\]</div>
-      <p class="why">الرقم 50 هو $\omega$، وما يدخل في الفيزور.</p>
+      <p class="why"><span lang="ar">الرقم 50 هو $\omega$، وما يدخل في الفيزور.</span><span lang="en">The 50 is $\omega$, and it doesn't go into the phasor.</span></p>
     </li>
     <li class="step">
-      <h4>(b) اختصار: $-\sin A = \cos(A + 90^\circ)$ <span class="const">قاعدة وحدة بدل ثنتين</span></h4>
+      <h4><span lang="ar">(b) اختصار: $-\sin A = \cos(A + 90^\circ)$ <span class="const">قاعدة وحدة بدل ثنتين</span></span><span lang="en">(b) Shortcut: $-\sin A = \cos(A + 90^\circ)$ <span class="const">one rule instead of two</span></span></h4>
       <div class="m">\[\begin{gathered}v = -4\sin(30t + 50^\circ) = 4\cos(30t + 50^\circ + 90^\circ) \\ = \X{4}\cos(30t \Z{+ 140^\circ})\end{gathered}\]</div>
-      <p class="why">لو سويتها على خطوتين (السالب ثم sin) بتوصل لنفس النتيجة: $50 - 180 - 90 = -220^\circ$، وهي نفس الزاوية $140^\circ$ (لأن $-220 + 360 = 140$).</p>
+      <p class="why"><span lang="ar">لو سويتها على خطوتين (السالب ثم sin) بتوصل لنفس النتيجة: $50 - 180 - 90 = -220^\circ$، وهي نفس الزاوية $140^\circ$ (لأن $-220 + 360 = 140$).</span><span lang="en">If you do it in two steps (the negative, then sin) you get the same result: $50 - 180 - 90 = -220^\circ$, which is the same angle as $140^\circ$ (because $-220 + 360 = 140$).</span></p>
     </li>
     <li class="step">
-      <h4>(b) الفيزور</h4>
+      <h4><span lang="ar">(b) الفيزور</span><span lang="en">(b) The phasor</span></h4>
       <div class="m">\[\mathbf{V} = \X{4}\angle\Z{140^\circ}\ \text{V}\]</div>
     </li>
     <li class="step final">
       <div class="result">$\mathbf{I} = 6\angle{-40^\circ}\ \text{A},$ $\mathbf{V} = 4\angle 140^\circ\ \text{V}$</div>
-      <p class="sanity">جرّب في المختبر فوق: Vm = 4 و φ = <span class="ltr">140°</span>. الموجة تبدأ سالبة عند $4\cos 140^\circ \approx -3.06$، ونفسها $-4\sin 50^\circ \approx -3.06$ ✓</p>
+      <p class="sanity"><span lang="ar">جرّب في المختبر فوق: Vm = 4 و φ = <span class="ltr">140°</span>. الموجة تبدأ سالبة عند $4\cos 140^\circ \approx -3.06$، ونفسها $-4\sin 50^\circ \approx -3.06$ ✓</span><span lang="en">Try it in the lab above: Vm = 4 and φ = <span class="ltr">140°</span>. The wave starts negative at $4\cos 140^\circ \approx -3.06$, the same as $-4\sin 50^\circ \approx -3.06$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= مثال 3 ================= -->
 <section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>من فيزور إلى موجة</h2></div>
-  <div class="tags"><span class="tag">Example 9.5</span><span class="tag">فيزور ← زمني</span></div>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 3</span></span><span lang="en"><span class="ex-badge">Example 3</span></span><h2><span lang="ar">من فيزور إلى موجة</span><span lang="en">From a phasor to a wave</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.5</span><span class="tag"><span lang="ar">فيزور ← زمني</span><span lang="en">phasor → time</span></span></div>
   <div class="m big">\[\begin{gathered}\text{(a)}\ \ \mathbf{I} = -3 + j4\ \text{A} \\ \text{(b)}\ \ \mathbf{V} = j8\,e^{-j20^\circ}\ \text{V}\end{gathered}\]</div>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs2 bp2 bt2 bo">حوّل للقطبي، ثم رجّع cos</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bs2 bp2 bt2 bo">حوّل للقطبي، ثم رجّع cos</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="br bs2 bp2 bt2 bo">convert to polar, then back to cos</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">عشان نرجع للزمن، نحتاج الفيزور بالشكل القطبي $V_m\angle\phi$، وبعدها نكتب $V_m\cos(\omega t + \phi)$ مباشرة.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">عشان نرجع للزمن، نحتاج الفيزور بالشكل القطبي $V_m\angle\phi$، وبعدها نكتب $V_m\cos(\omega t + \phi)$ مباشرة.</span><span lang="en">To get back to time, we need the phasor in polar form $V_m\angle\phi$, then we write $V_m\cos(\omega t + \phi)$ directly.</span></p>
     </li>
     <li class="step">
-      <h4>(a) من الديكارتي للقطبي</h4>
+      <h4><span lang="ar">(a) من الديكارتي للقطبي</span><span lang="en">(a) From rectangular to polar</span></h4>
       <div class="m">\[r = \sqrt{(-3)^2 + 4^2} = \X{5}, \qquad \phi = 180^\circ - \tan^{-1}\!\tfrac{4}{3} = \Z{126.87^\circ}\]</div>
-      <p class="why">⚠️ النقطة $(-3, 4)$ في الربع الثاني. لو كتبت في الحاسبة $\tan^{-1}(4/-3)$ بتعطيك $-53.13^\circ$، وهذا غلط. استخدم Pol، أو ارسم النقطة وصحّح الزاوية بنفسك.</p>
+      <p class="why"><span lang="ar">⚠️ النقطة $(-3, 4)$ في الربع الثاني. لو كتبت في الحاسبة $\tan^{-1}(4/-3)$ بتعطيك $-53.13^\circ$، وهذا غلط. استخدم Pol، أو ارسم النقطة وصحّح الزاوية بنفسك.</span><span lang="en">⚠️ The point $(-3, 4)$ is in the second quadrant. If you type $\tan^{-1}(4/-3)$ into the calculator it gives $-53.13^\circ$, which is wrong. Use Pol, or sketch the point and fix the angle yourself.</span></p>
     </li>
     <li class="step">
-      <h4>(a) ارجع للزمن</h4>
+      <h4><span lang="ar">(a) ارجع للزمن</span><span lang="en">(a) Back to time</span></h4>
       <div class="m">\[i(t) = \X{5}\cos(\omega t \Z{+ 126.87^\circ})\ \text{A}\]</div>
     </li>
     <li class="step">
-      <h4>(b) $j$ نفسها رقم مركب: $j = 1\angle 90^\circ$ <span class="const">الضرب = اجمع الزوايا</span></h4>
+      <h4><span lang="ar">(b) $j$ نفسها رقم مركب: $j = 1\angle 90^\circ$ <span class="const">الضرب = اجمع الزوايا</span></span><span lang="en">(b) $j$ itself is a complex number: $j = 1\angle 90^\circ$ <span class="const">multiply = add the angles</span></span></h4>
       <div class="m">\[\mathbf{V} = (1\angle 90^\circ)(8\angle{-20^\circ}) = \X{8}\angle\Z{70^\circ}\]</div>
-      <p class="why">و $8\,e^{-j20^\circ}$ هي نفسها $8\angle{-20^\circ}$ بالشكل الأسي.</p>
+      <p class="why"><span lang="ar">و $8\,e^{-j20^\circ}$ هي نفسها $8\angle{-20^\circ}$ بالشكل الأسي.</span><span lang="en">And $8\,e^{-j20^\circ}$ is the same as $8\angle{-20^\circ}$ in exponential form.</span></p>
     </li>
     <li class="step final">
       <div class="result">$i(t) =$ $5\cos(\omega t + 126.87^\circ)\ \text{A},$ $v(t) =$ $8\cos(\omega t + 70^\circ)\ \text{V}$</div>
-      <p class="sanity">رجّع (a): $5\cos 126.87^\circ = -3$ و $5\sin 126.87^\circ = 4$ ✓</p>
+      <p class="sanity"><span lang="ar">رجّع (a): $5\cos 126.87^\circ = -3$ و $5\sin 126.87^\circ = 4$ ✓</span><span lang="en">Check (a): $5\cos 126.87^\circ = -3$ and $5\sin 126.87^\circ = 4$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس، والزوايا بالدرجات (مثل <span class="ltr">-60</span> أو <span class="ltr">126.87</span>). يقبل فرق بسيط في الكسور العشرية.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس، والزوايا بالدرجات (مثل <span class="ltr">-60</span> أو <span class="ltr">126.87</span>). يقبل فرق بسيط في الكسور العشرية.</span><span lang="en">Type just the number, with angles in degrees (like <span class="ltr">-60</span> or <span class="ltr">126.87</span>). Small rounding differences are accepted.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>كم طول (مقدار) الرقم:</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">كم طول (مقدار) الرقم:</span><span lang="en">What is the length (magnitude) of:</span></p>
     <div class="m">\[(3 + j4) + (1 - j1)\]</div>
     <div class="check" data-answer="5"></div>
-    <details class="hint"><p>اجمع بالشكل الديكارتي أول، وبعدها احسب الطول $\sqrt{x^2 + y^2}$.</p></details>
+    <details class="hint"><p><span lang="ar">اجمع بالشكل الديكارتي أول، وبعدها احسب الطول $\sqrt{x^2 + y^2}$.</span><span lang="en">Add in rectangular form first, then find the length $\sqrt{x^2 + y^2}$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>اجمع</h4><div class="m">\[(3 + 1) + j(4 - 1) = 4 + j3\]</div></li>
+      <li class="step"><h4><span lang="ar">اجمع</span><span lang="en">Add</span></h4><div class="m">\[(3 + 1) + j(4 - 1) = 4 + j3\]</div></li>
       <li class="step final"><div class="result">$\sqrt{4^2 + 3^2} = 5$</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
-    <p>كم زاوية الفيزور للموجة:</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">كم زاوية الفيزور للموجة:</span><span lang="en">What is the phasor angle of the wave:</span></p>
     <div class="m">\[v(t) = 10\sin(\omega t + 30^\circ)\ \text{V}\]</div>
     <div class="check" data-answer="-60"></div>
-    <details class="hint"><p>من sin إلى cos: انقص <span class="ltr">90°</span> من الزاوية.</p></details>
+    <details class="hint"><p><span lang="ar">من sin إلى cos: انقص <span class="ltr">90°</span> من الزاوية.</span><span lang="en">From sin to cos: subtract <span class="ltr">90°</span> from the angle.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>حوّل لـ cos</h4><div class="m">\[10\cos(\omega t + 30^\circ - 90^\circ) = 10\cos(\omega t - 60^\circ)\]</div></li>
+      <li class="step"><h4><span lang="ar">حوّل لـ cos</span><span lang="en">Convert to cos</span></h4><div class="m">\[10\cos(\omega t + 30^\circ - 90^\circ) = 10\cos(\omega t - 60^\circ)\]</div></li>
       <li class="step final"><div class="result">$\mathbf{V} = 10\angle{-60^\circ}$</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
-    <p>$\mathbf{I} = 3 - j4\ \text{A}$. لو كتبناه $i(t) = 5\cos(\omega t + \phi)$، كم $\phi$؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">$\mathbf{I} = 3 - j4\ \text{A}$. لو كتبناه $i(t) = 5\cos(\omega t + \phi)$، كم $\phi$؟</span><span lang="en">$\mathbf{I} = 3 - j4\ \text{A}$. If we write it as $i(t) = 5\cos(\omega t + \phi)$, what is $\phi$?</span></p>
     <div class="check" data-answer="-53.13"></div>
-    <details class="hint"><p>النقطة $(3, -4)$ في الربع الرابع، فالزاوية سالبة.</p></details>
+    <details class="hint"><p><span lang="ar">النقطة $(3, -4)$ في الربع الرابع، فالزاوية سالبة.</span><span lang="en">The point $(3, -4)$ is in the fourth quadrant, so the angle is negative.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>الزاوية</h4><div class="m">\[\phi = \tan^{-1}\!\left(\tfrac{-4}{3}\right) = -53.13^\circ\]</div><p class="why">هنا الحاسبة تعطيك الجواب الصح مباشرة، لأن $x$ موجبة.</p></li>
+      <li class="step"><h4><span lang="ar">الزاوية</span><span lang="en">The angle</span></h4><div class="m">\[\phi = \tan^{-1}\!\left(\tfrac{-4}{3}\right) = -53.13^\circ\]</div><p class="why"><span lang="ar">هنا الحاسبة تعطيك الجواب الصح مباشرة، لأن $x$ موجبة.</span><span lang="en">Here the calculator gives the right answer directly, because $x$ is positive.</span></p></li>
       <li class="step final"><div class="result">$i(t) =$ $5\cos(\omega t - 53.13^\circ)$ A</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">تطبيق</span></div>
-    <p>$v(t) = 20\cos(10t + 30^\circ)$. كم زاوية فيزور $\dfrac{dv}{dt}$؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">تطبيق</span><span lang="en">Application</span></span></div>
+    <p><span lang="ar">$v(t) = 20\cos(10t + 30^\circ)$. كم زاوية فيزور $\dfrac{dv}{dt}$؟</span><span lang="en">$v(t) = 20\cos(10t + 30^\circ)$. What is the angle of the phasor of $\dfrac{dv}{dt}$?</span></p>
     <div class="check" data-answer="120"></div>
-    <details class="hint"><p>التفاضل = ضرب في $j\omega$، و $j$ تزيد الزاوية <span class="ltr">90°</span>.</p></details>
+    <details class="hint"><p><span lang="ar">التفاضل = ضرب في $j\omega$، و $j$ تزيد الزاوية <span class="ltr">90°</span>.</span><span lang="en">Derivative = multiply by $j\omega$, and $j$ adds <span class="ltr">90°</span> to the angle.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>اضرب في $j\omega$</h4><div class="m">\[j\omega\mathbf{V} = (10\angle 90^\circ)(20\angle 30^\circ) = 200\angle 120^\circ\]</div></li>
-      <li class="step final"><div class="result">$200\angle 120^\circ$</div><p class="sanity">تأكد بالتفاضل المباشر: $-200\sin(10t + 30^\circ)$ $= 200\cos(10t + 120^\circ)$ ✓</p></li>
+      <li class="step"><h4><span lang="ar">اضرب في $j\omega$</span><span lang="en">Multiply by $j\omega$</span></h4><div class="m">\[j\omega\mathbf{V} = (10\angle 90^\circ)(20\angle 30^\circ) = 200\angle 120^\circ\]</div></li>
+      <li class="step final"><div class="result">$200\angle 120^\circ$</div><p class="sanity"><span lang="ar">تأكد بالتفاضل المباشر: $-200\sin(10t + 30^\circ)$ $= 200\cos(10t + 120^\circ)$ ✓</span><span lang="en">Check by differentiating directly: $-200\sin(10t + 30^\circ)$ $= 200\cos(10t + 120^\circ)$ ✓</span></p></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تجمع بالشكل القطبي</div>
-    <div class="pair"><div class="no">$3\angle 0^\circ + 4\angle 90^\circ = 7\angle 90^\circ$</div><div class="yes">$3 + j4 = 5\angle 53.13^\circ$ (حوّل للديكارتي أول)</div></div></div>
-  <div class="mk"><div class="mk-title">تحوّل sin مباشرة بدون <span class="ltr">−90°</span></div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع بالشكل القطبي</span><span lang="en">Adding in polar form</span></div>
+    <div class="pair"><div class="no">$3\angle 0^\circ + 4\angle 90^\circ = 7\angle 90^\circ$</div><div class="yes"><span lang="ar">$3 + j4 = 5\angle 53.13^\circ$ (حوّل للديكارتي أول)</span><span lang="en">$3 + j4 = 5\angle 53.13^\circ$ (convert to rectangular first)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحوّل sin مباشرة بدون <span class="ltr">−90°</span></span><span lang="en">Converting sin directly without <span class="ltr">−90°</span></span></div>
     <div class="pair"><div class="no">$10\sin(\omega t + 30^\circ) \Rightarrow 10\angle 30^\circ$</div><div class="yes">$10\angle{-60^\circ}$</div></div></div>
-  <div class="mk"><div class="mk-title">تثق في الحاسبة بالربع الثاني والثالث</div>
-    <div class="pair"><div class="no">$-3 + j4 = 5\angle{-53.13^\circ}$</div><div class="yes">$5\angle 126.87^\circ$ (ارسم النقطة دايماً)</div></div></div>
-  <div class="mk"><div class="mk-title">تخلط بين المجالين</div>
-    <div class="pair"><div class="no">$\mathbf{V} = 5\angle 30^\circ \cos(\omega t)$</div><div class="yes">$\mathbf{V} = 5\angle 30^\circ$ أو $v(t) = 5\cos(\omega t + 30^\circ)$، مو خليط من الاثنين</div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تثق في الحاسبة بالربع الثاني والثالث</span><span lang="en">Trusting the calculator in the second and third quadrants</span></div>
+    <div class="pair"><div class="no">$-3 + j4 = 5\angle{-53.13^\circ}$</div><div class="yes"><span lang="ar">$5\angle 126.87^\circ$ (ارسم النقطة دايماً)</span><span lang="en">$5\angle 126.87^\circ$ (always sketch the point)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تخلط بين المجالين</span><span lang="en">Mixing the two domains</span></div>
+    <div class="pair"><div class="no">$\mathbf{V} = 5\angle 30^\circ \cos(\omega t)$</div><div class="yes"><span lang="ar">$\mathbf{V} = 5\angle 30^\circ$ أو $v(t) = 5\cos(\omega t + 30^\circ)$، مو خليط من الاثنين</span><span lang="en">$\mathbf{V} = 5\angle 30^\circ$ or $v(t) = 5\cos(\omega t + 30^\circ)$, not a mix of both</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="3"><p>فيزور $i = 4\cos(100t + 20^\circ)$ هو:</p>
+    <div class="q" data-answer="3"><p><span lang="ar">فيزور $i = 4\cos(100t + 20^\circ)$ هو:</span><span lang="en">The phasor of $i = 4\cos(100t + 20^\circ)$ is:</span></p>
       <button>$4\angle 100^\circ$</button><button>$4\angle{-70^\circ}$</button><button>$4\angle 20^\circ$</button><button>$100\angle 20^\circ$</button>
-      <p class="q-why">الموجة cos جاهزة: السعة 4 والزاوية <span class="ltr">20°</span>، و $\omega = 100$ ما تدخل في الفيزور.</p></div>
-    <div class="q" data-answer="2"><p>$(2\angle 30^\circ)(3\angle 40^\circ)$ يساوي:</p>
+      <p class="q-why"><span lang="ar">الموجة cos جاهزة: السعة 4 والزاوية <span class="ltr">20°</span>، و $\omega = 100$ ما تدخل في الفيزور.</span><span lang="en">The wave is already cos: amplitude 4 and angle <span class="ltr">20°</span>, and $\omega = 100$ doesn't go into the phasor.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">$(2\angle 30^\circ)(3\angle 40^\circ)$ يساوي:</span><span lang="en">$(2\angle 30^\circ)(3\angle 40^\circ)$ equals:</span></p>
       <button>$5\angle 70^\circ$</button><button>$6\angle 70^\circ$</button><button>$6\angle 1200^\circ$</button><button>$5\angle 10^\circ$</button>
-      <p class="q-why">في الضرب: اضرب الأطوال ($2 \times 3 = 6$) واجمع الزوايا ($30 + 40 = 70$).</p></div>
-    <div class="q" data-answer="1"><p>$j$ بالشكل القطبي تساوي:</p>
+      <p class="q-why"><span lang="ar">في الضرب: اضرب الأطوال ($2 \times 3 = 6$) واجمع الزوايا ($30 + 40 = 70$).</span><span lang="en">When multiplying: multiply the lengths ($2 \times 3 = 6$) and add the angles ($30 + 40 = 70$).</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">$j$ بالشكل القطبي تساوي:</span><span lang="en">$j$ in polar form equals:</span></p>
       <button>$1\angle 90^\circ$</button><button>$1\angle 0^\circ$</button><button>$1\angle{-90^\circ}$</button><button>$1\angle 180^\circ$</button>
-      <p class="q-why">$j$ نقطة على المحور التخيلي الموجب، وطولها 1.</p></div>
-    <div class="q" data-answer="4"><p>التكامل $\int v\,dt$ في مجال الفيزور:</p>
+      <p class="q-why"><span lang="ar">$j$ نقطة على المحور التخيلي الموجب، وطولها 1.</span><span lang="en">$j$ is a point on the positive imaginary axis, with length 1.</span></p></div>
+    <div class="q" data-answer="4"><p><span lang="ar">التكامل $\int v\,dt$ في مجال الفيزور:</span><span lang="en">The integral $\int v\,dt$ in the phasor domain:</span></p>
       <button>$j\omega\mathbf{V}$</button><button>$\omega\mathbf{V}$</button><button>$\mathbf{V}/\omega$</button><button>$\mathbf{V}/(j\omega)$</button>
-      <p class="q-why">التفاضل ضرب في $j\omega$، والتكامل عكسه: قسمة عليه.</p></div>
-    <div class="q" data-answer="1"><p>$\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$. أي جملة صحيحة؟</p>
-      <button>$\mathbf{V}$ يسبق $\mathbf{I}$ بـ <span class="ltr">50°</span></button><button>$\mathbf{I}$ يسبق $\mathbf{V}$ بـ <span class="ltr">50°</span></button><button>$\mathbf{V}$ يسبق $\mathbf{I}$ بـ <span class="ltr">10°</span></button><button>متفقين في الطور</button>
-      <p class="q-why">زاوية $\mathbf{V}$ أكبر، والفرق $30 - (-20) = 50^\circ$.</p></div>
-    <div class="q" data-answer="2"><p>أي واحد من هذول ما يعتمد على الزمن؟</p>
+      <p class="q-why"><span lang="ar">التفاضل ضرب في $j\omega$، والتكامل عكسه: قسمة عليه.</span><span lang="en">The derivative is multiplying by $j\omega$, and the integral is the opposite: dividing by it.</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">$\mathbf{V} = 10\angle 30^\circ$ و $\mathbf{I} = 2\angle{-20^\circ}$. أي جملة صحيحة؟</span><span lang="en">$\mathbf{V} = 10\angle 30^\circ$ and $\mathbf{I} = 2\angle{-20^\circ}$. Which statement is correct?</span></p>
+      <button><span lang="ar">$\mathbf{V}$ يسبق $\mathbf{I}$ بـ <span class="ltr">50°</span></span><span lang="en">$\mathbf{V}$ leads $\mathbf{I}$ by <span class="ltr">50°</span></span></button><button><span lang="ar">$\mathbf{I}$ يسبق $\mathbf{V}$ بـ <span class="ltr">50°</span></span><span lang="en">$\mathbf{I}$ leads $\mathbf{V}$ by <span class="ltr">50°</span></span></button><button><span lang="ar">$\mathbf{V}$ يسبق $\mathbf{I}$ بـ <span class="ltr">10°</span></span><span lang="en">$\mathbf{V}$ leads $\mathbf{I}$ by <span class="ltr">10°</span></span></button><button><span lang="ar">متفقين في الطور</span><span lang="en">In phase</span></button>
+      <p class="q-why"><span lang="ar">زاوية $\mathbf{V}$ أكبر، والفرق $30 - (-20) = 50^\circ$.</span><span lang="en">The angle of $\mathbf{V}$ is larger, and the difference is $30 - (-20) = 50^\circ$.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">أي واحد من هذول ما يعتمد على الزمن؟</span><span lang="en">Which of these does not depend on time?</span></p>
       <button>$v(t)$</button><button>$\mathbf{V}$</button><button>$e^{j\omega t}$</button><button>$\text{Re}(\mathbf{V}e^{j\omega t})$</button>
-      <p class="q-why">الفيزور صورة ثابتة للموجة، ما فيه $t$.</p></div>
+      <p class="q-why"><span lang="ar">الفيزور صورة ثابتة للموجة، ما فيه $t$.</span><span lang="en">A phasor is a fixed snapshot of the wave, with no $t$.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر الفيزور الدوّار: السهم Vm∠(φ + ωt) وظله على Re = v(t) */
 (function () {
@@ -589,8 +589,8 @@
   ['pM', 'pP', 'pT'].forEach(id => $(id).addEventListener('input', draw));
   let timer = null;
   $('pPlay').addEventListener('click', () => {
-    if (timer) { clearInterval(timer); timer = null; $('pPlay').textContent = '▶ شغّل'; return; }
-    $('pPlay').textContent = '⏸ وقّف';
+    if (timer) { clearInterval(timer); timer = null; $('pPlay').innerHTML = Lec.L('▶ شغّل', '▶ Play'); return; }
+    $('pPlay').innerHTML = Lec.L('⏸ وقّف', '⏸ Pause');
     timer = setInterval(() => { const t = $('pT'); t.value = (+t.value + 2) % 362; draw(); }, 30);
   });
   draw();
