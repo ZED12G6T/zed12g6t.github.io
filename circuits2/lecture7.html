@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 7 - Thevenin & Norton Equivalents" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 7 - Thevenin & Norton Equivalents">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,46 +48,46 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 7 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 10.6</span></p>
-  <h1><span>مكافئ ثيفنن ونورتن</span> <span class="h1-math ltr">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$</span></h1>
-  <p class="lead">أحياناً الدائرة كبيرة وفيها عناصر كثير، بس اللي يهمك هو اللي يصير عند طرفين بس، مثلاً عند الحمل. ثيفنن (Thevenin) ونورتن (Norton) يقولون لك: كل اللي ورا هالطرفين تقدر تختصره في مصدر واحد ومعاوقة وحدة. نفس اللي درسته في الـ DC، والفرق الوحيد إن الأرقام صارت مركبة.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 7 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 10.6</span></span><span lang="en">Lecture 7 · Circuit Analysis 2 · <span class="ltr">Ch 10.6</span></span></p>
+  <h1><span><span lang="ar">مكافئ ثيفنن ونورتن</span><span lang="en">Thevenin and Norton equivalents</span></span> <span class="h1-math ltr">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$</span></h1>
+  <p class="lead"><span lang="ar">أحياناً الدائرة كبيرة وفيها عناصر كثير، بس اللي يهمك هو اللي يصير عند طرفين بس، مثلاً عند الحمل. ثيفنن (Thevenin) ونورتن (Norton) يقولون لك: كل اللي ورا هالطرفين تقدر تختصره في مصدر واحد ومعاوقة وحدة. نفس اللي درسته في الـ DC، والفرق الوحيد إن الأرقام صارت مركبة.</span><span lang="en">Sometimes a circuit is big with many elements, but all you care about is what happens at two terminals, for example at the load. Thevenin and Norton tell you: everything behind those two terminals can be reduced to one source and one impedance. Same as what you studied in DC; the only difference is that the numbers are now complex.</span></p>
   <div class="xyz-bar">
-    <span class="x">جهد ثيفنن $\mathbf{V}_{Th}$</span><span class="y">تيار نورتن $\mathbf{I}_N$</span><span class="z">المعاوقة $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span>
-    <small>← نفس الألوان في القوانين والمختبر</small>
+    <span class="x"><span lang="ar">جهد ثيفنن $\mathbf{V}_{Th}$</span><span lang="en">Thevenin voltage $\mathbf{V}_{Th}$</span></span><span class="y"><span lang="ar">تيار نورتن $\mathbf{I}_N$</span><span lang="en">Norton current $\mathbf{I}_N$</span></span><span class="z"><span lang="ar">المعاوقة $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span><span lang="en">Impedance $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span></span>
+    <small><span lang="ar">← نفس الألوان في القوانين والمختبر</span><span lang="en">← same colors in the formulas and the lab</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>مكافئ ثيفنن: مصدر جهد $\mathbf{V}_{Th}$ على التوالي مع $\mathbf{Z}_{Th}$. و $\mathbf{V}_{Th}$ هو جهد الدائرة المفتوحة (Open-circuit voltage) بين الطرفين.</li>
-      <li>مكافئ نورتن: مصدر تيار $\mathbf{I}_N$ على التوازي مع $\mathbf{Z}_N$. و $\mathbf{I}_N$ هو تيار القصر (Short-circuit current) بين الطرفين. والعلاقة: $\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$.</li>
-      <li>$\mathbf{Z}_{Th}$: صفّر المصادر المستقلة واجمع المعاوقات. ولو فيه مصدر تابع، حط مصدر اختبار عند الطرفين: $\mathbf{Z}_{Th} = \mathbf{V}_s/\mathbf{I}_s$.</li>
+      <li><span lang="ar">مكافئ ثيفنن: مصدر جهد $\mathbf{V}_{Th}$ على التوالي مع $\mathbf{Z}_{Th}$. و $\mathbf{V}_{Th}$ هو جهد الدائرة المفتوحة (Open-circuit voltage) بين الطرفين.</span><span lang="en">Thevenin equivalent: a voltage source $\mathbf{V}_{Th}$ in series with $\mathbf{Z}_{Th}$. $\mathbf{V}_{Th}$ is the open-circuit voltage between the terminals.</span></li>
+      <li><span lang="ar">مكافئ نورتن: مصدر تيار $\mathbf{I}_N$ على التوازي مع $\mathbf{Z}_N$. و $\mathbf{I}_N$ هو تيار القصر (Short-circuit current) بين الطرفين. والعلاقة: $\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$.</span><span lang="en">Norton equivalent: a current source $\mathbf{I}_N$ in parallel with $\mathbf{Z}_N$. $\mathbf{I}_N$ is the short-circuit current between the terminals. The relation: $\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ and $\mathbf{Z}_{Th} = \mathbf{Z}_N$.</span></li>
+      <li><span lang="ar">$\mathbf{Z}_{Th}$: صفّر المصادر المستقلة واجمع المعاوقات. ولو فيه مصدر تابع، حط مصدر اختبار عند الطرفين: $\mathbf{Z}_{Th} = \mathbf{V}_s/\mathbf{I}_s$.</span><span lang="en">$\mathbf{Z}_{Th}$: turn off the independent sources and combine the impedances. If there's a dependent source, put a test source at the terminals: $\mathbf{Z}_{Th} = \mathbf{V}_s/\mathbf{I}_s$.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يلخّص المحاضرة كاملة في 7 دقائق، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يلخّص المحاضرة كاملة في 7 دقائق، شوفه قبل أو بعد القراءة</span><span lang="en">A video that sums up the whole lecture in 7 minutes. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture7.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture7.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture7.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture7.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 الفكرة ================= -->
 <section class="card" id="idea" data-num="01" data-nav="الفكرة|Idea">
-  <h2>دائرة كاملة في مصدر ومعاوقة</h2>
-  <p class="sub">اللي يشوفه الحمل من الطرفين هو اللي يهم</p>
+  <h2><span lang="ar">دائرة كاملة في مصدر ومعاوقة</span><span lang="en">A whole circuit as one source and one impedance</span></h2>
+  <p class="sub"><span lang="ar">اللي يشوفه الحمل من الطرفين هو اللي يهم</span><span lang="en">What the load sees from the terminals is what matters</span></p>
 
-  <p>تخيل عندك دائرة خطية (Linear circuit) فيها مصادر ومقاومات وملفات ومكثفات، وطالع منها طرفين $a$ و $b$ تبي توصل عليهم حمل. الحمل ما يدري وش داخل الدائرة، كل اللي يحس فيه هو الجهد والتيار عند الطرفين. فلو لقينا دائرة أبسط تعطي نفس الجهد والتيار لأي حمل، نقدر نستبدلها فيها.</p>
+  <p><span lang="ar">تخيل عندك دائرة خطية (Linear circuit) فيها مصادر ومقاومات وملفات ومكثفات، وطالع منها طرفين $a$ و $b$ تبي توصل عليهم حمل. الحمل ما يدري وش داخل الدائرة، كل اللي يحس فيه هو الجهد والتيار عند الطرفين. فلو لقينا دائرة أبسط تعطي نفس الجهد والتيار لأي حمل، نقدر نستبدلها فيها.</span><span lang="en">Imagine a linear circuit with sources, resistors, inductors and capacitors, with two terminals $a$ and $b$ where you want to connect a load. The load doesn't know what's inside the circuit; all it feels is the voltage and current at the terminals. So if we find a simpler circuit that gives the same voltage and current for any load, we can swap it in.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 340 150" role="img" aria-label="على اليسار صندوق دائرة خطية له طرفين a و b، وعلى اليمين مكافئ ثيفنن: مصدر جهد V_Th على التوالي مع معاوقة Z_Th إلى الطرف a" style="max-width:360px">
       <rect class="box" x="10" y="30" width="96" height="90" rx="6"/>
-      <text class="lbl" x="58" y="72" text-anchor="middle">دائرة</text>
-      <text class="lbl" x="58" y="90" text-anchor="middle">خطية</text>
+      <text class="lbl" x="58" y="72" text-anchor="middle" lang="ar">دائرة</text><text class="lbl" x="58" y="72" text-anchor="middle" lang="en" style="direction:rtl">Linear</text>
+      <text class="lbl" x="58" y="90" text-anchor="middle" lang="ar">خطية</text><text class="lbl" x="58" y="90" text-anchor="middle" lang="en" style="direction:rtl">circuit</text>
       <path class="wire" d="M106 50H136M106 100H136"/>
       <circle class="term" cx="139" cy="50" r="3.5"/><circle class="term" cx="139" cy="100" r="3.5"/>
       <text class="lbl" x="139" y="40" text-anchor="middle">a</text><text class="lbl" x="139" y="120" text-anchor="middle">b</text>
@@ -101,13 +101,13 @@
       <text class="lbl xt" x="211" y="79" text-anchor="end">V<tspan class="sb" dy="3">Th</tspan></text>
       <text class="lbl zt" x="278" y="33" text-anchor="middle">Z<tspan class="sb" dy="3">Th</tspan></text>
     </svg>
-    <figcaption>Figure 10.20: مكافئ ثيفنن (Thevenin equivalent). الدائرة كلها صارت مصدر جهد على التوالي مع معاوقة.</figcaption>
+    <figcaption><span lang="ar">Figure 10.20: مكافئ ثيفنن (Thevenin equivalent). الدائرة كلها صارت مصدر جهد على التوالي مع معاوقة.</span><span lang="en">Figure 10.20: the Thevenin equivalent. The whole circuit became a voltage source in series with an impedance.</span></figcaption>
   </figure>
   <figure class="fig">
     <svg viewBox="0 0 340 150" role="img" aria-label="على اليسار صندوق دائرة خطية له طرفين a و b، وعلى اليمين مكافئ نورتن: مصدر تيار I_N سهمه لفوق على التوازي مع معاوقة Z_N" style="max-width:360px">
       <rect class="box" x="10" y="30" width="96" height="90" rx="6"/>
-      <text class="lbl" x="58" y="72" text-anchor="middle">دائرة</text>
-      <text class="lbl" x="58" y="90" text-anchor="middle">خطية</text>
+      <text class="lbl" x="58" y="72" text-anchor="middle" lang="ar">دائرة</text><text class="lbl" x="58" y="72" text-anchor="middle" lang="en" style="direction:rtl">Linear</text>
+      <text class="lbl" x="58" y="90" text-anchor="middle" lang="ar">خطية</text><text class="lbl" x="58" y="90" text-anchor="middle" lang="en" style="direction:rtl">circuit</text>
       <path class="wire" d="M106 50H136M106 100H136"/>
       <circle class="term" cx="139" cy="50" r="3.5"/><circle class="term" cx="139" cy="100" r="3.5"/>
       <text class="lbl" x="139" y="40" text-anchor="middle">a</text><text class="lbl" x="139" y="120" text-anchor="middle">b</text>
@@ -122,200 +122,200 @@
       <text class="lbl yt" x="200" y="79" text-anchor="end">I<tspan class="sb" dy="3">N</tspan></text>
       <text class="lbl zt" x="285" y="79">Z<tspan class="sb" dy="3">N</tspan></text>
     </svg>
-    <figcaption>Figure 10.21: مكافئ نورتن (Norton equivalent). الدائرة كلها صارت مصدر تيار على التوازي مع معاوقة.</figcaption>
+    <figcaption><span lang="ar">Figure 10.21: مكافئ نورتن (Norton equivalent). الدائرة كلها صارت مصدر تيار على التوازي مع معاوقة.</span><span lang="en">Figure 10.21: the Norton equivalent. The whole circuit became a current source in parallel with an impedance.</span></figcaption>
   </figure>
-  <div class="callout key"><strong>🔑 نفس الـ DC بالضبط:</strong> الخطوات ما تغيرت. الفرق إن المقاومة $R$ صارت معاوقة $\mathbf{Z}$، والجهد والتيار صاروا فيزورات. يعني الشغل الزايد كله في حساب الأعداد المركبة (Complex numbers).</div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <div class="callout key"><span lang="ar"><strong>🔑 نفس الـ DC بالضبط:</strong> الخطوات ما تغيرت. الفرق إن المقاومة $R$ صارت معاوقة $\mathbf{Z}$، والجهد والتيار صاروا فيزورات. يعني الشغل الزايد كله في حساب الأعداد المركبة (Complex numbers).</span><span lang="en"><strong>🔑 Exactly like DC:</strong> the steps didn't change. The difference is that the resistance $R$ became an impedance $\mathbf{Z}$, and voltage and current became phasors. All the extra work is in the complex-number math.</span></div>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= 02 ثيفنن ================= -->
 <section class="card" id="thevenin" data-num="02" data-nav="ثيفنن|Thevenin">
-  <h2>مكافئ ثيفنن (Thevenin)</h2>
-  <p class="sub">رقمين تحسبهم: جهد مفتوح ومعاوقة</p>
+  <h2><span lang="ar">مكافئ ثيفنن (Thevenin)</span><span lang="en">Thevenin equivalent</span></h2>
+  <p class="sub"><span lang="ar">رقمين تحسبهم: جهد مفتوح ومعاوقة</span><span lang="en">Two numbers to find: an open-circuit voltage and an impedance</span></p>
 
   <div class="grid-2">
-    <div class="tile x"><div class="t-name">جهد ثيفنن</div><div class="t-math">$\X{\mathbf{V}_{Th}} = \mathbf{V}_{oc}$</div><div class="t-desc">الجهد بين $a$ و $b$ وهم مفتوحين، يعني بدون حمل.</div></div>
-    <div class="tile z"><div class="t-name">معاوقة ثيفنن</div><div class="t-math">$\Z{\mathbf{Z}_{Th}}$</div><div class="t-desc">المعاوقة اللي تشوفها من الطرفين بعد ما تصفّر المصادر المستقلة.</div></div>
+    <div class="tile x"><div class="t-name"><span lang="ar">جهد ثيفنن</span><span lang="en">Thevenin voltage</span></div><div class="t-math">$\X{\mathbf{V}_{Th}} = \mathbf{V}_{oc}$</div><div class="t-desc"><span lang="ar">الجهد بين $a$ و $b$ وهم مفتوحين، يعني بدون حمل.</span><span lang="en">The voltage between $a$ and $b$ while they are open, with no load.</span></div></div>
+    <div class="tile z"><div class="t-name"><span lang="ar">معاوقة ثيفنن</span><span lang="en">Thevenin impedance</span></div><div class="t-math">$\Z{\mathbf{Z}_{Th}}$</div><div class="t-desc"><span lang="ar">المعاوقة اللي تشوفها من الطرفين بعد ما تصفّر المصادر المستقلة.</span><span lang="en">The impedance seen from the terminals after turning off the independent sources.</span></div></div>
   </div>
-  <p>والطريقة خطوات ثابتة:</p>
+  <p><span lang="ar">والطريقة خطوات ثابتة:</span><span lang="en">The method has fixed steps:</span></p>
   <ol class="recipe">
-    <li><b>شيل الحمل</b> وخل الطرفين $a$ و $b$ مفتوحين.</li>
-    <li><b>احسب $\X{\mathbf{V}_{Th}}$:</b> الجهد بين الطرفين المفتوحين، بأي طريقة تعرفها: مقسم جهد، عقد، حلقات.</li>
-    <li><b>احسب $\Z{\mathbf{Z}_{Th}}$:</b> صفّر المصادر المستقلة واجمع المعاوقات توالي وتوازي (القسم 04 فيه التفاصيل).</li>
-    <li><b>ارسم المكافئ</b> ورجّع الحمل. تيار الحمل صار مقسوم بسيط:</li>
+    <li><span lang="ar"><b>شيل الحمل</b> وخل الطرفين $a$ و $b$ مفتوحين.</span><span lang="en"><b>Remove the load</b> and leave terminals $a$ and $b$ open.</span></li>
+    <li><span lang="ar"><b>احسب $\X{\mathbf{V}_{Th}}$:</b> الجهد بين الطرفين المفتوحين، بأي طريقة تعرفها: مقسم جهد، عقد، حلقات.</span><span lang="en"><b>Find $\X{\mathbf{V}_{Th}}$:</b> the voltage across the open terminals, by any method you know: voltage divider, nodal, mesh.</span></li>
+    <li><span lang="ar"><b>احسب $\Z{\mathbf{Z}_{Th}}$:</b> صفّر المصادر المستقلة واجمع المعاوقات توالي وتوازي (القسم 04 فيه التفاصيل).</span><span lang="en"><b>Find $\Z{\mathbf{Z}_{Th}}$:</b> turn off the independent sources and combine impedances in series and parallel (details in section 04).</span></li>
+    <li><span lang="ar"><b>ارسم المكافئ</b> ورجّع الحمل. تيار الحمل صار مقسوم بسيط:</span><span lang="en"><b>Draw the equivalent</b> and put the load back. The load current becomes a simple division:</span></li>
   </ol>
   <div class="m">\[\mathbf{I}_L = \frac{\X{\mathbf{V}_{Th}}}{\Z{\mathbf{Z}_{Th}} + \mathbf{Z}_L}\]</div>
-  <div class="callout"><strong>💡 ليش مفيد؟</strong> لو بتجرب أكثر من حمل على نفس الدائرة، ما تعيد تحليل الدائرة كل مرة. تحسب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ مرة وحدة، وبعدها كل حمل جديد معادلة سطر واحد.</div>
+  <div class="callout"><span lang="ar"><strong>💡 ليش مفيد؟</strong> لو بتجرب أكثر من حمل على نفس الدائرة، ما تعيد تحليل الدائرة كل مرة. تحسب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ مرة وحدة، وبعدها كل حمل جديد معادلة سطر واحد.</span><span lang="en"><strong>💡 Why is it useful?</strong> If you're trying more than one load on the same circuit, you don't re-analyze the circuit each time. You find $\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$ once, and then each new load is a one-line equation.</span></div>
 </section>
 
 <!-- ================= 03 نورتن ================= -->
 <section class="card" id="norton" data-num="03" data-nav="نورتن|Norton">
-  <h2>مكافئ نورتن (Norton)</h2>
-  <p class="sub">نفس الدائرة، بس بمصدر تيار</p>
+  <h2><span lang="ar">مكافئ نورتن (Norton)</span><span lang="en">Norton equivalent</span></h2>
+  <p class="sub"><span lang="ar">نفس الدائرة، بس بمصدر تيار</span><span lang="en">The same circuit, but with a current source</span></p>
 
   <div class="grid-2">
-    <div class="tile y"><div class="t-name">تيار نورتن</div><div class="t-math">$\Y{\mathbf{I}_N} = \mathbf{I}_{sc}$</div><div class="t-desc">التيار اللي يمشي في سلك يقصر $a$ مع $b$.</div></div>
-    <div class="tile z"><div class="t-name">معاوقة نورتن</div><div class="t-math">$\Z{\mathbf{Z}_N} = \Z{\mathbf{Z}_{Th}}$</div><div class="t-desc">هي نفسها معاوقة ثيفنن، ما تحسبها مرتين.</div></div>
+    <div class="tile y"><div class="t-name"><span lang="ar">تيار نورتن</span><span lang="en">Norton current</span></div><div class="t-math">$\Y{\mathbf{I}_N} = \mathbf{I}_{sc}$</div><div class="t-desc"><span lang="ar">التيار اللي يمشي في سلك يقصر $a$ مع $b$.</span><span lang="en">The current flowing in a wire that shorts $a$ to $b$.</span></div></div>
+    <div class="tile z"><div class="t-name"><span lang="ar">معاوقة نورتن</span><span lang="en">Norton impedance</span></div><div class="t-math">$\Z{\mathbf{Z}_N} = \Z{\mathbf{Z}_{Th}}$</div><div class="t-desc"><span lang="ar">هي نفسها معاوقة ثيفنن، ما تحسبها مرتين.</span><span lang="en">The same as the Thevenin impedance; don't compute it twice.</span></div></div>
   </div>
-  <p>المكافئين يوصفون نفس الدائرة، فبينهم علاقة مباشرة مثل تحويل المصادر (Source transformation):</p>
+  <p><span lang="ar">المكافئين يوصفون نفس الدائرة، فبينهم علاقة مباشرة مثل تحويل المصادر (Source transformation):</span><span lang="en">The two equivalents describe the same circuit, so they are directly related, like a source transformation:</span></p>
   <div class="m">\[\X{\mathbf{V}_{Th}} = \Z{\mathbf{Z}_N}\,\Y{\mathbf{I}_N}, \qquad \Z{\mathbf{Z}_{Th}} = \Z{\mathbf{Z}_N}\]</div>
-  <p>يعني لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث يطلع بالقسمة أو الضرب. مثلاً $\Y{\mathbf{I}_N} = \X{\mathbf{V}_{Th}}/\Z{\mathbf{Z}_{Th}}$.</p>
-  <div class="callout warn"><strong>⚠️ انتبه للقسمة:</strong> $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ أعداد مركبة، فالقسمة تقسم السعات وتطرح الزوايا. لا تقسم الجزء الحقيقي على الحقيقي والتخيلي على التخيلي.</div>
+  <p><span lang="ar">يعني لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث يطلع بالقسمة أو الضرب. مثلاً $\Y{\mathbf{I}_N} = \X{\mathbf{V}_{Th}}/\Z{\mathbf{Z}_{Th}}$.</span><span lang="en">So if you have two of the three ($\mathbf{V}_{Th}$, $\mathbf{I}_N$ and $\mathbf{Z}_{Th}$), the third comes from dividing or multiplying. For example $\Y{\mathbf{I}_N} = \X{\mathbf{V}_{Th}}/\Z{\mathbf{Z}_{Th}}$.</span></p>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ انتبه للقسمة:</strong> $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ أعداد مركبة، فالقسمة تقسم السعات وتطرح الزوايا. لا تقسم الجزء الحقيقي على الحقيقي والتخيلي على التخيلي.</span><span lang="en"><strong>⚠️ Careful with the division:</strong> $\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$ are complex numbers, so division divides the magnitudes and subtracts the angles. Don't divide real by real and imaginary by imaginary.</span></div>
 </section>
 
 <!-- ================= 04 إيجاد Z_Th ================= -->
 <section class="card" id="zth" data-num="04" data-nav="إيجاد Z_Th|Z_Th">
-  <h2>كيف تحسب $\mathbf{Z}_{Th}$؟</h2>
-  <p class="sub">طريقتين، والمصدر التابع هو اللي يحدد</p>
+  <h2><span lang="ar">كيف تحسب $\mathbf{Z}_{Th}$؟</span><span lang="en">How do you find $\mathbf{Z}_{Th}$?</span></h2>
+  <p class="sub"><span lang="ar">طريقتين، والمصدر التابع هو اللي يحدد</span><span lang="en">Two methods, and the dependent source decides</span></p>
 
-  <p><b>الحالة 1: مصادر مستقلة بس.</b> صفّر كل مصدر مستقل (Turn off independent sources):</p>
+  <p><span lang="ar"><b>الحالة 1: مصادر مستقلة بس.</b> صفّر كل مصدر مستقل (Turn off independent sources):</span><span lang="en"><b>Case 1: independent sources only.</b> Turn off every independent source:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">مصدر جهد</div><div class="t-math">يصير سلك (قصر)</div><div class="t-desc">جهده صفر، يعني $\mathbf{V} = 0$ بين طرفيه.</div></div>
-    <div class="tile"><div class="t-top">مصدر تيار</div><div class="t-math">يصير فتح</div><div class="t-desc">تياره صفر، يعني تشيله وتخلي مكانه مفتوح.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">مصدر جهد</span><span lang="en">Voltage source</span></div><div class="t-math"><span lang="ar">يصير سلك (قصر)</span><span lang="en">Becomes a wire (short)</span></div><div class="t-desc"><span lang="ar">جهده صفر، يعني $\mathbf{V} = 0$ بين طرفيه.</span><span lang="en">Its voltage is zero, so $\mathbf{V} = 0$ across it.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">مصدر تيار</span><span lang="en">Current source</span></div><div class="t-math"><span lang="ar">يصير فتح</span><span lang="en">Becomes an open</span></div><div class="t-desc"><span lang="ar">تياره صفر، يعني تشيله وتخلي مكانه مفتوح.</span><span lang="en">Its current is zero, so you remove it and leave its place open.</span></div></div>
   </div>
-  <p>وبعدها اجمع المعاوقات توالي وتوازي وأنت تطالع من الطرفين $a$ و $b$. وتذكّر قانون التوازي لمعاوقتين:</p>
+  <p><span lang="ar">وبعدها اجمع المعاوقات توالي وتوازي وأنت تطالع من الطرفين $a$ و $b$. وتذكّر قانون التوازي لمعاوقتين:</span><span lang="en">Then combine impedances in series and parallel, looking in from terminals $a$ and $b$. Remember the parallel rule for two impedances:</span></p>
   <div class="m">\[\mathbf{Z}_1 \parallel \mathbf{Z}_2 = \frac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\]</div>
 
-  <p><b>الحالة 2: فيه مصدر تابع (Dependent source).</b> المصدر التابع ما تصفّره، لأن قيمته تعتمد على جهد أو تيار في الدائرة. صفّر المستقلة بس، وبعدين:</p>
+  <p><span lang="ar"><b>الحالة 2: فيه مصدر تابع (Dependent source).</b> المصدر التابع ما تصفّره، لأن قيمته تعتمد على جهد أو تيار في الدائرة. صفّر المستقلة بس، وبعدين:</span><span lang="en"><b>Case 2: there's a dependent source.</b> You don't turn off a dependent source, because its value depends on a voltage or current in the circuit. Turn off only the independent ones, then:</span></p>
   <ol class="recipe">
-    <li>حط مصدر اختبار (Test source) عند الطرفين، مثلاً مصدر تيار $\mathbf{I}_s$ بقيمة تختارها أنت.</li>
-    <li>حلل الدائرة واحسب الجهد $\mathbf{V}_s$ على طرفيه.</li>
-    <li>القسمة تعطيك المعاوقة:</li>
+    <li><span lang="ar">حط مصدر اختبار (Test source) عند الطرفين، مثلاً مصدر تيار $\mathbf{I}_s$ بقيمة تختارها أنت.</span><span lang="en">Put a test source at the terminals, for example a current source $\mathbf{I}_s$ with a value you choose.</span></li>
+    <li><span lang="ar">حلل الدائرة واحسب الجهد $\mathbf{V}_s$ على طرفيه.</span><span lang="en">Analyze the circuit and find the voltage $\mathbf{V}_s$ across it.</span></li>
+    <li><span lang="ar">القسمة تعطيك المعاوقة:</span><span lang="en">Dividing gives you the impedance:</span></li>
   </ol>
   <div class="m">\[\Z{\mathbf{Z}_{Th}} = \frac{\mathbf{V}_s}{\mathbf{I}_s}\]</div>
-  <div class="callout key"><strong>🔑 اختار رقم مريح:</strong> قيمة $\mathbf{I}_s$ ما تفرق لأن الدائرة خطية، فالجهد يتناسب معها والقسمة تطلع نفسها. اختار رقم يخلي الحساب سهل، مثل ما سوا الكتاب في مثال 2 لما اختار <span class="ltr">3 A</span>.</div>
-  <div class="callout warn"><strong>⚠️ مصادر بترددات مختلفة:</strong> لو الدائرة فيها مصادر تشتغل على أكثر من تردد، المعاوقات تختلف مع كل تردد. فتطلع مكافئ ثيفنن أو نورتن لكل تردد لحاله، مو مكافئ واحد للكل.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 اختار رقم مريح:</strong> قيمة $\mathbf{I}_s$ ما تفرق لأن الدائرة خطية، فالجهد يتناسب معها والقسمة تطلع نفسها. اختار رقم يخلي الحساب سهل، مثل ما سوا الكتاب في مثال 2 لما اختار <span class="ltr">3 A</span>.</span><span lang="en"><strong>🔑 Pick a convenient number:</strong> the value of $\mathbf{I}_s$ doesn't matter because the circuit is linear, so the voltage scales with it and the ratio is the same. Pick a number that makes the math easy, as the textbook did in Example 2 when it chose <span class="ltr">3 A</span>.</span></div>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ مصادر بترددات مختلفة:</strong> لو الدائرة فيها مصادر تشتغل على أكثر من تردد، المعاوقات تختلف مع كل تردد. فتطلع مكافئ ثيفنن أو نورتن لكل تردد لحاله، مو مكافئ واحد للكل.</span><span lang="en"><strong>⚠️ Sources at different frequencies:</strong> if the circuit has sources running at more than one frequency, the impedances differ for each frequency. So you find a Thevenin or Norton equivalent for each frequency separately, not one equivalent for all.</span></div>
 </section>
 
 <!-- ================= لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: معاوقة ثيفنن $\mathbf{Z}_{Th}$</h3>
+    <h3><span lang="ar">الشجرة 1: معاوقة ثيفنن $\mathbf{Z}_{Th}$</span><span lang="en">Tree 1: Thevenin impedance $\mathbf{Z}_{Th}$</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="ar ak as1 aa1 ao">مسار: مستقلة بس</button>
-      <button class="btn small" type="button" data-path="ar ak as2 aa2 ab2 ao">مسار: فيه مصدر تابع</button>
+      <button class="btn small" type="button" data-path="ar ak as1 aa1 ao"><span lang="ar">مسار: مستقلة بس</span><span lang="en">Path: independent only</span></button>
+      <button class="btn small" type="button" data-path="ar ak as2 aa2 ab2 ao"><span lang="ar">مسار: فيه مصدر تابع</span><span lang="en">Path: with a dependent source</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد $\mathbf{Z}_{Th}$ أو $\mathbf{Z}_N$ عند $a$-$b$»</span></button>
-      <button type="button" class="fb-node trick c12" data-id="ak" data-from="ar"><span class="fb-k">شيل الحمل، وصفّر المستقلة</span><span class="fb-f">جهد ← سلك، تيار ← فتح</span></button>
-      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ak"><span class="fb-k">مصادر مستقلة بس</span></button>
-      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ak"><span class="fb-k">فيه مصدر تابع</span></button>
-      <button type="button" class="fb-node prev c1" data-id="aa1" data-from="as1"><span class="fb-k">توالي وتوازي من $a$-$b$</span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span class="fb-b">المحاضرة 5</span></button>
-      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k">حط مصدر اختبار</span><span class="fb-f">$\mathbf{I}_s$ عند $a$-$b$</span></button>
-      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k">اقسم</span><span class="fb-f">$\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k">الناتج: $\mathbf{Z}_{Th} = \mathbf{Z}_N$ بالأوم</span></button>
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد $\mathbf{Z}_{Th}$ أو $\mathbf{Z}_N$ عند $a$-$b$»</span><span lang="en">If you get: “Find $\mathbf{Z}_{Th}$ or $\mathbf{Z}_N$ at $a$-$b$”</span></span></button>
+      <button type="button" class="fb-node trick c12" data-id="ak" data-from="ar"><span class="fb-k"><span lang="ar">شيل الحمل، وصفّر المستقلة</span><span lang="en">Remove the load, turn off the independent sources</span></span><span class="fb-f"><span lang="ar">جهد ← سلك، تيار ← فتح</span><span lang="en">Voltage → wire, current → open</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="ak"><span class="fb-k"><span lang="ar">مصادر مستقلة بس</span><span lang="en">Independent sources only</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="ak"><span class="fb-k"><span lang="ar">فيه مصدر تابع</span><span lang="en">There's a dependent source</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="aa1" data-from="as1"><span class="fb-k"><span lang="ar">توالي وتوازي من $a$-$b$</span><span lang="en">Series and parallel from $a$-$b$</span></span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span class="fb-b"><span lang="ar">المحاضرة 5</span><span lang="en">Lecture 5</span></span></button>
+      <button type="button" class="fb-node trick c2" data-id="aa2" data-from="as2"><span class="fb-k"><span lang="ar">حط مصدر اختبار</span><span lang="en">Put a test source</span></span><span class="fb-f"><span lang="ar">$\mathbf{I}_s$ عند $a$-$b$</span><span lang="en">$\mathbf{I}_s$ at $a$-$b$</span></span></button>
+      <button type="button" class="fb-node c2" data-id="ab2" data-from="aa2"><span class="fb-k"><span lang="ar">اقسم</span><span lang="en">Divide</span></span><span class="fb-f">$\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="aa1 ab2"><span class="fb-k"><span lang="ar">الناتج: $\mathbf{Z}_{Th} = \mathbf{Z}_N$ بالأوم</span><span lang="en">Result: $\mathbf{Z}_{Th} = \mathbf{Z}_N$ in ohms</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">Thevenin / Norton equivalent at terminals a-b</span>.</dd>
-      <dt>تذكّر</dt><dd>$\mathbf{Z}_N = \mathbf{Z}_{Th}$، ما تحسبها مرتين.</dd></dl></div>
-    <div class="fb-info" data-for="ak" hidden><h4>شيل الحمل وصفّر المصادر المستقلة</h4><dl>
-      <dt>كيف؟</dt><dd>مصدر الجهد المستقل يصير سلك، ومصدر التيار المستقل يصير فتح.</dd>
-      <dt>الخطأ الشائع</dt><dd>تصفّر المصدر التابع. التابع يبقى مثل ما هو.</dd></dl></div>
-    <div class="fb-info" data-for="as1" hidden><h4>مصادر مستقلة بس</h4><dl>
-      <dt>متى؟</dt><dd>ما فيه مصدر قيمته مثل $2\mathbf{V}_x$ أو $0.5\mathbf{I}_o$.</dd></dl></div>
-    <div class="fb-info" data-for="as2" hidden><h4>فيه مصدر تابع</h4><dl>
-      <dt>متى؟</dt><dd>فيه مصدر قيمته تعتمد على جهد أو تيار في الدائرة.</dd></dl></div>
-    <div class="fb-info" data-for="aa1" hidden><h4>توالي وتوازي من $a$-$b$: $\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
-      <dt>كيف؟</dt><dd>طالع من الطرفين $a$ و $b$ واجمع المعاوقات.</dd>
-      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{Z}_{Th} = 6.48 - j2.64\ \Omega$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحسبها من جهة المصدر بدل جهة الطرفين.</dd></dl></div>
-    <div class="fb-info" data-for="aa2" hidden><h4>حط مصدر اختبار $\mathbf{I}_s$ عند الطرفين</h4><dl>
-      <dt>الحيلة</dt><dd>اختار رقم مريح، مثل $3\ \text{A}$ في مثال 2. القيمة ما تفرق لأن الدائرة خطية.</dd>
-      <dt>كيف؟</dt><dd>حلل الدائرة (عقد أو حلقات) واحسب الجهد $\mathbf{V}_s$ على طرفيه.</dd></dl></div>
-    <div class="fb-info" data-for="ab2" hidden><h4>اقسم: $\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$\mathbf{I}_s = 3$ و $\mathbf{V}_s = 12 - j2$: $\mathbf{Z}_{Th} = 4 - j0.667\ \Omega$.</dd></dl></div>
-    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
-      <dt>تأكد</dt><dd>الجزء الحقيقي موجب لو ما فيه مصدر تابع.</dd></dl></div>
+    <div class="fb-info" data-for="ar" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span class="ltr">Thevenin / Norton equivalent at terminals a-b</span>.</dd>
+      <dt><span lang="ar">تذكّر</span><span lang="en">Remember</span></dt><dd><span lang="ar">$\mathbf{Z}_N = \mathbf{Z}_{Th}$، ما تحسبها مرتين.</span><span lang="en">$\mathbf{Z}_N = \mathbf{Z}_{Th}$; don't compute it twice.</span></dd></dl></div>
+    <div class="fb-info" data-for="ak" hidden><h4><span lang="ar">شيل الحمل وصفّر المصادر المستقلة</span><span lang="en">Remove the load and turn off the independent sources</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">مصدر الجهد المستقل يصير سلك، ومصدر التيار المستقل يصير فتح.</span><span lang="en">An independent voltage source becomes a wire, and an independent current source becomes an open.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تصفّر المصدر التابع. التابع يبقى مثل ما هو.</span><span lang="en">Turning off the dependent source. The dependent one stays as it is.</span></dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4><span lang="ar">مصادر مستقلة بس</span><span lang="en">Independent sources only</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">ما فيه مصدر قيمته مثل $2\mathbf{V}_x$ أو $0.5\mathbf{I}_o$.</span><span lang="en">No source with a value like $2\mathbf{V}_x$ or $0.5\mathbf{I}_o$.</span></dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4><span lang="ar">فيه مصدر تابع</span><span lang="en">There's a dependent source</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">فيه مصدر قيمته تعتمد على جهد أو تيار في الدائرة.</span><span lang="en">There's a source whose value depends on a voltage or current in the circuit.</span></dd></dl></div>
+    <div class="fb-info" data-for="aa1" hidden><h4><span lang="ar">توالي وتوازي من $a$-$b$: $\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span lang="en">Series and parallel from $a$-$b$: $\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">طالع من الطرفين $a$ و $b$ واجمع المعاوقات.</span><span lang="en">Look in from terminals $a$ and $b$ and combine the impedances.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">في مثال 1: $\mathbf{Z}_{Th} = 6.48 - j2.64\ \Omega$.</span><span lang="en">In Example 1: $\mathbf{Z}_{Th} = 6.48 - j2.64\ \Omega$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحسبها من جهة المصدر بدل جهة الطرفين.</span><span lang="en">Computing it from the source's side instead of the terminals' side.</span></dd></dl></div>
+    <div class="fb-info" data-for="aa2" hidden><h4><span lang="ar">حط مصدر اختبار $\mathbf{I}_s$ عند الطرفين</span><span lang="en">Put a test source $\mathbf{I}_s$ at the terminals</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">اختار رقم مريح، مثل $3\ \text{A}$ في مثال 2. القيمة ما تفرق لأن الدائرة خطية.</span><span lang="en">Pick a convenient number, like $3\ \text{A}$ in Example 2. The value doesn't matter because the circuit is linear.</span></dd>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">حلل الدائرة (عقد أو حلقات) واحسب الجهد $\mathbf{V}_s$ على طرفيه.</span><span lang="en">Analyze the circuit (nodal or mesh) and find the voltage $\mathbf{V}_s$ across it.</span></dd></dl></div>
+    <div class="fb-info" data-for="ab2" hidden><h4><span lang="ar">اقسم: $\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</span><span lang="en">Divide: $\mathbf{Z}_{Th} = \dfrac{\mathbf{V}_s}{\mathbf{I}_s}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{I}_s = 3$ و $\mathbf{V}_s = 12 - j2$: $\mathbf{Z}_{Th} = 4 - j0.667\ \Omega$.</span><span lang="en">$\mathbf{I}_s = 3$ and $\mathbf{V}_s = 12 - j2$: $\mathbf{Z}_{Th} = 4 - j0.667\ \Omega$.</span></dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">الجزء الحقيقي موجب لو ما فيه مصدر تابع.</span><span lang="en">The real part is positive if there's no dependent source.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: جهد ثيفنن وتيار نورتن</h3>
+    <h3><span lang="ar">الشجرة 2: جهد ثيفنن وتيار نورتن</span><span lang="en">Tree 2: Thevenin voltage and Norton current</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="br bs1 ba1 beq bo">مسار: ثيفنن</button>
-      <button class="btn small" type="button" data-path="br bs2 ba2 beq bo">مسار: نورتن</button>
+      <button class="btn small" type="button" data-path="br bs1 ba1 beq bo"><span lang="ar">مسار: ثيفنن</span><span lang="en">Path: Thevenin</span></button>
+      <button class="btn small" type="button" data-path="br bs2 ba2 beq bo"><span lang="ar">مسار: نورتن</span><span lang="en">Path: Norton</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد $\mathbf{V}_{Th}$» أو «$\mathbf{I}_N$»</span></button>
-      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k">ثيفنن: الطرفين مفتوحين</span></button>
-      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k">نورتن: الطرفين مقصورين</span></button>
-      <button type="button" class="fb-node prev c1" data-id="ba1" data-from="bs1"><span class="fb-k">جهد الأطراف المفتوحة</span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{V}_{oc}$</span><span class="fb-b">المحاضرة 5 و 6</span></button>
-      <button type="button" class="fb-node prev c2" data-id="ba2" data-from="bs2"><span class="fb-k">تيار سلك القصر</span><span class="fb-f">$\mathbf{I}_N = \mathbf{I}_{sc}$</span><span class="fb-b">المحاضرة 5 و 6</span></button>
-      <button type="button" class="fb-node c12" data-id="beq" data-from="ba1 ba2"><span class="fb-k">ارسم المكافئ، وبدّل بينهم</span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</span></button>
-      <button type="button" class="fb-node out c12" data-id="bo" data-from="beq"><span class="fb-k">الناتج: $\mathbf{V}_{Th}$ توالي مع $\mathbf{Z}_{Th}$، أو $\mathbf{I}_N$ توازي مع $\mathbf{Z}_N$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد $\mathbf{V}_{Th}$» أو «$\mathbf{I}_N$»</span><span lang="en">If you get: “Find $\mathbf{V}_{Th}$” or “$\mathbf{I}_N$”</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="br"><span class="fb-k"><span lang="ar">ثيفنن: الطرفين مفتوحين</span><span lang="en">Thevenin: terminals open</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="br"><span class="fb-k"><span lang="ar">نورتن: الطرفين مقصورين</span><span lang="en">Norton: terminals shorted</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="ba1" data-from="bs1"><span class="fb-k"><span lang="ar">جهد الأطراف المفتوحة</span><span lang="en">Open-terminal voltage</span></span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{V}_{oc}$</span><span class="fb-b"><span lang="ar">المحاضرة 5 و 6</span><span lang="en">Lectures 5 and 6</span></span></button>
+      <button type="button" class="fb-node prev c2" data-id="ba2" data-from="bs2"><span class="fb-k"><span lang="ar">تيار سلك القصر</span><span lang="en">Short-circuit wire current</span></span><span class="fb-f">$\mathbf{I}_N = \mathbf{I}_{sc}$</span><span class="fb-b"><span lang="ar">المحاضرة 5 و 6</span><span lang="en">Lectures 5 and 6</span></span></button>
+      <button type="button" class="fb-node c12" data-id="beq" data-from="ba1 ba2"><span class="fb-k"><span lang="ar">ارسم المكافئ، وبدّل بينهم</span><span lang="en">Draw the equivalent, and convert between them</span></span><span class="fb-f">$\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="beq"><span class="fb-k"><span lang="ar">الناتج: $\mathbf{V}_{Th}$ توالي مع $\mathbf{Z}_{Th}$، أو $\mathbf{I}_N$ توازي مع $\mathbf{Z}_N$</span><span lang="en">Result: $\mathbf{V}_{Th}$ in series with $\mathbf{Z}_{Th}$, or $\mathbf{I}_N$ in parallel with $\mathbf{Z}_N$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الفكرة</dt><dd>الدائرة كلها تصير مصدر ومعاوقة، والحمل ما يحس بالفرق.</dd></dl></div>
-    <div class="fb-info" data-for="bs1" hidden><h4>ثيفنن: الطرفين مفتوحين</h4><dl>
-      <dt>متى؟</dt><dd>المطلوب جهد، أو مكافئ بمصدر جهد على التوالي.</dd></dl></div>
-    <div class="fb-info" data-for="bs2" hidden><h4>نورتن: الطرفين مقصورين</h4><dl>
-      <dt>متى؟</dt><dd>المطلوب تيار، أو مكافئ بمصدر تيار على التوازي.</dd></dl></div>
-    <div class="fb-info" data-for="ba1" hidden><h4>جهد الأطراف المفتوحة: $\mathbf{V}_{Th} = \mathbf{V}_{oc}$</h4><dl>
-      <dt>كيف؟</dt><dd>بمقسم جهد، أو عقد، أو حلقات. المصادر كلها شغالة هنا.</dd>
-      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{V}_{Th} = 37.95\angle 220.31^\circ\ \text{V}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تصفّر المصادر هنا. التصفير لـ $\mathbf{Z}_{Th}$ بس.</dd></dl></div>
-    <div class="fb-info" data-for="ba2" hidden><h4>تيار سلك القصر: $\mathbf{I}_N = \mathbf{I}_{sc}$</h4><dl>
-      <dt>كيف؟</dt><dd>وصّل $a$ مع $b$ بسلك واحسب تياره.</dd></dl></div>
-    <div class="fb-info" data-for="beq" hidden><h4>ارسم المكافئ، وبدّل بينهم: $\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</h4><dl>
-      <dt>الحيلة</dt><dd>لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث بالضرب أو القسمة.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{I}_N = 2\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$: $\mathbf{V}_{Th} = 10\angle 53.13^\circ\ \text{V}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقسم الحقيقي على الحقيقي والتخيلي على التخيلي. القسمة بالقطبي.</dd></dl></div>
-    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
-      <dt>وش ترسم؟</dt><dd>ثيفنن: مصدر جهد ومعاوقة على التوالي. نورتن: مصدر تيار ومعاوقة على التوازي.</dd></dl></div>
+    <div class="fb-info" data-for="br" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الفكرة</span><span lang="en">The idea</span></dt><dd><span lang="ar">الدائرة كلها تصير مصدر ومعاوقة، والحمل ما يحس بالفرق.</span><span lang="en">The whole circuit becomes a source and an impedance, and the load can't tell the difference.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4><span lang="ar">ثيفنن: الطرفين مفتوحين</span><span lang="en">Thevenin: terminals open</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المطلوب جهد، أو مكافئ بمصدر جهد على التوالي.</span><span lang="en">A voltage is asked for, or an equivalent with a series voltage source.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4><span lang="ar">نورتن: الطرفين مقصورين</span><span lang="en">Norton: terminals shorted</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المطلوب تيار، أو مكافئ بمصدر تيار على التوازي.</span><span lang="en">A current is asked for, or an equivalent with a parallel current source.</span></dd></dl></div>
+    <div class="fb-info" data-for="ba1" hidden><h4><span lang="ar">جهد الأطراف المفتوحة: $\mathbf{V}_{Th} = \mathbf{V}_{oc}$</span><span lang="en">Open-terminal voltage: $\mathbf{V}_{Th} = \mathbf{V}_{oc}$</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">بمقسم جهد، أو عقد، أو حلقات. المصادر كلها شغالة هنا.</span><span lang="en">By voltage divider, nodal or mesh. All the sources are on here.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">في مثال 1: $\mathbf{V}_{Th} = 37.95\angle 220.31^\circ\ \text{V}$.</span><span lang="en">In Example 1: $\mathbf{V}_{Th} = 37.95\angle 220.31^\circ\ \text{V}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تصفّر المصادر هنا. التصفير لـ $\mathbf{Z}_{Th}$ بس.</span><span lang="en">Turning off the sources here. Turning off is only for $\mathbf{Z}_{Th}$.</span></dd></dl></div>
+    <div class="fb-info" data-for="ba2" hidden><h4><span lang="ar">تيار سلك القصر: $\mathbf{I}_N = \mathbf{I}_{sc}$</span><span lang="en">Short-circuit wire current: $\mathbf{I}_N = \mathbf{I}_{sc}$</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">وصّل $a$ مع $b$ بسلك واحسب تياره.</span><span lang="en">Connect $a$ to $b$ with a wire and find its current.</span></dd></dl></div>
+    <div class="fb-info" data-for="beq" hidden><h4><span lang="ar">ارسم المكافئ، وبدّل بينهم: $\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</span><span lang="en">Draw the equivalent, and convert between them: $\mathbf{V}_{Th} = \mathbf{Z}_N\,\mathbf{I}_N$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">لو عندك اثنين من الثلاثة ($\mathbf{V}_{Th}$ و $\mathbf{I}_N$ و $\mathbf{Z}_{Th}$)، الثالث بالضرب أو القسمة.</span><span lang="en">If you have two of the three ($\mathbf{V}_{Th}$, $\mathbf{I}_N$ and $\mathbf{Z}_{Th}$), the third comes from multiplying or dividing.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{I}_N = 2\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$: $\mathbf{V}_{Th} = 10\angle 53.13^\circ\ \text{V}$.</span><span lang="en">$\mathbf{I}_N = 2\angle 0^\circ$ and $\mathbf{Z}_{Th} = 3 + j4$: $\mathbf{V}_{Th} = 10\angle 53.13^\circ\ \text{V}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقسم الحقيقي على الحقيقي والتخيلي على التخيلي. القسمة بالقطبي.</span><span lang="en">Dividing real by real and imaginary by imaginary. Divide in polar.</span></dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">وش ترسم؟</span><span lang="en">What do you draw?</span></dt><dd><span lang="ar">ثيفنن: مصدر جهد ومعاوقة على التوالي. نورتن: مصدر تيار ومعاوقة على التوازي.</span><span lang="en">Thevenin: a voltage source and an impedance in series. Norton: a current source and an impedance in parallel.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 3 ===== -->
   <div class="fboard" id="board3">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 3: تيار الحمل</h3>
+    <h3><span lang="ar">الشجرة 3: تيار الحمل</span><span lang="en">Tree 3: load current</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="cr ct ci co">مسار: الحمل</button>
+      <button class="btn small" type="button" data-path="cr ct ci co"><span lang="ar">مسار: الحمل</span><span lang="en">Path: the load</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: «أوجد تيار الحمل» أو «جرّب أكثر من حمل»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k">طلّع مكافئ ثيفنن</span><span class="fb-f">$\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</span><span class="fb-b">الشجرة 1 و 2</span></button>
-      <button type="button" class="fb-node c12" data-id="ci" data-from="ct"><span class="fb-k">تيار الحمل</span><span class="fb-f">$\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="co" data-from="ci"><span class="fb-k">الناتج: $\mathbf{I}_L$، ومنه جهد الحمل $\mathbf{Z}_L\mathbf{I}_L$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد تيار الحمل» أو «جرّب أكثر من حمل»</span><span lang="en">If you get: “Find the load current” or “try more than one load”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="ct" data-from="cr"><span class="fb-k"><span lang="ar">طلّع مكافئ ثيفنن</span><span lang="en">Get the Thevenin equivalent</span></span><span class="fb-f"><span lang="ar">$\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</span><span lang="en">$\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$</span></span><span class="fb-b"><span lang="ar">الشجرة 1 و 2</span><span lang="en">Trees 1 and 2</span></span></button>
+      <button type="button" class="fb-node c12" data-id="ci" data-from="ct"><span class="fb-k"><span lang="ar">تيار الحمل</span><span lang="en">Load current</span></span><span class="fb-f">$\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="ci"><span class="fb-k"><span lang="ar">الناتج: $\mathbf{I}_L$، ومنه جهد الحمل $\mathbf{Z}_L\mathbf{I}_L$</span><span lang="en">Result: $\mathbf{I}_L$, and from it the load voltage $\mathbf{Z}_L\mathbf{I}_L$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الفكرة</dt><dd>تحسب ثيفنن مرة وحدة، وكل حمل جديد سطر واحد.</dd></dl></div>
-    <div class="fb-info" data-for="ct" hidden><h4>طلّع مكافئ ثيفنن: $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</h4><dl>
-      <dt>كيف؟</dt><dd>بالشجرتين فوق.</dd></dl></div>
-    <div class="fb-info" data-for="ci" hidden><h4>تيار الحمل: $\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</h4><dl>
-      <dt>مثال سريع</dt><dd>$\mathbf{V}_{Th} = 10\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$ و $\mathbf{Z}_L = 3 - j4$: $\mathbf{I}_L = \dfrac{10}{6} = 1.667\angle 0^\circ\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى $\mathbf{Z}_{Th}$ في المقام.</dd></dl></div>
-    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
-      <dt>بعدها</dt><dd>نفس المكافئ نستخدمه في المحاضرة 9 لأقصى قدرة.</dd></dl></div>
+    <div class="fb-info" data-for="cr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الفكرة</span><span lang="en">The idea</span></dt><dd><span lang="ar">تحسب ثيفنن مرة وحدة، وكل حمل جديد سطر واحد.</span><span lang="en">Find Thevenin once, and each new load is one line.</span></dd></dl></div>
+    <div class="fb-info" data-for="ct" hidden><h4><span lang="ar">طلّع مكافئ ثيفنن: $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$</span><span lang="en">Get the Thevenin equivalent: $\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">بالشجرتين فوق.</span><span lang="en">With the two trees above.</span></dd></dl></div>
+    <div class="fb-info" data-for="ci" hidden><h4><span lang="ar">تيار الحمل: $\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</span><span lang="en">Load current: $\mathbf{I}_L = \dfrac{\mathbf{V}_{Th}}{\mathbf{Z}_{Th} + \mathbf{Z}_L}$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V}_{Th} = 10\angle 0^\circ$ و $\mathbf{Z}_{Th} = 3 + j4$ و $\mathbf{Z}_L = 3 - j4$: $\mathbf{I}_L = \dfrac{10}{6} = 1.667\angle 0^\circ\ \text{A}$.</span><span lang="en">$\mathbf{V}_{Th} = 10\angle 0^\circ$, $\mathbf{Z}_{Th} = 3 + j4$ and $\mathbf{Z}_L = 3 - j4$: $\mathbf{I}_L = \dfrac{10}{6} = 1.667\angle 0^\circ\ \text{A}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى $\mathbf{Z}_{Th}$ في المقام.</span><span lang="en">Forgetting $\mathbf{Z}_{Th}$ in the denominator.</span></dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">بعدها</span><span lang="en">After that</span></dt><dd><span lang="ar">نفس المكافئ نستخدمه في المحاضرة 9 لأقصى قدرة.</span><span lang="en">We use the same equivalent in lecture 9 for maximum power.</span></dd></dl></div>
   </div>
 
 </section>
 
 <!-- ================= 05 المختبر ================= -->
 <section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
-  <h2>حاسبة ثيفنن ونورتن</h2>
-  <p class="sub">دائرة قنطرة، غيّر المعاوقات وشوف المكافئ يتغير</p>
+  <h2><span lang="ar">حاسبة ثيفنن ونورتن</span><span lang="en">Thevenin and Norton calculator</span></h2>
+  <p class="sub"><span lang="ar">دائرة قنطرة، غيّر المعاوقات وشوف المكافئ يتغير</span><span lang="en">A bridge circuit: change the impedances and watch the equivalent change</span></p>
 
   <div class="th-lab">
-    <h3>🎛️ جرّب مثال المحاضرة، أو اكتب معاوقات تمرينك</h3>
-    <p class="lab-note">اكتب كل رقم بالمستطيل مثل <span class="ltr">8-j6</span> أو <span class="ltr">j12</span>، أو بالقطبي مثل <span class="ltr">120∠75</span> (أو <span class="ltr">120&lt;75</span>). ولو تبي مقسم جهد بسيط بدل القنطرة، خل $\mathbf{Z}_d = 0$ و $\mathbf{Z}_c$ أي رقم: كذا الطرف $b$ يصير هو الأرضي.</p>
+    <h3><span lang="ar">🎛️ جرّب مثال المحاضرة، أو اكتب معاوقات تمرينك</span><span lang="en">🎛️ Try the lecture example, or type your exercise's impedances</span></h3>
+    <p class="lab-note"><span lang="ar">اكتب كل رقم بالمستطيل مثل <span class="ltr">8-j6</span> أو <span class="ltr">j12</span>، أو بالقطبي مثل <span class="ltr">120∠75</span> (أو <span class="ltr">120&lt;75</span>). ولو تبي مقسم جهد بسيط بدل القنطرة، خل $\mathbf{Z}_d = 0$ و $\mathbf{Z}_c$ أي رقم: كذا الطرف $b$ يصير هو الأرضي.</span><span lang="en">Type each number in rectangular form like <span class="ltr">8-j6</span> or <span class="ltr">j12</span>, or polar like <span class="ltr">120∠75</span> (or <span class="ltr">120&lt;75</span>). If you want a simple voltage divider instead of the bridge, set $\mathbf{Z}_d = 0$ and $\mathbf{Z}_c$ to any number: then terminal $b$ becomes ground.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>أمثلة جاهزة</label><span class="seg"><button class="btn small primary" type="button" data-pre="ex1" aria-pressed="true">مثال 1</button><button class="btn small" type="button" data-pre="div" aria-pressed="false">مقسم جهد (تمرين ج)</button></span></div>
+      <div class="field"><label><span lang="ar">أمثلة جاهزة</span><span lang="en">Ready examples</span></label><span class="seg"><button class="btn small primary" type="button" data-pre="ex1" aria-pressed="true"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></button><button class="btn small" type="button" data-pre="div" aria-pressed="false"><span lang="ar">مقسم جهد (تمرين ج)</span><span lang="en">Voltage divider (Exercise C)</span></button></span></div>
     </div>
     <figure class="fig">
       <svg viewBox="0 0 400 200" role="img" aria-label="دائرة قنطرة: مصدر جهد Vs على اليسار، فرع فيه Za فوق و Zb تحت والطرف a بينهم، وفرع فيه Zc فوق و Zd تحت والطرف b بينهم، والحمل ZL بين a و b" style="max-width:420px">
@@ -336,7 +336,7 @@
         <text class="lbl" x="348" y="64">Z<tspan class="sb" dy="3">c</tspan></text>
         <text class="lbl" x="348" y="144">Z<tspan class="sb" dy="3">d</tspan></text>
       </svg>
-      <figcaption>القنطرة العامة. الحمل $\mathbf{Z}_L$ متقطع لأننا نشيله وقت حساب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$، ونرجعه آخر شي.</figcaption>
+      <figcaption><span lang="ar">القنطرة العامة. الحمل $\mathbf{Z}_L$ متقطع لأننا نشيله وقت حساب $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$، ونرجعه آخر شي.</span><span lang="en">The general bridge. The load $\mathbf{Z}_L$ is dashed because we remove it while finding $\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$, and put it back at the end.</span></figcaption>
     </figure>
     <div class="th-in" role="group" aria-label="قيم الدائرة">
       <label><span>$\mathbf{V}_s$ (V)</span><input id="iVs" type="text" autocomplete="off" spellcheck="false"></label>
@@ -344,26 +344,26 @@
       <label><span>$\mathbf{Z}_b$ (Ω)</span><input id="iZb" type="text" autocomplete="off" spellcheck="false"></label>
       <label><span>$\mathbf{Z}_c$ (Ω)</span><input id="iZc" type="text" autocomplete="off" spellcheck="false"></label>
       <label><span>$\mathbf{Z}_d$ (Ω)</span><input id="iZd" type="text" autocomplete="off" spellcheck="false"></label>
-      <label><span>الحمل $\mathbf{Z}_L$ (Ω)</span><input id="iZL" type="text" autocomplete="off" spellcheck="false"></label>
+      <label><span lang="ar"><span>الحمل $\mathbf{Z}_L$ (Ω)</span></span><span lang="en"><span>Load $\mathbf{Z}_L$ (Ω)</span></span><input id="iZL" type="text" autocomplete="off" spellcheck="false"></label>
     </div>
     <p class="th-msg" id="tMsg" role="status"></p>
     <div class="ml-read">
       <div class="hl"><span class="k vz">$\mathbf{Z}_{Th} = \mathbf{Z}_a \parallel \mathbf{Z}_b + \mathbf{Z}_c \parallel \mathbf{Z}_d$</span><span class="v" id="rZ"></span></div>
       <div class="hl"><span class="k vx">$\mathbf{V}_{Th} = \mathbf{V}_a - \mathbf{V}_b$</span><span class="v" id="rV"></span></div>
       <div><span class="k vy">$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</span><span class="v" id="rI"></span></div>
-      <div><span class="k">تيار الحمل $\mathbf{I}_L$</span><span class="v" id="rL"></span></div>
+      <div><span class="k"><span lang="ar">تيار الحمل $\mathbf{I}_L$</span><span lang="en">Load current $\mathbf{I}_L$</span></span><span class="v" id="rL"></span></div>
     </div>
     <p class="th-say" id="tSay"></p>
   </div>
-  <div class="callout key"><strong>🔑 جرّب:</strong> غيّر $\mathbf{Z}_L$ لأي رقم. لاحظ إن $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ ما تحركوا أبداً، لأنهم صفة الدائرة مو الحمل. بعدين جرّب $\mathbf{Z}_L$ تساوي مرافق $\mathbf{Z}_{Th}$ (نفس الحقيقي والتخيلي بعكس الإشارة)، وشوف التخيلي يختفي من المقام.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 جرّب:</strong> غيّر $\mathbf{Z}_L$ لأي رقم. لاحظ إن $\mathbf{V}_{Th}$ و $\mathbf{Z}_{Th}$ ما تحركوا أبداً، لأنهم صفة الدائرة مو الحمل. بعدين جرّب $\mathbf{Z}_L$ تساوي مرافق $\mathbf{Z}_{Th}$ (نفس الحقيقي والتخيلي بعكس الإشارة)، وشوف التخيلي يختفي من المقام.</span><span lang="en"><strong>🔑 Try it:</strong> change $\mathbf{Z}_L$ to any number. Notice that $\mathbf{V}_{Th}$ and $\mathbf{Z}_{Th}$ never move, because they belong to the circuit, not the load. Then try $\mathbf{Z}_L$ equal to the conjugate of $\mathbf{Z}_{Th}$ (same real and imaginary parts with the sign flipped), and watch the imaginary part vanish from the denominator.</span></div>
 </section>
 
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>مكافئ ثيفنن لدائرة قنطرة</h2></div>
-  <div class="tags"><span class="tag">Example 10.8</span><span class="tag">مصادر مستقلة بس</span></div>
-  <p>أوجد مكافئ ثيفنن عند الطرفين $a$-$b$ في الدائرة.</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">مكافئ ثيفنن لدائرة قنطرة</span><span lang="en">Thevenin equivalent of a bridge circuit</span></h2></div>
+  <div class="tags"><span class="tag">Example 10.8</span><span class="tag"><span lang="ar">مصادر مستقلة بس</span><span lang="en">Independent sources only</span></span></div>
+  <p><span lang="ar">أوجد مكافئ ثيفنن عند الطرفين $a$-$b$ في الدائرة.</span><span lang="en">Find the Thevenin equivalent at terminals $a$-$b$ in the circuit.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 400 200" role="img" aria-label="مصدر 120 بزاوية 75 فولت على اليسار. فرع يسار فيه مكثف سالب j6 فوق ومقاومة 8 أوم تحت والطرف a بينهم. فرع يمين فيه مقاومة 4 أوم فوق وملف j12 تحت والطرف b بينهم" style="max-width:420px">
       <circle class="src" cx="110" cy="100" r="16"/>
@@ -386,59 +386,59 @@
       <text class="lbl" x="346" y="144">j12 Ω</text>
       <text class="lbl" x="210" y="12" text-anchor="middle">d</text><text class="lbl" x="210" y="196" text-anchor="middle">f</text>
     </svg>
-    <figcaption>Figure 10.22: القنطرة مرسومة كفرعين. الطرف $a$ بين المكثف والمقاومة 8&nbsp;Ω، والطرف $b$ بين المقاومة 4&nbsp;Ω والملف.</figcaption>
+    <figcaption><span lang="ar">Figure 10.22: القنطرة مرسومة كفرعين. الطرف $a$ بين المكثف والمقاومة 8&nbsp;Ω، والطرف $b$ بين المقاومة 4&nbsp;Ω والملف.</span><span lang="en">Figure 10.22: the bridge drawn as two branches. Terminal $a$ is between the capacitor and the 8&nbsp;Ω resistor, and terminal $b$ is between the 4&nbsp;Ω resistor and the inductor.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as1 aa1 ao">$\mathbf{Z}_{Th}$ بالتوالي والتوازي</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بمقسم الجهد</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as1 aa1 ao">$\mathbf{Z}_{Th}$ بالتوالي والتوازي</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بمقسم الجهد</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar ak as1 aa1 ao">$\mathbf{Z}_{Th}$ by series and parallel</a>, and <a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ by the voltage divider</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ الدائرة</h4>
-      <p class="why">مصدر مستقل واحد ومافيه مصادر تابعة، فـ $\mathbf{Z}_{Th}$ تطلع بتصفير المصدر وجمع المعاوقات. و $\mathbf{V}_{Th}$ من الفرعين: كل فرع مقسم جهد لحاله.</p>
+      <h4><span lang="ar">اقرأ الدائرة</span><span lang="en">Read the circuit</span></h4>
+      <p class="why"><span lang="ar">مصدر مستقل واحد ومافيه مصادر تابعة، فـ $\mathbf{Z}_{Th}$ تطلع بتصفير المصدر وجمع المعاوقات. و $\mathbf{V}_{Th}$ من الفرعين: كل فرع مقسم جهد لحاله.</span><span lang="en">One independent source and no dependent sources, so $\mathbf{Z}_{Th}$ comes from turning off the source and combining impedances. And $\mathbf{V}_{Th}$ from the two branches: each branch is its own voltage divider.</span></p>
     </li>
     <li class="step">
-      <h4>صفّر المصدر</h4>
-      <p class="why">مصدر الجهد يصير سلك، فالنقطة $d$ تتوصل بـ $f$. من الطرف $a$: المكثف $-j6$ والمقاومة 8 صاروا الاثنين بين $a$ و $d{=}f$، يعني على التوازي. ونفس الشي من $b$: المقاومة 4 والملف $j12$ على التوازي.</p>
+      <h4><span lang="ar">صفّر المصدر</span><span lang="en">Turn off the source</span></h4>
+      <p class="why"><span lang="ar">مصدر الجهد يصير سلك، فالنقطة $d$ تتوصل بـ $f$. من الطرف $a$: المكثف $-j6$ والمقاومة 8 صاروا الاثنين بين $a$ و $d{=}f$، يعني على التوازي. ونفس الشي من $b$: المقاومة 4 والملف $j12$ على التوازي.</span><span lang="en">The voltage source becomes a wire, so point $d$ connects to $f$. From terminal $a$: the $-j6$ capacitor and the 8 resistor are both between $a$ and $d{=}f$, so they're in parallel. Same from $b$: the 4 resistor and the $j12$ inductor are in parallel.</span></p>
     </li>
     <li class="step">
-      <h4>التوازي الأول</h4>
+      <h4><span lang="ar">التوازي الأول</span><span lang="en">The first parallel</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z}_1 = -j6 \parallel 8 = \frac{-j6 \times 8}{8 - j6} \\ = 2.88 - j3.84\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>التوازي الثاني</h4>
+      <h4><span lang="ar">التوازي الثاني</span><span lang="en">The second parallel</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z}_2 = 4 \parallel j12 = \frac{j12 \times 4}{4 + j12} \\ = 3.6 + j1.2\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>معاوقة ثيفنن</h4>
+      <h4><span lang="ar">معاوقة ثيفنن</span><span lang="en">Thevenin impedance</span></h4>
       <div class="m">\[\begin{gathered}\Z{\mathbf{Z}_{Th}} = \mathbf{Z}_1 + \mathbf{Z}_2 \\ = 6.48 - j2.64\ \Omega\end{gathered}\]</div>
-      <p class="why">$\mathbf{Z}_1$ و $\mathbf{Z}_2$ على التوالي، لأن الطريق من $a$ لـ $b$ يمر بالأول ثم الثاني.</p>
+      <p class="why"><span lang="ar">$\mathbf{Z}_1$ و $\mathbf{Z}_2$ على التوالي، لأن الطريق من $a$ لـ $b$ يمر بالأول ثم الثاني.</span><span lang="en">$\mathbf{Z}_1$ and $\mathbf{Z}_2$ are in series, because the path from $a$ to $b$ goes through the first then the second.</span></p>
     </li>
     <li class="step">
-      <h4>تيار كل فرع</h4>
-      <p class="why">رجّع المصدر. الطرفين مفتوحين، فكل فرع ياخذ تياره لحاله:</p>
+      <h4><span lang="ar">تيار كل فرع</span><span lang="en">Current in each branch</span></h4>
+      <p class="why"><span lang="ar">رجّع المصدر. الطرفين مفتوحين، فكل فرع ياخذ تياره لحاله:</span><span lang="en">Turn the source back on. The terminals are open, so each branch carries its own current:</span></p>
       <div class="m">\[\begin{gathered}\mathbf{I}_1 = \frac{120\angle 75^\circ}{8 - j6}\ \text{A} \\[4pt] \mathbf{I}_2 = \frac{120\angle 75^\circ}{4 + j12}\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>KVL حول الطرفين</h4>
-      <p class="why">نمشي من $b$ لـ $c$ لـ $d$ لـ $e$ ونرجع لـ $a$، وكل التيارات نازلة من $d$:</p>
+      <h4><span lang="ar">KVL حول الطرفين</span><span lang="en">KVL around the terminals</span></h4>
+      <p class="why"><span lang="ar">نمشي من $b$ لـ $c$ لـ $d$ لـ $e$ ونرجع لـ $a$، وكل التيارات نازلة من $d$:</span><span lang="en">We walk from $b$ to $c$ to $d$ to $e$ and back to $a$, with all currents flowing down from $d$:</span></p>
       <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} - 4\mathbf{I}_2 + (-j6)\mathbf{I}_1 = 0 \\[4pt] \X{\mathbf{V}_{Th}} = 4\mathbf{I}_2 + j6\,\mathbf{I}_1\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>عوّض</h4>
+      <h4><span lang="ar">عوّض</span><span lang="en">Substitute</span></h4>
       <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = \frac{480\angle 75^\circ}{4 + j12} \\ + \frac{720\angle 165^\circ}{8 - j6} \\ = 37.95\angle 3.43^\circ \\ + 72\angle 201.87^\circ \\ = -28.94 - j24.55 \\ = 37.95\angle 220.31^\circ\ \text{V}\end{gathered}\]</div>
-      <p class="why">$j6 = 6\angle 90^\circ$، فضربه في $120\angle 75^\circ$ يعطي $720\angle 165^\circ$. والجمع لازم بالمستطيل.</p>
+      <p class="why"><span lang="ar">$j6 = 6\angle 90^\circ$، فضربه في $120\angle 75^\circ$ يعطي $720\angle 165^\circ$. والجمع لازم بالمستطيل.</span><span lang="en">$j6 = 6\angle 90^\circ$, so multiplying it by $120\angle 75^\circ$ gives $720\angle 165^\circ$. The addition must be done in rectangular form.</span></p>
     </li>
     <li class="step final">
       <div class="result">$\mathbf{Z}_{Th} = 6.48 - j2.64$ Ω</div>
       <div class="result">$\mathbf{V}_{Th} = 37.95\angle 220.31^\circ$ V</div>
-      <p class="sanity">جرّب "مثال 1" في المختبر وبتطلع نفس الأرقام ✓. والزاوية $220.31^\circ$ هي نفسها $-139.69^\circ$.</p>
+      <p class="sanity"><span lang="ar">جرّب "مثال 1" في المختبر وبتطلع نفس الأرقام ✓. والزاوية $220.31^\circ$ هي نفسها $-139.69^\circ$.</span><span lang="en">Try “Example 1” in the lab and you'll get the same numbers ✓. The angle $220.31^\circ$ is the same as $-139.69^\circ$.</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مكافئ ثيفنن مع مصدر تابع</h2></div>
-  <div class="tags"><span class="tag">Example 10.9</span><span class="tag">مصدر اختبار</span></div>
-  <p>أوجد مكافئ ثيفنن للدائرة كما تشوفها من الطرفين $a$-$b$.</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">مكافئ ثيفنن مع مصدر تابع</span><span lang="en">Thevenin equivalent with a dependent source</span></h2></div>
+  <div class="tags"><span class="tag">Example 10.9</span><span class="tag"><span lang="ar">مصدر اختبار</span><span lang="en">test source</span></span></div>
+  <p><span lang="ar">أوجد مكافئ ثيفنن للدائرة كما تشوفها من الطرفين $a$-$b$.</span><span lang="en">Find the Thevenin equivalent of the circuit as seen from terminals $a$-$b$.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 470 210" role="img" aria-label="مصدر تيار 15 أمبير على اليسار سهمه لفوق. عند العقدة 1 فرع نازل فيه 2 أوم وسالب j4 والتيار Io نازل فيه. ومن العقدة 1 لليمين 4 أوم و j3 إلى العقدة 2، وعندها مصدر تيار تابع 0.5Io سهمه لتحت، ثم الطرف a. والطرف b تحت" style="max-width:490px">
       <circle class="src" cx="90" cy="110" r="16"/>
@@ -466,31 +466,31 @@
       <text class="lbl" x="384" y="114">0.5I<tspan class="sb" dy="3">o</tspan></text>
       <text class="lbl" x="190" y="20" text-anchor="middle">1</text><text class="lbl" x="360" y="20" text-anchor="middle">2</text>
     </svg>
-    <figcaption>Figure 10.25: المصدر التابع $0.5\mathbf{I}_o$ يعتمد على التيار $\mathbf{I}_o$ اللي نازل في الفرع الأوسط.</figcaption>
+    <figcaption><span lang="ar">Figure 10.25: المصدر التابع $0.5\mathbf{I}_o$ يعتمد على التيار $\mathbf{I}_o$ اللي نازل في الفرع الأوسط.</span><span lang="en">Figure 10.25: the dependent source $0.5\mathbf{I}_o$ depends on the current $\mathbf{I}_o$ flowing down the middle branch.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as2 aa2 ab2 ao">$\mathbf{Z}_{Th}$ بمصدر اختبار</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بالأطراف المفتوحة</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar ak as2 aa2 ab2 ao">$\mathbf{Z}_{Th}$ بمصدر اختبار</a>، و<a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ بالأطراف المفتوحة</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar ak as2 aa2 ab2 ao">$\mathbf{Z}_{Th}$ with a test source</a>, and <a class="fb-go" href="#board2" data-path="br bs1 ba1 beq bo">$\mathbf{V}_{Th}$ with open terminals</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ الدائرة</h4>
-      <p class="why">فيه مصدر تابع، فـ $\mathbf{Z}_{Th}$ ما تطلع بجمع المعاوقات. نحسب $\mathbf{V}_{Th}$ عادي، وبعدين نحط مصدر اختبار عشان $\mathbf{Z}_{Th}$.</p>
+      <h4><span lang="ar">اقرأ الدائرة</span><span lang="en">Read the circuit</span></h4>
+      <p class="why"><span lang="ar">فيه مصدر تابع، فـ $\mathbf{Z}_{Th}$ ما تطلع بجمع المعاوقات. نحسب $\mathbf{V}_{Th}$ عادي، وبعدين نحط مصدر اختبار عشان $\mathbf{Z}_{Th}$.</span><span lang="en">There's a dependent source, so $\mathbf{Z}_{Th}$ doesn't come from combining impedances. We find $\mathbf{V}_{Th}$ normally, then add a test source to get $\mathbf{Z}_{Th}$.</span></p>
     </li>
     <li class="step">
-      <h4>KCL عند العقدة 1</h4>
-      <p class="why">الطرفين مفتوحين، فالتيار اللي يروح يمين من العقدة 1 هو نفسه تيار المصدر التابع $0.5\mathbf{I}_o$:</p>
+      <h4><span lang="ar">KCL عند العقدة 1</span><span lang="en">KCL at node 1</span></h4>
+      <p class="why"><span lang="ar">الطرفين مفتوحين، فالتيار اللي يروح يمين من العقدة 1 هو نفسه تيار المصدر التابع $0.5\mathbf{I}_o$:</span><span lang="en">The terminals are open, so the current going right from node 1 is the dependent-source current $0.5\mathbf{I}_o$:</span></p>
       <div class="m">\[\begin{gathered}15 = \mathbf{I}_o + 0.5\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 10\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>KVL للحلقة اليمين</h4>
-      <p class="why">من تحت الفرع الأوسط، طلوع عليه، ثم يمين عبر $4 + j3$، ثم نزول على الطرفين:</p>
+      <h4><span lang="ar">KVL للحلقة اليمين</span><span lang="en">KVL for the right loop</span></h4>
+      <p class="why"><span lang="ar">من تحت الفرع الأوسط، طلوع عليه، ثم يمين عبر $4 + j3$، ثم نزول على الطرفين:</span><span lang="en">From the bottom of the middle branch, up through it, then right through $4 + j3$, then down across the terminals:</span></p>
       <div class="m">\[\begin{gathered}-\mathbf{I}_o(2 - j4) + 0.5\mathbf{I}_o(4 + j3) \\ + \X{\mathbf{V}_{Th}} = 0\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>جهد ثيفنن</h4>
+      <h4><span lang="ar">جهد ثيفنن</span><span lang="en">Thevenin voltage</span></h4>
       <div class="m">\[\begin{gathered}\X{\mathbf{V}_{Th}} = 10(2 - j4) \\ - 5(4 + j3) \\ = 20 - j40 \\ - 20 - j15 \\ = -j55 = 55\angle{-90^\circ}\ \text{V}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>شيل المصدر المستقل وحط مصدر اختبار</h4>
-      <p class="why">مصدر التيار 15&nbsp;A يصير فتح. والمصدر التابع يبقى. ونحط مصدر تيار $\mathbf{I}_s = 3\angle 0^\circ$ A داخل للطرف $a$. اختار الكتاب 3 لأنها تنقسم على $1.5$ بسهولة.</p>
+      <h4><span lang="ar">شيل المصدر المستقل وحط مصدر اختبار</span><span lang="en">Remove the independent source and add a test source</span></h4>
+      <p class="why"><span lang="ar">مصدر التيار 15&nbsp;A يصير فتح. والمصدر التابع يبقى. ونحط مصدر تيار $\mathbf{I}_s = 3\angle 0^\circ$ A داخل للطرف $a$. اختار الكتاب 3 لأنها تنقسم على $1.5$ بسهولة.</span><span lang="en">The 15&nbsp;A current source becomes an open. The dependent source stays. We add a current source $\mathbf{I}_s = 3\angle 0^\circ$ A entering terminal $a$. The textbook picked 3 because it divides easily by $1.5$.</span></p>
       <figure class="fig">
         <svg viewBox="0 0 450 210" role="img" aria-label="نفس الدائرة بدون مصدر 15 أمبير، ومصدر اختبار 3 أمبير على الطرفين a و b سهمه لفوق، والجهد Vs على طرفيه" style="max-width:470px">
           <path class="wire" d="M190 30H230M270 30H290M330 30H410V94M410 126V190H190M190 30V60M190 100V125M190 135V190M360 30V92M360 128V190"/>
@@ -514,143 +514,143 @@
           <text class="lbl" x="250" y="14" text-anchor="middle">4 Ω</text>
           <text class="lbl" x="310" y="14" text-anchor="middle">j3 Ω</text>
           <text class="lbl" x="326" y="114" text-anchor="end">0.5I<tspan class="sb" dy="3">o</tspan></text>
-          <text class="lbl" x="120" y="114" text-anchor="middle">مفتوح</text>
+          <text class="lbl" x="120" y="114" text-anchor="middle" lang="ar">مفتوح</text><text class="lbl" x="120" y="114" text-anchor="middle" lang="en" style="direction:rtl">open</text>
         </svg>
-        <figcaption>Figure 10.26(b): مصدر الاختبار $\mathbf{I}_s = 3$ A مكان الحمل، والمصدر المستقل صار مفتوح.</figcaption>
+        <figcaption><span lang="ar">Figure 10.26(b): مصدر الاختبار $\mathbf{I}_s = 3$ A مكان الحمل، والمصدر المستقل صار مفتوح.</span><span lang="en">Figure 10.26(b): the test source $\mathbf{I}_s = 3$ A in place of the load, with the independent source opened.</span></figcaption>
       </figure>
     </li>
     <li class="step">
-      <h4>KCL عند الطرف $a$</h4>
-      <p class="why">$\mathbf{I}_s$ داخل، ويطلع منه $0.5\mathbf{I}_o$ للمصدر التابع و $\mathbf{I}_o$ يسار عبر $4 + j3$ ثم نازل في الفرع الأوسط:</p>
+      <h4><span lang="ar">KCL عند الطرف $a$</span><span lang="en">KCL at terminal $a$</span></h4>
+      <p class="why"><span lang="ar">$\mathbf{I}_s$ داخل، ويطلع منه $0.5\mathbf{I}_o$ للمصدر التابع و $\mathbf{I}_o$ يسار عبر $4 + j3$ ثم نازل في الفرع الأوسط:</span><span lang="en">$\mathbf{I}_s$ enters, and $0.5\mathbf{I}_o$ leaves to the dependent source and $\mathbf{I}_o$ goes left through $4 + j3$ then down the middle branch:</span></p>
       <div class="m">\[\begin{gathered}3 = \mathbf{I}_o + 0.5\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 2\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>جهد الاختبار</h4>
-      <p class="why">KVL على الحلقة الخارجية: $\mathbf{I}_o$ يمر في $4 + j3$ وبعدها في $2 - j4$.</p>
+      <h4><span lang="ar">جهد الاختبار</span><span lang="en">Test voltage</span></h4>
+      <p class="why"><span lang="ar">KVL على الحلقة الخارجية: $\mathbf{I}_o$ يمر في $4 + j3$ وبعدها في $2 - j4$.</span><span lang="en">KVL on the outer loop: $\mathbf{I}_o$ flows through $4 + j3$ and then through $2 - j4$.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{V}_s = \mathbf{I}_o(4 + j3 + 2 - j4) \\ = 2(6 - j)\ \text{V}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>معاوقة ثيفنن</h4>
+      <h4><span lang="ar">معاوقة ثيفنن</span><span lang="en">Thevenin impedance</span></h4>
       <div class="m">\[\begin{gathered}\Z{\mathbf{Z}_{Th}} = \frac{\mathbf{V}_s}{\mathbf{I}_s} = \frac{2(6 - j)}{3} \\ = 4 - j0.6667\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step final">
       <div class="result">$\mathbf{V}_{Th} = 55\angle{-90^\circ}$ V</div>
       <div class="result">$\mathbf{Z}_{Th} = 4 - j0.667$ Ω</div>
-      <p class="sanity">لو جربت $\mathbf{I}_s = 6$ بدل 3، بيطلع $\mathbf{I}_o = 4$ و $\mathbf{V}_s = 4(6 - j)$، والقسمة نفسها ✓. ولاحظ إن $\mathbf{Z}_{Th}$ مو مجموع المعاوقات $6 - j$، المصدر التابع غيّرها.</p>
+      <p class="sanity"><span lang="ar">لو جربت $\mathbf{I}_s = 6$ بدل 3، بيطلع $\mathbf{I}_o = 4$ و $\mathbf{V}_s = 4(6 - j)$، والقسمة نفسها ✓. ولاحظ إن $\mathbf{Z}_{Th}$ مو مجموع المعاوقات $6 - j$، المصدر التابع غيّرها.</span><span lang="en">If you tried $\mathbf{I}_s = 6$ instead of 3, you'd get $\mathbf{I}_o = 4$ and $\mathbf{V}_s = 4(6 - j)$, and the same ratio ✓. Notice that $\mathbf{Z}_{Th}$ is not the sum of impedances $6 - j$; the dependent source changed it.</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= تمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</span><span lang="en">Type just the number. Round to at least two decimal places.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>مكافئ ثيفنن لدائرة: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. كم سعة تيار نورتن $|\mathbf{I}_N|$ بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">مكافئ ثيفنن لدائرة: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. كم سعة تيار نورتن $|\mathbf{I}_N|$ بالأمبير؟</span><span lang="en">A circuit's Thevenin equivalent: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V and $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. What is the Norton current magnitude $|\mathbf{I}_N|$ in amperes?</span></p>
     <div class="check" data-answer="2"></div>
-    <details class="hint"><p>$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$، والسعة $|\mathbf{Z}_{Th}| = \sqrt{3^2 + 4^2}$.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$، والسعة $|\mathbf{Z}_{Th}| = \sqrt{3^2 + 4^2}$.</span><span lang="en">$\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$, and the magnitude $|\mathbf{Z}_{Th}| = \sqrt{3^2 + 4^2}$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}\mathbf{I}_N = \frac{10\angle 0^\circ}{5\angle 53.13^\circ} \\ = 2\angle{-53.13^\circ}\ \text{A}\end{gathered}\]</div><div class="result">$|\mathbf{I}_N| = 2$ A</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
-    <p>مكافئ نورتن: $\mathbf{I}_N = 4\angle 30^\circ$ A و $\mathbf{Z}_N = 5\angle{-20^\circ}\ \Omega$. كم سعة جهد ثيفنن $|\mathbf{V}_{Th}|$ بالفولت؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">مكافئ نورتن: $\mathbf{I}_N = 4\angle 30^\circ$ A و $\mathbf{Z}_N = 5\angle{-20^\circ}\ \Omega$. كم سعة جهد ثيفنن $|\mathbf{V}_{Th}|$ بالفولت؟</span><span lang="en">A Norton equivalent: $\mathbf{I}_N = 4\angle 30^\circ$ A and $\mathbf{Z}_N = 5\angle{-20^\circ}\ \Omega$. What is the Thevenin voltage magnitude $|\mathbf{V}_{Th}|$ in volts?</span></p>
     <div class="check" data-answer="20"></div>
-    <details class="hint"><p>$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$: السعات تنضرب والزوايا تنجمع.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$: السعات تنضرب والزوايا تنجمع.</span><span lang="en">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$: magnitudes multiply and angles add.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N \\ = (5\angle{-20^\circ})(4\angle 30^\circ) \\ = 20\angle 10^\circ\ \text{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}_{Th}| = 20$ V</div><p class="sanity">و $\mathbf{Z}_{Th} = \mathbf{Z}_N = 5\angle{-20^\circ}$ نفسها ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N \\ = (5\angle{-20^\circ})(4\angle 30^\circ) \\ = 20\angle 10^\circ\ \text{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}_{Th}| = 20$ V</div><p class="sanity"><span lang="ar">و $\mathbf{Z}_{Th} = \mathbf{Z}_N = 5\angle{-20^\circ}$ نفسها ✓</span><span lang="en">And $\mathbf{Z}_{Th} = \mathbf{Z}_N = 5\angle{-20^\circ}$ itself ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
-    <p>مصدر $20\angle 0^\circ$ V على التوالي مع مقاومة 6&nbsp;Ω، والطرفين $a$-$b$ على مكثف $-j8\ \Omega$ موصول بعدها. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">مصدر $20\angle 0^\circ$ V على التوالي مع مقاومة 6&nbsp;Ω، والطرفين $a$-$b$ على مكثف $-j8\ \Omega$ موصول بعدها. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</span><span lang="en">A $20\angle 0^\circ$ V source in series with a 6&nbsp;Ω resistor, and terminals $a$-$b$ across a $-j8\ \Omega$ capacitor connected after it. What is the real part of $\mathbf{Z}_{Th}$ in ohms?</span></p>
     <div class="check" data-answer="3.84"></div>
-    <details class="hint"><p>صفّر المصدر: يصير سلك، فالمقاومة والمكثف يصيرون على التوازي من الطرفين.</p></details>
+    <details class="hint"><p><span lang="ar">صفّر المصدر: يصير سلك، فالمقاومة والمكثف يصيرون على التوازي من الطرفين.</span><span lang="en">Turn off the source: it becomes a wire, so the resistor and capacitor are in parallel as seen from the terminals.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} = 6 \parallel (-j8) \\ = \frac{-j48}{6 - j8} \\ = 3.84 - j2.88\ \Omega\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 3.84$ Ω</div><p class="sanity">اختار "مقسم جهد" في المختبر وشوف نفس الرقم ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} = 6 \parallel (-j8) \\ = \frac{-j48}{6 - j8} \\ = 3.84 - j2.88\ \Omega\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 3.84$ Ω</div><p class="sanity"><span lang="ar">اختار "مقسم جهد" في المختبر وشوف نفس الرقم ✓</span><span lang="en">Choose “Voltage divider” in the lab and see the same number ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
-    <p>نفس دائرة تمرين ج. كم سعة $|\mathbf{V}_{Th}|$ بالفولت؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">نفس دائرة تمرين ج. كم سعة $|\mathbf{V}_{Th}|$ بالفولت؟</span><span lang="en">Same circuit as Exercise C. What is $|\mathbf{V}_{Th}|$ in volts?</span></p>
     <div class="check" data-answer="16"></div>
-    <details class="hint"><p>الطرفين مفتوحين، فهو مقسم جهد: $\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8}$.</p></details>
+    <details class="hint"><p><span lang="ar">الطرفين مفتوحين، فهو مقسم جهد: $\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8}$.</span><span lang="en">The terminals are open, so it's a voltage divider: $\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8}$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}\mathbf{V}_{Th} = 20 \times \frac{-j8}{6 - j8} \\ = 20 \times \frac{8\angle{-90^\circ}}{10\angle{-53.13^\circ}} \\ = 16\angle{-36.87^\circ}\ \text{V}\end{gathered}\]</div><div class="result">$|\mathbf{V}_{Th}| = 16$ V</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
-    <p>نرجع لمكافئ تمرين أ: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. وصلنا حمل $\mathbf{Z}_L = 3 - j4\ \Omega$. كم سعة تيار الحمل بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين هـ</span><span lang="en">Exercise E</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">نرجع لمكافئ تمرين أ: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V و $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. وصلنا حمل $\mathbf{Z}_L = 3 - j4\ \Omega$. كم سعة تيار الحمل بالأمبير؟</span><span lang="en">Back to Exercise A's equivalent: $\mathbf{V}_{Th} = 10\angle 0^\circ$ V and $\mathbf{Z}_{Th} = 3 + j4\ \Omega$. We connect a load $\mathbf{Z}_L = 3 - j4\ \Omega$. What is the load current magnitude in amperes?</span></p>
     <div class="check" data-answer="1.67"></div>
-    <details class="hint"><p>$\mathbf{I}_L = \mathbf{V}_{Th}/(\mathbf{Z}_{Th} + \mathbf{Z}_L)$. اجمع المعاوقتين أول وشوف وش يصير بالتخيلي.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{I}_L = \mathbf{V}_{Th}/(\mathbf{Z}_{Th} + \mathbf{Z}_L)$. اجمع المعاوقتين أول وشوف وش يصير بالتخيلي.</span><span lang="en">$\mathbf{I}_L = \mathbf{V}_{Th}/(\mathbf{Z}_{Th} + \mathbf{Z}_L)$. Add the two impedances first and see what happens to the imaginary part.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} + \mathbf{Z}_L \\ = (3 + j4) + (3 - j4) \\ = 6\ \Omega \\[4pt] \mathbf{I}_L = \frac{10}{6}\end{gathered}\]</div><div class="result">$|\mathbf{I}_L| = 1.67$ A</div><p class="sanity">الحمل هنا مرافق $\mathbf{Z}_{Th}$، فالتخيلي انلغى. هذي فكرة أقصى نقل للقدرة اللي بتجيك في الفصل 11.</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z}_{Th} + \mathbf{Z}_L \\ = (3 + j4) + (3 - j4) \\ = 6\ \Omega \\[4pt] \mathbf{I}_L = \frac{10}{6}\end{gathered}\]</div><div class="result">$|\mathbf{I}_L| = 1.67$ A</div><p class="sanity"><span lang="ar">الحمل هنا مرافق $\mathbf{Z}_{Th}$، فالتخيلي انلغى. هذي فكرة أقصى نقل للقدرة اللي بتجيك في الفصل 11.</span><span lang="en">The load here is the conjugate of $\mathbf{Z}_{Th}$, so the imaginary part cancelled. This is the idea of maximum power transfer you'll meet in chapter 11.</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
-    <p>نفس دائرة مثال 2، بس المصدر التابع صار $0.25\mathbf{I}_o$ بدل $0.5\mathbf{I}_o$. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين و</span><span lang="en">Exercise F</span></b><span class="lvl"><span lang="ar">صعب</span><span lang="en">Hard</span></span></div>
+    <p><span lang="ar">نفس دائرة مثال 2، بس المصدر التابع صار $0.25\mathbf{I}_o$ بدل $0.5\mathbf{I}_o$. كم الجزء الحقيقي من $\mathbf{Z}_{Th}$ بالأوم؟</span><span lang="en">Same circuit as Example 2, but the dependent source is now $0.25\mathbf{I}_o$ instead of $0.5\mathbf{I}_o$. What is the real part of $\mathbf{Z}_{Th}$ in ohms?</span></p>
     <div class="check" data-answer="4.8"></div>
-    <details class="hint"><p>نفس الخطوات: KCL عند $a$ يعطي $\mathbf{I}_s = 1.25\,\mathbf{I}_o$. اختار $\mathbf{I}_s = 5$ عشان القسمة تطلع رقم صحيح.</p></details>
+    <details class="hint"><p><span lang="ar">نفس الخطوات: KCL عند $a$ يعطي $\mathbf{I}_s = 1.25\,\mathbf{I}_o$. اختار $\mathbf{I}_s = 5$ عشان القسمة تطلع رقم صحيح.</span><span lang="en">Same steps: KCL at $a$ gives $\mathbf{I}_s = 1.25\,\mathbf{I}_o$. Pick $\mathbf{I}_s = 5$ so the division gives a whole number.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}5 = 1.25\,\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 4\ \text{A} \\ \mathbf{V}_s = 4(6 - j) \\ = 24 - j4 \\ \mathbf{Z}_{Th} = \frac{24 - j4}{5} \\ = 4.8 - j0.8\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 4.8$ Ω</div><p class="sanity">كل ما صغر المصدر التابع، قربت $\mathbf{Z}_{Th}$ من مجموع المعاوقات $6 - j$. ولو صار صفر، بتطلع $6 - j$ بالضبط ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}5 = 1.25\,\mathbf{I}_o \\ \Rightarrow\ \mathbf{I}_o = 4\ \text{A} \\ \mathbf{V}_s = 4(6 - j) \\ = 24 - j4 \\ \mathbf{Z}_{Th} = \frac{24 - j4}{5} \\ = 4.8 - j0.8\end{gathered}\]</div><div class="result">$\mathrm{Re}[\mathbf{Z}_{Th}] = 4.8$ Ω</div><p class="sanity"><span lang="ar">كل ما صغر المصدر التابع، قربت $\mathbf{Z}_{Th}$ من مجموع المعاوقات $6 - j$. ولو صار صفر، بتطلع $6 - j$ بالضبط ✓</span><span lang="en">The smaller the dependent source, the closer $\mathbf{Z}_{Th}$ gets to the impedance sum $6 - j$. If it were zero, you'd get exactly $6 - j$ ✓</span></p></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تصفّر المصدر التابع</div>
-    <div class="pair"><div class="no">مثال 2: $\mathbf{Z}_{Th} = (4 + j3) + (2 - j4) = 6 - j$</div><div class="yes">المصدر التابع يبقى، وتحط مصدر اختبار: $\mathbf{Z}_{Th} = 4 - j0.667$</div></div></div>
-  <div class="mk"><div class="mk-title">تصفّر المصادر بالعكس</div>
-    <div class="pair"><div class="no">مصدر الجهد يصير فتح، ومصدر التيار سلك</div><div class="yes">مصدر الجهد يصير سلك (قصر)، ومصدر التيار يصير فتح</div></div></div>
-  <div class="mk"><div class="mk-title">تحسب $\mathbf{V}_{Th}$ والحمل موصول</div>
-    <div class="pair"><div class="no">$\mathbf{V}_{Th}$ هو الجهد على الحمل</div><div class="yes">$\mathbf{V}_{Th}$ جهد الدائرة المفتوحة، بعد ما تشيل الحمل</div></div></div>
-  <div class="mk"><div class="mk-title">تجمع زوايا بدل ما تحوّل للمستطيل</div>
-    <div class="pair"><div class="no">تجمع السعات: $37.95 + 72 = 109.95$</div><div class="yes">حوّل للمستطيل واجمع: $-28.94 - j24.55$</div></div></div>
-  <div class="mk"><div class="mk-title">تحسب $\mathbf{Z}_N$ من جديد</div>
-    <div class="pair"><div class="no">$\mathbf{Z}_N$ تحتاج حساب لحالها</div><div class="yes">$\mathbf{Z}_N = \mathbf{Z}_{Th}$ نفسها، و $\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</div></div></div>
-  <div class="mk"><div class="mk-title">مكافئ واحد لمصادر بترددات مختلفة</div>
-    <div class="pair"><div class="no">مكافئ ثيفنن واحد يجمع كل المصادر</div><div class="yes">مكافئ لكل تردد لحاله، لأن $j\omega L$ و $1/j\omega C$ يتغيرون مع $\omega$</div></div></div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تصفّر المصدر التابع</span><span lang="en">Turning off the dependent source</span></div>
+    <div class="pair"><div class="no"><span lang="ar">مثال 2: $\mathbf{Z}_{Th} = (4 + j3) + (2 - j4) = 6 - j$</span><span lang="en">Example 2: $\mathbf{Z}_{Th} = (4 + j3) + (2 - j4) = 6 - j$</span></div><div class="yes"><span lang="ar">المصدر التابع يبقى، وتحط مصدر اختبار: $\mathbf{Z}_{Th} = 4 - j0.667$</span><span lang="en">The dependent source stays, and you add a test source: $\mathbf{Z}_{Th} = 4 - j0.667$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تصفّر المصادر بالعكس</span><span lang="en">Turning off the sources the wrong way round</span></div>
+    <div class="pair"><div class="no"><span lang="ar">مصدر الجهد يصير فتح، ومصدر التيار سلك</span><span lang="en">A voltage source becomes an open, and a current source a wire</span></div><div class="yes"><span lang="ar">مصدر الجهد يصير سلك (قصر)، ومصدر التيار يصير فتح</span><span lang="en">A voltage source becomes a wire (short), and a current source becomes an open</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحسب $\mathbf{V}_{Th}$ والحمل موصول</span><span lang="en">Finding $\mathbf{V}_{Th}$ with the load connected</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{V}_{Th}$ هو الجهد على الحمل</span><span lang="en">$\mathbf{V}_{Th}$ is the voltage across the load</span></div><div class="yes"><span lang="ar">$\mathbf{V}_{Th}$ جهد الدائرة المفتوحة، بعد ما تشيل الحمل</span><span lang="en">$\mathbf{V}_{Th}$ is the open-circuit voltage, after removing the load</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع زوايا بدل ما تحوّل للمستطيل</span><span lang="en">Adding angles instead of converting to rectangular</span></div>
+    <div class="pair"><div class="no"><span lang="ar">تجمع السعات: $37.95 + 72 = 109.95$</span><span lang="en">Adding the magnitudes: $37.95 + 72 = 109.95$</span></div><div class="yes"><span lang="ar">حوّل للمستطيل واجمع: $-28.94 - j24.55$</span><span lang="en">Convert to rectangular and add: $-28.94 - j24.55$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحسب $\mathbf{Z}_N$ من جديد</span><span lang="en">Computing $\mathbf{Z}_N$ from scratch</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{Z}_N$ تحتاج حساب لحالها</span><span lang="en">$\mathbf{Z}_N$ needs its own calculation</span></div><div class="yes"><span lang="ar">$\mathbf{Z}_N = \mathbf{Z}_{Th}$ نفسها، و $\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</span><span lang="en">$\mathbf{Z}_N = \mathbf{Z}_{Th}$ itself, and $\mathbf{I}_N = \mathbf{V}_{Th}/\mathbf{Z}_{Th}$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">مكافئ واحد لمصادر بترددات مختلفة</span><span lang="en">One equivalent for sources at different frequencies</span></div>
+    <div class="pair"><div class="no"><span lang="ar">مكافئ ثيفنن واحد يجمع كل المصادر</span><span lang="en">One Thevenin equivalent that combines all the sources</span></div><div class="yes"><span lang="ar">مكافئ لكل تردد لحاله، لأن $j\omega L$ و $1/j\omega C$ يتغيرون مع $\omega$</span><span lang="en">An equivalent for each frequency separately, because $j\omega L$ and $1/j\omega C$ change with $\omega$</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="2"><p>جهد ثيفنن $\mathbf{V}_{Th}$ هو:</p>
-      <button>الجهد على الحمل</button><button>جهد الدائرة المفتوحة بين الطرفين</button><button>جهد المصدر الأصلي</button><button>صفر دايم</button>
-      <p class="q-why">تشيل الحمل وتقيس الجهد بين $a$ و $b$ وهم مفتوحين.</p></div>
-    <div class="q" data-answer="3"><p>تيار نورتن $\mathbf{I}_N$ هو:</p>
-      <button>تيار الحمل</button><button>تيار المصدر الأصلي</button><button>التيار في سلك يقصر الطرفين</button><button>$\mathbf{V}_{Th} \times \mathbf{Z}_{Th}$</button>
-      <p class="q-why">تيار القصر (Short-circuit current)، ويساوي $\mathbf{V}_{Th}/\mathbf{Z}_{Th}$.</p></div>
-    <div class="q" data-answer="1"><p>العلاقة بين المكافئين:</p>
-      <button>$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$</button><button>$\mathbf{V}_{Th} = \mathbf{I}_N/\mathbf{Z}_N$</button><button>$\mathbf{Z}_{Th} = 1/\mathbf{Z}_N$</button><button>ما بينهم علاقة</button>
-      <p class="q-why">نفس تحويل المصادر: مصدر جهد مع معاوقة توالي = مصدر تيار مع نفس المعاوقة توازي.</p></div>
-    <div class="q" data-answer="2"><p>لما تصفّر مصدر جهد مستقل عشان $\mathbf{Z}_{Th}$، تستبدله بـ:</p>
-      <button>فتح</button><button>سلك (قصر)</button><button>مقاومة 1 Ω</button><button>تخليه مثل ما هو</button>
-      <p class="q-why">جهده صفر، والعنصر اللي جهده صفر هو السلك.</p></div>
-    <div class="q" data-answer="4"><p>في دائرة فيها مصدر تابع، $\mathbf{Z}_{Th}$ تحسبها:</p>
-      <button>بتصفير كل المصادر</button><button>بجمع كل المعاوقات</button><button>من $\mathbf{V}_{Th}$ بس</button><button>بمصدر اختبار: $\mathbf{V}_s/\mathbf{I}_s$</button>
-      <p class="q-why">المصدر التابع ما يتصفر، فتحط مصدر اختبار وتقسم الجهد على التيار.</p></div>
-    <div class="q" data-answer="3"><p>دائرة فيها مصدرين بترددين مختلفين. كم مكافئ ثيفنن تحتاج؟</p>
-      <button>واحد</button><button>صفر</button><button>واحد لكل تردد</button><button>واحد لكل عنصر</button>
-      <p class="q-why">المعاوقات تتغير مع التردد، فكل تردد له مكافئه.</p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">جهد ثيفنن $\mathbf{V}_{Th}$ هو:</span><span lang="en">The Thevenin voltage $\mathbf{V}_{Th}$ is:</span></p>
+      <button><span lang="ar">الجهد على الحمل</span><span lang="en">The voltage across the load</span></button><button><span lang="ar">جهد الدائرة المفتوحة بين الطرفين</span><span lang="en">The open-circuit voltage between the terminals</span></button><button><span lang="ar">جهد المصدر الأصلي</span><span lang="en">The original source voltage</span></button><button><span lang="ar">صفر دايم</span><span lang="en">Always zero</span></button>
+      <p class="q-why"><span lang="ar">تشيل الحمل وتقيس الجهد بين $a$ و $b$ وهم مفتوحين.</span><span lang="en">Remove the load and measure the voltage between $a$ and $b$ while they're open.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">تيار نورتن $\mathbf{I}_N$ هو:</span><span lang="en">The Norton current $\mathbf{I}_N$ is:</span></p>
+      <button><span lang="ar">تيار الحمل</span><span lang="en">Load current</span></button><button><span lang="ar">تيار المصدر الأصلي</span><span lang="en">The original source current</span></button><button><span lang="ar">التيار في سلك يقصر الطرفين</span><span lang="en">The current in a wire shorting the terminals</span></button><button>$\mathbf{V}_{Th} \times \mathbf{Z}_{Th}$</button>
+      <p class="q-why"><span lang="ar">تيار القصر (Short-circuit current)، ويساوي $\mathbf{V}_{Th}/\mathbf{Z}_{Th}$.</span><span lang="en">The short-circuit current, which equals $\mathbf{V}_{Th}/\mathbf{Z}_{Th}$.</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">العلاقة بين المكافئين:</span><span lang="en">The relation between the two equivalents:</span></p>
+      <button><span lang="ar">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ و $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span><span lang="en">$\mathbf{V}_{Th} = \mathbf{Z}_N\mathbf{I}_N$ and $\mathbf{Z}_{Th} = \mathbf{Z}_N$</span></button><button>$\mathbf{V}_{Th} = \mathbf{I}_N/\mathbf{Z}_N$</button><button>$\mathbf{Z}_{Th} = 1/\mathbf{Z}_N$</button><button><span lang="ar">ما بينهم علاقة</span><span lang="en">They're not related</span></button>
+      <p class="q-why"><span lang="ar">نفس تحويل المصادر: مصدر جهد مع معاوقة توالي = مصدر تيار مع نفس المعاوقة توازي.</span><span lang="en">Same as source transformation: a voltage source with a series impedance = a current source with the same impedance in parallel.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">لما تصفّر مصدر جهد مستقل عشان $\mathbf{Z}_{Th}$، تستبدله بـ:</span><span lang="en">When you turn off an independent voltage source to find $\mathbf{Z}_{Th}$, you replace it with:</span></p>
+      <button><span lang="ar">فتح</span><span lang="en">An open</span></button><button><span lang="ar">سلك (قصر)</span><span lang="en">A wire (short)</span></button><button><span lang="ar">مقاومة 1 Ω</span><span lang="en">A 1 Ω resistor</span></button><button><span lang="ar">تخليه مثل ما هو</span><span lang="en">Leave it as it is</span></button>
+      <p class="q-why"><span lang="ar">جهده صفر، والعنصر اللي جهده صفر هو السلك.</span><span lang="en">Its voltage is zero, and the element with zero voltage is a wire.</span></p></div>
+    <div class="q" data-answer="4"><p><span lang="ar">في دائرة فيها مصدر تابع، $\mathbf{Z}_{Th}$ تحسبها:</span><span lang="en">In a circuit with a dependent source, you find $\mathbf{Z}_{Th}$:</span></p>
+      <button><span lang="ar">بتصفير كل المصادر</span><span lang="en">By turning off all the sources</span></button><button><span lang="ar">بجمع كل المعاوقات</span><span lang="en">By adding all the impedances</span></button><button><span lang="ar">من $\mathbf{V}_{Th}$ بس</span><span lang="en">From $\mathbf{V}_{Th}$ only</span></button><button><span lang="ar">بمصدر اختبار: $\mathbf{V}_s/\mathbf{I}_s$</span><span lang="en">With a test source: $\mathbf{V}_s/\mathbf{I}_s$</span></button>
+      <p class="q-why"><span lang="ar">المصدر التابع ما يتصفر، فتحط مصدر اختبار وتقسم الجهد على التيار.</span><span lang="en">The dependent source isn't turned off, so you add a test source and divide the voltage by the current.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">دائرة فيها مصدرين بترددين مختلفين. كم مكافئ ثيفنن تحتاج؟</span><span lang="en">A circuit with two sources at two different frequencies. How many Thevenin equivalents do you need?</span></p>
+      <button><span lang="ar">واحد</span><span lang="en">One</span></button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button><span lang="ar">واحد لكل تردد</span><span lang="en">One per frequency</span></button><button><span lang="ar">واحد لكل عنصر</span><span lang="en">One per element</span></button>
+      <p class="q-why"><span lang="ar">المعاوقات تتغير مع التردد، فكل تردد له مكافئه.</span><span lang="en">Impedances change with frequency, so each frequency has its own equivalent.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* حاسبة ثيفنن ونورتن لدائرة القنطرة في القسم 05 */
 (function () {
@@ -710,21 +710,21 @@
     const v = {};
     let ok = true;
     IDS.forEach(id => { const z = parse($(id).value); $(id).classList.toggle('bad', !z); if (!z) ok = false; v[id] = z; });
-    if (!ok) { $('tMsg').textContent = 'فيه رقم مكتوب غلط. اكتبه مثل 8-j6 أو 120∠75.'; clear(); $('tSay').textContent = ''; return; }
+    if (!ok) { $('tMsg').innerHTML = Lec.L('فيه رقم مكتوب غلط. اكتبه مثل 8-j6 أو 120∠75.', 'A number is typed wrong. Write it like 8-j6 or 120∠75.'); clear(); $('tSay').textContent = ''; return; }
     const ka = ratio(v.iZa, v.iZb), kc = ratio(v.iZc, v.iZd);
-    if (!ka || !kc) { $('tMsg').textContent = 'مجموع معاوقتين في فرع واحد طلع صفر، فالمصدر صار مقصور. غيّر الأرقام.'; clear(); $('tSay').textContent = ''; return; }
+    if (!ka || !kc) { $('tMsg').innerHTML = Lec.L('مجموع معاوقتين في فرع واحد طلع صفر، فالمصدر صار مقصور. غيّر الأرقام.', 'Two impedances in one branch add to zero, so the source is shorted. Change the numbers.'); clear(); $('tSay').textContent = ''; return; }
     $('tMsg').textContent = '';
     const Zth = add(par(v.iZa, v.iZb), par(v.iZc, v.iZd));
     const Vth = mul(v.iVs, sub(ka, kc));
     show('rZ', Zth, 'Ω'); show('rV', Vth, 'V');
-    if (zero(Zth)) { $('rI').textContent = '∞ (المعاوقة صفر)'; } else show('rI', div(Vth, Zth), 'A');
+    if (zero(Zth)) { $('rI').innerHTML = Lec.L('∞ (المعاوقة صفر)', '∞ (zero impedance)'); } else show('rI', div(Vth, Zth), 'A');
     const den = add(Zth, v.iZL);
     if (zero(den)) { $('rL').textContent = '∞'; $('tSay').textContent = ''; return; }
     const IL = div(Vth, den);
     show('rL', IL, 'A');
     const conj = Math.abs(v.iZL[0] - Zth[0]) < 0.01 && Math.abs(v.iZL[1] + Zth[1]) < 0.01 && !zero(v.iZL);
-    $('tSay').innerHTML = conj ? 'الحمل يساوي مرافق Z<sub>Th</sub>: التخيلي انلغى من المقام، والتيار صار V<sub>Th</sub> مقسوم على 2R<sub>Th</sub>.'
-      : zero(Zth) ? '' : `ومن مكافئ نورتن بمقسم التيار: <bdi dir="ltr">I<sub>N</sub>·Z<sub>N</sub>/(Z<sub>N</sub> + Z<sub>L</sub>) = ${polar(mul(div(Vth, Zth), div(Zth, den)))} A</bdi>، نفس الجواب.`;
+    $('tSay').innerHTML = conj ? Lec.L('الحمل يساوي مرافق Z<sub>Th</sub>: التخيلي انلغى من المقام، والتيار صار V<sub>Th</sub> مقسوم على 2R<sub>Th</sub>.', 'The load equals the conjugate of Z<sub>Th</sub>: the imaginary part cancels in the denominator, and the current becomes V<sub>Th</sub> divided by 2R<sub>Th</sub>.')
+      : zero(Zth) ? '' : Lec.L(`ومن مكافئ نورتن بمقسم التيار: <bdi dir="ltr">I<sub>N</sub>·Z<sub>N</sub>/(Z<sub>N</sub> + Z<sub>L</sub>) = ${polar(mul(div(Vth, Zth), div(Zth, den)))} A</bdi>، نفس الجواب.`, `From the Norton equivalent with the current divider: <bdi dir="ltr">I<sub>N</sub>·Z<sub>N</sub>/(Z<sub>N</sub> + Z<sub>L</sub>) = ${polar(mul(div(Vth, Zth), div(Zth, den)))} A</bdi>, the same answer.`);
   }
   const press = b => document.querySelectorAll('.th-lab [data-pre]').forEach(o => { o.classList.toggle('primary', o === b); o.setAttribute('aria-pressed', o === b); });
   function load(k) { PRE[k].forEach((t, i) => { $(IDS[i]).value = t; }); calc(); }

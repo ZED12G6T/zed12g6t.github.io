@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 10 - Apparent Power, Power Factor & Complex Power" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 10 - Apparent Power, Power Factor & Complex Power">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,126 +44,126 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 10 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.5–11.6</span></p>
-  <h1><span>القدرة الظاهرية ومعامل القدرة والقدرة المركبة</span> <span class="h1-math ltr">$\mathbf{S} = P + jQ$</span></h1>
-  <p class="lead">في المحاضرة 9 تعلمنا القيمة الفعالة. اليوم نستخدمها عشان نوصف قدرة أي حمل كاملة: كم يسحب من المصدر، وكم يستفيد منه فعلًا، وكم يرجّع.</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 10 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.5–11.6</span></span><span lang="en">Lecture 10 · Circuit Analysis 2 · <span class="ltr">Ch 11.5–11.6</span></span></p>
+  <h1><span><span lang="ar">القدرة الظاهرية ومعامل القدرة والقدرة المركبة</span><span lang="en">Apparent power, power factor and complex power</span></span> <span class="h1-math ltr">$\mathbf{S} = P + jQ$</span></h1>
+  <p class="lead"><span lang="ar">في المحاضرة 9 تعلمنا القيمة الفعالة. اليوم نستخدمها عشان نوصف قدرة أي حمل كاملة: كم يسحب من المصدر، وكم يستفيد منه فعلًا، وكم يرجّع.</span><span lang="en">In lecture 9 we learned the effective value. Today we use it to describe a load's power completely: how much it draws from the source, how much it really uses, and how much it sends back.</span></p>
   <div class="xyz-bar">
-    <span class="x">القدرة الحقيقية $P$ (W)</span><span class="y">القدرة غير الفعالة $Q$ (VAR)</span><span class="z">القدرة الظاهرية والمركبة $S$ (VA)</span>
-    <small>← نفس الألوان في القوانين والرسومات</small>
+    <span class="x"><span lang="ar">القدرة الحقيقية $P$ (W)</span><span lang="en">Real power $P$ (W)</span></span><span class="y"><span lang="ar">القدرة غير الفعالة $Q$ (VAR)</span><span lang="en">Reactive power $Q$ (VAR)</span></span><span class="z"><span lang="ar">القدرة الظاهرية والمركبة $S$ (VA)</span><span lang="en">Apparent and complex power $S$ (VA)</span></span>
+    <small><span lang="ar">← نفس الألوان في القوانين والرسومات</span><span lang="en">← same colors in the formulas and drawings</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>القدرة المركبة $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$. الجزء الحقيقي $P$ بالواط، والتخيلي $Q$ بالـ VAR.</li>
-      <li>مقدارها هو القدرة الظاهرية $S = V_{rms}I_{rms}$ بالـ VA، ومعامل القدرة $\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$.</li>
-      <li>$Q$ موجب: حمل حثي (ملف) ومعامل القدرة متأخر. $Q$ سالب: حمل سعوي (مكثف) ومعامل القدرة متقدم.</li>
+      <li><span lang="ar">القدرة المركبة $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$. الجزء الحقيقي $P$ بالواط، والتخيلي $Q$ بالـ VAR.</span><span lang="en">Complex power $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$. The real part $P$ is in watts, and the imaginary part $Q$ in VAR.</span></li>
+      <li><span lang="ar">مقدارها هو القدرة الظاهرية $S = V_{rms}I_{rms}$ بالـ VA، ومعامل القدرة $\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$.</span><span lang="en">Its magnitude is the apparent power $S = V_{rms}I_{rms}$ in VA, and the power factor is $\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$.</span></li>
+      <li><span lang="ar">$Q$ موجب: حمل حثي (ملف) ومعامل القدرة متأخر. $Q$ سالب: حمل سعوي (مكثف) ومعامل القدرة متقدم.</span><span lang="en">Positive $Q$: an inductive load (inductor) and a lagging power factor. Negative $Q$: a capacitive load (capacitor) and a leading power factor.</span></li>
     </ol>
   </div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يشرح المحاضرة كاملة في 9 دقائق مع شجرة القوانين، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يشرح المحاضرة كاملة في 9 دقائق مع شجرة القوانين، شوفه قبل أو بعد القراءة</span><span lang="en">A video explaining the whole lecture in 9 minutes with the formula tree. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture10.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture10.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture10.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture10.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 ليش ================= -->
 <section class="card" id="why" data-num="01" data-nav="ليش؟|Why">
-  <h2>ليش نحتاج هذا الدرس؟</h2>
-  <p class="sub">سؤال بسيط جوابه مو بسيط</p>
+  <h2><span lang="ar">ليش نحتاج هذا الدرس؟</span><span lang="en">Why do we need this lesson?</span></h2>
+  <p class="sub"><span lang="ar">سؤال بسيط جوابه مو بسيط</span><span lang="en">A simple question with a not-so-simple answer</span></p>
 
-  <p>حمل موصول على مصدر. قسنا الجهد بالفولتميتر: <b>120 V</b>، وقسنا التيار بالأميتر: <b>10 A</b>. لو الدائرة DC بنقول القدرة $120 \times 10 = 1200\ \text{W}$ وخلصنا.</p>
-  <details class="think"><summary>🤔 فكّر قبل تكمل: في التيار المتردد، هل القدرة المتوسطة لازم تطلع 1200 W؟</summary>
-    <p>لا. من المحاضرة 8: $P = V_{rms}I_{rms}\cos(\theta_v - \theta_i)$. لو فيه فرق زاوية بين الجهد والتيار، الـ $\cos$ أقل من 1 والقدرة الحقيقية أقل من 1200. ممكن تطلع 600 W، وممكن صفر لو الحمل ملف بس.</p>
+  <p><span lang="ar">حمل موصول على مصدر. قسنا الجهد بالفولتميتر: <b>120 V</b>، وقسنا التيار بالأميتر: <b>10 A</b>. لو الدائرة DC بنقول القدرة $120 \times 10 = 1200\ \text{W}$ وخلصنا.</span><span lang="en">A load is connected to a source. We measured the voltage with a voltmeter: <b>120 V</b>, and the current with an ammeter: <b>10 A</b>. If the circuit were DC we'd say the power is $120 \times 10 = 1200\ \text{W}$ and be done.</span></p>
+  <details class="think"><summary><span lang="ar">🤔 فكّر قبل تكمل: في التيار المتردد، هل القدرة المتوسطة لازم تطلع 1200 W؟</span><span lang="en">🤔 Think before you go on: in AC, must the average power come out as 1200 W?</span></summary>
+    <p><span lang="ar">لا. من المحاضرة 8: $P = V_{rms}I_{rms}\cos(\theta_v - \theta_i)$. لو فيه فرق زاوية بين الجهد والتيار، الـ $\cos$ أقل من 1 والقدرة الحقيقية أقل من 1200. ممكن تطلع 600 W، وممكن صفر لو الحمل ملف بس.</span><span lang="en">No. From lecture 8: $P = V_{rms}I_{rms}\cos(\theta_v - \theta_i)$. If there's an angle difference between voltage and current, the $\cos$ is less than 1 and the real power is less than 1200. It could be 600 W, or even zero if the load is only an inductor.</span></p>
   </details>
-  <p>فالرقم 1200 "يبان" إنه القدرة بس هو مو القدرة الحقيقية. هذا اسمه <b>القدرة الظاهرية</b> <span class="ltr">(Apparent power)</span>. والرقم اللي نضربه فيه عشان نوصل للحقيقية اسمه <b>معامل القدرة</b> <span class="ltr">(Power factor)</span>.</p>
-  <div class="callout"><strong>💡 ليش يهمنا؟</strong> شركة الكهرباء لازم تمد أسلاك تتحمل التيار كامل (10 A)، حتى لو الحمل يستفيد من جزء من القدرة بس. عشان كذا معامل القدرة يأثر على فاتورة الكهرباء.</div>
-  <div class="callout"><strong>💡 اللي تحتاجه من قبل:</strong> القيمة الفعالة $V_{rms} = V_m/\sqrt{2}$ (المحاضرة 9)، والقدرة المتوسطة (المحاضرة 8)، والمعاوقة $\mathbf{Z} = R + jX$ (المحاضرة 4).</div>
+  <p><span lang="ar">فالرقم 1200 "يبان" إنه القدرة بس هو مو القدرة الحقيقية. هذا اسمه <b>القدرة الظاهرية</b> <span class="ltr">(Apparent power)</span>. والرقم اللي نضربه فيه عشان نوصل للحقيقية اسمه <b>معامل القدرة</b> <span class="ltr">(Power factor)</span>.</span><span lang="en">So 1200 “looks like” the power but isn't the real power. This is called the <b>apparent power</b>. And the number we multiply it by to get the real power is called the <b>power factor</b>.</span></p>
+  <div class="callout"><span lang="ar"><strong>💡 ليش يهمنا؟</strong> شركة الكهرباء لازم تمد أسلاك تتحمل التيار كامل (10 A)، حتى لو الحمل يستفيد من جزء من القدرة بس. عشان كذا معامل القدرة يأثر على فاتورة الكهرباء.</span><span lang="en"><strong>💡 Why do we care?</strong> The power company must run wires that carry the full current (10 A), even if the load uses only part of the power. That's why the power factor affects the electricity bill.</span></div>
+  <div class="callout"><span lang="ar"><strong>💡 اللي تحتاجه من قبل:</strong> القيمة الفعالة $V_{rms} = V_m/\sqrt{2}$ (المحاضرة 9)، والقدرة المتوسطة (المحاضرة 8)، والمعاوقة $\mathbf{Z} = R + jX$ (المحاضرة 4).</span><span lang="en"><strong>💡 What you need from before:</strong> the effective value $V_{rms} = V_m/\sqrt{2}$ (lecture 9), average power (lecture 8), and impedance $\mathbf{Z} = R + jX$ (lecture 4).</span></div>
 </section>
 
 <!-- ================= 02 الظاهرية ومعامل القدرة ================= -->
 <section class="card" id="pf" data-num="02" data-nav="معامل القدرة|Power factor">
-  <h2>القدرة الظاهرية ومعامل القدرة</h2>
-  <p class="sub">كم يسحب الحمل، وكم يستفيد</p>
+  <h2><span lang="ar">القدرة الظاهرية ومعامل القدرة</span><span lang="en">Apparent power and power factor</span></h2>
+  <p class="sub"><span lang="ar">كم يسحب الحمل، وكم يستفيد</span><span lang="en">How much the load draws, and how much it uses</span></p>
 
-  <h3>الفكرة قبل المعادلات</h3>
-  <p>تخيّل حصان يمشي على ضفة قناة ويسحب قارب بحبل مايل. الحصان يشد الحبل بقوة كاملة، بس القارب يستفيد من الجزء اللي <b>على طول القناة</b> بس. الجزء الجانبي يضيع في شد الحبل يمين ويسار.</p>
+  <h3><span lang="ar">الفكرة قبل المعادلات</span><span lang="en">The idea before the equations</span></h3>
+  <p><span lang="ar">تخيّل حصان يمشي على ضفة قناة ويسحب قارب بحبل مايل. الحصان يشد الحبل بقوة كاملة، بس القارب يستفيد من الجزء اللي <b>على طول القناة</b> بس. الجزء الجانبي يضيع في شد الحبل يمين ويسار.</span><span lang="en">Picture a horse walking on a canal bank, pulling a boat with a slanted rope. The horse pulls the rope with full force, but the boat only benefits from the part <b>along the canal</b>. The sideways part is wasted pulling the rope left and right.</span></p>
   <div class="three">
-    <div><b>شدّة الحبل كاملة</b>هذي القدرة الظاهرية $\Z{S}$</div>
-    <div><b>الجزء اللي يحرك القارب</b>هذي القدرة الحقيقية $\X{P}$</div>
-    <div><b>زاوية الحبل</b>كل ما صغرت، استفدنا أكثر. جيب تمامها هو معامل القدرة</div>
+    <div><span lang="ar"><b>شدّة الحبل كاملة</b>هذي القدرة الظاهرية $\Z{S}$</span><span lang="en"><b>The full rope pull</b>this is the apparent power $\Z{S}$</span></div>
+    <div><span lang="ar"><b>الجزء اللي يحرك القارب</b>هذي القدرة الحقيقية $\X{P}$</span><span lang="en"><b>The part that moves the boat</b>this is the real power $\X{P}$</span></div>
+    <div><span lang="ar"><b>زاوية الحبل</b>كل ما صغرت، استفدنا أكثر. جيب تمامها هو معامل القدرة</span><span lang="en"><b>The rope's angle</b>the smaller it is, the more we benefit. Its cosine is the power factor</span></div>
   </div>
 
-  <h3>القانون</h3>
-  <p>من المحاضرة 9، لو $v(t) = V_m\cos(\omega t + \theta_v)$ و $i(t) = I_m\cos(\omega t + \theta_i)$:</p>
+  <h3><span lang="ar">القانون</span><span lang="en">The law</span></h3>
+  <p><span lang="ar">من المحاضرة 9، لو $v(t) = V_m\cos(\omega t + \theta_v)$ و $i(t) = I_m\cos(\omega t + \theta_i)$:</span><span lang="en">From lecture 9, if $v(t) = V_m\cos(\omega t + \theta_v)$ and $i(t) = I_m\cos(\omega t + \theta_i)$:</span></p>
   <div class="m">\[\X{P} = V_{rms}I_{rms}\cos(\theta_v - \theta_i)\]</div>
-  <p>القدرة هنا ضرب شيئين. الأول $V_{rms}I_{rms}$ نسميه القدرة الظاهرية:</p>
+  <p><span lang="ar">القدرة هنا ضرب شيئين. الأول $V_{rms}I_{rms}$ نسميه القدرة الظاهرية:</span><span lang="en">The power here is a product of two things. The first, $V_{rms}I_{rms}$, we call the apparent power:</span></p>
   <div class="m">\[\Z{S} = V_{rms}\,I_{rms}\]</div>
-  <p>ووحدتها فولت أمبير <span class="ltr">(VA)</span>، مو واط، عشان ما نخلطها بالقدرة الحقيقية. والثاني $\cos(\theta_v - \theta_i)$ هو معامل القدرة:</p>
+  <p><span lang="ar">ووحدتها فولت أمبير <span class="ltr">(VA)</span>، مو واط، عشان ما نخلطها بالقدرة الحقيقية. والثاني $\cos(\theta_v - \theta_i)$ هو معامل القدرة:</span><span lang="en">Its unit is the volt-ampere (VA), not the watt, so we don't confuse it with real power. The second, $\cos(\theta_v - \theta_i)$, is the power factor:</span></p>
   <div class="m">\[\text{pf} = \frac{\X{P}}{\Z{S}} = \cos(\theta_v - \theta_i)\]</div>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">الرموز</div><div class="t-desc">$V_{rms}$ و $I_{rms}$: القيم الفعالة (V و A). $\theta_v - \theta_i$: زاوية معامل القدرة <span class="ltr">(Power factor angle)</span>. pf: بدون وحدة، من 0 إلى 1.</div></div>
-    <div class="tile"><div class="t-top">من وين الزاوية؟</div><div class="t-desc">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = \dfrac{V_m}{I_m}\angle(\theta_v - \theta_i)$. يعني زاوية معامل القدرة هي نفسها <b>زاوية معاوقة الحمل</b>.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">الرموز</span><span lang="en">Symbols</span></div><div class="t-desc"><span lang="ar">$V_{rms}$ و $I_{rms}$: القيم الفعالة (V و A). $\theta_v - \theta_i$: زاوية معامل القدرة <span class="ltr">(Power factor angle)</span>. pf: بدون وحدة، من 0 إلى 1.</span><span lang="en">$V_{rms}$ and $I_{rms}$: effective values (V and A). $\theta_v - \theta_i$: the power factor angle. pf: unitless, from 0 to 1.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">من وين الزاوية؟</span><span lang="en">Where does the angle come from?</span></div><div class="t-desc"><span lang="ar">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = \dfrac{V_m}{I_m}\angle(\theta_v - \theta_i)$. يعني زاوية معامل القدرة هي نفسها <b>زاوية معاوقة الحمل</b>.</span><span lang="en">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = \dfrac{V_m}{I_m}\angle(\theta_v - \theta_i)$. So the power factor angle is the same as the <b>angle of the load impedance</b>.</span></div></div>
   </div>
 
-  <h3>متقدم ولا متأخر؟</h3>
-  <p>الـ $\cos$ دايمًا موجب، فرقم pf لحاله ما يقول لك نوع الحمل. عشان كذا نكتب معه كلمة:</p>
+  <h3><span lang="ar">متقدم ولا متأخر؟</span><span lang="en">Leading or lagging?</span></h3>
+  <p><span lang="ar">الـ $\cos$ دايمًا موجب، فرقم pf لحاله ما يقول لك نوع الحمل. عشان كذا نكتب معه كلمة:</span><span lang="en">The $\cos$ is always positive, so the pf number alone doesn't tell you the load type. That's why we write a word with it:</span></p>
   <div class="three">
-    <div><b>حمل مقاومة</b>$\theta_v - \theta_i = 0$<br>pf $= 1$<br>كل القدرة الظاهرية حقيقية</div>
-    <div><b>حمل حثي (ملف)</b>$\theta_v - \theta_i &gt; 0$<br>التيار متأخر عن الجهد<br>pf <b>متأخر</b> <span class="ltr">(lagging)</span></div>
-    <div><b>حمل سعوي (مكثف)</b>$\theta_v - \theta_i &lt; 0$<br>التيار متقدم على الجهد<br>pf <b>متقدم</b> <span class="ltr">(leading)</span></div>
+    <div><span lang="ar"><b>حمل مقاومة</b>$\theta_v - \theta_i = 0$<br>pf $= 1$<br>كل القدرة الظاهرية حقيقية</span><span lang="en"><b>Resistive load</b>$\theta_v - \theta_i = 0$<br>pf $= 1$<br>All the apparent power is real</span></div>
+    <div><span lang="ar"><b>حمل حثي (ملف)</b>$\theta_v - \theta_i &gt; 0$<br>التيار متأخر عن الجهد<br>pf <b>متأخر</b> <span class="ltr">(lagging)</span></span><span lang="en"><b>Inductive load (inductor)</b>$\theta_v - \theta_i &gt; 0$<br>The current lags the voltage<br>pf <b>lagging</b></span></div>
+    <div><span lang="ar"><b>حمل سعوي (مكثف)</b>$\theta_v - \theta_i &lt; 0$<br>التيار متقدم على الجهد<br>pf <b>متقدم</b> <span class="ltr">(leading)</span></span><span lang="en"><b>Capacitive load (capacitor)</b>$\theta_v - \theta_i &lt; 0$<br>The current leads the voltage<br>pf <b>leading</b></span></div>
   </div>
-  <p>ولو الحمل ملف أو مكثف بس (بدون مقاومة)، الفرق $\pm 90^\circ$ و pf $= 0$: ما فيه قدرة حقيقية أبدًا.</p>
-  <div class="callout key"><strong>🔑 حيلة للحفظ (إضافية، مو من المقرر):</strong> كلمة <span class="ltr">ELI the ICE man</span>. في الملف <span class="ltr">L</span> الجهد <span class="ltr">E</span> قبل التيار <span class="ltr">I</span>، وفي المكثف <span class="ltr">C</span> التيار <span class="ltr">I</span> قبل الجهد <span class="ltr">E</span>.</div>
-  <div class="callout warn"><strong>⚠️ انتبه:</strong> "متقدم" و"متأخر" دايمًا نقصد فيها <b>التيار</b> مقارنة بالجهد.</div>
+  <p><span lang="ar">ولو الحمل ملف أو مكثف بس (بدون مقاومة)، الفرق $\pm 90^\circ$ و pf $= 0$: ما فيه قدرة حقيقية أبدًا.</span><span lang="en">And if the load is only an inductor or a capacitor (no resistance), the difference is $\pm 90^\circ$ and pf $= 0$: no real power at all.</span></p>
+  <div class="callout key"><span lang="ar"><strong>🔑 حيلة للحفظ (إضافية، مو من المقرر):</strong> كلمة <span class="ltr">ELI the ICE man</span>. في الملف <span class="ltr">L</span> الجهد <span class="ltr">E</span> قبل التيار <span class="ltr">I</span>، وفي المكثف <span class="ltr">C</span> التيار <span class="ltr">I</span> قبل الجهد <span class="ltr">E</span>.</span><span lang="en"><strong>🔑 Memory trick (extra, not from the course):</strong> the phrase <span class="ltr">ELI the ICE man</span>. In the inductor <span class="ltr">L</span> the voltage <span class="ltr">E</span> comes before the current <span class="ltr">I</span>, and in the capacitor <span class="ltr">C</span> the current <span class="ltr">I</span> comes before the voltage <span class="ltr">E</span>.</span></div>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ انتبه:</strong> "متقدم" و"متأخر" دايمًا نقصد فيها <b>التيار</b> مقارنة بالجهد.</span><span lang="en"><strong>⚠️ Careful:</strong> “leading” and “lagging” always refer to the <b>current</b> compared with the voltage.</span></div>
 </section>
 
 <!-- ================= 03 القدرة المركبة ================= -->
 <section class="card" id="complex" data-num="03" data-nav="القدرة المركبة|Complex power">
-  <h2>القدرة المركبة (Complex power)</h2>
-  <p class="sub">عدد مركب واحد فيه كل معلومات القدرة</p>
+  <h2><span lang="ar">القدرة المركبة (Complex power)</span><span lang="en">Complex power</span></h2>
+  <p class="sub"><span lang="ar">عدد مركب واحد فيه كل معلومات القدرة</span><span lang="en">One complex number holding all the power information</span></p>
 
-  <h3>الفكرة قبل المعادلات</h3>
-  <p>عندنا الحين ثلاث كميات: $S$ و $P$ والزاوية. بدل ما نحفظهم لحال، نجمعهم في عدد مركب واحد نسميه القدرة المركبة $\Z{\mathbf{S}}$. مقداره القدرة الظاهرية، وزاويته زاوية معامل القدرة.</p>
+  <h3><span lang="ar">الفكرة قبل المعادلات</span><span lang="en">The idea before the equations</span></h3>
+  <p><span lang="ar">عندنا الحين ثلاث كميات: $S$ و $P$ والزاوية. بدل ما نحفظهم لحال، نجمعهم في عدد مركب واحد نسميه القدرة المركبة $\Z{\mathbf{S}}$. مقداره القدرة الظاهرية، وزاويته زاوية معامل القدرة.</span><span lang="en">Now we have three quantities: $S$, $P$ and the angle. Instead of keeping them separately, we put them in one complex number called the complex power $\Z{\mathbf{S}}$. Its magnitude is the apparent power, and its angle is the power factor angle.</span></p>
 
-  <h3>القانون</h3>
-  <p>القدرة المركبة اللي ياخذها الحمل هي الجهد ضرب <b>مرافق</b> التيار:</p>
+  <h3><span lang="ar">القانون</span><span lang="en">The law</span></h3>
+  <p><span lang="ar">القدرة المركبة اللي ياخذها الحمل هي الجهد ضرب <b>مرافق</b> التيار:</span><span lang="en">The complex power absorbed by the load is the voltage times the <b>conjugate</b> of the current:</span></p>
   <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \tfrac{1}{2}\mathbf{V}\mathbf{I}^* \\ = \mathbf{V}_{rms}\,\mathbf{I}_{rms}^*\end{gathered}\]</div>
-  <p>حيث $\mathbf{V}_{rms} = V_{rms}\angle\theta_v$ و $\mathbf{I}_{rms} = I_{rms}\angle\theta_i$. نضرب المقادير ونجمع الزوايا، ومرافق التيار زاويته $-\theta_i$:</p>
+  <p><span lang="ar">حيث $\mathbf{V}_{rms} = V_{rms}\angle\theta_v$ و $\mathbf{I}_{rms} = I_{rms}\angle\theta_i$. نضرب المقادير ونجمع الزوايا، ومرافق التيار زاويته $-\theta_i$:</span><span lang="en">where $\mathbf{V}_{rms} = V_{rms}\angle\theta_v$ and $\mathbf{I}_{rms} = I_{rms}\angle\theta_i$. We multiply the magnitudes and add the angles, and the current's conjugate has angle $-\theta_i$:</span></p>
   <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = V_{rms}I_{rms}\angle(\theta_v - \theta_i) \\ = \X{P} + j\Y{Q}\end{gathered}\]</div>
 
-  <details class="think"><summary>🤔 فكّر قبل تكمل: ليش ناخذ مرافق التيار؟ ليش ما نضرب $\mathbf{V}\mathbf{I}$ عادي؟</summary>
-    <p>لو ضربنا عادي بتطلع الزاوية $\theta_v + \theta_i$، وهذي ما لها معنى. احنا نبغى <b>الفرق</b> بين الجهد والتيار، لأنه زاوية معامل القدرة. المرافق يقلب إشارة زاوية التيار، فيصير الجمع طرح.</p>
+  <details class="think"><summary><span lang="ar">🤔 فكّر قبل تكمل: ليش ناخذ مرافق التيار؟ ليش ما نضرب $\mathbf{V}\mathbf{I}$ عادي؟</span><span lang="en">🤔 Think before you go on: why take the conjugate of the current? Why not just multiply $\mathbf{V}\mathbf{I}$?</span></summary>
+    <p><span lang="ar">لو ضربنا عادي بتطلع الزاوية $\theta_v + \theta_i$، وهذي ما لها معنى. احنا نبغى <b>الفرق</b> بين الجهد والتيار، لأنه زاوية معامل القدرة. المرافق يقلب إشارة زاوية التيار، فيصير الجمع طرح.</span><span lang="en">If we multiplied normally, the angle would be $\theta_v + \theta_i$, which means nothing. We want the <b>difference</b> between voltage and current, because that's the power factor angle. The conjugate flips the sign of the current's angle, so the sum becomes a difference.</span></p>
   </details>
 
-  <p>نفك الصورة القطبية لمستطيلة <span class="ltr">(Rectangular form)</span>، فيطلع لنا جزئين:</p>
+  <p><span lang="ar">نفك الصورة القطبية لمستطيلة <span class="ltr">(Rectangular form)</span>، فيطلع لنا جزئين:</span><span lang="en">We expand the polar form into rectangular form, which gives two parts:</span></p>
   <div class="m">\[\begin{gathered}\X{P} = \text{Re}(\mathbf{S}) = S\cos(\theta_v - \theta_i) \\ \Y{Q} = \text{Im}(\mathbf{S}) = S\sin(\theta_v - \theta_i)\end{gathered}\]</div>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">القدرة الحقيقية $\X{P}$ (Real power)</div><div class="t-desc">بالواط (W). هي القدرة المتوسطة نفسها، والوحيدة المفيدة: تتحول حرارة أو حركة أو ضوء.</div></div>
-    <div class="tile"><div class="t-top">القدرة غير الفعالة $\Y{Q}$ (Reactive power)</div><div class="t-desc">بالـ VAR (فولت أمبير ردّي). طاقة تروح وترجع بين المصدر والملف أو المكثف، وما تنصرف.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">القدرة الحقيقية $\X{P}$ (Real power)</span><span lang="en">Real power $\X{P}$</span></div><div class="t-desc"><span lang="ar">بالواط (W). هي القدرة المتوسطة نفسها، والوحيدة المفيدة: تتحول حرارة أو حركة أو ضوء.</span><span lang="en">In watts (W). It's the average power itself, and the only useful part: it turns into heat, motion or light.</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">القدرة غير الفعالة $\Y{Q}$ (Reactive power)</span><span lang="en">Reactive power $\Y{Q}$</span></div><div class="t-desc"><span lang="ar">بالـ VAR (فولت أمبير ردّي). طاقة تروح وترجع بين المصدر والملف أو المكثف، وما تنصرف.</span><span lang="en">In VAR (volt-ampere reactive). Energy that goes back and forth between the source and the inductor or capacitor, and isn't consumed.</span></div></div>
   </div>
 
-  <h3>لو معطيك المعاوقة</h3>
-  <p>من $\mathbf{V}_{rms} = \mathbf{Z}\,\mathbf{I}_{rms}$ نعوّض في القانون فيطلع اختصارين:</p>
+  <h3><span lang="ar">لو معطيك المعاوقة</span><span lang="en">If you're given the impedance</span></h3>
+  <p><span lang="ar">من $\mathbf{V}_{rms} = \mathbf{Z}\,\mathbf{I}_{rms}$ نعوّض في القانون فيطلع اختصارين:</span><span lang="en">From $\mathbf{V}_{rms} = \mathbf{Z}\,\mathbf{I}_{rms}$ we substitute into the formula and get two shortcuts:</span></p>
   <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = I_{rms}^2\,\mathbf{Z} \\ = \frac{V_{rms}^2}{\mathbf{Z}^*}\end{gathered}\]</div>
-  <p>ولأن $\mathbf{Z} = R + jX$ والـ $I_{rms}^2$ رقم موجب:</p>
+  <p><span lang="ar">ولأن $\mathbf{Z} = R + jX$ والـ $I_{rms}^2$ رقم موجب:</span><span lang="en">And since $\mathbf{Z} = R + jX$ and $I_{rms}^2$ is a positive number:</span></p>
   <div class="m">\[\begin{gathered}\X{P} = I_{rms}^2\,R \\ \Y{Q} = I_{rms}^2\,X\end{gathered}\]</div>
-  <div class="callout key"><strong>🔑 من هنا تفهم الإشارة:</strong> إشارة $Q$ هي إشارة $X$. ملف ($X &gt; 0$) يعطي $Q &gt; 0$، ومكثف ($X &lt; 0$) يعطي $Q &lt; 0$، ومقاومة بس تعطي $Q = 0$.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 من هنا تفهم الإشارة:</strong> إشارة $Q$ هي إشارة $X$. ملف ($X &gt; 0$) يعطي $Q &gt; 0$، ومكثف ($X &lt; 0$) يعطي $Q &lt; 0$، ومقاومة بس تعطي $Q = 0$.</span><span lang="en"><strong>🔑 This explains the sign:</strong> the sign of $Q$ is the sign of $X$. An inductor ($X &gt; 0$) gives $Q &gt; 0$, a capacitor ($X &lt; 0$) gives $Q &lt; 0$, and a resistor alone gives $Q = 0$.</span></div>
 
-  <h3>كل القوانين في صندوق واحد</h3>
+  <h3><span lang="ar">كل القوانين في صندوق واحد</span><span lang="en">All the formulas in one box</span></h3>
   <div class="pw-box">
     <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = P + jQ \\ = \mathbf{V}_{rms}\mathbf{I}_{rms}^* \\[6pt] \Z{S} = |\mathbf{S}| = V_{rms}I_{rms} \\ = \sqrt{P^2 + Q^2} \\[6pt] \X{P} = S\cos(\theta_v - \theta_i) \\ \Y{Q} = S\sin(\theta_v - \theta_i) \\ \text{pf} = \frac{P}{S} = \cos(\theta_v - \theta_i)\end{gathered}\]</div>
   </div>
 
-  <h3>مثلث القدرة (Power triangle)</h3>
-  <p>نرسم $\mathbf{S}$ في المستوى المركب: $\X{P}$ على المحور الأفقي، و $\Y{Q}$ رأسي، و $\Z{S}$ هو الوتر. لو تعرف أي اثنين من الأربعة ($S$، $P$، $Q$، الزاوية)، تطلع الباقي من المثلث.</p>
+  <h3><span lang="ar">مثلث القدرة (Power triangle)</span><span lang="en">The power triangle</span></h3>
+  <p><span lang="ar">نرسم $\mathbf{S}$ في المستوى المركب: $\X{P}$ على المحور الأفقي، و $\Y{Q}$ رأسي، و $\Z{S}$ هو الوتر. لو تعرف أي اثنين من الأربعة ($S$، $P$، $Q$، الزاوية)، تطلع الباقي من المثلث.</span><span lang="en">We draw $\mathbf{S}$ in the complex plane: $\X{P}$ on the horizontal axis, $\Y{Q}$ vertical, and $\Z{S}$ is the hypotenuse. If you know any two of the four ($S$, $P$, $Q$, the angle), you get the rest from the triangle.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 360 200" role="img" aria-label="مثلث القدرة: القدرة الحقيقية P أفقية، والقدرة غير الفعالة Q رأسية لفوق للحمل الحثي ولتحت للحمل السعوي، والقدرة الظاهرية S هي الوتر" style="max-width:380px">
       <path class="ax" d="M30 100H340M40 15V185"/>
@@ -181,146 +181,146 @@
       <text class="lbl yt" x="268" y="146">−Q leading</text>
       <text x="344" y="104">Re</text><text x="46" y="18">Im</text>
     </svg>
-    <figcaption>Figure 11.22: فوق المحور حمل حثي (pf متأخر)، وتحته حمل سعوي (pf متقدم). الزاوية $\theta = \theta_v - \theta_i$.</figcaption>
+    <figcaption><span lang="ar">Figure 11.22: فوق المحور حمل حثي (pf متأخر)، وتحته حمل سعوي (pf متقدم). الزاوية $\theta = \theta_v - \theta_i$.</span><span lang="en">Figure 11.22: above the axis is an inductive load (lagging pf), and below it a capacitive load (leading pf). The angle is $\theta = \theta_v - \theta_i$.</span></figcaption>
   </figure>
-  <p>ومثلث المعاوقة <span class="ltr">(Impedance triangle)</span> نفس الشكل بالضبط: $R$ أفقي و $X$ رأسي و $|\mathbf{Z}|$ الوتر، وبنفس الزاوية. ليش؟ لأن $\mathbf{S} = I_{rms}^2\mathbf{Z}$، يعني كل ضلع في مثلث المعاوقة مضروب في نفس الرقم $I_{rms}^2$.</p>
+  <p><span lang="ar">ومثلث المعاوقة <span class="ltr">(Impedance triangle)</span> نفس الشكل بالضبط: $R$ أفقي و $X$ رأسي و $|\mathbf{Z}|$ الوتر، وبنفس الزاوية. ليش؟ لأن $\mathbf{S} = I_{rms}^2\mathbf{Z}$، يعني كل ضلع في مثلث المعاوقة مضروب في نفس الرقم $I_{rms}^2$.</span><span lang="en">The impedance triangle has exactly the same shape: $R$ horizontal, $X$ vertical and $|\mathbf{Z}|$ the hypotenuse, with the same angle. Why? Because $\mathbf{S} = I_{rms}^2\mathbf{Z}$, so each side of the impedance triangle is multiplied by the same number $I_{rms}^2$.</span></p>
 </section>
 
 <!-- ================= 04 لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: أوجد قدرة الحمل</h3>
+    <h3><span lang="ar">الشجرة 1: أوجد قدرة الحمل</span><span lang="en">Tree 1: find the load's power</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="r1 g1 rm s1 pq pf el o1">مسار: معطيك $v$ و $i$</button>
-      <button class="btn small" type="button" data-path="r1 g2 s2 pq pf o1">مسار: معطيك المعاوقة</button>
+      <button class="btn small" type="button" data-path="r1 g1 rm s1 pq pf el o1"><span lang="ar">مسار: معطيك $v$ و $i$</span><span lang="en">Path: you're given $v$ and $i$</span></button>
+      <button class="btn small" type="button" data-path="r1 g2 s2 pq pf o1"><span lang="ar">مسار: معطيك المعاوقة</span><span lang="en">Path: you're given the impedance</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k">إذا جاك: «أوجد القدرة المركبة أو الظاهرية أو معامل القدرة»</span></button>
-      <button type="button" class="fb-node ask c1" data-id="g1" data-from="r1"><span class="fb-k">معطيك $v(t)$ و $i(t)$</span></button>
-      <button type="button" class="fb-node ask c2" data-id="g2" data-from="r1"><span class="fb-k">معطيك المعاوقة $\mathbf{Z}$ والجهد أو التيار</span></button>
-      <button type="button" class="fb-node prev c1" data-id="rm" data-from="g1"><span class="fb-k">حوّل للقيمة الفعالة</span><span class="fb-f">$\mathbf{V}_{rms} = \dfrac{V_m}{\sqrt{2}}\angle\theta_v$</span><span class="fb-b">المحاضرة 9</span></button>
-      <button type="button" class="fb-node c2" data-id="s2" data-from="g2"><span class="fb-k">الاختصار</span><span class="fb-f">$\mathbf{S} = I_{rms}^2\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$</span></button>
-      <button type="button" class="fb-node c1" data-id="s1" data-from="rm"><span class="fb-k">القدرة المركبة</span><span class="fb-f">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$</span></button>
-      <button type="button" class="fb-node c12" data-id="pq" data-from="s1 s2"><span class="fb-k">فكّها لمستطيلة</span><span class="fb-f">$\mathbf{S} = P + jQ$ و $S = |\mathbf{S}|$</span></button>
-      <button type="button" class="fb-node c12" data-id="pf" data-from="pq"><span class="fb-k">معامل القدرة ونوعه</span><span class="fb-f">$\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="el" data-from="pf"><span class="fb-k">لو يبي عناصر الحمل</span><span class="fb-f">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span></button>
-      <button type="button" class="fb-node out c12" data-id="o1" data-from="pf el"><span class="fb-k">الناتج: $S$ (VA) و $P$ (W) و $Q$ (VAR) و pf متقدم أو متأخر</span></button>
+      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد القدرة المركبة أو الظاهرية أو معامل القدرة»</span><span lang="en">If you get: “Find the complex power, the apparent power, or the power factor”</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="g1" data-from="r1"><span class="fb-k"><span lang="ar">معطيك $v(t)$ و $i(t)$</span><span lang="en">You're given $v(t)$ and $i(t)$</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="g2" data-from="r1"><span class="fb-k"><span lang="ar">معطيك المعاوقة $\mathbf{Z}$ والجهد أو التيار</span><span lang="en">You're given the impedance $\mathbf{Z}$ and the voltage or current</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="rm" data-from="g1"><span class="fb-k"><span lang="ar">حوّل للقيمة الفعالة</span><span lang="en">Convert to effective values</span></span><span class="fb-f">$\mathbf{V}_{rms} = \dfrac{V_m}{\sqrt{2}}\angle\theta_v$</span><span class="fb-b"><span lang="ar">المحاضرة 9</span><span lang="en">Lecture 9</span></span></button>
+      <button type="button" class="fb-node c2" data-id="s2" data-from="g2"><span class="fb-k"><span lang="ar">الاختصار</span><span lang="en">The shortcut</span></span><span class="fb-f">$\mathbf{S} = I_{rms}^2\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$</span></button>
+      <button type="button" class="fb-node c1" data-id="s1" data-from="rm"><span class="fb-k"><span lang="ar">القدرة المركبة</span><span lang="en">Complex power</span></span><span class="fb-f">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$</span></button>
+      <button type="button" class="fb-node c12" data-id="pq" data-from="s1 s2"><span class="fb-k"><span lang="ar">فكّها لمستطيلة</span><span lang="en">Expand to rectangular</span></span><span class="fb-f"><span lang="ar">$\mathbf{S} = P + jQ$ و $S = |\mathbf{S}|$</span><span lang="en">$\mathbf{S} = P + jQ$ and $S = |\mathbf{S}|$</span></span></button>
+      <button type="button" class="fb-node c12" data-id="pf" data-from="pq"><span class="fb-k"><span lang="ar">معامل القدرة ونوعه</span><span lang="en">Power factor and its type</span></span><span class="fb-f">$\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="el" data-from="pf"><span class="fb-k"><span lang="ar">لو يبي عناصر الحمل</span><span lang="en">If the load's elements are asked for</span></span><span class="fb-f">$\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span></button>
+      <button type="button" class="fb-node out c12" data-id="o1" data-from="pf el"><span class="fb-k"><span lang="ar">الناتج: $S$ (VA) و $P$ (W) و $Q$ (VAR) و pf متقدم أو متأخر</span><span lang="en">Result: $S$ (VA), $P$ (W), $Q$ (VAR) and pf leading or lagging</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="r1" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">complex power</span> أو <span class="ltr">apparent power</span> أو <span class="ltr">power factor</span> أو <span class="ltr">reactive power</span>.</dd>
-      <dt>أول شي تسويه</dt><dd>شوف وش معطيك: موجتين $v$ و $i$؟ ولا دائرة فيها معاوقة ومصدر؟ هذا يحدد الفرع.</dd></dl></div>
-    <div class="fb-info" data-for="g1" hidden><h4>معطيك $v(t)$ و $i(t)$</h4><dl>
-      <dt>متى؟</dt><dd>المسألة تقول "الجهد على الحمل كذا والتيار كذا".</dd>
-      <dt>انتبه</dt><dd>لازم الاثنين $\cos$ وبنفس التردد قبل ما تاخذ الزوايا. لو واحد $\sin$ حوّله: $\sin x = \cos(x - 90^\circ)$.</dd></dl></div>
-    <div class="fb-info" data-for="g2" hidden><h4>معطيك المعاوقة</h4><dl>
-      <dt>متى؟</dt><dd>المسألة فيها دائرة أو حمل $\mathbf{Z}$ ومعه جهد المصدر أو التيار.</dd>
-      <dt>أول شي</dt><dd>لو الدائرة فيها أكثر من عنصر، اجمعها لمعاوقة وحدة $\mathbf{Z}$ (توالي وتوازي من المحاضرة 5).</dd></dl></div>
-    <div class="fb-info" data-for="rm" hidden><h4>حوّل للقيمة الفعالة: $\mathbf{V}_{rms} = \dfrac{V_m}{\sqrt{2}}\angle\theta_v$</h4><dl>
-      <dt>متى؟</dt><dd>لما الموجة معطاة بالقيمة العظمى، مثل $v = 60\cos(\omega t - 10^\circ)$.</dd>
-      <dt>الرموز</dt><dd>المقدار ينقسم على $\sqrt{2}$، والزاوية تبقى نفسها.</dd>
-      <dt>مثال سريع</dt><dd>$i = 1.5\cos(\omega t + 50^\circ)$: $\mathbf{I}_{rms} = 1.061\angle 50^\circ\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقسم الزاوية على $\sqrt{2}$ بعد. الزاوية ما تتغير. ولو المسألة قالت "rms" فالرقم جاهز، لا تقسم.</dd></dl></div>
-    <div class="fb-info" data-for="s1" hidden><h4>القدرة المركبة: $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$</h4><dl>
-      <dt>متى؟</dt><dd>لما تعرف فيزور الجهد وفيزور التيار.</dd>
-      <dt>كيف؟</dt><dd>اضرب المقادير، واطرح زاوية التيار من زاوية الجهد: $V_{rms}I_{rms}\angle(\theta_v - \theta_i)$.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V}_{rms} = 100\angle 20^\circ$ و $\mathbf{I}_{rms} = 2\angle{-10^\circ}$: $\mathbf{S} = 200\angle 30^\circ\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى المرافق فتجمع الزوايا. أو تستخدم القيم العظمى بدون $\tfrac{1}{2}$.</dd></dl></div>
-    <div class="fb-info" data-for="s2" hidden><h4>الاختصار: $\mathbf{S} = I_{rms}^2\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$</h4><dl>
-      <dt>متى؟</dt><dd>معطيك $\mathbf{Z}$ ومعه التيار (خذ الأول) أو الجهد (خذ الثاني).</dd>
-      <dt>الرموز</dt><dd>$I_{rms}$ و $V_{rms}$ هنا مقادير بس (أرقام موجبة). $\mathbf{Z}^*$ مرافق المعاوقة.</dd>
-      <dt>مثال سريع</dt><dd>$V_{rms} = 100\ \text{V}$ و $\mathbf{Z} = 3 + j4$: $\mathbf{S} = \dfrac{10000}{3 - j4}$ $= 1200 + j1600\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقسم على $\mathbf{Z}$ بدل $\mathbf{Z}^*$، فتنقلب إشارة $Q$ ويصير الملف كأنه مكثف.</dd></dl></div>
-    <div class="fb-info" data-for="pq" hidden><h4>فكّها لمستطيلة: $\mathbf{S} = P + jQ$</h4><dl>
-      <dt>كيف؟</dt><dd>$P = S\cos\theta$ و $Q = S\sin\theta$. والقدرة الظاهرية هي المقدار: $S = \sqrt{P^2 + Q^2}$.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{S} = 45\angle{-60^\circ}$: $P = 22.5\ \text{W}$ و $Q = -38.97\ \text{VAR}$ و $S = 45\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تكتب وحدة وحدة غلط. $S$ بالـ VA، و $P$ بالواط، و $Q$ بالـ VAR.</dd></dl></div>
-    <div class="fb-info" data-for="pf" hidden><h4>معامل القدرة ونوعه</h4><dl>
-      <dt>القانون</dt><dd>$\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$.</dd>
-      <dt>النوع</dt><dd>من إشارة $Q$ أو إشارة الزاوية: موجبة يعني متأخر (حثي)، سالبة يعني متقدم (سعوي)، صفر يعني pf $= 1$.</dd>
-      <dt>مثال سريع</dt><dd>$\cos(-60^\circ) = 0.5$ والزاوية سالبة، فالجواب: pf $= 0.5$ متقدم.</dd>
-      <dt>الخطأ الشائع</dt><dd>تكتب الرقم بدون "متقدم" أو "متأخر"، أو تحكم من إشارة الـ $\cos$ وهي دايمًا موجبة.</dd></dl></div>
-    <div class="fb-info" data-for="el" hidden><h4>عناصر الحمل: $\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</h4><dl>
-      <dt>متى؟</dt><dd>لما يطلب "معاوقة الحمل" أو "العناصر اللي يتكون منها الحمل".</dd>
-      <dt>كيف؟</dt><dd>$R$ هي المقاومة. لو $X &gt; 0$ فهو ملف: $L = X/\omega$. لو $X &lt; 0$ فهو مكثف: $C = \dfrac{1}{\omega|X|}$ (المحاضرة 4).</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{Z} = 25.98 - j15$ و $\omega = 100\pi$: $C = \dfrac{1}{15(100\pi)} = 212.2\ \mu\text{F}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تاخذ $\omega$ هي التردد $f$. الرقم اللي جنب $t$ في الموجة هو $\omega$ مباشرة.</dd></dl></div>
-    <div class="fb-info" data-for="o1" hidden><h4>الناتج</h4><dl>
-      <dt>وش تكتب في الجواب؟</dt><dd>كل رقم بوحدته: $\mathbf{S}$ و $S$ بالـ VA، $P$ بالواط، $Q$ بالـ VAR، و pf مع كلمة متقدم أو متأخر.</dd>
-      <dt>تأكد</dt><dd>$P$ لازم أقل من أو يساوي $S$، و pf بين 0 و 1، و $P^2 + Q^2 = S^2$.</dd></dl></div>
+    <div class="fb-info" data-for="r1" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span lang="ar"><span class="ltr">complex power</span> أو <span class="ltr">apparent power</span> أو <span class="ltr">power factor</span> أو <span class="ltr">reactive power</span>.</span><span lang="en"><span class="ltr">complex power</span>, <span class="ltr">apparent power</span>, <span class="ltr">power factor</span> or <span class="ltr">reactive power</span>.</span></dd>
+      <dt><span lang="ar">أول شي تسويه</span><span lang="en">First thing to do</span></dt><dd><span lang="ar">شوف وش معطيك: موجتين $v$ و $i$؟ ولا دائرة فيها معاوقة ومصدر؟ هذا يحدد الفرع.</span><span lang="en">Look at what you're given: two waves $v$ and $i$? Or a circuit with an impedance and a source? That decides the branch.</span></dd></dl></div>
+    <div class="fb-info" data-for="g1" hidden><h4><span lang="ar">معطيك $v(t)$ و $i(t)$</span><span lang="en">You're given $v(t)$ and $i(t)$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المسألة تقول "الجهد على الحمل كذا والتيار كذا".</span><span lang="en">The problem says “the voltage on the load is this and the current is that”.</span></dd>
+      <dt><span lang="ar">انتبه</span><span lang="en">Careful</span></dt><dd><span lang="ar">لازم الاثنين $\cos$ وبنفس التردد قبل ما تاخذ الزوايا. لو واحد $\sin$ حوّله: $\sin x = \cos(x - 90^\circ)$.</span><span lang="en">Both must be $\cos$ with the same frequency before you take the angles. If one is $\sin$, convert it: $\sin x = \cos(x - 90^\circ)$.</span></dd></dl></div>
+    <div class="fb-info" data-for="g2" hidden><h4><span lang="ar">معطيك المعاوقة</span><span lang="en">You're given the impedance</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المسألة فيها دائرة أو حمل $\mathbf{Z}$ ومعه جهد المصدر أو التيار.</span><span lang="en">The problem has a circuit or a load $\mathbf{Z}$ with the source voltage or the current.</span></dd>
+      <dt><span lang="ar">أول شي</span><span lang="en">First thing</span></dt><dd><span lang="ar">لو الدائرة فيها أكثر من عنصر، اجمعها لمعاوقة وحدة $\mathbf{Z}$ (توالي وتوازي من المحاضرة 5).</span><span lang="en">If the circuit has more than one element, combine them into one impedance $\mathbf{Z}$ (series and parallel from lecture 5).</span></dd></dl></div>
+    <div class="fb-info" data-for="rm" hidden><h4><span lang="ar">حوّل للقيمة الفعالة: $\mathbf{V}_{rms} = \dfrac{V_m}{\sqrt{2}}\angle\theta_v$</span><span lang="en">Convert to effective values: $\mathbf{V}_{rms} = \dfrac{V_m}{\sqrt{2}}\angle\theta_v$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لما الموجة معطاة بالقيمة العظمى، مثل $v = 60\cos(\omega t - 10^\circ)$.</span><span lang="en">When the wave is given with its peak value, like $v = 60\cos(\omega t - 10^\circ)$.</span></dd>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">المقدار ينقسم على $\sqrt{2}$، والزاوية تبقى نفسها.</span><span lang="en">The magnitude is divided by $\sqrt{2}$, and the angle stays the same.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$i = 1.5\cos(\omega t + 50^\circ)$: $\mathbf{I}_{rms} = 1.061\angle 50^\circ\ \text{A}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقسم الزاوية على $\sqrt{2}$ بعد. الزاوية ما تتغير. ولو المسألة قالت "rms" فالرقم جاهز، لا تقسم.</span><span lang="en">Dividing the angle by $\sqrt{2}$ too. The angle doesn't change. And if the problem says “rms”, the number is ready; don't divide.</span></dd></dl></div>
+    <div class="fb-info" data-for="s1" hidden><h4><span lang="ar">القدرة المركبة: $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$</span><span lang="en">Complex power: $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لما تعرف فيزور الجهد وفيزور التيار.</span><span lang="en">When you know the voltage phasor and the current phasor.</span></dd>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">اضرب المقادير، واطرح زاوية التيار من زاوية الجهد: $V_{rms}I_{rms}\angle(\theta_v - \theta_i)$.</span><span lang="en">Multiply the magnitudes, and subtract the current angle from the voltage angle: $V_{rms}I_{rms}\angle(\theta_v - \theta_i)$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V}_{rms} = 100\angle 20^\circ$ و $\mathbf{I}_{rms} = 2\angle{-10^\circ}$: $\mathbf{S} = 200\angle 30^\circ\ \text{VA}$.</span><span lang="en">$\mathbf{V}_{rms} = 100\angle 20^\circ$ and $\mathbf{I}_{rms} = 2\angle{-10^\circ}$: $\mathbf{S} = 200\angle 30^\circ\ \text{VA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى المرافق فتجمع الزوايا. أو تستخدم القيم العظمى بدون $\tfrac{1}{2}$.</span><span lang="en">Forgetting the conjugate and adding the angles. Or using peak values without the $\tfrac{1}{2}$.</span></dd></dl></div>
+    <div class="fb-info" data-for="s2" hidden><h4><span lang="ar">الاختصار: $\mathbf{S} = I_{rms}^2\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$</span><span lang="en">The shortcut: $\mathbf{S} = I_{rms}^2\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">معطيك $\mathbf{Z}$ ومعه التيار (خذ الأول) أو الجهد (خذ الثاني).</span><span lang="en">You're given $\mathbf{Z}$ with the current (use the first) or the voltage (use the second).</span></dd>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$I_{rms}$ و $V_{rms}$ هنا مقادير بس (أرقام موجبة). $\mathbf{Z}^*$ مرافق المعاوقة.</span><span lang="en">$I_{rms}$ and $V_{rms}$ here are magnitudes only (positive numbers). $\mathbf{Z}^*$ is the conjugate of the impedance.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$V_{rms} = 100\ \text{V}$ و $\mathbf{Z} = 3 + j4$: $\mathbf{S} = \dfrac{10000}{3 - j4}$ $= 1200 + j1600\ \text{VA}$.</span><span lang="en">$V_{rms} = 100\ \text{V}$ and $\mathbf{Z} = 3 + j4$: $\mathbf{S} = \dfrac{10000}{3 - j4}$ $= 1200 + j1600\ \text{VA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقسم على $\mathbf{Z}$ بدل $\mathbf{Z}^*$، فتنقلب إشارة $Q$ ويصير الملف كأنه مكثف.</span><span lang="en">Dividing by $\mathbf{Z}$ instead of $\mathbf{Z}^*$, which flips the sign of $Q$ and makes the inductor look like a capacitor.</span></dd></dl></div>
+    <div class="fb-info" data-for="pq" hidden><h4><span lang="ar">فكّها لمستطيلة: $\mathbf{S} = P + jQ$</span><span lang="en">Expand to rectangular: $\mathbf{S} = P + jQ$</span></h4><dl>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">$P = S\cos\theta$ و $Q = S\sin\theta$. والقدرة الظاهرية هي المقدار: $S = \sqrt{P^2 + Q^2}$.</span><span lang="en">$P = S\cos\theta$ and $Q = S\sin\theta$. The apparent power is the magnitude: $S = \sqrt{P^2 + Q^2}$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{S} = 45\angle{-60^\circ}$: $P = 22.5\ \text{W}$ و $Q = -38.97\ \text{VAR}$ و $S = 45\ \text{VA}$.</span><span lang="en">$\mathbf{S} = 45\angle{-60^\circ}$: $P = 22.5\ \text{W}$, $Q = -38.97\ \text{VAR}$ and $S = 45\ \text{VA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تكتب وحدة وحدة غلط. $S$ بالـ VA، و $P$ بالواط، و $Q$ بالـ VAR.</span><span lang="en">Writing a wrong unit. $S$ is in VA, $P$ in watts, and $Q$ in VAR.</span></dd></dl></div>
+    <div class="fb-info" data-for="pf" hidden><h4><span lang="ar">معامل القدرة ونوعه</span><span lang="en">Power factor and its type</span></h4><dl>
+      <dt><span lang="ar">القانون</span><span lang="en">The law</span></dt><dd>$\text{pf} = \dfrac{P}{S} = \cos(\theta_v - \theta_i)$.</dd>
+      <dt><span lang="ar">النوع</span><span lang="en">Type</span></dt><dd><span lang="ar">من إشارة $Q$ أو إشارة الزاوية: موجبة يعني متأخر (حثي)، سالبة يعني متقدم (سعوي)، صفر يعني pf $= 1$.</span><span lang="en">From the sign of $Q$ or of the angle: positive means lagging (inductive), negative means leading (capacitive), zero means pf $= 1$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\cos(-60^\circ) = 0.5$ والزاوية سالبة، فالجواب: pf $= 0.5$ متقدم.</span><span lang="en">$\cos(-60^\circ) = 0.5$ and the angle is negative, so the answer is pf $= 0.5$ leading.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تكتب الرقم بدون "متقدم" أو "متأخر"، أو تحكم من إشارة الـ $\cos$ وهي دايمًا موجبة.</span><span lang="en">Writing the number without “leading” or “lagging”, or judging from the sign of the $\cos$, which is always positive.</span></dd></dl></div>
+    <div class="fb-info" data-for="el" hidden><h4><span lang="ar">عناصر الحمل: $\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span><span lang="en">The load's elements: $\mathbf{Z} = \dfrac{\mathbf{V}}{\mathbf{I}} = R + jX$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لما يطلب "معاوقة الحمل" أو "العناصر اللي يتكون منها الحمل".</span><span lang="en">When “the load impedance” or “the elements making up the load” is asked for.</span></dd>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">$R$ هي المقاومة. لو $X &gt; 0$ فهو ملف: $L = X/\omega$. لو $X &lt; 0$ فهو مكثف: $C = \dfrac{1}{\omega|X|}$ (المحاضرة 4).</span><span lang="en">$R$ is the resistance. If $X &gt; 0$ it's an inductor: $L = X/\omega$. If $X &lt; 0$ it's a capacitor: $C = \dfrac{1}{\omega|X|}$ (lecture 4).</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{Z} = 25.98 - j15$ و $\omega = 100\pi$: $C = \dfrac{1}{15(100\pi)} = 212.2\ \mu\text{F}$.</span><span lang="en">$\mathbf{Z} = 25.98 - j15$ and $\omega = 100\pi$: $C = \dfrac{1}{15(100\pi)} = 212.2\ \mu\text{F}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تاخذ $\omega$ هي التردد $f$. الرقم اللي جنب $t$ في الموجة هو $\omega$ مباشرة.</span><span lang="en">Taking $\omega$ to be the frequency $f$. The number next to $t$ in the wave is $\omega$ directly.</span></dd></dl></div>
+    <div class="fb-info" data-for="o1" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">وش تكتب في الجواب؟</span><span lang="en">What goes in the answer?</span></dt><dd><span lang="ar">كل رقم بوحدته: $\mathbf{S}$ و $S$ بالـ VA، $P$ بالواط، $Q$ بالـ VAR، و pf مع كلمة متقدم أو متأخر.</span><span lang="en">Each number with its unit: $\mathbf{S}$ and $S$ in VA, $P$ in watts, $Q$ in VAR, and pf with the word leading or lagging.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">$P$ لازم أقل من أو يساوي $S$، و pf بين 0 و 1، و $P^2 + Q^2 = S^2$.</span><span lang="en">$P$ must be less than or equal to $S$, pf between 0 and 1, and $P^2 + Q^2 = S^2$.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: معطيك $S$ و pf وتبي الباقي</h3>
+    <h3><span lang="ar">الشجرة 2: معطيك $S$ و pf وتبي الباقي</span><span lang="en">Tree 2: you're given $S$ and pf and want the rest</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="r2 an pq2 sc ic im zc o2">مسار: الحل كامل</button>
+      <button class="btn small" type="button" data-path="r2 an pq2 sc ic im zc o2"><span lang="ar">مسار: الحل كامل</span><span lang="en">Path: the full solution</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k">إذا جاك: «حمل ياخذ كذا VA بمعامل قدرة كذا» والمطلوب $P$ و $Q$ والتيار والمعاوقة</span></button>
-      <button type="button" class="fb-node trick c12" data-id="an" data-from="r2"><span class="fb-k">طلّع الزاوية من pf</span><span class="fb-f">$\theta = \cos^{-1}(\text{pf})$</span></button>
-      <button type="button" class="fb-node c12" data-id="pq2" data-from="an"><span class="fb-k">من مثلث القدرة</span><span class="fb-f">$P = S\cos\theta$ و $Q = S\sin\theta$</span></button>
-      <button type="button" class="fb-node c12" data-id="sc" data-from="pq2"><span class="fb-k">اكتب القدرة المركبة بالإشارة الصح</span><span class="fb-f">$\mathbf{S} = P \pm jQ$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="ic" data-from="sc"><span class="fb-k">طلّع التيار من القدرة</span><span class="fb-f">$\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$ ثم المرافق</span></button>
-      <button type="button" class="fb-node prev c1" data-id="im" data-from="ic"><span class="fb-k">القيمة العظمى</span><span class="fb-f">$I_m = \sqrt{2}\,I_{rms}$</span><span class="fb-b">المحاضرة 9</span></button>
-      <button type="button" class="fb-node prev c2" data-id="zc" data-from="ic"><span class="fb-k">معاوقة الحمل</span><span class="fb-f">$\mathbf{Z} = \dfrac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}}$</span><span class="fb-b">المحاضرة 4</span></button>
-      <button type="button" class="fb-node out c12" data-id="o2" data-from="im zc"><span class="fb-k">الناتج: $P$ و $Q$ و $\mathbf{S}$ والتيار و $\mathbf{Z}$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k"><span lang="ar">إذا جاك: «حمل ياخذ كذا VA بمعامل قدرة كذا» والمطلوب $P$ و $Q$ والتيار والمعاوقة</span><span lang="en">If you get: “A load takes so many VA at a power factor of so much” and $P$, $Q$, the current and the impedance are asked for</span></span></button>
+      <button type="button" class="fb-node trick c12" data-id="an" data-from="r2"><span class="fb-k"><span lang="ar">طلّع الزاوية من pf</span><span lang="en">Get the angle from pf</span></span><span class="fb-f">$\theta = \cos^{-1}(\text{pf})$</span></button>
+      <button type="button" class="fb-node c12" data-id="pq2" data-from="an"><span class="fb-k"><span lang="ar">من مثلث القدرة</span><span lang="en">From the power triangle</span></span><span class="fb-f"><span lang="ar">$P = S\cos\theta$ و $Q = S\sin\theta$</span><span lang="en">$P = S\cos\theta$ and $Q = S\sin\theta$</span></span></button>
+      <button type="button" class="fb-node c12" data-id="sc" data-from="pq2"><span class="fb-k"><span lang="ar">اكتب القدرة المركبة بالإشارة الصح</span><span lang="en">Write the complex power with the right sign</span></span><span class="fb-f">$\mathbf{S} = P \pm jQ$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="ic" data-from="sc"><span class="fb-k"><span lang="ar">طلّع التيار من القدرة</span><span lang="en">Get the current from the power</span></span><span class="fb-f"><span lang="ar">$\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$ ثم المرافق</span><span lang="en">$\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$, then the conjugate</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="im" data-from="ic"><span class="fb-k"><span lang="ar">القيمة العظمى</span><span lang="en">Peak value</span></span><span class="fb-f">$I_m = \sqrt{2}\,I_{rms}$</span><span class="fb-b"><span lang="ar">المحاضرة 9</span><span lang="en">Lecture 9</span></span></button>
+      <button type="button" class="fb-node prev c2" data-id="zc" data-from="ic"><span class="fb-k"><span lang="ar">معاوقة الحمل</span><span lang="en">Load impedance</span></span><span class="fb-f">$\mathbf{Z} = \dfrac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}}$</span><span class="fb-b"><span lang="ar">المحاضرة 4</span><span lang="en">Lecture 4</span></span></button>
+      <button type="button" class="fb-node out c12" data-id="o2" data-from="im zc"><span class="fb-k"><span lang="ar">الناتج: $P$ و $Q$ و $\mathbf{S}$ والتيار و $\mathbf{Z}$</span><span lang="en">Result: $P$, $Q$, $\mathbf{S}$, the current and $\mathbf{Z}$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="r2" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd>"<span class="ltr">draws 12 kVA at a power factor of 0.856 lagging</span>". يعني معطيك القدرة الظاهرية ومعامل القدرة، مو الموجات.</dd>
-      <dt>أول شي تسويه</dt><dd>انتبه لكلمة <span class="ltr">lagging</span> أو <span class="ltr">leading</span>، لأنها تحدد إشارة $Q$.</dd></dl></div>
-    <div class="fb-info" data-for="an" hidden><h4>طلّع الزاوية: $\theta = \cos^{-1}(\text{pf})$</h4><dl>
-      <dt>ليش؟</dt><dd>كل قوانين المثلث تبغى الزاوية، والمعطى جيب تمامها بس.</dd>
-      <dt>مثال سريع</dt><dd>$\cos^{-1}(0.856) = 31.13^\circ$، و $\cos^{-1}(0.8) = 36.87^\circ$.</dd>
-      <dt>الخطأ الشائع</dt><dd>الآلة الحاسبة على الراديان. خلها على الدرجات (Deg).</dd></dl></div>
-    <div class="fb-info" data-for="pq2" hidden><h4>من مثلث القدرة: $P = S\cos\theta$ و $Q = S\sin\theta$</h4><dl>
-      <dt>متى؟</dt><dd>لما تعرف الوتر $S$ والزاوية.</dd>
-      <dt>مثال سريع</dt><dd>$S = 10\ \text{kVA}$ و pf $= 0.8$: $P = 8\ \text{kW}$ و $Q = 6\ \text{kVAR}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تضرب $S$ في pf عشان $Q$. الصح $Q$ يبغى الـ $\sin$.</dd></dl></div>
-    <div class="fb-info" data-for="sc" hidden><h4>الإشارة: $\mathbf{S} = P \pm jQ$</h4><dl>
-      <dt>القاعدة</dt><dd>متأخر <span class="ltr">(lagging)</span>: $+jQ$. متقدم <span class="ltr">(leading)</span>: $-jQ$.</dd>
-      <dt>مثال سريع</dt><dd>12 kVA بـ 0.856 متأخر: $\mathbf{S} = 10.272 + j6.204\ \text{kVA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحط موجب دايمًا وتنسى تشوف الكلمة.</dd></dl></div>
-    <div class="fb-info" data-for="ic" hidden><h4>التيار من القدرة: $\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$</h4><dl>
-      <dt>ليش؟</dt><dd>من $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ نقسم على الجهد. بس اللي يطلع هو <b>المرافق</b>، فنقلب إشارة الزاوية بعدها.</dd>
-      <dt>مثال سريع</dt><dd>$\dfrac{12000\angle 31.13^\circ}{120\angle 0^\circ} = 100\angle 31.13^\circ$، فالتيار $\mathbf{I}_{rms} = 100\angle{-31.13^\circ}\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى ترجع من $\mathbf{I}^*$ إلى $\mathbf{I}$، فيطلع التيار متقدم وهو متأخر.</dd></dl></div>
-    <div class="fb-info" data-for="im" hidden><h4>القيمة العظمى: $I_m = \sqrt{2}\,I_{rms}$</h4><dl>
-      <dt>متى؟</dt><dd>لما يطلب <span class="ltr">peak current</span>. عكس القسمة على $\sqrt{2}$.</dd>
-      <dt>مثال سريع</dt><dd>$I_{rms} = 100\ \text{A}$: $I_m = 141.4\ \text{A}$.</dd></dl></div>
-    <div class="fb-info" data-for="zc" hidden><h4>معاوقة الحمل: $\mathbf{Z} = \dfrac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}}$</h4><dl>
-      <dt>متى؟</dt><dd>بعد ما تطلع التيار. أو مباشرة: $\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{S}^*}$.</dd>
-      <dt>مثال سريع</dt><dd>$\dfrac{120\angle 0^\circ}{100\angle{-31.13^\circ}} = 1.2\angle 31.13^\circ\ \Omega$.</dd>
-      <dt>تأكد</dt><dd>زاوية $\mathbf{Z}$ لازم تساوي زاوية $\mathbf{S}$. متأخر يعني زاوية موجبة (حثي).</dd></dl></div>
-    <div class="fb-info" data-for="o2" hidden><h4>الناتج</h4><dl>
-      <dt>وش تكتب في الجواب؟</dt><dd>$P$ بالواط، $Q$ بالـ VAR، التيار بالأمبير (فعال أو عظمى حسب المطلوب)، و $\mathbf{Z}$ بالأوم.</dd>
-      <dt>تأكد</dt><dd>$V_{rms}I_{rms}$ لازم يرجع لك $S$ المعطاة.</dd></dl></div>
+    <div class="fb-info" data-for="r2" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span lang="ar">"<span class="ltr">draws 12 kVA at a power factor of 0.856 lagging</span>". يعني معطيك القدرة الظاهرية ومعامل القدرة، مو الموجات.</span><span lang="en">“<span class="ltr">draws 12 kVA at a power factor of 0.856 lagging</span>”. So you're given the apparent power and the power factor, not the waves.</span></dd>
+      <dt><span lang="ar">أول شي تسويه</span><span lang="en">First thing to do</span></dt><dd><span lang="ar">انتبه لكلمة <span class="ltr">lagging</span> أو <span class="ltr">leading</span>، لأنها تحدد إشارة $Q$.</span><span lang="en">Watch for the word <span class="ltr">lagging</span> or <span class="ltr">leading</span>, because it decides the sign of $Q$.</span></dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4><span lang="ar">طلّع الزاوية: $\theta = \cos^{-1}(\text{pf})$</span><span lang="en">Get the angle: $\theta = \cos^{-1}(\text{pf})$</span></h4><dl>
+      <dt><span lang="ar">ليش؟</span><span lang="en">Why?</span></dt><dd><span lang="ar">كل قوانين المثلث تبغى الزاوية، والمعطى جيب تمامها بس.</span><span lang="en">All the triangle formulas need the angle, and you're only given its cosine.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\cos^{-1}(0.856) = 31.13^\circ$، و $\cos^{-1}(0.8) = 36.87^\circ$.</span><span lang="en">$\cos^{-1}(0.856) = 31.13^\circ$, and $\cos^{-1}(0.8) = 36.87^\circ$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">الآلة الحاسبة على الراديان. خلها على الدرجات (Deg).</span><span lang="en">Calculator in radians. Set it to degrees (Deg).</span></dd></dl></div>
+    <div class="fb-info" data-for="pq2" hidden><h4><span lang="ar">من مثلث القدرة: $P = S\cos\theta$ و $Q = S\sin\theta$</span><span lang="en">From the power triangle: $P = S\cos\theta$ and $Q = S\sin\theta$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لما تعرف الوتر $S$ والزاوية.</span><span lang="en">When you know the hypotenuse $S$ and the angle.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$S = 10\ \text{kVA}$ و pf $= 0.8$: $P = 8\ \text{kW}$ و $Q = 6\ \text{kVAR}$.</span><span lang="en">$S = 10\ \text{kVA}$ and pf $= 0.8$: $P = 8\ \text{kW}$ and $Q = 6\ \text{kVAR}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تضرب $S$ في pf عشان $Q$. الصح $Q$ يبغى الـ $\sin$.</span><span lang="en">Multiplying $S$ by pf to get $Q$. $Q$ needs the $\sin$.</span></dd></dl></div>
+    <div class="fb-info" data-for="sc" hidden><h4><span lang="ar">الإشارة: $\mathbf{S} = P \pm jQ$</span><span lang="en">The sign: $\mathbf{S} = P \pm jQ$</span></h4><dl>
+      <dt><span lang="ar">القاعدة</span><span lang="en">The rule</span></dt><dd><span lang="ar">متأخر <span class="ltr">(lagging)</span>: $+jQ$. متقدم <span class="ltr">(leading)</span>: $-jQ$.</span><span lang="en">Lagging: $+jQ$. Leading: $-jQ$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">12 kVA بـ 0.856 متأخر: $\mathbf{S} = 10.272 + j6.204\ \text{kVA}$.</span><span lang="en">12 kVA at 0.856 lagging: $\mathbf{S} = 10.272 + j6.204\ \text{kVA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحط موجب دايمًا وتنسى تشوف الكلمة.</span><span lang="en">Always putting a plus and forgetting to look at the word.</span></dd></dl></div>
+    <div class="fb-info" data-for="ic" hidden><h4><span lang="ar">التيار من القدرة: $\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$</span><span lang="en">The current from the power: $\mathbf{I}_{rms}^* = \dfrac{\mathbf{S}}{\mathbf{V}_{rms}}$</span></h4><dl>
+      <dt><span lang="ar">ليش؟</span><span lang="en">Why?</span></dt><dd><span lang="ar">من $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ نقسم على الجهد. بس اللي يطلع هو <b>المرافق</b>، فنقلب إشارة الزاوية بعدها.</span><span lang="en">From $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ we divide by the voltage. But what comes out is the <b>conjugate</b>, so we flip the angle's sign afterwards.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\dfrac{12000\angle 31.13^\circ}{120\angle 0^\circ} = 100\angle 31.13^\circ$، فالتيار $\mathbf{I}_{rms} = 100\angle{-31.13^\circ}\ \text{A}$.</span><span lang="en">$\dfrac{12000\angle 31.13^\circ}{120\angle 0^\circ} = 100\angle 31.13^\circ$, so the current is $\mathbf{I}_{rms} = 100\angle{-31.13^\circ}\ \text{A}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى ترجع من $\mathbf{I}^*$ إلى $\mathbf{I}$، فيطلع التيار متقدم وهو متأخر.</span><span lang="en">Forgetting to go back from $\mathbf{I}^*$ to $\mathbf{I}$, so the current comes out leading when it's lagging.</span></dd></dl></div>
+    <div class="fb-info" data-for="im" hidden><h4><span lang="ar">القيمة العظمى: $I_m = \sqrt{2}\,I_{rms}$</span><span lang="en">Peak value: $I_m = \sqrt{2}\,I_{rms}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">لما يطلب <span class="ltr">peak current</span>. عكس القسمة على $\sqrt{2}$.</span><span lang="en">When the <span class="ltr">peak current</span> is asked for. The reverse of dividing by $\sqrt{2}$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$I_{rms} = 100\ \text{A}$: $I_m = 141.4\ \text{A}$.</dd></dl></div>
+    <div class="fb-info" data-for="zc" hidden><h4><span lang="ar">معاوقة الحمل: $\mathbf{Z} = \dfrac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}}$</span><span lang="en">Load impedance: $\mathbf{Z} = \dfrac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">بعد ما تطلع التيار. أو مباشرة: $\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{S}^*}$.</span><span lang="en">After you get the current. Or directly: $\mathbf{Z} = \dfrac{V_{rms}^2}{\mathbf{S}^*}$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\dfrac{120\angle 0^\circ}{100\angle{-31.13^\circ}} = 1.2\angle 31.13^\circ\ \Omega$.</dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">زاوية $\mathbf{Z}$ لازم تساوي زاوية $\mathbf{S}$. متأخر يعني زاوية موجبة (حثي).</span><span lang="en">The angle of $\mathbf{Z}$ must equal the angle of $\mathbf{S}$. Lagging means a positive angle (inductive).</span></dd></dl></div>
+    <div class="fb-info" data-for="o2" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">وش تكتب في الجواب؟</span><span lang="en">What goes in the answer?</span></dt><dd><span lang="ar">$P$ بالواط، $Q$ بالـ VAR، التيار بالأمبير (فعال أو عظمى حسب المطلوب)، و $\mathbf{Z}$ بالأوم.</span><span lang="en">$P$ in watts, $Q$ in VAR, the current in amperes (effective or peak, as asked), and $\mathbf{Z}$ in ohms.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">$V_{rms}I_{rms}$ لازم يرجع لك $S$ المعطاة.</span><span lang="en">$V_{rms}I_{rms}$ must give you back the given $S$.</span></dd></dl></div>
   </div>
 </section>
 
 <!-- ================= 05 المختبر ================= -->
 <section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
-  <h2>جرّب بنفسك: مثلث القدرة</h2>
-  <p class="sub">غيّر الحمل وشوف المثلث كيف يتحرك</p>
+  <h2><span lang="ar">جرّب بنفسك: مثلث القدرة</span><span lang="en">Try it yourself: the power triangle</span></h2>
+  <p class="sub"><span lang="ar">غيّر الحمل وشوف المثلث كيف يتحرك</span><span lang="en">Change the load and watch the triangle move</span></p>
 
   <div class="pt-lab">
-    <h3>🎛️ حرّك مقاومة الحمل ومفاعلته</h3>
-    <p class="lab-note">المصدر ثابت: $V_{rms} = 120\ \text{V}$. الحمل $\mathbf{Z} = R + jX$. المثلث مرسوم بمقياس يتغير عشان يبان كامل، فركّز على شكله وزاويته، والأرقام تحت.</p>
+    <h3><span lang="ar">🎛️ حرّك مقاومة الحمل ومفاعلته</span><span lang="en">🎛️ Move the load resistance and reactance</span></h3>
+    <p class="lab-note"><span lang="ar">المصدر ثابت: $V_{rms} = 120\ \text{V}$. الحمل $\mathbf{Z} = R + jX$. المثلث مرسوم بمقياس يتغير عشان يبان كامل، فركّز على شكله وزاويته، والأرقام تحت.</span><span lang="en">The source is fixed: $V_{rms} = 120\ \text{V}$. The load is $\mathbf{Z} = R + jX$. The triangle is drawn at a changing scale so it fits, so focus on its shape and angle; the numbers are below.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>حمل جاهز</label><span class="seg"><button class="btn small" type="button" data-pre="r">مقاومة بس</button><button class="btn small" type="button" data-pre="l">ملف بس</button><button class="btn small" type="button" data-pre="rl">مقاومة وملف</button><button class="btn small" type="button" data-pre="ex">حمل مثال 3</button></span></div>
+      <div class="field"><label><span lang="ar">حمل جاهز</span><span lang="en">Ready load</span></label><span class="seg"><button class="btn small" type="button" data-pre="r"><span lang="ar">مقاومة بس</span><span lang="en">Resistance only</span></button><button class="btn small" type="button" data-pre="l"><span lang="ar">ملف بس</span><span lang="en">Inductor only</span></button><button class="btn small" type="button" data-pre="rl"><span lang="ar">مقاومة وملف</span><span lang="en">Resistor and inductor</span></button><button class="btn small" type="button" data-pre="ex"><span lang="ar">حمل مثال 3</span><span lang="en">Example 3 load</span></button></span></div>
       <div class="field"><label>$R$ (Ω)</label><input type="range" dir="ltr" id="ptR" min="0" max="60" step="0.01" value="30"><span class="rv" id="ptRv"></span></div>
       <div class="field"><label>$X$ (Ω)</label><input type="range" dir="ltr" id="ptX" min="-60" max="60" step="0.01" value="20"><span class="rv" id="ptXv"></span></div>
     </div>
@@ -335,73 +335,73 @@
         <text class="lbl yt" id="ptQl">Q</text>
         <text class="lbl zt" id="ptSl" text-anchor="middle">S</text>
       </svg>
-      <figcaption>الأفقي $P$، الرأسي $Q$، والوتر $S$. فوق المحور حثي، وتحته سعوي.</figcaption>
+      <figcaption><span lang="ar">الأفقي $P$، الرأسي $Q$، والوتر $S$. فوق المحور حثي، وتحته سعوي.</span><span lang="en">Horizontal $P$, vertical $Q$, and the hypotenuse $S$. Above the axis is inductive, below is capacitive.</span></figcaption>
     </figure>
     <div class="ml-read">
-      <div class="hl"><span class="k">القدرة الظاهرية $S$</span><span class="v" id="ptSv"></span></div>
-      <div><span class="k">القدرة الحقيقية $P$</span><span class="v" id="ptPv"></span></div>
-      <div><span class="k">القدرة غير الفعالة $Q$</span><span class="v" id="ptQv"></span></div>
-      <div class="hl"><span class="k">معامل القدرة pf</span><span class="v" id="ptF"></span></div>
-      <div><span class="k">زاوية الحمل $\theta_v - \theta_i$</span><span class="v ltr" id="ptT"></span></div>
-      <div><span class="k">التيار $I_{rms}$</span><span class="v" id="ptI"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">القدرة الظاهرية $S$</span><span lang="en">Apparent power $S$</span></span><span class="v" id="ptSv"></span></div>
+      <div><span class="k"><span lang="ar">القدرة الحقيقية $P$</span><span lang="en">Real power $P$</span></span><span class="v" id="ptPv"></span></div>
+      <div><span class="k"><span lang="ar">القدرة غير الفعالة $Q$</span><span lang="en">Reactive power $Q$</span></span><span class="v" id="ptQv"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">معامل القدرة pf</span><span lang="en">Power factor pf</span></span><span class="v" id="ptF"></span></div>
+      <div><span class="k"><span lang="ar">زاوية الحمل $\theta_v - \theta_i$</span><span lang="en">Load angle $\theta_v - \theta_i$</span></span><span class="v ltr" id="ptT"></span></div>
+      <div><span class="k"><span lang="ar">التيار $I_{rms}$</span><span lang="en">Current $I_{rms}$</span></span><span class="v" id="ptI"></span></div>
     </div>
     <p class="pt-say" id="ptSay"></p>
   </div>
-  <div class="callout key"><strong>🔑 جرّب:</strong> ثبّت $R$ وحرّك $X$ من موجب لسالب. شوف $Q$ كيف ينقلب من فوق لتحت، وكلمة "متأخر" تصير "متقدم". وبعدها خل $X = 0$ وشوف المثلث يصير خط واحد و pf $= 1$.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 جرّب:</strong> ثبّت $R$ وحرّك $X$ من موجب لسالب. شوف $Q$ كيف ينقلب من فوق لتحت، وكلمة "متأخر" تصير "متقدم". وبعدها خل $X = 0$ وشوف المثلث يصير خط واحد و pf $= 1$.</span><span lang="en"><strong>🔑 Try it:</strong> fix $R$ and move $X$ from positive to negative. See $Q$ flip from above to below, and “lagging” turn into “leading”. Then set $X = 0$ and watch the triangle become a single line with pf $= 1$.</span></div>
 </section>
 
 <!-- ================= الأمثلة ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>القدرة الظاهرية ومعامل القدرة لحمل توالي</h2></div>
-  <div class="tags"><span class="tag">Example 11.9</span><span class="tag">من الموجات للعناصر</span></div>
-  <p>حمل موصول على التوالي يسحب تيار $i(t) = 4\cos(100\pi t + 10^\circ)\ \text{A}$ لما الجهد عليه $v(t) = 120\cos(100\pi t - 20^\circ)\ \text{V}$. أوجد القدرة الظاهرية ومعامل القدرة، وقيم العناصر اللي يتكون منها الحمل.</p>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">موجات، ثم rms، ثم $\mathbf{S}$، ثم pf، ثم العناصر</a></p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">القدرة الظاهرية ومعامل القدرة لحمل توالي</span><span lang="en">Apparent power and power factor of a series load</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.9</span><span class="tag"><span lang="ar">من الموجات للعناصر</span><span lang="en">from waves to elements</span></span></div>
+  <p><span lang="ar">حمل موصول على التوالي يسحب تيار $i(t) = 4\cos(100\pi t + 10^\circ)\ \text{A}$ لما الجهد عليه $v(t) = 120\cos(100\pi t - 20^\circ)\ \text{V}$. أوجد القدرة الظاهرية ومعامل القدرة، وقيم العناصر اللي يتكون منها الحمل.</span><span lang="en">A series-connected load draws a current $i(t) = 4\cos(100\pi t + 10^\circ)\ \text{A}$ when the voltage across it is $v(t) = 120\cos(100\pi t - 20^\circ)\ \text{V}$. Find the apparent power and the power factor, and the values of the elements that make up the load.</span></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">موجات، ثم rms، ثم $\mathbf{S}$، ثم pf، ثم العناصر</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">waves, then rms, then $\mathbf{S}$, then pf, then the elements</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">معطيك $v$ و $i$، والاثنين $\cos$ وبنفس $\omega = 100\pi$. يعني الشجرة 1، فرع "معطيك $v$ و $i$".</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">معطيك $v$ و $i$، والاثنين $\cos$ وبنفس $\omega = 100\pi$. يعني الشجرة 1، فرع "معطيك $v$ و $i$".</span><span lang="en">You're given $v$ and $i$, both $\cos$ with the same $\omega = 100\pi$. So it's tree 1, branch “you're given $v$ and $i$”.</span></p>
     </li>
     <li class="step">
-      <h4>حوّل للقيمة الفعالة</h4>
-      <p class="why">نقسم المقادير على $\sqrt{2}$ والزوايا تبقى.</p>
+      <h4><span lang="ar">حوّل للقيمة الفعالة</span><span lang="en">Convert to effective values</span></h4>
+      <p class="why"><span lang="ar">نقسم المقادير على $\sqrt{2}$ والزوايا تبقى.</span><span lang="en">We divide the magnitudes by $\sqrt{2}$, and the angles stay.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{V}_{rms} = \frac{120}{\sqrt{2}}\angle{-20^\circ} \\ = 84.85\angle{-20^\circ}\ \text{V} \\[6pt] \mathbf{I}_{rms} = \frac{4}{\sqrt{2}}\angle 10^\circ \\ = 2.828\angle 10^\circ\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>احسب القدرة المركبة</h4>
-      <p class="why">نضرب الجهد في مرافق التيار: المقادير تنضرب، وزاوية التيار تنطرح.</p>
+      <h4><span lang="ar">احسب القدرة المركبة</span><span lang="en">Find the complex power</span></h4>
+      <p class="why"><span lang="ar">نضرب الجهد في مرافق التيار: المقادير تنضرب، وزاوية التيار تنطرح.</span><span lang="en">We multiply the voltage by the current's conjugate: the magnitudes multiply, and the current's angle is subtracted.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* \\ = (84.85\angle{-20^\circ}) \\ \times(2.828\angle{-10^\circ}) \\ = 240\angle{-30^\circ}\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>فكّها لمستطيلة</h4>
-      <p class="why">المقدار هو القدرة الظاهرية. والـ $\cos$ والـ $\sin$ يعطونا $P$ و $Q$.</p>
+      <h4><span lang="ar">فكّها لمستطيلة</span><span lang="en">Expand to rectangular</span></h4>
+      <p class="why"><span lang="ar">المقدار هو القدرة الظاهرية. والـ $\cos$ والـ $\sin$ يعطونا $P$ و $Q$.</span><span lang="en">The magnitude is the apparent power. The $\cos$ and $\sin$ give us $P$ and $Q$.</span></p>
       <div class="m">\[\begin{gathered}\Z{S} = |\mathbf{S}| = 240\ \text{VA} \\[6pt] \X{P} = 240\cos(-30^\circ) \\ = 207.8\ \text{W} \\[6pt] \Y{Q} = 240\sin(-30^\circ) \\ = -120\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>معامل القدرة ونوعه</h4>
-      <p class="why">قبل ما تقرأ: $Q$ طلع سالب. متقدم ولا متأخر؟ سالب يعني سعوي، والتيار ($10^\circ$) فعلًا قدام الجهد ($-20^\circ$). فهو متقدم.</p>
+      <h4><span lang="ar">معامل القدرة ونوعه</span><span lang="en">Power factor and its type</span></h4>
+      <p class="why"><span lang="ar">قبل ما تقرأ: $Q$ طلع سالب. متقدم ولا متأخر؟ سالب يعني سعوي، والتيار ($10^\circ$) فعلًا قدام الجهد ($-20^\circ$). فهو متقدم.</span><span lang="en">Before you read on: $Q$ came out negative. Leading or lagging? Negative means capacitive, and the current ($10^\circ$) is indeed ahead of the voltage ($-20^\circ$). So it's leading.</span></p>
       <div class="m">\[\text{pf} = \cos(-30^\circ) = 0.866\]</div>
     </li>
     <li class="step">
-      <h4>معاوقة الحمل</h4>
-      <p class="why">نقسم الجهد على التيار. القيم العظمى أو الفعالة نفس الشي، لأن $\sqrt{2}$ تنلغي.</p>
+      <h4><span lang="ar">معاوقة الحمل</span><span lang="en">Load impedance</span></h4>
+      <p class="why"><span lang="ar">نقسم الجهد على التيار. القيم العظمى أو الفعالة نفس الشي، لأن $\sqrt{2}$ تنلغي.</span><span lang="en">We divide the voltage by the current. Peak or effective values give the same result, because the $\sqrt{2}$ cancels.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{Z} = \frac{120\angle{-20^\circ}}{4\angle 10^\circ} = 30\angle{-30^\circ} \\ = 25.98 - j15\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>طلّع العناصر</h4>
-      <p class="why">الحمل توالي: الجزء الحقيقي مقاومة، والتخيلي سالب يعني مكثف. ومفاعلة المكثف $X_C = -\dfrac{1}{\omega C}$.</p>
+      <h4><span lang="ar">طلّع العناصر</span><span lang="en">Get the elements</span></h4>
+      <p class="why"><span lang="ar">الحمل توالي: الجزء الحقيقي مقاومة، والتخيلي سالب يعني مكثف. ومفاعلة المكثف $X_C = -\dfrac{1}{\omega C}$.</span><span lang="en">The load is series: the real part is a resistor, and the negative imaginary part means a capacitor. The capacitor's reactance is $X_C = -\dfrac{1}{\omega C}$.</span></p>
       <div class="m">\[\begin{gathered}-15 = -\frac{1}{\omega C} \\ C = \frac{1}{15\omega} = \frac{1}{15 \times 100\pi}\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">$S = 240$ VA، pf $= 0.866$ متقدم، $R = 25.98\ \Omega$ و $C = 212.2\ \mu$F</div>
-      <p class="sanity">زاوية $\mathbf{Z}$ ($-30^\circ$) نفس زاوية $\mathbf{S}$، و $P = S \times \text{pf} = 240 \times 0.866 = 207.8$ ✓</p>
+      <div class="result"><span lang="ar">$S = 240$ VA، pf $= 0.866$ متقدم، $R = 25.98\ \Omega$ و $C = 212.2\ \mu$F</span><span lang="en">$S = 240$ VA, pf $= 0.866$ leading, $R = 25.98\ \Omega$ and $C = 212.2\ \mu$F</span></div>
+      <p class="sanity"><span lang="ar">زاوية $\mathbf{Z}$ ($-30^\circ$) نفس زاوية $\mathbf{S}$، و $P = S \times \text{pf} = 240 \times 0.866 = 207.8$ ✓</span><span lang="en">The angle of $\mathbf{Z}$ ($-30^\circ$) equals the angle of $\mathbf{S}$, and $P = S \times \text{pf} = 240 \times 0.866 = 207.8$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>معامل القدرة اللي يشوفه المصدر</h2></div>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">معامل القدرة اللي يشوفه المصدر</span><span lang="en">The power factor seen by the source</span></h2></div>
   <div class="tags"><span class="tag">Example 11.10</span><span class="tag">$\mathbf{S} = V_{rms}^2/\mathbf{Z}^*$</span></div>
-  <p>أوجد معامل القدرة للدائرة كاملة كما يشوفه المصدر، واحسب القدرة المتوسطة اللي يعطيها المصدر.</p>
+  <p><span lang="ar">أوجد معامل القدرة للدائرة كاملة كما يشوفه المصدر، واحسب القدرة المتوسطة اللي يعطيها المصدر.</span><span lang="en">Find the power factor of the whole circuit as seen by the source, and the average power supplied by the source.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 385 185" role="img" aria-label="مصدر جهد 30 بزاوية صفر قيمة فعالة، على التوالي مع مقاومة 6 أوم، ثم مكثف سالب j2 أوم على التوازي مع مقاومة 4 أوم" style="max-width:400px">
       <circle class="wire" cx="85" cy="105" r="16"/>
@@ -417,255 +417,255 @@
       <text class="lbl" x="232" y="104" text-anchor="end">−j2 Ω</text>
       <text class="lbl" x="336" y="104">4 Ω</text>
     </svg>
-    <figcaption>Figure 11.18: جهد المصدر معطى قيمة فعالة.</figcaption>
+    <figcaption><span lang="ar">Figure 11.18: جهد المصدر معطى قيمة فعالة.</span><span lang="en">Figure 11.18: the source voltage is given as an effective value.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g2 s2 pq pf o1">معاوقة، ثم الاختصار، ثم $P + jQ$، ثم pf</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g2 s2 pq pf o1">معاوقة، ثم الاختصار، ثم $P + jQ$، ثم pf</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="r1 g2 s2 pq pf o1">impedance, then the shortcut, then $P + jQ$, then pf</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">معطيك دائرة ومصدر، يعني الشجرة 1، فرع "معطيك المعاوقة". والجهد مكتوب rms، فما نقسم على $\sqrt{2}$.</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">معطيك دائرة ومصدر، يعني الشجرة 1، فرع "معطيك المعاوقة". والجهد مكتوب rms، فما نقسم على $\sqrt{2}$.</span><span lang="en">You're given a circuit and a source, so it's tree 1, branch “you're given the impedance”. The voltage is written as rms, so we don't divide by $\sqrt{2}$.</span></p>
     </li>
     <li class="step">
-      <h4>اجمع المعاوقة الكلية</h4>
-      <p class="why">المكثف $-j2$ على التوازي مع $4\ \Omega$، والاثنين على التوالي مع $6\ \Omega$. التوازي: الضرب على المجموع.</p>
+      <h4><span lang="ar">اجمع المعاوقة الكلية</span><span lang="en">Combine the total impedance</span></h4>
+      <p class="why"><span lang="ar">المكثف $-j2$ على التوازي مع $4\ \Omega$، والاثنين على التوالي مع $6\ \Omega$. التوازي: الضرب على المجموع.</span><span lang="en">The $-j2$ capacitor is in parallel with $4\ \Omega$, and both are in series with $6\ \Omega$. Parallel: product over sum.</span></p>
       <div class="m">\[\begin{gathered}4 \parallel (-j2) = \frac{-j8}{4 - j2} \\ = 0.8 - j1.6\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>أضف المقاومة اللي على التوالي</h4>
+      <h4><span lang="ar">أضف المقاومة اللي على التوالي</span><span lang="en">Add the series resistor</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z} = 6 + 0.8 - j1.6 \\ = 6.8 - j1.6 \\ = 6.986\angle{-13.24^\circ}\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>اكتب الاختصار</h4>
-      <p class="why">معطيك الجهد والمعاوقة، فالأسهل $\mathbf{S} = V_{rms}^2/\mathbf{Z}^*$. المرافق يقلب إشارة الجزء التخيلي.</p>
+      <h4><span lang="ar">اكتب الاختصار</span><span lang="en">Write the shortcut</span></h4>
+      <p class="why"><span lang="ar">معطيك الجهد والمعاوقة، فالأسهل $\mathbf{S} = V_{rms}^2/\mathbf{Z}^*$. المرافق يقلب إشارة الجزء التخيلي.</span><span lang="en">You're given the voltage and the impedance, so the easiest is $\mathbf{S} = V_{rms}^2/\mathbf{Z}^*$. The conjugate flips the sign of the imaginary part.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \frac{V_{rms}^2}{\mathbf{Z}^*} \\ = \frac{(30)^2}{6.8 + j1.6}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>اقسم</h4>
-      <p class="why">نضرب فوق وتحت في مرافق المقام: $(6.8 + j1.6)(6.8 - j1.6)$ $= 6.8^2 + 1.6^2$ $= 48.8$.</p>
+      <h4><span lang="ar">اقسم</span><span lang="en">Divide</span></h4>
+      <p class="why"><span lang="ar">نضرب فوق وتحت في مرافق المقام: $(6.8 + j1.6)(6.8 - j1.6)$ $= 6.8^2 + 1.6^2$ $= 48.8$.</span><span lang="en">We multiply top and bottom by the denominator's conjugate: $(6.8 + j1.6)(6.8 - j1.6)$ $= 6.8^2 + 1.6^2$ $= 48.8$.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \frac{900(6.8 - j1.6)}{48.8} \\ = 125.4 - j29.51\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>معامل القدرة</h4>
-      <p class="why">$Q$ سالب، يعني الدائرة سعوية والـ pf متقدم. والزاوية هي زاوية $\mathbf{Z}$.</p>
+      <h4><span lang="ar">معامل القدرة</span><span lang="en">Power factor</span></h4>
+      <p class="why"><span lang="ar">$Q$ سالب، يعني الدائرة سعوية والـ pf متقدم. والزاوية هي زاوية $\mathbf{Z}$.</span><span lang="en">$Q$ is negative, so the circuit is capacitive and the pf is leading. The angle is the angle of $\mathbf{Z}$.</span></p>
       <div class="m">\[\begin{gathered}S = \sqrt{125.4^2 + 29.51^2} \\ = 128.8\ \text{VA} \\[6pt] \text{pf} = \frac{125.4}{128.8} \\ = \cos(-13.24^\circ) = 0.9734\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">pf $= 0.9734$ متقدم، $P = 125.4$ W</div>
-      <p class="sanity">طريقة ثانية: $I_{rms} = 30/6.986 = 4.294\ \text{A}$، و $P = I_{rms}^2R$ $= (4.294)^2(6.8)$ $= 125.4\ \text{W}$ ✓ (الكتاب يقرّب $|\mathbf{Z}|$ لـ 7 فيطلع التيار 4.286 والقدرة 125 W.)</p>
+      <div class="result"><span lang="ar">pf $= 0.9734$ متقدم، $P = 125.4$ W</span><span lang="en">pf $= 0.9734$ leading, $P = 125.4$ W</span></div>
+      <p class="sanity"><span lang="ar">طريقة ثانية: $I_{rms} = 30/6.986 = 4.294\ \text{A}$، و $P = I_{rms}^2R$ $= (4.294)^2(6.8)$ $= 125.4\ \text{W}$ ✓ (الكتاب يقرّب $|\mathbf{Z}|$ لـ 7 فيطلع التيار 4.286 والقدرة 125 W.)</span><span lang="en">Another way: $I_{rms} = 30/6.986 = 4.294\ \text{A}$, and $P = I_{rms}^2R$ $= (4.294)^2(6.8)$ $= 125.4\ \text{W}$ ✓ (The textbook rounds $|\mathbf{Z}|$ to 7, so it gets a current of 4.286 and a power of 125 W.)</span></p>
     </li>
   </ol>
 </section>
 
 <section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>القدرة المركبة لحمل</h2></div>
-  <div class="tags"><span class="tag">Example 11.11</span><span class="tag">$\mathbf{S}$ و $P$ و $Q$ و pf و $\mathbf{Z}$</span></div>
-  <p>الجهد على حمل $v(t) = 60\cos(\omega t - 10^\circ)\ \text{V}$، والتيار فيه $i(t) = 1.5\cos(\omega t + 50^\circ)\ \text{A}$. أوجد: (أ) القدرة المركبة والظاهرية، (ب) القدرة الحقيقية وغير الفعالة، (ج) معامل القدرة ومعاوقة الحمل.</p>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">موجات، ثم rms، ثم $\mathbf{S}$، ثم pf، ثم $\mathbf{Z}$</a></p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 3</span></span><span lang="en"><span class="ex-badge">Example 3</span></span><h2><span lang="ar">القدرة المركبة لحمل</span><span lang="en">Complex power of a load</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.11</span><span class="tag"><span lang="ar">$\mathbf{S}$ و $P$ و $Q$ و pf و $\mathbf{Z}$</span><span lang="en">$\mathbf{S}$, $P$, $Q$, pf and $\mathbf{Z}$</span></span></div>
+  <p><span lang="ar">الجهد على حمل $v(t) = 60\cos(\omega t - 10^\circ)\ \text{V}$، والتيار فيه $i(t) = 1.5\cos(\omega t + 50^\circ)\ \text{A}$. أوجد: (أ) القدرة المركبة والظاهرية، (ب) القدرة الحقيقية وغير الفعالة، (ج) معامل القدرة ومعاوقة الحمل.</span><span lang="en">The voltage across a load is $v(t) = 60\cos(\omega t - 10^\circ)\ \text{V}$, and the current through it is $i(t) = 1.5\cos(\omega t + 50^\circ)\ \text{A}$. Find: (a) the complex and apparent powers, (b) the real and reactive powers, (c) the power factor and the load impedance.</span></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">موجات، ثم rms، ثم $\mathbf{S}$، ثم pf، ثم $\mathbf{Z}$</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="r1 g1 rm s1 pq pf el o1">waves, then rms, then $\mathbf{S}$, then pf, then $\mathbf{Z}$</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">نفس نوع مثال 1: معطيك $v$ و $i$ بالقيم العظمى. الشجرة 1، فرع "معطيك $v$ و $i$".</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">نفس نوع مثال 1: معطيك $v$ و $i$ بالقيم العظمى. الشجرة 1، فرع "معطيك $v$ و $i$".</span><span lang="en">Same type as Example 1: you're given $v$ and $i$ with peak values. Tree 1, branch “you're given $v$ and $i$”.</span></p>
     </li>
     <li class="step">
-      <h4>حوّل للقيمة الفعالة</h4>
+      <h4><span lang="ar">حوّل للقيمة الفعالة</span><span lang="en">Convert to effective values</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{V}_{rms} = \frac{60}{\sqrt{2}}\angle{-10^\circ} \\ = 42.43\angle{-10^\circ}\ \text{V} \\[6pt] \mathbf{I}_{rms} = \frac{1.5}{\sqrt{2}}\angle 50^\circ \\ = 1.061\angle 50^\circ\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(أ) القدرة المركبة</h4>
-      <p class="why">مرافق التيار زاويته $-50^\circ$. نجمعها مع زاوية الجهد.</p>
+      <h4><span lang="ar">(أ) القدرة المركبة</span><span lang="en">(a) Complex power</span></h4>
+      <p class="why"><span lang="ar">مرافق التيار زاويته $-50^\circ$. نجمعها مع زاوية الجهد.</span><span lang="en">The current's conjugate has angle $-50^\circ$. We add it to the voltage angle.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = (42.43\angle{-10^\circ}) \\ \times(1.061\angle{-50^\circ}) \\ = 45\angle{-60^\circ}\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(أ) القدرة الظاهرية</h4>
+      <h4><span lang="ar">(أ) القدرة الظاهرية</span><span lang="en">(a) Apparent power</span></h4>
       <div class="m">\[\Z{S} = |\mathbf{S}| = 45\ \text{VA}\]</div>
     </li>
     <li class="step">
-      <h4>(ب) فكّها لمستطيلة</h4>
-      <p class="why">$\cos(-60^\circ) = 0.5$ و $\sin(-60^\circ) = -0.866$.</p>
+      <h4><span lang="ar">(ب) فكّها لمستطيلة</span><span lang="en">(b) Expand to rectangular</span></h4>
+      <p class="why"><span lang="ar">$\cos(-60^\circ) = 0.5$ و $\sin(-60^\circ) = -0.866$.</span><span lang="en">$\cos(-60^\circ) = 0.5$ and $\sin(-60^\circ) = -0.866$.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{S} = 45\cos(-60^\circ) \\ + j45\sin(-60^\circ) \\ = 22.5 - j38.97\ \text{VA}\end{gathered}\]</div>
       <div class="m">\[\begin{gathered}\X{P} = 22.5\ \text{W} \\ \Y{Q} = -38.97\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ج) معامل القدرة</h4>
-      <p class="why">$Q$ سالب، فهو متقدم.</p>
+      <h4><span lang="ar">(ج) معامل القدرة</span><span lang="en">(c) Power factor</span></h4>
+      <p class="why"><span lang="ar">$Q$ سالب، فهو متقدم.</span><span lang="en">$Q$ is negative, so it's leading.</span></p>
       <div class="m">\[\text{pf} = \cos(-60^\circ) = 0.5\]</div>
     </li>
     <li class="step">
-      <h4>(ج) معاوقة الحمل</h4>
+      <h4><span lang="ar">(ج) معاوقة الحمل</span><span lang="en">(c) Load impedance</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z} = \frac{60\angle{-10^\circ}}{1.5\angle 50^\circ} \\ = 40\angle{-60^\circ}\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">$\mathbf{S} = 45\angle{-60^\circ}$ VA، $P = 22.5$ W، $Q = -38.97$ VAR، pf $= 0.5$ متقدم، $\mathbf{Z} = 40\angle{-60^\circ}\ \Omega$</div>
-      <p class="sanity">زاوية $\mathbf{Z}$ سالبة، يعني معاوقة سعوية، وهذا يطابق إن $Q$ سالب ✓</p>
+      <div class="result"><span lang="ar">$\mathbf{S} = 45\angle{-60^\circ}$ VA، $P = 22.5$ W، $Q = -38.97$ VAR، pf $= 0.5$ متقدم، $\mathbf{Z} = 40\angle{-60^\circ}\ \Omega$</span><span lang="en">$\mathbf{S} = 45\angle{-60^\circ}$ VA, $P = 22.5$ W, $Q = -38.97$ VAR, pf $= 0.5$ leading, $\mathbf{Z} = 40\angle{-60^\circ}\ \Omega$</span></div>
+      <p class="sanity"><span lang="ar">زاوية $\mathbf{Z}$ سالبة، يعني معاوقة سعوية، وهذا يطابق إن $Q$ سالب ✓</span><span lang="en">The angle of $\mathbf{Z}$ is negative, so the impedance is capacitive, which matches $Q$ being negative ✓</span></p>
     </li>
   </ol>
 </section>
 
 <section class="card" id="ex4" data-nav="مثال 4|Ex 4">
-  <div class="ex-head"><span class="ex-badge">مثال 4</span><h2>حمل ياخذ 12 kVA</h2></div>
-  <div class="tags"><span class="tag">Example 11.12</span><span class="tag">من $S$ و pf للتيار والمعاوقة</span></div>
-  <p>حمل $\mathbf{Z}$ ياخذ <span class="ltr">12 kVA</span> بمعامل قدرة 0.856 متأخر من مصدر جيبي <span class="ltr">120 V rms</span>. احسب: (أ) القدرة الحقيقية وغير الفعالة، (ب) القيمة العظمى للتيار، (ج) معاوقة الحمل.</p>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 an pq2 sc ic im zc o2">الزاوية، ثم المثلث، ثم $\mathbf{S}$، ثم التيار، ثم $\mathbf{Z}$</a></p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 4</span></span><span lang="en"><span class="ex-badge">Example 4</span></span><h2><span lang="ar">حمل ياخذ 12 kVA</span><span lang="en">A load taking 12 kVA</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.12</span><span class="tag"><span lang="ar">من $S$ و pf للتيار والمعاوقة</span><span lang="en">from $S$ and pf to the current and impedance</span></span></div>
+  <p><span lang="ar">حمل $\mathbf{Z}$ ياخذ <span class="ltr">12 kVA</span> بمعامل قدرة 0.856 متأخر من مصدر جيبي <span class="ltr">120 V rms</span>. احسب: (أ) القدرة الحقيقية وغير الفعالة، (ب) القيمة العظمى للتيار، (ج) معاوقة الحمل.</span><span lang="en">A load $\mathbf{Z}$ draws <span class="ltr">12 kVA</span> at a power factor of 0.856 lagging from a <span class="ltr">120 V rms</span> sinusoidal source. Find: (a) the real and reactive powers, (b) the peak current, (c) the load impedance.</span></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 an pq2 sc ic im zc o2">الزاوية، ثم المثلث، ثم $\mathbf{S}$، ثم التيار، ثم $\mathbf{Z}$</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="r2 an pq2 sc ic im zc o2">the angle, then the triangle, then $\mathbf{S}$, then the current, then $\mathbf{Z}$</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">معطيك $S = 12000\ \text{VA}$ و pf، مو موجات. يعني الشجرة 2. وكلمة "متأخر" تقول إن $Q$ موجب.</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">معطيك $S = 12000\ \text{VA}$ و pf، مو موجات. يعني الشجرة 2. وكلمة "متأخر" تقول إن $Q$ موجب.</span><span lang="en">You're given $S = 12000\ \text{VA}$ and pf, not waves. So it's tree 2. And the word “lagging” tells you $Q$ is positive.</span></p>
     </li>
     <li class="step">
-      <h4>طلّع الزاوية</h4>
+      <h4><span lang="ar">طلّع الزاوية</span><span lang="en">Get the angle</span></h4>
       <div class="m">\[\theta = \cos^{-1}(0.856) = 31.13^\circ\]</div>
     </li>
     <li class="step">
-      <h4>(أ) القدرة الحقيقية</h4>
+      <h4><span lang="ar">(أ) القدرة الحقيقية</span><span lang="en">(a) Real power</span></h4>
       <div class="m">\[\begin{gathered}\X{P} = S\cos\theta \\ = 12000 \times 0.856 \\ = 10272\ \text{W}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(أ) القدرة غير الفعالة</h4>
+      <h4><span lang="ar">(أ) القدرة غير الفعالة</span><span lang="en">(a) Reactive power</span></h4>
       <p class="why">$\sin(31.13^\circ) = 0.517$.</p>
       <div class="m">\[\begin{gathered}\Y{Q} = S\sin\theta \\ = 12000 \times 0.517 \\ = 6204\ \text{VAR}\end{gathered}\]</div>
-      <p class="why">الكتاب كتبها kVA بالغلط، والوحدة الصح kVAR.</p>
+      <p class="why"><span lang="ar">الكتاب كتبها kVA بالغلط، والوحدة الصح kVAR.</span><span lang="en">The textbook wrote kVA by mistake; the correct unit is kVAR.</span></p>
     </li>
     <li class="step">
-      <h4>(ب) اكتب القدرة المركبة</h4>
-      <p class="why">متأخر، فالإشارة موجبة.</p>
+      <h4><span lang="ar">(ب) اكتب القدرة المركبة</span><span lang="en">(b) Write the complex power</span></h4>
+      <p class="why"><span lang="ar">متأخر، فالإشارة موجبة.</span><span lang="en">Lagging, so the sign is positive.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = P + jQ \\ = 10272 + j6204\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ب) طلّع مرافق التيار</h4>
-      <p class="why">من $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ نقسم على الجهد. نأخذ الجهد مرجع بزاوية صفر.</p>
+      <h4><span lang="ar">(ب) طلّع مرافق التيار</span><span lang="en">(b) Get the current's conjugate</span></h4>
+      <p class="why"><span lang="ar">من $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ نقسم على الجهد. نأخذ الجهد مرجع بزاوية صفر.</span><span lang="en">From $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$ we divide by the voltage. We take the voltage as the reference with zero angle.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{I}_{rms}^* = \frac{\mathbf{S}}{\mathbf{V}_{rms}} \\ = \frac{10272 + j6204}{120\angle 0^\circ} \\ = 85.6 + j51.7 \\ = 100\angle 31.13^\circ\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ب) ارجع للتيار نفسه</h4>
-      <p class="why">قبل ما تقرأ: اللي طلع $\mathbf{I}^*$، مو $\mathbf{I}$. وش تسوي؟ تقلب إشارة الزاوية. وبعدها تضرب في $\sqrt{2}$ للقيمة العظمى.</p>
+      <h4><span lang="ar">(ب) ارجع للتيار نفسه</span><span lang="en">(b) Back to the current itself</span></h4>
+      <p class="why"><span lang="ar">قبل ما تقرأ: اللي طلع $\mathbf{I}^*$، مو $\mathbf{I}$. وش تسوي؟ تقلب إشارة الزاوية. وبعدها تضرب في $\sqrt{2}$ للقيمة العظمى.</span><span lang="en">Before you read on: what came out is $\mathbf{I}^*$, not $\mathbf{I}$. What do you do? Flip the sign of the angle. Then multiply by $\sqrt{2}$ for the peak value.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{I}_{rms} = 100\angle{-31.13^\circ}\ \text{A} \\ I_m = \sqrt{2}(100) = 141.4\ \text{A}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ج) معاوقة الحمل</h4>
+      <h4><span lang="ar">(ج) معاوقة الحمل</span><span lang="en">(c) Load impedance</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z} = \frac{\mathbf{V}_{rms}}{\mathbf{I}_{rms}} = \frac{120\angle 0^\circ}{100\angle{-31.13^\circ}} \\ = 1.2\angle 31.13^\circ\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">$P = 10.272$ kW، $Q = 6.204$ kVAR، $I_m = 141.4$ A، $\mathbf{Z} = 1.2\angle 31.13^\circ\ \Omega$</div>
-      <p class="sanity">$V_{rms}I_{rms} = 120 \times 100 = 12000\ \text{VA}$ يرجع لنا المعطى، وزاوية $\mathbf{Z}$ موجبة (حثي) يطابق "متأخر" ✓</p>
+      <div class="result"><span lang="ar">$P = 10.272$ kW، $Q = 6.204$ kVAR، $I_m = 141.4$ A، $\mathbf{Z} = 1.2\angle 31.13^\circ\ \Omega$</span><span lang="en">$P = 10.272$ kW, $Q = 6.204$ kVAR, $I_m = 141.4$ A, $\mathbf{Z} = 1.2\angle 31.13^\circ\ \Omega$</span></div>
+      <p class="sanity"><span lang="ar">$V_{rms}I_{rms} = 120 \times 100 = 12000\ \text{VA}$ يرجع لنا المعطى، وزاوية $\mathbf{Z}$ موجبة (حثي) يطابق "متأخر" ✓</span><span lang="en">$V_{rms}I_{rms} = 120 \times 100 = 12000\ \text{VA}$ gives back the given value, and the positive angle of $\mathbf{Z}$ (inductive) matches “lagging” ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس. قرّب لمنزلة عشرية وحدة على الأقل. وقبل ما تحل، حدد مسارك في لوحة القوانين.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس. قرّب لمنزلة عشرية وحدة على الأقل. وقبل ما تحل، حدد مسارك في لوحة القوانين.</span><span lang="en">Type just the number. Round to at least one decimal place. Before you solve, pick your path on the formula board.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>حمل عليه $v(t) = 100\cos(\omega t + 20^\circ)\ \text{V}$ وفيه $i(t) = 2\cos(\omega t - 10^\circ)\ \text{A}$. كم القدرة الظاهرية بالـ VA؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">حمل عليه $v(t) = 100\cos(\omega t + 20^\circ)\ \text{V}$ وفيه $i(t) = 2\cos(\omega t - 10^\circ)\ \text{A}$. كم القدرة الظاهرية بالـ VA؟</span><span lang="en">A load has $v(t) = 100\cos(\omega t + 20^\circ)\ \text{V}$ across it and $i(t) = 2\cos(\omega t - 10^\circ)\ \text{A}$ through it. What is the apparent power in VA?</span></p>
     <div class="check" data-answer="100"></div>
-    <details class="hint"><p>حوّل الاثنين للقيمة الفعالة واضربهم. الزوايا ما تدخل في القدرة الظاهرية.</p></details>
+    <details class="hint"><p><span lang="ar">حوّل الاثنين للقيمة الفعالة واضربهم. الزوايا ما تدخل في القدرة الظاهرية.</span><span lang="en">Convert both to effective values and multiply. The angles don't enter the apparent power.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}S = V_{rms}I_{rms} \\ = \frac{100}{\sqrt{2}}\cdot\frac{2}{\sqrt{2}} = \frac{200}{2}\end{gathered}\]</div><div class="result">$S = 100$ VA</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
-    <p>نفس الحمل في تمرين أ. كم القدرة غير الفعالة $Q$ بالـ VAR؟ (انتبه للإشارة)</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">نفس الحمل في تمرين أ. كم القدرة غير الفعالة $Q$ بالـ VAR؟ (انتبه للإشارة)</span><span lang="en">Same load as Exercise A. What is the reactive power $Q$ in VAR? (watch the sign)</span></p>
     <div class="check" data-answer="50"></div>
-    <details class="hint"><p>الزاوية $\theta_v - \theta_i = 20^\circ - (-10^\circ)$. وبعدها $Q = S\sin\theta$.</p></details>
+    <details class="hint"><p><span lang="ar">الزاوية $\theta_v - \theta_i = 20^\circ - (-10^\circ)$. وبعدها $Q = S\sin\theta$.</span><span lang="en">The angle is $\theta_v - \theta_i = 20^\circ - (-10^\circ)$. Then $Q = S\sin\theta$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\theta = 20^\circ + 10^\circ = 30^\circ \\ Q = 100\sin 30^\circ\end{gathered}\]</div><div class="result">$Q = 50$ VAR</div><p class="sanity">موجب، يعني حمل حثي و pf $= 0.866$ متأخر ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\theta = 20^\circ + 10^\circ = 30^\circ \\ Q = 100\sin 30^\circ\end{gathered}\]</div><div class="result">$Q = 50$ VAR</div><p class="sanity"><span lang="ar">موجب، يعني حمل حثي و pf $= 0.866$ متأخر ✓</span><span lang="en">Positive, so an inductive load with pf $= 0.866$ lagging ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">وسط</span></div>
-    <p>حمل $\mathbf{Z} = 3 + j4\ \Omega$ موصول على مصدر $V_{rms} = 100\ \text{V}$. كم القدرة الحقيقية $P$ بالواط؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">حمل $\mathbf{Z} = 3 + j4\ \Omega$ موصول على مصدر $V_{rms} = 100\ \text{V}$. كم القدرة الحقيقية $P$ بالواط؟</span><span lang="en">A load $\mathbf{Z} = 3 + j4\ \Omega$ is connected to a source with $V_{rms} = 100\ \text{V}$. What is the real power $P$ in watts?</span></p>
     <div class="check" data-answer="1200"></div>
-    <details class="hint"><p>استخدم $\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$، أو طلّع التيار من $|\mathbf{Z}| = 5$ ثم $P = I_{rms}^2R$.</p></details>
+    <details class="hint"><p><span lang="ar">استخدم $\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$، أو طلّع التيار من $|\mathbf{Z}| = 5$ ثم $P = I_{rms}^2R$.</span><span lang="en">Use $\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$, or get the current from $|\mathbf{Z}| = 5$ then $P = I_{rms}^2R$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{S} = \frac{10000}{3 - j4} \\ = \frac{10000(3 + j4)}{25} \\ = 1200 + j1600\ \text{VA}\end{gathered}\]</div><div class="result">$P = 1200$ W</div><p class="sanity">$I_{rms} = 100/5 = 20\ \text{A}$، و $20^2 \times 3 = 1200$ ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{S} = \frac{10000}{3 - j4} \\ = \frac{10000(3 + j4)}{25} \\ = 1200 + j1600\ \text{VA}\end{gathered}\]</div><div class="result">$P = 1200$ W</div><p class="sanity"><span lang="ar">$I_{rms} = 100/5 = 20\ \text{A}$، و $20^2 \times 3 = 1200$ ✓</span><span lang="en">$I_{rms} = 100/5 = 20\ \text{A}$, and $20^2 \times 3 = 1200$ ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">سهل</span></div>
-    <p>حمل ياخذ <span class="ltr">10 kVA</span> بمعامل قدرة 0.8 متأخر. كم $Q$ بالـ kVAR؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">حمل ياخذ <span class="ltr">10 kVA</span> بمعامل قدرة 0.8 متأخر. كم $Q$ بالـ kVAR؟</span><span lang="en">A load takes <span class="ltr">10 kVA</span> at a power factor of 0.8 lagging. What is $Q$ in kVAR?</span></p>
     <div class="check" data-answer="6"></div>
-    <details class="hint"><p>طلّع الزاوية من $\cos^{-1}(0.8)$، أو استخدم $Q = \sqrt{S^2 - P^2}$.</p></details>
+    <details class="hint"><p><span lang="ar">طلّع الزاوية من $\cos^{-1}(0.8)$، أو استخدم $Q = \sqrt{S^2 - P^2}$.</span><span lang="en">Get the angle from $\cos^{-1}(0.8)$, or use $Q = \sqrt{S^2 - P^2}$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}P = 10 \times 0.8 = 8\ \text{kW} \\ Q = \sqrt{10^2 - 8^2}\end{gathered}\]</div><div class="result">$Q = 6$ kVAR</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">وسط</span></div>
-    <p>نفس الحمل في تمرين د، والمصدر $200\ \text{V rms}$. كم القيمة العظمى للتيار $I_m$ بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين هـ</span><span lang="en">Exercise E</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">نفس الحمل في تمرين د، والمصدر $200\ \text{V rms}$. كم القيمة العظمى للتيار $I_m$ بالأمبير؟</span><span lang="en">Same load as Exercise D, and the source is $200\ \text{V rms}$. What is the peak current $I_m$ in amperes?</span></p>
     <div class="check" data-answer="70.71"></div>
-    <details class="hint"><p>$I_{rms} = S/V_{rms}$، وبعدها اضرب في $\sqrt{2}$.</p></details>
+    <details class="hint"><p><span lang="ar">$I_{rms} = S/V_{rms}$، وبعدها اضرب في $\sqrt{2}$.</span><span lang="en">$I_{rms} = S/V_{rms}$, then multiply by $\sqrt{2}$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}I_{rms} = \frac{10000}{200} = 50\ \text{A} \\ I_m = \sqrt{2}(50)\end{gathered}\]</div><div class="result">$I_m = 70.71$ A</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
-    <p>حمل توالي عليه $v(t) = 50\cos(100t - 20^\circ)\ \text{V}$ وفيه $i(t) = 5\cos(100t + 40^\circ)\ \text{A}$. الحمل مقاومة ومكثف. كم سعة المكثف بالميكروفاراد (μF)؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين و</span><span lang="en">Exercise F</span></b><span class="lvl"><span lang="ar">صعب</span><span lang="en">Hard</span></span></div>
+    <p><span lang="ar">حمل توالي عليه $v(t) = 50\cos(100t - 20^\circ)\ \text{V}$ وفيه $i(t) = 5\cos(100t + 40^\circ)\ \text{A}$. الحمل مقاومة ومكثف. كم سعة المكثف بالميكروفاراد (μF)؟</span><span lang="en">A series load has $v(t) = 50\cos(100t - 20^\circ)\ \text{V}$ across it and $i(t) = 5\cos(100t + 40^\circ)\ \text{A}$ through it. The load is a resistor and a capacitor. What is the capacitance in microfarads (μF)?</span></p>
     <div class="check" data-answer="1155"></div>
-    <details class="hint"><p>$\mathbf{Z} = \mathbf{V}/\mathbf{I} = 10\angle{-60^\circ}$. طلّع الجزء التخيلي، وبعدها $C = \dfrac{1}{\omega|X|}$ و $\omega = 100$.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{Z} = \mathbf{V}/\mathbf{I} = 10\angle{-60^\circ}$. طلّع الجزء التخيلي، وبعدها $C = \dfrac{1}{\omega|X|}$ و $\omega = 100$.</span><span lang="en">$\mathbf{Z} = \mathbf{V}/\mathbf{I} = 10\angle{-60^\circ}$. Get the imaginary part, then $C = \dfrac{1}{\omega|X|}$ with $\omega = 100$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z} = 10\angle{-60^\circ} \\ = 5 - j8.660\ \Omega \\[6pt] C = \frac{1}{100 \times 8.660} \\ = 1.155 \times 10^{-3}\ \text{F}\end{gathered}\]</div><div class="result">$C = 1155\ \mu$F</div><p class="sanity">التيار قدام الجهد بـ $60^\circ$، فالحمل سعوي، وهذا يطابق إن فيه مكثف ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}\mathbf{Z} = 10\angle{-60^\circ} \\ = 5 - j8.660\ \Omega \\[6pt] C = \frac{1}{100 \times 8.660} \\ = 1.155 \times 10^{-3}\ \text{F}\end{gathered}\]</div><div class="result">$C = 1155\ \mu$F</div><p class="sanity"><span lang="ar">التيار قدام الجهد بـ $60^\circ$، فالحمل سعوي، وهذا يطابق إن فيه مكثف ✓</span><span lang="en">The current is $60^\circ$ ahead of the voltage, so the load is capacitive, which matches having a capacitor ✓</span></p></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تنسى مرافق التيار</div>
-    <div class="pair"><div class="no">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}$، فتجمع الزوايا: $\theta_v + \theta_i$</div><div class="yes">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$، والزاوية $\theta_v - \theta_i$</div></div></div>
-  <div class="mk"><div class="mk-title">تستخدم القيم العظمى بدون النص</div>
-    <div class="pair"><div class="no">$\mathbf{S} = \mathbf{V}\mathbf{I}^*$ والأرقام قيم عظمى</div><div class="yes">$\mathbf{S} = \tfrac{1}{2}\mathbf{V}\mathbf{I}^*$، أو حوّل لـ rms أول</div></div></div>
-  <div class="mk"><div class="mk-title">تقسم على $\mathbf{Z}$ بدل $\mathbf{Z}^*$</div>
-    <div class="pair"><div class="no">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}}$، فتنقلب إشارة $Q$</div><div class="yes">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$ أو $\mathbf{S} = I_{rms}^2\mathbf{Z}$</div></div></div>
-  <div class="mk"><div class="mk-title">تعكس متقدم ومتأخر</div>
-    <div class="pair"><div class="no">$Q &lt; 0$ فالـ pf متأخر</div><div class="yes">$Q &lt; 0$ سعوي والتيار قدام: متقدم (leading)</div></div></div>
-  <div class="mk"><div class="mk-title">تكتب pf بدون نوعه</div>
-    <div class="pair"><div class="no">pf $= 0.866$ وبس</div><div class="yes">pf $= 0.866$ متقدم (أو متأخر)</div></div></div>
-  <div class="mk"><div class="mk-title">تخلط الوحدات</div>
-    <div class="pair"><div class="no">$Q = 6.2$ kW أو $S = 240$ W</div><div class="yes">$S$ بالـ VA، $P$ بالواط، $Q$ بالـ VAR</div></div></div>
-  <div class="mk"><div class="mk-title">توقف عند $\mathbf{I}^*$</div>
-    <div class="pair"><div class="no">$\mathbf{S}/\mathbf{V}_{rms} = 100\angle 31.13^\circ$ وهذا التيار</div><div class="yes">هذا المرافق. التيار $100\angle{-31.13^\circ}\ \text{A}$</div></div></div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تنسى مرافق التيار</span><span lang="en">Forgetting the current's conjugate</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}$، فتجمع الزوايا: $\theta_v + \theta_i$</span><span lang="en">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}$, so you add the angles: $\theta_v + \theta_i$</span></div><div class="yes"><span lang="ar">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$، والزاوية $\theta_v - \theta_i$</span><span lang="en">$\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^*$, and the angle is $\theta_v - \theta_i$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تستخدم القيم العظمى بدون النص</span><span lang="en">Using peak values without the half</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{S} = \mathbf{V}\mathbf{I}^*$ والأرقام قيم عظمى</span><span lang="en">$\mathbf{S} = \mathbf{V}\mathbf{I}^*$ with peak values</span></div><div class="yes"><span lang="ar">$\mathbf{S} = \tfrac{1}{2}\mathbf{V}\mathbf{I}^*$، أو حوّل لـ rms أول</span><span lang="en">$\mathbf{S} = \tfrac{1}{2}\mathbf{V}\mathbf{I}^*$, or convert to rms first</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تقسم على $\mathbf{Z}$ بدل $\mathbf{Z}^*$</span><span lang="en">Dividing by $\mathbf{Z}$ instead of $\mathbf{Z}^*$</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}}$، فتنقلب إشارة $Q$</span><span lang="en">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}}$, which flips the sign of $Q$</span></div><div class="yes"><span lang="ar">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$ أو $\mathbf{S} = I_{rms}^2\mathbf{Z}$</span><span lang="en">$\mathbf{S} = \dfrac{V_{rms}^2}{\mathbf{Z}^*}$ or $\mathbf{S} = I_{rms}^2\mathbf{Z}$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تعكس متقدم ومتأخر</span><span lang="en">Swapping leading and lagging</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$Q &lt; 0$ فالـ pf متأخر</span><span lang="en">$Q &lt; 0$ so the pf is lagging</span></div><div class="yes"><span lang="ar">$Q &lt; 0$ سعوي والتيار قدام: متقدم (leading)</span><span lang="en">$Q &lt; 0$ is capacitive and the current is ahead: leading</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تكتب pf بدون نوعه</span><span lang="en">Writing pf without its type</span></div>
+    <div class="pair"><div class="no"><span lang="ar">pf $= 0.866$ وبس</span><span lang="en">pf $= 0.866$ and that's it</span></div><div class="yes"><span lang="ar">pf $= 0.866$ متقدم (أو متأخر)</span><span lang="en">pf $= 0.866$ leading (or lagging)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تخلط الوحدات</span><span lang="en">Mixing up the units</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$Q = 6.2$ kW أو $S = 240$ W</span><span lang="en">$Q = 6.2$ kW or $S = 240$ W</span></div><div class="yes"><span lang="ar">$S$ بالـ VA، $P$ بالواط، $Q$ بالـ VAR</span><span lang="en">$S$ in VA, $P$ in watts, $Q$ in VAR</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">توقف عند $\mathbf{I}^*$</span><span lang="en">Stopping at $\mathbf{I}^*$</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{S}/\mathbf{V}_{rms} = 100\angle 31.13^\circ$ وهذا التيار</span><span lang="en">$\mathbf{S}/\mathbf{V}_{rms} = 100\angle 31.13^\circ$ and that's the current</span></div><div class="yes"><span lang="ar">هذا المرافق. التيار $100\angle{-31.13^\circ}\ \text{A}$</span><span lang="en">That's the conjugate. The current is $100\angle{-31.13^\circ}\ \text{A}$</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="3"><p>وحدة القدرة غير الفعالة $Q$:</p>
+    <div class="q" data-answer="3"><p><span lang="ar">وحدة القدرة غير الفعالة $Q$:</span><span lang="en">The unit of reactive power $Q$:</span></p>
       <button>W</button><button>VA</button><button>VAR</button><button>Ω</button>
-      <p class="q-why">VAR يعني فولت أمبير ردّي، عشان ما نخلطها بالواط حق $P$.</p></div>
-    <div class="q" data-answer="2"><p>حمل التيار فيه متأخر عن الجهد. هذا الحمل:</p>
-      <button>مقاومة بس</button><button>حثي، ومعامل قدرته متأخر</button><button>سعوي، ومعامل قدرته متقدم</button><button>ما نقدر نعرف</button>
-      <p class="q-why">التيار متأخر يعني pf متأخر، وهذا يصير مع الملف ($Q &gt; 0$).</p></div>
-    <div class="q" data-answer="3"><p>حمل $S = 100\ \text{VA}$ و $P = 60\ \text{W}$. كم $|Q|$؟</p>
+      <p class="q-why"><span lang="ar">VAR يعني فولت أمبير ردّي، عشان ما نخلطها بالواط حق $P$.</span><span lang="en">VAR means volt-ampere reactive, so we don't confuse it with the watts of $P$.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">حمل التيار فيه متأخر عن الجهد. هذا الحمل:</span><span lang="en">A load whose current lags the voltage. This load is:</span></p>
+      <button><span lang="ar">مقاومة بس</span><span lang="en">Resistance only</span></button><button><span lang="ar">حثي، ومعامل قدرته متأخر</span><span lang="en">Inductive, with a lagging power factor</span></button><button><span lang="ar">سعوي، ومعامل قدرته متقدم</span><span lang="en">Capacitive, with a leading power factor</span></button><button><span lang="ar">ما نقدر نعرف</span><span lang="en">Can't tell</span></button>
+      <p class="q-why"><span lang="ar">التيار متأخر يعني pf متأخر، وهذا يصير مع الملف ($Q &gt; 0$).</span><span lang="en">The current lagging means a lagging pf, which happens with an inductor ($Q &gt; 0$).</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">حمل $S = 100\ \text{VA}$ و $P = 60\ \text{W}$. كم $|Q|$؟</span><span lang="en">A load with $S = 100\ \text{VA}$ and $P = 60\ \text{W}$. What is $|Q|$?</span></p>
       <button>40 VAR</button><button>160 VAR</button><button>80 VAR</button><button>60 VAR</button>
-      <p class="q-why">من مثلث القدرة: $\sqrt{100^2 - 60^2} = 80$. مو طرح عادي.</p></div>
-    <div class="q" data-answer="1"><p>معامل القدرة لحمل مقاومة بس:</p>
+      <p class="q-why"><span lang="ar">من مثلث القدرة: $\sqrt{100^2 - 60^2} = 80$. مو طرح عادي.</span><span lang="en">From the power triangle: $\sqrt{100^2 - 60^2} = 80$. Not a plain subtraction.</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">معامل القدرة لحمل مقاومة بس:</span><span lang="en">The power factor of a purely resistive load:</span></p>
       <button>1</button><button>0</button><button>0.5</button><button>0.707</button>
-      <p class="q-why">الجهد والتيار بنفس الزاوية، و $\cos 0^\circ = 1$.</p></div>
-    <div class="q" data-answer="2"><p>ليش نضرب الجهد في <b>مرافق</b> التيار في $\mathbf{S}$؟</p>
-      <button>عشان يطلع الناتج حقيقي</button><button>عشان تصير الزاوية $\theta_v - \theta_i$</button><button>عشان نقسم على 2</button><button>عشان يصير $Q$ موجب دايمًا</button>
-      <p class="q-why">المرافق يقلب زاوية التيار، فيصير الناتج بزاوية الفرق، وهي زاوية معامل القدرة.</p></div>
-    <div class="q" data-answer="4"><p>$\mathbf{S} = 30 - j40\ \text{VA}$. معامل القدرة:</p>
-      <button>0.8 متأخر</button><button>0.6 متأخر</button><button>0.8 متقدم</button><button>0.6 متقدم</button>
-      <p class="q-why">$S = 50$، و pf $= 30/50 = 0.6$. و $Q$ سالب فهو متقدم.</p></div>
-    <div class="q" data-answer="2"><p>$\mathbf{S} = 50\angle 30^\circ\ \text{VA}$. القدرة الحقيقية:</p>
+      <p class="q-why"><span lang="ar">الجهد والتيار بنفس الزاوية، و $\cos 0^\circ = 1$.</span><span lang="en">Voltage and current have the same angle, and $\cos 0^\circ = 1$.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">ليش نضرب الجهد في <b>مرافق</b> التيار في $\mathbf{S}$؟</span><span lang="en">Why do we multiply the voltage by the current's <b>conjugate</b> in $\mathbf{S}$?</span></p>
+      <button><span lang="ar">عشان يطلع الناتج حقيقي</span><span lang="en">So the result is real</span></button><button><span lang="ar">عشان تصير الزاوية $\theta_v - \theta_i$</span><span lang="en">So the angle becomes $\theta_v - \theta_i$</span></button><button><span lang="ar">عشان نقسم على 2</span><span lang="en">To divide by 2</span></button><button><span lang="ar">عشان يصير $Q$ موجب دايمًا</span><span lang="en">So $Q$ is always positive</span></button>
+      <p class="q-why"><span lang="ar">المرافق يقلب زاوية التيار، فيصير الناتج بزاوية الفرق، وهي زاوية معامل القدرة.</span><span lang="en">The conjugate flips the current's angle, so the result has the difference angle, which is the power factor angle.</span></p></div>
+    <div class="q" data-answer="4"><p><span lang="ar">$\mathbf{S} = 30 - j40\ \text{VA}$. معامل القدرة:</span><span lang="en">$\mathbf{S} = 30 - j40\ \text{VA}$. The power factor:</span></p>
+      <button><span lang="ar">0.8 متأخر</span><span lang="en">0.8 lagging</span></button><button><span lang="ar">0.6 متأخر</span><span lang="en">0.6 lagging</span></button><button><span lang="ar">0.8 متقدم</span><span lang="en">0.8 leading</span></button><button><span lang="ar">0.6 متقدم</span><span lang="en">0.6 leading</span></button>
+      <p class="q-why"><span lang="ar">$S = 50$، و pf $= 30/50 = 0.6$. و $Q$ سالب فهو متقدم.</span><span lang="en">$S = 50$, and pf $= 30/50 = 0.6$. $Q$ is negative, so it's leading.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">$\mathbf{S} = 50\angle 30^\circ\ \text{VA}$. القدرة الحقيقية:</span><span lang="en">$\mathbf{S} = 50\angle 30^\circ\ \text{VA}$. The real power:</span></p>
       <button>25 W</button><button>43.3 W</button><button>50 W</button><button>57.7 W</button>
-      <p class="q-why">$P = 50\cos 30^\circ = 43.3\ \text{W}$. أما 25 فهي $Q$.</p></div>
+      <p class="q-why"><span lang="ar">$P = 50\cos 30^\circ = 43.3\ \text{W}$. أما 25 فهي $Q$.</span><span lang="en">$P = 50\cos 30^\circ = 43.3\ \text{W}$. The 25 is $Q$.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر مثلث القدرة: مصدر 120 V rms وحمل R + jX */
 (function () {
@@ -680,7 +680,7 @@
     if (z2 < 0.25) {
       ['ptP', 'ptQ', 'ptS'].forEach(id => $(id).setAttribute('d', ''));
       ['ptSv', 'ptPv', 'ptQv', 'ptF', 'ptT', 'ptI'].forEach(id => $(id).textContent = '—');
-      $('ptSay').textContent = 'المعاوقة صفر تقريبًا: هذا قصر (Short circuit). كبّر R أو X.';
+      $('ptSay').innerHTML = Lec.L('المعاوقة صفر تقريبًا: هذا قصر (Short circuit). كبّر R أو X.', 'The impedance is almost zero: that is a short circuit. Increase R or X.');
       return;
     }
     const P = V * V * R / z2, Q = V * V * X / z2, S = V * V / Math.sqrt(z2), I = V / Math.sqrt(z2);
@@ -698,13 +698,13 @@
     $('ptPv').textContent = big(P, 'W');
     $('ptQv').textContent = big(Q, 'VAR');
     const kind = Math.abs(X) < 0.005 ? '' : (X > 0 ? ' متأخر' : ' متقدم');
-    $('ptF').textContent = pf.toFixed(3) + kind;
+    $('ptF').innerHTML = pf.toFixed(3) + (kind ? Lec.L(kind, X > 0 ? ' lagging' : ' leading') : '');
     $('ptT').textContent = fmt(th, 1) + '°';
     $('ptI').textContent = fmt(I, 2) + ' A';
-    $('ptSay').textContent = Math.abs(X) < 0.005 ? 'حمل مقاومة بس: Q = 0 و pf = 1. كل القدرة الظاهرية صارت حقيقية.'
-      : R < 0.005 ? 'حمل ' + (X > 0 ? 'ملف' : 'مكثف') + ' بس: P = 0 و pf = 0. المصدر يعطي تيار وما فيه أي قدرة مفيدة.'
-      : X > 0 ? 'حمل حثي: Q موجب فوق المحور، والتيار متأخر عن الجهد.'
-      : 'حمل سعوي: Q سالب تحت المحور، والتيار متقدم على الجهد.';
+    $('ptSay').innerHTML = Math.abs(X) < 0.005 ? Lec.L('حمل مقاومة بس: Q = 0 و pf = 1. كل القدرة الظاهرية صارت حقيقية.', 'Resistive load only: Q = 0 and pf = 1. All the apparent power is real.')
+      : R < 0.005 ? Lec.L('حمل ' + (X > 0 ? 'ملف' : 'مكثف') + ' بس: P = 0 و pf = 0. المصدر يعطي تيار وما فيه أي قدرة مفيدة.', (X > 0 ? 'Inductor' : 'Capacitor') + ' load only: P = 0 and pf = 0. The source supplies current but no useful power at all.')
+      : X > 0 ? Lec.L('حمل حثي: Q موجب فوق المحور، والتيار متأخر عن الجهد.', 'Inductive load: Q is positive above the axis, and the current lags the voltage.')
+      : Lec.L('حمل سعوي: Q سالب تحت المحور، والتيار متقدم على الجهد.', 'Capacitive load: Q is negative below the axis, and the current leads the voltage.');
   }
   const PRE = { r: [40, 0], l: [0, 30], rl: [10, 40], ex: [20, -34.64] };
   document.querySelectorAll('.pt-lab [data-pre]').forEach(b => b.addEventListener('click', () => {

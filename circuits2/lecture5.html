@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 5 - Kirchhoff's Laws & Impedance Combinations" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 5 - Kirchhoff's Laws & Impedance Combinations">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,31 +37,31 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 5 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.6–9.7</span></p>
-  <h1><span>قوانين كيرشوف وتوصيل المعاوقات</span> <span class="h1-math ltr">$\sum \mathbf{V} = 0 \quad \sum \mathbf{I} = 0$</span></h1>
-  <p class="lead">في دوائر التيار المستمر (DC) تعلمت التوالي والتوازي ومقسم الجهد ومقسم التيار. الخبر الحلو: كلها ترجع تشتغل هنا بنفس الشكل، بس بالفيزورات والمعاوقات بدل الأرقام العادية والمقاومات. والسبب إن قانوني كيرشوف صحيحين للفيزورات. وفي آخر المحاضرة أداة جديدة: تحويل دلتا-واي (Δ-Y).</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 5 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 9.6–9.7</span></span><span lang="en">Lecture 5 · Circuit Analysis 2 · <span class="ltr">Ch 9.6–9.7</span></span></p>
+  <h1><span><span lang="ar">قوانين كيرشوف وتوصيل المعاوقات</span><span lang="en">Kirchhoff's laws and impedance combinations</span></span> <span class="h1-math ltr">$\sum \mathbf{V} = 0 \quad \sum \mathbf{I} = 0$</span></h1>
+  <p class="lead"><span lang="ar">في دوائر التيار المستمر (DC) تعلمت التوالي والتوازي ومقسم الجهد ومقسم التيار. الخبر الحلو: كلها ترجع تشتغل هنا بنفس الشكل، بس بالفيزورات والمعاوقات بدل الأرقام العادية والمقاومات. والسبب إن قانوني كيرشوف صحيحين للفيزورات. وفي آخر المحاضرة أداة جديدة: تحويل دلتا-واي (Δ-Y).</span><span lang="en">In DC circuits you learned series and parallel, the voltage divider and the current divider. Good news: they all work here in the same form, just with phasors and impedances instead of plain numbers and resistors. The reason is that Kirchhoff's two laws hold for phasors. At the end of the lecture there's a new tool: the delta-wye (Δ-Y) transformation.</span></p>
   <div class="xyz-bar">
-    <span class="x">المقاومة $R$</span><span class="y">الملف أو المكثف</span><span class="z">المصدر (المجموع)</span>
-    <small>← نفس الألوان في المختبر</small>
+    <span class="x"><span lang="ar">المقاومة $R$</span><span lang="en">Resistance $R$</span></span><span class="y"><span lang="ar">الملف أو المكثف</span><span lang="en">Inductor or capacitor</span></span><span class="z"><span lang="ar">المصدر (المجموع)</span><span lang="en">Source (the sum)</span></span>
+    <small><span lang="ar">← نفس الألوان في المختبر</span><span lang="en">← same colors in the lab</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>قانونا كيرشوف صحيحين للفيزورات: $\sum \mathbf{V} = 0$ حول أي حلقة، و $\sum \mathbf{I} = 0$ عند أي عقدة. بس انتبه: القراءات (السعات) ما تنجمع مباشرة.</li>
-      <li>التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots$. والتوازي: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، ولمعاوقتين $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$. ومقسم الجهد والتيار نفس DC.</li>
-      <li>إذا ما فيه توالي ولا توازي، حوّل المثلث (Δ) لنجمة (Y) أو العكس. وفي الشبكة المتزنة: $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$.</li>
+      <li><span lang="ar">قانونا كيرشوف صحيحين للفيزورات: $\sum \mathbf{V} = 0$ حول أي حلقة، و $\sum \mathbf{I} = 0$ عند أي عقدة. بس انتبه: القراءات (السعات) ما تنجمع مباشرة.</span><span lang="en">Kirchhoff's laws hold for phasors: $\sum \mathbf{V} = 0$ around any loop, and $\sum \mathbf{I} = 0$ at any node. But careful: the readings (magnitudes) don't add directly.</span></li>
+      <li><span lang="ar">التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots$. والتوازي: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، ولمعاوقتين $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$. ومقسم الجهد والتيار نفس DC.</span><span lang="en">Series: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots$. Parallel: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$, and for two impedances $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$. The voltage and current dividers are the same as DC.</span></li>
+      <li><span lang="ar">إذا ما فيه توالي ولا توازي، حوّل المثلث (Δ) لنجمة (Y) أو العكس. وفي الشبكة المتزنة: $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$.</span><span lang="en">If there's no series and no parallel, turn the triangle (Δ) into a star (Y) or the reverse. In a balanced network: $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$.</span></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يشرح المحاضرة والأمثلة الثلاثة خطوة بخطوة في 9 دقائق، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يشرح المحاضرة والأمثلة الثلاثة خطوة بخطوة في 9 دقائق، شوفه قبل أو بعد القراءة</span><span lang="en">A video explaining the lecture and the three examples step by step in 9 minutes. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture5.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture5.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture5.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture5.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
@@ -69,36 +69,36 @@
 
 <!-- ================= 01 كيرشوف ================= -->
 <section class="card" id="kirchhoff" data-num="01" data-nav="كيرشوف|Kirchhoff">
-  <h2>كيرشوف في عالم الفيزورات</h2>
-  <p class="sub">هل KVL و KCL يشتغلون مع الفيزورات؟ نعم، وهذا السبب</p>
+  <h2><span lang="ar">كيرشوف في عالم الفيزورات</span><span lang="en">Kirchhoff in the phasor world</span></h2>
+  <p class="sub"><span lang="ar">هل KVL و KCL يشتغلون مع الفيزورات؟ نعم، وهذا السبب</span><span lang="en">Do KVL and KCL work with phasors? Yes, and here's why</span></p>
 
-  <p>ما نقدر نحلل أي دائرة بدون قانوني كيرشوف. فلازم نتأكد إنهم صحيحين للفيزورات مو بس للقيم اللحظية. نبدأ بقانون الجهد (KVL) حول حلقة مقفلة:</p>
+  <p><span lang="ar">ما نقدر نحلل أي دائرة بدون قانوني كيرشوف. فلازم نتأكد إنهم صحيحين للفيزورات مو بس للقيم اللحظية. نبدأ بقانون الجهد (KVL) حول حلقة مقفلة:</span><span lang="en">We can't analyze any circuit without Kirchhoff's two laws. So we must make sure they hold for phasors, not only for instantaneous values. We start with the voltage law (KVL) around a closed loop:</span></p>
   <ol class="recipe">
-    <li><b>في الزمن:</b> مجموع الجهود حول الحلقة صفر: $v_1 + v_2 + \cdots + v_n = 0$، وكل جهد موجة جيبية $V_{mk}\cos(\omega t + \theta_k)$ بنفس $\omega$.</li>
-    <li><b>نكتب كل موجة كجزء حقيقي:</b> $V_{mk}\cos(\omega t + \theta_k) = \text{Re}(\mathbf{V}_k e^{j\omega t})$، فتصير المعادلة: $\text{Re}\big[(\mathbf{V}_1 + \cdots + \mathbf{V}_n)\,e^{j\omega t}\big] = 0$</li>
-    <li><b>هذا صحيح في كل لحظة $t$:</b> والطريقة الوحيدة إنه يصير صفر دايماً هي إن القوس نفسه صفر. يعني مجموع الفيزورات صفر.</li>
+    <li><span lang="ar"><b>في الزمن:</b> مجموع الجهود حول الحلقة صفر: $v_1 + v_2 + \cdots + v_n = 0$، وكل جهد موجة جيبية $V_{mk}\cos(\omega t + \theta_k)$ بنفس $\omega$.</span><span lang="en"><b>In time:</b> the voltages around the loop add to zero: $v_1 + v_2 + \cdots + v_n = 0$, and each voltage is a sinusoid $V_{mk}\cos(\omega t + \theta_k)$ with the same $\omega$.</span></li>
+    <li><span lang="ar"><b>نكتب كل موجة كجزء حقيقي:</b> $V_{mk}\cos(\omega t + \theta_k) = \text{Re}(\mathbf{V}_k e^{j\omega t})$، فتصير المعادلة: $\text{Re}\big[(\mathbf{V}_1 + \cdots + \mathbf{V}_n)\,e^{j\omega t}\big] = 0$</span><span lang="en"><b>Write each wave as a real part:</b> $V_{mk}\cos(\omega t + \theta_k) = \text{Re}(\mathbf{V}_k e^{j\omega t})$, so the equation becomes: $\text{Re}\big[(\mathbf{V}_1 + \cdots + \mathbf{V}_n)\,e^{j\omega t}\big] = 0$</span></li>
+    <li><span lang="ar"><b>هذا صحيح في كل لحظة $t$:</b> والطريقة الوحيدة إنه يصير صفر دايماً هي إن القوس نفسه صفر. يعني مجموع الفيزورات صفر.</span><span lang="en"><b>This holds at every instant $t$:</b> the only way it is always zero is if the bracket itself is zero. So the sum of the phasors is zero.</span></li>
   </ol>
-  <p>وبنفس الخطوات نثبت قانون التيار (KCL) عند أي عقدة. فالنتيجة:</p>
+  <p><span lang="ar">وبنفس الخطوات نثبت قانون التيار (KCL) عند أي عقدة. فالنتيجة:</span><span lang="en">With the same steps we prove the current law (KCL) at any node. The result:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">قانون الجهد KVL</div><div class="t-math">$\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0$</div><div class="t-desc">مجموع فيزورات الجهد حول أي حلقة مقفلة (Eq. 9.55).</div></div>
-    <div class="tile"><div class="t-name">قانون التيار KCL</div><div class="t-math">$\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0$</div><div class="t-desc">مجموع فيزورات التيار الداخلة أو الطالعة من أي عقدة (Eq. 9.57).</div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">قانون الجهد KVL</span><span lang="en">Voltage law KVL</span></div><div class="t-math">$\mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_n = 0$</div><div class="t-desc"><span lang="ar">مجموع فيزورات الجهد حول أي حلقة مقفلة (Eq. 9.55).</span><span lang="en">The sum of voltage phasors around any closed loop (Eq. 9.55).</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">قانون التيار KCL</span><span lang="en">Current law KCL</span></div><div class="t-math">$\mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_n = 0$</div><div class="t-desc"><span lang="ar">مجموع فيزورات التيار الداخلة أو الطالعة من أي عقدة (Eq. 9.57).</span><span lang="en">The sum of current phasors entering or leaving any node (Eq. 9.57).</span></div></div>
   </div>
-  <div class="callout warn"><strong>⚠️ الفيزورات تنجمع، القراءات لا:</strong> مقاومة ومكثف على التوالي مع مصدر سعته 10&nbsp;V. الفولتميتر على المقاومة يقرأ 6&nbsp;V، وعلى المكثف 8&nbsp;V. المجموع 14 مو 10! لأن الجهدين بينهم <span class="ltr">90°</span>، فينجمعون مثل أضلاع مثلث قائم: $\sqrt{6^2 + 8^2} = 10$. جرّبها بنفسك في المختبر تحت.</div>
-  <div class="callout key"><strong>🔑 النتيجة:</strong> كل أدوات DC ترجع تشتغل: توصيل المعاوقات ومقسم الجهد والتيار (هذي المحاضرة)، وتحليل العقد والحلقات (المحاضرة 6)، وثيفنن ونورتن (المحاضرة 7). بس بدل $R$ حط $\mathbf{Z}$، وبدل الأرقام العادية حط فيزورات.</div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ الفيزورات تنجمع، القراءات لا:</strong> مقاومة ومكثف على التوالي مع مصدر سعته 10&nbsp;V. الفولتميتر على المقاومة يقرأ 6&nbsp;V، وعلى المكثف 8&nbsp;V. المجموع 14 مو 10! لأن الجهدين بينهم <span class="ltr">90°</span>، فينجمعون مثل أضلاع مثلث قائم: $\sqrt{6^2 + 8^2} = 10$. جرّبها بنفسك في المختبر تحت.</span><span lang="en"><strong>⚠️ Phasors add, readings don't:</strong> a resistor and a capacitor in series with a 10&nbsp;V source. The voltmeter reads 6&nbsp;V across the resistor and 8&nbsp;V across the capacitor. That adds to 14, not 10! Because the two voltages are <span class="ltr">90°</span> apart, they add like the sides of a right triangle: $\sqrt{6^2 + 8^2} = 10$. Try it yourself in the lab below.</span></div>
+  <div class="callout key"><span lang="ar"><strong>🔑 النتيجة:</strong> كل أدوات DC ترجع تشتغل: توصيل المعاوقات ومقسم الجهد والتيار (هذي المحاضرة)، وتحليل العقد والحلقات (المحاضرة 6)، وثيفنن ونورتن (المحاضرة 7). بس بدل $R$ حط $\mathbf{Z}$، وبدل الأرقام العادية حط فيزورات.</span><span lang="en"><strong>🔑 The result:</strong> all the DC tools work again: combining impedances and the voltage and current dividers (this lecture), nodal and mesh analysis (lecture 6), and Thevenin and Norton (lecture 7). Just put $\mathbf{Z}$ in place of $R$, and phasors in place of plain numbers.</span></div>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= 02 التوالي ================= -->
 <section class="card" id="series" data-num="02" data-nav="التوالي|Series">
-  <h2>التوالي ومقسم الجهد</h2>
-  <p class="sub">نفس التيار يمر في كل المعاوقات</p>
+  <h2><span lang="ar">التوالي ومقسم الجهد</span><span lang="en">Series and the voltage divider</span></h2>
+  <p class="sub"><span lang="ar">نفس التيار يمر في كل المعاوقات</span><span lang="en">The same current flows through all the impedances</span></p>
 
-  <p>لو عندك $N$ معاوقات على التوالي، نفس التيار $\mathbf{I}$ يمر فيهم كلهم. ومن KVL جهد المصدر يساوي مجموع جهودهم:</p>
+  <p><span lang="ar">لو عندك $N$ معاوقات على التوالي، نفس التيار $\mathbf{I}$ يمر فيهم كلهم. ومن KVL جهد المصدر يساوي مجموع جهودهم:</span><span lang="en">If you have $N$ impedances in series, the same current $\mathbf{I}$ flows through all of them. From KVL, the source voltage equals the sum of their voltages:</span></p>
   <div class="m">\[\begin{gathered}\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2 + \cdots + \mathbf{V}_N \\ = \mathbf{I}\,(\mathbf{Z}_1 + \mathbf{Z}_2 + \cdots + \mathbf{Z}_N)\end{gathered}\]</div>
-  <p>فالمعاوقة المكافئة (Equivalent impedance) اللي يشوفها المصدر $\mathbf{Z}_{eq} = \mathbf{V}/\mathbf{I}$ هي المجموع:</p>
+  <p><span lang="ar">فالمعاوقة المكافئة (Equivalent impedance) اللي يشوفها المصدر $\mathbf{Z}_{eq} = \mathbf{V}/\mathbf{I}$ هي المجموع:</span><span lang="en">So the equivalent impedance seen by the source, $\mathbf{Z}_{eq} = \mathbf{V}/\mathbf{I}$, is the sum:</span></p>
   <div class="m big">\[\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2 + \cdots + \mathbf{Z}_N\]</div>
 
-  <h3>مقسم الجهد (Voltage division)</h3>
+  <h3><span lang="ar">مقسم الجهد (Voltage division)</span><span lang="en">Voltage division</span></h3>
   <figure class="fig">
     <svg viewBox="0 0 300 175" role="img" aria-label="مصدر جهد V مع معاوقتين Z1 و Z2 على التوالي، والجهد V1 على Z1 والجهد V2 على Z2" style="max-width:320px">
       <circle class="wire" cx="50" cy="95" r="17"/>
@@ -114,29 +114,29 @@
       <text class="lbl" x="228" y="80" text-anchor="end">+</text><text class="lbl" x="230" y="99" text-anchor="end">V<tspan class="sb" dy="3">2</tspan></text><text class="lbl" x="228" y="120" text-anchor="end">−</text>
       <text class="lbl" x="30" y="72" text-anchor="middle">+</text><text class="lbl" x="22" y="99" text-anchor="middle">V</text><text class="lbl" x="30" y="124" text-anchor="middle">−</text>
     </svg>
-    <figcaption>Figure 9.19: معاوقتين على التوالي يقسمون جهد المصدر بينهم.</figcaption>
+    <figcaption><span lang="ar">Figure 9.19: معاوقتين على التوالي يقسمون جهد المصدر بينهم.</span><span lang="en">Figure 9.19: two impedances in series share the source voltage.</span></figcaption>
   </figure>
-  <p>لمعاوقتين: التيار $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وجهد كل وحدة $\mathbf{V}_1 = \mathbf{Z}_1\mathbf{I}$ و $\mathbf{V}_2 = \mathbf{Z}_2\mathbf{I}$. يعني:</p>
+  <p><span lang="ar">لمعاوقتين: التيار $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وجهد كل وحدة $\mathbf{V}_1 = \mathbf{Z}_1\mathbf{I}$ و $\mathbf{V}_2 = \mathbf{Z}_2\mathbf{I}$. يعني:</span><span lang="en">For two impedances: the current is $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$, and each voltage is $\mathbf{V}_1 = \mathbf{Z}_1\mathbf{I}$ and $\mathbf{V}_2 = \mathbf{Z}_2\mathbf{I}$. So:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">جهد $\mathbf{Z}_1$</div><div class="t-math">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
-    <div class="tile"><div class="t-top">جهد $\mathbf{Z}_2$</div><div class="t-math">$\mathbf{V}_2 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">جهد $\mathbf{Z}_1$</span><span lang="en">Voltage across $\mathbf{Z}_1$</span></div><div class="t-math">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">جهد $\mathbf{Z}_2$</span><span lang="en">Voltage across $\mathbf{Z}_2$</span></div><div class="t-math">$\mathbf{V}_2 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}$</div></div>
   </div>
-  <div class="callout key"><strong>🔑 نفس قانون DC:</strong> كل معاوقة تاخذ من الجهد بنسبة حجمها من المجموع (Eq. 9.61). الفرق الوحيد إن الحساب بأرقام مركبة، فالنتيجة لها سعة وزاوية.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 نفس قانون DC:</strong> كل معاوقة تاخذ من الجهد بنسبة حجمها من المجموع (Eq. 9.61). الفرق الوحيد إن الحساب بأرقام مركبة، فالنتيجة لها سعة وزاوية.</span><span lang="en"><strong>🔑 Same law as DC:</strong> each impedance takes a share of the voltage in proportion to its size out of the total (Eq. 9.61). The only difference is that the math uses complex numbers, so the result has a magnitude and an angle.</span></div>
 </section>
 
 <!-- ================= 03 التوازي ================= -->
 <section class="card" id="parallel" data-num="03" data-nav="التوازي|Parallel">
-  <h2>التوازي ومقسم التيار</h2>
-  <p class="sub">نفس الجهد على كل المعاوقات</p>
+  <h2><span lang="ar">التوازي ومقسم التيار</span><span lang="en">Parallel and the current divider</span></h2>
+  <p class="sub"><span lang="ar">نفس الجهد على كل المعاوقات</span><span lang="en">The same voltage across all the impedances</span></p>
 
-  <p>لو $N$ معاوقات على التوازي، نفس الجهد $\mathbf{V}$ عليهم كلهم. ومن KCL تيار المصدر يساوي مجموع تياراتهم:</p>
+  <p><span lang="ar">لو $N$ معاوقات على التوازي، نفس الجهد $\mathbf{V}$ عليهم كلهم. ومن KCL تيار المصدر يساوي مجموع تياراتهم:</span><span lang="en">If $N$ impedances are in parallel, the same voltage $\mathbf{V}$ is across all of them. From KCL, the source current equals the sum of their currents:</span></p>
   <div class="m">\[\begin{gathered}\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2 + \cdots + \mathbf{I}_N \\ = \mathbf{V}\left(\frac{1}{\mathbf{Z}_1} + \frac{1}{\mathbf{Z}_2} + \cdots + \frac{1}{\mathbf{Z}_N}\right)\end{gathered}\]</div>
-  <p>فمقلوب المكافئة يساوي مجموع المقلوبات. وبما إن مقلوب المعاوقة هو المسامحة (المحاضرة 4)، تصير القاعدة أبسط بكثير:</p>
+  <p><span lang="ar">فمقلوب المكافئة يساوي مجموع المقلوبات. وبما إن مقلوب المعاوقة هو المسامحة (المحاضرة 4)، تصير القاعدة أبسط بكثير:</span><span lang="en">So the reciprocal of the equivalent equals the sum of the reciprocals. Since the reciprocal of impedance is admittance (lecture 4), the rule becomes much simpler:</span></p>
   <div class="m">\[\begin{gathered}\frac{1}{\mathbf{Z}_{eq}} = \frac{1}{\mathbf{Z}_1} + \frac{1}{\mathbf{Z}_2} + \cdots + \frac{1}{\mathbf{Z}_N} \\[6pt] \mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots + \mathbf{Y}_N\end{gathered}\]</div>
-  <p>يعني <b>المسامحات على التوازي تنجمع مباشرة</b>، مثل المعاوقات على التوالي. ولمعاوقتين بس، القاعدة المشهورة "الضرب على الجمع":</p>
+  <p><span lang="ar">يعني <b>المسامحات على التوازي تنجمع مباشرة</b>، مثل المعاوقات على التوالي. ولمعاوقتين بس، القاعدة المشهورة "الضرب على الجمع":</span><span lang="en">So <b>admittances in parallel add directly</b>, just like impedances in series. For two impedances only, the famous “product over sum” rule:</span></p>
   <div class="m big">\[\mathbf{Z}_{eq} = \frac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\]</div>
 
-  <h3>مقسم التيار (Current division)</h3>
+  <h3><span lang="ar">مقسم التيار (Current division)</span><span lang="en">Current division</span></h3>
   <figure class="fig">
     <svg viewBox="0 0 300 175" role="img" aria-label="مصدر تيار I مع معاوقتين Z1 و Z2 على التوازي، والتيار I1 في Z1 والتيار I2 في Z2" style="max-width:320px">
       <circle class="wire" cx="50" cy="95" r="17"/>
@@ -153,40 +153,40 @@
       <text class="lbl" x="105" y="72" text-anchor="middle">+</text><text class="lbl" x="105" y="99" text-anchor="middle">V</text><text class="lbl" x="105" y="124" text-anchor="middle">−</text>
       <text class="lbl" x="24" y="99" text-anchor="middle">I</text>
     </svg>
-    <figcaption>Figure 9.21: معاوقتين على التوازي يقسمون تيار المصدر بينهم.</figcaption>
+    <figcaption><span lang="ar">Figure 9.21: معاوقتين على التوازي يقسمون تيار المصدر بينهم.</span><span lang="en">Figure 9.21: two impedances in parallel share the source current.</span></figcaption>
   </figure>
-  <p>الجهد مشترك: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$. ومنها:</p>
+  <p><span lang="ar">الجهد مشترك: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$. ومنها:</span><span lang="en">The voltage is shared: $\mathbf{V} = \mathbf{I}\,\mathbf{Z}_{eq} = \mathbf{I}_1\mathbf{Z}_1 = \mathbf{I}_2\mathbf{Z}_2$. From that:</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">تيار $\mathbf{Z}_1$</div><div class="t-math">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
-    <div class="tile"><div class="t-top">تيار $\mathbf{Z}_2$</div><div class="t-math">$\mathbf{I}_2 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">تيار $\mathbf{Z}_1$</span><span lang="en">Current in $\mathbf{Z}_1$</span></div><div class="t-math">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">تيار $\mathbf{Z}_2$</span><span lang="en">Current in $\mathbf{Z}_2$</span></div><div class="t-math">$\mathbf{I}_2 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div></div>
   </div>
-  <div class="callout key"><strong>🔑 انتبه للتبديل:</strong> في مقسم التيار، فوق $\mathbf{I}_1$ المعاوقة <b>الثانية</b> $\mathbf{Z}_2$ (Eq. 9.66). لأن التيار يروح أكثر للطريق الأسهل: المعاوقة الأصغر تاخذ التيار الأكبر.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 انتبه للتبديل:</strong> في مقسم التيار، فوق $\mathbf{I}_1$ المعاوقة <b>الثانية</b> $\mathbf{Z}_2$ (Eq. 9.66). لأن التيار يروح أكثر للطريق الأسهل: المعاوقة الأصغر تاخذ التيار الأكبر.</span><span lang="en"><strong>🔑 Watch the swap:</strong> in the current divider, the numerator of $\mathbf{I}_1$ has the <b>other</b> impedance $\mathbf{Z}_2$ (Eq. 9.66). Because current prefers the easier path: the smaller impedance takes the larger current.</span></div>
 
-  <h3>الخلاصة: توالي أو توازي</h3>
+  <h3><span lang="ar">الخلاصة: توالي أو توازي</span><span lang="en">Summary: series or parallel</span></h3>
   <div class="tbl-wrap">
     <table class="tbl">
-      <tr><th></th><th>التوالي</th><th>التوازي</th></tr>
-      <tr><td>المشترك</td><td>التيار $\mathbf{I}$</td><td>الجهد $\mathbf{V}$</td></tr>
-      <tr><td>المكافئة</td><td>$\mathbf{Z}_1 + \mathbf{Z}_2$</td><td>$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</td></tr>
-      <tr><td>اللي ينجمع</td><td>المعاوقات $\mathbf{Z}$</td><td>المسامحات $\mathbf{Y}$</td></tr>
-      <tr><td>المقسّم</td><td>$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</td><td>$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</td></tr>
+      <tr><th></th><th><span lang="ar">التوالي</span><span lang="en">Series</span></th><th><span lang="ar">التوازي</span><span lang="en">Parallel</span></th></tr>
+      <tr><td><span lang="ar">المشترك</span><span lang="en">Shared</span></td><td><span lang="ar">التيار $\mathbf{I}$</span><span lang="en">Current $\mathbf{I}$</span></td><td><span lang="ar">الجهد $\mathbf{V}$</span><span lang="en">Voltage $\mathbf{V}$</span></td></tr>
+      <tr><td><span lang="ar">المكافئة</span><span lang="en">Equivalent</span></td><td>$\mathbf{Z}_1 + \mathbf{Z}_2$</td><td>$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</td></tr>
+      <tr><td><span lang="ar">اللي ينجمع</span><span lang="en">What adds</span></td><td><span lang="ar">المعاوقات $\mathbf{Z}$</span><span lang="en">Impedances $\mathbf{Z}$</span></td><td><span lang="ar">المسامحات $\mathbf{Y}$</span><span lang="en">Admittances $\mathbf{Y}$</span></td></tr>
+      <tr><td><span lang="ar">المقسّم</span><span lang="en">Divider</span></td><td>$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</td><td>$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</td></tr>
     </table>
   </div>
 </section>
 
 <!-- ================= 04 المختبر ================= -->
 <section class="card" id="lab" data-num="04" data-nav="المختبر|Lab">
-  <h2>القراءات ما تنجمع، الفيزورات تنجمع</h2>
-  <p class="sub">مقاومة مع ملف أو مكثف، على التوالي أو التوازي، ومصدر $10\angle 0^\circ$ V</p>
+  <h2><span lang="ar">القراءات ما تنجمع، الفيزورات تنجمع</span><span lang="en">Readings don't add, phasors do</span></h2>
+  <p class="sub"><span lang="ar">مقاومة مع ملف أو مكثف، على التوالي أو التوازي، ومصدر $10\angle 0^\circ$ V</span><span lang="en">A resistor with an inductor or a capacitor, in series or parallel, and a $10\angle 0^\circ$ V source</span></p>
 
   <div class="kv-lab">
-    <h3>🎛️ غيّر التوصيل والقيم، وشوف KVL و KCL بعينك</h3>
-    <p class="lab-note">القيم: $L = 1.6\ \text{H}$ و $C = 25\ \text{mF}$. والبداية $R = 6\ \Omega$ و $\omega = 5$ rad/s، يعني معاوقة المكثف $-j8\ \Omega$.</p>
+    <h3><span lang="ar">🎛️ غيّر التوصيل والقيم، وشوف KVL و KCL بعينك</span><span lang="en">🎛️ Change the connection and values, and see KVL and KCL for yourself</span></h3>
+    <p class="lab-note"><span lang="ar">القيم: $L = 1.6\ \text{H}$ و $C = 25\ \text{mF}$. والبداية $R = 6\ \Omega$ و $\omega = 5$ rad/s، يعني معاوقة المكثف $-j8\ \Omega$.</span><span lang="en">Values: $L = 1.6\ \text{H}$ and $C = 25\ \text{mF}$. It starts at $R = 6\ \Omega$ and $\omega = 5$ rad/s, so the capacitor impedance is $-j8\ \Omega$.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>التوصيل</label><span class="seg"><button class="btn small primary" type="button" data-mode="S" aria-pressed="true">توالي</button><button class="btn small" type="button" data-mode="P" aria-pressed="false">توازي</button></span></div>
-      <div class="field"><label>العنصر مع R</label><span class="seg"><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small primary" type="button" data-el="C" aria-pressed="true">C</button></span></div>
-      <div class="field"><label>المقاومة R (Ω)</label><input type="range" dir="ltr" id="vR" min="1" max="20" step="1" value="6"><span class="rv" id="vRv"></span></div>
-      <div class="field"><label>التردد ω (rad/s)</label><input type="range" dir="ltr" id="vW" min="1" max="20" step="1" value="5"><span class="rv" id="vWv"></span></div>
+      <div class="field"><label><span lang="ar">التوصيل</span><span lang="en">Connection</span></label><span class="seg"><button class="btn small primary" type="button" data-mode="S" aria-pressed="true"><span lang="ar">توالي</span><span lang="en">Series</span></button><button class="btn small" type="button" data-mode="P" aria-pressed="false"><span lang="ar">توازي</span><span lang="en">Parallel</span></button></span></div>
+      <div class="field"><label><span lang="ar">العنصر مع R</span><span lang="en">Element with R</span></label><span class="seg"><button class="btn small" type="button" data-el="L" aria-pressed="false">L</button><button class="btn small primary" type="button" data-el="C" aria-pressed="true">C</button></span></div>
+      <div class="field"><label><span lang="ar">المقاومة R (Ω)</span><span lang="en">Resistance R (Ω)</span></label><input type="range" dir="ltr" id="vR" min="1" max="20" step="1" value="6"><span class="rv" id="vRv"></span></div>
+      <div class="field"><label><span lang="ar">التردد ω (rad/s)</span><span lang="en">Frequency ω (rad/s)</span></label><input type="range" dir="ltr" id="vW" min="1" max="20" step="1" value="5"><span class="rv" id="vWv"></span></div>
     </div>
     <figure class="fig">
       <svg id="vSvg" viewBox="0 0 600 260" role="img" aria-label="مخطط الفيزورات: سهم المقاومة وسهم الملف أو المكثف ينجمعون رأس بذيل ويوصلون لسهم المصدر، ومعه الدائرة">
@@ -221,24 +221,24 @@
           </g>
         </g>
       </svg>
-      <figcaption>في التوالي نرسم الجهود، وفي التوازي نرسم التيارات. السهمين بينهم <span class="ltr">90°</span> دايماً، ولما تركبهم رأس بذيل يوصلون لسهم المصدر بالضبط: هذا هو KVL أو KCL. والرسم يغير مقاسه تلقائيًا عشان يبقى داخل الإطار.</figcaption>
+      <figcaption><span lang="ar">في التوالي نرسم الجهود، وفي التوازي نرسم التيارات. السهمين بينهم <span class="ltr">90°</span> دايماً، ولما تركبهم رأس بذيل يوصلون لسهم المصدر بالضبط: هذا هو KVL أو KCL. والرسم يغير مقاسه تلقائيًا عشان يبقى داخل الإطار.</span><span lang="en">In series we draw the voltages, and in parallel the currents. The two arrows are always <span class="ltr">90°</span> apart, and when you place them head to tail they reach exactly the source arrow: that's KVL or KCL. The drawing rescales automatically to stay inside the frame.</span></figcaption>
     </figure>
     <div class="ml-read">
       <div><span class="k" id="kA"></span><span class="v" id="rA"></span></div>
       <div><span class="k" id="kB"></span><span class="v" id="rB"></span></div>
-      <div><span class="k">مجموع القراءتين (السعات)</span><span class="v" id="rS"></span></div>
+      <div><span class="k"><span lang="ar">مجموع القراءتين (السعات)</span><span lang="en">Sum of the two readings (magnitudes)</span></span><span class="v" id="rS"></span></div>
       <div class="hl"><span class="k" id="kT"></span><span class="v" id="rT"></span></div>
     </div>
   </div>
-  <div class="callout key"><strong>🔑 جرّب:</strong> مع البداية، الفولتميتر على المقاومة يقرأ 6 وعلى المكثف 8، ومجموعهم 14، بس المصدر 10! غيّر $R$ و $\omega$ وشوف: مجموع القراءتين دايماً أكبر من المصدر، أما مجموع الفيزورات فيساويه بالضبط. وبعدها حوّل على التوازي وشوف نفس الشي مع التيارات.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 جرّب:</strong> مع البداية، الفولتميتر على المقاومة يقرأ 6 وعلى المكثف 8، ومجموعهم 14، بس المصدر 10! غيّر $R$ و $\omega$ وشوف: مجموع القراءتين دايماً أكبر من المصدر، أما مجموع الفيزورات فيساويه بالضبط. وبعدها حوّل على التوازي وشوف نفس الشي مع التيارات.</span><span lang="en"><strong>🔑 Try it:</strong> at the start, the voltmeter reads 6 across the resistor and 8 across the capacitor, which adds to 14, but the source is 10! Change $R$ and $\omega$ and see: the sum of the readings is always larger than the source, while the sum of the phasors equals it exactly. Then switch to parallel and see the same with currents.</span></div>
 </section>
 
 <!-- ================= 05 دلتا-واي ================= -->
 <section class="card" id="delta" data-num="05" data-nav="Δ-Y|Δ-Y">
-  <h2>تحويل دلتا-واي (Δ-Y)</h2>
-  <p class="sub">لما ما تلقى توالي ولا توازي</p>
+  <h2><span lang="ar">تحويل دلتا-واي (Δ-Y)</span><span lang="en">Delta-wye (Δ-Y) transformation</span></h2>
+  <p class="sub"><span lang="ar">لما ما تلقى توالي ولا توازي</span><span lang="en">When you find no series and no parallel</span></p>
 
-  <p>أحياناً ثلاث معاوقات مربوطة بين ثلاث عقد على شكل مثلث (دلتا Δ) أو على شكل نجمة (واي Y)، وما تقدر تجمعها توالي ولا توازي. الحل: تحوّل الشكل للثاني، بنفس قوانين دوائر DC بس بالمعاوقات.</p>
+  <p><span lang="ar">أحياناً ثلاث معاوقات مربوطة بين ثلاث عقد على شكل مثلث (دلتا Δ) أو على شكل نجمة (واي Y)، وما تقدر تجمعها توالي ولا توازي. الحل: تحوّل الشكل للثاني، بنفس قوانين دوائر DC بس بالمعاوقات.</span><span lang="en">Sometimes three impedances are connected between three nodes as a triangle (delta Δ) or as a star (wye Y), and you can't combine them as series or parallel. The fix: convert one shape into the other, with the same laws as DC circuits but with impedances.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 360 250" role="img" aria-label="شبكة Y من العقد a و b و c إلى المركز n بالمعاوقات Z1 و Z2 و Z3، وشبكة دلتا على أضلاع المثلث بالمعاوقات Za و Zb و Zc" style="max-width:380px">
       <path class="wire" d="M60 40H300L180 225Z"/>
@@ -258,157 +258,157 @@
       <text class="lbl e1t" x="232" y="54" text-anchor="middle">Z<tspan class="sb" dy="3">2</tspan></text>
       <text class="lbl e1t" x="194" y="168">Z<tspan class="sb" dy="3">3</tspan></text>
     </svg>
-    <figcaption>Figure 9.22: معاوقات الـ Y ($\mathbf{Z}_1, \mathbf{Z}_2, \mathbf{Z}_3$) من العقد للمركز $n$، ومعاوقات الـ Δ ($\mathbf{Z}_a, \mathbf{Z}_b, \mathbf{Z}_c$) على الأضلاع. كل ضلع في الـ Δ اسمه نفس حرف العقدة اللي تقابله.</figcaption>
+    <figcaption><span lang="ar">Figure 9.22: معاوقات الـ Y ($\mathbf{Z}_1, \mathbf{Z}_2, \mathbf{Z}_3$) من العقد للمركز $n$، ومعاوقات الـ Δ ($\mathbf{Z}_a, \mathbf{Z}_b, \mathbf{Z}_c$) على الأضلاع. كل ضلع في الـ Δ اسمه نفس حرف العقدة اللي تقابله.</span><span lang="en">Figure 9.22: the Y impedances ($\mathbf{Z}_1, \mathbf{Z}_2, \mathbf{Z}_3$) go from the nodes to the center $n$, and the Δ impedances ($\mathbf{Z}_a, \mathbf{Z}_b, \mathbf{Z}_c$) are on the sides. Each Δ side is named after the node opposite it.</span></figcaption>
   </figure>
   <div class="grid-2">
-    <div class="tile"><div class="t-name">من Δ إلى Y (Eq. 9.68)</div>
+    <div class="tile"><div class="t-name"><span lang="ar">من Δ إلى Y (Eq. 9.68)</span><span lang="en">From Δ to Y (Eq. 9.68)</span></div>
       <div class="m">\[\begin{gathered}\mathbf{Z}_1 = \frac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c} \\[4pt] \mathbf{Z}_2 = \frac{\mathbf{Z}_c\mathbf{Z}_a}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c} \\[4pt] \mathbf{Z}_3 = \frac{\mathbf{Z}_a\mathbf{Z}_b}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}\end{gathered}\]</div>
-      <div class="t-desc">كل فرع في الـ Y = ضرب ضلعي الـ Δ اللي جنب عقدته ÷ مجموع الأضلاع الثلاثة. مثلاً $\mathbf{Z}_1$ عند العقدة $a$، والضلعين اللي جنب $a$ هم $\mathbf{Z}_b$ و $\mathbf{Z}_c$.</div></div>
-    <div class="tile"><div class="t-name">من Y إلى Δ (Eq. 9.67)</div>
+      <div class="t-desc"><span lang="ar">كل فرع في الـ Y = ضرب ضلعي الـ Δ اللي جنب عقدته ÷ مجموع الأضلاع الثلاثة. مثلاً $\mathbf{Z}_1$ عند العقدة $a$، والضلعين اللي جنب $a$ هم $\mathbf{Z}_b$ و $\mathbf{Z}_c$.</span><span lang="en">Each Y branch = product of the two Δ sides next to its node ÷ sum of all three sides. For example $\mathbf{Z}_1$ is at node $a$, and the two sides next to $a$ are $\mathbf{Z}_b$ and $\mathbf{Z}_c$.</span></div></div>
+    <div class="tile"><div class="t-name"><span lang="ar">من Y إلى Δ (Eq. 9.67)</span><span lang="en">From Y to Δ (Eq. 9.67)</span></div>
       <div class="m">\[\begin{gathered}N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1 \\[6pt] \mathbf{Z}_a = \frac{N}{\mathbf{Z}_1} \\[4pt] \mathbf{Z}_b = \frac{N}{\mathbf{Z}_2} \\[4pt] \mathbf{Z}_c = \frac{N}{\mathbf{Z}_3}\end{gathered}\]</div>
-      <div class="t-desc">$N$ نفس البسط للثلاثة. وكل ضلع في الـ Δ = $N$ ÷ فرع الـ Y اللي يقابله. مثلاً $\mathbf{Z}_a$ يقابل العقدة $a$، فنقسم على $\mathbf{Z}_1$.</div></div>
+      <div class="t-desc"><span lang="ar">$N$ نفس البسط للثلاثة. وكل ضلع في الـ Δ = $N$ ÷ فرع الـ Y اللي يقابله. مثلاً $\mathbf{Z}_a$ يقابل العقدة $a$، فنقسم على $\mathbf{Z}_1$.</span><span lang="en">$N$ is the same numerator for all three. Each Δ side = $N$ ÷ the Y branch opposite it. For example $\mathbf{Z}_a$ is opposite node $a$, so we divide by $\mathbf{Z}_1$.</span></div></div>
   </div>
-  <div class="callout key"><strong>🔑 الشبكة المتزنة (Balanced):</strong> إذا الفروع الثلاثة متساوية، القوانين كلها تختصر لسطر واحد (Eq. 9.69): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ أو $\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$. والدلتا دايماً هي الأكبر.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 الشبكة المتزنة (Balanced):</strong> إذا الفروع الثلاثة متساوية، القوانين كلها تختصر لسطر واحد (Eq. 9.69): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ أو $\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$. والدلتا دايماً هي الأكبر.</span><span lang="en"><strong>🔑 Balanced network:</strong> if the three branches are equal, all the formulas shrink to one line (Eq. 9.69): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ or $\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$. The delta is always the larger one.</span></div>
 </section>
 
 <!-- ================= لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: المعاوقة المكافئة</h3>
+    <h3><span lang="ar">الشجرة 1: المعاوقة المكافئة</span><span lang="en">Tree 1: equivalent impedance</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="ar az as1 ae1 ao">مسار: توالي</button>
-      <button class="btn small" type="button" data-path="ar az as2 ae2 ao">مسار: توازي</button>
+      <button class="btn small" type="button" data-path="ar az as1 ae1 ao"><span lang="ar">مسار: توالي</span><span lang="en">Path: series</span></button>
+      <button class="btn small" type="button" data-path="ar az as2 ae2 ao"><span lang="ar">مسار: توازي</span><span lang="en">Path: parallel</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k">إذا جاك: «أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="az" data-from="ar"><span class="fb-k">حوّل كل عنصر لمعاوقة</span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span><span class="fb-b">المحاضرة 4</span></button>
-      <button type="button" class="fb-node ask c1" data-id="as1" data-from="az"><span class="fb-k">توالي: نفس التيار</span></button>
-      <button type="button" class="fb-node ask c2" data-id="as2" data-from="az"><span class="fb-k">توازي: نفس الجهد</span></button>
-      <button type="button" class="fb-node c1" data-id="ae1" data-from="as1"><span class="fb-k">اجمع</span><span class="fb-f">$\mathbf{Z}_1 + \mathbf{Z}_2$</span></button>
-      <button type="button" class="fb-node c2" data-id="ae2" data-from="as2"><span class="fb-k">الضرب على الجمع</span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="ao" data-from="ae1 ae2"><span class="fb-k">الناتج: كرر لين تبقى معاوقة وحدة $\mathbf{Z}_{in}$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="ar"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$»</span><span lang="en">If you get: “Find the input impedance $\mathbf{Z}_{in}$”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="az" data-from="ar"><span class="fb-k"><span lang="ar">حوّل كل عنصر لمعاوقة</span><span lang="en">Turn each element into an impedance</span></span><span class="fb-f">$R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span><span class="fb-b"><span lang="ar">المحاضرة 4</span><span lang="en">Lecture 4</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="as1" data-from="az"><span class="fb-k"><span lang="ar">توالي: نفس التيار</span><span lang="en">Series: same current</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="as2" data-from="az"><span class="fb-k"><span lang="ar">توازي: نفس الجهد</span><span lang="en">Parallel: same voltage</span></span></button>
+      <button type="button" class="fb-node c1" data-id="ae1" data-from="as1"><span class="fb-k"><span lang="ar">اجمع</span><span lang="en">Add</span></span><span class="fb-f">$\mathbf{Z}_1 + \mathbf{Z}_2$</span></button>
+      <button type="button" class="fb-node c2" data-id="ae2" data-from="as2"><span class="fb-k"><span lang="ar">الضرب على الجمع</span><span lang="en">Product over sum</span></span><span class="fb-f">$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="ao" data-from="ae1 ae2"><span class="fb-k"><span lang="ar">الناتج: كرر لين تبقى معاوقة وحدة $\mathbf{Z}_{in}$</span><span lang="en">Result: repeat until one impedance $\mathbf{Z}_{in}$ is left</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="ar" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">input impedance, equivalent impedance</span>.</dd>
-      <dt>الطريقة</dt><dd>ابدأ من أبعد نقطة عن الطرفين، واجمع خطوة خطوة لين تقرب منهم.</dd></dl></div>
-    <div class="fb-info" data-for="az" hidden><h4>حوّل كل عنصر لمعاوقة: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</h4><dl>
-      <dt>الخطأ الشائع</dt><dd>تنسى تاخذ $\omega$ من المصدر، أو تحسب المكثف $j\omega C$.</dd></dl></div>
-    <div class="fb-info" data-for="as1" hidden><h4>توالي: نفس التيار</h4><dl>
-      <dt>متى؟</dt><dd>المعاوقتين في نفس المسار، وما بينهم تفرع.</dd></dl></div>
-    <div class="fb-info" data-for="as2" hidden><h4>توازي: نفس الجهد</h4><dl>
-      <dt>متى؟</dt><dd>المعاوقتين بين نفس العقدتين.</dd></dl></div>
-    <div class="fb-info" data-for="ae1" hidden><h4>التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</h4><dl>
-      <dt>مثال سريع</dt><dd>$(3 + j4) + (2 - j6) = 5 - j2\ \Omega$.</dd></dl></div>
-    <div class="fb-info" data-for="ae2" hidden><h4>التوازي: $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
-      <dt>الحيلة</dt><dd>لأكثر من اثنين اجمع المسامحات: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$</dd>
-      <dt>مثال سريع</dt><dd>$4 \parallel j4 = \dfrac{j16}{4 + j4} = 2 + j2\ \Omega$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع المعاوقات اللي على التوازي.</dd></dl></div>
-    <div class="fb-info" data-for="ao" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>في مثال 1: $\mathbf{Z}_{in} = 3.22 - j11.07\ \Omega$.</dd>
-      <dt>تأكد</dt><dd>الجزء الحقيقي ما يطلع سالب أبدًا في دائرة R و L و C.</dd></dl></div>
+    <div class="fb-info" data-for="ar" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span class="ltr">input impedance, equivalent impedance</span>.</dd>
+      <dt><span lang="ar">الطريقة</span><span lang="en">The method</span></dt><dd><span lang="ar">ابدأ من أبعد نقطة عن الطرفين، واجمع خطوة خطوة لين تقرب منهم.</span><span lang="en">Start from the point farthest from the terminals, and combine step by step until you get close to them.</span></dd></dl></div>
+    <div class="fb-info" data-for="az" hidden><h4><span lang="ar">حوّل كل عنصر لمعاوقة: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span><span lang="en">Turn each element into an impedance: $R,\quad j\omega L,\quad \dfrac{1}{j\omega C}$</span></h4><dl>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى تاخذ $\omega$ من المصدر، أو تحسب المكثف $j\omega C$.</span><span lang="en">Forgetting to take $\omega$ from the source, or writing the capacitor as $j\omega C$.</span></dd></dl></div>
+    <div class="fb-info" data-for="as1" hidden><h4><span lang="ar">توالي: نفس التيار</span><span lang="en">Series: same current</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المعاوقتين في نفس المسار، وما بينهم تفرع.</span><span lang="en">The two impedances are on the same path, with no branch between them.</span></dd></dl></div>
+    <div class="fb-info" data-for="as2" hidden><h4><span lang="ar">توازي: نفس الجهد</span><span lang="en">Parallel: same voltage</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">المعاوقتين بين نفس العقدتين.</span><span lang="en">The two impedances are between the same two nodes.</span></dd></dl></div>
+    <div class="fb-info" data-for="ae1" hidden><h4><span lang="ar">التوالي: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</span><span lang="en">Series: $\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$(3 + j4) + (2 - j6) = 5 - j2\ \Omega$.</dd></dl></div>
+    <div class="fb-info" data-for="ae2" hidden><h4><span lang="ar">التوازي: $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span lang="en">Parallel: $\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">لأكثر من اثنين اجمع المسامحات: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$</span><span lang="en">For more than two, add the admittances: $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$4 \parallel j4 = \dfrac{j16}{4 + j4} = 2 + j2\ \Omega$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع المعاوقات اللي على التوازي.</span><span lang="en">Adding impedances that are in parallel.</span></dd></dl></div>
+    <div class="fb-info" data-for="ao" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">في مثال 1: $\mathbf{Z}_{in} = 3.22 - j11.07\ \Omega$.</span><span lang="en">In Example 1: $\mathbf{Z}_{in} = 3.22 - j11.07\ \Omega$.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">الجزء الحقيقي ما يطلع سالب أبدًا في دائرة R و L و C.</span><span lang="en">The real part is never negative in an R, L, C circuit.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: جهد أو تيار جزء من الدائرة</h3>
+    <h3><span lang="ar">الشجرة 2: جهد أو تيار جزء من الدائرة</span><span lang="en">Tree 2: voltage or current of part of the circuit</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="br bn bs1 bd1 bk bo">مسار: مقسم الجهد</button>
-      <button class="btn small" type="button" data-path="br bn bs2 bd2 bk bo">مسار: مقسم التيار</button>
+      <button class="btn small" type="button" data-path="br bn bs1 bd1 bk bo"><span lang="ar">مسار: مقسم الجهد</span><span lang="en">Path: voltage divider</span></button>
+      <button class="btn small" type="button" data-path="br bn bs2 bd2 bk bo"><span lang="ar">مسار: مقسم التيار</span><span lang="en">Path: current divider</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k">إذا جاك: «أوجد $v_o$» أو «تيار فرع»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k">فيزورات ومعاوقات</span><span class="fb-f">$\mathbf{V}_s$ و $\mathbf{Z}$</span><span class="fb-b">المحاضرة 2 و 4</span></button>
-      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="bn"><span class="fb-k">معاوقتين توالي، والمطلوب جهد</span></button>
-      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="bn"><span class="fb-k">معاوقتين توازي، والمطلوب تيار</span></button>
-      <button type="button" class="fb-node c1" data-id="bd1" data-from="bs1"><span class="fb-k">مقسم الجهد</span><span class="fb-f">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</span></button>
-      <button type="button" class="fb-node c2" data-id="bd2" data-from="bs2"><span class="fb-k">مقسم التيار</span><span class="fb-f">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</span></button>
-      <button type="button" class="fb-node trick c12" data-id="bk" data-from="bd1 bd2"><span class="fb-k">تأكد بكيرشوف: الفيزورات تنجمع</span><span class="fb-f">$\sum\mathbf{V} = 0,\quad \sum\mathbf{I} = 0$</span></button>
-      <button type="button" class="fb-node out c12" data-id="bo" data-from="bk"><span class="fb-k">الناتج: رجّع للزمن بنفس $\omega$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="br"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد $v_o$» أو «تيار فرع»</span><span lang="en">If you get: “Find $v_o$” or “a branch current”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="bn" data-from="br"><span class="fb-k"><span lang="ar">فيزورات ومعاوقات</span><span lang="en">Phasors and impedances</span></span><span class="fb-f"><span lang="ar">$\mathbf{V}_s$ و $\mathbf{Z}$</span><span lang="en">$\mathbf{V}_s$ and $\mathbf{Z}$</span></span><span class="fb-b"><span lang="ar">المحاضرة 2 و 4</span><span lang="en">Lectures 2 and 4</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="bs1" data-from="bn"><span class="fb-k"><span lang="ar">معاوقتين توالي، والمطلوب جهد</span><span lang="en">Two impedances in series, a voltage is asked for</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="bs2" data-from="bn"><span class="fb-k"><span lang="ar">معاوقتين توازي، والمطلوب تيار</span><span lang="en">Two impedances in parallel, a current is asked for</span></span></button>
+      <button type="button" class="fb-node c1" data-id="bd1" data-from="bs1"><span class="fb-k"><span lang="ar">مقسم الجهد</span><span lang="en">Voltage divider</span></span><span class="fb-f">$\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</span></button>
+      <button type="button" class="fb-node c2" data-id="bd2" data-from="bs2"><span class="fb-k"><span lang="ar">مقسم التيار</span><span lang="en">Current divider</span></span><span class="fb-f">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</span></button>
+      <button type="button" class="fb-node trick c12" data-id="bk" data-from="bd1 bd2"><span class="fb-k"><span lang="ar">تأكد بكيرشوف: الفيزورات تنجمع</span><span lang="en">Check with Kirchhoff: phasors add</span></span><span class="fb-f">$\sum\mathbf{V} = 0,\quad \sum\mathbf{I} = 0$</span></button>
+      <button type="button" class="fb-node out c12" data-id="bo" data-from="bk"><span class="fb-k"><span lang="ar">الناتج: رجّع للزمن بنفس $\omega$</span><span lang="en">Result: back to time with the same $\omega$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="br" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الشكل</dt><dd>مصدر واحد، والمطلوب جهد عنصر أو تيار فرع بس، مو كل الدائرة.</dd></dl></div>
-    <div class="fb-info" data-for="bn" hidden><h4>حوّل المصدر لفيزور والعناصر لمعاوقات</h4><dl>
-      <dt>الحيلة</dt><dd>لو فيه مجموعة على التوازي، اختصرها أول بالشجرة 1، عشان يبقى عندك معاوقتين بس.</dd></dl></div>
-    <div class="fb-info" data-for="bs1" hidden><h4>معاوقتين توالي، والمطلوب جهد</h4><dl>
-      <dt>متى؟</dt><dd>نفس التيار يمر في الاثنين.</dd></dl></div>
-    <div class="fb-info" data-for="bs2" hidden><h4>معاوقتين توازي، والمطلوب تيار</h4><dl>
-      <dt>متى؟</dt><dd>نفس الجهد على الاثنين.</dd></dl></div>
-    <div class="fb-info" data-for="bd1" hidden><h4>مقسم الجهد: $\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</h4><dl>
-      <dt>الفكرة</dt><dd>كل معاوقة تاخذ من الجهد بنسبة حجمها.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{V}_2 = \dfrac{j4}{3 + j4}(10) = 8\angle 36.87^\circ$.</dd></dl></div>
-    <div class="fb-info" data-for="bd2" hidden><h4>مقسم التيار: $\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</h4><dl>
-      <dt>الفكرة</dt><dd>التيار يروح أكثر للطريق الأسهل، فالمعاوقة الثانية هي اللي فوق.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{I} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{I}_1 = 8\angle 36.87^\circ$ و $\mathbf{I}_2 = 6\angle{-53.13^\circ}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحط $\mathbf{Z}_1$ فوق مثل مقسم الجهد.</dd></dl></div>
-    <div class="fb-info" data-for="bk" hidden><h4>تأكد بـ KVL أو KCL</h4><dl>
-      <dt>القانون</dt><dd>KVL: مجموع فيزورات الجهد حول أي حلقة صفر. KCL: مجموع فيزورات التيار عند أي عقدة صفر.</dd>
-      <dt>مثال سريع</dt><dd>$8\angle 36.87^\circ + 6\angle{-53.13^\circ}$ $= (6.4 + j4.8) + (3.6 - j4.8)$ $= 10$ ✓</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع القراءات (السعات): $6 + 8 = 14$ مو $10$.</dd></dl></div>
-    <div class="fb-info" data-for="bo" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>في مثال 2: $v_o(t) =$ $17.15\cos(4t + 15.96^\circ)\ \text{V}$.</dd></dl></div>
+    <div class="fb-info" data-for="br" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الشكل</span><span lang="en">Form</span></dt><dd><span lang="ar">مصدر واحد، والمطلوب جهد عنصر أو تيار فرع بس، مو كل الدائرة.</span><span lang="en">One source, and only one element's voltage or one branch current is asked for, not the whole circuit.</span></dd></dl></div>
+    <div class="fb-info" data-for="bn" hidden><h4><span lang="ar">حوّل المصدر لفيزور والعناصر لمعاوقات</span><span lang="en">Turn the source into a phasor and the elements into impedances</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">لو فيه مجموعة على التوازي، اختصرها أول بالشجرة 1، عشان يبقى عندك معاوقتين بس.</span><span lang="en">If there's a parallel group, reduce it first with tree 1, so you're left with just two impedances.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs1" hidden><h4><span lang="ar">معاوقتين توالي، والمطلوب جهد</span><span lang="en">Two impedances in series, a voltage is asked for</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">نفس التيار يمر في الاثنين.</span><span lang="en">The same current flows through both.</span></dd></dl></div>
+    <div class="fb-info" data-for="bs2" hidden><h4><span lang="ar">معاوقتين توازي، والمطلوب تيار</span><span lang="en">Two impedances in parallel, a current is asked for</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">نفس الجهد على الاثنين.</span><span lang="en">The same voltage is across both.</span></dd></dl></div>
+    <div class="fb-info" data-for="bd1" hidden><h4><span lang="ar">مقسم الجهد: $\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</span><span lang="en">Voltage divider: $\mathbf{V}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{V}$</span></h4><dl>
+      <dt><span lang="ar">الفكرة</span><span lang="en">The idea</span></dt><dd><span lang="ar">كل معاوقة تاخذ من الجهد بنسبة حجمها.</span><span lang="en">Each impedance takes a share of the voltage in proportion to its size.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{V}_2 = \dfrac{j4}{3 + j4}(10) = 8\angle 36.87^\circ$.</span><span lang="en">$\mathbf{V} = 10\angle 0^\circ$, $\mathbf{Z}_1 = 3$ and $\mathbf{Z}_2 = j4$: $\mathbf{V}_2 = \dfrac{j4}{3 + j4}(10) = 8\angle 36.87^\circ$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bd2" hidden><h4><span lang="ar">مقسم التيار: $\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</span><span lang="en">Current divider: $\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\mathbf{I}$</span></h4><dl>
+      <dt><span lang="ar">الفكرة</span><span lang="en">The idea</span></dt><dd><span lang="ar">التيار يروح أكثر للطريق الأسهل، فالمعاوقة الثانية هي اللي فوق.</span><span lang="en">Current prefers the easier path, so the other impedance goes on top.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{I} = 10\angle 0^\circ$ و $\mathbf{Z}_1 = 3$ و $\mathbf{Z}_2 = j4$: $\mathbf{I}_1 = 8\angle 36.87^\circ$ و $\mathbf{I}_2 = 6\angle{-53.13^\circ}$.</span><span lang="en">$\mathbf{I} = 10\angle 0^\circ$, $\mathbf{Z}_1 = 3$ and $\mathbf{Z}_2 = j4$: $\mathbf{I}_1 = 8\angle 36.87^\circ$ and $\mathbf{I}_2 = 6\angle{-53.13^\circ}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحط $\mathbf{Z}_1$ فوق مثل مقسم الجهد.</span><span lang="en">Putting $\mathbf{Z}_1$ on top like the voltage divider.</span></dd></dl></div>
+    <div class="fb-info" data-for="bk" hidden><h4><span lang="ar">تأكد بـ KVL أو KCL</span><span lang="en">Check with KVL or KCL</span></h4><dl>
+      <dt><span lang="ar">القانون</span><span lang="en">The law</span></dt><dd><span lang="ar">KVL: مجموع فيزورات الجهد حول أي حلقة صفر. KCL: مجموع فيزورات التيار عند أي عقدة صفر.</span><span lang="en">KVL: the voltage phasors around any loop add to zero. KCL: the current phasors at any node add to zero.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$8\angle 36.87^\circ + 6\angle{-53.13^\circ}$ $= (6.4 + j4.8) + (3.6 - j4.8)$ $= 10$ ✓</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع القراءات (السعات): $6 + 8 = 14$ مو $10$.</span><span lang="en">Adding the readings (magnitudes): $6 + 8 = 14$, not $10$.</span></dd></dl></div>
+    <div class="fb-info" data-for="bo" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">في مثال 2: $v_o(t) =$ $17.15\cos(4t + 15.96^\circ)\ \text{V}$.</span><span lang="en">In Example 2: $v_o(t) =$ $17.15\cos(4t + 15.96^\circ)\ \text{V}$.</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 3 ===== -->
   <div class="fboard" id="board3">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 3: ما فيه توالي ولا توازي</h3>
+    <h3><span lang="ar">الشجرة 3: ما فيه توالي ولا توازي</span><span lang="en">Tree 3: no series and no parallel</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="cr cs1 ca1 csp co">مسار: عندك Δ</button>
-      <button class="btn small" type="button" data-path="cr cs2 ca2 csp co">مسار: عندك Y</button>
+      <button class="btn small" type="button" data-path="cr cs1 ca1 csp co"><span lang="ar">مسار: عندك Δ</span><span lang="en">Path: you have a Δ</span></button>
+      <button class="btn small" type="button" data-path="cr cs2 ca2 csp co"><span lang="ar">مسار: عندك Y</span><span lang="en">Path: you have a Y</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k">إذا جاك: ثلاث معاوقات على شكل مثلث Δ أو نجمة Y، وما تنجمع</span></button>
-      <button type="button" class="fb-node ask c1" data-id="cs1" data-from="cr"><span class="fb-k">عندك Δ</span></button>
-      <button type="button" class="fb-node ask c2" data-id="cs2" data-from="cr"><span class="fb-k">عندك Y</span></button>
-      <button type="button" class="fb-node c1" data-id="ca1" data-from="cs1"><span class="fb-k">Δ إلى Y</span><span class="fb-f">$\mathbf{Z}_1 =$<br>$\dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</span></button>
-      <button type="button" class="fb-node c2" data-id="ca2" data-from="cs2"><span class="fb-k">Y إلى Δ</span><span class="fb-f">$\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</span></button>
-      <button type="button" class="fb-node prev c12" data-id="csp" data-from="ca1 ca2"><span class="fb-k">صار فيه توالي وتوازي</span><span class="fb-f">$\mathbf{Z}_{eq}$</span><span class="fb-b">الشجرة 1</span></button>
-      <button type="button" class="fb-node out c12" data-id="co" data-from="csp"><span class="fb-k">الناتج: $\mathbf{Z}_{eq}$، ثم $\mathbf{I} = \mathbf{V}/\mathbf{Z}_{eq}$</span></button>
+      <button type="button" class="fb-node ask c12" data-id="cr"><span class="fb-k"><span lang="ar">إذا جاك: ثلاث معاوقات على شكل مثلث Δ أو نجمة Y، وما تنجمع</span><span lang="en">If you get: three impedances shaped like a triangle Δ or a star Y that won't combine</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="cs1" data-from="cr"><span class="fb-k"><span lang="ar">عندك Δ</span><span lang="en">You have a Δ</span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="cs2" data-from="cr"><span class="fb-k"><span lang="ar">عندك Y</span><span lang="en">You have a Y</span></span></button>
+      <button type="button" class="fb-node c1" data-id="ca1" data-from="cs1"><span class="fb-k"><span lang="ar">Δ إلى Y</span><span lang="en">Δ to Y</span></span><span class="fb-f">$\mathbf{Z}_1 =$<br>$\dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</span></button>
+      <button type="button" class="fb-node c2" data-id="ca2" data-from="cs2"><span class="fb-k"><span lang="ar">Y إلى Δ</span><span lang="en">Y to Δ</span></span><span class="fb-f">$\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="csp" data-from="ca1 ca2"><span class="fb-k"><span lang="ar">صار فيه توالي وتوازي</span><span lang="en">Now there's series and parallel</span></span><span class="fb-f">$\mathbf{Z}_{eq}$</span><span class="fb-b"><span lang="ar">الشجرة 1</span><span lang="en">Tree 1</span></span></button>
+      <button type="button" class="fb-node out c12" data-id="co" data-from="csp"><span class="fb-k"><span lang="ar">الناتج: $\mathbf{Z}_{eq}$، ثم $\mathbf{I} = \mathbf{V}/\mathbf{Z}_{eq}$</span><span lang="en">Result: $\mathbf{Z}_{eq}$, then $\mathbf{I} = \mathbf{V}/\mathbf{Z}_{eq}$</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="cr" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>العلامة</dt><dd>تحاول تلقى معاوقتين توالي أو توازي وما تلقى. غالبًا قنطرة.</dd>
-      <dt>الحيلة</dt><dd>لو الثلاث متساوية (متزنة): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ وخلصت.</dd></dl></div>
-    <div class="fb-info" data-for="cs1" hidden><h4>عندك Δ</h4><dl>
-      <dt>متى؟</dt><dd>ثلاث معاوقات على أضلاع مثلث بين ثلاث عقد.</dd></dl></div>
-    <div class="fb-info" data-for="cs2" hidden><h4>عندك Y</h4><dl>
-      <dt>متى؟</dt><dd>ثلاث معاوقات من ثلاث عقد لمركز واحد.</dd></dl></div>
-    <div class="fb-info" data-for="ca1" hidden><h4>من Δ إلى Y: $\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</h4><dl>
-      <dt>القاعدة</dt><dd>ضرب الضلعين اللي جنب العقدة ÷ مجموع الثلاثة.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{Z}_a = 2$ و $\mathbf{Z}_b = \mathbf{Z}_c = 4$: $\mathbf{Z}_1 = \dfrac{16}{10} = 1.6\ \Omega$.</dd>
-      <dt>متزنة</dt><dd>$\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$: $6 + j9 \to 2 + j3$.</dd></dl></div>
-    <div class="fb-info" data-for="ca2" hidden><h4>من Y إلى Δ: $\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</h4><dl>
-      <dt>الرموز</dt><dd>$N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1$، وكل ضلع يقسم على فرع الـ Y اللي يقابله.</dd>
-      <dt>مثال سريع</dt><dd>الثلاث $2\ \Omega$: $N = 12$ و $\mathbf{Z}_a = 6 = 3 \times 2$ ✓</dd>
-      <dt>الخطأ الشائع</dt><dd>تقسم على الفرع اللي جنب الضلع بدل اللي يقابله.</dd></dl></div>
-    <div class="fb-info" data-for="csp" hidden><h4>صار فيه توالي وتوازي: $\mathbf{Z}_{eq}$</h4><dl>
-      <dt>الحيلة</dt><dd>بعد التحويل تطلع لك معاوقات توالي وتوازي واضحة. كمّل بالشجرة 1.</dd></dl></div>
-    <div class="fb-info" data-for="co" hidden><h4>الناتج</h4><dl>
-      <dt>مثال سريع</dt><dd>في مثال 3: $\mathbf{I} = 3.666\angle{-4.204^\circ}\ \text{A}$.</dd></dl></div>
+    <div class="fb-info" data-for="cr" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">العلامة</span><span lang="en">The sign</span></dt><dd><span lang="ar">تحاول تلقى معاوقتين توالي أو توازي وما تلقى. غالبًا قنطرة.</span><span lang="en">You try to find two impedances in series or parallel and can't. Usually a bridge.</span></dd>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">لو الثلاث متساوية (متزنة): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ وخلصت.</span><span lang="en">If all three are equal (balanced): $\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$ and you're done.</span></dd></dl></div>
+    <div class="fb-info" data-for="cs1" hidden><h4><span lang="ar">عندك Δ</span><span lang="en">You have a Δ</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">ثلاث معاوقات على أضلاع مثلث بين ثلاث عقد.</span><span lang="en">Three impedances on the sides of a triangle between three nodes.</span></dd></dl></div>
+    <div class="fb-info" data-for="cs2" hidden><h4><span lang="ar">عندك Y</span><span lang="en">You have a Y</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">ثلاث معاوقات من ثلاث عقد لمركز واحد.</span><span lang="en">Three impedances from three nodes to one center.</span></dd></dl></div>
+    <div class="fb-info" data-for="ca1" hidden><h4><span lang="ar">من Δ إلى Y: $\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</span><span lang="en">From Δ to Y: $\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</span></h4><dl>
+      <dt><span lang="ar">القاعدة</span><span lang="en">The rule</span></dt><dd><span lang="ar">ضرب الضلعين اللي جنب العقدة ÷ مجموع الثلاثة.</span><span lang="en">Product of the two sides next to the node ÷ sum of all three.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{Z}_a = 2$ و $\mathbf{Z}_b = \mathbf{Z}_c = 4$: $\mathbf{Z}_1 = \dfrac{16}{10} = 1.6\ \Omega$.</span><span lang="en">$\mathbf{Z}_a = 2$ and $\mathbf{Z}_b = \mathbf{Z}_c = 4$: $\mathbf{Z}_1 = \dfrac{16}{10} = 1.6\ \Omega$.</span></dd>
+      <dt><span lang="ar">متزنة</span><span lang="en">Balanced</span></dt><dd>$\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta$: $6 + j9 \to 2 + j3$.</dd></dl></div>
+    <div class="fb-info" data-for="ca2" hidden><h4><span lang="ar">من Y إلى Δ: $\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</span><span lang="en">From Y to Δ: $\mathbf{Z}_a = \dfrac{N}{\mathbf{Z}_1}$</span></h4><dl>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1$، وكل ضلع يقسم على فرع الـ Y اللي يقابله.</span><span lang="en">$N = \mathbf{Z}_1\mathbf{Z}_2 + \mathbf{Z}_2\mathbf{Z}_3 + \mathbf{Z}_3\mathbf{Z}_1$, and each side divides by the Y branch opposite it.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">الثلاث $2\ \Omega$: $N = 12$ و $\mathbf{Z}_a = 6 = 3 \times 2$ ✓</span><span lang="en">All three $2\ \Omega$: $N = 12$ and $\mathbf{Z}_a = 6 = 3 \times 2$ ✓</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقسم على الفرع اللي جنب الضلع بدل اللي يقابله.</span><span lang="en">Dividing by the branch next to the side instead of the one opposite it.</span></dd></dl></div>
+    <div class="fb-info" data-for="csp" hidden><h4><span lang="ar">صار فيه توالي وتوازي: $\mathbf{Z}_{eq}$</span><span lang="en">Now there's series and parallel: $\mathbf{Z}_{eq}$</span></h4><dl>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">بعد التحويل تطلع لك معاوقات توالي وتوازي واضحة. كمّل بالشجرة 1.</span><span lang="en">After the transformation you get clear series and parallel impedances. Continue with tree 1.</span></dd></dl></div>
+    <div class="fb-info" data-for="co" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">في مثال 3: $\mathbf{I} = 3.666\angle{-4.204^\circ}\ \text{A}$.</span><span lang="en">In Example 3: $\mathbf{I} = 3.666\angle{-4.204^\circ}\ \text{A}$.</span></dd></dl></div>
   </div>
 
 </section>
 
 <!-- ================= مثال 1 ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>المعاوقة الداخلة لدائرة</h2></div>
-  <div class="tags"><span class="tag">Example 9.10</span><span class="tag">توالي · توازي</span></div>
-  <p>أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$ للدائرة، والتردد $\omega = 50$ rad/s:</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">المعاوقة الداخلة لدائرة</span><span lang="en">Input impedance of a circuit</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.10</span><span class="tag"><span lang="ar">توالي · توازي</span><span lang="en">series · parallel</span></span></div>
+  <p><span lang="ar">أوجد المعاوقة الداخلة $\mathbf{Z}_{in}$ للدائرة، والتردد $\omega = 50$ rad/s:</span><span lang="en">Find the input impedance $\mathbf{Z}_{in}$ of the circuit, at frequency $\omega = 50$ rad/s:</span></p>
   <figure class="fig">
     <svg viewBox="0 0 320 185" role="img" aria-label="مكثف 2 ملي فاراد على التوالي من طرف الدخل، بعده فرع رأسي فيه مقاومة 3 أوم ومكثف 10 ملي فاراد، وبعده ملف 0.2 هنري ثم مقاومة 8 أوم للأسفل" style="max-width:340px">
       <circle class="term" cx="30" cy="40" r="4"/><circle class="term" cx="30" cy="160" r="4"/>
@@ -427,39 +427,39 @@
       <text class="lbl" x="168" y="127">10 mF</text>
       <text class="lbl" x="284" y="104">8 Ω</text>
     </svg>
-    <figcaption>Figure 9.23: الدائرة اللي نبي معاوقتها من طرفي الدخل.</figcaption>
+    <figcaption><span lang="ar">Figure 9.23: الدائرة اللي نبي معاوقتها من طرفي الدخل.</span><span lang="en">Figure 9.23: the circuit whose impedance we want, seen from the input terminals.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar az as1 ae1 as2 ae2 ao">معاوقات، ثم توالي وتوازي</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="ar az as1 ae1 as2 ae2 ao">معاوقات، ثم توالي وتوازي</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="ar az as1 ae1 as2 ae2 ao">impedances, then series and parallel</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ الدائرة</h4>
-      <p class="why">نقسمها لثلاث معاوقات: $\mathbf{Z}_1$ المكثف 2&nbsp;mF، و $\mathbf{Z}_2$ المقاومة 3&nbsp;Ω مع المكثف 10&nbsp;mF (توالي)، و $\mathbf{Z}_3$ الملف 0.2&nbsp;H مع المقاومة 8&nbsp;Ω (توالي). الفرعين $\mathbf{Z}_2$ و $\mathbf{Z}_3$ على التوازي، والكل على التوالي مع $\mathbf{Z}_1$: يعني $\mathbf{Z}_{in} = \mathbf{Z}_1 + \mathbf{Z}_2 \parallel \mathbf{Z}_3$.</p>
+      <h4><span lang="ar">اقرأ الدائرة</span><span lang="en">Read the circuit</span></h4>
+      <p class="why"><span lang="ar">نقسمها لثلاث معاوقات: $\mathbf{Z}_1$ المكثف 2&nbsp;mF، و $\mathbf{Z}_2$ المقاومة 3&nbsp;Ω مع المكثف 10&nbsp;mF (توالي)، و $\mathbf{Z}_3$ الملف 0.2&nbsp;H مع المقاومة 8&nbsp;Ω (توالي). الفرعين $\mathbf{Z}_2$ و $\mathbf{Z}_3$ على التوازي، والكل على التوالي مع $\mathbf{Z}_1$: يعني $\mathbf{Z}_{in} = \mathbf{Z}_1 + \mathbf{Z}_2 \parallel \mathbf{Z}_3$.</span><span lang="en">We split it into three impedances: $\mathbf{Z}_1$ is the 2&nbsp;mF capacitor, $\mathbf{Z}_2$ is the 3&nbsp;Ω resistor with the 10&nbsp;mF capacitor (series), and $\mathbf{Z}_3$ is the 0.2&nbsp;H inductor with the 8&nbsp;Ω resistor (series). The branches $\mathbf{Z}_2$ and $\mathbf{Z}_3$ are in parallel, and all of that is in series with $\mathbf{Z}_1$: so $\mathbf{Z}_{in} = \mathbf{Z}_1 + \mathbf{Z}_2 \parallel \mathbf{Z}_3$.</span></p>
     </li>
     <li class="step">
-      <h4>معاوقة كل جزء <span class="const">ω = 50</span></h4>
+      <h4><span lang="ar">معاوقة كل جزء <span class="const">ω = 50</span></span><span lang="en">Impedance of each part <span class="const">ω = 50</span></span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z}_1 = \frac{1}{j(50)(0.002)} = \frac{1}{j0.1} = -j10\ \Omega \\[4pt] \mathbf{Z}_2 = 3 + \frac{1}{j(50)(0.01)} = 3 - j2\ \Omega \\[4pt] \mathbf{Z}_3 = 8 + j(50)(0.2) = 8 + j10\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>التوازي: $\mathbf{Z}_2 \parallel \mathbf{Z}_3$ <span class="const">الضرب على الجمع</span></h4>
+      <h4><span lang="ar">التوازي: $\mathbf{Z}_2 \parallel \mathbf{Z}_3$ <span class="const">الضرب على الجمع</span></span><span lang="en">Parallel: $\mathbf{Z}_2 \parallel \mathbf{Z}_3$ <span class="const">product over sum</span></span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z}_2 \parallel \mathbf{Z}_3 = \frac{(3 - j2)(8 + j10)}{11 + j8} \\ = \frac{44 + j14}{11 + j8} \cdot \frac{11 - j8}{11 - j8} \\ = \frac{596 - j198}{185} = 3.22 - j1.07\ \Omega\end{gathered}\]</div>
-      <p class="why">ضربنا فوق وتحت في مرافق المقام $11 - j8$ عشان نتخلص من $j$ تحت، والمقام صار $11^2 + 8^2 = 185$.</p>
+      <p class="why"><span lang="ar">ضربنا فوق وتحت في مرافق المقام $11 - j8$ عشان نتخلص من $j$ تحت، والمقام صار $11^2 + 8^2 = 185$.</span><span lang="en">We multiplied top and bottom by the conjugate of the denominator, $11 - j8$, to remove $j$ from the bottom, and the denominator became $11^2 + 8^2 = 185$.</span></p>
     </li>
     <li class="step">
-      <h4>اجمع مع $\mathbf{Z}_1$</h4>
+      <h4><span lang="ar">اجمع مع $\mathbf{Z}_1$</span><span lang="en">Add $\mathbf{Z}_1$</span></h4>
       <div class="m">\[\mathbf{Z}_{in} = -j10 + 3.22 - j1.07\]</div>
     </li>
     <li class="step final">
       <div class="result">$\mathbf{Z}_{in} = \X{3.22} \Y{- j11.07}\ \Omega$</div>
-      <p class="sanity">الجزء التخيلي سالب، يعني الدائرة كلها سعوية عند $\omega = 50$. والمسيطر هو المكثف 2&nbsp;mF لوحده بـ $-j10$ ✓</p>
+      <p class="sanity"><span lang="ar">الجزء التخيلي سالب، يعني الدائرة كلها سعوية عند $\omega = 50$. والمسيطر هو المكثف 2&nbsp;mF لوحده بـ $-j10$ ✓</span><span lang="en">The imaginary part is negative, so the whole circuit is capacitive at $\omega = 50$. The 2&nbsp;mF capacitor dominates on its own with $-j10$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= مثال 2 ================= -->
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>مقسم الجهد في عالم الفيزورات</h2></div>
-  <div class="tags"><span class="tag">Example 9.11</span><span class="tag">توازي · مقسم جهد</span></div>
-  <p>أوجد $v_o(t)$ في الدائرة:</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">مقسم الجهد في عالم الفيزورات</span><span lang="en">The voltage divider in the phasor world</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.11</span><span class="tag"><span lang="ar">توازي · مقسم جهد</span><span lang="en">parallel · voltage divider</span></span></div>
+  <p><span lang="ar">أوجد $v_o(t)$ في الدائرة:</span><span lang="en">Find $v_o(t)$ in the circuit:</span></p>
   <figure class="fig">
     <svg viewBox="0 0 320 200" role="img" aria-label="مصدر 20 cos(4t − 15°) مع مقاومة 60 أوم على التوالي، وبعدها مكثف 10 ملي فاراد وملف 5 هنري على التوازي، والجهد vo على الملف" style="max-width:340px">
       <circle class="wire" cx="50" cy="100" r="17"/>
@@ -475,40 +475,40 @@
       <text class="lbl" x="296" y="76" text-anchor="middle">+</text><text class="lbl" x="296" y="104" text-anchor="middle">v<tspan class="sb" dy="3">o</tspan></text><text class="lbl" x="296" y="134" text-anchor="middle">−</text>
       <text class="lbl" x="14" y="190">vs = 20 cos(4t − 15°)</text>
     </svg>
-    <figcaption>Figure 9.25: مقاومة على التوالي مع ملف ومكثف على التوازي.</figcaption>
+    <figcaption><span lang="ar">Figure 9.25: مقاومة على التوالي مع ملف ومكثف على التوازي.</span><span lang="en">Figure 9.25: a resistor in series with an inductor and a capacitor in parallel.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn bs1 bd1 bk bo">اختصر التوازي، ثم مقسم الجهد</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="br bn bs1 bd1 bk bo">اختصر التوازي، ثم مقسم الجهد</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="br bn bs1 bd1 bk bo">reduce the parallel, then the voltage divider</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ السؤال</h4>
-      <p class="why">أول شي نحوّل الدائرة لعالم الفيزورات: المصدر يصير فيزور، والملف والمكثف يصيرون معاوقات. بعدها الملف والمكثف على التوازي نسميهم $\mathbf{Z}_2$، والمقاومة $\mathbf{Z}_1 = 60\ \Omega$ على التوالي معهم، و $v_o$ هو جهد $\mathbf{Z}_2$. يعني مقسم جهد.</p>
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <p class="why"><span lang="ar">أول شي نحوّل الدائرة لعالم الفيزورات: المصدر يصير فيزور، والملف والمكثف يصيرون معاوقات. بعدها الملف والمكثف على التوازي نسميهم $\mathbf{Z}_2$، والمقاومة $\mathbf{Z}_1 = 60\ \Omega$ على التوالي معهم، و $v_o$ هو جهد $\mathbf{Z}_2$. يعني مقسم جهد.</span><span lang="en">First we move the circuit into the phasor world: the source becomes a phasor, and the inductor and capacitor become impedances. Then we call the parallel inductor and capacitor $\mathbf{Z}_2$, the resistor $\mathbf{Z}_1 = 60\ \Omega$ is in series with them, and $v_o$ is the voltage across $\mathbf{Z}_2$. So it's a voltage divider.</span></p>
     </li>
     <li class="step">
-      <h4>التحويل للفيزورات <span class="const">ω = 4</span></h4>
+      <h4><span lang="ar">التحويل للفيزورات <span class="const">ω = 4</span></span><span lang="en">To phasors <span class="const">ω = 4</span></span></h4>
       <div class="m">\[\begin{gathered}v_s = 20\cos(4t - 15^\circ) \Rightarrow \mathbf{V}_s = 20\angle -15^\circ\ \text{V} \\[4pt] 10\ \text{mF} \Rightarrow \frac{1}{j(4)(0.01)} = -j25\ \Omega \\[4pt] 5\ \text{H} \Rightarrow j(4)(5) = j20\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>التوازي: $-j25 \parallel j20$</h4>
+      <h4><span lang="ar">التوازي: $-j25 \parallel j20$</span><span lang="en">Parallel: $-j25 \parallel j20$</span></h4>
       <div class="m">\[\mathbf{Z}_2 = \frac{(-j25)(j20)}{-j25 + j20} = \frac{500}{-j5} = j100\ \Omega\]</div>
-      <p class="why">لاحظ: $j100$ أكبر من الاثنين! لأن الملف والمكثف يلغون بعض في المقام ($-j25 + j20 = -j5$ صغير). في DC التوازي دايماً يصغّر، هنا لا.</p>
+      <p class="why"><span lang="ar">لاحظ: $j100$ أكبر من الاثنين! لأن الملف والمكثف يلغون بعض في المقام ($-j25 + j20 = -j5$ صغير). في DC التوازي دايماً يصغّر، هنا لا.</span><span lang="en">Notice: $j100$ is larger than both! Because the inductor and capacitor cancel in the denominator ($-j25 + j20 = -j5$ is small). In DC, parallel always makes things smaller; here it doesn't.</span></p>
     </li>
     <li class="step">
-      <h4>مقسم الجهد</h4>
+      <h4><span lang="ar">مقسم الجهد</span><span lang="en">Voltage divider</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{V}_o = \frac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{V}_s = \frac{j100}{60 + j100}\,(20\angle -15^\circ) \\ = (0.8575\angle 30.96^\circ)(20\angle -15^\circ) \\ = \X{17.15}\angle\Z{15.96^\circ}\ \text{V}\end{gathered}\]</div>
-      <p class="why">في الضرب السعات تنضرب ($0.8575 \times 20$) والزوايا تنجمع ($30.96^\circ - 15^\circ$).</p>
+      <p class="why"><span lang="ar">في الضرب السعات تنضرب ($0.8575 \times 20$) والزوايا تنجمع ($30.96^\circ - 15^\circ$).</span><span lang="en">When multiplying, magnitudes multiply ($0.8575 \times 20$) and angles add ($30.96^\circ - 15^\circ$).</span></p>
     </li>
     <li class="step final">
       <div class="result">$v_o(t) =$ $17.15\cos(4t + 15.96^\circ)$ V</div>
-      <p class="sanity">السعة 17.15 أقل من 20، منطقي لأن جزء من جهد المصدر راح على المقاومة 60&nbsp;Ω ✓</p>
+      <p class="sanity"><span lang="ar">السعة 17.15 أقل من 20، منطقي لأن جزء من جهد المصدر راح على المقاومة 60&nbsp;Ω ✓</span><span lang="en">The amplitude 17.15 is less than 20, which makes sense since part of the source voltage went to the 60&nbsp;Ω resistor ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= مثال 3 ================= -->
 <section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>فك الدائرة بتحويل Δ إلى Y</h2></div>
-  <div class="tags"><span class="tag">Example 9.12</span><span class="tag">Δ-Y · توالي · توازي</span></div>
-  <p>أوجد التيار $\mathbf{I}$ في الدائرة:</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 3</span></span><span lang="en"><span class="ex-badge">Example 3</span></span><h2><span lang="ar">فك الدائرة بتحويل Δ إلى Y</span><span lang="en">Untangle the circuit with a Δ-to-Y transformation</span></h2></div>
+  <div class="tags"><span class="tag">Example 9.12</span><span class="tag"><span lang="ar">Δ-Y · توالي · توازي</span><span lang="en">Δ-Y · series · parallel</span></span></div>
+  <p><span lang="ar">أوجد التيار $\mathbf{I}$ في الدائرة:</span><span lang="en">Find the current $\mathbf{I}$ in the circuit:</span></p>
   <figure class="fig">
     <svg viewBox="0 0 380 230" role="img" aria-label="مصدر 50 بزاوية صفر، مقاومة 12 أوم، ثم بين العقد a و b و c مثلث: j4 بين a و b، و 2 ناقص j4 بين a و c، و 8 بين b و c. ومن b مكثف سالب j3 للأسفل، ومن c ملف j6 ومقاومة 8 للأسفل" style="max-width:400px">
       <circle class="wire" cx="80" cy="150" r="17"/>
@@ -536,17 +536,17 @@
       <text class="lbl" x="354" y="184">8 Ω</text>
       <text class="lbl" x="170" y="118" text-anchor="end">a</text><text class="lbl" x="250" y="118" text-anchor="end">b</text><text class="lbl" x="350" y="104">c</text>
     </svg>
-    <figcaption>Figure 9.28: بين العقد $a$ و $b$ و $c$ ثلاث معاوقات على شكل مثلث (Δ).</figcaption>
+    <figcaption><span lang="ar">Figure 9.28: بين العقد $a$ و $b$ و $c$ ثلاث معاوقات على شكل مثلث (Δ).</span><span lang="en">Figure 9.28: between nodes $a$, $b$ and $c$ there are three impedances shaped like a triangle (Δ).</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr cs1 ca1 csp co">Δ إلى Y، ثم توالي وتوازي</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board3" data-path="cr cs1 ca1 csp co">Δ إلى Y، ثم توالي وتوازي</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board3" data-path="cr cs1 ca1 csp co">Δ to Y, then series and parallel</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ الدائرة</h4>
-      <p class="why">المقاومة 12&nbsp;Ω على التوالي مع المصدر، بس بعدها العقد $a$ و $b$ و $c$ مربوطة بمثلث: $j4$ بين $a$ و $b$، و $2 - j4$ بين $a$ و $c$، و $8$ بين $b$ و $c$. ما فيه توالي ولا توازي واضح، فنحوّل هذي الـ Δ إلى Y.</p>
+      <h4><span lang="ar">اقرأ الدائرة</span><span lang="en">Read the circuit</span></h4>
+      <p class="why"><span lang="ar">المقاومة 12&nbsp;Ω على التوالي مع المصدر، بس بعدها العقد $a$ و $b$ و $c$ مربوطة بمثلث: $j4$ بين $a$ و $b$، و $2 - j4$ بين $a$ و $c$، و $8$ بين $b$ و $c$. ما فيه توالي ولا توازي واضح، فنحوّل هذي الـ Δ إلى Y.</span><span lang="en">The 12&nbsp;Ω resistor is in series with the source, but after it nodes $a$, $b$ and $c$ are connected as a triangle: $j4$ between $a$ and $b$, $2 - j4$ between $a$ and $c$, and $8$ between $b$ and $c$. There's no clear series or parallel, so we convert this Δ into a Y.</span></p>
     </li>
     <li class="step">
-      <h4>حوّل Δ إلى Y <span class="const">المجموع = 10</span></h4>
-      <p class="why">مجموع الأضلاع: $j4 + (2 - j4) + 8 = 10\ \Omega$. وكل فرع = ضرب الضلعين اللي عند عقدته ÷ 10:</p>
+      <h4><span lang="ar">حوّل Δ إلى Y <span class="const">المجموع = 10</span></span><span lang="en">Convert Δ to Y <span class="const">sum = 10</span></span></h4>
+      <p class="why"><span lang="ar">مجموع الأضلاع: $j4 + (2 - j4) + 8 = 10\ \Omega$. وكل فرع = ضرب الضلعين اللي عند عقدته ÷ 10:</span><span lang="en">Sum of the sides: $j4 + (2 - j4) + 8 = 10\ \Omega$. Each branch = product of the two sides at its node ÷ 10:</span></p>
       <div class="m">\[\begin{gathered}\mathbf{Z}_{an} = \frac{j4\,(2 - j4)}{10} = 1.6 + j0.8\ \Omega \\[4pt] \mathbf{Z}_{bn} = \frac{j4\,(8)}{10} = j3.2\ \Omega \\[4pt] \mathbf{Z}_{cn} = \frac{8\,(2 - j4)}{10} = 1.6 - j3.2\ \Omega\end{gathered}\]</div>
       <figure class="fig">
         <svg viewBox="0 0 380 230" role="img" aria-label="نفس الدائرة بعد التحويل: من a المعاوقة Zan للمركز n، ومن n المعاوقة Zbn للعقدة b والمعاوقة Zcn للعقدة c" style="max-width:400px">
@@ -572,135 +572,135 @@
           <text class="lbl" x="354" y="184">8 Ω</text>
           <text class="lbl" x="170" y="118" text-anchor="end">a</text><text class="lbl" x="242" y="124" text-anchor="end">b</text><text class="lbl" x="350" y="104">c</text>
         </svg>
-        <figcaption>Figure 9.29: بعد التحويل صار فيه توالي وتوازي واضح.</figcaption>
+        <figcaption><span lang="ar">Figure 9.29: بعد التحويل صار فيه توالي وتوازي واضح.</span><span lang="en">Figure 9.29: after the transformation there's clear series and parallel.</span></figcaption>
       </figure>
     </li>
     <li class="step">
-      <h4>المعاوقة الكلية</h4>
-      <p class="why">من $n$ فيه فرعين للأرضي: الأول $\mathbf{Z}_{bn}$ ثم $-j3$ (توالي)، والثاني $\mathbf{Z}_{cn}$ ثم $8 + j6$ (توالي). والفرعين على التوازي، وقبلهم 12&nbsp;Ω و $\mathbf{Z}_{an}$ على التوالي:</p>
+      <h4><span lang="ar">المعاوقة الكلية</span><span lang="en">Total impedance</span></h4>
+      <p class="why"><span lang="ar">من $n$ فيه فرعين للأرضي: الأول $\mathbf{Z}_{bn}$ ثم $-j3$ (توالي)، والثاني $\mathbf{Z}_{cn}$ ثم $8 + j6$ (توالي). والفرعين على التوازي، وقبلهم 12&nbsp;Ω و $\mathbf{Z}_{an}$ على التوالي:</span><span lang="en">From $n$ there are two branches to ground: the first is $\mathbf{Z}_{bn}$ then $-j3$ (series), and the second is $\mathbf{Z}_{cn}$ then $8 + j6$ (series). The two branches are in parallel, and before them 12&nbsp;Ω and $\mathbf{Z}_{an}$ are in series:</span></p>
       <div class="m">\[\begin{gathered}\mathbf{Z} = 12 + \mathbf{Z}_{an} + (\mathbf{Z}_{bn} - j3) \parallel (\mathbf{Z}_{cn} + 8 + j6) \\ = 13.6 + j0.8 + (j0.2) \parallel (9.6 + j2.8) \\ = 13.6 + j0.8 + \frac{j0.2\,(9.6 + j2.8)}{9.6 + j3} \\ = 13.6 + j1 = 13.64\angle 4.204^\circ\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>التيار: قانون أوم</h4>
+      <h4><span lang="ar">التيار: قانون أوم</span><span lang="en">Current: Ohm's law</span></h4>
       <div class="m">\[\mathbf{I} = \frac{\mathbf{V}}{\mathbf{Z}} = \frac{50\angle 0^\circ}{13.64\angle 4.204^\circ}\]</div>
     </li>
     <li class="step final">
       <div class="result">$\mathbf{I} = \X{3.666}\angle\Z{-4.204^\circ}\ \text{A}$</div>
-      <p class="sanity">الزاوية صغيرة لأن المعاوقة الكلية تقريباً مقاومة بس ($13.6 + j1$) ✓</p>
+      <p class="sanity"><span lang="ar">الزاوية صغيرة لأن المعاوقة الكلية تقريباً مقاومة بس ($13.6 + j1$) ✓</span><span lang="en">The angle is small because the total impedance is almost purely resistive ($13.6 + j1$) ✓</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس. قرّب لمنزلتين عشريتين على الأقل.</span><span lang="en">Type just the number. Round to at least two decimal places.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>$\mathbf{Z}_1 = 3 + j4$ و $\mathbf{Z}_2 = 5 - j10$ (بالأوم) على التوالي. كم سعة المكافئة $|\mathbf{Z}_{eq}|$ بالأوم؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">$\mathbf{Z}_1 = 3 + j4$ و $\mathbf{Z}_2 = 5 - j10$ (بالأوم) على التوالي. كم سعة المكافئة $|\mathbf{Z}_{eq}|$ بالأوم؟</span><span lang="en">$\mathbf{Z}_1 = 3 + j4$ and $\mathbf{Z}_2 = 5 - j10$ (in ohms) in series. What is the magnitude of the equivalent $|\mathbf{Z}_{eq}|$ in ohms?</span></p>
     <div class="check" data-answer="10"></div>
-    <details class="hint"><p>اجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي، وبعدها احسب السعة.</p></details>
+    <details class="hint"><p><span lang="ar">اجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي، وبعدها احسب السعة.</span><span lang="en">Add real to real and imaginary to imaginary, then find the magnitude.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = 8 - j6$، و $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2}$ $= 10\ \Omega$</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$\mathbf{Z}_{eq} = 8 - j6$، و $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2}$ $= 10\ \Omega$</span><span lang="en">$\mathbf{Z}_{eq} = 8 - j6$, and $|\mathbf{Z}_{eq}| = \sqrt{8^2 + 6^2}$ $= 10\ \Omega$</span></div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">سهل</span></div>
-    <p>مقاومة وملف على التوالي. الفولتميتر يقرأ 12&nbsp;V على المقاومة و 5&nbsp;V على الملف (سعات). كم سعة جهد المصدر بالفولت؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">مقاومة وملف على التوالي. الفولتميتر يقرأ 12&nbsp;V على المقاومة و 5&nbsp;V على الملف (سعات). كم سعة جهد المصدر بالفولت؟</span><span lang="en">A resistor and an inductor in series. The voltmeter reads 12&nbsp;V across the resistor and 5&nbsp;V across the inductor (magnitudes). What is the source voltage magnitude in volts?</span></p>
     <div class="check" data-answer="13"></div>
-    <details class="hint"><p>$\mathbf{V}_R$ و $\mathbf{V}_L$ بينهم <span class="ltr">90°</span>، فالمصدر مثل الوتر في مثلث قائم.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{V}_R$ و $\mathbf{V}_L$ بينهم <span class="ltr">90°</span>، فالمصدر مثل الوتر في مثلث قائم.</span><span lang="en">$\mathbf{V}_R$ and $\mathbf{V}_L$ are <span class="ltr">90°</span> apart, so the source is like the hypotenuse of a right triangle.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$|\mathbf{V}_s| = \sqrt{12^2 + 5^2}$ $= 13$ V</div><p class="sanity">مو 17! القراءات ما تنجمع مباشرة، الفيزورات هي اللي تنجمع.</p></li>
+      <li class="step final"><div class="result">$|\mathbf{V}_s| = \sqrt{12^2 + 5^2}$ $= 13$ V</div><p class="sanity"><span lang="ar">مو 17! القراءات ما تنجمع مباشرة، الفيزورات هي اللي تنجمع.</span><span lang="en">Not 17! Readings don't add directly; the phasors are what add.</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">متوسط</span></div>
-    <p>مقاومة 4&nbsp;Ω على التوازي مع مكثف معاوقته $-j4\ \Omega$. كم الجزء التخيلي $X$ للمكافئة $\mathbf{Z}_{eq}$؟ (انتبه للإشارة)</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">مقاومة 4&nbsp;Ω على التوازي مع مكثف معاوقته $-j4\ \Omega$. كم الجزء التخيلي $X$ للمكافئة $\mathbf{Z}_{eq}$؟ (انتبه للإشارة)</span><span lang="en">A 4&nbsp;Ω resistor in parallel with a capacitor of impedance $-j4\ \Omega$. What is the imaginary part $X$ of the equivalent $\mathbf{Z}_{eq}$? (watch the sign)</span></p>
     <div class="check" data-answer="-2"></div>
-    <details class="hint"><p>$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وبعدها اضرب فوق وتحت في مرافق المقام.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، وبعدها اضرب فوق وتحت في مرافق المقام.</span><span lang="en">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$, then multiply top and bottom by the conjugate of the denominator.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4}$ $= \dfrac{-j16\,(4 + j4)}{32}$ $= 2 - j2\ \Omega$، يعني $X = -2$</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4}$ $= \dfrac{-j16\,(4 + j4)}{32}$ $= 2 - j2\ \Omega$، يعني $X = -2$</span><span lang="en">$\mathbf{Z}_{eq} = \dfrac{4(-j4)}{4 - j4}$ $= \dfrac{-j16\,(4 + j4)}{32}$ $= 2 - j2\ \Omega$, so $X = -2$</span></div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">متوسط</span></div>
-    <p>مصدر $10\angle 0^\circ$ V على مقاومة 6&nbsp;Ω ومكثف $-j8\ \Omega$ على التوالي. كم سعة جهد المكثف $|\mathbf{V}_C|$ بالفولت؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">مصدر $10\angle 0^\circ$ V على مقاومة 6&nbsp;Ω ومكثف $-j8\ \Omega$ على التوالي. كم سعة جهد المكثف $|\mathbf{V}_C|$ بالفولت؟</span><span lang="en">A $10\angle 0^\circ$ V source across a 6&nbsp;Ω resistor and a $-j8\ \Omega$ capacitor in series. What is the capacitor voltage magnitude $|\mathbf{V}_C|$ in volts?</span></p>
     <div class="check" data-answer="8"></div>
-    <details class="hint"><p>مقسم الجهد، وخذ السعات: $|\mathbf{V}_C| = \dfrac{|\mathbf{Z}_C|}{|\mathbf{Z}_R + \mathbf{Z}_C|}\,|\mathbf{V}|$.</p></details>
+    <details class="hint"><p><span lang="ar">مقسم الجهد، وخذ السعات: $|\mathbf{V}_C| = \dfrac{|\mathbf{Z}_C|}{|\mathbf{Z}_R + \mathbf{Z}_C|}\,|\mathbf{V}|$.</span><span lang="en">Voltage divider, using magnitudes: $|\mathbf{V}_C| = \dfrac{|\mathbf{Z}_C|}{|\mathbf{Z}_R + \mathbf{Z}_C|}\,|\mathbf{V}|$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$|\mathbf{V}_C| = \dfrac{8}{|6 - j8|}\,(10)$ $= \dfrac{8}{10}\,(10) = 8$ V</div><p class="sanity">نفس بداية المختبر: 6 و 8 والمصدر 10 ✓</p></li>
+      <li class="step final"><div class="result">$|\mathbf{V}_C| = \dfrac{8}{|6 - j8|}\,(10)$ $= \dfrac{8}{10}\,(10) = 8$ V</div><p class="sanity"><span lang="ar">نفس بداية المختبر: 6 و 8 والمصدر 10 ✓</span><span lang="en">Same as the lab's start: 6 and 8 and a source of 10 ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">متوسط</span></div>
-    <p>تيار $5\angle 0^\circ$ A يدخل على $\mathbf{Z}_1 = 3\ \Omega$ و $\mathbf{Z}_2 = j4\ \Omega$ على التوازي. كم سعة التيار في $\mathbf{Z}_1$، يعني $|\mathbf{I}_1|$ بالأمبير؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين هـ</span><span lang="en">Exercise E</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">تيار $5\angle 0^\circ$ A يدخل على $\mathbf{Z}_1 = 3\ \Omega$ و $\mathbf{Z}_2 = j4\ \Omega$ على التوازي. كم سعة التيار في $\mathbf{Z}_1$، يعني $|\mathbf{I}_1|$ بالأمبير؟</span><span lang="en">A current of $5\angle 0^\circ$ A enters $\mathbf{Z}_1 = 3\ \Omega$ and $\mathbf{Z}_2 = j4\ \Omega$ in parallel. What is the current magnitude in $\mathbf{Z}_1$, $|\mathbf{I}_1|$, in amperes?</span></p>
     <div class="check" data-answer="4"></div>
-    <details class="hint"><p>مقسم التيار: فوق المعاوقة <b>الثانية</b>.</p></details>
+    <details class="hint"><p><span lang="ar">مقسم التيار: فوق المعاوقة <b>الثانية</b>.</span><span lang="en">Current divider: the <b>other</b> impedance goes on top.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="result">$\mathbf{I}_1 = \dfrac{j4}{3 + j4}\,(5)$ $= \dfrac{4\angle 90^\circ}{5\angle 53.13^\circ}\,(5)$ $= 4\angle 36.87^\circ$ A</div><p class="sanity">$\mathbf{Z}_1$ أصغر من $\mathbf{Z}_2$، فتاخذ أكثر من نص التيار ✓</p></li>
+      <li class="step final"><div class="result">$\mathbf{I}_1 = \dfrac{j4}{3 + j4}\,(5)$ $= \dfrac{4\angle 90^\circ}{5\angle 53.13^\circ}\,(5)$ $= 4\angle 36.87^\circ$ A</div><p class="sanity"><span lang="ar">$\mathbf{Z}_1$ أصغر من $\mathbf{Z}_2$، فتاخذ أكثر من نص التيار ✓</span><span lang="en">$\mathbf{Z}_1$ is smaller than $\mathbf{Z}_2$, so it takes more than half the current ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين و</b><span class="lvl">تطبيق</span></div>
-    <p>شبكة دلتا فيها $\mathbf{Z}_a = 10$ و $\mathbf{Z}_b = j10$ و $\mathbf{Z}_c = -j10$ (بالأوم). حوّلها لواي: كم $|\mathbf{Z}_1|$ بالأوم؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين و</span><span lang="en">Exercise F</span></b><span class="lvl"><span lang="ar">تطبيق</span><span lang="en">Application</span></span></div>
+    <p><span lang="ar">شبكة دلتا فيها $\mathbf{Z}_a = 10$ و $\mathbf{Z}_b = j10$ و $\mathbf{Z}_c = -j10$ (بالأوم). حوّلها لواي: كم $|\mathbf{Z}_1|$ بالأوم؟</span><span lang="en">A delta network with $\mathbf{Z}_a = 10$, $\mathbf{Z}_b = j10$ and $\mathbf{Z}_c = -j10$ (in ohms). Convert it to a wye: what is $|\mathbf{Z}_1|$ in ohms?</span></p>
     <div class="check" data-answer="10"></div>
-    <details class="hint"><p>$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$، وانتبه: $j10 + (-j10) = 0$.</p></details>
+    <details class="hint"><p><span lang="ar">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$، وانتبه: $j10 + (-j10) = 0$.</span><span lang="en">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$, and careful: $j10 + (-j10) = 0$.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><p class="why">المجموع تحت الكسر: $10 + j10 - j10 = 10$، لأن $j10$ و $-j10$ يلغون بعض.</p><div class="result">$\mathbf{Z}_1 = \dfrac{(j10)(-j10)}{10}$ $= \dfrac{100}{10} = 10\ \Omega$</div></li>
+      <li class="step final"><p class="why"><span lang="ar">المجموع تحت الكسر: $10 + j10 - j10 = 10$، لأن $j10$ و $-j10$ يلغون بعض.</span><span lang="en">The sum in the denominator: $10 + j10 - j10 = 10$, because $j10$ and $-j10$ cancel.</span></p><div class="result">$\mathbf{Z}_1 = \dfrac{(j10)(-j10)}{10}$ $= \dfrac{100}{10} = 10\ \Omega$</div></li>
     </ol>
   </div>
 </section>
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تجمع قراءات الفولتميتر مباشرة</div>
-    <div class="pair"><div class="no">$|\mathbf{V}_R| + |\mathbf{V}_C| = |\mathbf{V}_s|$، يعني $6 + 8 = 14$</div><div class="yes">الفيزورات هي اللي تنجمع: $|\mathbf{V}_s| = \sqrt{6^2 + 8^2} = 10$</div></div></div>
-  <div class="mk"><div class="mk-title">تعكس المعاوقة في مقسم التيار</div>
-    <div class="pair"><div class="no">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div><div class="yes">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$ (الثانية فوق)</div></div></div>
-  <div class="mk"><div class="mk-title">تجمع المعاوقات المتوازية</div>
-    <div class="pair"><div class="no">$\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</div><div class="yes">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، أو $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2$</div></div></div>
-  <div class="mk"><div class="mk-title">تحسب إن التوازي دايماً يصغّر</div>
-    <div class="pair"><div class="no">$-j25 \parallel j20$ لازم أصغر من $j20$</div><div class="yes">$-j25 \parallel j20 = j100$، أكبر من الاثنين (مثال 2)</div></div></div>
-  <div class="mk"><div class="mk-title">تاخذ الضلعين الغلط في Δ إلى Y</div>
-    <div class="pair"><div class="no">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_a\mathbf{Z}_b}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</div><div class="yes">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$: الضلعين اللي جنب العقدة $a$</div></div></div>
-  <div class="mk"><div class="mk-title">تقلب نسبة الشبكة المتزنة</div>
-    <div class="pair"><div class="no">$\mathbf{Z}_Y = 3\mathbf{Z}_\Delta$</div><div class="yes">$\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$: الدلتا هي الأكبر</div></div></div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع قراءات الفولتميتر مباشرة</span><span lang="en">Adding voltmeter readings directly</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$|\mathbf{V}_R| + |\mathbf{V}_C| = |\mathbf{V}_s|$، يعني $6 + 8 = 14$</span><span lang="en">$|\mathbf{V}_R| + |\mathbf{V}_C| = |\mathbf{V}_s|$, so $6 + 8 = 14$</span></div><div class="yes"><span lang="ar">الفيزورات هي اللي تنجمع: $|\mathbf{V}_s| = \sqrt{6^2 + 8^2} = 10$</span><span lang="en">The phasors are what add: $|\mathbf{V}_s| = \sqrt{6^2 + 8^2} = 10$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تعكس المعاوقة في مقسم التيار</span><span lang="en">Flipping the impedance in the current divider</span></div>
+    <div class="pair"><div class="no">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</div><div class="yes"><span lang="ar">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$ (الثانية فوق)</span><span lang="en">$\mathbf{I}_1 = \dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$ (the other one on top)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع المعاوقات المتوازية</span><span lang="en">Adding parallel impedances</span></div>
+    <div class="pair"><div class="no">$\mathbf{Z}_{eq} = \mathbf{Z}_1 + \mathbf{Z}_2$</div><div class="yes"><span lang="ar">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$، أو $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2$</span><span lang="en">$\mathbf{Z}_{eq} = \dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$, or $\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحسب إن التوازي دايماً يصغّر</span><span lang="en">Thinking parallel always makes it smaller</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$-j25 \parallel j20$ لازم أصغر من $j20$</span><span lang="en">$-j25 \parallel j20$ must be smaller than $j20$</span></div><div class="yes"><span lang="ar">$-j25 \parallel j20 = j100$، أكبر من الاثنين (مثال 2)</span><span lang="en">$-j25 \parallel j20 = j100$, larger than both (Example 2)</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تاخذ الضلعين الغلط في Δ إلى Y</span><span lang="en">Taking the wrong two sides in Δ to Y</span></div>
+    <div class="pair"><div class="no">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_a\mathbf{Z}_b}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$</div><div class="yes"><span lang="ar">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$: الضلعين اللي جنب العقدة $a$</span><span lang="en">$\mathbf{Z}_1 = \dfrac{\mathbf{Z}_b\mathbf{Z}_c}{\mathbf{Z}_a + \mathbf{Z}_b + \mathbf{Z}_c}$: the two sides next to node $a$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تقلب نسبة الشبكة المتزنة</span><span lang="en">Flipping the balanced-network ratio</span></div>
+    <div class="pair"><div class="no">$\mathbf{Z}_Y = 3\mathbf{Z}_\Delta$</div><div class="yes"><span lang="ar">$\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$: الدلتا هي الأكبر</span><span lang="en">$\mathbf{Z}_\Delta = 3\mathbf{Z}_Y$: the delta is the larger one</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="1"><p>قانون KVL في عالم الفيزورات يقول:</p>
-      <button>مجموع فيزورات الجهد حول أي حلقة = صفر</button><button>مجموع سعات الجهد حول أي حلقة = صفر</button><button>مجموع فيزورات التيار حول أي حلقة = صفر</button><button>الجهد ثابت حول الحلقة</button>
-      <p class="q-why">الفيزورات تنجمع كأرقام مركبة. أما السعات (قراءات الفولتميتر) فما تحقق KVL.</p></div>
-    <div class="q" data-answer="2"><p>معاوقتين على التوازي، المكافئة $\mathbf{Z}_{eq}$ =</p>
+    <div class="q" data-answer="1"><p><span lang="ar">قانون KVL في عالم الفيزورات يقول:</span><span lang="en">In the phasor world, KVL says:</span></p>
+      <button><span lang="ar">مجموع فيزورات الجهد حول أي حلقة = صفر</span><span lang="en">The sum of voltage phasors around any loop = zero</span></button><button><span lang="ar">مجموع سعات الجهد حول أي حلقة = صفر</span><span lang="en">The sum of voltage magnitudes around any loop = zero</span></button><button><span lang="ar">مجموع فيزورات التيار حول أي حلقة = صفر</span><span lang="en">The sum of current phasors around any loop = zero</span></button><button><span lang="ar">الجهد ثابت حول الحلقة</span><span lang="en">The voltage is constant around the loop</span></button>
+      <p class="q-why"><span lang="ar">الفيزورات تنجمع كأرقام مركبة. أما السعات (قراءات الفولتميتر) فما تحقق KVL.</span><span lang="en">Phasors add as complex numbers. Magnitudes (voltmeter readings) don't satisfy KVL.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">معاوقتين على التوازي، المكافئة $\mathbf{Z}_{eq}$ =</span><span lang="en">Two impedances in parallel, the equivalent $\mathbf{Z}_{eq}$ =</span></p>
       <button>$\mathbf{Z}_1 + \mathbf{Z}_2$</button><button>$\dfrac{\mathbf{Z}_1\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}$</button><button>$\dfrac{\mathbf{Z}_1 + \mathbf{Z}_2}{\mathbf{Z}_1\mathbf{Z}_2}$</button><button>$\mathbf{Z}_1 - \mathbf{Z}_2$</button>
-      <p class="q-why">الضرب على الجمع، نفس المقاومات في DC.</p></div>
-    <div class="q" data-answer="2"><p>في مقسم التيار لمعاوقتين على التوازي، $\mathbf{I}_1$ =</p>
+      <p class="q-why"><span lang="ar">الضرب على الجمع، نفس المقاومات في DC.</span><span lang="en">Product over sum, same as resistors in DC.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">في مقسم التيار لمعاوقتين على التوازي، $\mathbf{I}_1$ =</span><span lang="en">In the current divider for two parallel impedances, $\mathbf{I}_1$ =</span></p>
       <button>$\dfrac{\mathbf{Z}_1}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</button><button>$\dfrac{\mathbf{Z}_2}{\mathbf{Z}_1 + \mathbf{Z}_2}\,\mathbf{I}$</button><button>$\mathbf{Z}_1\mathbf{Z}_2\,\mathbf{I}$</button><button>$\dfrac{\mathbf{I}}{2}$</button>
-      <p class="q-why">المعاوقة الثانية فوق، لأن التيار يروح أكثر للطريق الأسهل.</p></div>
-    <div class="q" data-answer="3"><p>مقاومة وملف على التوالي. الفولتميتر يقرأ 3&nbsp;V على المقاومة و 4&nbsp;V على الملف. سعة جهد المصدر:</p>
+      <p class="q-why"><span lang="ar">المعاوقة الثانية فوق، لأن التيار يروح أكثر للطريق الأسهل.</span><span lang="en">The other impedance goes on top, because current prefers the easier path.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">مقاومة وملف على التوالي. الفولتميتر يقرأ 3&nbsp;V على المقاومة و 4&nbsp;V على الملف. سعة جهد المصدر:</span><span lang="en">A resistor and an inductor in series. The voltmeter reads 3&nbsp;V across the resistor and 4&nbsp;V across the inductor. The source voltage magnitude:</span></p>
       <button>7&nbsp;V</button><button>1&nbsp;V</button><button>5&nbsp;V</button><button>12&nbsp;V</button>
-      <p class="q-why">بينهم <span class="ltr">90°</span>، فالسعة $\sqrt{3^2 + 4^2} = 5$ V.</p></div>
-    <div class="q" data-answer="4"><p>المسامحات على التوازي:</p>
-      <button>تنضرب في بعض</button><button>نجمع مقلوباتها</button><button>ما تتغير</button><button>تنجمع مباشرة</button>
-      <p class="q-why">$\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، وهذا اللي يخلي المسامحة مريحة مع التوازي.</p></div>
-    <div class="q" data-answer="3"><p>دلتا متزنة كل ضلع فيها $\mathbf{Z}_\Delta = 6 + j9\ \Omega$. كل فرع في الواي المكافئة:</p>
+      <p class="q-why"><span lang="ar">بينهم <span class="ltr">90°</span>، فالسعة $\sqrt{3^2 + 4^2} = 5$ V.</span><span lang="en">They are <span class="ltr">90°</span> apart, so the magnitude is $\sqrt{3^2 + 4^2} = 5$ V.</span></p></div>
+    <div class="q" data-answer="4"><p><span lang="ar">المسامحات على التوازي:</span><span lang="en">Admittances in parallel:</span></p>
+      <button><span lang="ar">تنضرب في بعض</span><span lang="en">Multiply together</span></button><button><span lang="ar">نجمع مقلوباتها</span><span lang="en">Add their reciprocals</span></button><button><span lang="ar">ما تتغير</span><span lang="en">Don't change</span></button><button><span lang="ar">تنجمع مباشرة</span><span lang="en">Add directly</span></button>
+      <p class="q-why"><span lang="ar">$\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$، وهذا اللي يخلي المسامحة مريحة مع التوازي.</span><span lang="en">$\mathbf{Y}_{eq} = \mathbf{Y}_1 + \mathbf{Y}_2 + \cdots$, which is what makes admittance handy for parallel.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">دلتا متزنة كل ضلع فيها $\mathbf{Z}_\Delta = 6 + j9\ \Omega$. كل فرع في الواي المكافئة:</span><span lang="en">A balanced delta with each side $\mathbf{Z}_\Delta = 6 + j9\ \Omega$. Each branch of the equivalent wye is:</span></p>
       <button>$18 + j27$</button><button>$6 + j9$</button><button>$2 + j3$</button><button>$3 + j4.5$</button>
       <p class="q-why">$\mathbf{Z}_Y = \tfrac{1}{3}\mathbf{Z}_\Delta = 2 + j3\ \Omega$.</p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر KVL و KCL: مقاومة مع ملف أو مكثف، توالي أو توازي، ومصدر 10∠0° */
 (function () {
@@ -755,9 +755,10 @@
     tag('vBl', px, py, qx, qy, OX, OY);
     tag('vTl', OX, OY, qx, qy, px, py);
     const what = mode === 'S' ? 'جهد' : 'تيار', who = el === 'L' ? 'الملف' : 'المكثف';
-    $('kA').innerHTML = `${what} المقاومة ${q}<sub>R</sub>`;
-    $('kB').innerHTML = `${what} ${who} ${q}<sub>${el}</sub>`;
-    $('kT').innerHTML = `مجموع الفيزورات = ${what} المصدر ${q}<sub>s</sub>`;
+    const wEn = mode === 'S' ? 'voltage' : 'current', oEn = el === 'L' ? 'Inductor' : 'Capacitor';
+    $('kA').innerHTML = Lec.L(`${what} المقاومة ${q}<sub>R</sub>`, `Resistor ${wEn} ${q}<sub>R</sub>`);
+    $('kB').innerHTML = Lec.L(`${what} ${who} ${q}<sub>${el}</sub>`, `${oEn} ${wEn} ${q}<sub>${el}</sub>`);
+    $('kT').innerHTML = Lec.L(`مجموع الفيزورات = ${what} المصدر ${q}<sub>s</sub>`, `Sum of phasors = source ${wEn} ${q}<sub>s</sub>`);
     $('rA').textContent = `${r2(mag(A))} ∠ ${deg(A)} ${u}`;
     $('rB').textContent = `${r2(mag(B))} ∠ ${deg(B)} ${u}`;
     $('rS').textContent = `${r2(mag(A) + mag(B))} ${u}`;

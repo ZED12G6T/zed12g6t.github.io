@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-topic="تحليل دوائر كهربائية 2" data-title-en="Lecture 11 - Conservation of AC Power & Power Factor Correction" data-ar-only>
+<html lang="ar" dir="rtl" data-topic="&lt;span lang=&quot;ar&quot;&gt;تحليل دوائر كهربائية 2&lt;/span&gt;&lt;span lang=&quot;en&quot;&gt;Circuit Analysis 2&lt;/span&gt;" data-title-en="Lecture 11 - Conservation of AC Power & Power Factor Correction">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,58 +45,58 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">المحاضرة 11 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.7–11.8</span></p>
-  <h1><span>حفظ القدرة وتصحيح معامل القدرة</span> <span class="h1-math ltr">$C = \dfrac{Q_C}{\omega V_{rms}^2}$</span></h1>
-  <p class="lead">في المحاضرة 10 وصفنا قدرة حمل واحد. اليوم: كيف نحسب القدرة لدائرة فيها أكثر من حمل؟ وكيف نرفع معامل القدرة لحمل ضعيف عشان نخفف التيار على الخطوط؟</p>
+  <p class="eyebrow"><span lang="ar">المحاضرة 11 · تحليل دوائر كهربائية 2 · <span class="ltr">Ch 11.7–11.8</span></span><span lang="en">Lecture 11 · Circuit Analysis 2 · <span class="ltr">Ch 11.7–11.8</span></span></p>
+  <h1><span><span lang="ar">حفظ القدرة وتصحيح معامل القدرة</span><span lang="en">Conservation of power and power factor correction</span></span> <span class="h1-math ltr">$C = \dfrac{Q_C}{\omega V_{rms}^2}$</span></h1>
+  <p class="lead"><span lang="ar">في المحاضرة 10 وصفنا قدرة حمل واحد. اليوم: كيف نحسب القدرة لدائرة فيها أكثر من حمل؟ وكيف نرفع معامل القدرة لحمل ضعيف عشان نخفف التيار على الخطوط؟</span><span lang="en">In lecture 10 we described the power of a single load. Today: how do we find the power of a circuit with more than one load? And how do we raise the power factor of a poor load to ease the current on the lines?</span></p>
   <div class="xyz-bar">
-    <span class="x">القدرة الحقيقية $P$ (W)</span><span class="y">القدرة غير الفعالة $Q$ (VAR)</span><span class="z">القدرة الظاهرية والمركبة $S$ (VA)</span>
-    <small>← نفس ألوان المحاضرة 10</small>
+    <span class="x"><span lang="ar">القدرة الحقيقية $P$ (W)</span><span lang="en">Real power $P$ (W)</span></span><span class="y"><span lang="ar">القدرة غير الفعالة $Q$ (VAR)</span><span lang="en">Reactive power $Q$ (VAR)</span></span><span class="z"><span lang="ar">القدرة الظاهرية والمركبة $S$ (VA)</span><span lang="en">Apparent and complex power $S$ (VA)</span></span>
+    <small><span lang="ar">← نفس ألوان المحاضرة 10</span><span lang="en">← same colors as lecture 10</span></small>
   </div>
   <div class="tldr">
-    <div class="tldr-title">⚡ الزبدة في 30 ثانية</div>
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The gist in 30 seconds</span></div>
     <ol>
-      <li>حفظ القدرة: القدرة المركبة اللي يعطيها المصدر تساوي مجموع قدرات كل العناصر: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$. ونفس الشي لـ $P$ و $Q$، بس <b>مو</b> للقدرة الظاهرية.</li>
-      <li>تصحيح معامل القدرة: نركّب مكثف <b>على التوازي</b> مع الحمل الحثي. $P$ ما تتغير، و $Q$ ينزل، فيقل تيار الخط.</li>
-      <li>$Q_C = P(\tan\theta_1 - \tan\theta_2)$ و $C = \dfrac{Q_C}{\omega V_{rms}^2}$.</li>
+      <li><span lang="ar">حفظ القدرة: القدرة المركبة اللي يعطيها المصدر تساوي مجموع قدرات كل العناصر: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$. ونفس الشي لـ $P$ و $Q$، بس <b>مو</b> للقدرة الظاهرية.</span><span lang="en">Conservation of power: the complex power supplied by the source equals the sum of the powers of all the elements: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$. The same holds for $P$ and $Q$, but <b>not</b> for apparent power.</span></li>
+      <li><span lang="ar">تصحيح معامل القدرة: نركّب مكثف <b>على التوازي</b> مع الحمل الحثي. $P$ ما تتغير، و $Q$ ينزل، فيقل تيار الخط.</span><span lang="en">Power factor correction: we connect a capacitor <b>in parallel</b> with the inductive load. $P$ doesn't change, and $Q$ goes down, so the line current drops.</span></li>
+      <li><span lang="ar">$Q_C = P(\tan\theta_1 - \tan\theta_2)$ و $C = \dfrac{Q_C}{\omega V_{rms}^2}$.</span><span lang="en">$Q_C = P(\tan\theta_1 - \tan\theta_2)$ and $C = \dfrac{Q_C}{\omega V_{rms}^2}$.</span></li>
     </ol>
   </div>
-  <p><a class="btn" href="#board">🌳 روح للوحة القوانين</a></p>
+  <p><a class="btn" href="#board"><span lang="ar">🌳 روح للوحة القوانين</span><span lang="en">🌳 Go to the formula board</span></a></p>
 </section>
 
 <!-- ================= 🎬 الفيديو ================= -->
 <section class="card" id="video" data-num="🎬" data-nav="🎬 فيديو|🎬 Video">
-  <h2>شاهد شرح المحاضرة</h2>
-  <p class="sub">فيديو يشرح المحاضرة كاملة في 7 دقائق مع شجرة القوانين، شوفه قبل أو بعد القراءة</p>
+  <h2><span lang="ar">شاهد شرح المحاضرة</span><span lang="en">Watch the lecture explained</span></h2>
+  <p class="sub"><span lang="ar">فيديو يشرح المحاضرة كاملة في 7 دقائق مع شجرة القوانين، شوفه قبل أو بعد القراءة</span><span lang="en">A video explaining the whole lecture in 7 minutes with the formula tree. Watch it before or after reading.</span></p>
   <div class="video-wrap">
     <video controls playsinline preload="metadata">
       <source src="videos/lecture11.mp4" type="video/mp4">
-      متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture11.mp4">نزّله من هنا</a>.
+      <span lang="ar">متصفحك ما يدعم تشغيل الفيديو. <a href="videos/lecture11.mp4">نزّله من هنا</a>.</span><span lang="en">Your browser can't play this video. <a href="videos/lecture11.mp4">Download it here</a>.</span>
     </video>
   </div>
 </section>
 
 <!-- ================= 01 ليش ================= -->
 <section class="card" id="why" data-num="01" data-nav="ليش؟|Why">
-  <h2>ليش نحتاج هذا الدرس؟</h2>
-  <p class="sub">مسألتين من الواقع</p>
+  <h2><span lang="ar">ليش نحتاج هذا الدرس؟</span><span lang="en">Why do we need this lesson?</span></h2>
+  <p class="sub"><span lang="ar">مسألتين من الواقع</span><span lang="en">Two real-life problems</span></p>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">المسألة الأولى</div><div class="t-desc">بيت فيه مكيف وثلاجة وإضاءة، كلها على نفس المصدر. نبغى القدرة الكلية اللي تسحبها البيت. نجمع؟ وأي قدرة نجمع: الظاهرية ولا المركبة؟</div></div>
-    <div class="tile"><div class="t-top">المسألة الثانية</div><div class="t-desc">مصنع مليان مواتير (أحمال حثية) ومعامل قدرته 0.8 متأخر. يسحب تيار أكبر من اللي يحتاجه، والأسلاك تسخن وتضيّع طاقة. كيف نخفف التيار بدون ما نغير المواتير؟</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">المسألة الأولى</span><span lang="en">Problem one</span></div><div class="t-desc"><span lang="ar">بيت فيه مكيف وثلاجة وإضاءة، كلها على نفس المصدر. نبغى القدرة الكلية اللي تسحبها البيت. نجمع؟ وأي قدرة نجمع: الظاهرية ولا المركبة؟</span><span lang="en">A house with an air conditioner, a fridge and lights, all on the same source. We want the total power the house draws. Do we add? And which power do we add: apparent or complex?</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">المسألة الثانية</span><span lang="en">Problem two</span></div><div class="t-desc"><span lang="ar">مصنع مليان مواتير (أحمال حثية) ومعامل قدرته 0.8 متأخر. يسحب تيار أكبر من اللي يحتاجه، والأسلاك تسخن وتضيّع طاقة. كيف نخفف التيار بدون ما نغير المواتير؟</span><span lang="en">A factory full of motors (inductive loads) with a power factor of 0.8 lagging. It draws more current than it needs, and the wires heat up and waste energy. How do we reduce the current without changing the motors?</span></div></div>
   </div>
-  <p>الجواب الأول اسمه <b>حفظ القدرة المترددة</b> <span class="ltr">(Conservation of AC power)</span>، والثاني اسمه <b>تصحيح معامل القدرة</b> <span class="ltr">(Power factor correction)</span>.</p>
-  <div class="callout"><strong>💡 اللي تحتاجه من قبل:</strong> القدرة المركبة $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$ ومثلث القدرة (المحاضرة 10)، وكيرشوف (المحاضرة 5).</div>
-  <div class="callout warn"><strong>⚠️ من الحين:</strong> الكتاب يقول إن كل الجهود والتيارات في هذي الأقسام <b>قيم فعالة</b> (rms) إلا لو انقال غير كذا. فنكتب $\mathbf{S} = \mathbf{V}\mathbf{I}^*$ بدون النص.</div>
+  <p><span lang="ar">الجواب الأول اسمه <b>حفظ القدرة المترددة</b> <span class="ltr">(Conservation of AC power)</span>، والثاني اسمه <b>تصحيح معامل القدرة</b> <span class="ltr">(Power factor correction)</span>.</span><span lang="en">The first answer is called <b>conservation of AC power</b>, and the second is called <b>power factor correction</b>.</span></p>
+  <div class="callout"><span lang="ar"><strong>💡 اللي تحتاجه من قبل:</strong> القدرة المركبة $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$ ومثلث القدرة (المحاضرة 10)، وكيرشوف (المحاضرة 5).</span><span lang="en"><strong>💡 What you need from before:</strong> complex power $\mathbf{S} = \mathbf{V}_{rms}\mathbf{I}_{rms}^* = P + jQ$ and the power triangle (lecture 10), and Kirchhoff (lecture 5).</span></div>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ من الحين:</strong> الكتاب يقول إن كل الجهود والتيارات في هذي الأقسام <b>قيم فعالة</b> (rms) إلا لو انقال غير كذا. فنكتب $\mathbf{S} = \mathbf{V}\mathbf{I}^*$ بدون النص.</span><span lang="en"><strong>⚠️ From now on:</strong> the textbook says all voltages and currents in these sections are <b>effective values</b> (rms) unless stated otherwise. So we write $\mathbf{S} = \mathbf{V}\mathbf{I}^*$ without the half.</span></div>
 </section>
 
 <!-- ================= 02 حفظ القدرة ================= -->
 <section class="card" id="cons" data-num="02" data-nav="حفظ القدرة|Conservation">
-  <h2>حفظ القدرة المترددة</h2>
-  <p class="sub">اللي يعطيه المصدر = اللي تاخذه الأحمال</p>
+  <h2><span lang="ar">حفظ القدرة المترددة</span><span lang="en">Conservation of AC power</span></h2>
+  <p class="sub"><span lang="ar">اللي يعطيه المصدر = اللي تاخذه الأحمال</span><span lang="en">What the source supplies = what the loads absorb</span></p>
 
-  <h3>الفكرة قبل المعادلات</h3>
-  <p>فكّر فيها مثل الفاتورة: المبلغ اللي دفعه المصدر لازم يساوي مجموع اللي صرفته كل العناصر، ولا ريال يضيع. هذا كان صحيح في DC، ونبغى نتأكد إنه صحيح في AC بعد.</p>
+  <h3><span lang="ar">الفكرة قبل المعادلات</span><span lang="en">The idea before the equations</span></h3>
+  <p><span lang="ar">فكّر فيها مثل الفاتورة: المبلغ اللي دفعه المصدر لازم يساوي مجموع اللي صرفته كل العناصر، ولا ريال يضيع. هذا كان صحيح في DC، ونبغى نتأكد إنه صحيح في AC بعد.</span><span lang="en">Think of it like a bill: the amount the source paid must equal the sum of what all the elements spent, without losing a single riyal. This was true in DC, and we want to make sure it's true in AC too.</span></p>
 
-  <h3>من وين جاء القانون؟ الأحمال على التوازي</h3>
+  <h3><span lang="ar">من وين جاء القانون؟ الأحمال على التوازي</span><span lang="en">Where does the law come from? Loads in parallel</span></h3>
   <figure class="fig">
     <svg viewBox="0 0 360 180" role="img" aria-label="مصدر V موصول على حملين Z1 و Z2 على التوازي، التيار الكلي I يتقسم إلى I1 و I2" style="max-width:360px">
       <circle class="wire" cx="70" cy="105" r="16"/>
@@ -110,33 +110,33 @@
       <text class="lbl yt" x="212" y="104">Z<tspan class="sb" dy="3">1</tspan></text><text class="lbl yt" x="312" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
       <text class="lbl" x="46" y="109" text-anchor="end">V</text>
     </svg>
-    <figcaption>Figure 11.23(a): حملين على التوازي.</figcaption>
+    <figcaption><span lang="ar">Figure 11.23(a): حملين على التوازي.</span><span lang="en">Figure 11.23(a): two loads in parallel.</span></figcaption>
   </figure>
-  <p>من KCL التيار يتقسم: $\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2$. والمرافق يتوزع على الجمع، فنعوّض:</p>
+  <p><span lang="ar">من KCL التيار يتقسم: $\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2$. والمرافق يتوزع على الجمع، فنعوّض:</span><span lang="en">From KCL the current splits: $\mathbf{I} = \mathbf{I}_1 + \mathbf{I}_2$. The conjugate distributes over the sum, so we substitute:</span></p>
   <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = \mathbf{V}\mathbf{I}^* = \mathbf{V}(\mathbf{I}_1^* + \mathbf{I}_2^*) \\ = \mathbf{V}\mathbf{I}_1^* + \mathbf{V}\mathbf{I}_2^* \\ = \mathbf{S}_1 + \mathbf{S}_2\end{gathered}\]</div>
-  <p>ولو الأحمال على التوالي، من KVL الجهد يتقسم $\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2$ والتيار واحد:</p>
+  <p><span lang="ar">ولو الأحمال على التوالي، من KVL الجهد يتقسم $\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2$ والتيار واحد:</span><span lang="en">And if the loads are in series, from KVL the voltage splits $\mathbf{V} = \mathbf{V}_1 + \mathbf{V}_2$ and the current is one:</span></p>
   <div class="m">\[\begin{gathered}\Z{\mathbf{S}} = (\mathbf{V}_1 + \mathbf{V}_2)\mathbf{I}^* \\ = \mathbf{S}_1 + \mathbf{S}_2\end{gathered}\]</div>
 
-  <h3>القانون</h3>
-  <p>توالي أو توازي أو أي شكل، والمصدر موصول على $N$ حمل:</p>
+  <h3><span lang="ar">القانون</span><span lang="en">The law</span></h3>
+  <p><span lang="ar">توالي أو توازي أو أي شكل، والمصدر موصول على $N$ حمل:</span><span lang="en">Series, parallel or any arrangement, with the source connected to $N$ loads:</span></p>
   <div class="m">\[\Z{\mathbf{S}} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots + \mathbf{S}_N\]</div>
-  <p>ولأن العدد المركب ينجمع جزء حقيقي مع حقيقي وتخيلي مع تخيلي:</p>
+  <p><span lang="ar">ولأن العدد المركب ينجمع جزء حقيقي مع حقيقي وتخيلي مع تخيلي:</span><span lang="en">And since complex numbers add real to real and imaginary to imaginary:</span></p>
   <div class="m">\[\begin{gathered}\X{P} = P_1 + P_2 + \cdots \\ \Y{Q} = Q_1 + Q_2 + \cdots\end{gathered}\]</div>
 
-  <details class="think"><summary>🤔 فكّر قبل تكمل: طيب والقدرة الظاهرية؟ هل $S = S_1 + S_2$؟</summary>
-    <p><b>لا.</b> القدرة الظاهرية مقدار، والمقادير ما تنجمع. مثال: حمل $\mathbf{S}_1 = 3 + j4$ (مقداره 5) وحمل $\mathbf{S}_2 = 3 - j4$ (مقداره 5). المجموع $\mathbf{S} = 6$، ومقداره 6 مو 10. الملف والمكثف لغوا بعض في $Q$.</p>
+  <details class="think"><summary><span lang="ar">🤔 فكّر قبل تكمل: طيب والقدرة الظاهرية؟ هل $S = S_1 + S_2$؟</span><span lang="en">🤔 Think before you go on: what about apparent power? Is $S = S_1 + S_2$?</span></summary>
+    <p><span lang="ar"><b>لا.</b> القدرة الظاهرية مقدار، والمقادير ما تنجمع. مثال: حمل $\mathbf{S}_1 = 3 + j4$ (مقداره 5) وحمل $\mathbf{S}_2 = 3 - j4$ (مقداره 5). المجموع $\mathbf{S} = 6$، ومقداره 6 مو 10. الملف والمكثف لغوا بعض في $Q$.</span><span lang="en"><b>No.</b> Apparent power is a magnitude, and magnitudes don't add. Example: a load $\mathbf{S}_1 = 3 + j4$ (magnitude 5) and a load $\mathbf{S}_2 = 3 - j4$ (magnitude 5). The sum is $\mathbf{S} = 6$, and its magnitude is 6, not 10. The inductor and capacitor cancelled each other in $Q$.</span></p>
   </details>
-  <div class="callout key"><strong>🔑 القاعدة:</strong> اجمع $\mathbf{S}$ المركبة (أو $P$ و $Q$ كل واحد لحاله)، وبعدها خذ المقدار. لا تجمع المقادير أبدًا.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 القاعدة:</strong> اجمع $\mathbf{S}$ المركبة (أو $P$ و $Q$ كل واحد لحاله)، وبعدها خذ المقدار. لا تجمع المقادير أبدًا.</span><span lang="en"><strong>🔑 The rule:</strong> add the complex $\mathbf{S}$ (or $P$ and $Q$ each separately), then take the magnitude. Never add the magnitudes.</span></div>
 </section>
 
 <!-- ================= 03 التصحيح ================= -->
 <section class="card" id="pfc" data-num="03" data-nav="التصحيح|PF correction">
-  <h2>تصحيح معامل القدرة (Power factor correction)</h2>
-  <p class="sub">نرفع pf بدون ما نغيّر الحمل</p>
+  <h2><span lang="ar">تصحيح معامل القدرة (Power factor correction)</span><span lang="en">Power factor correction</span></h2>
+  <p class="sub"><span lang="ar">نرفع pf بدون ما نغيّر الحمل</span><span lang="en">We raise pf without changing the load</span></p>
 
-  <h3>الفكرة قبل المعادلات</h3>
-  <p>أغلب الأحمال حثية: غسالات، مكيفات، ثلاجات، مواتير. والملف في الحمل يبغى $Q$ تروح وترجع بينه وبين المصدر. هذي الطاقة ما تنصرف، بس تمشي في الأسلاك كل دورة وتكبّر التيار.</p>
-  <p>الحل: نحط <b>مكثف جنب الحمل</b>. المكثف يعطي $Q$ سالبة، يعني يتبادل الطاقة مع الملف <b>محليًا</b>. فبدل ما تروح الطاقة للمحطة البعيدة وترجع، تروح للمكثف اللي جنبها وترجع. والخط يشيل بس اللي يحتاجه الحمل فعلًا.</p>
+  <h3><span lang="ar">الفكرة قبل المعادلات</span><span lang="en">The idea before the equations</span></h3>
+  <p><span lang="ar">أغلب الأحمال حثية: غسالات، مكيفات، ثلاجات، مواتير. والملف في الحمل يبغى $Q$ تروح وترجع بينه وبين المصدر. هذي الطاقة ما تنصرف، بس تمشي في الأسلاك كل دورة وتكبّر التيار.</span><span lang="en">Most loads are inductive: washing machines, air conditioners, fridges, motors. The inductor in the load needs $Q$ going back and forth between it and the source. This energy isn't consumed, but it travels in the wires every cycle and increases the current.</span></p>
+  <p><span lang="ar">الحل: نحط <b>مكثف جنب الحمل</b>. المكثف يعطي $Q$ سالبة، يعني يتبادل الطاقة مع الملف <b>محليًا</b>. فبدل ما تروح الطاقة للمحطة البعيدة وترجع، تروح للمكثف اللي جنبها وترجع. والخط يشيل بس اللي يحتاجه الحمل فعلًا.</span><span lang="en">The fix: we put a <b>capacitor next to the load</b>. The capacitor provides negative $Q$, so it exchanges energy with the inductor <b>locally</b>. Instead of the energy going to the distant power station and back, it goes to the capacitor next to it and back. And the line only carries what the load really needs.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 360 180" role="img" aria-label="مصدر V موصول على حمل حثي (مقاومة وملف على التوالي داخل مربع متقطع)، ومكثف C على التوازي معه" style="max-width:360px">
       <circle class="wire" cx="70" cy="105" r="16"/>
@@ -148,23 +148,23 @@
       <rect class="grp" x="188" y="50" width="44" height="80" rx="6"/>
       <circle class="dot" cx="210" cy="40" r="3"/><circle class="dot" cx="210" cy="160" r="3"/>
       <path class="sk e2" d="M110 30H140M134 25L140 30L134 35"/><text class="lbl" x="125" y="20" text-anchor="middle">I</text>
-      <text class="lbl" x="182" y="94" text-anchor="end">حمل</text><text class="lbl" x="182" y="110" text-anchor="end">حثي</text>
+      <text class="lbl" x="182" y="94" text-anchor="end" lang="ar">حمل</text><text class="lbl" x="182" y="94" text-anchor="end" lang="en" style="direction:rtl">Inductive</text><text class="lbl" x="182" y="110" text-anchor="end" lang="ar">حثي</text><text class="lbl" x="182" y="110" text-anchor="end" lang="en" style="direction:rtl">load</text>
       <text class="lbl at" x="320" y="104">C</text>
       <text class="lbl" x="46" y="109" text-anchor="end">V</text>
     </svg>
-    <figcaption>Figure 11.27(b): المكثف على التوازي مع الحمل الحثي.</figcaption>
+    <figcaption><span lang="ar">Figure 11.27(b): المكثف على التوازي مع الحمل الحثي.</span><span lang="en">Figure 11.27(b): the capacitor in parallel with the inductive load.</span></figcaption>
   </figure>
 
-  <details class="think"><summary>🤔 فكّر قبل تكمل: ليش المكثف على <b>التوازي</b>، مو على التوالي؟</summary>
-    <p>لأن التعريف يقول: نرفع pf <b>بدون ما نغير جهد أو تيار الحمل نفسه</b>. على التوازي، الحمل يبقى موصول على نفس الجهد ويشتغل نفس ما كان. أما على التوالي، المكثف ياخذ جزء من الجهد ويتغير تشغيل الحمل.</p>
+  <details class="think"><summary><span lang="ar">🤔 فكّر قبل تكمل: ليش المكثف على <b>التوازي</b>، مو على التوالي؟</span><span lang="en">🤔 Think before you go on: why is the capacitor in <b>parallel</b>, not in series?</span></summary>
+    <p><span lang="ar">لأن التعريف يقول: نرفع pf <b>بدون ما نغير جهد أو تيار الحمل نفسه</b>. على التوازي، الحمل يبقى موصول على نفس الجهد ويشتغل نفس ما كان. أما على التوالي، المكثف ياخذ جزء من الجهد ويتغير تشغيل الحمل.</span><span lang="en">Because the definition says: we raise pf <b>without changing the load's own voltage or current</b>. In parallel, the load stays on the same voltage and runs just as before. In series, the capacitor takes part of the voltage and the load's operation changes.</span></p>
   </details>
 
-  <h3>القانون</h3>
-  <p>نستخدم مثلث القدرة. قبل التصحيح: الحمل قدرته الظاهرية $S_1$ وزاويته $\theta_1$:</p>
+  <h3><span lang="ar">القانون</span><span lang="en">The law</span></h3>
+  <p><span lang="ar">نستخدم مثلث القدرة. قبل التصحيح: الحمل قدرته الظاهرية $S_1$ وزاويته $\theta_1$:</span><span lang="en">We use the power triangle. Before correction: the load has apparent power $S_1$ and angle $\theta_1$:</span></p>
   <div class="m">\[\begin{gathered}\X{P} = S_1\cos\theta_1 \\ \Y{Q_1} = S_1\sin\theta_1 = P\tan\theta_1\end{gathered}\]</div>
-  <p>المكثف ما ياخذ قدرة حقيقية، فـ $P$ <b>تبقى نفسها</b>. نبغى زاوية جديدة أصغر $\theta_2$، فالـ $Q$ الجديدة:</p>
+  <p><span lang="ar">المكثف ما ياخذ قدرة حقيقية، فـ $P$ <b>تبقى نفسها</b>. نبغى زاوية جديدة أصغر $\theta_2$، فالـ $Q$ الجديدة:</span><span lang="en">The capacitor absorbs no real power, so $P$ <b>stays the same</b>. We want a new, smaller angle $\theta_2$, so the new $Q$ is:</span></p>
   <div class="m">\[\Y{Q_2} = P\tan\theta_2\]</div>
-  <p>الفرق بينهم هو اللي لازم يعطيه المكثف:</p>
+  <p><span lang="ar">الفرق بينهم هو اللي لازم يعطيه المكثف:</span><span lang="en">The difference between them is what the capacitor must supply:</span></p>
   <div class="m">\[\begin{gathered}Q_C = Q_1 - Q_2 \\ = P(\tan\theta_1 - \tan\theta_2)\end{gathered}\]</div>
   <figure class="fig">
     <svg viewBox="0 0 360 200" role="img" aria-label="مثلث تصحيح معامل القدرة: نفس القدرة الحقيقية P، والوتر S1 بزاوية ثيتا 1 قبل التصحيح، و S2 بزاوية ثيتا 2 أصغر بعده، والفرق في الضلع الرأسي هو Q_C" style="max-width:380px">
@@ -185,147 +185,147 @@
       <text class="lbl at" x="252" y="80" text-anchor="end">Q<tspan class="sb" dy="3">C</tspan></text>
       <text class="lbl yt" x="290" y="112">Q<tspan class="sb" dy="3">1</tspan></text>
     </svg>
-    <figcaption>Figure 11.29: $P$ ثابتة، والمكثف يقص من $Q_1$ الجزء $Q_C$ فينزل الوتر من $S_1$ إلى $S_2$.</figcaption>
+    <figcaption><span lang="ar">Figure 11.29: $P$ ثابتة، والمكثف يقص من $Q_1$ الجزء $Q_C$ فينزل الوتر من $S_1$ إلى $S_2$.</span><span lang="en">Figure 11.29: $P$ is fixed, and the capacitor cuts $Q_C$ off $Q_1$, so the hypotenuse drops from $S_1$ to $S_2$.</span></figcaption>
   </figure>
-  <p>ومن المحاضرة 10: قدرة المكثف $Q_C = \dfrac{V_{rms}^2}{|X_C|} = \omega C V_{rms}^2$. نطلّع منها $C$:</p>
+  <p><span lang="ar">ومن المحاضرة 10: قدرة المكثف $Q_C = \dfrac{V_{rms}^2}{|X_C|} = \omega C V_{rms}^2$. نطلّع منها $C$:</span><span lang="en">And from lecture 10: the capacitor's power is $Q_C = \dfrac{V_{rms}^2}{|X_C|} = \omega C V_{rms}^2$. We get $C$ from it:</span></p>
   <div class="m">\[\begin{gathered}C = \frac{Q_C}{\omega V_{rms}^2} \\ = \frac{P(\tan\theta_1 - \tan\theta_2)}{\omega V_{rms}^2}\end{gathered}\]</div>
   <div class="grid-2">
-    <div class="tile"><div class="t-top">الرموز</div><div class="t-desc">$\theta_1$ و $\theta_2$: زاوية pf قبل وبعد. $\omega = 2\pi f$ بالـ rad/s. $V_{rms}$: جهد الحمل (V). $C$ بالفاراد (F).</div></div>
-    <div class="tile"><div class="t-top">ليش يستاهل؟</div><div class="t-desc">نفس $P$ بتيار أقل. وخسارة الأسلاك $I^2R$، يعني لو التيار نزل شوي، الخسارة تنزل بالتربيع. ينفع الشركة والمستهلك.</div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">الرموز</span><span lang="en">Symbols</span></div><div class="t-desc"><span lang="ar">$\theta_1$ و $\theta_2$: زاوية pf قبل وبعد. $\omega = 2\pi f$ بالـ rad/s. $V_{rms}$: جهد الحمل (V). $C$ بالفاراد (F).</span><span lang="en">$\theta_1$ and $\theta_2$: the pf angle before and after. $\omega = 2\pi f$ in rad/s. $V_{rms}$: the load voltage (V). $C$ in farads (F).</span></div></div>
+    <div class="tile"><div class="t-top"><span lang="ar">ليش يستاهل؟</span><span lang="en">Why is it worth it?</span></div><div class="t-desc"><span lang="ar">نفس $P$ بتيار أقل. وخسارة الأسلاك $I^2R$، يعني لو التيار نزل شوي، الخسارة تنزل بالتربيع. ينفع الشركة والمستهلك.</span><span lang="en">The same $P$ with less current. Wire loss is $I^2R$, so if the current drops a little, the loss drops with the square. It helps both the company and the customer.</span></div></div>
   </div>
 
-  <h3>لو الحمل سعوي (متقدم)</h3>
-  <p>أقل شيوعًا، بس ممكن. وقتها نحط <b>ملف</b> على التوازي بدل المكثف:</p>
+  <h3><span lang="ar">لو الحمل سعوي (متقدم)</span><span lang="en">If the load is capacitive (leading)</span></h3>
+  <p><span lang="ar">أقل شيوعًا، بس ممكن. وقتها نحط <b>ملف</b> على التوازي بدل المكثف:</span><span lang="en">Less common, but possible. Then we put an <b>inductor</b> in parallel instead of the capacitor:</span></p>
   <div class="m">\[\begin{gathered}Q_L = \frac{V_{rms}^2}{X_L} = \frac{V_{rms}^2}{\omega L} \\ L = \frac{V_{rms}^2}{\omega Q_L}\end{gathered}\]</div>
-  <p>حيث $Q_L = Q_1 - Q_2$ بالمقدار، الفرق بين $Q$ القديمة والجديدة.</p>
-  <div class="callout warn"><strong>⚠️ انتبه:</strong> $Q_2$ تنحسب من $P$ (الثابتة): $Q_2 = P\tan\theta_2$. لا تستخدم $S_1$ القديمة معها.</div>
+  <p><span lang="ar">حيث $Q_L = Q_1 - Q_2$ بالمقدار، الفرق بين $Q$ القديمة والجديدة.</span><span lang="en">where $Q_L = Q_1 - Q_2$ in magnitude, the difference between the old and new $Q$.</span></p>
+  <div class="callout warn"><span lang="ar"><strong>⚠️ انتبه:</strong> $Q_2$ تنحسب من $P$ (الثابتة): $Q_2 = P\tan\theta_2$. لا تستخدم $S_1$ القديمة معها.</span><span lang="en"><strong>⚠️ Careful:</strong> $Q_2$ is computed from $P$ (which is fixed): $Q_2 = P\tan\theta_2$. Don't use the old $S_1$ with it.</span></div>
 </section>
 
 <!-- ================= 04 لوحة القوانين ================= -->
 <section class="card" id="board" data-num="🌳" data-nav="🌳 لوحة القوانين|🌳 Formulas">
-  <h2>لوحة القوانين</h2>
-  <p class="sub">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</p>
-  <p>كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</p>
+  <h2><span lang="ar">لوحة القوانين</span><span lang="en">Formula board</span></h2>
+  <p class="sub"><span lang="ar">ابدأ من فوق: وش جاك في المسألة؟ وانزل مع الخطوط لين الناتج</span><span lang="en">Start at the top: what does the problem give you? Follow the lines down to the result</span></p>
+  <p><span lang="ar">كل بطاقة قانون أو خطوة. اضغط على أي بطاقة عشان تشوف متى تستخدمها ومثال سريع. والأزرار فوق كل شجرة تضيّء لك مسار الحل كامل.</span><span lang="en">Each card is a formula or a step. Tap any card to see when to use it and a quick example. The buttons above each tree light up the whole solution path.</span></p>
   <div class="fb-legend">
-    <span><i class="ask"></i>نوع المسألة</span><span><i></i>قانون من هذا الدرس</span><span><i class="prev"></i>قانون من درس سابق</span><span><i class="trick"></i>حيلة أو تجهيز</span><span><i class="out"></i>الناتج</span>
+    <span><span lang="ar"><i class="ask"></i>نوع المسألة</span><span lang="en"><i class="ask"></i>Problem type</span></span><span><span lang="ar"><i></i>قانون من هذا الدرس</span><span lang="en"><i></i>Formula from this lesson</span></span><span><span lang="ar"><i class="prev"></i>قانون من درس سابق</span><span lang="en"><i class="prev"></i>Formula from an earlier lesson</span></span><span><span lang="ar"><i class="trick"></i>حيلة أو تجهيز</span><span lang="en"><i class="trick"></i>Trick or prep step</span></span><span><span lang="ar"><i class="out"></i>الناتج</span><span lang="en"><i class="out"></i>Result</span></span>
   </div>
 
   <!-- ===== الشجرة 1 ===== -->
   <div class="fboard" id="board1">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 1: قدرة دائرة فيها أكثر من حمل</h3>
+    <h3><span lang="ar">الشجرة 1: قدرة دائرة فيها أكثر من حمل</span><span lang="en">Tree 1: power of a circuit with more than one load</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="r1 g1 i1 s1 sm o1">مسار: توالي</button>
-      <button class="btn small" type="button" data-path="r1 g2 s2 sm pf o1">مسار: توازي</button>
+      <button class="btn small" type="button" data-path="r1 g1 i1 s1 sm o1"><span lang="ar">مسار: توالي</span><span lang="en">Path: series</span></button>
+      <button class="btn small" type="button" data-path="r1 g2 s2 sm pf o1"><span lang="ar">مسار: توازي</span><span lang="en">Path: parallel</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k">إذا جاك: «أوجد قدرة كل عنصر» أو «القدرة الكلية اللي يعطيها المصدر»</span></button>
-      <button type="button" class="fb-node ask c1" data-id="g1" data-from="r1"><span class="fb-k">الأحمال على التوالي: <b>تيار واحد</b></span></button>
-      <button type="button" class="fb-node ask c2" data-id="g2" data-from="r1"><span class="fb-k">الأحمال على التوازي: <b>جهد واحد</b></span></button>
-      <button type="button" class="fb-node trick c1" data-id="i1" data-from="g1"><span class="fb-k">احسب التيار من المعاوقة الكلية</span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
-      <button type="button" class="fb-node prev c2" data-id="s2" data-from="g2"><span class="fb-k">قدرة كل حمل</span><span class="fb-f">$\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</span><span class="fb-b">المحاضرة 10</span></button>
-      <button type="button" class="fb-node prev c1" data-id="s1" data-from="i1"><span class="fb-k">قدرة كل حمل</span><span class="fb-f">$\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</span><span class="fb-b">المحاضرة 10</span></button>
-      <button type="button" class="fb-node c12" data-id="sm" data-from="s1 s2"><span class="fb-k">حفظ القدرة</span><span class="fb-f">$\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</span></button>
-      <button type="button" class="fb-node prev c12" data-id="pf" data-from="sm"><span class="fb-k">الظاهرية ومعامل القدرة للكل</span><span class="fb-f">$S = |\mathbf{S}|$ و $\text{pf} = \dfrac{P}{S}$</span><span class="fb-b">المحاضرة 10</span></button>
-      <button type="button" class="fb-node out c12" data-id="o1" data-from="sm pf"><span class="fb-k">الناتج: $P$ و $Q$ لكل عنصر وللكل، و $S$ و pf</span></button>
+      <button type="button" class="fb-node ask c12" data-id="r1"><span class="fb-k"><span lang="ar">إذا جاك: «أوجد قدرة كل عنصر» أو «القدرة الكلية اللي يعطيها المصدر»</span><span lang="en">If you get: “Find the power of each element” or “the total power supplied by the source”</span></span></button>
+      <button type="button" class="fb-node ask c1" data-id="g1" data-from="r1"><span class="fb-k"><span lang="ar">الأحمال على التوالي: <b>تيار واحد</b></span><span lang="en">Loads in series: <b>one current</b></span></span></button>
+      <button type="button" class="fb-node ask c2" data-id="g2" data-from="r1"><span class="fb-k"><span lang="ar">الأحمال على التوازي: <b>جهد واحد</b></span><span lang="en">Loads in parallel: <b>one voltage</b></span></span></button>
+      <button type="button" class="fb-node trick c1" data-id="i1" data-from="g1"><span class="fb-k"><span lang="ar">احسب التيار من المعاوقة الكلية</span><span lang="en">Find the current from the total impedance</span></span><span class="fb-f">$\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></button>
+      <button type="button" class="fb-node prev c2" data-id="s2" data-from="g2"><span class="fb-k"><span lang="ar">قدرة كل حمل</span><span lang="en">Power of each load</span></span><span class="fb-f">$\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</span><span class="fb-b"><span lang="ar">المحاضرة 10</span><span lang="en">Lecture 10</span></span></button>
+      <button type="button" class="fb-node prev c1" data-id="s1" data-from="i1"><span class="fb-k"><span lang="ar">قدرة كل حمل</span><span lang="en">Power of each load</span></span><span class="fb-f">$\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</span><span class="fb-b"><span lang="ar">المحاضرة 10</span><span lang="en">Lecture 10</span></span></button>
+      <button type="button" class="fb-node c12" data-id="sm" data-from="s1 s2"><span class="fb-k"><span lang="ar">حفظ القدرة</span><span lang="en">conservation of power</span></span><span class="fb-f">$\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</span></button>
+      <button type="button" class="fb-node prev c12" data-id="pf" data-from="sm"><span class="fb-k"><span lang="ar">الظاهرية ومعامل القدرة للكل</span><span lang="en">Apparent power and power factor of the whole</span></span><span class="fb-f"><span lang="ar">$S = |\mathbf{S}|$ و $\text{pf} = \dfrac{P}{S}$</span><span lang="en">$S = |\mathbf{S}|$ and $\text{pf} = \dfrac{P}{S}$</span></span><span class="fb-b"><span lang="ar">المحاضرة 10</span><span lang="en">Lecture 10</span></span></button>
+      <button type="button" class="fb-node out c12" data-id="o1" data-from="sm pf"><span class="fb-k"><span lang="ar">الناتج: $P$ و $Q$ لكل عنصر وللكل، و $S$ و pf</span><span lang="en">Result: $P$ and $Q$ for each element and in total, and $S$ and pf</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="r1" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd>دائرة فيها أكثر من حمل، أو "خط نقل وحمل"، والمطلوب قدرة كل جزء أو القدرة الكلية.</dd>
-      <dt>أول شي تسويه</dt><dd>شوف وش المشترك بين الأحمال: التيار (توالي) ولا الجهد (توازي)؟ هذا يحدد القانون الأسهل.</dd></dl></div>
-    <div class="fb-info" data-for="g1" hidden><h4>توالي: تيار واحد</h4><dl>
-      <dt>متى؟</dt><dd>الأحمال ورا بعض في نفس الحلقة، مثل خط النقل والحمل اللي بعده.</dd>
-      <dt>الحيلة</dt><dd>التيار نفسه يمر في الكل، فقانون $|\mathbf{I}|^2\mathbf{Z}$ يخليك ما تحتاج جهد كل حمل.</dd></dl></div>
-    <div class="fb-info" data-for="g2" hidden><h4>توازي: جهد واحد</h4><dl>
-      <dt>متى؟</dt><dd>كل الأحمال موصولة على نفس الطرفين، مثل أجهزة البيت على الفيش.</dd>
-      <dt>الحيلة</dt><dd>الجهد نفسه على الكل، فقانون $V^2/\mathbf{Z}^*$ يخليك ما تحتاج تيار كل حمل.</dd></dl></div>
-    <div class="fb-info" data-for="i1" hidden><h4>التيار: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</h4><dl>
-      <dt>متى؟</dt><dd>أحمال على التوالي. اجمع المعاوقات (المحاضرة 5) واقسم.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{V} = 220\angle 0^\circ$ و $\mathbf{Z} = 19 - j8 = 20.62\angle{-22.83^\circ}$: $\mathbf{I} = 10.67\angle 22.83^\circ\ \text{A}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع مقادير المعاوقات بدل ما تجمعها مركبة.</dd></dl></div>
-    <div class="fb-info" data-for="s1" hidden><h4>قدرة حمل على التوالي: $\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</h4><dl>
-      <dt>الرموز</dt><dd>$|\mathbf{I}|^2$ رقم موجب (مقدار التيار الفعال تربيع)، و $\mathbf{Z}_k$ معاوقة الحمل نفسه.</dd>
-      <dt>مثال سريع</dt><dd>$|\mathbf{I}|^2 = 113.9$ و $\mathbf{Z} = 4 + j2$: $\mathbf{S} = 455.5 + j227.8\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تربّع $\mathbf{I}$ كعدد مركب (يعني تضاعف زاويته). اللي ينربّع هو المقدار بس.</dd></dl></div>
-    <div class="fb-info" data-for="s2" hidden><h4>قدرة حمل على التوازي: $\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</h4><dl>
-      <dt>الرموز</dt><dd>$V$ مقدار الجهد الفعال، و $\mathbf{Z}_k^*$ مرافق معاوقة الحمل.</dd>
-      <dt>مثال سريع</dt><dd>$V = 120$ و $\mathbf{Z} = 60\angle{-30^\circ}$: $\mathbf{S} = \dfrac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ}\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تنسى المرافق، فتطلع $Q$ بإشارة غلط.</dd></dl></div>
-    <div class="fb-info" data-for="sm" hidden><h4>حفظ القدرة: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</h4><dl>
-      <dt>متى؟</dt><dd>دايمًا: المصدر يعطي مجموع اللي تاخذه العناصر. تستخدمه للحل أو للتأكد من حلك.</dd>
-      <dt>كيف؟</dt><dd>اكتب كل $\mathbf{S}_k$ بالصورة المستطيلة واجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي.</dd>
-      <dt>مثال سريع</dt><dd>$(207.8 - j120)$ $+ (254.6 + j254.6)$ $= 462.4 + j134.6\ \text{VA}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع بالصورة القطبية (تجمع المقادير والزوايا). الجمع بالمستطيلة بس.</dd></dl></div>
-    <div class="fb-info" data-for="pf" hidden><h4>الظاهرية ومعامل القدرة للكل</h4><dl>
-      <dt>متى؟</dt><dd>بعد ما تجمع $\mathbf{S}$. خذ المقدار، وبعدها pf $= P/S$، والنوع من إشارة $Q$ الكلية.</dd>
-      <dt>مثال سريع</dt><dd>$\mathbf{S} = 462.4 + j134.6$: $S = 481.6\ \text{VA}$ و pf $= 0.960$ متأخر.</dd>
-      <dt>الخطأ الشائع</dt><dd>تجمع $S_1 + S_2$ (المقادير). هذا غلط دايمًا تقريبًا.</dd></dl></div>
-    <div class="fb-info" data-for="o1" hidden><h4>الناتج</h4><dl>
-      <dt>وش تكتب في الجواب؟</dt><dd>$P$ بالواط و $Q$ بالـ VAR لكل عنصر، والكلية، و $S$ بالـ VA، و pf مع نوعه.</dd>
-      <dt>تأكد</dt><dd>مجموع قدرات العناصر لازم يطلع نفس قدرة المصدر (فرق تقريب بسيط عادي).</dd></dl></div>
+    <div class="fb-info" data-for="r1" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span lang="ar">دائرة فيها أكثر من حمل، أو "خط نقل وحمل"، والمطلوب قدرة كل جزء أو القدرة الكلية.</span><span lang="en">A circuit with more than one load, or “a transmission line and a load”, and the power of each part or the total power is asked for.</span></dd>
+      <dt><span lang="ar">أول شي تسويه</span><span lang="en">First thing to do</span></dt><dd><span lang="ar">شوف وش المشترك بين الأحمال: التيار (توالي) ولا الجهد (توازي)؟ هذا يحدد القانون الأسهل.</span><span lang="en">See what the loads share: the current (series) or the voltage (parallel)? That decides the easiest formula.</span></dd></dl></div>
+    <div class="fb-info" data-for="g1" hidden><h4><span lang="ar">توالي: تيار واحد</span><span lang="en">Series: one current</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">الأحمال ورا بعض في نفس الحلقة، مثل خط النقل والحمل اللي بعده.</span><span lang="en">The loads are one after another in the same loop, like a transmission line and the load after it.</span></dd>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">التيار نفسه يمر في الكل، فقانون $|\mathbf{I}|^2\mathbf{Z}$ يخليك ما تحتاج جهد كل حمل.</span><span lang="en">The same current flows through all of them, so the $|\mathbf{I}|^2\mathbf{Z}$ formula means you don't need each load's voltage.</span></dd></dl></div>
+    <div class="fb-info" data-for="g2" hidden><h4><span lang="ar">توازي: جهد واحد</span><span lang="en">Parallel: one voltage</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">كل الأحمال موصولة على نفس الطرفين، مثل أجهزة البيت على الفيش.</span><span lang="en">All the loads are connected across the same two terminals, like home appliances on an outlet.</span></dd>
+      <dt><span lang="ar">الحيلة</span><span lang="en">The trick</span></dt><dd><span lang="ar">الجهد نفسه على الكل، فقانون $V^2/\mathbf{Z}^*$ يخليك ما تحتاج تيار كل حمل.</span><span lang="en">The same voltage is across all of them, so the $V^2/\mathbf{Z}^*$ formula means you don't need each load's current.</span></dd></dl></div>
+    <div class="fb-info" data-for="i1" hidden><h4><span lang="ar">التيار: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span><span lang="en">The current: $\mathbf{I} = \dfrac{\mathbf{V}}{\mathbf{Z}_1 + \mathbf{Z}_2}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">أحمال على التوالي. اجمع المعاوقات (المحاضرة 5) واقسم.</span><span lang="en">Loads in series. Add the impedances (lecture 5) and divide.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{V} = 220\angle 0^\circ$ و $\mathbf{Z} = 19 - j8 = 20.62\angle{-22.83^\circ}$: $\mathbf{I} = 10.67\angle 22.83^\circ\ \text{A}$.</span><span lang="en">$\mathbf{V} = 220\angle 0^\circ$ and $\mathbf{Z} = 19 - j8 = 20.62\angle{-22.83^\circ}$: $\mathbf{I} = 10.67\angle 22.83^\circ\ \text{A}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع مقادير المعاوقات بدل ما تجمعها مركبة.</span><span lang="en">Adding the impedance magnitudes instead of adding them as complex numbers.</span></dd></dl></div>
+    <div class="fb-info" data-for="s1" hidden><h4><span lang="ar">قدرة حمل على التوالي: $\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</span><span lang="en">Power of a series load: $\mathbf{S}_k = |\mathbf{I}|^2\mathbf{Z}_k$</span></h4><dl>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$|\mathbf{I}|^2$ رقم موجب (مقدار التيار الفعال تربيع)، و $\mathbf{Z}_k$ معاوقة الحمل نفسه.</span><span lang="en">$|\mathbf{I}|^2$ is a positive number (the effective current magnitude squared), and $\mathbf{Z}_k$ is the load's own impedance.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$|\mathbf{I}|^2 = 113.9$ و $\mathbf{Z} = 4 + j2$: $\mathbf{S} = 455.5 + j227.8\ \text{VA}$.</span><span lang="en">$|\mathbf{I}|^2 = 113.9$ and $\mathbf{Z} = 4 + j2$: $\mathbf{S} = 455.5 + j227.8\ \text{VA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تربّع $\mathbf{I}$ كعدد مركب (يعني تضاعف زاويته). اللي ينربّع هو المقدار بس.</span><span lang="en">Squaring $\mathbf{I}$ as a complex number (which doubles its angle). Only the magnitude is squared.</span></dd></dl></div>
+    <div class="fb-info" data-for="s2" hidden><h4><span lang="ar">قدرة حمل على التوازي: $\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</span><span lang="en">Power of a parallel load: $\mathbf{S}_k = \dfrac{V^2}{\mathbf{Z}_k^*}$</span></h4><dl>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$V$ مقدار الجهد الفعال، و $\mathbf{Z}_k^*$ مرافق معاوقة الحمل.</span><span lang="en">$V$ is the effective voltage magnitude, and $\mathbf{Z}_k^*$ the conjugate of the load impedance.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$V = 120$ و $\mathbf{Z} = 60\angle{-30^\circ}$: $\mathbf{S} = \dfrac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ}\ \text{VA}$.</span><span lang="en">$V = 120$ and $\mathbf{Z} = 60\angle{-30^\circ}$: $\mathbf{S} = \dfrac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ}\ \text{VA}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تنسى المرافق، فتطلع $Q$ بإشارة غلط.</span><span lang="en">Forgetting the conjugate, so $Q$ comes out with the wrong sign.</span></dd></dl></div>
+    <div class="fb-info" data-for="sm" hidden><h4><span lang="ar">حفظ القدرة: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</span><span lang="en">Conservation of power: $\mathbf{S} = \mathbf{S}_1 + \mathbf{S}_2 + \cdots$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">دايمًا: المصدر يعطي مجموع اللي تاخذه العناصر. تستخدمه للحل أو للتأكد من حلك.</span><span lang="en">Always: the source supplies the sum of what the elements absorb. Use it to solve or to check your solution.</span></dd>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">اكتب كل $\mathbf{S}_k$ بالصورة المستطيلة واجمع الحقيقي مع الحقيقي والتخيلي مع التخيلي.</span><span lang="en">Write each $\mathbf{S}_k$ in rectangular form and add real to real and imaginary to imaginary.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$(207.8 - j120)$ $+ (254.6 + j254.6)$ $= 462.4 + j134.6\ \text{VA}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع بالصورة القطبية (تجمع المقادير والزوايا). الجمع بالمستطيلة بس.</span><span lang="en">Adding in polar form (adding magnitudes and angles). Add in rectangular only.</span></dd></dl></div>
+    <div class="fb-info" data-for="pf" hidden><h4><span lang="ar">الظاهرية ومعامل القدرة للكل</span><span lang="en">Apparent power and power factor of the whole</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">بعد ما تجمع $\mathbf{S}$. خذ المقدار، وبعدها pf $= P/S$، والنوع من إشارة $Q$ الكلية.</span><span lang="en">After you add up $\mathbf{S}$. Take the magnitude, then pf $= P/S$, and the type from the sign of the total $Q$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\mathbf{S} = 462.4 + j134.6$: $S = 481.6\ \text{VA}$ و pf $= 0.960$ متأخر.</span><span lang="en">$\mathbf{S} = 462.4 + j134.6$: $S = 481.6\ \text{VA}$ and pf $= 0.960$ lagging.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تجمع $S_1 + S_2$ (المقادير). هذا غلط دايمًا تقريبًا.</span><span lang="en">Adding $S_1 + S_2$ (the magnitudes). This is almost always wrong.</span></dd></dl></div>
+    <div class="fb-info" data-for="o1" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">وش تكتب في الجواب؟</span><span lang="en">What goes in the answer?</span></dt><dd><span lang="ar">$P$ بالواط و $Q$ بالـ VAR لكل عنصر، والكلية، و $S$ بالـ VA، و pf مع نوعه.</span><span lang="en">$P$ in watts and $Q$ in VAR for each element and in total, $S$ in VA, and pf with its type.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">مجموع قدرات العناصر لازم يطلع نفس قدرة المصدر (فرق تقريب بسيط عادي).</span><span lang="en">The sum of the element powers must equal the source power (a small rounding difference is normal).</span></dd></dl></div>
   </div>
 
   <!-- ===== الشجرة 2 ===== -->
   <div class="fboard" id="board2">
     <svg class="fb-lines" aria-hidden="true"></svg>
-    <h3>الشجرة 2: تصحيح معامل القدرة</h3>
+    <h3><span lang="ar">الشجرة 2: تصحيح معامل القدرة</span><span lang="en">Tree 2: power factor correction</span></h3>
     <div class="fb-paths">
-      <button class="btn small" type="button" data-path="r2 pp an qd cc o2">مسار: حمل حثي (مكثف)</button>
-      <button class="btn small" type="button" data-path="r2 pp an qd cl o2">مسار: حمل سعوي (ملف)</button>
+      <button class="btn small" type="button" data-path="r2 pp an qd cc o2"><span lang="ar">مسار: حمل حثي (مكثف)</span><span lang="en">Path: inductive load (capacitor)</span></button>
+      <button class="btn small" type="button" data-path="r2 pp an qd cl o2"><span lang="ar">مسار: حمل سعوي (ملف)</span><span lang="en">Path: capacitive load (inductor)</span></button>
     </div>
     <div class="fb-grid">
-      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k">إذا جاك: «ارفع معامل القدرة من pf<sub>1</sub> إلى pf<sub>2</sub>، وش قيمة المكثف؟»</span></button>
-      <button type="button" class="fb-node prev c12" data-id="pp" data-from="r2"><span class="fb-k">جهّز $P$ (ما تتغير بالتصحيح)</span><span class="fb-f">$P = S_1\cos\theta_1$</span><span class="fb-b">المحاضرة 10</span></button>
-      <button type="button" class="fb-node trick c12" data-id="an" data-from="pp"><span class="fb-k">الزاويتين</span><span class="fb-f">$\theta_1 = \cos^{-1}\text{pf}_1$ و $\theta_2 = \cos^{-1}\text{pf}_2$</span></button>
-      <button type="button" class="fb-node c12" data-id="qd" data-from="an"><span class="fb-k">الـ $Q$ اللي لازم نلغيها</span><span class="fb-f">$Q_1 - Q_2 = P(\tan\theta_1 - \tan\theta_2)$</span></button>
-      <button type="button" class="fb-node c1" data-id="cc" data-from="qd"><span class="fb-k">حثي: مكثف على التوازي</span><span class="fb-f">$C = \dfrac{Q_C}{\omega V^2}$</span></button>
-      <button type="button" class="fb-node c2" data-id="cl" data-from="qd"><span class="fb-k">سعوي: ملف على التوازي</span><span class="fb-f">$L = \dfrac{V^2}{\omega Q_L}$</span></button>
-      <button type="button" class="fb-node out c12" data-id="o2" data-from="cc cl"><span class="fb-k">الناتج: $C$ بالفاراد أو $L$ بالهنري</span></button>
+      <button type="button" class="fb-node ask c12" data-id="r2"><span class="fb-k"><span lang="ar">إذا جاك: «ارفع معامل القدرة من pf<sub>1</sub> إلى pf<sub>2</sub>، وش قيمة المكثف؟»</span><span lang="en">If you get: “Raise the power factor from pf<sub>1</sub> to pf<sub>2</sub>; what is the capacitor's value?”</span></span></button>
+      <button type="button" class="fb-node prev c12" data-id="pp" data-from="r2"><span class="fb-k"><span lang="ar">جهّز $P$ (ما تتغير بالتصحيح)</span><span lang="en">Get $P$ (it doesn't change with correction)</span></span><span class="fb-f">$P = S_1\cos\theta_1$</span><span class="fb-b"><span lang="ar">المحاضرة 10</span><span lang="en">Lecture 10</span></span></button>
+      <button type="button" class="fb-node trick c12" data-id="an" data-from="pp"><span class="fb-k"><span lang="ar">الزاويتين</span><span lang="en">The two angles</span></span><span class="fb-f"><span lang="ar">$\theta_1 = \cos^{-1}\text{pf}_1$ و $\theta_2 = \cos^{-1}\text{pf}_2$</span><span lang="en">$\theta_1 = \cos^{-1}\text{pf}_1$ and $\theta_2 = \cos^{-1}\text{pf}_2$</span></span></button>
+      <button type="button" class="fb-node c12" data-id="qd" data-from="an"><span class="fb-k"><span lang="ar">الـ $Q$ اللي لازم نلغيها</span><span lang="en">The $Q$ we must cancel</span></span><span class="fb-f">$Q_1 - Q_2 = P(\tan\theta_1 - \tan\theta_2)$</span></button>
+      <button type="button" class="fb-node c1" data-id="cc" data-from="qd"><span class="fb-k"><span lang="ar">حثي: مكثف على التوازي</span><span lang="en">Inductive: a capacitor in parallel</span></span><span class="fb-f">$C = \dfrac{Q_C}{\omega V^2}$</span></button>
+      <button type="button" class="fb-node c2" data-id="cl" data-from="qd"><span class="fb-k"><span lang="ar">سعوي: ملف على التوازي</span><span lang="en">Capacitive: an inductor in parallel</span></span><span class="fb-f">$L = \dfrac{V^2}{\omega Q_L}$</span></button>
+      <button type="button" class="fb-node out c12" data-id="o2" data-from="cc cl"><span class="fb-k"><span lang="ar">الناتج: $C$ بالفاراد أو $L$ بالهنري</span><span lang="en">Result: $C$ in farads or $L$ in henries</span></span></button>
     </div>
-    <p class="fb-hint">👆 اضغط على أي بطاقة</p>
+    <p class="fb-hint"><span lang="ar">👆 اضغط على أي بطاقة</span><span lang="en">👆 Tap any card</span></p>
 
-    <div class="fb-info" data-for="r2" hidden><h4>كيف تعرف إن المسألة من هذا النوع؟</h4><dl>
-      <dt>الكلمات المفتاحية</dt><dd><span class="ltr">raise the pf to</span> أو <span class="ltr">power factor correction</span> أو "كم المكثف اللازم".</dd>
-      <dt>أول شي تسويه</dt><dd>شوف الحمل متأخر (حثي) ولا متقدم (سعوي)، وطلّع $P$.</dd></dl></div>
-    <div class="fb-info" data-for="pp" hidden><h4>جهّز $P$</h4><dl>
-      <dt>ليش؟</dt><dd>$P$ هي الضلع الثابت في المثلث، والتصحيح ما يغيرها لأن المكثف ما ياخذ قدرة حقيقية.</dd>
-      <dt>كيف؟</dt><dd>لو معطيك $P$ (مثل 4 kW) خذها مباشرة. لو معطيك $S_1$: $P = S_1\cos\theta_1$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تفكر إن $P$ تتغير بعد التصحيح.</dd></dl></div>
-    <div class="fb-info" data-for="an" hidden><h4>الزاويتين</h4><dl>
-      <dt>مثال سريع</dt><dd>$\cos^{-1}(0.8) = 36.87^\circ$ و $\cos^{-1}(0.95) = 18.19^\circ$.</dd>
-      <dt>حيلة</dt><dd>لو المطلوب pf $= 1$، فـ $\theta_2 = 0$ و $\tan\theta_2 = 0$، يعني المكثف يلغي $Q_1$ كاملة.</dd>
-      <dt>الخطأ الشائع</dt><dd>الآلة على الراديان. خلها على الدرجات.</dd></dl></div>
+    <div class="fb-info" data-for="r2" hidden><h4><span lang="ar">كيف تعرف إن المسألة من هذا النوع؟</span><span lang="en">How do you know the problem is this type?</span></h4><dl>
+      <dt><span lang="ar">الكلمات المفتاحية</span><span lang="en">Keywords</span></dt><dd><span lang="ar"><span class="ltr">raise the pf to</span> أو <span class="ltr">power factor correction</span> أو "كم المكثف اللازم".</span><span lang="en"><span class="ltr">raise the pf to</span>, <span class="ltr">power factor correction</span>, or “what capacitor is needed”.</span></dd>
+      <dt><span lang="ar">أول شي تسويه</span><span lang="en">First thing to do</span></dt><dd><span lang="ar">شوف الحمل متأخر (حثي) ولا متقدم (سعوي)، وطلّع $P$.</span><span lang="en">See whether the load is lagging (inductive) or leading (capacitive), and get $P$.</span></dd></dl></div>
+    <div class="fb-info" data-for="pp" hidden><h4><span lang="ar">جهّز $P$</span><span lang="en">Get $P$</span></h4><dl>
+      <dt><span lang="ar">ليش؟</span><span lang="en">Why?</span></dt><dd><span lang="ar">$P$ هي الضلع الثابت في المثلث، والتصحيح ما يغيرها لأن المكثف ما ياخذ قدرة حقيقية.</span><span lang="en">$P$ is the fixed side of the triangle, and correction doesn't change it because the capacitor absorbs no real power.</span></dd>
+      <dt><span lang="ar">كيف؟</span><span lang="en">How?</span></dt><dd><span lang="ar">لو معطيك $P$ (مثل 4 kW) خذها مباشرة. لو معطيك $S_1$: $P = S_1\cos\theta_1$.</span><span lang="en">If you're given $P$ (like 4 kW), take it directly. If you're given $S_1$: $P = S_1\cos\theta_1$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تفكر إن $P$ تتغير بعد التصحيح.</span><span lang="en">Thinking $P$ changes after correction.</span></dd></dl></div>
+    <div class="fb-info" data-for="an" hidden><h4><span lang="ar">الزاويتين</span><span lang="en">The two angles</span></h4><dl>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$\cos^{-1}(0.8) = 36.87^\circ$ و $\cos^{-1}(0.95) = 18.19^\circ$.</span><span lang="en">$\cos^{-1}(0.8) = 36.87^\circ$ and $\cos^{-1}(0.95) = 18.19^\circ$.</span></dd>
+      <dt><span lang="ar">حيلة</span><span lang="en">Trick</span></dt><dd><span lang="ar">لو المطلوب pf $= 1$، فـ $\theta_2 = 0$ و $\tan\theta_2 = 0$، يعني المكثف يلغي $Q_1$ كاملة.</span><span lang="en">If pf $= 1$ is asked for, then $\theta_2 = 0$ and $\tan\theta_2 = 0$, so the capacitor cancels all of $Q_1$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">الآلة على الراديان. خلها على الدرجات.</span><span lang="en">Calculator in radians. Set it to degrees.</span></dd></dl></div>
     <div class="fb-info" data-for="qd" hidden><h4>$Q_C = Q_1 - Q_2 = P(\tan\theta_1 - \tan\theta_2)$</h4><dl>
-      <dt>من وين؟</dt><dd>من مثلث القدرة: $Q = P\tan\theta$. نحسبها مرة بالزاوية القديمة ومرة بالجديدة ونطرح.</dd>
-      <dt>مثال سريع</dt><dd>$P = 4000$: $Q_1 = 3000$ و $Q_2 = 1314.7$، فـ $Q_C = 1685.3\ \text{VAR}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحسب $Q_2 = S_1\sin\theta_2$ بالقدرة الظاهرية القديمة. الصح من $P$ لأن $S$ تغيرت.</dd></dl></div>
-    <div class="fb-info" data-for="cc" hidden><h4>المكثف: $C = \dfrac{Q_C}{\omega V_{rms}^2}$</h4><dl>
-      <dt>متى؟</dt><dd>الحمل حثي (pf متأخر)، وهذي أغلب المسائل.</dd>
-      <dt>الرموز</dt><dd>$\omega = 2\pi f$. مع 60 Hz: $\omega = 377\ \text{rad/s}$. و $V_{rms}$ جهد الحمل.</dd>
-      <dt>مثال سريع</dt><dd>$\dfrac{1685.3}{377 \times 120^2} = 310.4\ \mu\text{F}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تحط $f$ بدل $\omega$، أو تنسى تربّع الجهد، أو تستخدم القيمة العظمى للجهد.</dd></dl></div>
-    <div class="fb-info" data-for="cl" hidden><h4>الملف: $L = \dfrac{V_{rms}^2}{\omega Q_L}$</h4><dl>
-      <dt>متى؟</dt><dd>الحمل سعوي (pf متقدم). أقل شيوعًا.</dd>
-      <dt>الرموز</dt><dd>$Q_L$ مقدار الفرق بين $Q$ القديمة والجديدة.</dd>
-      <dt>مثال سريع</dt><dd>$V_{rms} = 120$ و $Q_L = 1500$ و 60 Hz: $L = \dfrac{14400}{377 \times 1500} = 25.46\ \text{mH}$.</dd>
-      <dt>الخطأ الشائع</dt><dd>تقلب القانون وتكتبه مثل المكثف: الملف $\omega$ و $Q$ في المقام.</dd></dl></div>
-    <div class="fb-info" data-for="o2" hidden><h4>الناتج</h4><dl>
-      <dt>وش تكتب في الجواب؟</dt><dd>$C$ بالميكروفاراد غالبًا، أو $L$ بالملي هنري.</dd>
-      <dt>تأكد</dt><dd>المكثف يتركب على <b>التوازي</b>، و $P$ قبل وبعد نفسها، والتيار بعد التصحيح أقل.</dd></dl></div>
+      <dt><span lang="ar">من وين؟</span><span lang="en">From where?</span></dt><dd><span lang="ar">من مثلث القدرة: $Q = P\tan\theta$. نحسبها مرة بالزاوية القديمة ومرة بالجديدة ونطرح.</span><span lang="en">From the power triangle: $Q = P\tan\theta$. We compute it once with the old angle and once with the new one, and subtract.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$P = 4000$: $Q_1 = 3000$ و $Q_2 = 1314.7$، فـ $Q_C = 1685.3\ \text{VAR}$.</span><span lang="en">$P = 4000$: $Q_1 = 3000$ and $Q_2 = 1314.7$, so $Q_C = 1685.3\ \text{VAR}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحسب $Q_2 = S_1\sin\theta_2$ بالقدرة الظاهرية القديمة. الصح من $P$ لأن $S$ تغيرت.</span><span lang="en">Computing $Q_2 = S_1\sin\theta_2$ with the old apparent power. The right way is from $P$, because $S$ changed.</span></dd></dl></div>
+    <div class="fb-info" data-for="cc" hidden><h4><span lang="ar">المكثف: $C = \dfrac{Q_C}{\omega V_{rms}^2}$</span><span lang="en">The capacitor: $C = \dfrac{Q_C}{\omega V_{rms}^2}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">الحمل حثي (pf متأخر)، وهذي أغلب المسائل.</span><span lang="en">The load is inductive (lagging pf), which is most problems.</span></dd>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$\omega = 2\pi f$. مع 60 Hz: $\omega = 377\ \text{rad/s}$. و $V_{rms}$ جهد الحمل.</span><span lang="en">$\omega = 2\pi f$. At 60 Hz: $\omega = 377\ \text{rad/s}$. And $V_{rms}$ is the load voltage.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd>$\dfrac{1685.3}{377 \times 120^2} = 310.4\ \mu\text{F}$.</dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تحط $f$ بدل $\omega$، أو تنسى تربّع الجهد، أو تستخدم القيمة العظمى للجهد.</span><span lang="en">Putting $f$ instead of $\omega$, forgetting to square the voltage, or using the peak voltage.</span></dd></dl></div>
+    <div class="fb-info" data-for="cl" hidden><h4><span lang="ar">الملف: $L = \dfrac{V_{rms}^2}{\omega Q_L}$</span><span lang="en">The inductor: $L = \dfrac{V_{rms}^2}{\omega Q_L}$</span></h4><dl>
+      <dt><span lang="ar">متى؟</span><span lang="en">When?</span></dt><dd><span lang="ar">الحمل سعوي (pf متقدم). أقل شيوعًا.</span><span lang="en">The load is capacitive (leading pf). Less common.</span></dd>
+      <dt><span lang="ar">الرموز</span><span lang="en">Symbols</span></dt><dd><span lang="ar">$Q_L$ مقدار الفرق بين $Q$ القديمة والجديدة.</span><span lang="en">$Q_L$ is the magnitude of the difference between the old and new $Q$.</span></dd>
+      <dt><span lang="ar">مثال سريع</span><span lang="en">Quick example</span></dt><dd><span lang="ar">$V_{rms} = 120$ و $Q_L = 1500$ و 60 Hz: $L = \dfrac{14400}{377 \times 1500} = 25.46\ \text{mH}$.</span><span lang="en">$V_{rms} = 120$, $Q_L = 1500$ and 60 Hz: $L = \dfrac{14400}{377 \times 1500} = 25.46\ \text{mH}$.</span></dd>
+      <dt><span lang="ar">الخطأ الشائع</span><span lang="en">Common mistake</span></dt><dd><span lang="ar">تقلب القانون وتكتبه مثل المكثف: الملف $\omega$ و $Q$ في المقام.</span><span lang="en">Flipping the formula and writing it like the capacitor's: for the inductor, $\omega$ and $Q$ are in the denominator.</span></dd></dl></div>
+    <div class="fb-info" data-for="o2" hidden><h4><span lang="ar">الناتج</span><span lang="en">Result</span></h4><dl>
+      <dt><span lang="ar">وش تكتب في الجواب؟</span><span lang="en">What goes in the answer?</span></dt><dd><span lang="ar">$C$ بالميكروفاراد غالبًا، أو $L$ بالملي هنري.</span><span lang="en">$C$ usually in microfarads, or $L$ in millihenries.</span></dd>
+      <dt><span lang="ar">تأكد</span><span lang="en">Check</span></dt><dd><span lang="ar">المكثف يتركب على <b>التوازي</b>، و $P$ قبل وبعد نفسها، والتيار بعد التصحيح أقل.</span><span lang="en">The capacitor goes in <b>parallel</b>, $P$ is the same before and after, and the current after correction is smaller.</span></dd></dl></div>
   </div>
 </section>
 
 <!-- ================= 05 المختبر ================= -->
 <section class="card" id="lab" data-num="05" data-nav="المختبر|Lab">
-  <h2>جرّب بنفسك: صحّح معامل القدرة</h2>
-  <p class="sub">اختر pf قبل وبعد، وشوف كم مكثف تحتاج وكم ينزل التيار</p>
+  <h2><span lang="ar">جرّب بنفسك: صحّح معامل القدرة</span><span lang="en">Try it yourself: correct the power factor</span></h2>
+  <p class="sub"><span lang="ar">اختر pf قبل وبعد، وشوف كم مكثف تحتاج وكم ينزل التيار</span><span lang="en">Pick the pf before and after, and see how big a capacitor you need and how much the current drops</span></p>
   <div class="pc-lab">
-    <h3>🎛️ حرّك معامل القدرة القديم والجديد</h3>
-    <p class="lab-note">الحمل من المثال 3: $P = 4\ \text{kW}$ حثي، على خط $120\ \text{V rms}$ و $60\ \text{Hz}$. المثلث الكبير قبل التصحيح، والملوّن بعده، والخط النحاسي هو $Q_C$ اللي يعطيها المكثف.</p>
+    <h3><span lang="ar">🎛️ حرّك معامل القدرة القديم والجديد</span><span lang="en">🎛️ Move the old and new power factor</span></h3>
+    <p class="lab-note"><span lang="ar">الحمل من المثال 3: $P = 4\ \text{kW}$ حثي، على خط $120\ \text{V rms}$ و $60\ \text{Hz}$. المثلث الكبير قبل التصحيح، والملوّن بعده، والخط النحاسي هو $Q_C$ اللي يعطيها المكثف.</span><span lang="en">The load is from Example 3: $P = 4\ \text{kW}$ inductive, on a $120\ \text{V rms}$, $60\ \text{Hz}$ line. The large triangle is before correction, the colored one after, and the copper line is the $Q_C$ the capacitor provides.</span></p>
     <div class="lab-controls">
-      <div class="field"><label>pf<sub>1</sub> (قبل)</label><input type="range" dir="ltr" id="pc1" min="0.5" max="0.99" step="0.01" value="0.8"><span class="rv" id="pc1v"></span></div>
-      <div class="field"><label>pf<sub>2</sub> (بعد)</label><input type="range" dir="ltr" id="pc2" min="0.5" max="1" step="0.01" value="0.95"><span class="rv" id="pc2v"></span></div>
+      <div class="field"><label><span lang="ar">pf<sub>1</sub> (قبل)</span><span lang="en">pf<sub>1</sub> (before)</span></label><input type="range" dir="ltr" id="pc1" min="0.5" max="0.99" step="0.01" value="0.8"><span class="rv" id="pc1v"></span></div>
+      <div class="field"><label><span lang="ar">pf<sub>2</sub> (بعد)</span><span lang="en">pf<sub>2</sub> (after)</span></label><input type="range" dir="ltr" id="pc2" min="0.5" max="1" step="0.01" value="0.95"><span class="rv" id="pc2v"></span></div>
     </div>
     <figure class="fig">
       <svg viewBox="0 0 600 300" role="img" aria-label="مثلث القدرة قبل وبعد التصحيح: P أفقية ثابتة، Q1 قبل و Q2 بعد، والفرق Q_C">
@@ -340,26 +340,26 @@
         <text class="lbl zt" id="pcS2l" text-anchor="middle">S₂</text>
         <text class="lbl at" id="pcQcl">Qc</text>
       </svg>
-      <figcaption>المتقطع: $S_1$ قبل. المتصل: $S_2$ بعد. النحاسي: $Q_C$.</figcaption>
+      <figcaption><span lang="ar">المتقطع: $S_1$ قبل. المتصل: $S_2$ بعد. النحاسي: $Q_C$.</span><span lang="en">Dashed: $S_1$ before. Solid: $S_2$ after. Copper: $Q_C$.</span></figcaption>
     </figure>
     <div class="ml-read">
-      <div class="hl"><span class="k">سعة المكثف $C$</span><span class="v" id="pcC"></span></div>
-      <div><span class="k">$Q_C$ اللي يعطيها المكثف</span><span class="v" id="pcQcv"></span></div>
-      <div><span class="k">$Q$ قبل ← بعد</span><span class="v ltr" id="pcQ"></span></div>
-      <div><span class="k">$S$ قبل ← بعد</span><span class="v ltr" id="pcS"></span></div>
-      <div><span class="k">تيار الخط قبل ← بعد</span><span class="v ltr" id="pcI"></span></div>
-      <div class="hl"><span class="k">خسارة الأسلاك $I^2R$ تنزل</span><span class="v" id="pcL"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">سعة المكثف $C$</span><span lang="en">Capacitance $C$</span></span><span class="v" id="pcC"></span></div>
+      <div><span class="k"><span lang="ar">$Q_C$ اللي يعطيها المكثف</span><span lang="en">$Q_C$ provided by the capacitor</span></span><span class="v" id="pcQcv"></span></div>
+      <div><span class="k"><span lang="ar">$Q$ قبل ← بعد</span><span lang="en">$Q$ before → after</span></span><span class="v ltr" id="pcQ"></span></div>
+      <div><span class="k"><span lang="ar">$S$ قبل ← بعد</span><span lang="en">$S$ before → after</span></span><span class="v ltr" id="pcS"></span></div>
+      <div><span class="k"><span lang="ar">تيار الخط قبل ← بعد</span><span lang="en">Line current before → after</span></span><span class="v ltr" id="pcI"></span></div>
+      <div class="hl"><span class="k"><span lang="ar">خسارة الأسلاك $I^2R$ تنزل</span><span lang="en">Wire loss $I^2R$ drops by</span></span><span class="v" id="pcL"></span></div>
     </div>
     <p class="pc-say" id="pcSay"></p>
   </div>
-  <div class="callout key"><strong>🔑 جرّب:</strong> خل pf<sub>2</sub> $= 1$ وشوف المثلث يصير خط، والمكثف يلغي $Q_1$ كاملة. بعدها قارن: من 0.95 إلى 1 كم زاد المكثف؟ وكم نزل التيار زيادة؟ عشان كذا في الواقع غالبًا يكتفون بـ 0.95.</div>
+  <div class="callout key"><span lang="ar"><strong>🔑 جرّب:</strong> خل pf<sub>2</sub> $= 1$ وشوف المثلث يصير خط، والمكثف يلغي $Q_1$ كاملة. بعدها قارن: من 0.95 إلى 1 كم زاد المكثف؟ وكم نزل التيار زيادة؟ عشان كذا في الواقع غالبًا يكتفون بـ 0.95.</span><span lang="en"><strong>🔑 Try it:</strong> set pf<sub>2</sub> $= 1$ and watch the triangle become a line, with the capacitor cancelling all of $Q_1$. Then compare: going from 0.95 to 1, how much bigger did the capacitor get? And how much more did the current drop? That's why in practice they usually settle for 0.95.</span></div>
 </section>
 
 <!-- ================= الأمثلة ================= -->
 <section class="card" id="ex1" data-nav="مثال 1|Ex 1">
-  <div class="ex-head"><span class="ex-badge">مثال 1</span><h2>القدرة في المصدر والخط والحمل</h2></div>
-  <div class="tags"><span class="tag">Example 11.13</span><span class="tag">توالي: تيار واحد</span></div>
-  <p>حمل يتغذى من مصدر جهد عن طريق خط نقل <span class="ltr">(Transmission line)</span> معاوقته $4 + j2\ \Omega$. أوجد القدرة الحقيقية وغير الفعالة في: (أ) المصدر، (ب) الخط، (ج) الحمل.</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 1</span></span><span lang="en"><span class="ex-badge">Example 1</span></span><h2><span lang="ar">القدرة في المصدر والخط والحمل</span><span lang="en">Power in the source, the line and the load</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.13</span><span class="tag"><span lang="ar">توالي: تيار واحد</span><span lang="en">Series: one current</span></span></div>
+  <p><span lang="ar">حمل يتغذى من مصدر جهد عن طريق خط نقل <span class="ltr">(Transmission line)</span> معاوقته $4 + j2\ \Omega$. أوجد القدرة الحقيقية وغير الفعالة في: (أ) المصدر، (ب) الخط، (ج) الحمل.</span><span lang="en">A load is fed from a voltage source through a transmission line with impedance $4 + j2\ \Omega$. Find the real and reactive power in: (a) the source, (b) the line, (c) the load.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 385 200" role="img" aria-label="مصدر 220 بزاوية صفر قيمة فعالة، بعده خط فيه مقاومة 4 أوم وملف j2 أوم، ثم حمل فيه مقاومة 15 أوم ومكثف سالب j10 أوم على التوالي" style="max-width:400px">
       <circle class="wire" cx="70" cy="105" r="16"/>
@@ -373,55 +373,55 @@
       <text class="lbl" x="46" y="102" text-anchor="end">220∠0° V</text><text class="lbl" x="46" y="118" text-anchor="end">rms</text>
       <text class="lbl" x="140" y="24" text-anchor="middle">4 Ω</text><text class="lbl" x="205" y="24" text-anchor="middle">j2 Ω</text>
       <text class="lbl" x="336" y="84">15 Ω</text><text class="lbl" x="338" y="126">−j10 Ω</text>
-      <text class="lbl" x="70" y="190" text-anchor="middle">المصدر</text><text class="lbl" x="172" y="190" text-anchor="middle">الخط</text><text class="lbl" x="320" y="190" text-anchor="middle">الحمل</text>
+      <text class="lbl" x="70" y="190" text-anchor="middle" lang="ar">المصدر</text><text class="lbl" x="70" y="190" text-anchor="middle" lang="en" style="direction:rtl">Source</text><text class="lbl" x="172" y="190" text-anchor="middle" lang="ar">الخط</text><text class="lbl" x="172" y="190" text-anchor="middle" lang="en" style="direction:rtl">Line</text><text class="lbl" x="320" y="190" text-anchor="middle" lang="ar">الحمل</text><text class="lbl" x="320" y="190" text-anchor="middle" lang="en" style="direction:rtl">Load</text>
     </svg>
-    <figcaption>Figure 11.24: الخط والحمل على التوالي مع المصدر.</figcaption>
+    <figcaption><span lang="ar">Figure 11.24: الخط والحمل على التوالي مع المصدر.</span><span lang="en">Figure 11.24: the line and the load in series with the source.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 i1 s1 sm o1">توالي، ثم التيار، ثم $|\mathbf{I}|^2\mathbf{Z}$، ثم الجمع</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g1 i1 s1 sm o1">توالي، ثم التيار، ثم $|\mathbf{I}|^2\mathbf{Z}$، ثم الجمع</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="r1 g1 i1 s1 sm o1">series, then the current, then $|\mathbf{I}|^2\mathbf{Z}$, then the sum</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">الخط والحمل ورا بعض، فالتيار واحد. يعني الشجرة 1، فرع "توالي". نحسب التيار، وبعدها قدرة كل جزء بـ $|\mathbf{I}|^2\mathbf{Z}$.</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">الخط والحمل ورا بعض، فالتيار واحد. يعني الشجرة 1، فرع "توالي". نحسب التيار، وبعدها قدرة كل جزء بـ $|\mathbf{I}|^2\mathbf{Z}$.</span><span lang="en">The line and the load are one after the other, so there's one current. So it's tree 1, branch “series”. We find the current, then each part's power with $|\mathbf{I}|^2\mathbf{Z}$.</span></p>
     </li>
     <li class="step">
-      <h4>المعاوقة الكلية</h4>
+      <h4><span lang="ar">المعاوقة الكلية</span><span lang="en">Total impedance</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{Z} = (4 + j2) + (15 - j10) \\ = 19 - j8 \\ = 20.62\angle{-22.83^\circ}\ \Omega\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>التيار</h4>
+      <h4><span lang="ar">التيار</span><span lang="en">Current</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{I} = \frac{220\angle 0^\circ}{20.62\angle{-22.83^\circ}} \\ = 10.67\angle 22.83^\circ\ \text{A}\end{gathered}\]</div>
-      <p class="why">ونحتاج المقدار تربيع: $|\mathbf{I}|^2 = (10.67)^2 = 113.9$.</p>
+      <p class="why"><span lang="ar">ونحتاج المقدار تربيع: $|\mathbf{I}|^2 = (10.67)^2 = 113.9$.</span><span lang="en">And we need the magnitude squared: $|\mathbf{I}|^2 = (10.67)^2 = 113.9$.</span></p>
     </li>
     <li class="step">
-      <h4>(أ) المصدر</h4>
-      <p class="why">قدرة المصدر $\mathbf{V}_s\mathbf{I}^*$. مرافق التيار زاويته $-22.83^\circ$.</p>
+      <h4><span lang="ar">(أ) المصدر</span><span lang="en">(a) The source</span></h4>
+      <p class="why"><span lang="ar">قدرة المصدر $\mathbf{V}_s\mathbf{I}^*$. مرافق التيار زاويته $-22.83^\circ$.</span><span lang="en">The source power is $\mathbf{V}_s\mathbf{I}^*$. The current's conjugate has angle $-22.83^\circ$.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}_s} = (220\angle 0^\circ) \\ \times(10.67\angle{-22.83^\circ}) \\ = 2347.7\angle{-22.83^\circ} \\ = 2163.8 - j911.1\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ب) الخط</h4>
-      <p class="why">بدل ما نحسب جهد الخط، نستخدم الاختصار: التيار نفسه يمر فيه.</p>
+      <h4><span lang="ar">(ب) الخط</span><span lang="en">(b) The line</span></h4>
+      <p class="why"><span lang="ar">بدل ما نحسب جهد الخط، نستخدم الاختصار: التيار نفسه يمر فيه.</span><span lang="en">Instead of finding the line voltage, we use the shortcut: the same current flows through it.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}_{line}} = |\mathbf{I}|^2\mathbf{Z}_{line} \\ = 113.9(4 + j2) \\ = 455.5 + j227.8\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ج) الحمل</h4>
+      <h4><span lang="ar">(ج) الحمل</span><span lang="en">(c) The load</span></h4>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}_L} = |\mathbf{I}|^2\mathbf{Z}_L \\ = 113.9(15 - j10) \\ = 1708.2 - j1138.8\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>تأكد بحفظ القدرة</h4>
-      <p class="why">قبل ما تقرأ: لو جمعنا الخط والحمل، وش لازم يطلع؟ قدرة المصدر بالضبط.</p>
+      <h4><span lang="ar">تأكد بحفظ القدرة</span><span lang="en">Check with conservation of power</span></h4>
+      <p class="why"><span lang="ar">قبل ما تقرأ: لو جمعنا الخط والحمل، وش لازم يطلع؟ قدرة المصدر بالضبط.</span><span lang="en">Before you read on: if we add the line and the load, what must come out? Exactly the source power.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{S}_{line} + \mathbf{S}_L \\ = (455.5 + 1708.2) \\ + j(227.8 - 1138.8) \\ = 2163.7 - j911\ \text{VA} \\ = \mathbf{S}_s\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">المصدر: $P = 2163.8$ W و $Q = -911.1$ VAR. الخط: $455.5$ W و $227.8$ VAR. الحمل: $1708.2$ W و $-1138.8$ VAR</div>
-      <p class="sanity">الخط حثي ($Q$ موجب)، والحمل سعوي ($Q$ سالب) وأكبر، فالكل سعوي والمصدر يشوف pf متقدم ✓ (الكتاب يطلع 2163.5 و 910.8 بسبب التقريب.)</p>
+      <div class="result"><span lang="ar">المصدر: $P = 2163.8$ W و $Q = -911.1$ VAR. الخط: $455.5$ W و $227.8$ VAR. الحمل: $1708.2$ W و $-1138.8$ VAR</span><span lang="en">Source: $P = 2163.8$ W and $Q = -911.1$ VAR. Line: $455.5$ W and $227.8$ VAR. Load: $1708.2$ W and $-1138.8$ VAR</span></div>
+      <p class="sanity"><span lang="ar">الخط حثي ($Q$ موجب)، والحمل سعوي ($Q$ سالب) وأكبر، فالكل سعوي والمصدر يشوف pf متقدم ✓ (الكتاب يطلع 2163.5 و 910.8 بسبب التقريب.)</span><span lang="en">The line is inductive ($Q$ positive), and the load is capacitive ($Q$ negative) and larger, so the whole is capacitive and the source sees a leading pf ✓ (The textbook gets 2163.5 and 910.8 due to rounding.)</span></p>
     </li>
   </ol>
 </section>
 
 <section class="card" id="ex2" data-nav="مثال 2|Ex 2">
-  <div class="ex-head"><span class="ex-badge">مثال 2</span><h2>القدرة الكلية لحملين على التوازي</h2></div>
-  <div class="tags"><span class="tag">Example 11.14</span><span class="tag">توازي: جهد واحد</span></div>
-  <p>في الدائرة، $\mathbf{Z}_1 = 60\angle{-30^\circ}\ \Omega$ و $\mathbf{Z}_2 = 40\angle 45^\circ\ \Omega$. احسب للمصدر: (أ) القدرة الظاهرية الكلية، (ب) الحقيقية، (ج) غير الفعالة، (د) معامل القدرة.</p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 2</span></span><span lang="en"><span class="ex-badge">Example 2</span></span><h2><span lang="ar">القدرة الكلية لحملين على التوازي</span><span lang="en">Total power of two loads in parallel</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.14</span><span class="tag"><span lang="ar">توازي: جهد واحد</span><span lang="en">Parallel: one voltage</span></span></div>
+  <p><span lang="ar">في الدائرة، $\mathbf{Z}_1 = 60\angle{-30^\circ}\ \Omega$ و $\mathbf{Z}_2 = 40\angle 45^\circ\ \Omega$. احسب للمصدر: (أ) القدرة الظاهرية الكلية، (ب) الحقيقية، (ج) غير الفعالة، (د) معامل القدرة.</span><span lang="en">In the circuit, $\mathbf{Z}_1 = 60\angle{-30^\circ}\ \Omega$ and $\mathbf{Z}_2 = 40\angle 45^\circ\ \Omega$. Find for the source: (a) the total apparent power, (b) the real power, (c) the reactive power, (d) the power factor.</span></p>
   <figure class="fig">
     <svg viewBox="0 0 360 180" role="img" aria-label="مصدر 120 بزاوية 10 درجات قيمة فعالة موصول على Z1 و Z2 على التوازي" style="max-width:360px">
       <circle class="wire" cx="85" cy="105" r="16"/>
@@ -433,153 +433,153 @@
       <text class="lbl yt" x="222" y="104">Z<tspan class="sb" dy="3">1</tspan></text><text class="lbl yt" x="322" y="104">Z<tspan class="sb" dy="3">2</tspan></text>
       <text class="lbl" x="62" y="102" text-anchor="end">120∠10° V</text><text class="lbl" x="62" y="118" text-anchor="end">rms</text>
     </svg>
-    <figcaption>Figure 11.26: الحملين على نفس الجهد.</figcaption>
+    <figcaption><span lang="ar">Figure 11.26: الحملين على نفس الجهد.</span><span lang="en">Figure 11.26: the two loads on the same voltage.</span></figcaption>
   </figure>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g2 s2 sm pf o1">توازي، ثم $V^2/\mathbf{Z}^*$، ثم الجمع، ثم pf</a></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board1" data-path="r1 g2 s2 sm pf o1">توازي، ثم $V^2/\mathbf{Z}^*$، ثم الجمع، ثم pf</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board1" data-path="r1 g2 s2 sm pf o1">parallel, then $V^2/\mathbf{Z}^*$, then the sum, then pf</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">الحملين على نفس الطرفين، فالجهد واحد. الشجرة 1، فرع "توازي". نستخدم $V^2/\mathbf{Z}^*$ لكل حمل، وما نحتاج التيارات.</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">الحملين على نفس الطرفين، فالجهد واحد. الشجرة 1، فرع "توازي". نستخدم $V^2/\mathbf{Z}^*$ لكل حمل، وما نحتاج التيارات.</span><span lang="en">The two loads are across the same terminals, so there's one voltage. Tree 1, branch “parallel”. We use $V^2/\mathbf{Z}^*$ for each load, and we don't need the currents.</span></p>
     </li>
     <li class="step">
-      <h4>قدرة الحمل الأول</h4>
-      <p class="why">$V^2 = 120^2 = 14400$. ومرافق $60\angle{-30^\circ}$ هو $60\angle 30^\circ$.</p>
+      <h4><span lang="ar">قدرة الحمل الأول</span><span lang="en">Power of the first load</span></h4>
+      <p class="why"><span lang="ar">$V^2 = 120^2 = 14400$. ومرافق $60\angle{-30^\circ}$ هو $60\angle 30^\circ$.</span><span lang="en">$V^2 = 120^2 = 14400$. And the conjugate of $60\angle{-30^\circ}$ is $60\angle 30^\circ$.</span></p>
       <div class="m">\[\begin{gathered}\mathbf{S}_1 = \frac{14400}{60\angle 30^\circ} = 240\angle{-30^\circ} \\ = 207.8 - j120\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>قدرة الحمل الثاني</h4>
+      <h4><span lang="ar">قدرة الحمل الثاني</span><span lang="en">Power of the second load</span></h4>
       <div class="m">\[\begin{gathered}\mathbf{S}_2 = \frac{14400}{40\angle{-45^\circ}} = 360\angle 45^\circ \\ = 254.6 + j254.6\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>اجمع (حفظ القدرة)</h4>
-      <p class="why">الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</p>
+      <h4><span lang="ar">اجمع (حفظ القدرة)</span><span lang="en">Add (conservation of power)</span></h4>
+      <p class="why"><span lang="ar">الحقيقي مع الحقيقي، والتخيلي مع التخيلي.</span><span lang="en">Real with real, and imaginary with imaginary.</span></p>
       <div class="m">\[\begin{gathered}\Z{\mathbf{S}_t} = \mathbf{S}_1 + \mathbf{S}_2 \\ = 462.4 + j134.6\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(أ) الظاهرية الكلية</h4>
-      <p class="why">قبل ما تقرأ: ليش ما نجمع $240 + 360 = 600$؟ لأن المقادير ما تنجمع. ناخذ مقدار المجموع.</p>
+      <h4><span lang="ar">(أ) الظاهرية الكلية</span><span lang="en">(a) Total apparent power</span></h4>
+      <p class="why"><span lang="ar">قبل ما تقرأ: ليش ما نجمع $240 + 360 = 600$؟ لأن المقادير ما تنجمع. ناخذ مقدار المجموع.</span><span lang="en">Before you read on: why don't we add $240 + 360 = 600$? Because magnitudes don't add. We take the magnitude of the sum.</span></p>
       <div class="m">\[\begin{gathered}\Z{S_t} = |\mathbf{S}_t| \\ = \sqrt{462.4^2 + 134.6^2} \\ = 481.6\ \text{VA}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(ب) و (ج) الحقيقية وغير الفعالة</h4>
+      <h4><span lang="ar">(ب) و (ج) الحقيقية وغير الفعالة</span><span lang="en">(b) and (c) Real and reactive</span></h4>
       <div class="m">\[\begin{gathered}\X{P_t} = 462.4\ \text{W} \\ \Y{Q_t} = 134.6\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>(د) معامل القدرة</h4>
-      <p class="why">$Q_t$ موجب، فالكل حثي والـ pf متأخر.</p>
+      <h4><span lang="ar">(د) معامل القدرة</span><span lang="en">(d) Power factor</span></h4>
+      <p class="why"><span lang="ar">$Q_t$ موجب، فالكل حثي والـ pf متأخر.</span><span lang="en">$Q_t$ is positive, so the whole is inductive and the pf is lagging.</span></p>
       <div class="m">\[\text{pf} = \frac{462.4}{481.6} = 0.960\]</div>
     </li>
     <li class="step final">
-      <div class="result">$S_t = 481.6$ VA، $P_t = 462.4$ W، $Q_t = 134.6$ VAR، pf $= 0.96$ متأخر</div>
-      <p class="sanity">تأكد من المصدر: $\mathbf{I}_t = 2\angle 40^\circ + 3\angle{-35^\circ}$ $= 4.013\angle{-6.22^\circ}$، و $\mathbf{V}\mathbf{I}_t^*$ $= 481.6\angle 16.22^\circ$ $= 462.4 + j134.6$ ✓</p>
+      <div class="result"><span lang="ar">$S_t = 481.6$ VA، $P_t = 462.4$ W، $Q_t = 134.6$ VAR، pf $= 0.96$ متأخر</span><span lang="en">$S_t = 481.6$ VA, $P_t = 462.4$ W, $Q_t = 134.6$ VAR, pf $= 0.96$ lagging</span></div>
+      <p class="sanity"><span lang="ar">تأكد من المصدر: $\mathbf{I}_t = 2\angle 40^\circ + 3\angle{-35^\circ}$ $= 4.013\angle{-6.22^\circ}$، و $\mathbf{V}\mathbf{I}_t^*$ $= 481.6\angle 16.22^\circ$ $= 462.4 + j134.6$ ✓</span><span lang="en">Check from the source: $\mathbf{I}_t = 2\angle 40^\circ + 3\angle{-35^\circ}$ $= 4.013\angle{-6.22^\circ}$, and $\mathbf{V}\mathbf{I}_t^*$ $= 481.6\angle 16.22^\circ$ $= 462.4 + j134.6$ ✓</span></p>
     </li>
   </ol>
 </section>
 
 <section class="card" id="ex3" data-nav="مثال 3|Ex 3">
-  <div class="ex-head"><span class="ex-badge">مثال 3</span><h2>مكثف يرفع pf إلى 0.95</h2></div>
-  <div class="tags"><span class="tag">Example 11.15</span><span class="tag">تصحيح بمكثف</span></div>
-  <p>حمل موصول على خط <span class="ltr">120 V rms</span> و <span class="ltr">60 Hz</span>، ياخذ <span class="ltr">4 kW</span> بمعامل قدرة 0.8 متأخر. أوجد قيمة المكثف اللازمة عشان يرتفع معامل القدرة إلى 0.95.</p>
-  <p class="fb-used">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 pp an qd cc o2">$P$، ثم الزاويتين، ثم $Q_C$، ثم $C$</a></p>
+  <div class="ex-head"><span lang="ar"><span class="ex-badge">مثال 3</span></span><span lang="en"><span class="ex-badge">Example 3</span></span><h2><span lang="ar">مكثف يرفع pf إلى 0.95</span><span lang="en">A capacitor raising pf to 0.95</span></h2></div>
+  <div class="tags"><span class="tag">Example 11.15</span><span class="tag"><span lang="ar">تصحيح بمكثف</span><span lang="en">correction with a capacitor</span></span></div>
+  <p><span lang="ar">حمل موصول على خط <span class="ltr">120 V rms</span> و <span class="ltr">60 Hz</span>، ياخذ <span class="ltr">4 kW</span> بمعامل قدرة 0.8 متأخر. أوجد قيمة المكثف اللازمة عشان يرتفع معامل القدرة إلى 0.95.</span><span lang="en">A load connected to a <span class="ltr">120 V rms</span>, <span class="ltr">60 Hz</span> line takes <span class="ltr">4 kW</span> at a power factor of 0.8 lagging. Find the capacitor value needed to raise the power factor to 0.95.</span></p>
+  <p class="fb-used"><span lang="ar">🌳 المسار في لوحة القوانين: <a class="fb-go" href="#board2" data-path="r2 pp an qd cc o2">$P$، ثم الزاويتين، ثم $Q_C$، ثم $C$</a></span><span lang="en">🌳 Path on the formula board: <a class="fb-go" href="#board2" data-path="r2 pp an qd cc o2">$P$, then the two angles, then $Q_C$, then $C$</a></span></p>
   <ol class="solve">
     <li class="step read">
-      <h4>اقرأ المسألة</h4>
-      <p class="why">"ارفع pf" والحمل متأخر (حثي)، يعني الشجرة 2، فرع المكثف. و $P = 4000\ \text{W}$ معطاة مباشرة.</p>
+      <h4><span lang="ar">اقرأ المسألة</span><span lang="en">Read the problem</span></h4>
+      <p class="why"><span lang="ar">"ارفع pf" والحمل متأخر (حثي)، يعني الشجرة 2، فرع المكثف. و $P = 4000\ \text{W}$ معطاة مباشرة.</span><span lang="en">“Raise pf” and the load is lagging (inductive), so it's tree 2, the capacitor branch. And $P = 4000\ \text{W}$ is given directly.</span></p>
     </li>
     <li class="step">
-      <h4>الزاوية القديمة</h4>
+      <h4><span lang="ar">الزاوية القديمة</span><span lang="en">The old angle</span></h4>
       <div class="m">\[\theta_1 = \cos^{-1}(0.8) = 36.87^\circ\]</div>
     </li>
     <li class="step">
-      <h4>$S_1$ و $Q_1$ قبل التصحيح</h4>
+      <h4><span lang="ar">$S_1$ و $Q_1$ قبل التصحيح</span><span lang="en">$S_1$ and $Q_1$ before correction</span></h4>
       <div class="m">\[\begin{gathered}S_1 = \frac{P}{\cos\theta_1} = \frac{4000}{0.8} \\ = 5000\ \text{VA} \\[6pt] \Y{Q_1} = 5000\sin 36.87^\circ \\ = 3000\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>الزاوية الجديدة</h4>
+      <h4><span lang="ar">الزاوية الجديدة</span><span lang="en">The new angle</span></h4>
       <div class="m">\[\theta_2 = \cos^{-1}(0.95) = 18.19^\circ\]</div>
     </li>
     <li class="step">
-      <h4>$S_2$ و $Q_2$ بعد التصحيح</h4>
-      <p class="why">$P$ ما تغيرت، فنقسمها على الـ pf الجديد.</p>
+      <h4><span lang="ar">$S_2$ و $Q_2$ بعد التصحيح</span><span lang="en">$S_2$ and $Q_2$ after correction</span></h4>
+      <p class="why"><span lang="ar">$P$ ما تغيرت، فنقسمها على الـ pf الجديد.</span><span lang="en">$P$ didn't change, so we divide it by the new pf.</span></p>
       <div class="m">\[\begin{gathered}S_2 = \frac{4000}{0.95} \\ = 4210.5\ \text{VA} \\[6pt] \Y{Q_2} = S_2\sin\theta_2 \\ = 4210.5\sin 18.19^\circ \\ = 1314.7\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>$Q_C$ اللي يعطيها المكثف</h4>
+      <h4><span lang="ar">$Q_C$ اللي يعطيها المكثف</span><span lang="en">$Q_C$ provided by the capacitor</span></h4>
       <div class="m">\[\begin{gathered}Q_C = Q_1 - Q_2 \\ = 3000 - 1314.7 \\ = 1685.3\ \text{VAR}\end{gathered}\]</div>
     </li>
     <li class="step">
-      <h4>سعة المكثف</h4>
-      <p class="why">$\omega = 2\pi(60) = 377\ \text{rad/s}$، والجهد يتربع.</p>
+      <h4><span lang="ar">سعة المكثف</span><span lang="en">Capacitance</span></h4>
+      <p class="why"><span lang="ar">$\omega = 2\pi(60) = 377\ \text{rad/s}$، والجهد يتربع.</span><span lang="en">$\omega = 2\pi(60) = 377\ \text{rad/s}$, and the voltage is squared.</span></p>
       <div class="m">\[\begin{gathered}C = \frac{Q_C}{\omega V_{rms}^2} \\ = \frac{1685.3}{2\pi \times 60 \times 120^2}\end{gathered}\]</div>
     </li>
     <li class="step final">
-      <div class="result">$C = 310.4\ \mu$F على التوازي مع الحمل</div>
-      <p class="sanity">إضافة: تيار الخط كان $5000/120 = 41.7\ \text{A}$ وصار $4210.5/120 = 35.1\ \text{A}$، والقدرة الحقيقية نفسها 4 kW ✓ (الكتاب يقرّب فيطلع 1314.4 و 310.5 μF.)</p>
-      <p class="sanity">ملاحظة الكتاب: القيمة العظمى لجهد المكثف $120\sqrt{2} \approx 170\ \text{V}$، فيشتري مكثف يتحمل 200 V مثلًا.</p>
+      <div class="result"><span lang="ar">$C = 310.4\ \mu$F على التوازي مع الحمل</span><span lang="en">$C = 310.4\ \mu$F in parallel with the load</span></div>
+      <p class="sanity"><span lang="ar">إضافة: تيار الخط كان $5000/120 = 41.7\ \text{A}$ وصار $4210.5/120 = 35.1\ \text{A}$، والقدرة الحقيقية نفسها 4 kW ✓ (الكتاب يقرّب فيطلع 1314.4 و 310.5 μF.)</span><span lang="en">Extra: the line current was $5000/120 = 41.7\ \text{A}$ and became $4210.5/120 = 35.1\ \text{A}$, with the same real power of 4 kW ✓ (The textbook rounds to get 1314.4 and 310.5 μF.)</span></p>
+      <p class="sanity"><span lang="ar">ملاحظة الكتاب: القيمة العظمى لجهد المكثف $120\sqrt{2} \approx 170\ \text{V}$، فيشتري مكثف يتحمل 200 V مثلًا.</span><span lang="en">A note from the textbook: the capacitor's peak voltage is $120\sqrt{2} \approx 170\ \text{V}$, so you'd buy a capacitor rated for, say, 200 V.</span></p>
     </li>
   </ol>
 </section>
 
 <!-- ================= التمارين ================= -->
 <section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
-  <h2>دورك: تمارين</h2>
-  <p class="sub">اكتب الرقم بس. وقبل ما تحل، حدد مسارك في لوحة القوانين.</p>
+  <h2><span lang="ar">دورك: تمارين</span><span lang="en">Your turn: practice</span></h2>
+  <p class="sub"><span lang="ar">اكتب الرقم بس. وقبل ما تحل، حدد مسارك في لوحة القوانين.</span><span lang="en">Type just the number. Before you solve, pick your path on the formula board.</span></p>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين أ</b><span class="lvl">سهل</span></div>
-    <p>حملين على التوازي: $\mathbf{S}_1 = 1000 + j500\ \text{VA}$ و $\mathbf{S}_2 = 600 - j800\ \text{VA}$. كم القدرة الحقيقية الكلية بالواط؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Exercise A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">حملين على التوازي: $\mathbf{S}_1 = 1000 + j500\ \text{VA}$ و $\mathbf{S}_2 = 600 - j800\ \text{VA}$. كم القدرة الحقيقية الكلية بالواط؟</span><span lang="en">Two loads in parallel: $\mathbf{S}_1 = 1000 + j500\ \text{VA}$ and $\mathbf{S}_2 = 600 - j800\ \text{VA}$. What is the total real power in watts?</span></p>
     <div class="check" data-answer="1600"></div>
-    <details class="hint"><p>حفظ القدرة: اجمع الأجزاء الحقيقية.</p></details>
+    <details class="hint"><p><span lang="ar">حفظ القدرة: اجمع الأجزاء الحقيقية.</span><span lang="en">Conservation of power: add the real parts.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[P_t = 1000 + 600\]</div><div class="result">$P_t = 1600$ W</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ب</b><span class="lvl">وسط</span></div>
-    <p>نفس الحملين. كم معامل القدرة الكلي؟ (لثلاث منازل عشرية)</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Exercise B</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">نفس الحملين. كم معامل القدرة الكلي؟ (لثلاث منازل عشرية)</span><span lang="en">The same two loads. What is the total power factor? (to three decimal places)</span></p>
     <div class="check" data-answer="0.983"></div>
-    <details class="hint"><p>$Q_t = 500 - 800 = -300$. بعدها $S_t = \sqrt{P_t^2 + Q_t^2}$، ولا تجمع المقادير.</p></details>
+    <details class="hint"><p><span lang="ar">$Q_t = 500 - 800 = -300$. بعدها $S_t = \sqrt{P_t^2 + Q_t^2}$، ولا تجمع المقادير.</span><span lang="en">$Q_t = 500 - 800 = -300$. Then $S_t = \sqrt{P_t^2 + Q_t^2}$; don't add the magnitudes.</span></p></details>
     <ol class="solve" data-start="solution">
-      <li class="step final"><div class="m">\[\begin{gathered}S_t = \sqrt{1600^2 + 300^2} \\ = 1627.9 \\ \text{pf} = \frac{1600}{1627.9}\end{gathered}\]</div><div class="result">pf $= 0.983$ متقدم</div><p class="sanity">$Q_t$ سالب، فهو متقدم ✓</p></li>
+      <li class="step final"><div class="m">\[\begin{gathered}S_t = \sqrt{1600^2 + 300^2} \\ = 1627.9 \\ \text{pf} = \frac{1600}{1627.9}\end{gathered}\]</div><div class="result"><span lang="ar">pf $= 0.983$ متقدم</span><span lang="en">pf $= 0.983$ leading</span></div><p class="sanity"><span lang="ar">$Q_t$ سالب، فهو متقدم ✓</span><span lang="en">$Q_t$ is negative, so it's leading ✓</span></p></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين ج</b><span class="lvl">وسط</span></div>
-    <p>مصدر $120\ \text{V rms}$ يغذي حملين على التوالي: $\mathbf{Z}_1 = 4 + j3\ \Omega$ و $\mathbf{Z}_2 = 8 - j8\ \Omega$. كم القدرة الحقيقية في $\mathbf{Z}_1$ بالواط؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Exercise C</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">مصدر $120\ \text{V rms}$ يغذي حملين على التوالي: $\mathbf{Z}_1 = 4 + j3\ \Omega$ و $\mathbf{Z}_2 = 8 - j8\ \Omega$. كم القدرة الحقيقية في $\mathbf{Z}_1$ بالواط؟</span><span lang="en">A $120\ \text{V rms}$ source feeds two loads in series: $\mathbf{Z}_1 = 4 + j3\ \Omega$ and $\mathbf{Z}_2 = 8 - j8\ \Omega$. What is the real power in $\mathbf{Z}_1$ in watts?</span></p>
     <div class="check" data-answer="340.83"></div>
-    <details class="hint"><p>المعاوقة الكلية $12 - j5$ ومقدارها 13. احسب $|\mathbf{I}|^2$ واضربه في $R_1 = 4$.</p></details>
+    <details class="hint"><p><span lang="ar">المعاوقة الكلية $12 - j5$ ومقدارها 13. احسب $|\mathbf{I}|^2$ واضربه في $R_1 = 4$.</span><span lang="en">The total impedance is $12 - j5$ with magnitude 13. Find $|\mathbf{I}|^2$ and multiply by $R_1 = 4$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}|\mathbf{I}| = \frac{120}{13} = 9.231\ \text{A} \\ P_1 = |\mathbf{I}|^2 R_1 = 85.21 \times 4\end{gathered}\]</div><div class="result">$P_1 = 340.8$ W</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين د</b><span class="lvl">وسط</span></div>
-    <p>حمل $10\ \text{kW}$ بمعامل قدرة 0.6 متأخر. نبغى نرفعه إلى 0.9. كم $Q_C$ بالـ VAR؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين د</span><span lang="en">Exercise D</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">حمل $10\ \text{kW}$ بمعامل قدرة 0.6 متأخر. نبغى نرفعه إلى 0.9. كم $Q_C$ بالـ VAR؟</span><span lang="en">A $10\ \text{kW}$ load at a power factor of 0.6 lagging. We want to raise it to 0.9. What is $Q_C$ in VAR?</span></p>
     <div class="check" data-answer="8490"></div>
-    <details class="hint"><p>$\tan(\cos^{-1}0.6) = 1.3333$ و $\tan(\cos^{-1}0.9) = 0.4843$.</p></details>
+    <details class="hint"><p><span lang="ar">$\tan(\cos^{-1}0.6) = 1.3333$ و $\tan(\cos^{-1}0.9) = 0.4843$.</span><span lang="en">$\tan(\cos^{-1}0.6) = 1.3333$ and $\tan(\cos^{-1}0.9) = 0.4843$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}Q_C = P(\tan\theta_1 - \tan\theta_2) \\ = 10000(1.3333 - 0.4843)\end{gathered}\]</div><div class="result">$Q_C = 8490$ VAR</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين هـ</b><span class="lvl">وسط</span></div>
-    <p>كمّل تمرين د: الجهد $240\ \text{V rms}$ والتردد $60\ \text{Hz}$. كم سعة المكثف بالميكروفاراد (μF)؟</p>
+    <div class="prob-top"><b><span lang="ar">تمرين هـ</span><span lang="en">Exercise E</span></b><span class="lvl"><span lang="ar">وسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">كمّل تمرين د: الجهد $240\ \text{V rms}$ والتردد $60\ \text{Hz}$. كم سعة المكثف بالميكروفاراد (μF)؟</span><span lang="en">Continue Exercise D: the voltage is $240\ \text{V rms}$ and the frequency $60\ \text{Hz}$. What is the capacitance in microfarads (μF)?</span></p>
     <div class="check" data-answer="391"></div>
-    <details class="hint"><p>$C = \dfrac{Q_C}{\omega V_{rms}^2}$ و $\omega = 377$.</p></details>
+    <details class="hint"><p><span lang="ar">$C = \dfrac{Q_C}{\omega V_{rms}^2}$ و $\omega = 377$.</span><span lang="en">$C = \dfrac{Q_C}{\omega V_{rms}^2}$ and $\omega = 377$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}C = \frac{8490}{377 \times 240^2} \\ = 3.91 \times 10^{-4}\ \text{F}\end{gathered}\]</div><div class="result">$C = 391\ \mu$F</div></li>
     </ol>
   </div>
 
   <div class="prob">
-    <div class="prob-top"><b>تمرين و</b><span class="lvl">صعب</span></div>
-    <p>حمل سعوي $2\ \text{kW}$ بمعامل قدرة 0.8 <b>متقدم</b>، على $120\ \text{V rms}$ و $60\ \text{Hz}$. نبغى pf $= 1$. كم الملف اللازم على التوازي بالملي هنري (mH)؟ (تمرين إضافي على قانون 11.61)</p>
+    <div class="prob-top"><b><span lang="ar">تمرين و</span><span lang="en">Exercise F</span></b><span class="lvl"><span lang="ar">صعب</span><span lang="en">Hard</span></span></div>
+    <p><span lang="ar">حمل سعوي $2\ \text{kW}$ بمعامل قدرة 0.8 <b>متقدم</b>، على $120\ \text{V rms}$ و $60\ \text{Hz}$. نبغى pf $= 1$. كم الملف اللازم على التوازي بالملي هنري (mH)؟ (تمرين إضافي على قانون 11.61)</span><span lang="en">A $2\ \text{kW}$ capacitive load at a power factor of 0.8 <b>leading</b>, on $120\ \text{V rms}$ and $60\ \text{Hz}$. We want pf $= 1$. What parallel inductor is needed, in millihenries (mH)? (extra exercise on formula 11.61)</span></p>
     <div class="check" data-answer="25.46"></div>
-    <details class="hint"><p>pf $= 1$ يعني $Q_2 = 0$، فـ $Q_L = |Q_1| = P\tan\theta_1$. بعدها $L = \dfrac{V_{rms}^2}{\omega Q_L}$.</p></details>
+    <details class="hint"><p><span lang="ar">pf $= 1$ يعني $Q_2 = 0$، فـ $Q_L = |Q_1| = P\tan\theta_1$. بعدها $L = \dfrac{V_{rms}^2}{\omega Q_L}$.</span><span lang="en">pf $= 1$ means $Q_2 = 0$, so $Q_L = |Q_1| = P\tan\theta_1$. Then $L = \dfrac{V_{rms}^2}{\omega Q_L}$.</span></p></details>
     <ol class="solve" data-start="solution">
       <li class="step final"><div class="m">\[\begin{gathered}Q_L = 2000\tan 36.87^\circ \\ = 1500\ \text{VAR} \\ L = \frac{120^2}{377 \times 1500} \\ = 0.02546\ \text{H}\end{gathered}\]</div><div class="result">$L = 25.46$ mH</div></li>
     </ol>
@@ -588,53 +588,53 @@
 
 <!-- ================= الأخطاء ================= -->
 <section class="card mistakes" id="mistakes" data-num="⚠️" data-nav="⚠️ أخطاء|⚠️ Mistakes">
-  <h2>الأخطاء اللي تضيّع الدرجات</h2>
-  <div class="mk"><div class="mk-title">تجمع القدرات الظاهرية</div>
-    <div class="pair"><div class="no">$S_t = S_1 + S_2 = 240 + 360 = 600\ \text{VA}$</div><div class="yes">اجمع $\mathbf{S}$ المركبة، وخذ المقدار: $481.6\ \text{VA}$</div></div></div>
-  <div class="mk"><div class="mk-title">تجمع بالصورة القطبية</div>
-    <div class="pair"><div class="no">$240\angle{-30^\circ} + 360\angle 45^\circ = 600\angle 15^\circ$</div><div class="yes">حوّل كل واحد لمستطيلة أول، وبعدها اجمع</div></div></div>
-  <div class="mk"><div class="mk-title">تحسب $Q_2$ من $S_1$ القديمة</div>
-    <div class="pair"><div class="no">$Q_2 = S_1\sin\theta_2$</div><div class="yes">$Q_2 = P\tan\theta_2$ لأن $P$ هي الثابتة</div></div></div>
-  <div class="mk"><div class="mk-title">تحط $f$ بدل $\omega$</div>
-    <div class="pair"><div class="no">$C = \dfrac{Q_C}{60 \times 120^2}$</div><div class="yes">$\omega = 2\pi f = 377$، و $C = \dfrac{Q_C}{377 \times 120^2}$</div></div></div>
-  <div class="mk"><div class="mk-title">تنسى تربّع الجهد</div>
+  <h2><span lang="ar">الأخطاء اللي تضيّع الدرجات</span><span lang="en">Mistakes that cost you marks</span></h2>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع القدرات الظاهرية</span><span lang="en">Adding the apparent powers</span></div>
+    <div class="pair"><div class="no">$S_t = S_1 + S_2 = 240 + 360 = 600\ \text{VA}$</div><div class="yes"><span lang="ar">اجمع $\mathbf{S}$ المركبة، وخذ المقدار: $481.6\ \text{VA}$</span><span lang="en">Add the complex $\mathbf{S}$, and take the magnitude: $481.6\ \text{VA}$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تجمع بالصورة القطبية</span><span lang="en">Adding in polar form</span></div>
+    <div class="pair"><div class="no">$240\angle{-30^\circ} + 360\angle 45^\circ = 600\angle 15^\circ$</div><div class="yes"><span lang="ar">حوّل كل واحد لمستطيلة أول، وبعدها اجمع</span><span lang="en">Convert each to rectangular first, then add</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحسب $Q_2$ من $S_1$ القديمة</span><span lang="en">Computing $Q_2$ from the old $S_1$</span></div>
+    <div class="pair"><div class="no">$Q_2 = S_1\sin\theta_2$</div><div class="yes"><span lang="ar">$Q_2 = P\tan\theta_2$ لأن $P$ هي الثابتة</span><span lang="en">$Q_2 = P\tan\theta_2$ because $P$ is what's fixed</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تحط $f$ بدل $\omega$</span><span lang="en">Putting $f$ instead of $\omega$</span></div>
+    <div class="pair"><div class="no">$C = \dfrac{Q_C}{60 \times 120^2}$</div><div class="yes"><span lang="ar">$\omega = 2\pi f = 377$، و $C = \dfrac{Q_C}{377 \times 120^2}$</span><span lang="en">$\omega = 2\pi f = 377$, and $C = \dfrac{Q_C}{377 \times 120^2}$</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تنسى تربّع الجهد</span><span lang="en">Forgetting to square the voltage</span></div>
     <div class="pair"><div class="no">$C = \dfrac{Q_C}{\omega V_{rms}}$</div><div class="yes">$C = \dfrac{Q_C}{\omega V_{rms}^2}$</div></div></div>
-  <div class="mk"><div class="mk-title">تركّب المكثف على التوالي</div>
-    <div class="pair"><div class="no">المكثف بين المصدر والحمل</div><div class="yes">على <b>التوازي</b> مع الحمل، عشان جهد الحمل ما يتغير</div></div></div>
-  <div class="mk"><div class="mk-title">تربّع التيار المركب</div>
-    <div class="pair"><div class="no">$\mathbf{S} = \mathbf{I}^2\mathbf{Z}$ وتضاعف زاوية التيار</div><div class="yes">$\mathbf{S} = |\mathbf{I}|^2\mathbf{Z}$، المقدار بس</div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تركّب المكثف على التوالي</span><span lang="en">Connecting the capacitor in series</span></div>
+    <div class="pair"><div class="no"><span lang="ar">المكثف بين المصدر والحمل</span><span lang="en">The capacitor between the source and the load</span></div><div class="yes"><span lang="ar">على <b>التوازي</b> مع الحمل، عشان جهد الحمل ما يتغير</span><span lang="en">In <b>parallel</b> with the load, so the load voltage doesn't change</span></div></div></div>
+  <div class="mk"><div class="mk-title"><span lang="ar">تربّع التيار المركب</span><span lang="en">Squaring the complex current</span></div>
+    <div class="pair"><div class="no"><span lang="ar">$\mathbf{S} = \mathbf{I}^2\mathbf{Z}$ وتضاعف زاوية التيار</span><span lang="en">$\mathbf{S} = \mathbf{I}^2\mathbf{Z}$, doubling the current's angle</span></div><div class="yes"><span lang="ar">$\mathbf{S} = |\mathbf{I}|^2\mathbf{Z}$، المقدار بس</span><span lang="en">$\mathbf{S} = |\mathbf{I}|^2\mathbf{Z}$, the magnitude only</span></div></div></div>
 </section>
 
 <!-- ================= الاختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
-  <h2>اختبر نفسك</h2>
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
   <div class="quiz">
-    <div class="q" data-answer="2"><p>حملين: $\mathbf{S}_1 = 3 + j4$ و $\mathbf{S}_2 = 3 - j4\ \text{kVA}$. القدرة الظاهرية الكلية:</p>
-      <button>10 kVA</button><button>6 kVA</button><button>8 kVA</button><button>صفر</button>
-      <p class="q-why">المجموع $6 + j0$، ومقداره 6. المقادير (5 و 5) ما تنجمع.</p></div>
-    <div class="q" data-answer="3"><p>بعد ما نصحح معامل القدرة بمكثف، القدرة الحقيقية للحمل:</p>
-      <button>تزيد</button><button>تقل</button><button>ما تتغير</button><button>تصير صفر</button>
-      <p class="q-why">المكثف ما ياخذ قدرة حقيقية، والحمل نفس الجهد، فـ $P$ نفسها.</p></div>
-    <div class="q" data-answer="2"><p>الشي اللي يقل بعد التصحيح:</p>
-      <button>جهد الحمل</button><button>تيار الخط</button><button>القدرة الحقيقية</button><button>التردد</button>
-      <p class="q-why">$S$ نزلت والجهد ثابت، فالتيار $S/V$ نزل، وخسارة الأسلاك معه.</p></div>
-    <div class="q" data-answer="4"><p>حمل معامل قدرته متقدم. نصححه بـ:</p>
-      <button>مكثف على التوازي</button><button>مقاومة على التوالي</button><button>مكثف على التوالي</button><button>ملف على التوازي</button>
-      <p class="q-why">الحمل سعوي و $Q$ سالبة، فنحتاج $Q$ موجبة من ملف.</p></div>
-    <div class="q" data-answer="1"><p>ليش المكثف يتركب على التوازي؟</p>
-      <button>عشان جهد الحمل وتشغيله ما يتغيرون</button><button>عشان يزيد التيار</button><button>عشان ياخذ قدرة حقيقية</button><button>عشان التوالي أغلى</button>
-      <p class="q-why">التعريف: نرفع pf بدون ما نغير جهد أو تيار الحمل نفسه.</p></div>
-    <div class="q" data-answer="3"><p>$Q_1 = 3000\ \text{VAR}$ و $Q_2 = 1000\ \text{VAR}$. المكثف يعطي:</p>
+    <div class="q" data-answer="2"><p><span lang="ar">حملين: $\mathbf{S}_1 = 3 + j4$ و $\mathbf{S}_2 = 3 - j4\ \text{kVA}$. القدرة الظاهرية الكلية:</span><span lang="en">Two loads: $\mathbf{S}_1 = 3 + j4$ and $\mathbf{S}_2 = 3 - j4\ \text{kVA}$. The total apparent power:</span></p>
+      <button>10 kVA</button><button>6 kVA</button><button>8 kVA</button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button>
+      <p class="q-why"><span lang="ar">المجموع $6 + j0$، ومقداره 6. المقادير (5 و 5) ما تنجمع.</span><span lang="en">The sum is $6 + j0$, with magnitude 6. The magnitudes (5 and 5) don't add.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">بعد ما نصحح معامل القدرة بمكثف، القدرة الحقيقية للحمل:</span><span lang="en">After correcting the power factor with a capacitor, the load's real power:</span></p>
+      <button><span lang="ar">تزيد</span><span lang="en">Increases</span></button><button><span lang="ar">تقل</span><span lang="en">Decreases</span></button><button><span lang="ar">ما تتغير</span><span lang="en">Don't change</span></button><button><span lang="ar">تصير صفر</span><span lang="en">Becomes zero</span></button>
+      <p class="q-why"><span lang="ar">المكثف ما ياخذ قدرة حقيقية، والحمل نفس الجهد، فـ $P$ نفسها.</span><span lang="en">The capacitor absorbs no real power, and the load has the same voltage, so $P$ is the same.</span></p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">الشي اللي يقل بعد التصحيح:</span><span lang="en">What decreases after correction:</span></p>
+      <button><span lang="ar">جهد الحمل</span><span lang="en">The load voltage</span></button><button><span lang="ar">تيار الخط</span><span lang="en">The line current</span></button><button><span lang="ar">القدرة الحقيقية</span><span lang="en">The real power</span></button><button><span lang="ar">التردد</span><span lang="en">Frequency</span></button>
+      <p class="q-why"><span lang="ar">$S$ نزلت والجهد ثابت، فالتيار $S/V$ نزل، وخسارة الأسلاك معه.</span><span lang="en">$S$ dropped and the voltage is fixed, so the current $S/V$ dropped, and the wire loss with it.</span></p></div>
+    <div class="q" data-answer="4"><p><span lang="ar">حمل معامل قدرته متقدم. نصححه بـ:</span><span lang="en">A load with a leading power factor. We correct it with:</span></p>
+      <button><span lang="ar">مكثف على التوازي</span><span lang="en">A capacitor in parallel</span></button><button><span lang="ar">مقاومة على التوالي</span><span lang="en">A resistor in series</span></button><button><span lang="ar">مكثف على التوالي</span><span lang="en">A capacitor in series</span></button><button><span lang="ar">ملف على التوازي</span><span lang="en">An inductor in parallel</span></button>
+      <p class="q-why"><span lang="ar">الحمل سعوي و $Q$ سالبة، فنحتاج $Q$ موجبة من ملف.</span><span lang="en">The load is capacitive with negative $Q$, so we need positive $Q$ from an inductor.</span></p></div>
+    <div class="q" data-answer="1"><p><span lang="ar">ليش المكثف يتركب على التوازي؟</span><span lang="en">Why is the capacitor connected in parallel?</span></p>
+      <button><span lang="ar">عشان جهد الحمل وتشغيله ما يتغيرون</span><span lang="en">So the load's voltage and operation don't change</span></button><button><span lang="ar">عشان يزيد التيار</span><span lang="en">To increase the current</span></button><button><span lang="ar">عشان ياخذ قدرة حقيقية</span><span lang="en">To absorb real power</span></button><button><span lang="ar">عشان التوالي أغلى</span><span lang="en">Because series is more expensive</span></button>
+      <p class="q-why"><span lang="ar">التعريف: نرفع pf بدون ما نغير جهد أو تيار الحمل نفسه.</span><span lang="en">The definition: we raise pf without changing the load's own voltage or current.</span></p></div>
+    <div class="q" data-answer="3"><p><span lang="ar">$Q_1 = 3000\ \text{VAR}$ و $Q_2 = 1000\ \text{VAR}$. المكثف يعطي:</span><span lang="en">$Q_1 = 3000\ \text{VAR}$ and $Q_2 = 1000\ \text{VAR}$. The capacitor provides:</span></p>
       <button>4000 VAR</button><button>1000 VAR</button><button>2000 VAR</button><button>3000 VAR</button>
       <p class="q-why">$Q_C = Q_1 - Q_2 = 2000\ \text{VAR}$.</p></div>
-    <div class="q" data-answer="2"><p>نبغى pf $= 1$ بالضبط. قدرة المكثف $Q_C$ تساوي:</p>
-      <button>صفر</button><button>$Q_1$ كاملة</button><button>$P$</button><button>$S_1$</button>
-      <p class="q-why">pf $= 1$ يعني $\theta_2 = 0$ و $Q_2 = 0$، فالمكثف يلغي $Q_1$ كلها.</p></div>
+    <div class="q" data-answer="2"><p><span lang="ar">نبغى pf $= 1$ بالضبط. قدرة المكثف $Q_C$ تساوي:</span><span lang="en">We want pf $= 1$ exactly. The capacitor's power $Q_C$ equals:</span></p>
+      <button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button><span lang="ar">$Q_1$ كاملة</span><span lang="en">All of $Q_1$</span></button><button>$P$</button><button>$S_1$</button>
+      <p class="q-why"><span lang="ar">pf $= 1$ يعني $\theta_2 = 0$ و $Q_2 = 0$، فالمكثف يلغي $Q_1$ كلها.</span><span lang="en">pf $= 1$ means $\theta_2 = 0$ and $Q_2 = 0$, so the capacitor cancels all of $Q_1$.</span></p></div>
   </div>
 </section>
 
 </main>
-<a class="fb-fab" href="#board">🌳 القوانين</a>
+<span lang="ar"><a class="fb-fab" href="#board">🌳 القوانين</a></span><span lang="en">🌳 Formulas</span>
 <script>
 /* مختبر تصحيح معامل القدرة: حمل 4 kW على 120 V و 60 Hz */
 (function () {
@@ -666,9 +666,9 @@
     $('pcS').textContent = n0(S1) + ' → ' + n0(S2) + ' VA';
     $('pcI').textContent = I1.toFixed(1) + ' → ' + I2.toFixed(1) + ' A';
     $('pcL').textContent = p2 > p1 ? Math.round(100 * (1 - (I2 / I1) ** 2)) + '%' : '—';
-    $('pcSay').textContent = p2 <= p1 ? 'pf الجديد لازم يكون أكبر من القديم، وإلا ما فيه تصحيح.'
-      : p2 >= 0.995 ? 'pf = 1: المكثف لغى Q كاملة، والخط يشيل P بس.'
-      : 'P ثابتة، و Q نزلت من ' + n0(Q1) + ' إلى ' + n0(Q2) + '، فالتيار نزل.';
+    $('pcSay').innerHTML = p2 <= p1 ? Lec.L('pf الجديد لازم يكون أكبر من القديم، وإلا ما فيه تصحيح.', 'The new pf must be larger than the old one, otherwise there is no correction.')
+      : p2 >= 0.995 ? Lec.L('pf = 1: المكثف لغى Q كاملة، والخط يشيل P بس.', 'pf = 1: the capacitor cancelled all of Q, and the line carries only P.')
+      : Lec.L('P ثابتة، و Q نزلت من ' + n0(Q1) + ' إلى ' + n0(Q2) + '، فالتيار نزل.', 'P is fixed, and Q dropped from ' + n0(Q1) + ' to ' + n0(Q2) + ', so the current dropped.');
   }
   ['pc1', 'pc2'].forEach(id => $(id).addEventListener('input', draw));
   draw();

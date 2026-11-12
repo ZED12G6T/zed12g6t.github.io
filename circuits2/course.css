@@ -108,3 +108,15 @@ html:root[data-theme="dark"] {
 details.think { margin: 12px 0; border: 1px solid var(--line-2); border-radius: 12px; background: var(--surface-2); padding: 0 14px; }
 details.think > summary { cursor: pointer; padding: 10px 0; font-weight: 600; }
 details.think[open] > summary { border-bottom: 1px dashed var(--line-2); margin-bottom: 8px; }
+
+/* النسخة الإنجليزية (زر EN فوق): خط لاتيني واضح بدل خط النسخ.
+   المحددات أقوى من fonts.css عشان تغلبه، والمعادلات (MathJax) مستثناة. */
+html[lang="en"] body *:not(mjx-container):not(mjx-container *):not(.code):not(.en-name):not(.chip) {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif !important;
+}
+html[lang="en"] body :is(.hero h1, .card h2, .card h3, .tldr-title):not(mjx-container *),
+html[lang="en"] body :is(.hero h1, .card h2, .card h3) *:not(mjx-container):not(mjx-container *) {
+  font-family: 'Readex Pro', 'IBM Plex Sans Arabic', sans-serif !important; font-weight: 600;
+}
+html[lang="en"] .card h2 { font-size: 1.35em; }
+html[lang="en"] :is(.tile, .no, .yes) { min-width: 0; overflow-wrap: anywhere; }
