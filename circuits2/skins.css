@@ -5,6 +5,18 @@
    الخطوط ما تتغير (Lifta للعناوين و fonts.css للنص).
    ===================================================================== */
 /* ألوان الثيمات — مولّدة. فاتح = الأساس، داكن = زر الثيم أو إعداد الجهاز */
+html:root[data-skin="neon"] { --bg:#f6f3fb; --surface:#ffffff; --surface-2:#faf7fd; --ink:#1a1328; --ink-2:#4a3f60; --ink-3:#5f5576; --line:#e6dff0; --line-2:#cfc3e0; --accent:#b0168f; --accent-soft:#fbe3f5; --sk-n2:#00788a; --sk-g1:rgba(176,22,143,.18); --sk-g2:rgba(0,120,138,.18); --sk-ts:none; --sk-ts2:none; --sk-bgfx:radial-gradient(ellipse at 20% 0%, rgba(176,22,143,.07), transparent 55%); --sk-grid:transparent; --shadow:none; color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="neon"]:not([data-theme="light"]) { --bg:#0d0a14; --surface:#140f1f; --surface-2:#1a1428; --ink:#f3eefe; --ink-2:#c3b8dc; --ink-3:#a197bc; --line:#2c2340; --line-2:#3d3158; --accent:#ff5bdc; --accent-soft:rgba(255,91,220,.14); --sk-n2:#45f3ff; --sk-g1:rgba(255,91,220,.45); --sk-g2:rgba(69,243,255,.4); --sk-ts:0 0 4px #ff5bdc, 0 0 14px rgba(255,91,220,.8), 0 0 30px rgba(255,91,220,.5); --sk-ts2:0 0 4px #45f3ff, 0 0 14px rgba(69,243,255,.7), 0 0 30px rgba(69,243,255,.4); --sk-bgfx:radial-gradient(ellipse at 15% 0%, rgba(255,91,220,.16), transparent 55%), radial-gradient(ellipse at 90% 100%, rgba(69,243,255,.10), transparent 55%); --cx:#8cc8ff; --cy:#7ff5c0; --cz:#ffae7d; --good:#7ff5c0; --good-soft:rgba(127,245,192,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; } }
+html:root[data-skin="neon"][data-theme="dark"] { --bg:#0d0a14; --surface:#140f1f; --surface-2:#1a1428; --ink:#f3eefe; --ink-2:#c3b8dc; --ink-3:#a197bc; --line:#2c2340; --line-2:#3d3158; --accent:#ff5bdc; --accent-soft:rgba(255,91,220,.14); --sk-n2:#45f3ff; --sk-g1:rgba(255,91,220,.45); --sk-g2:rgba(69,243,255,.4); --sk-ts:0 0 4px #ff5bdc, 0 0 14px rgba(255,91,220,.8), 0 0 30px rgba(255,91,220,.5); --sk-ts2:0 0 4px #45f3ff, 0 0 14px rgba(69,243,255,.7), 0 0 30px rgba(69,243,255,.4); --sk-bgfx:radial-gradient(ellipse at 15% 0%, rgba(255,91,220,.16), transparent 55%), radial-gradient(ellipse at 90% 100%, rgba(69,243,255,.10), transparent 55%); --cx:#8cc8ff; --cy:#7ff5c0; --cz:#ffae7d; --good:#7ff5c0; --good-soft:rgba(127,245,192,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; }
+html:root[data-skin="hud"] { --bg:#e9f0f5; --surface:#fbfdff; --surface-2:#f1f6fa; --ink:#0a1b28; --ink-2:#36536a; --ink-3:#4b687e; --line:#cfdde8; --line-2:#a8c0d2; --accent:#006c99; --accent-soft:#dcf0f9; --sk-grid:rgba(0,108,153,.05); --shadow:none; color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="hud"]:not([data-theme="light"]) { --bg:#071018; --surface:#0b1822; --surface-2:#0f2030; --ink:#e2f3ff; --ink-2:#9fc0d6; --ink-3:#80a3bb; --line:#17344a; --line-2:#22506e; --accent:#33d1ff; --accent-soft:rgba(51,209,255,.13); --cx:#8cc8ff; --cy:#6ef0b8; --cz:#ffae7d; --good:#6ef0b8; --good-soft:rgba(110,240,184,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(51,209,255,.05); --shadow:none; color-scheme: dark; } }
+html:root[data-skin="hud"][data-theme="dark"] { --bg:#071018; --surface:#0b1822; --surface-2:#0f2030; --ink:#e2f3ff; --ink-2:#9fc0d6; --ink-3:#80a3bb; --line:#17344a; --line-2:#22506e; --accent:#33d1ff; --accent-soft:rgba(51,209,255,.13); --cx:#8cc8ff; --cy:#6ef0b8; --cz:#ffae7d; --good:#6ef0b8; --good-soft:rgba(110,240,184,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(51,209,255,.05); --shadow:none; color-scheme: dark; }
+html:root[data-skin="glass"] { --bg:#eef0f7; --surface:#ffffff; --surface-2:#f6f7fc; --ink:#171a2b; --ink-2:#434862; --ink-3:#585e78; --line:#e1e4f0; --line-2:#c6cbe0; --accent:#5636d0; --accent-soft:#ebe6fd; --sk-b1:#ffc6e6; --sk-b2:#b6e1ff; --sk-b3:#d5c9ff; --sk-glass:rgba(255,255,255,.62); --sk-gline:rgba(255,255,255,.8); --sk-grid:transparent; --shadow:0 10px 30px -18px rgba(40,30,90,.35); color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="glass"]:not([data-theme="light"]) { --bg:#0c0d18; --surface:#1a1c2e; --surface-2:#20233a; --ink:#eeeffa; --ink-2:#b7bad3; --ink-3:#9a9eba; --line:#2b2e48; --line-2:#3a3e60; --accent:#b9a6ff; --accent-soft:rgba(185,166,255,.15); --sk-b1:rgba(214,72,160,.42); --sk-b2:rgba(40,140,230,.38); --sk-b3:rgba(120,80,230,.40); --sk-glass:rgba(26,28,46,.58); --sk-gline:rgba(255,255,255,.12); --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:0 10px 30px -18px rgba(0,0,0,.7); color-scheme: dark; } }
+html:root[data-skin="glass"][data-theme="dark"] { --bg:#0c0d18; --surface:#1a1c2e; --surface-2:#20233a; --ink:#eeeffa; --ink-2:#b7bad3; --ink-3:#9a9eba; --line:#2b2e48; --line-2:#3a3e60; --accent:#b9a6ff; --accent-soft:rgba(185,166,255,.15); --sk-b1:rgba(214,72,160,.42); --sk-b2:rgba(40,140,230,.38); --sk-b3:rgba(120,80,230,.40); --sk-glass:rgba(26,28,46,.58); --sk-gline:rgba(255,255,255,.12); --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:0 10px 30px -18px rgba(0,0,0,.7); color-scheme: dark; }
+html:root[data-skin="marker"] { --bg:#efefea; --surface:#ffffff; --surface-2:#f7f7f3; --ink:#121212; --ink-2:#3c3c3c; --ink-3:#545454; --line:#121212; --line-2:#121212; --accent:#1d45e0; --accent-soft:#e2e8ff; --sk-hl:#ffe14d; --sk-hard:#121212; --sk-grid:transparent; --shadow:none; color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="marker"]:not([data-theme="light"]) { --bg:#151517; --surface:#202024; --surface-2:#27272c; --ink:#f4f4ee; --ink-2:#c9c9c2; --ink-3:#a5a59e; --line:#f4f4ee; --line-2:#8a8a85; --accent:#8fadff; --accent-soft:rgba(143,173,255,.16); --sk-hl:rgba(255,214,51,.38); --sk-hard:#ffd633; --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; } }
+html:root[data-skin="marker"][data-theme="dark"] { --bg:#151517; --surface:#202024; --surface-2:#27272c; --ink:#f4f4ee; --ink-2:#c9c9c2; --ink-3:#a5a59e; --line:#f4f4ee; --line-2:#8a8a85; --accent:#8fadff; --accent-soft:rgba(143,173,255,.16); --sk-hl:rgba(255,214,51,.38); --sk-hard:#ffd633; --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; }
 html:root[data-skin="layers"] { --bg:#e7eef0; --surface:#ffffff; --surface-2:#f4f8f9; --ink:#10222a; --ink-2:#3a535d; --ink-3:#53707b; --line:#d3e0e4; --line-2:#b4c9cf; --accent:#0b6b72; --accent-soft:#dceff0; --sk-hero1:#0b5560; --sk-hero2:#127a73; --sk-grid:transparent; --shadow:none; color-scheme: light; }
 @media (prefers-color-scheme: dark) { html:root[data-skin="layers"]:not([data-theme="light"]) { --bg:#081316; --surface:#0f2025; --surface-2:#132930; --ink:#e6f4f5; --ink-2:#a7c4c9; --ink-3:#86a6ac; --line:#1f3b42; --line-2:#2c5059; --accent:#5fd4cb; --accent-soft:rgba(95,212,203,.14); --sk-hero1:#0b3a42; --sk-hero2:#0d5550; --cx:#8cc8ff; --cy:#8ff0c0; --cz:#ffae7d; --good:#8ff0c0; --good-soft:rgba(143,240,192,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; } }
 html:root[data-skin="layers"][data-theme="dark"] { --bg:#081316; --surface:#0f2025; --surface-2:#132930; --ink:#e6f4f5; --ink-2:#a7c4c9; --ink-3:#86a6ac; --line:#1f3b42; --line-2:#2c5059; --accent:#5fd4cb; --accent-soft:rgba(95,212,203,.14); --sk-hero1:#0b3a42; --sk-hero2:#0d5550; --cx:#8cc8ff; --cy:#8ff0c0; --cz:#ffae7d; --good:#8ff0c0; --good-soft:rgba(143,240,192,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; }
@@ -164,6 +176,81 @@ html[data-skin="scope"] .pills a.active { background: var(--accent); color: var(
 html[data-skin="scope"] .tldr { border: 1px solid var(--line-2); border-inline-start: 4px solid var(--accent); border-radius: 8px; }
 @media (max-width: 560px) { html[data-skin="scope"] .card { padding: 20px 13px; } }
 
+/* ---------- لافتة نيون: أنابيب وردي وسماوي تلمع حول البطاقات والعناوين ---------- */
+html[data-skin="neon"] body { background-image: var(--sk-bgfx); background-repeat: no-repeat; }
+html[data-skin="neon"] main.wrap > section.card {
+  border: 2px solid var(--accent); border-radius: 20px;
+  box-shadow: 0 0 16px var(--sk-g1), inset 0 0 16px var(--sk-g1);
+}
+html[data-skin="neon"] main.wrap > section.card:nth-of-type(even) { border-color: var(--sk-n2); box-shadow: 0 0 16px var(--sk-g2), inset 0 0 16px var(--sk-g2); }
+html[data-skin="neon"] .card h2 { color: var(--accent); text-shadow: var(--sk-ts); }
+html[data-skin="neon"] main.wrap > section.card:nth-of-type(even) h2 { color: var(--sk-n2); text-shadow: var(--sk-ts2); }
+html[data-skin="neon"] .hero h1 { text-shadow: var(--sk-ts); animation: sk-flicker 1.6s 1 both; }
+html[data-skin="neon"] .sec-num { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 999px; box-shadow: 0 0 10px var(--sk-g1); }
+html[data-skin="neon"] :is(.btn, .seg button, .pills a) { border-radius: 999px; }
+html[data-skin="neon"] .pills a.active { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 10px var(--sk-g1); background: transparent; }
+html[data-skin="neon"] .tldr { border: 1.5px solid var(--sk-n2); border-radius: 16px; box-shadow: 0 0 14px var(--sk-g2); }
+@keyframes sk-flicker { 0%, 18%, 22%, 54%, 58% { opacity: 1; } 20%, 56% { opacity: .35; } 0% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { html[data-skin="neon"] .hero h1 { animation: none; } }
+
+/* ---------- شاشة قيادة (HUD): زوايا مقصوصة، أقواس في الزوايا الثانية، خطوط مسح خفيفة ---------- */
+html[data-skin="hud"] body { background-image: repeating-linear-gradient(0deg, var(--sk-grid) 0 1px, transparent 1px 4px); }
+html[data-skin="hud"] main.wrap > section.card {
+  border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px var(--line-2);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  background:
+    linear-gradient(var(--accent), var(--accent)) top right / 26px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) top right / 2px 26px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 26px 2px no-repeat,
+    linear-gradient(var(--accent), var(--accent)) bottom left / 2px 26px no-repeat,
+    linear-gradient(135deg, var(--accent) 0 14px, transparent 14px) top left / 20px 20px no-repeat,
+    var(--surface);
+}
+html[data-skin="hud"] .tldr { border-radius: 0; clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px); }
+html[data-skin="hud"] :is(.btn, .icon-btn, #lecture-select, .seg button, .pills a, .sec-num) {
+  border-radius: 0; clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+html[data-skin="hud"] .sec-num { background: var(--accent); color: var(--bg); }
+html[data-skin="hud"] .pills a.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+html[data-skin="hud"] .card h2 { color: var(--accent); }
+html[data-skin="hud"] .hero h1 { border-inline-start: 4px solid var(--accent); padding-inline-start: 12px; }
+
+/* ---------- زجاج: بقع ألوان ناعمة ثابتة خلف بطاقات شفافة مغبشة ---------- */
+html[data-skin="glass"] body { background: transparent; }
+html[data-skin="glass"] body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 8%, var(--sk-b1), transparent 42%),
+    radial-gradient(circle at 92% 38%, var(--sk-b2), transparent 46%),
+    radial-gradient(circle at 25% 88%, var(--sk-b3), transparent 46%),
+    var(--bg);
+}
+html[data-skin="glass"] :is(main.wrap > section.card, .tldr, .topbar .icon-btn, #lecture-select) {
+  background: var(--sk-glass); border: 1px solid var(--sk-gline);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5); backdrop-filter: blur(18px) saturate(1.5);
+}
+html[data-skin="glass"] main.wrap > section.card { border-radius: 26px; }
+html[data-skin="glass"] .tldr { border-radius: 20px; border-inline-start: 1px solid var(--sk-gline); }
+html[data-skin="glass"] .pills { background: transparent; border-bottom-color: var(--sk-gline); }
+html[data-skin="glass"] :is(.btn, .seg button, .pills a, .sec-num) { border-radius: 999px; }
+html[data-skin="glass"] .pills a.active { background: var(--sk-glass); border-color: var(--accent); }
+
+/* ---------- هايلايتر: حدود سميكة وظل حاد، والعناوين مخططة بالفسفوري مثل دفتر المذاكرة ---------- */
+html[data-skin="marker"] main.wrap > section.card {
+  border: 2.5px solid var(--line); border-radius: 14px; box-shadow: 6px 6px 0 var(--sk-hard);
+}
+html[data-skin="marker"] .card h2, html[data-skin="marker"] .hero h1 > :first-child {
+  background: linear-gradient(transparent 58%, var(--sk-hl) 58%, var(--sk-hl) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-inline: 4px;
+}
+html[data-skin="marker"] .tldr { border: 2.5px solid var(--line); border-radius: 14px; background: var(--sk-hl); box-shadow: 5px 5px 0 var(--sk-hard); color: var(--ink); }
+html[data-skin="marker"] .tldr .tldr-title, html[data-skin="marker"] .tldr li::marker { color: inherit; }
+html[data-skin="marker"] :is(.btn, .icon-btn, #lecture-select, .seg button) { border: 2px solid var(--line); border-radius: 10px; box-shadow: 3px 3px 0 var(--sk-hard); }
+html[data-skin="marker"] :is(.btn, .icon-btn, .seg button):active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--sk-hard); }
+html[data-skin="marker"] .sec-num { background: var(--ink); color: var(--bg); border-radius: 8px; }
+html[data-skin="marker"] .pills a.active { background: var(--sk-hl); color: var(--ink); border: 2px solid var(--line); }
+@media (max-width: 560px) { html[data-skin="marker"] main.wrap > section.card { box-shadow: 4px 4px 0 var(--sk-hard); } }
+
 /* ---------- زر 🎨 وقائمة الأشكال ---------- */
 .topbar { position: relative; }
 #skin-btn { font-size: 1rem; }
@@ -173,6 +260,7 @@ html[data-skin="scope"] .tldr { border: 1px solid var(--line-2); border-inline-s
   width: min(330px, calc(100vw - 32px)); padding: 12px;
   background: var(--surface); border: 1px solid var(--line-2); border-radius: 14px; box-shadow: 0 18px 40px -16px rgba(0,0,0,.45);
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  max-height: min(70vh, 560px); overflow-y: auto; overscroll-behavior: contain;
 }
 .skin-pop[hidden] { display: none; }
 .skin-pop .sk-title { grid-column: 1 / -1; margin: 0 2px 2px; font-size: .86rem; color: var(--ink-2); }

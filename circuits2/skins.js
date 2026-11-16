@@ -10,6 +10,10 @@
     { id: 'layers', ar: 'طبقات',          en: 'Layers',            l: ['#e7eef0', '#0b5560'], d: ['#081316', '#5fd4cb'] },
     { id: 'wire',   ar: 'مسار التيار',     en: 'Current path',      l: ['#f3f5f8', '#0a5fc7'], d: ['#0e1424', '#5aaeff'] },
     { id: 'scope',  ar: 'راسم الإشارة (الأساسي)', en: 'Oscilloscope (default)',      l: ['#d8dde1', '#8a4f00'], d: ['#171b1e', '#ffb547'] },
+    { id: 'neon',   ar: 'لافتة نيون',      en: 'Neon sign',         l: ['#f6f3fb', '#b0168f'], d: ['#0d0a14', '#ff5bdc'] },
+    { id: 'hud',    ar: 'شاشة قيادة',      en: 'HUD',               l: ['#e9f0f5', '#006c99'], d: ['#071018', '#33d1ff'] },
+    { id: 'glass',  ar: 'زجاج',            en: 'Glass',             l: ['#eef0f7', '#5636d0'], d: ['#0c0d18', '#b9a6ff'] },
+    { id: 'marker', ar: 'هايلايتر',        en: 'Highlighter',       l: ['#efefea', '#ffe14d'], d: ['#151517', '#ffd633'] },
     { id: 'bp',     ar: 'مخطط هندسي',     en: 'Blueprint',         l: ['#e8eff7', '#1a5bb0'], d: ['#0c2646', '#82c8ff'] },
     { id: 'pcb',    ar: 'لوحة دوائر',     en: 'Circuit board',     l: ['#ecf3ee', '#875800'], d: ['#0a281c', '#e6b84a'] },
     { id: 'chalk',  ar: 'دفتر وسبورة',    en: 'Notebook & chalk',  l: ['#eef2e4', '#b0362a'], d: ['#1d2a25', '#f3d35c'] }
