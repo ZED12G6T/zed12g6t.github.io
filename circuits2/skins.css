@@ -5,6 +5,15 @@
    الخطوط ما تتغير (Lifta للعناوين و fonts.css للنص).
    ===================================================================== */
 /* ألوان الثيمات — مولّدة. فاتح = الأساس، داكن = زر الثيم أو إعداد الجهاز */
+html:root[data-skin="layers"] { --bg:#e7eef0; --surface:#ffffff; --surface-2:#f4f8f9; --ink:#10222a; --ink-2:#3a535d; --ink-3:#53707b; --line:#d3e0e4; --line-2:#b4c9cf; --accent:#0b6b72; --accent-soft:#dceff0; --sk-hero1:#0b5560; --sk-hero2:#127a73; --sk-grid:transparent; --shadow:none; color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="layers"]:not([data-theme="light"]) { --bg:#081316; --surface:#0f2025; --surface-2:#132930; --ink:#e6f4f5; --ink-2:#a7c4c9; --ink-3:#86a6ac; --line:#1f3b42; --line-2:#2c5059; --accent:#5fd4cb; --accent-soft:rgba(95,212,203,.14); --sk-hero1:#0b3a42; --sk-hero2:#0d5550; --cx:#8cc8ff; --cy:#8ff0c0; --cz:#ffae7d; --good:#8ff0c0; --good-soft:rgba(143,240,192,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; } }
+html:root[data-skin="layers"][data-theme="dark"] { --bg:#081316; --surface:#0f2025; --surface-2:#132930; --ink:#e6f4f5; --ink-2:#a7c4c9; --ink-3:#86a6ac; --line:#1f3b42; --line-2:#2c5059; --accent:#5fd4cb; --accent-soft:rgba(95,212,203,.14); --sk-hero1:#0b3a42; --sk-hero2:#0d5550; --cx:#8cc8ff; --cy:#8ff0c0; --cz:#ffae7d; --good:#8ff0c0; --good-soft:rgba(143,240,192,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; }
+html:root[data-skin="wire"] { --bg:#f3f5f8; --surface:#ffffff; --surface-2:#f6f8fb; --ink:#111827; --ink-2:#3f4a5c; --ink-3:#5a6577; --line:#dde3ec; --line-2:#b9c4d4; --accent:#0a5fc7; --accent-soft:#e2edfb; --sk-grid:transparent; --shadow:0 1px 2px rgba(17,24,39,.06); color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="wire"]:not([data-theme="light"]) { --bg:#0e1424; --surface:#151d31; --surface-2:#1a243b; --ink:#e8eefb; --ink-2:#aab6cc; --ink-3:#8c99b1; --line:#263252; --line-2:#34446b; --accent:#5aaeff; --accent-soft:rgba(90,174,255,.14); --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; } }
+html:root[data-skin="wire"][data-theme="dark"] { --bg:#0e1424; --surface:#151d31; --surface-2:#1a243b; --ink:#e8eefb; --ink-2:#aab6cc; --ink-3:#8c99b1; --line:#263252; --line-2:#34446b; --accent:#5aaeff; --accent-soft:rgba(90,174,255,.14); --cx:#8cc8ff; --cy:#6ee7b7; --cz:#ffae7d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ffa0a0; --bad-soft:rgba(255,160,160,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:transparent; --shadow:none; color-scheme: dark; }
+html:root[data-skin="scope"] { --bg:#d8dde1; --surface:#f2f6f0; --surface-2:#e7ede4; --ink:#16201a; --ink-2:#3d4c42; --ink-3:#55645a; --line:#c3cdc4; --line-2:#a3afa6; --accent:#8a4f00; --accent-soft:#f3e6d0; --sk-bezel:#aeb6bd; --sk-glow:transparent; --sk-inset:inset 0 0 0 transparent; --sk-grid:rgba(40,70,50,.10); --shadow:none; color-scheme: light; }
+@media (prefers-color-scheme: dark) { html:root[data-skin="scope"]:not([data-theme="light"]) { --bg:#171b1e; --surface:#0b1510; --surface-2:#11201a; --ink:#e6f0e8; --ink-2:#a9bcae; --ink-3:#8aa091; --line:#22352b; --line-2:#33493d; --accent:#ffb547; --accent-soft:rgba(255,181,71,.14); --sk-bezel:#2c3237; --sk-glow:rgba(255,181,71,.45); --sk-inset:inset 0 0 40px rgba(0,0,0,.55); --cx:#8cc8ff; --cy:#8ff0b0; --cz:#ff9f7a; --good:#8ff0b0; --good-soft:rgba(143,240,176,.12); --bad:#ff9f9f; --bad-soft:rgba(255,159,159,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(255,181,71,.07); --shadow:none; color-scheme: dark; } }
+html:root[data-skin="scope"][data-theme="dark"] { --bg:#171b1e; --surface:#0b1510; --surface-2:#11201a; --ink:#e6f0e8; --ink-2:#a9bcae; --ink-3:#8aa091; --line:#22352b; --line-2:#33493d; --accent:#ffb547; --accent-soft:rgba(255,181,71,.14); --sk-bezel:#2c3237; --sk-glow:rgba(255,181,71,.45); --sk-inset:inset 0 0 40px rgba(0,0,0,.55); --cx:#8cc8ff; --cy:#8ff0b0; --cz:#ff9f7a; --good:#8ff0b0; --good-soft:rgba(143,240,176,.12); --bad:#ff9f9f; --bad-soft:rgba(255,159,159,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(255,181,71,.07); --shadow:none; color-scheme: dark; }
 html:root[data-skin="bp"] { --bg:#e8eff7; --surface:#f8fbfe; --surface-2:#eef4fa; --ink:#0e2440; --ink-2:#36506e; --ink-3:#516a87; --line:#c7d6e6; --line-2:#a3bbd5; --accent:#1a5bb0; --accent-soft:#deeaf8; --sk-grid:rgba(26,91,176,.09); --shadow:none; color-scheme: light; }
 @media (prefers-color-scheme: dark) { html:root[data-skin="bp"]:not([data-theme="light"]) { --bg:#0c2646; --surface:#11315a; --surface-2:#163a66; --ink:#eaf3ff; --ink-2:#b4c8e2; --ink-3:#95adca; --line:#2a507f; --line-2:#3d6699; --accent:#82c8ff; --accent-soft:rgba(130,200,255,.15); --cx:#a5d4ff; --cy:#6ee7b7; --cz:#ffb27d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(255,255,255,.055); --shadow:none; color-scheme: dark; } }
 html:root[data-skin="bp"][data-theme="dark"] { --bg:#0c2646; --surface:#11315a; --surface-2:#163a66; --ink:#eaf3ff; --ink-2:#b4c8e2; --ink-3:#95adca; --line:#2a507f; --line-2:#3d6699; --accent:#82c8ff; --accent-soft:rgba(130,200,255,.15); --cx:#a5d4ff; --cy:#6ee7b7; --cz:#ffb27d; --good:#6ee7b7; --good-soft:rgba(110,231,183,.12); --bad:#ff9e9e; --bad-soft:rgba(255,158,158,.12); --warn:#ffd27a; --warn-soft:rgba(255,210,122,.12); --sk-grid:rgba(255,255,255,.055); --shadow:none; color-scheme: dark; }
@@ -70,6 +79,90 @@ html[data-skin="chalk"] .sec-head h2 {
   text-decoration-thickness: 1.5px; text-underline-offset: 12px; text-decoration-skip-ink: none;
 }
 html[data-skin="chalk"] .sec-num { background: transparent; border: 1.5px dashed var(--accent); border-radius: 6px; }
+
+/* =====================================================================
+   أشكال تغيّر الواجهة كلها (مو بس الألوان)
+   ===================================================================== */
+
+/* ---------- طبقات: بانر ملون من فوق، أوراق تتراكب على بعض، وأقسام الدرس شريط تحت مثل التطبيقات ---------- */
+html[data-skin="layers"] .topbar { max-width: none; margin: 0; background: var(--sk-hero1); padding-inline: max(16px, calc((100% - 868px) / 2)); }
+html[data-skin="layers"] .brand, html[data-skin="layers"] .brand b, html[data-skin="layers"] .brand a { color: #fff !important; }
+html[data-skin="layers"] main.wrap { gap: 0; padding-top: 0; }
+html[data-skin="layers"] .hero {
+  margin: 0 -16px; padding: 22px 20px 62px; color: #fff;
+  background: linear-gradient(170deg, var(--sk-hero1), var(--sk-hero2));
+}
+html[data-skin="layers"] .hero :is(h1, .lead, .eyebrow, .xyz-bar small) { color: #fff; }
+html[data-skin="layers"] .hero .h1-math { color: rgba(255,255,255,.8); }
+html[data-skin="layers"] .hero .xyz-bar > span { background: var(--surface); }
+html[data-skin="layers"] .hero .tldr { color: var(--ink); border: 0; border-radius: 20px; box-shadow: 0 16px 30px -18px rgba(0,0,0,.6); }
+html[data-skin="layers"] main.wrap > section.card {
+  position: relative; margin-top: -30px; border: 0; border-radius: 30px 30px 0 0;
+  padding-bottom: 56px; box-shadow: 0 -14px 26px -16px rgba(0,0,0,.35);
+}
+html[data-skin="layers"] main.wrap > section.card:nth-of-type(odd) { background: var(--surface-2); }
+html[data-skin="layers"] main.wrap > section.card:last-of-type { border-radius: 30px; padding-bottom: 28px; }
+html[data-skin="layers"] main.wrap > section.card::before {
+  content: ""; position: absolute; top: 10px; left: 50%; width: 42px; height: 5px; margin-left: -21px;
+  border-radius: 5px; background: var(--line-2);
+}
+html[data-skin="layers"] .pills {
+  position: fixed; top: auto; bottom: 0; left: 0; right: 0; z-index: 60;
+  border-top: 1px solid var(--line); border-bottom: 0;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+}
+html[data-skin="layers"] .pills-in { padding: 9px 12px calc(9px + env(safe-area-inset-bottom)); }
+html[data-skin="layers"] .pills a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+html[data-skin="layers"] body { padding-bottom: 64px; }
+html[data-skin="layers"] .fb-fab { bottom: 72px; }
+html[data-skin="layers"] :is(.btn, .seg button) { border-radius: 999px; }
+html[data-skin="layers"] .sec-num { border-radius: 999px; }
+
+/* ---------- مسار التيار: سلك على جنب الدرس، كل قسم عقدة عليه، والسلك يتعبى تيار وانت تنزل ---------- */
+html[data-skin="wire"] main.wrap { position: relative; padding-inline-start: 36px; }
+html[data-skin="wire"] main.wrap::before, html[data-skin="wire"] main.wrap::after {
+  content: ""; position: absolute; inset-inline-start: 14px; top: 44px; width: 3px; border-radius: 3px;
+}
+html[data-skin="wire"] main.wrap::before { bottom: 50px; background: var(--line-2); }
+html[data-skin="wire"] main.wrap::after {
+  height: calc((100% - 94px) * var(--sk-prog, 0)); background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+html[data-skin="wire"] main.wrap > section { position: relative; }
+html[data-skin="wire"] main.wrap > section::before {
+  content: ""; position: absolute; z-index: 1; inset-inline-start: -28px; top: 30px;
+  width: 15px; height: 15px; border-radius: 50%; background: var(--bg); border: 3px solid var(--line-2);
+  transition: background .25s, border-color .25s, box-shadow .25s;
+}
+html[data-skin="wire"] main.wrap > section::after {
+  content: ""; position: absolute; inset-inline-start: -13px; top: 36px; width: 13px; height: 2px; background: var(--line-2);
+}
+html[data-skin="wire"] main.wrap > section.sk-on::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+html[data-skin="wire"] main.wrap > section.sk-on::after { background: var(--accent); }
+html[data-skin="wire"] main.wrap > section.card { border-start-start-radius: 4px; }
+html[data-skin="wire"] .sec-num { background: transparent; border: 1.5px solid var(--accent); border-radius: 4px; }
+html[data-skin="wire"] .pills a.active { background: transparent; border-color: var(--accent); }
+@media (max-width: 560px) { html[data-skin="wire"] .card { padding: 22px 16px; } }
+
+/* ---------- راسم الإشارة: كل بطاقة شاشة جهاز بإطار وشبكة قياس، والأزرار مفاتيح تنضغط ---------- */
+html[data-skin="scope"] main.wrap > section.card {
+  border: 9px solid var(--sk-bezel); border-radius: 22px;
+  background:
+    linear-gradient(var(--sk-grid) 1px, transparent 1px) 0 0 / 100% 32px,
+    linear-gradient(90deg, var(--sk-grid) 1px, transparent 1px) 0 0 / 32px 100%,
+    var(--surface);
+  box-shadow: var(--sk-inset), 0 1px 0 rgba(255,255,255,.06);
+}
+html[data-skin="scope"] .card h2, html[data-skin="scope"] .hero h1 { color: var(--accent); text-shadow: 0 0 14px var(--sk-glow); }
+html[data-skin="scope"] .sec-num { background: var(--accent); color: var(--bg); border-radius: 4px; box-shadow: 0 0 12px var(--sk-glow); }
+html[data-skin="scope"] :is(.btn, .icon-btn, #lecture-select, .seg button) {
+  border-radius: 7px; border: 1px solid var(--line-2); box-shadow: 0 3px 0 var(--sk-bezel);
+}
+html[data-skin="scope"] :is(.btn, .icon-btn, .seg button):active { transform: translateY(2px); box-shadow: 0 1px 0 var(--sk-bezel); }
+html[data-skin="scope"] .pills a { border-radius: 5px; border-color: var(--line-2); }
+html[data-skin="scope"] .pills a.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+html[data-skin="scope"] .tldr { border: 1px solid var(--line-2); border-inline-start: 4px solid var(--accent); border-radius: 8px; }
+@media (max-width: 560px) { html[data-skin="scope"] .card { padding: 20px 13px; } }
 
 /* ---------- زر 🎨 وقائمة الأشكال ---------- */
 .topbar { position: relative; }
