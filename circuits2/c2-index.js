@@ -62,35 +62,54 @@
     /* ================= 1) الفيزور الدوّار =================
        x = محور الزمن ، y = المحور الحقيقي ، z = المحور التخيلي. الحلقة عند X0 ، الجدار عند z = ZW ، الأرضية عند y = YF */
     function phasor(t) {
-      rotY = .62 + .2 * Math.sin(t / 15000); tiltX = -.3;
-      const X0 = -1.5, X1 = 1.65, ZW = 1.45, YF = -1.55, VM = 1, IM = .66, N = 150, kap = 1.75 * 2 * Math.PI / (X1 - X0);
+      rotY = .6 + .18 * Math.sin(t / 15000); tiltX = -.3;
+      const X0 = -1.55, X1 = 1.75, YF = -1.55, VM = 1, IM = .66, N = 170, CYC = 1.75, kap = CYC * 2 * Math.PI / (X1 - X0), per = (X1 - X0) / CYC;
       const w = t / 1150, th = (50 * Math.sin(t / 6500 + .8)) * Math.PI / 180;
       const ang = x => w - kap * (x - X0), xs = range(N, u => X0 + (X1 - X0) * u);
-      for (let n = 0; n <= 12; n++) { const x = X0 + (X1 - X0) * n / 12; line([[x, -1.15, ZW], [x, 1.15, ZW]], TH.line, n % 4 ? .07 : .14, .7); }
-      [-1, -.5, 0, .5, 1].forEach(y => line([[X0, y, ZW], [X1, y, ZW]], TH.line, y ? .08 : .22, y ? .7 : .9));
-      line(xs.map(x => [x, VM * Math.cos(ang(x)), ZW]), TH.v, .95, 1.7);
-      line(xs.map(x => [x, IM * Math.cos(ang(x) - th), ZW]), TH.i, .9, 1.4);
+
+      /* --- الأرضية: القدرة اللحظية p = v·i ، الموجب يروح للحمل والسالب يرجع للمصدر --- */
       const zp = x => 1.7 * VM * Math.cos(ang(x)) * IM * Math.cos(ang(x) - th);
-      for (let n = 0; n <= 12; n++) { const x = X0 + (X1 - X0) * n / 12; line([[x, YF, -.75], [x, YF, 1.05]], TH.line, .06, .7); }
-      line([[X0, YF, 0], [X1, YF, 0]], TH.line, .25, .9);
-      for (let n = 0; n < N; n++) { const a = xs[n], b = xs[n + 1], pa = zp(a), pb = zp(b); poly([[a, YF, 0], [a, YF, pa], [b, YF, pb], [b, YF, 0]], pa + pb >= 0 ? TH.p : TH.neg, pa + pb >= 0 ? .2 : .26); }
-      line(xs.map(x => [x, YF, zp(x)]), TH.p, .9, 1.4);
+      for (let n = 0; n <= 14; n++) { const x = X0 + (X1 - X0) * n / 14; line([[x, YF, -.75], [x, YF, 1.05]], TH.line, .05, .7); }
+      line([[X0, YF, 0], [X1, YF, 0]], TH.line, .22, .9);
+      for (let n = 0; n < N; n++) { const a = xs[n], b = xs[n + 1], pa = zp(a), pb = zp(b); poly([[a, YF, 0], [a, YF, pa], [b, YF, pb], [b, YF, 0]], pa + pb >= 0 ? TH.p : TH.neg, pa + pb >= 0 ? .16 : .22); }
+      line(xs.map(x => [x, YF, zp(x)]), TH.p, .8, 1.3);
       const zav = 1.7 * .5 * VM * IM * Math.cos(th);
-      line([[X0, YF, zav], [X1, YF, zav]], TH.p, .85, 1.1, [5, 5]);
-      arrow([X0, 0, 0], [X1 + .25, 0, 0], TH.line, .4, .9);
+      line([[X0, YF, zav], [X1, YF, zav]], TH.p, .7, 1, [5, 5]);
+
+      /* --- أسطوانة شفافة حول محور الزمن: حلقات كل نصف دورة وخطوط طولية خفيفة --- */
+      for (let x = X0 + per / 2; x <= X1 + 1e-6; x += per / 2) {
+        line(range(72, u => [x, Math.cos(u * 7), Math.sin(u * 7)]), TH.line, .09, .7);
+        for (let n = 0; n < 12; n++) { const a = n / 12 * Math.PI * 2; line([[x, Math.cos(a), Math.sin(a)], [x, .94 * Math.cos(a), .94 * Math.sin(a)]], TH.line, .2, .7); }
+      }
+      for (let n = 0; n < 8; n++) { const a = n / 8 * Math.PI * 2; line([[X0, Math.cos(a), Math.sin(a)], [X1, Math.cos(a), Math.sin(a)]], TH.line, .045, .6); }
+
+      /* --- محور الزمن مع تدريج كل ربع دورة --- */
+      arrow([X0, 0, 0], [X1 + .35, 0, 0], TH.line, .45, .9);
+      for (let x = X0, n = 0; x <= X1 + 1e-6; x += per / 4, n++) line([[x, -.06, 0], [x, .06, 0]], TH.line, n % 4 ? .35 : .7, n % 4 ? .8 : 1.1);
+
+      /* --- الحلزونان: رأس V ورأس I مع مرور الزمن ، ونبضات تمشي عليه --- */
       const hv = xs.map(x => [x, VM * Math.cos(ang(x)), VM * Math.sin(ang(x))]);
-      line(hv, TH.line, .62, 1.1);
-      line(xs.map(x => [x, IM * Math.cos(ang(x) - th), IM * Math.sin(ang(x) - th)]), TH.i, .28, .9);
-      for (let n = 4; n <= N; n += 6) line([hv[n], [hv[n][0], hv[n][1], ZW]], TH.v, .13, .7);
-      const ring = r => range(120, u => [X0, r * Math.cos(u * 7), r * Math.sin(u * 7)]);
-      line(ring(1), TH.line, .55, 1.1); line(ring(IM), TH.line, .16, .7);
+      const hi = xs.map(x => [x, IM * Math.cos(ang(x) - th), IM * Math.sin(ang(x) - th)]);
+      line(hv, TH.v, .16, 4); line(hv, TH.line, .7, 1.1);
+      line(hi, TH.i, .45, 1);
+      for (let n = 0; n < 3; n++) { const u = ((t / 5200 + n / 3) % 1), m = Math.floor(u * N); glow(hv[m], 1.8, TH.v, .8 * (1 - u)); glow(hi[m], 1.4, TH.i, .7 * (1 - u)); }
+
+      /* --- المستوى المركب: حلقة مدرّجة + المحوران بأسهم + أثر رأس الفيزور --- */
+      const ring = (r, a0 = 0, a1 = Math.PI * 2, n = 120) => range(n, u => [X0, r * Math.cos(a0 + (a1 - a0) * u), r * Math.sin(a0 + (a1 - a0) * u)]);
+      line(ring(1), TH.line, .55, 1.1); line(ring(IM), TH.line, .16, .7); line(ring(1.16), TH.line, .12, .7, [2, 5]);
       for (let n = 0; n < 72; n++) { const a = n / 72 * Math.PI * 2, m = n % 6 ? .955 : .9; line([[X0, Math.cos(a), Math.sin(a)], [X0, m * Math.cos(a), m * Math.sin(a)]], TH.line, .5, .8); }
-      line([[X0, -1.25, 0], [X0, 1.25, 0]], TH.line, .4, .8); line([[X0, 0, -1.25], [X0, 0, 1.25]], TH.line, .4, .8);
+      arrow([X0, -1.3, 0], [X0, 1.42, 0], TH.line, .45, .8); arrow([X0, 0, -1.3], [X0, 0, 1.42], TH.line, .45, .8);
+      for (let n = 0; n < 24; n++) { const a0 = w - (n + 1) * .055, a1 = w - n * .055; line(ring(1, a0, a1, 3), TH.v, .7 * (1 - n / 24), 2); }
+      // سهم اتجاه الدوران ω خارج الحلقة
+      const om = ring(1.27, w + .35, w + 1.05, 24); line(om, TH.line, .5, 1); arrow(om[22], om[24], TH.line, .5, 1);
+      // قوس الزاوية θ بين الفيزورين
       line(range(20, u => [X0, .3 * Math.cos(w - th * u), .3 * Math.sin(w - th * u)]), TH.p, .9, 1.2);
+
+      /* --- الفيزوران V و I ومركباتهم (الحقيقي والتخيلي) --- */
       const tv = [X0, VM * Math.cos(w), VM * Math.sin(w)], ti = [X0, IM * Math.cos(w - th), IM * Math.sin(w - th)];
+      line([tv, [X0, tv[1], 0]], TH.v, .35, .8, [3, 4]); line([tv, [X0, 0, tv[2]]], TH.v, .35, .8, [3, 4]);
       arrow([X0, 0, 0], tv, TH.v, 1, 2.2); arrow([X0, 0, 0], ti, TH.i, 1, 2);
-      line([tv, [X0, tv[1], ZW]], TH.v, .45, .8, [3, 4]);
-      glow(tv, 3.2, TH.v); glow([X0, tv[1], ZW], 2.4, TH.v, .9); glow(ti, 2.4, TH.i, .9); glow([X0, ti[1], ZW], 2, TH.i, .8);
+      glow(tv, 3.2, TH.v); glow(ti, 2.4, TH.i, .9); glow([X0, 0, 0], 1.6, TH.line, .8);
       glow([X0, YF, zp(X0)], 2.2, TH.p, .9);
     }
 
