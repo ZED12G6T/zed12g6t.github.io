@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Polarization, Poynting Vector and Reflection" data-title-en="Lecture 7 Summary - Polarization, Poynting Vector and Normal-Incidence Reflection">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 7 - الاستقطاب ومتجه بوينتنج والانعكاس العمودي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script src="em-kit.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="em.css">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  .pol-svg { display: block; width: 100%; max-width: 300px; margin: 0 auto; }
+  .pol-svg text { font: 600 12px var(--f-mono, monospace); fill: var(--ink-2); }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 7 · كهرومغناطيسية (2) · الفصل 10 (10.7–10.9)</span><span lang="en">LECTURE 7 · ELECTROMAGNETICS (2) · CH 10.7–10.9</span></p>
+  <h1><span lang="ar">الاستقطاب، ومتجه بوينتنج، وانعكاس الموجة العمودي</span><span lang="en">Polarization, the Poynting Vector and Reflection at Normal Incidence</span></h1>
+  <p class="lead">
+    <span lang="ar">في <a href="lecture6-1.html">المحاضرة 6</a> عرفنا كيف تمشي الموجة في وسط واحد. هالمحاضرة ثلاث أفكار: <b>وين يأشّر $\X{\mathbf E}$</b> مع الزمن (الاستقطاب)، و<b>كم طاقة</b> تشيل الموجة (بوينتنج)، و<b>وش يصير لما توصل لوسط ثاني</b> (انعكاس ونفاذ وموجة واقفة).</span>
+    <span lang="en">In <a href="lecture6-1.html">Lecture 6</a> we followed a wave through a single medium. This lecture has three ideas: <b>where $\X{\mathbf E}$ points</b> over time (polarization), <b>how much power</b> the wave carries (Poynting), and <b>what happens when it hits another medium</b> (reflection, transmission and standing waves).</span>
+  </p>
+  <div class="xyz-bar">
+    <span class="x">E · <span lang="ar">المجال الكهربائي</span><span lang="en">electric field</span></span><span class="y">H · <span lang="ar">المجال المغناطيسي</span><span lang="en">magnetic field</span></span><span class="z">α · <span lang="ar">التوهين</span><span lang="en">attenuation</span></span>
+    <small><span lang="ar">← كل لون له نفس المعنى في المعادلات والرسومات</span><span lang="en">← each color means the same thing in equations and in charts</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">الاستقطاب = الشكل اللي يرسمه رأس $\X{\mathbf E}$ مع الزمن. فرق الطور $\Delta\phi=n\pi$ ← <b>خطي</b>. $\Delta\phi=\pm(2n+1)\pi/2$ مع سعات متساوية ← <b>دائري</b>، ومع سعات مختلفة ← <b>بيضاوي</b>.</span><span lang="en">Polarization = the shape the tip of $\X{\mathbf E}$ traces in time. $\Delta\phi=n\pi$ → <b>linear</b>. $\Delta\phi=\pm(2n+1)\pi/2$ with equal amplitudes → <b>circular</b>, unequal → <b>elliptical</b>.</span></li>
+      <li><span lang="ar">القدرة: $\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$ (W/m²)، ومتوسطها $\mathcal P_{ave}=\tfrac12\mathrm{Re}(\X{\mathbf E_s}\times\Y{\mathbf H_s^*})$ $=\dfrac{E_0^2}{2|\eta|}e^{-2\Z{\alpha}z}\cos\theta_\eta\,\mathbf a_k$.</span><span lang="en">Power: $\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$ (W/m²), with average $\mathcal P_{ave}=\tfrac12\mathrm{Re}(\X{\mathbf E_s}\times\Y{\mathbf H_s^*})$ $=\dfrac{E_0^2}{2|\eta|}e^{-2\Z{\alpha}z}\cos\theta_\eta\,\mathbf a_k$.</span></li>
+      <li><span lang="ar">عند الحد: $\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$ و $\tau=\dfrac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$. موصل مثالي ← $\Gamma=-1$ وموجة واقفة. ونسبة الموجة الواقفة $s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$.</span><span lang="en">At the boundary: $\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$, $\tau=\dfrac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$. Perfect conductor → $\Gamma=-1$ and a standing wave. Standing wave ratio $s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= 01 الاستقطاب ================= -->
+<section class="card" id="pol" data-num="01" data-nav="الاستقطاب|Polarization">
+  <h2><span lang="ar">10.7 استقطاب الموجة (Wave polarization)</span><span lang="en">10.7 Wave polarization</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 2 إلى 7</span><span lang="en">Slides 2 to 7</span></p>
+  <ol class="recipe">
+    <li><b><span lang="ar">التعريف</span><span lang="en">Definition</span></b><span class="why"><span lang="ar">الاستقطاب هو <b>المسار اللي يرسمه رأس المجال الكهربائي</b> $\X{\mathbf E}$ مع الزمن، عند نقطة ثابتة، في المستوى العمودي على اتجاه الانتشار. ويتحدد من اتجاه $\X{\mathbf E}$ لما يكون له أكثر من مركّبة.</span><span lang="en">Polarization is the <b>locus traced by the tip of the electric field</b> $\X{\mathbf E}$ over time, at a fixed point, in the plane normal to the propagation. It is set by the direction of $\X{\mathbf E}$ when the field has more than one component.</span></span></li>
+    <li><b><span lang="ar">يعتمد على المصدر</span><span lang="en">Set by the source</span></b><span class="why"><span lang="ar">الاستقطاب يعتمد على الهوائي أو المصدر اللي أرسل الموجة.</span><span lang="en">Polarization depends on the transmitting antenna or source.</span></span></li>
+    <li><b><span lang="ar">ثلاث أنواع (شكل 10.10)</span><span lang="en">Three types (Fig 10.10)</span></b><span class="why"><span lang="ar">رأس $\X{\mathbf E}$ يرسم: <b>خط</b> ← خطي (linear / plane)، <b>دائرة</b> ← دائري (circular)، <b>شكل بيضاوي</b> ← بيضاوي (elliptical).</span><span lang="en">The tip of $\X{\mathbf E}$ traces: a <b>line</b> → linear (plane), a <b>circle</b> → circular, an <b>ellipse</b> → elliptical.</span></span></li>
+    <li><b><span lang="ar">مثال من الحياة</span><span lang="en">Real-world use</span></b><span class="why"><span lang="ar">مهم للراديو والتلفزيون: إذاعة <b>AM</b> استقطابها <b>رأسي</b> (عمودي على سطح الأرض)، وإذاعة <b>FM</b> غالباً <b>دائري</b>.</span><span lang="en">Important for radio and TV: <b>AM</b> broadcasting is polarized <b>vertically</b> (normal to the earth's surface), while <b>FM</b> is generally <b>circularly</b> polarized.</span></span></li>
+  </ol>
+
+  <h3><span lang="ar">الموجة العامة على $+z$ (السلايد 4)</span><span lang="en">The general $+z$ wave (slide 4)</span></h3>
+  <p><span lang="ar">نكتب كل مركّبة بسعتها وطورها الخاص ($E_{ox}$ و $E_{oy}$ أرقام حقيقية):</span><span lang="en">Write each component with its own amplitude and phase ($E_{ox}$, $E_{oy}$ real):</span></p>
+  <div class="m big">\[\begin{aligned}E_x&=E_{ox}\cos(\omega t-\beta z+\phi_x)\\ E_y&=E_{oy}\cos(\omega t-\beta z+\phi_y)\end{aligned}\]</div>
+  <div class="m">\[\X{\mathbf E}=E_x\,\mathbf a_x+E_y\,\mathbf a_y,\qquad \Delta\phi=\phi_y-\phi_x\]</div>
+  <p><span lang="ar">كل شي يتحدد من شيئين: <b>فرق الطور</b> $\Delta\phi$، و<b>هل السعتين متساويات</b>.</span><span lang="en">Everything depends on two things: the <b>phase difference</b> $\Delta\phi$, and <b>whether the amplitudes are equal</b>.</span></p>
+
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th><span lang="ar">النوع</span><span lang="en">Type</span></th><th><span lang="ar">السعات</span><span lang="en">Amplitudes</span></th><th><span lang="ar">فرق الطور</span><span lang="en">Phase difference</span></th></tr>
+    <tr><td><span lang="ar">خطي</span><span lang="en">Linear</span></td><td><span lang="ar">أي قيم (أو مركّبة وحدة بس)</span><span lang="en">any (or one component only)</span></td><td>$\Delta\phi=n\pi$</td></tr>
+    <tr><td><span lang="ar">دائري</span><span lang="en">Circular</span></td><td>$E_{ox}=E_{oy}$</td><td>$\Delta\phi=\pm(2n+1)\tfrac{\pi}{2}$</td></tr>
+    <tr><td><span lang="ar">بيضاوي</span><span lang="en">Elliptical</span></td><td>$E_{ox}\ne E_{oy}$</td><td>$\Delta\phi=\pm(2n+1)\tfrac{\pi}{2}$</td></tr>
+  </table></div>
+  <p class="sub"><span lang="ar">$n=0,1,2,\dots$</span><span lang="en">$n=0,1,2,\dots$</span></p>
+
+  <h3><span lang="ar">1) الاستقطاب الخطي</span><span lang="en">1) Linear polarization</span></h3>
+  <p><span lang="ar">الموجة خطية إذا كان لها <b>مركّبة وحدة</b>، أو مركّباتها المستعرضة <b>في نفس الطور</b> ($\Delta\phi=0$) أو بعكسه ($\Delta\phi=\pi$). كذا النسبة $E_y/E_x$ تبقى <b>ثابتة طول الوقت</b>، فرأس $\X{\mathbf E}$ يروح ويرجع على نفس الخط. تولّده هوائيات بسيطة زي الـ dipole، أو الليزر.</span><span lang="en">A wave is linear if it has <b>one component</b>, or its transverse components are <b>in phase</b> ($\Delta\phi=0$) or opposite ($\Delta\phi=\pi$). Then $E_y/E_x$ stays <b>constant at all times</b>, so the tip of $\X{\mathbf E}$ swings back and forth on one line. Generated by simple antennas such as dipoles, or by lasers.</span></p>
+
+  <h3><span lang="ar">2) الاستقطاب الدائري: ليش دائرة؟ (السلايدات 5 و 6)</span><span lang="en">2) Circular polarization: why a circle? (slides 5 and 6)</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المثال: سعات متساوية وفرق $\pi/2$</span><span lang="en">The example: equal amplitudes, $\pi/2$ apart</span></h4>
+      <div class="m">\[\begin{aligned}E_x&=E_o\cos(\omega t-\beta z)\\ E_y&=E_o\cos(\omega t-\beta z+\pi/2)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نثبّت النقطة عند $z=0$</span><span lang="en">Fix the point at $z=0$</span></h4>
+      <p class="why"><span lang="ar">$\cos(\theta+\pi/2)=-\sin\theta$ (إزاحة ربع دورة تقلب cos إلى $-$sin).</span><span lang="en">$\cos(\theta+\pi/2)=-\sin\theta$ (a quarter-cycle shift turns cos into $-$sin).</span></p>
+      <div class="m">\[\begin{aligned}E_x&=E_o\cos\omega t\\ E_y&=-E_o\sin\omega t\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نربّع ونجمع</span><span lang="en">Square and add</span></h4>
+      <p class="why"><span lang="ar">$\cos^2+\sin^2=1$، والإشارة السالبة تروح مع التربيع.</span><span lang="en">$\cos^2+\sin^2=1$, and the minus sign disappears when squared.</span></p>
+      <div class="m">\[\begin{aligned}|\X{\mathbf E}|^2&=E_x^2+E_y^2\\&=E_o^2(\cos^2\omega t+\sin^2\omega t)\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="دائرة|Circle">$E_x^2+E_y^2=E_o^2$</div>
+      <p class="sanity"><span lang="ar">هذي معادلة دائرة نصف قطرها $E_o$: طول $\X{\mathbf E}$ ثابت واتجاهه يلف. تولّده هوائي ملفوف حلزوني (helix)، أو مصدرين خطيين متعامدين تيارهم بينه فرق $90^\circ$.</span><span lang="en">That is a circle of radius $E_o$: the length of $\X{\mathbf E}$ is fixed and its direction spins. Generated by a helically wound wire antenna, or by two perpendicular linear sources fed $90^\circ$ out of phase.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">3) الاستقطاب البيضاوي (السلايد 7)</span><span lang="en">3) Elliptical polarization (slide 7)</span></h3>
+  <p><span lang="ar">هو <b>الحالة العامة</b>، والخطي والدائري حالات خاصة منه. نفس الدائري بس $E_{ox}\ne E_{oy}$. نثبت $z=0$ و $\Delta\phi=\pi/2$:</span><span lang="en">This is the <b>general case</b>; linear and circular are special cases. Same as circular but with $E_{ox}\ne E_{oy}$. Take $z=0$ and $\Delta\phi=\pi/2$:</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">نطلّع $\cos\omega t$ من $E_x$</span><span lang="en">Isolate $\cos\omega t$ from $E_x$</span></h4>
+      <div class="m">\[E_x=E_{ox}\cos\omega t\ \Rightarrow\ \cos\omega t=\frac{E_x}{E_{ox}}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">ونطلّع $\sin\omega t$ من $E_y$</span><span lang="en">Isolate $\sin\omega t$ from $E_y$</span></h4>
+      <div class="m">\[\begin{aligned}E_y&=E_{oy}\cos(\omega t+\pi/2)\\&=-E_{oy}\sin\omega t\\ \Rightarrow\ -\sin\omega t&=\frac{E_y}{E_{oy}}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض في $\cos^2+\sin^2=1$</span><span lang="en">Plug into $\cos^2+\sin^2=1$</span></h4>
+      <div class="m">\[\left(\frac{E_x}{E_{ox}}\right)^2+\left(\frac{E_y}{E_{oy}}\right)^2=1\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="بيضاوي|Ellipse">$\dfrac{E_x^2}{E_{ox}^2}+\dfrac{E_y^2}{E_{oy}^2}=1$</div>
+      <p class="sanity"><span lang="ar">معادلة قطع ناقص محوره على $x$ طوله $E_{ox}$ وعلى $y$ طوله $E_{oy}$. ولو $E_{ox}=E_{oy}$ ترجع دائرة ✓.</span><span lang="en">An ellipse with semi-axis $E_{ox}$ on $x$ and $E_{oy}$ on $y$. If $E_{ox}=E_{oy}$ it collapses back to a circle ✓.</span></p>
+    </li>
+  </ol>
+
+  <div class="wlab" id="pol-lab">
+    <div class="lab-controls">
+      <div class="seg" role="group" aria-label="Presets"><button type="button" data-p="lin"><span lang="ar">خطي</span><span lang="en">Linear</span></button><button type="button" data-p="cir"><span lang="ar">دائري</span><span lang="en">Circular</span></button><button type="button" data-p="ell"><span lang="ar">بيضاوي</span><span lang="en">Elliptical</span></button></div>
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label><span class="ltr">E<sub>ox</sub></span> · <span class="rv ltr" data-o="ex">1</span></label><input type="range" data-k="ex" min="0" max="1" step="0.05" value="1" aria-label="Eox"></div>
+      <div class="field"><label><span class="ltr">E<sub>oy</sub></span> · <span class="rv ltr" data-o="ey">1</span></label><input type="range" data-k="ey" min="0" max="1" step="0.05" value="1" aria-label="Eoy"></div>
+      <div class="field"><label><span class="ltr">Δφ = φ<sub>y</sub> − φ<sub>x</sub></span> · <span class="rv ltr" data-o="dp">90°</span></label><input type="range" data-k="dp" min="-180" max="180" step="15" value="90" aria-label="phase difference in degrees"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">جرّب بنفسك: رأس $\X{\mathbf E}$ عند $z=0$ في المستوى $xy$</span><span lang="en">Try it: the tip of $\X{\mathbf E}$ at $z=0$ in the $xy$-plane</span></div></div>
+      <svg class="pol-svg" id="pol-svg" viewBox="0 0 300 300" role="img" aria-label="Locus of the tip of E in the xy-plane for the chosen amplitudes and phase difference, with the current E vector as an arrow"></svg>
+      <figcaption><span lang="ar">الخط الباهت = المسار الكامل خلال دورة. السهم = $\X{\mathbf E}$ في اللحظة الحالية. الموجة طالعة لك من الشاشة ($+z$).</span><span lang="en">The faint curve = the full path over one cycle. The arrow = $\X{\mathbf E}$ right now. The wave travels out of the screen ($+z$).</span></figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k"><span lang="ar">النوع</span><span lang="en">Type</span></span><span class="v" data-o="type">—</span></div>
+      <div><span class="k"><span lang="ar">اتجاه الدوران (بالرسمة)</span><span lang="en">Rotation (as drawn)</span></span><span class="v" data-o="rot">—</span></div>
+    </div>
+  </div>
+  <div class="callout warn"><strong><span lang="ar">⚠️ انتبه</span><span lang="en">⚠️ Watch out</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">سعات متساوية لحالها ما تكفي للدائري: لازم كمان $\Delta\phi=\pm90^\circ$. سعات متساوية مع $\Delta\phi=0$ = خطي بزاوية $45^\circ$.</span><span lang="en">Equal amplitudes alone don't make it circular: you also need $\Delta\phi=\pm90^\circ$. Equal amplitudes with $\Delta\phi=0$ = linear at $45^\circ$.</span></li>
+      <li><span lang="ar">لو فيه $\sin$ ومعه $\cos$ بنفس الوسيط، حوّل: $\sin\theta=\cos(\theta-\pi/2)$، يعني فرق طور $90^\circ$.</span><span lang="en">A $\sin$ next to a $\cos$ with the same argument: convert with $\sin\theta=\cos(\theta-\pi/2)$, i.e. a $90^\circ$ phase difference.</span></li>
+      <li><span lang="ar">جرّب في المختبر $\Delta\phi=45^\circ$: يطلع بيضاوي <b>مايل</b>. هذا بعد بيضاوي (الحالة العامة)، بس السلايدات تركز على $\pm90^\circ$.</span><span lang="en">Try $\Delta\phi=45^\circ$ in the lab: you get a <b>tilted</b> ellipse. Still elliptical (the general case), but the slides focus on $\pm90^\circ$.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= مثال 10.7 ================= -->
+<section class="card" id="ex7" data-nav="مثال 10.7|Ex 10.7">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.7</span><span lang="en">Example 10.7</span></span><h2><span lang="ar">حدّد نوع الاستقطاب</span><span lang="en">Determine the polarization</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.7</span></div>
+  <div class="m">\[\begin{aligned}\text{(a)}\ \ \X{\mathbf E}=\ &4e^{-0.25z}\cos(\omega t-0.8z)\,\mathbf a_x\\&+3e^{-0.25z}\sin(\omega t-0.8z)\,\mathbf a_y\ \ \text{V/m}\end{aligned}\]</div>
+  <div class="m">\[\text{(b)}\ \ \Y{\mathbf H_s}=H_oe^{-j\beta z}\,\mathbf a_x-2H_oe^{-j\beta z}\,\mathbf a_y\]</div>
+
+  <h3><span lang="ar">(a) المجال الكهربائي</span><span lang="en">(a) The electric field</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ المركّبتين</span><span lang="en">Read the two components</span></h4>
+      <p class="why"><span lang="ar">سعات مختلفة (4 و 3)، وواحد cos والثاني sin ← فرق طور $90^\circ$.</span><span lang="en">Different amplitudes (4 and 3), one cos and one sin → $90^\circ$ apart.</span></p>
+      <div class="m">\[\begin{aligned}E_x&=4e^{-0.25z}\cos(\omega t-0.8z)\\ E_y&=3e^{-0.25z}\sin(\omega t-0.8z)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نثبّت $z=0$</span><span lang="en">Set $z=0$</span></h4>
+      <p class="why"><span lang="ar">$e^{0}=1$، ونقسم كل وحدة على سعتها.</span><span lang="en">$e^{0}=1$; divide each by its amplitude.</span></p>
+      <div class="m">\[\begin{aligned}\tfrac{1}{4}E_x(0,t)&=\cos\omega t\\ \tfrac{1}{3}E_y(0,t)&=\sin\omega t\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نربّع ونجمع</span><span lang="en">Square and add</span></h4>
+      <div class="m">\[\frac{1}{16}E_x^2(0,t)+\frac{1}{9}E_y^2(0,t)=1\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(a)"><span lang="ar">بيضاوي (elliptically polarized)</span><span lang="en">Elliptically polarized</span></div>
+      <p class="sanity"><span lang="ar">نفس شكل $\dfrac{E_x^2}{E_{ox}^2}+\dfrac{E_y^2}{E_{oy}^2}=1$ مع $E_{ox}=4\ne E_{oy}=3$ ✓. والـ $e^{-0.25z}$ ما تغيّر النوع، بس تصغّر البيضاوي كل ما تقدمت الموجة.</span><span lang="en">Same form as $\dfrac{E_x^2}{E_{ox}^2}+\dfrac{E_y^2}{E_{oy}^2}=1$ with $E_{ox}=4\ne E_{oy}=3$ ✓. The $e^{-0.25z}$ doesn't change the type; it just shrinks the ellipse as the wave goes on.</span></p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">📝 غلطة طباعية في السلايد 8</span><span lang="en">📝 Typo on slide 8</span></strong>
+    <p><span lang="ar">السلايد كاتب السطر الثاني $\tfrac13E_x(0,t)=\sin\omega t$، والصح $\tfrac13E_{\color{red}y}(0,t)$ زي ما فوق.</span><span lang="en">The slide writes the second line as $\tfrac13E_x(0,t)=\sin\omega t$; it should be $\tfrac13E_{\color{red}y}(0,t)$ as above.</span></p>
+  </div>
+
+  <h3><span lang="ar">(b) المجال المغناطيسي</span><span lang="en">(b) The magnetic field</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المركّبتين في نفس الطور</span><span lang="en">The components are in phase</span></h4>
+      <p class="why"><span lang="ar">الاثنين فيهم نفس $e^{-j\beta z}$ وما فيه $j$ زيادة، والنسبة بينهم ثابتة ($-2$) ← <b>خطي</b>. بس الاستقطاب يتعرّف بـ $\X{\mathbf E}$، فنطلّعه عشان نتأكد.</span><span lang="en">Both carry the same $e^{-j\beta z}$ with no extra $j$, and their ratio is fixed ($-2$) → <b>linear</b>. But polarization is defined by $\X{\mathbf E}$, so find it to be thorough.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">معادلة ماكسويل</span><span lang="en">Maxwell's equation</span></h4>
+      <p class="why"><span lang="ar">في عازل مثالي ($\sigma=0$): $\nabla\times\Y{\mathbf H_s}=j\omega\varepsilon\X{\mathbf E_s}$، نقسم على $j\omega\varepsilon$.</span><span lang="en">In a lossless medium ($\sigma=0$): $\nabla\times\Y{\mathbf H_s}=j\omega\varepsilon\X{\mathbf E_s}$; divide by $j\omega\varepsilon$.</span></p>
+      <div class="m">\[\X{\mathbf E_s}=\frac{1}{j\omega\varepsilon}\nabla\times\Y{\mathbf H_s}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الكيرل: بس مشتقات $z$ تبقى</span><span lang="en">The curl: only $z$-derivatives survive</span></h4>
+      <p class="why"><span lang="ar">المجال يعتمد على $z$ بس، وما فيه $H_z$. فـ $(\nabla\times\mathbf H)_x=-\partial H_y/\partial z$ و $(\nabla\times\mathbf H)_y=\partial H_x/\partial z$. ومشتقة $e^{-j\beta z}$ هي $-j\beta e^{-j\beta z}$.</span><span lang="en">The field depends only on $z$ and has no $H_z$, so $(\nabla\times\mathbf H)_x=-\partial H_y/\partial z$ and $(\nabla\times\mathbf H)_y=\partial H_x/\partial z$. The derivative of $e^{-j\beta z}$ is $-j\beta e^{-j\beta z}$.</span></p>
+      <div class="m">\[\begin{aligned}(\nabla\times\mathbf H)_x&=-\frac{\partial}{\partial z}\left(-2H_oe^{-j\beta z}\right)\\&=-j2\beta H_oe^{-j\beta z}\\ (\nabla\times\mathbf H)_y&=\frac{\partial}{\partial z}\left(H_oe^{-j\beta z}\right)\\&=-j\beta H_oe^{-j\beta z}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نقسم على $j\omega\varepsilon$</span><span lang="en">Divide by $j\omega\varepsilon$</span></h4>
+      <p class="why"><span lang="ar">$j$ تروح مع $j$، و $\beta/\omega\varepsilon=\eta$ (للعازل المثالي).</span><span lang="en">$j$ cancels $j$, and $\beta/\omega\varepsilon=\eta$ (lossless medium).</span></p>
+      <div class="m">\[\X{\mathbf E_s}=-2\eta H_oe^{-j\beta z}\,\mathbf a_x-\eta H_oe^{-j\beta z}\,\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نرجع للزمن ونثبّت $z=0$</span><span lang="en">Back to time domain, then $z=0$</span></h4>
+      <p class="why"><span lang="ar">$\X{\mathbf E}=\mathrm{Re}[\X{\mathbf E_s}e^{j\omega t}]$، و $e^{-j\beta z}e^{j\omega t}\to\cos(\omega t-\beta z)$.</span><span lang="en">$\X{\mathbf E}=\mathrm{Re}[\X{\mathbf E_s}e^{j\omega t}]$, and $e^{-j\beta z}e^{j\omega t}\to\cos(\omega t-\beta z)$.</span></p>
+      <div class="m">\[\X{\mathbf E}(0,t)=-\eta H_o\,(2\mathbf a_x+\mathbf a_y)\cos\omega t\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(b)"><span lang="ar">خطي (linearly polarized)</span><span lang="en">Linearly polarized</span></div>
+      <p class="sanity"><span lang="ar">$E_y/E_x=1/2$ ثابتة مهما تغيّر $t$، يعني رأس $\X{\mathbf E}$ يتحرك على خط واحد ✓. وتأكد من الاتجاهات: $\mathbf a_E\times\mathbf a_H$ لازم يطلع $+\mathbf a_z$: $(-2,-1,0)\times(1,-2,0)$ له مركّبة $z$ = $(-2)(-2)-(-1)(1)=5\gt0$ ✓.</span><span lang="en">$E_y/E_x=1/2$ stays fixed as $t$ changes, so the tip of $\X{\mathbf E}$ moves on one line ✓. Direction check: $\mathbf a_E\times\mathbf a_H$ must be $+\mathbf a_z$: $(-2,-1,0)\times(1,-2,0)$ has $z$-part $(-2)(-2)-(-1)(1)=5\gt0$ ✓.</span></p>
+    </li>
+  </ol>
+  <div class="callout warn"><strong><span lang="ar">⚠️ فرق إشارة عن السلايد 9 و 10</span><span lang="en">⚠️ Sign differs from slides 9 and 10</span></strong>
+    <p><span lang="ar">السلايد كاتب $\X{\mathbf E_s}=+2\eta H_o e^{-j\beta z}\mathbf a_x-\eta H_o e^{-j\beta z}\mathbf a_y$. لو تحسب $-\partial H_y/\partial z$ بدقة تطلع مركّبة $x$ <b>سالبة</b> (الحل اللي فوق). <b>الجواب النهائي ما يتغير</b>: خطي في الحالتين، لأن النسبة ثابتة. في الاختبار المهم تقول "المركّبتين في نفس الطور ← خطي".</span><span lang="en">The slide writes $\X{\mathbf E_s}=+2\eta H_o e^{-j\beta z}\mathbf a_x-\eta H_o e^{-j\beta z}\mathbf a_y$. Computing $-\partial H_y/\partial z$ carefully gives a <b>negative</b> $x$-part (the solution above). <b>The answer doesn't change</b>: linear either way, since the ratio is fixed. On the exam the key line is "components in phase → linear".</span></p>
+  </div>
+</section>
+
+<!-- ================= 02 متجه بوينتنج ================= -->
+<section class="card" id="poynting" data-num="02" data-nav="بوينتنج|Poynting">
+  <h2><span lang="ar">10.8 القدرة ومتجه بوينتنج (Poynting vector)</span><span lang="en">10.8 Power and the Poynting vector</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 11 إلى 15</span><span lang="en">Slides 11 to 15</span></p>
+  <p><span lang="ar">الموجة الكهرومغناطيسية <b>تنقل طاقة</b> من المرسل للمستقبل. معدل هالنقل نطلّعه من معادلتين ماكسويل:</span><span lang="en">EM waves <b>carry energy</b> from a transmitter to a receiver. The rate comes from Maxwell's two curl equations:</span></p>
+  <div class="m">\[\begin{aligned}\nabla\times\X{\mathbf E}&=-\mu\frac{\partial\Y{\mathbf H}}{\partial t}\\ \nabla\times\Y{\mathbf H}&=\sigma\X{\mathbf E}+\varepsilon\frac{\partial\X{\mathbf E}}{\partial t}\end{aligned}\]</div>
+  <p><span lang="ar">وبعد الاشتقاق (ما هو مطلوب) تطلع <b>نظرية بوينتنج</b>:</span><span lang="en">After the derivation (not required) we get <b>Poynting's theorem</b>:</span></p>
+  <div class="m big">\[\begin{aligned}&\oint_S(\X{\mathbf E}\times\Y{\mathbf H})\cdot d\mathbf S\\&=-\frac{\partial}{\partial t}\int_v\left[\tfrac12\varepsilon E^2+\tfrac12\mu H^2\right]dv\\&\quad-\int_v\sigma E^2\,dv\end{aligned}\]</div>
+  <ol class="recipe">
+    <li><b><span lang="ar">الطرف اليسار</span><span lang="en">Left side</span></b><span class="why"><span lang="ar">القدرة الكلية <b>الطالعة</b> من الحجم $v$.</span><span lang="en">Total power <b>leaving</b> the volume $v$.</span></span></li>
+    <li><b><span lang="ar">الحد الأول يمين</span><span lang="en">First term on the right</span></b><span class="why"><span lang="ar">معدل <b>نقص الطاقة المخزنة</b> في المجال الكهربائي ($\tfrac12\varepsilon E^2$) والمغناطيسي ($\tfrac12\mu H^2$).</span><span lang="en">Rate of <b>decrease of stored energy</b> in the electric ($\tfrac12\varepsilon E^2$) and magnetic ($\tfrac12\mu H^2$) fields.</span></span></li>
+    <li><b><span lang="ar">الحد الثاني يمين</span><span lang="en">Second term on the right</span></b><span class="why"><span lang="ar">القدرة <b>الضايعة كحرارة</b> (ohmic losses)، وتساوي صفر لو $\sigma=0$.</span><span lang="en">Power <b>dissipated as heat</b> (ohmic losses); zero when $\sigma=0$.</span></span></li>
+  </ol>
+  <div class="callout key"><strong><span lang="ar">🔑 نص النظرية (سؤال نظري متوقع)</span><span lang="en">🔑 The statement (likely theory question)</span></strong>
+    <p><span lang="ar">القدرة الصافية الطالعة من حجم $v$ = معدل نقص الطاقة المخزنة داخل $v$ <b>ناقص</b> الفقد الأومي. ($\mathcal P$ هو كثافة القدرة اللحظية عند نقطة، وتكامله على سطح مغلق = القدرة الصافية الطالعة منه.)</span><span lang="en">The net power flowing out of a volume $v$ = the rate of decrease of energy stored in $v$ <b>minus</b> the ohmic losses. ($\mathcal P$ is the instantaneous power density at a point; its integral over a closed surface = the net power out.)</span></p>
+  </div>
+  <div class="m big">\[\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}\qquad(\text{W/m}^2)\]</div>
+  <p><span lang="ar">$\mathcal P$ عمودي على $\X{\mathbf E}$ وعلى $\Y{\mathbf H}$، فهو على <b>اتجاه الانتشار</b> نفسه:</span><span lang="en">$\mathcal P$ is normal to both $\X{\mathbf E}$ and $\Y{\mathbf H}$, so it lies along the <b>direction of propagation</b>:</span></p>
+  <div class="m">\[\mathbf a_k=\mathbf a_E\times\mathbf a_H\]</div>
+
+  <h3><span lang="ar">$\mathcal P$ اللحظي لموجة عامة (السلايد 13)</span><span lang="en">Instantaneous $\mathcal P$ for a general wave (slide 13)</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المجالين (من المحاضرة 5)</span><span lang="en">The two fields (from Lecture 5)</span></h4>
+      <div class="m">\[\begin{aligned}\X{\mathbf E}&=E_oe^{-\Z{\alpha}z}\cos(\omega t-\beta z)\,\mathbf a_x\\ \Y{\mathbf H}&=\frac{E_o}{|\eta|}e^{-\Z{\alpha}z}\cos(\omega t-\beta z-\theta_\eta)\,\mathbf a_y\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نضرب ضرب اتجاهي</span><span lang="en">Take the cross product</span></h4>
+      <p class="why"><span lang="ar">$\mathbf a_x\times\mathbf a_y=\mathbf a_z$، والأُسّين يتجمعون: $e^{-\alpha z}e^{-\alpha z}=e^{-2\alpha z}$.</span><span lang="en">$\mathbf a_x\times\mathbf a_y=\mathbf a_z$, and the exponents add: $e^{-\alpha z}e^{-\alpha z}=e^{-2\alpha z}$.</span></p>
+      <div class="m">\[\begin{aligned}\mathcal P=\ &\frac{E_o^2}{|\eta|}e^{-2\Z{\alpha}z}\cos(\omega t-\beta z)\\&\times\cos(\omega t-\beta z-\theta_\eta)\,\mathbf a_z\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قانون ضرب جيبين التمام</span><span lang="en">Product-to-sum identity</span></h4>
+      <div class="m">\[\begin{aligned}&\cos A\cos B\\&=\tfrac12[\cos(A-B)+\cos(A+B)]\end{aligned}\]</div>
+      <p class="why"><span lang="ar">هنا $A-B=\theta_\eta$ و $A+B=2\omega t-2\beta z-\theta_\eta$.</span><span lang="en">Here $A-B=\theta_\eta$ and $A+B=2\omega t-2\beta z-\theta_\eta$.</span></p>
+      <div class="m">\[\begin{aligned}\mathcal P=\ &\frac{E_o^2}{2|\eta|}e^{-2\Z{\alpha}z}\big[\cos\theta_\eta\\&+\cos(2\omega t-2\beta z-\theta_\eta)\big]\mathbf a_z\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <p class="sanity"><span lang="ar">جزء ثابت ($\cos\theta_\eta$) + جزء يتذبذب بضعف التردد ($2\omega$). المتوسط على دورة كاملة للجزء المتذبذب = صفر، فيبقى الثابت بس.</span><span lang="en">A constant part ($\cos\theta_\eta$) + a part oscillating at twice the frequency ($2\omega$). Over a full cycle the oscillating part averages to zero, leaving only the constant.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">المتوسط الزمني $\mathcal P_{ave}$ (السلايد 14)</span><span lang="en">Time average $\mathcal P_{ave}$ (slide 14)</span></h3>
+  <p><span lang="ar">نكامل على دورة $T=2\pi/\omega$ ونقسم على $T$:</span><span lang="en">Integrate over one period $T=2\pi/\omega$ and divide by $T$:</span></p>
+  <div class="m">\[\mathcal P_{ave}(z)=\frac1T\int_0^T\mathcal P(z,t)\,dt\]</div>
+  <div class="m big">\[\mathcal P_{ave}(z)=\frac12\mathrm{Re}\left(\X{\mathbf E_s}\times\Y{\mathbf H_s^*}\right)\]</div>
+  <div class="m big">\[\mathcal P_{ave}(z)=\frac{E_o^2}{2|\eta|}e^{-2\Z{\alpha}z}\cos\theta_\eta\,\mathbf a_z\]</div>
+  <p><span lang="ar">والقدرة الكلية اللي تعبر سطح $S$ (بالواط):</span><span lang="en">And the total power crossing a surface $S$ (in watts):</span></p>
+  <div class="m big">\[P_{ave}=\int_S\mathcal P_{ave}\cdot d\mathbf S\]</div>
+
+  <div class="wlab" id="pv-lab">
+    <div class="lab-controls">
+      <div class="field"><label><span lang="ar">زاوية الممانعة</span><span lang="en">Impedance angle</span> <span class="ltr">θ<sub>η</sub></span> · <span class="rv ltr" data-o="th">0°</span></label><input type="range" min="0" max="45" step="1" value="0" aria-label="theta eta in degrees"></div>
+      <div class="seg" role="group" aria-label="Presets"><button type="button" data-th="0"><span lang="ar">عازل مثالي 0°</span><span lang="en">Lossless 0°</span></button><button type="button" data-th="45"><span lang="ar">موصل جيد 45°</span><span lang="en">Good conductor 45°</span></button></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">جرّب بنفسك: $\mathcal P$ مع الزمن عند $z=0$</span><span lang="en">Try it: $\mathcal P$ versus time at $z=0$</span></div>
+        <div class="legend"><span><i class="c-p"></i>𝒫(t)</span><span><i class="c-a"></i>𝒫<sub>ave</sub></span></div></div>
+      <div class="wv-plot" id="pv-plot"></div>
+      <figcaption><span lang="ar">بوحدات $E_o^2/|\eta|$. لاحظ إن $\mathcal P$ يتذبذب بضعف التردد (دورتين لكل $T$)، والمتوسط $\tfrac12\cos\theta_\eta$.</span><span lang="en">In units of $E_o^2/|\eta|$. Note $\mathcal P$ oscillates at twice the frequency (two cycles per $T$), and its average is $\tfrac12\cos\theta_\eta$.</span></figcaption>
+    </figure>
+    <div class="ml-read">
+      <div class="hl"><span class="k"><span lang="ar">المتوسط</span><span lang="en">Average</span></span><span class="v" data-o="avg">0.500</span></div>
+      <div><span class="k"><span lang="ar">أقل قيمة لحظية</span><span lang="en">Lowest instant</span></span><span class="v" data-o="min">0</span></div>
+    </div>
+  </div>
+
+  <h3><span lang="ar">لا تخلط بين الثلاثة (السلايد 15)</span><span lang="en">Don't mix up the three (slide 15)</span></h3>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th><span lang="ar">الرمز</span><span lang="en">Symbol</span></th><th><span lang="ar">الوحدة</span><span lang="en">Unit</span></th><th><span lang="ar">النوع</span><span lang="en">Kind</span></th></tr>
+    <tr><td>$\mathcal P(x,y,z,t)$</td><td class="ltr">W/m²</td><td><span lang="ar">متجه، <b>يتغير مع الزمن</b></span><span lang="en">vector, <b>time-varying</b></span></td></tr>
+    <tr><td>$\mathcal P_{ave}(x,y,z)$</td><td class="ltr">W/m²</td><td><span lang="ar">متجه، <b>ثابت مع الزمن</b></span><span lang="en">vector, <b>time-invariant</b></span></td></tr>
+    <tr><td>$P_{ave}$</td><td class="ltr">W</td><td><span lang="ar">قدرة كلية خلال سطح، <b>كمية قياسية</b></span><span lang="en">total power through a surface, <b>scalar</b></span></td></tr>
+  </table></div>
+</section>
+
+<!-- ================= مثال 10.8 ================= -->
+<section class="card" id="ex8" data-nav="مثال 10.8|Ex 10.8">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.8</span><span lang="en">Example 10.8</span></span><h2><span lang="ar">أوجد $\varepsilon_r$ و $\eta$ والقدرة المتوسطة</span><span lang="en">Find $\varepsilon_r$, $\eta$ and the average power</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.8</span></div>
+  <p><span lang="ar">في وسط غير مغناطيسي ($\mu=\mu_0$):</span><span lang="en">In a nonmagnetic medium ($\mu=\mu_0$):</span></p>
+  <div class="m big">\[\X{\mathbf E}=4\sin(2\pi\times10^7t-0.8x)\,\mathbf a_z\ \ \text{V/m}\]</div>
+  <p><span lang="ar">أوجد (a) $\varepsilon_r$ و $\eta$، (b) القدرة المتوسطة اللي تشيلها الموجة.</span><span lang="en">Find (a) $\varepsilon_r$ and $\eta$, (b) the time-average power carried by the wave.</span></p>
+
+  <h3><span lang="ar">(a) $\varepsilon_r$ و $\eta$</span><span lang="en">(a) $\varepsilon_r$ and $\eta$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ المعطيات</span><span lang="en">Read the givens</span></h4>
+      <p class="why"><span lang="ar">ما فيه $e^{-\alpha x}$ ← $\Z{\alpha}=0$ (بدون فقد). معامل $t$ = $\omega$، ومعامل $x$ = $\beta$. والموجة تمشي على $+x$.</span><span lang="en">No $e^{-\alpha x}$ → $\Z{\alpha}=0$ (lossless). Coefficient of $t$ = $\omega$, of $x$ = $\beta$. The wave travels along $+x$.</span></p>
+      <div class="map"><span class="x">α = 0</span><span class="x">β = 0.8 rad/m</span><span class="x">ω = 2π×10⁷</span><span class="x">μ = μ₀</span><span class="x">a_k = +a_x</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">مو فراغ</span><span lang="en">Not free space</span></h4>
+      <p class="why"><span lang="ar">لو فراغ كان $\beta=\omega/c=2\pi\times10^7/3\times10^8=0.21$. بس عندنا $0.8$، فهو عازل مثالي بـ $\varepsilon_r\gt1$.</span><span lang="en">In free space $\beta=\omega/c=2\pi\times10^7/3\times10^8=0.21$. We have $0.8$, so it is a lossless dielectric with $\varepsilon_r\gt1$.</span></p>
+      <div class="m">\[\beta=\omega\sqrt{\mu_0\varepsilon_0\varepsilon_r}=\frac{\omega}{c}\sqrt{\varepsilon_r}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نطلّع $\sqrt{\varepsilon_r}$</span><span lang="en">Solve for $\sqrt{\varepsilon_r}$</span></h4>
+      <div class="m">\[\sqrt{\varepsilon_r}=\frac{\beta c}{\omega}=\frac{0.8(3\times10^8)}{2\pi\times10^7}=\frac{12}{\pi}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نربّع</span><span lang="en">Square</span></h4>
+      <div class="m">\[\varepsilon_r=\frac{144}{\pi^2}=14.59\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الممانعة</span><span lang="en">Impedance</span></h4>
+      <p class="why"><span lang="ar">$\eta=120\pi/\sqrt{\varepsilon_r}$، والقسمة على $12/\pi$ = ضرب في $\pi/12$.</span><span lang="en">$\eta=120\pi/\sqrt{\varepsilon_r}$; dividing by $12/\pi$ = multiplying by $\pi/12$.</span></p>
+      <div class="m">\[\eta=\frac{120\pi}{\sqrt{\varepsilon_r}}=120\pi\cdot\frac{\pi}{12}=10\pi^2\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(a)">$\varepsilon_r=14.59,\ \ \eta=10\pi^2\approx98.7\ \Omega$</div>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(b) القدرة المتوسطة</span><span lang="en">(b) The average power</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">$\mathcal P$ اللحظي</span><span lang="en">Instantaneous $\mathcal P$</span></h4>
+      <p class="why"><span lang="ar">بدون فقد ← $\Y{\mathbf H}$ بنفس الدالة والطور، وسعته $E_o/\eta$. والاتجاه دايماً $\mathbf a_k=+\mathbf a_x$.</span><span lang="en">Lossless → $\Y{\mathbf H}$ has the same function and phase, amplitude $E_o/\eta$. Direction is always $\mathbf a_k=+\mathbf a_x$.</span></p>
+      <div class="m">\[\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}=\frac{E_o^2}{\eta}\sin^2(\omega t-\beta x)\,\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المتوسط</span><span lang="en">The average</span></h4>
+      <p class="why"><span lang="ar">متوسط $\sin^2$ على دورة = $\tfrac12$.</span><span lang="en">The average of $\sin^2$ over a cycle = $\tfrac12$.</span></p>
+      <div class="m">\[\mathcal P_{ave}=\frac{E_o^2}{2\eta}\,\mathbf a_x=\frac{16}{2\times10\pi^2}\,\mathbf a_x\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(b)">$\mathcal P_{ave}=0.081\,\mathbf a_x\ \text{W/m}^2$<br>$=81\,\mathbf a_x\ \text{mW/m}^2$</div>
+      <p class="sanity"><span lang="ar">$16/197.4=0.0811$ ✓. والاتجاه $+\mathbf a_x$ نفس اتجاه الانتشار.</span><span lang="en">$16/197.4=0.0811$ ✓. The direction $+\mathbf a_x$ matches the propagation.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= 03 الانعكاس ================= -->
+<section class="card" id="reflect" data-num="03" data-nav="الانعكاس|Reflection">
+  <h2><span lang="ar">10.9 انعكاس الموجة عند السقوط العمودي</span><span lang="en">10.9 Reflection of a plane wave at normal incidence</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 18 إلى 22</span><span lang="en">Slides 18 to 22</span></p>
+  <p><span lang="ar">لين الحين الموجة كانت تمشي في وسط واحد لا نهائي. لما توصل لوسط <b>مختلف</b>، جزء منها <b>ينعكس</b> وجزء <b>ينفذ</b>. كم ينعكس وكم ينفذ يعتمد على $(\varepsilon,\mu,\sigma)$ للوسطين. هنا الموجة تضرب الحد <b>عمودي</b>.</span><span lang="en">Until now the wave lived in one unbounded medium. When it meets a <b>different</b> medium, part is <b>reflected</b> and part <b>transmitted</b>. How much of each depends on $(\varepsilon,\mu,\sigma)$ of both media. Here the wave hits the boundary <b>normally</b>.</span></p>
+
+  <svg viewBox="0 0 320 170" role="img" aria-label="Figure 10.12: medium 1 for z less than 0 holds the incident wave toward +z and the reflected wave toward -z; medium 2 for z greater than 0 holds the transmitted wave toward +z" style="display:block;margin:8px auto;max-width:340px;width:100%">
+    <rect x="160" y="10" width="150" height="140" fill="color-mix(in srgb, var(--accent) 12%, transparent)"/>
+    <line x1="160" y1="6" x2="160" y2="156" stroke="var(--ink-2)" stroke-width="1.5"/>
+    <text x="160" y="168" text-anchor="middle" font-size="11" fill="var(--ink-2)">z = 0</text>
+    <text x="80" y="24" text-anchor="middle" font-size="11" fill="var(--ink-2)">(ε₁, μ₁, σ₁)</text>
+    <text x="235" y="24" text-anchor="middle" font-size="11" fill="var(--ink-2)">(ε₂, μ₂, σ₂)</text>
+    <g fill="none" stroke-width="2.2">
+      <line x1="30" y1="60" x2="130" y2="60" stroke="var(--w-e)"/><path d="M130 55 L140 60 L130 65Z" fill="var(--w-e)"/>
+      <line x1="140" y1="110" x2="40" y2="110" stroke="var(--w-h)"/><path d="M40 105 L30 110 L40 115Z" fill="var(--w-h)"/>
+      <line x1="180" y1="85" x2="280" y2="85" stroke="var(--w-a)"/><path d="M280 80 L290 85 L280 90Z" fill="var(--w-a)"/>
+    </g>
+    <text x="80" y="52" text-anchor="middle" font-size="12" fill="var(--w-e)">i : +a_z</text>
+    <text x="90" y="128" text-anchor="middle" font-size="12" fill="var(--w-h)">r : −a_z</text>
+    <text x="235" y="77" text-anchor="middle" font-size="12" fill="var(--w-a)">t : +a_z</text>
+  </svg>
+
+  <h3><span lang="ar">الموجات الثلاث (بدون $e^{j\omega t}$)</span><span lang="en">The three waves (time factor $e^{j\omega t}$ suppressed)</span></h3>
+  <ol class="recipe">
+    <li><b><span lang="ar">الساقطة (incident) في الوسط 1 على $+\mathbf a_z$</span><span lang="en">Incident, medium 1, along $+\mathbf a_z$</span></b><span class="why"><div class="m">\[\begin{aligned}\X{\mathbf E_{is}}&=E_{io}e^{-\gamma_1z}\,\mathbf a_x\\ \Y{\mathbf H_{is}}&=\frac{E_{io}}{\eta_1}e^{-\gamma_1z}\,\mathbf a_y\end{aligned}\]</div></span></li>
+    <li><b><span lang="ar">المنعكسة (reflected) في الوسط 1 على $-\mathbf a_z$</span><span lang="en">Reflected, medium 1, along $-\mathbf a_z$</span></b><span class="why"><span lang="ar">الأُس صار $+\gamma_1z$ لأنها راجعة. و $\Y{\mathbf H}$ انقلب لـ $-\mathbf a_y$ عشان $\mathbf a_E\times\mathbf a_H=\mathbf a_x\times(-\mathbf a_y)=-\mathbf a_z$ ✓.</span><span lang="en">The exponent is $+\gamma_1z$ because it travels back. $\Y{\mathbf H}$ flips to $-\mathbf a_y$ so that $\mathbf a_E\times\mathbf a_H=\mathbf a_x\times(-\mathbf a_y)=-\mathbf a_z$ ✓.</span><div class="m">\[\begin{aligned}\X{\mathbf E_{rs}}&=E_{ro}e^{\gamma_1z}\,\mathbf a_x\\ \Y{\mathbf H_{rs}}&=-\frac{E_{ro}}{\eta_1}e^{\gamma_1z}\,\mathbf a_y\end{aligned}\]</div></span></li>
+    <li><b><span lang="ar">النافذة (transmitted) في الوسط 2 على $+\mathbf a_z$</span><span lang="en">Transmitted, medium 2, along $+\mathbf a_z$</span></b><span class="why"><div class="m">\[\begin{aligned}\X{\mathbf E_{ts}}&=E_{to}e^{-\gamma_2z}\,\mathbf a_x\\ \Y{\mathbf H_{ts}}&=\frac{E_{to}}{\eta_2}e^{-\gamma_2z}\,\mathbf a_y\end{aligned}\]</div></span></li>
+  </ol>
+  <p><span lang="ar">نفترض إن $\X{\mathbf E_i}$ و $\X{\mathbf E_r}$ و $\X{\mathbf E_t}$ <b>لهم نفس الاستقطاب</b> (كلهم على $\mathbf a_x$) عشان تتحقق شروط الحدود. و $E_{io},E_{ro},E_{to}$ هي السعات عند $z=0$. المجال الكلي:</span><span lang="en">We assume $\X{\mathbf E_i}$, $\X{\mathbf E_r}$, $\X{\mathbf E_t}$ <b>share the same polarization</b> (all along $\mathbf a_x$) to satisfy the boundary conditions. $E_{io},E_{ro},E_{to}$ are the amplitudes at $z=0$. Total fields:</span></p>
+  <div class="m big">\[\begin{aligned}\X{\mathbf E_1}&=\X{\mathbf E_i}+\X{\mathbf E_r},&\Y{\mathbf H_1}&=\Y{\mathbf H_i}+\Y{\mathbf H_r}\\ \X{\mathbf E_2}&=\X{\mathbf E_t},&\Y{\mathbf H_2}&=\Y{\mathbf H_t}\end{aligned}\]</div>
+
+  <h3><span lang="ar">نطلّع $\Gamma$ و $\tau$ من شروط الحدود</span><span lang="en">Deriving $\Gamma$ and $\tau$ from the boundary conditions</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الشرط</span><span lang="en">The condition</span></h4>
+      <p class="why"><span lang="ar">عند $z=0$ المركّبات <b>المماسية</b> لـ $\X{\mathbf E}$ و $\Y{\mathbf H}$ لازم تكون متصلة. والموجة مستعرضة، فالمجالين كلهم مماسيين للحد.</span><span lang="en">At $z=0$ the <b>tangential</b> components of $\X{\mathbf E}$ and $\Y{\mathbf H}$ must be continuous. The waves are transverse, so both fields are entirely tangential.</span></p>
+      <div class="m">\[E_{1\,tan}=E_{2\,tan},\qquad H_{1\,tan}=H_{2\,tan}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">شرط $\X{\mathbf E}$ عند $z=0$</span><span lang="en">The $\X{\mathbf E}$ condition at $z=0$</span></h4>
+      <p class="why"><span lang="ar">كل الأُسس تصير $e^0=1$.</span><span lang="en">Every exponential becomes $e^0=1$.</span></p>
+      <div class="m">\[E_{io}+E_{ro}=E_{to}\qquad(1)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">شرط $\Y{\mathbf H}$ عند $z=0$</span><span lang="en">The $\Y{\mathbf H}$ condition at $z=0$</span></h4>
+      <p class="why"><span lang="ar">لاحظ السالب من $\Y{\mathbf H_r}$.</span><span lang="en">Note the minus from $\Y{\mathbf H_r}$.</span></p>
+      <div class="m">\[\frac{1}{\eta_1}(E_{io}-E_{ro})=\frac{E_{to}}{\eta_2}\qquad(2)\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض (1) في (2)</span><span lang="en">Substitute (1) into (2)</span></h4>
+      <p class="why"><span lang="ar">نضرب الطرفين في $\eta_1\eta_2$.</span><span lang="en">Multiply both sides by $\eta_1\eta_2$.</span></p>
+      <div class="m">\[\eta_2(E_{io}-E_{ro})=\eta_1(E_{io}+E_{ro})\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نجمع حدود $E_{ro}$ في طرف</span><span lang="en">Collect $E_{ro}$ on one side</span></h4>
+      <div class="m">\[(\eta_2-\eta_1)E_{io}=(\eta_2+\eta_1)E_{ro}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">معامل الانعكاس</span><span lang="en">Reflection coefficient</span></h4>
+      <div class="m">\[\Gamma=\frac{E_{ro}}{E_{io}}=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">معامل النفاذ من (1)</span><span lang="en">Transmission coefficient from (1)</span></h4>
+      <p class="why"><span lang="ar">نقسم (1) على $E_{io}$: $\tau=1+\Gamma$، ونوحّد المقام.</span><span lang="en">Divide (1) by $E_{io}$: $\tau=1+\Gamma$, then use a common denominator.</span></p>
+      <div class="m">\[\tau=\frac{E_{to}}{E_{io}}=1+\frac{\eta_2-\eta_1}{\eta_2+\eta_1}=\frac{2\eta_2}{\eta_2+\eta_1}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="Γ و τ|Γ and τ">$\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1},\quad \tau=\dfrac{2\eta_2}{\eta_2+\eta_1}$</div>
+      <p class="sanity"><span lang="ar">$E_{ro}=\Gamma E_{io}$ و $E_{to}=\tau E_{io}$. وانتبه للترتيب: <b>الوسط 2 أولاً</b> في البسط ($\eta_2-\eta_1$).</span><span lang="en">$E_{ro}=\Gamma E_{io}$ and $E_{to}=\tau E_{io}$. Watch the order: <b>medium 2 first</b> in the numerator ($\eta_2-\eta_1$).</span></p>
+    </li>
+  </ol>
+  <div class="callout key"><strong><span lang="ar">🔑 ثلاث ملاحظات (السلايد 22)</span><span lang="en">🔑 Three notes (slide 22)</span></strong>
+    <ul class="checks">
+      <li>$1+\Gamma=\tau$</li>
+      <li><span lang="ar">$\Gamma$ و $\tau$ بدون وحدات، وممكن يكونون أعداد مركّبة (لو فيه وسط فقّاد).</span><span lang="en">$\Gamma$ and $\tau$ are dimensionless and may be complex (if a medium is lossy).</span></li>
+      <li>$0\le|\Gamma|\le1$</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= 04 الموجة الواقفة ================= -->
+<section class="card" id="standing" data-num="04" data-nav="الموجة الواقفة|Standing wave">
+  <h2><span lang="ar">الموجة الواقفة (Standing wave)</span><span lang="en">Standing waves</span></h2>
+  <p class="sub"><span lang="ar">السلايدات 23 إلى 28</span><span lang="en">Slides 23 to 28</span></p>
+
+  <h3><span lang="ar">حالة خاصة: عازل مثالي ← موصل مثالي</span><span lang="en">Special case: perfect dielectric → perfect conductor</span></h3>
+  <p><span lang="ar">الوسط 1 بدون فقد ($\sigma_1=0$)، والوسط 2 موصل مثالي ($\sigma_2\simeq\infty$) ← $\eta_2=0$:</span><span lang="en">Medium 1 lossless ($\sigma_1=0$), medium 2 a perfect conductor ($\sigma_2\simeq\infty$) → $\eta_2=0$:</span></p>
+  <div class="m">\[\Gamma=\frac{0-\eta_1}{0+\eta_1}=-1,\qquad \tau=\frac{0}{0+\eta_1}=0\]</div>
+  <p><span lang="ar">الموجة <b>تنعكس كلها</b>. منطقي: المجالات داخل الموصل المثالي لازم تكون صفر، فما فيه موجة نافذة ($\X{\mathbf E_2}=0$). والمنعكسة تتجمع مع الساقطة وتكوّن <b>موجة واقفة</b>: موجتين بنفس السعة بس عكس بعض في الاتجاه.</span><span lang="en">The wave is <b>totally reflected</b>. Makes sense: fields inside a perfect conductor must vanish, so there is no transmitted wave ($\X{\mathbf E_2}=0$). The reflected wave combines with the incident one into a <b>standing wave</b>: two equal-amplitude waves traveling in opposite directions.</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المجال الكلي في الوسط 1</span><span lang="en">Total field in medium 1</span></h4>
+      <div class="m">\[\X{\mathbf E_{1s}}=\left(E_{io}e^{-\gamma_1z}+E_{ro}e^{\gamma_1z}\right)\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض الحالة</span><span lang="en">Plug in the case</span></h4>
+      <p class="why"><span lang="ar">$E_{ro}=\Gamma E_{io}=-E_{io}$. وبدون فقد: $\Z{\alpha_1}=0$ فـ $\gamma_1=j\beta_1$. وطلّعنا $-E_{io}$ عامل مشترك.</span><span lang="en">$E_{ro}=\Gamma E_{io}=-E_{io}$. Lossless: $\Z{\alpha_1}=0$ so $\gamma_1=j\beta_1$. Factor out $-E_{io}$.</span></p>
+      <div class="m">\[\X{\mathbf E_{1s}}=-E_{io}\left(e^{j\beta_1z}-e^{-j\beta_1z}\right)\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قانون أويلر</span><span lang="en">Euler's identity</span></h4>
+      <p class="why"><span lang="ar">$e^{j\theta}-e^{-j\theta}=2j\sin\theta$.</span><span lang="en">$e^{j\theta}-e^{-j\theta}=2j\sin\theta$.</span></p>
+      <div class="m">\[\X{\mathbf E_{1s}}=-2jE_{io}\sin\beta_1z\,\mathbf a_x\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نرجع للزمن</span><span lang="en">Back to the time domain</span></h4>
+      <p class="why"><span lang="ar">نضرب في $e^{j\omega t}=\cos\omega t+j\sin\omega t$ وناخذ الجزء الحقيقي ($-2j\cdot j=+2$):</span><span lang="en">Multiply by $e^{j\omega t}=\cos\omega t+j\sin\omega t$ and take the real part ($-2j\cdot j=+2$):</span></p>
+      <div class="m">\[\begin{aligned}&\mathrm{Re}(-2j\,e^{j\omega t})\\&=\mathrm{Re}(-2j\cos\omega t+2\sin\omega t)\\&=2\sin\omega t\end{aligned}\]</div>
+      <div class="m">\[\X{\mathbf E_1}=\mathrm{Re}\left(\X{\mathbf E_{1s}}e^{j\omega t}\right)\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="موجة واقفة|Standing wave">$\X{\mathbf E_1}=2E_{io}\sin\beta_1z\,\sin\omega t\,\mathbf a_x$</div>
+      <div class="result">$\Y{\mathbf H_1}=\dfrac{2E_{io}}{\eta_1}\cos\beta_1z\,\cos\omega t\,\mathbf a_y$</div>
+      <p class="sanity"><span lang="ar">$z$ و $t$ <b>منفصلين</b> (مو $\omega t-\beta z$)، يعني الموجة <b>ما تمشي</b>، بس تتذبذب في مكانها. و $\X{\mathbf E_1}=0$ عند $z=0$ ✓ (سطح الموصل).</span><span lang="en">$z$ and $t$ are <b>separated</b> (not $\omega t-\beta z$), so the wave <b>does not travel</b>; it just oscillates in place. And $\X{\mathbf E_1}=0$ at $z=0$ ✓ (the conductor surface).</span></p>
+    </li>
+  </ol>
+  <p><span lang="ar">في شكل 10.13: $\X{\mathbf E_1}$ صفر دايماً عند $z=0,-\lambda/2,-\lambda,\dots$ (العُقد nodes)، وأكبر شي $2E_{io}$ عند $z=-\lambda/4,-3\lambda/4,\dots$. و $\Y{\mathbf H_1}$ بالعكس: أكبر شي عند السطح.</span><span lang="en">In Fig 10.13: $\X{\mathbf E_1}$ is always zero at $z=0,-\lambda/2,-\lambda,\dots$ (nodes) and peaks at $2E_{io}$ at $z=-\lambda/4,-3\lambda/4,\dots$. $\Y{\mathbf H_1}$ is the opposite: largest at the surface.</span></p>
+
+  <h3><span lang="ar">الوسطين بدون فقد ($\sigma_1=\sigma_2=0$)</span><span lang="en">Both media lossless ($\sigma_1=\sigma_2=0$)</span></h3>
+  <p><span lang="ar">هنا $\eta_1$ و $\eta_2$ حقيقيين، فـ $\Gamma$ و $\tau$ حقيقيين. فيه موجة واقفة <b>جزئية</b> في الوسط 1 (السعتين مو متساويات) + موجة نافذة في الوسط 2.</span><span lang="en">Now $\eta_1$, $\eta_2$ are real, so $\Gamma$, $\tau$ are real. Medium 1 has a <b>partial</b> standing wave (unequal amplitudes) plus a transmitted wave in medium 2.</span></p>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th></th><th><span lang="ar">حالة 1: $\eta_2\gt\eta_1$ ($\Gamma\gt0$)</span><span lang="en">Case 1: $\eta_2\gt\eta_1$ ($\Gamma\gt0$)</span></th><th><span lang="ar">حالة 2: $\eta_2\lt\eta_1$ ($\Gamma\lt0$)</span><span lang="en">Case 2: $\eta_2\lt\eta_1$ ($\Gamma\lt0$)</span></th></tr>
+    <tr><td>$|\X{E_1}|_{max}$</td><td>$z=-\dfrac{n\lambda_1}{2}$</td><td>$z=-\dfrac{(2n+1)\lambda_1}{4}$</td></tr>
+    <tr><td>$|\X{E_1}|_{min}$</td><td>$z=-\dfrac{(2n+1)\lambda_1}{4}$</td><td>$z=-\dfrac{n\lambda_1}{2}$</td></tr>
+  </table></div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">من وين جات؟ (حالة 1)</span><span lang="en">Where do they come from? (case 1)</span></h4>
+      <p class="why"><span lang="ar">القمة لما الطور $-\beta_1z$ يكون مضاعف $\pi$، والقاع لما يكون مضاعف فردي لـ $\pi/2$. و $\beta_1=2\pi/\lambda_1$.</span><span lang="en">A maximum when the phase $-\beta_1z$ is a multiple of $\pi$, a minimum at an odd multiple of $\pi/2$. And $\beta_1=2\pi/\lambda_1$.</span></p>
+      <div class="m">\[\begin{aligned}-\beta_1z_{max}&=n\pi\\ \Rightarrow\ z_{max}&=-\frac{n\pi}{\beta_1}=-\frac{n\lambda_1}{2}\end{aligned}\]</div>
+      <div class="m">\[\begin{aligned}-\beta_1z_{min}&=(2n+1)\frac{\pi}{2}\\ \Rightarrow\ z_{min}&=-\frac{(2n+1)\pi}{2\beta_1}\\&=-\frac{(2n+1)\lambda_1}{4}\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <p class="sanity"><span lang="ar">حالة 1 ($\Gamma\gt0$): عند الحد $z=0$ قمة (الساقطة والمنعكسة يتجمعون). حالة 2 ($\Gamma\lt0$): عند الحد قاع (يطرحون)، فالمواقع تتبدّل. والمسافة بين قمة وقاع جنبها دايماً $\lambda_1/4$.</span><span lang="en">Case 1 ($\Gamma\gt0$): the boundary $z=0$ is a maximum (incident and reflected add). Case 2 ($\Gamma\lt0$): the boundary is a minimum (they subtract), so the positions swap. A max and its neighboring min are always $\lambda_1/4$ apart.</span></p>
+    </li>
+  </ol>
+  <div class="callout key"><strong><span lang="ar">🔑 ملاحظات (السلايد 28)</span><span lang="en">🔑 Notes (slide 28)</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">$|\Y{\mathbf H_1}|$ أقل شي وين $|\X{\mathbf E_1}|$ أكبر شي، والعكس.</span><span lang="en">$|\Y{\mathbf H_1}|$ is minimum wherever $|\X{\mathbf E_1}|$ is maximum, and vice versa.</span></li>
+      <li><span lang="ar">الموجة النافذة في الوسط 2 <b>موجة ماشية بس</b>، فما فيها قمم ولا قيعان.</span><span lang="en">The transmitted wave in medium 2 is <b>purely traveling</b>, so there are no maxima or minima there.</span></li>
+    </ul>
+  </div>
+
+  <h3><span lang="ar">نسبة الموجة الواقفة $s$ (SWR)</span><span lang="en">Standing wave ratio $s$</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">أكبر وأصغر سعة</span><span lang="en">Largest and smallest amplitude</span></h4>
+      <p class="why"><span lang="ar">في القمة الساقطة والمنعكسة يتجمعون، وفي القاع يطرحون.</span><span lang="en">At a maximum the incident and reflected add; at a minimum they subtract.</span></p>
+      <div class="m">\[\begin{aligned}|E_1|_{max}&=E_{io}(1+|\Gamma|)\\ |E_1|_{min}&=E_{io}(1-|\Gamma|)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">النسبة</span><span lang="en">The ratio</span></h4>
+      <p class="why"><span lang="ar">$E_{io}$ تروح مع $E_{io}$.</span><span lang="en">$E_{io}$ cancels.</span></p>
+      <div class="m">\[s=\frac{|E_1|_{max}}{|E_1|_{min}}=\frac{|H_1|_{max}}{|H_1|_{min}}=\frac{1+|\Gamma|}{1-|\Gamma|}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">بالعكس: $|\Gamma|$ من $s$</span><span lang="en">Inverted: $|\Gamma|$ from $s$</span></h4>
+      <p class="why"><span lang="ar">$s(1-|\Gamma|)=1+|\Gamma|$ ← $s-1=|\Gamma|(s+1)$.</span><span lang="en">$s(1-|\Gamma|)=1+|\Gamma|$ → $s-1=|\Gamma|(s+1)$.</span></p>
+      <div class="m">\[|\Gamma|=\frac{s-1}{s+1}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="SWR">$1\le s\le\infty$<br>$s_{dB}=20\log_{10}s$</div>
+      <p class="sanity"><span lang="ar">بما إن $|\Gamma|\le1$: $\Gamma=0$ (ما فيه انعكاس) ← $s=1$. و $|\Gamma|=1$ (انعكاس كامل) ← $s=\infty$. و $s$ بدون وحدة.</span><span lang="en">Since $|\Gamma|\le1$: $\Gamma=0$ (no reflection) → $s=1$; $|\Gamma|=1$ (total reflection) → $s=\infty$. $s$ is dimensionless.</span></p>
+    </li>
+  </ol>
+
+  <div class="wlab" id="sw-lab">
+    <div class="lab-controls">
+      <div class="seg" role="group" aria-label="Presets"><button type="button" data-g="-1"><span lang="ar">موصل مثالي</span><span lang="en">Perfect conductor</span></button><button type="button" data-g="0.333"><span lang="ar">حالة 1</span><span lang="en">Case 1</span></button><button type="button" data-g="-0.333"><span lang="ar">حالة 2</span><span lang="en">Case 2</span></button><button type="button" data-g="0"><span lang="ar">بدون انعكاس</span><span lang="en">Matched</span></button></div>
+      <button type="button" class="btn primary" data-play></button>
+      <div class="field"><label>Γ · <span class="rv ltr" data-o="g">−1</span></label><input type="range" min="-1" max="1" step="0.01" value="-1" aria-label="reflection coefficient"></div>
+    </div>
+    <figure class="wv">
+      <div class="wv-head"><div class="wv-title"><span lang="ar">جرّب بنفسك: $E$ في الوسطين</span><span lang="en">Try it: $E$ in both media</span></div>
+        <div class="legend"><span><i class="c-e"></i><span lang="ar">الحين</span><span lang="en">now</span></span><span><i class="c-a"></i>|E|</span></div></div>
+      <div class="wv-plot" id="sw-plot"></div>
+      <figcaption><span lang="ar">بوحدات $E_{io}$، و $z$ بوحدات $\lambda_1$. الوسط 2 (المظلل) نفترضه غير مغناطيسي. شغّل الحركة: في الوسط 1 الشكل يتنفس في مكانه، وفي الوسط 2 يمشي.</span><span lang="en">In units of $E_{io}$, $z$ in units of $\lambda_1$. Medium 2 (shaded) is assumed nonmagnetic. Press play: in medium 1 the pattern breathes in place, in medium 2 it travels.</span></figcaption>
+    </figure>
+    <div class="ml-read">
+      <div><span class="k">η₂/η₁</span><span class="v" data-o="r">0</span></div>
+      <div><span class="k">τ = 1 + Γ</span><span class="v" data-o="t">0</span></div>
+      <div class="hl"><span class="k">s</span><span class="v" data-o="s">∞</span></div>
+      <div><span class="k">s (dB)</span><span class="v" data-o="db">∞</span></div>
+      <div><span class="k"><span lang="ar">أول قمة لـ</span><span lang="en">First max of</span> |E₁|</span><span class="v" data-o="zm">−λ/4</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= مثال 10.9 ================= -->
+<section class="card" id="ex9" data-nav="مثال 10.9|Ex 10.9">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.9</span><span lang="en">Example 10.9</span></span><h2><span lang="ar">من الفراغ إلى عازل: أوجد الموجة المنعكسة والنافذة</span><span lang="en">Free space into a dielectric: find the reflected and transmitted waves</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.9</span></div>
+  <p><span lang="ar">في الفراغ ($z\le0$) موجة:</span><span lang="en">In free space ($z\le0$) a plane wave</span></p>
+  <div class="m big">\[\Y{\mathbf H_i}=10\cos(10^8t-\beta z)\,\mathbf a_x\ \ \text{mA/m}\]</div>
+  <p><span lang="ar">تسقط عمودياً على عازل بدون فقد ($\varepsilon=2\varepsilon_0$، $\mu=8\mu_0$) في $z\ge0$. أوجد $\Y{\mathbf H_r}$ و $\X{\mathbf E_r}$ و $\Y{\mathbf H_t}$ و $\X{\mathbf E_t}$.</span><span lang="en">is incident normally on a lossless medium ($\varepsilon=2\varepsilon_0$, $\mu=8\mu_0$) in $z\ge0$. Find $\Y{\mathbf H_r}$, $\X{\mathbf E_r}$, $\Y{\mathbf H_t}$ and $\X{\mathbf E_t}$.</span></p>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الوسط 1 (فراغ)</span><span lang="en">Medium 1 (free space)</span></h4>
+      <div class="m">\[\begin{aligned}\beta_1&=\frac{\omega}{c}=\frac{10^8}{3\times10^8}=\frac13\\ \eta_1&=\eta_0=120\pi\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الوسط 2 (عازل)</span><span lang="en">Medium 2 (dielectric)</span></h4>
+      <p class="why"><span lang="ar">$\mu_r\varepsilon_r=8\times2=16$ وجذرها 4. و $\mu_r/\varepsilon_r=8/2=4$ وجذرها 2.</span><span lang="en">$\mu_r\varepsilon_r=8\times2=16$, root 4. $\mu_r/\varepsilon_r=8/2=4$, root 2.</span></p>
+      <div class="m">\[\beta_2=\frac{\omega}{c}\sqrt{\mu_r\varepsilon_r}=4\beta_1=\frac43\]</div>
+      <div class="m">\[\eta_2=\eta_0\sqrt{\frac{\mu_r}{\varepsilon_r}}=2\eta_0\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نطلّع $\X{\mathbf E_i}$: الاتجاه</span><span lang="en">Find $\X{\mathbf E_i}$: direction</span></h4>
+      <p class="why"><span lang="ar">$\mathbf a_E=\mathbf a_H\times\mathbf a_k$ (تقدر تتأكد: $\mathbf a_E\times\mathbf a_H=(-\mathbf a_y)\times\mathbf a_x=\mathbf a_z$ ✓).</span><span lang="en">$\mathbf a_E=\mathbf a_H\times\mathbf a_k$ (check: $\mathbf a_E\times\mathbf a_H=(-\mathbf a_y)\times\mathbf a_x=\mathbf a_z$ ✓).</span></p>
+      <div class="m">\[\mathbf a_E=\mathbf a_x\times\mathbf a_z=-\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">السعة والمجال</span><span lang="en">Amplitude and field</span></h4>
+      <div class="m">\[E_{io}=\eta_1H_{io}=10\eta_0\]</div>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_i}=&-10\eta_0\cos\!\left(10^8t-\tfrac{z}{3}\right)\mathbf a_y\\&\text{mV/m}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">معامل الانعكاس</span><span lang="en">Reflection coefficient</span></h4>
+      <div class="m">\[\Gamma=\frac{\eta_2-\eta_1}{\eta_2+\eta_1}=\frac{2\eta_0-\eta_0}{2\eta_0+\eta_0}=\frac13\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الموجة المنعكسة $\X{\mathbf E_r}$</span><span lang="en">Reflected $\X{\mathbf E_r}$</span></h4>
+      <p class="why"><span lang="ar">$E_{ro}=\tfrac13E_{io}$، ونفس اتجاه $\X{\mathbf E}$ ($-\mathbf a_y$)، والطور ينقلب لـ $+\beta_1z$ لأنها راجعة.</span><span lang="en">$E_{ro}=\tfrac13E_{io}$, same $\X{\mathbf E}$ direction ($-\mathbf a_y$), and the phase becomes $+\beta_1z$ since it travels back.</span></p>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_r}=&-\frac{10}{3}\eta_0\cos\!\left(10^8t+\tfrac{z}{3}\right)\mathbf a_y\\&\text{mV/m}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\Y{\mathbf H_r}$</span><span lang="en">$\Y{\mathbf H_r}$</span></h4>
+      <p class="why"><span lang="ar">السعة $E_{ro}/\eta_1=10/3$. والاتجاه: $\mathbf a_H=\mathbf a_k\times\mathbf a_E=(-\mathbf a_z)\times(-\mathbf a_y)$ $=\mathbf a_z\times\mathbf a_y=-\mathbf a_x$.</span><span lang="en">Amplitude $E_{ro}/\eta_1=10/3$. Direction: $\mathbf a_H=\mathbf a_k\times\mathbf a_E=(-\mathbf a_z)\times(-\mathbf a_y)$ $=\mathbf a_z\times\mathbf a_y=-\mathbf a_x$.</span></p>
+      <div class="m">\[\Y{\mathbf H_r}=-\frac{10}{3}\cos\!\left(10^8t+\tfrac{z}{3}\right)\mathbf a_x\ \text{mA/m}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">معامل النفاذ</span><span lang="en">Transmission coefficient</span></h4>
+      <div class="m">\[\begin{aligned}\tau&=1+\Gamma=\frac43\\ \Rightarrow\ E_{to}&=\frac43E_{io}=\frac{40}{3}\eta_0\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الموجة النافذة $\X{\mathbf E_t}$</span><span lang="en">Transmitted $\X{\mathbf E_t}$</span></h4>
+      <p class="why"><span lang="ar">نفس الاتجاه $-\mathbf a_y$، بس $\beta_2=4/3$ هالمرة.</span><span lang="en">Same direction $-\mathbf a_y$, but now with $\beta_2=4/3$.</span></p>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_t}=&-\frac{40}{3}\eta_0\cos\!\left(10^8t-\tfrac{4z}{3}\right)\mathbf a_y\\&\text{mV/m}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\Y{\mathbf H_t}$</span><span lang="en">$\Y{\mathbf H_t}$</span></h4>
+      <p class="why"><span lang="ar">السعة $E_{to}/\eta_2=\dfrac{40\eta_0/3}{2\eta_0}=\dfrac{20}{3}$، والاتجاه $\mathbf a_z\times(-\mathbf a_y)=+\mathbf a_x$.</span><span lang="en">Amplitude $E_{to}/\eta_2=\dfrac{40\eta_0/3}{2\eta_0}=\dfrac{20}{3}$, direction $\mathbf a_z\times(-\mathbf a_y)=+\mathbf a_x$.</span></p>
+      <div class="m">\[\Y{\mathbf H_t}=\frac{20}{3}\cos\!\left(10^8t-\tfrac{4z}{3}\right)\mathbf a_x\ \text{mA/m}\]</div>
+    </li>
+    <li class="step final">
+      <p class="sanity"><span lang="ar">تأكد من شرط $\Y{\mathbf H}$ عند $z=0$: $H_i+H_r=10-\tfrac{10}{3}=\tfrac{20}{3}=H_t$ ✓. و $\eta_2\gt\eta_1$ ← $\Gamma\gt0$ ← حالة 1.</span><span lang="en">Check the $\Y{\mathbf H}$ condition at $z=0$: $H_i+H_r=10-\tfrac{10}{3}=\tfrac{20}{3}=H_t$ ✓. And $\eta_2\gt\eta_1$ → $\Gamma\gt0$ → case 1.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 10.10 ================= -->
+<section class="card" id="ex10" data-nav="مثال 10.10|Ex 10.10">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.10</span><span lang="en">Example 10.10</span></span><h2><span lang="ar">موجة في الهواء تضرب لوح موصل</span><span lang="en">A wave in air hits a conducting plate</span></h2></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.10</span></div>
+  <p><span lang="ar">موجة مستوية منتظمة في الهواء:</span><span lang="en">A uniform plane wave in air:</span></p>
+  <div class="m big">\[\begin{aligned}\X{\mathbf E_i}=\ &40\cos(\omega t-\beta z)\,\mathbf a_x\\&+30\sin(\omega t-\beta z)\,\mathbf a_y\ \ \text{V/m}\end{aligned}\]</div>
+  <p><span lang="ar">(a) أوجد $\Y{\mathbf H_i}$. (b) لو ضربت لوح موصل مثالي عمودي على $z$ عند $z=0$، أوجد $\X{\mathbf E_r}$ و $\Y{\mathbf H_r}$. (c) المجالات الكلية لـ $z\le0$. (d) $\mathcal P_{ave}$ لـ $z\le0$ و $z\ge0$.</span><span lang="en">(a) Find $\Y{\mathbf H_i}$. (b) If it meets a perfectly conducting plate normal to $z$ at $z=0$, find $\X{\mathbf E_r}$ and $\Y{\mathbf H_r}$. (c) Total fields for $z\le0$. (d) $\mathcal P_{ave}$ for $z\le0$ and $z\ge0$.</span></p>
+
+  <h3><span lang="ar">(a) $\Y{\mathbf H_i}$: كل حد لحاله</span><span lang="en">(a) $\Y{\mathbf H_i}$: one term at a time</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">نقسمها لموجتين</span><span lang="en">Split into two waves</span></h4>
+      <p class="why"><span lang="ar">نفس فكرة مثال 10.3. والهواء $\varepsilon_r=1.0006\simeq1$ فنعتبره فراغ: $\eta_1=120\pi$.</span><span lang="en">Same idea as Example 10.3. Air has $\varepsilon_r=1.0006\simeq1$, so treat it as free space: $\eta_1=120\pi$.</span></p>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_{i1}}&=40\cos(\omega t-\beta z)\,\mathbf a_x\\ \X{\mathbf E_{i2}}&=30\sin(\omega t-\beta z)\,\mathbf a_y\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الحد الأول: السعة</span><span lang="en">First term: amplitude</span></h4>
+      <div class="m">\[H_{i1o}=\frac{E_{i1o}}{\eta_0}=\frac{40}{120\pi}=\frac{1}{3\pi}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الحد الأول: الاتجاه</span><span lang="en">First term: direction</span></h4>
+      <div class="m">\[\mathbf a_{H_1}=\mathbf a_k\times\mathbf a_E=\mathbf a_z\times\mathbf a_x=\mathbf a_y\]</div>
+      <div class="m">\[\Y{\mathbf H_{i1}}=\frac{1}{3\pi}\cos(\omega t-\beta z)\,\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">الحد الثاني: السعة والاتجاه</span><span lang="en">Second term: amplitude and direction</span></h4>
+      <div class="m">\[\begin{aligned}H_{i2o}&=\frac{30}{120\pi}=\frac{1}{4\pi}\\ \mathbf a_H&=\mathbf a_z\times\mathbf a_y=-\mathbf a_x\end{aligned}\]</div>
+      <div class="m">\[\Y{\mathbf H_{i2}}=-\frac{1}{4\pi}\sin(\omega t-\beta z)\,\mathbf a_x\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(a)">$\Y{\mathbf H_i}=-\dfrac{1}{4\pi}\sin(\omega t-\beta z)\,\mathbf a_x$<br>$+\dfrac{1}{3\pi}\cos(\omega t-\beta z)\,\mathbf a_y\ \text{A/m}$</div>
+      <p class="sanity"><span lang="ar">الوحدة <b>A/m</b> لأن $\X{\mathbf E}$ بـ V/m (السلايد 34 كاتب mA/m، وهي غلطة طباعية). $40/120\pi=0.106$ A/m.</span><span lang="en">The unit is <b>A/m</b> because $\X{\mathbf E}$ is in V/m (slide 34 says mA/m, a typo). $40/120\pi=0.106$ A/m.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(b) الموجة المنعكسة</span><span lang="en">(b) The reflected wave</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">موصل مثالي</span><span lang="en">Perfect conductor</span></h4>
+      <div class="m">\[\begin{gathered}\frac{\sigma_2}{\omega\varepsilon_2}\gg1\ \Rightarrow\ \eta_2\ll\eta_1\\ \Rightarrow\ \Gamma\simeq-1,\ \ \tau=0\end{gathered}\]</div>
+      <p class="why"><span lang="ar">يعني $\X{\mathbf E}$ و $\Y{\mathbf H}$ الساقطين ينعكسون كلهم.</span><span lang="en">So the incident $\X{\mathbf E}$ and $\Y{\mathbf H}$ are totally reflected.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\X{\mathbf E_r}$</span><span lang="en">$\X{\mathbf E_r}$</span></h4>
+      <p class="why"><span lang="ar">$E_{ro}=\Gamma E_{io}=-E_{io}$: نقلب إشارة كل حد، ونقلب $-\beta z$ إلى $+\beta z$.</span><span lang="en">$E_{ro}=\Gamma E_{io}=-E_{io}$: flip the sign of each term and turn $-\beta z$ into $+\beta z$.</span></p>
+      <div class="m">\[\begin{aligned}\X{\mathbf E_r}=&-40\cos(\omega t+\beta z)\,\mathbf a_x\\&-30\sin(\omega t+\beta z)\,\mathbf a_y\ \ \text{V/m}\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\Y{\mathbf H_r}$: حد $\mathbf a_x$</span><span lang="en">$\Y{\mathbf H_r}$: the $\mathbf a_x$ term</span></h4>
+      <p class="why"><span lang="ar">$\mathbf a_k=-\mathbf a_z$ و $\mathbf a_E=-\mathbf a_x$: $(-\mathbf a_z)\times(-\mathbf a_x)=\mathbf a_z\times\mathbf a_x=+\mathbf a_y$.</span><span lang="en">$\mathbf a_k=-\mathbf a_z$, $\mathbf a_E=-\mathbf a_x$: $(-\mathbf a_z)\times(-\mathbf a_x)=\mathbf a_z\times\mathbf a_x=+\mathbf a_y$.</span></p>
+      <div class="m">\[\frac{1}{3\pi}\cos(\omega t+\beta z)\,\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\Y{\mathbf H_r}$: حد $\mathbf a_y$</span><span lang="en">$\Y{\mathbf H_r}$: the $\mathbf a_y$ term</span></h4>
+      <p class="why"><span lang="ar">$(-\mathbf a_z)\times(-\mathbf a_y)=\mathbf a_z\times\mathbf a_y=-\mathbf a_x$.</span><span lang="en">$(-\mathbf a_z)\times(-\mathbf a_y)=\mathbf a_z\times\mathbf a_y=-\mathbf a_x$.</span></p>
+      <div class="m">\[-\frac{1}{4\pi}\sin(\omega t+\beta z)\,\mathbf a_x\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(b)">$\Y{\mathbf H_r}=\dfrac{1}{3\pi}\cos(\omega t+\beta z)\,\mathbf a_y$<br>$-\dfrac{1}{4\pi}\sin(\omega t+\beta z)\,\mathbf a_x\ \text{A/m}$</div>
+      <p class="sanity"><span lang="ar">لاحظ: $\X{\mathbf E}$ انقلب بس $\Y{\mathbf H}$ <b>ما انقلب</b>. لأن $\Gamma=-1$ يقلب $\X{\mathbf E}$، والاتجاه $\mathbf a_k$ انقلب كمان، فالقلبتين يلغون بعض في $\Y{\mathbf H}$. عشان كذا عند السطح $\X{\mathbf E}$ يصير صفر و $\Y{\mathbf H}$ يتضاعف.</span><span lang="en">Note: $\X{\mathbf E}$ flipped but $\Y{\mathbf H}$ <b>did not</b>. $\Gamma=-1$ flips $\X{\mathbf E}$ and $\mathbf a_k$ flips too, so the two flips cancel in $\Y{\mathbf H}$. That's why at the surface $\X{\mathbf E}$ vanishes and $\Y{\mathbf H}$ doubles.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(c) المجالات الكلية</span><span lang="en">(c) Total fields</span></h3>
+  <div class="m">\[\X{\mathbf E_1}=\X{\mathbf E_i}+\X{\mathbf E_r},\qquad \Y{\mathbf H_1}=\Y{\mathbf H_i}+\Y{\mathbf H_r}\]</div>
+  <p><span lang="ar">وهذي موجات واقفة (زي ما شفنا). وداخل الموصل:</span><span lang="en">These are standing waves (as shown above). Inside the conductor:</span></p>
+  <div class="m">\[\X{\mathbf E_2}=\X{\mathbf E_t}=0,\qquad \Y{\mathbf H_2}=\Y{\mathbf H_t}=0\]</div>
+
+  <h3><span lang="ar">(d) القدرة المتوسطة</span><span lang="en">(d) Average power</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">لـ $z\le0$: الساقطة ناقص المنعكسة</span><span lang="en">For $z\le0$: incident minus reflected</span></h4>
+      <p class="why"><span lang="ar">الساقطة تحمل قدرة على $+\mathbf a_z$ والمنعكسة على $-\mathbf a_z$. و $E_{io}^2=40^2+30^2$ (مجموع مربعات المركّبتين).</span><span lang="en">The incident wave carries power along $+\mathbf a_z$ and the reflected along $-\mathbf a_z$. $E_{io}^2=40^2+30^2$ (sum of squared components).</span></p>
+      <div class="m">\[\mathcal P_{1ave}=\frac{1}{2\eta_0}\left[E_{io}^2\,\mathbf a_z-E_{ro}^2\,\mathbf a_z\right]\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نعوّض</span><span lang="en">Substitute</span></h4>
+      <p class="why"><span lang="ar">$|E_{ro}|=|E_{io}|$ لأن $|\Gamma|=1$.</span><span lang="en">$|E_{ro}|=|E_{io}|$ since $|\Gamma|=1$.</span></p>
+      <div class="m">\[\begin{aligned}\mathcal P_{1ave}&=\frac{1}{240\pi}\big[(40^2+30^2)\\&\qquad-(40^2+30^2)\big]\mathbf a_z=0\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">لـ $z\ge0$</span><span lang="en">For $z\ge0$</span></h4>
+      <p class="why"><span lang="ar">$E_{to}=\tau E_{io}=0$.</span><span lang="en">$E_{to}=\tau E_{io}=0$.</span></p>
+      <div class="m">\[\mathcal P_{2ave}=\frac{E_{to}^2}{2\eta_2}\,\mathbf a_z=0\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(d)">$\mathcal P_{1ave}=0,\qquad \mathcal P_{2ave}=0$</div>
+      <p class="sanity"><span lang="ar">الموجة الواقفة <b>ما تنقل طاقة</b> بالمتوسط: كل اللي يروح يرجع. ولا شي يدخل الموصل.</span><span lang="en">A standing wave <b>carries no net power</b>: everything that goes in comes back, and nothing enters the conductor.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
+  <h2><span lang="ar">طريقة حل أي مسألة في هالمحاضرة</span><span lang="en">How to solve any problem in this lecture</span></h2>
+  <ol class="recipe">
+    <li><b><span lang="ar">سؤال استقطاب</span><span lang="en">Polarization question</span></b><span class="why"><span lang="ar">حوّل كل الحدود لـ cos (أو اقرأ cos/sin = فرق $90^\circ$). فرق الطور $0$ أو $\pi$ ← خطي. $\pm90^\circ$ وسعات متساوية ← دائري، مختلفة ← بيضاوي. وللإثبات: ثبّت $z=0$، ربّع واجمع. ولو معطى $\Y{\mathbf H}$: نفس الطور في مركّباته = نفس الطور في $\X{\mathbf E}$.</span><span lang="en">Turn every term into cos (or read cos/sin = $90^\circ$ apart). Phase difference $0$ or $\pi$ → linear. $\pm90^\circ$ with equal amplitudes → circular, unequal → elliptical. To prove it: set $z=0$, square and add. Given $\Y{\mathbf H}$: in-phase components there mean in-phase components in $\X{\mathbf E}$.</span></span></li>
+    <li><b><span lang="ar">سؤال قدرة</span><span lang="en">Power question</span></b><span class="why"><span lang="ar">طلّع $\eta$ (و $\theta_\eta$)، بعدين $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. القدرة الكلية = $\mathcal P_{ave}\times$ المساحة. ولو حدين متعامدين: $E_o^2=E_{ox}^2+E_{oy}^2$.</span><span lang="en">Find $\eta$ (and $\theta_\eta$), then $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. Total power = $\mathcal P_{ave}\times$ area. Two perpendicular terms: $E_o^2=E_{ox}^2+E_{oy}^2$.</span></span></li>
+    <li><b><span lang="ar">سؤال انعكاس</span><span lang="en">Reflection question</span></b><span class="why"><span lang="ar">احسب $\eta_1,\eta_2,\beta_1,\beta_2$ ← $\Gamma$ و $\tau=1+\Gamma$ ← $E_{ro}=\Gamma E_{io}$ و $E_{to}=\tau E_{io}$. المنعكسة: نفس $\omega$ و $\beta_1$ بس $+\beta z$. النافذة: $\beta_2$. وكل $\Y{\mathbf H}$ من $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ وسعته $E/\eta$ للوسط حقه.</span><span lang="en">Compute $\eta_1,\eta_2,\beta_1,\beta_2$ → $\Gamma$, $\tau=1+\Gamma$ → $E_{ro}=\Gamma E_{io}$, $E_{to}=\tau E_{io}$. Reflected: same $\omega$ and $\beta_1$ but $+\beta z$. Transmitted: $\beta_2$. Each $\Y{\mathbf H}$ from $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ with amplitude $E/\eta$ of its own medium.</span></span></li>
+    <li><b><span lang="ar">سؤال موجة واقفة</span><span lang="en">Standing wave question</span></b><span class="why"><span lang="ar">$s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$. إشارة $\Gamma$ تقول وين القمم: موجبة ← قمة عند الحد و كل $\lambda_1/2$. سالبة ← قاع عند الحد.</span><span lang="en">$s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$. The sign of $\Gamma$ tells you where the maxima are: positive → a maximum at the boundary and every $\lambda_1/2$; negative → a minimum at the boundary.</span></span></li>
+  </ol>
+  <div class="callout good"><strong><span lang="ar">✅ افحص جوابك</span><span lang="en">✅ Check your answer</span></strong>
+    <ul class="checks">
+      <li><span lang="ar">$\mathbf a_E\times\mathbf a_H=\mathbf a_k$ لكل موجة (ساقطة، منعكسة، نافذة).</span><span lang="en">$\mathbf a_E\times\mathbf a_H=\mathbf a_k$ for every wave (incident, reflected, transmitted).</span></li>
+      <li><span lang="ar">$1+\Gamma=\tau$ و $|\Gamma|\le1$.</span><span lang="en">$1+\Gamma=\tau$ and $|\Gamma|\le1$.</span></li>
+      <li><span lang="ar">عند $z=0$: $E_i+E_r=E_t$ و $H_i+H_r=H_t$.</span><span lang="en">At $z=0$: $E_i+E_r=E_t$ and $H_i+H_r=H_t$.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏️" data-nav="✏️ تمارين|✏️ Practice">
+  <h2><span lang="ar">تمارين: كل وحدة تدرّب فكرة</span><span lang="en">Practice: each one trains one idea</span></h2>
+  <p class="sub"><span lang="ar">حلّ بنفسك، اكتب الرقم واضغط تحقق، وبعدين افتح الحل</span><span lang="en">Solve it yourself, type the number and check, then open the solution</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ · معامل الانعكاس</span><span lang="en">Exercise A · reflection coefficient</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">موجة في الفراغ تسقط عمودياً على عازل مثالي $\varepsilon_r=4$ و $\mu_r=1$. أوجد $\Gamma$.</span><span lang="en">A wave in free space hits a lossless dielectric with $\varepsilon_r=4$, $\mu_r=1$ normally. Find $\Gamma$.</span></p>
+    <div class="check" data-answer="-1/3"></div>
+    <details class="hint"><p><span lang="ar">$\eta_2=120\pi/\sqrt4=60\pi$.</span><span lang="en">$\eta_2=120\pi/\sqrt4=60\pi$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الممانعتين</span><span lang="en">The impedances</span></h4><div class="m">\[\eta_1=120\pi,\qquad \eta_2=60\pi\]</div></li>
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[\Gamma=\frac{60\pi-120\pi}{60\pi+120\pi}=\frac{-60}{180}\]</div></li>
+      <li class="step final"><div class="result">$\Gamma=-\tfrac13$</div><p class="sanity"><span lang="ar">سالب لأن $\eta_2\lt\eta_1$ (حالة 2).</span><span lang="en">Negative because $\eta_2\lt\eta_1$ (case 2).</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب · نسبة الموجة الواقفة</span><span lang="en">Exercise B · standing wave ratio</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">easy</span></span></div>
+    <p><span lang="ar">بنفس معطيات التمرين أ، أوجد $s$.</span><span lang="en">With the data of Exercise A, find $s$.</span></p>
+    <div class="check" data-answer="2"></div>
+    <details class="hint"><p><span lang="ar">استخدم $|\Gamma|$ (القيمة المطلقة).</span><span lang="en">Use $|\Gamma|$ (the magnitude).</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[s=\frac{1+1/3}{1-1/3}=\frac{4/3}{2/3}\]</div></li>
+      <li class="step final"><div class="result">$s=2\ \ (\approx6.02\ \text{dB})$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج · القدرة المتوسطة</span><span lang="en">Exercise C · average power</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">في الفراغ: $\mathbf E=120\pi\cos(\omega t-\beta z)\,\mathbf a_x$ V/m. أوجد $|\mathcal P_{ave}|$ بـ W/m² (تقدر تكتب pi).</span><span lang="en">In free space: $\mathbf E=120\pi\cos(\omega t-\beta z)\,\mathbf a_x$ V/m. Find $|\mathcal P_{ave}|$ in W/m² (you may type pi).</span></p>
+    <div class="check" data-answer="60*pi"></div>
+    <details class="hint"><p><span lang="ar">$\mathcal P_{ave}=E_o^2/2\eta_0$ و $\theta_\eta=0$.</span><span lang="en">$\mathcal P_{ave}=E_o^2/2\eta_0$ and $\theta_\eta=0$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[\mathcal P_{ave}=\frac{(120\pi)^2}{2(120\pi)}=\frac{120\pi}{2}\]</div></li>
+      <li class="step final"><div class="result">$\mathcal P_{ave}=60\pi\approx188.5\ \text{W/m}^2\ \mathbf a_z$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين د · $|\Gamma|$ من $s$</span><span lang="en">Exercise D · $|\Gamma|$ from $s$</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">قسنا نسبة موجة واقفة $s=3$. أوجد $|\Gamma|$.</span><span lang="en">A standing wave ratio of $s=3$ is measured. Find $|\Gamma|$.</span></p>
+    <div class="check" data-answer="0.5"></div>
+    <details class="hint"><p>$|\Gamma|=(s-1)/(s+1)$</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">القانون</span><span lang="en">The formula</span></h4><div class="m">\[|\Gamma|=\frac{3-1}{3+1}=\frac24\]</div></li>
+      <li class="step final"><div class="result">$|\Gamma|=0.5$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين هـ · حدد الاستقطاب</span><span lang="en">Exercise E · identify the polarization</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">medium</span></span></div>
+    <p><span lang="ar">$\mathbf E=5\cos(\omega t-\beta z)\,\mathbf a_x$ $-\,5\sin(\omega t-\beta z)\,\mathbf a_y$. كم فرق الطور $|\Delta\phi|$ بالدرجات؟ ووش نوع الاستقطاب؟</span><span lang="en">$\mathbf E=5\cos(\omega t-\beta z)\,\mathbf a_x$ $-\,5\sin(\omega t-\beta z)\,\mathbf a_y$. What is $|\Delta\phi|$ in degrees, and what type is it?</span></p>
+    <div class="check" data-answer="90"></div>
+    <details class="hint"><p><span lang="ar">$-\sin\theta=\cos(\theta+90^\circ)$.</span><span lang="en">$-\sin\theta=\cos(\theta+90^\circ)$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">حوّل لـ cos</span><span lang="en">Convert to cos</span></h4><div class="m">\[\begin{aligned}E_y&=-5\sin(\omega t-\beta z)\\&=5\cos(\omega t-\beta z+90^\circ)\end{aligned}\]</div></li>
+      <li class="step"><h4><span lang="ar">قارن</span><span lang="en">Compare</span></h4><p class="why"><span lang="ar">$\phi_x=0$ و $\phi_y=90^\circ$، والسعتين $5=5$.</span><span lang="en">$\phi_x=0$, $\phi_y=90^\circ$, amplitudes $5=5$.</span></p></li>
+      <li class="step final"><div class="result"><span lang="ar">$\Delta\phi=90^\circ$ ← دائري</span><span lang="en">$\Delta\phi=90^\circ$ → circular</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
+  <p class="sub"><span lang="ar">8 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">8 questions; click an answer for instant feedback</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">موجة مركّبتيها بسعات متساوية وفرق طور $0$. استقطابها:</span><span lang="en">A wave with equal amplitudes and zero phase difference is:</span></p>
+      <button><span lang="ar">دائري</span><span lang="en">Circular</span></button><button><span lang="ar">خطي</span><span lang="en">Linear</span></button><button><span lang="ar">بيضاوي</span><span lang="en">Elliptical</span></button><button><span lang="ar">ما ينعرف</span><span lang="en">Undetermined</span></button>
+      <p class="q-why"><span lang="ar">$\Delta\phi=0$ ← النسبة ثابتة ← خطي (بزاوية 45°).</span><span lang="en">$\Delta\phi=0$ → fixed ratio → linear (at 45°).</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">إذاعة FM غالباً استقطابها:</span><span lang="en">FM broadcasting is generally polarized:</span></p>
+      <button><span lang="ar">رأسي</span><span lang="en">Vertically</span></button><button><span lang="ar">أفقي</span><span lang="en">Horizontally</span></button><button><span lang="ar">دائري</span><span lang="en">Circularly</span></button><button><span lang="ar">بيضاوي</span><span lang="en">Elliptically</span></button>
+      <p class="q-why"><span lang="ar">AM رأسي، و FM دائري.</span><span lang="en">AM is vertical, FM is circular.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">وحدة $P_{ave}$ (القدرة الكلية خلال سطح):</span><span lang="en">The unit of $P_{ave}$ (total power through a surface):</span></p>
+      <button>W</button><button>W/m²</button><button>J/m³</button><button>V/m</button>
+      <p class="q-why"><span lang="ar">$\mathcal P$ و $\mathcal P_{ave}$ بـ W/m²، بس $P_{ave}$ قياسية بالواط.</span><span lang="en">$\mathcal P$ and $\mathcal P_{ave}$ are W/m², but $P_{ave}$ is a scalar in watts.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">في موصل جيد ($\theta_\eta=45^\circ$)، $\mathcal P_{ave}$ مقارنة بعازل مثالي بنفس $|\eta|$ و $E_o$:</span><span lang="en">In a good conductor ($\theta_\eta=45^\circ$), $\mathcal P_{ave}$ compared with a lossless medium of the same $|\eta|$ and $E_o$:</span></p>
+      <button><span lang="ar">نفسه</span><span lang="en">The same</span></button><button><span lang="ar">الضعف</span><span lang="en">Double</span></button><button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button><span lang="ar">مضروب في $0.707$</span><span lang="en">Times $0.707$</span></button>
+      <p class="q-why">$\cos45^\circ=0.707$</p>
+    </div>
+    <div class="q" data-answer="2">
+      <p><span lang="ar">موجة تضرب موصل مثالي. قيمة $\Gamma$ و $\tau$:</span><span lang="en">A wave hits a perfect conductor. $\Gamma$ and $\tau$ are:</span></p>
+      <button>$\Gamma=1,\ \tau=2$</button><button>$\Gamma=-1,\ \tau=0$</button><button>$\Gamma=0,\ \tau=1$</button><button>$\Gamma=-1,\ \tau=1$</button>
+      <p class="q-why"><span lang="ar">$\eta_2=0$ ← $\Gamma=-1$ و $\tau=1+\Gamma=0$.</span><span lang="en">$\eta_2=0$ → $\Gamma=-1$ and $\tau=1+\Gamma=0$.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">$\eta_2\gt\eta_1$ (الوسطين بدون فقد). عند الحد $z=0$ تكون $|\X{E_1}|$:</span><span lang="en">$\eta_2\gt\eta_1$ (both lossless). At the boundary $z=0$, $|\X{E_1}|$ is:</span></p>
+      <button><span lang="ar">صفر</span><span lang="en">Zero</span></button><button><span lang="ar">قاع</span><span lang="en">A minimum</span></button><button><span lang="ar">قمة</span><span lang="en">A maximum</span></button><button><span lang="ar">نفس $E_{io}$</span><span lang="en">Equal to $E_{io}$</span></button>
+      <p class="q-why"><span lang="ar">$\Gamma\gt0$ ← $z_{max}=-n\lambda_1/2$، و $n=0$ يعطي $z=0$.</span><span lang="en">$\Gamma\gt0$ → $z_{max}=-n\lambda_1/2$, and $n=0$ gives $z=0$.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">لو ما فيه انعكاس أبداً ($\Gamma=0$)، نسبة الموجة الواقفة:</span><span lang="en">With no reflection at all ($\Gamma=0$), the standing wave ratio is:</span></p>
+      <button>$s=1$</button><button>$s=0$</button><button>$s=\infty$</button><button>$s=2$</button>
+      <p class="q-why">$s=(1+0)/(1-0)=1$</p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">المسافة بين قمتين متتاليتين لـ $|\X{E_1}|$:</span><span lang="en">The distance between two successive maxima of $|\X{E_1}|$:</span></p>
+      <button>$\lambda_1/4$</button><button>$\lambda_1$</button><button>$2\lambda_1$</button><button>$\lambda_1/2$</button>
+      <p class="q-why"><span lang="ar">$z_{max}=-n\lambda_1/2$، فكل قمة بعد الثانية بـ $\lambda_1/2$.</span><span lang="en">$z_{max}=-n\lambda_1/2$, so maxima are $\lambda_1/2$ apart.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= البطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">بطاقات المراجعة</span><span lang="en">Review flashcards</span></h2>
+  <p class="sub"><span lang="ar">اضغط البطاقة وتنقلب</span><span lang="en">Click a card to flip it</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">تعريف الاستقطاب</span><span lang="en">Polarization definition</span></div><div><span lang="ar">مسار رأس $\mathbf E$ مع الزمن عند نقطة ثابتة</span><span lang="en">Locus of the tip of $\mathbf E$ over time at a fixed point</span></div></div>
+    <div class="flash"><div><span lang="ar">خطي</span><span lang="en">Linear</span></div><div>$\Delta\phi=n\pi$</div></div>
+    <div class="flash"><div><span lang="ar">دائري</span><span lang="en">Circular</span></div><div>$E_{ox}=E_{oy},\ \Delta\phi=\pm(2n+1)\pi/2$</div></div>
+    <div class="flash"><div><span lang="ar">بيضاوي</span><span lang="en">Elliptical</span></div><div>$E_{ox}\ne E_{oy},\ \Delta\phi=\pm(2n+1)\pi/2$</div></div>
+    <div class="flash"><div><span lang="ar">متجه بوينتنج</span><span lang="en">Poynting vector</span></div><div>$\mathcal P=\mathbf E\times\mathbf H\ \ (\text{W/m}^2)$</div></div>
+    <div class="flash"><div>$\mathcal P_{ave}$</div><div>$\tfrac12\mathrm{Re}(\mathbf E_s\times\mathbf H_s^*)=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta$</div></div>
+    <div class="flash"><div><span lang="ar">نظرية بوينتنج</span><span lang="en">Poynting's theorem</span></div><div><span lang="ar">القدرة الطالعة = نقص الطاقة المخزنة − الفقد الأومي</span><span lang="en">Power out = decrease of stored energy − ohmic loss</span></div></div>
+    <div class="flash"><div><span lang="ar">معامل الانعكاس</span><span lang="en">Reflection coefficient</span></div><div>$\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$</div></div>
+    <div class="flash"><div><span lang="ar">معامل النفاذ</span><span lang="en">Transmission coefficient</span></div><div>$\tau=\dfrac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$</div></div>
+    <div class="flash"><div><span lang="ar">موصل مثالي</span><span lang="en">Perfect conductor</span></div><div>$\Gamma=-1,\ \tau=0$ $\mathbf E_1=2E_{io}\sin\beta_1z\sin\omega t\,\mathbf a_x$</div></div>
+    <div class="flash"><div><span lang="ar">نسبة الموجة الواقفة</span><span lang="en">Standing wave ratio</span></div><div>$s=\dfrac{1+|\Gamma|}{1-|\Gamma|},\ \ s_{dB}=20\log s$</div></div>
+    <div class="flash"><div><span lang="ar">مواقع القمم ($\Gamma\gt0$)</span><span lang="en">Maxima ($\Gamma\gt0$)</span></div><div>$z_{max}=-n\lambda_1/2$ $z_{min}=-(2n+1)\lambda_1/4$</div></div>
+  </div>
+  <div class="callout key"><strong><span lang="ar">⬅️ قبلها</span><span lang="en">⬅️ Before this</span></strong>
+    <p><span lang="ar">العازل المثالي والفراغ والموصل الجيد في <a href="lecture6-1.html">المحاضرة 6 الجزء الأول</a>.</span><span lang="en">Lossless media, free space and good conductors are in <a href="lecture6-1.html">Lecture 6 part 1</a>.</span></p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const { $, $$, L, N, TAU, chart, player, grid, path, P, axName, arrow } = EM;
+
+  /* ---------- مختبر الاستقطاب ---------- */
+  const pl = $('#pol-lab'), ps = $('#pol-svg'), PO = { ex: 1, ey: 1, dp: 90, t: 0 };
+  const po = k => $(`[data-o="${k}"]`, pl), pin = k => $(`input[data-k="${k}"]`, pl);
+  const C = 150, R = 115, PX = x => C + x * R, PY = y => C - y * R;
+  function polStatic() {
+    const d = PO.dp * Math.PI / 180;
+    let pts = '';
+    for (let i = 0; i <= 120; i++) { const w = i / 120 * TAU; pts += (i ? 'L' : 'M') + PX(PO.ex * Math.cos(w)).toFixed(1) + ' ' + PY(PO.ey * Math.cos(w + d)).toFixed(1); }
+    return pts;
+  }
+  let polPath = '';
+  function polDraw() {
+    const d = PO.dp * Math.PI / 180, w = PO.t * TAU, x = PO.ex * Math.cos(w), y = PO.ey * Math.cos(w + d);
+    ps.innerHTML =
+      `<line x1="15" x2="285" y1="${C}" y2="${C}" stroke="var(--ink-3)" stroke-width="1"/><line y1="15" y2="285" x1="${C}" x2="${C}" stroke="var(--ink-3)" stroke-width="1"/>` +
+      `<text x="286" y="${C - 6}" text-anchor="end">x</text><text x="${C + 8}" y="24">y</text>` +
+      `<path d="${polPath}" fill="none" stroke="var(--w-e)" stroke-width="2" opacity=".35"/>` +
+      `<line x1="${PX(x).toFixed(1)}" x2="${PX(x).toFixed(1)}" y1="${C}" y2="${PY(y).toFixed(1)}" stroke="var(--ink-3)" stroke-dasharray="3 3"/>` +
+      `<line y1="${PY(y).toFixed(1)}" y2="${PY(y).toFixed(1)}" x1="${C}" x2="${PX(x).toFixed(1)}" stroke="var(--ink-3)" stroke-dasharray="3 3"/>` +
+      arrowS(C, C, PX(x), PY(y)) + `<circle cx="${PX(x).toFixed(1)}" cy="${PY(y).toFixed(1)}" r="4.5" fill="var(--w-e)"/>`;
+  }
+  function arrowS(x1, y1, x2, y2) {
+    const len = Math.hypot(x2 - x1, y2 - y1);
+    if (len < 3) return '';
+    const ux = (x2 - x1) / len, uy = (y2 - y1) / len, bx = x2 - ux * 10, by = y2 - uy * 10;
+    return `<line x1="${x1}" y1="${y1}" x2="${bx.toFixed(1)}" y2="${by.toFixed(1)}" stroke="var(--w-e)" stroke-width="2.5"/>` +
+      `<path d="M${x2.toFixed(1)} ${y2.toFixed(1)}L${(bx - uy * 5).toFixed(1)} ${(by + ux * 5).toFixed(1)}L${(bx + uy * 5).toFixed(1)} ${(by - ux * 5).toFixed(1)}Z" fill="var(--w-e)"/>`;
+  }
+  function polUpd() {
+    PO.ex = +pin('ex').value; PO.ey = +pin('ey').value; PO.dp = +pin('dp').value;
+    po('ex').textContent = N(PO.ex, 2); po('ey').textContent = N(PO.ey, 2); po('dp').textContent = N(PO.dp, 0) + '°';
+    const m = ((Math.abs(PO.dp) % 180) + 180) % 180, lin = PO.ex === 0 || PO.ey === 0 || m === 0;
+    let ty;
+    if (PO.ex === 0 && PO.ey === 0) ty = L('ما فيه مجال', 'No field');
+    else if (lin) ty = L('خطي', 'Linear');
+    else if (m === 90 && Math.abs(PO.ex - PO.ey) < 1e-9) ty = L('دائري', 'Circular');
+    else if (m === 90) ty = L('بيضاوي', 'Elliptical');
+    else ty = L('بيضاوي مايل (الحالة العامة)', 'Tilted ellipse (general case)');
+    po('type').innerHTML = ty;
+    const sn = Math.sin(PO.dp * Math.PI / 180);
+    po('rot').innerHTML = lin ? L('ما يدور، يروح ويرجع', 'No rotation, swings back and forth') : sn > 0 ? L('مع عقارب الساعة ↻', 'Clockwise ↻') : L('عكس عقارب الساعة ↺', 'Counter-clockwise ↺');
+    $$('[data-p]', pl).forEach(b => b.classList.toggle('on', false));
+    polPath = polStatic(); polDraw();
+  }
+  $$('input', pl).forEach(i => i.addEventListener('input', polUpd));
+  const PRE = { lin: [1, 0.5, 0], cir: [1, 1, 90], ell: [1, 0.6, 90] };
+  $$('[data-p]', pl).forEach(b => b.addEventListener('click', () => {
+    const v = PRE[b.dataset.p]; pin('ex').value = v[0]; pin('ey').value = v[1]; pin('dp').value = v[2]; polUpd(); b.classList.add('on');
+  }));
+  player($('[data-play]', pl), pl, dt => { PO.t = (PO.t + dt * 0.35) % 1; polDraw(); }, true);
+  polUpd();
+
+  /* ---------- 𝒫(t) مع المتوسط ---------- */
+  const pv = $('#pv-lab'), pvr = $('input[type=range]', pv), pvo = k => $(`[data-o="${k}"]`, pv);
+  let TH = 0;
+  const pf = (u, th) => Math.cos(TAU * u) * Math.cos(TAU * u - th);
+  const pc = chart($('#pv-plot'), {
+    label: 'Instantaneous Poynting vector at z = 0 over two periods, in units of E0 squared over |eta|, with its time average as a flat line at half of cos theta_eta',
+    h: () => 200, pad: () => ({ l: 40, r: 26, t: 14, b: 30 }), x: [0, 2], y: [-0.3, 1.1],
+    st: s => grid(s, { yt: [[1, '1'], [0.5, '½'], [0, '0']], xt: [[0, '0'], [0.5, 'T/2'], [1, 'T'], [1.5, '3T/2'], [2, '2T']], xgrid: true }) + axName(s, 't'),
+    dy: s => P('ln c-p', path(u => pf(u, TH), 0, 2, 240, s.X, s.Y)) + P('ln dash c-a', `M${s.X(0)} ${s.Y(Math.cos(TH) / 2).toFixed(1)}H${s.X(2)}`),
+    hover: (u, s) => ({ hd: `t = ${N(u, 2)} T`, rows: [{ c: 'c-p', k: '𝒫', v: N(pf(u, TH), 3) }, { c: 'c-a', dash: 1, k: '𝒫<sub>ave</sub>', v: N(Math.cos(TH) / 2, 3) }], pts: [{ c: 'c-p', y: s.Y(pf(u, TH)) }] })
+  });
+  function pvUpd() {
+    TH = +pvr.value * Math.PI / 180;
+    pvo('th').textContent = pvr.value + '°';
+    pvo('avg').textContent = N(Math.cos(TH) / 2, 3);
+    pvo('min').innerHTML = N((Math.cos(TH) - 1) / 2, 3) + (TH > 0 ? ' ' + L('(سالب: الطاقة ترجع لحظياً)', '(negative: energy flows back briefly)') : '');
+    if (pc) pc.drawDyn();
+  }
+  pvr.addEventListener('input', pvUpd);
+  $$('[data-th]', pv).forEach(b => b.addEventListener('click', () => { pvr.value = b.dataset.th; pvUpd(); }));
+  pvUpd();
+
+  /* ---------- مختبر الموجة الواقفة ---------- */
+  const sw = $('#sw-lab'), swr = $('input[type=range]', sw), swo = k => $(`[data-o="${k}"]`, sw);
+  const SW = { g: -1, t: 0 };
+  const env1 = (z, g) => Math.hypot(1 + g * Math.cos(2 * TAU * z), g * Math.sin(2 * TAU * z));
+  const k2 = g => g <= -0.98 ? 0 : (1 - g) / (1 + g);   // β2/β1 للوسط غير المغناطيسي
+  const inst = (z, g, t) => z <= 0 ? Math.cos(TAU * t - TAU * z) + g * Math.cos(TAU * t + TAU * z) : (g <= -0.98 ? 0 : (1 + g) * Math.cos(TAU * t - TAU * k2(g) * z));
+  const swc = chart($('#sw-plot'), {
+    label: 'Electric field versus z: medium 1 from minus one and a half wavelengths to 0 shows a standing-wave envelope 1 plus or minus |Gamma|; medium 2 beyond z = 0 carries a traveling wave of amplitude tau',
+    h: () => 230, pad: () => ({ l: 34, r: 24, t: 14, b: 30 }), x: [-1.5, 0.5], y: [-2.15, 2.15],
+    st: s => `<rect class="band" x="${s.X(0).toFixed(1)}" y="${s.pt}" width="${(s.X(0.5) - s.X(0)).toFixed(1)}" height="${s.ih}"/>` +
+      grid(s, { yt: [[2, '2'], [1, '1'], [0, '0'], [-1, '−1'], [-2, '−2']], xt: [[-1.5, '−3λ/2'], [-1, '−λ'], [-0.5, '−λ/2'], [0, '0'], [0.5, '']], xgrid: true }) + axName(s, 'z'),
+    dy: s => {
+      const g = SW.g, tau = 1 + g;
+      const e1 = path(z => env1(z, g), -1.5, 0, 200, s.X, s.Y), e1n = path(z => -env1(z, g), -1.5, 0, 200, s.X, s.Y);
+      const e2 = g <= -0.98 ? '' : P('ln dash c-a', `M${s.X(0).toFixed(1)} ${s.Y(tau).toFixed(1)}H${s.X(0.5).toFixed(1)}`) + P('ln dash c-a', `M${s.X(0).toFixed(1)} ${s.Y(-tau).toFixed(1)}H${s.X(0.5).toFixed(1)}`);
+      return P('ln dash c-a', e1) + P('ln dash c-a', e1n) + e2 + P('ln c-e', path(z => inst(z, g, SW.t), -1.5, 0.5, 320, s.X, s.Y));
+    },
+    hover: (z, s) => ({ hd: `z = ${N(z, 2)} λ₁`, rows: [{ c: 'c-e', k: 'E', v: N(inst(z, SW.g, SW.t), 2) }, { c: 'c-a', dash: 1, k: '|E|', v: N(z <= 0 ? env1(z, SW.g) : (SW.g <= -0.98 ? 0 : 1 + SW.g), 2) }], pts: [{ c: 'c-e', y: s.Y(inst(z, SW.g, SW.t)) }] })
+  });
+  function swUpd() {
+    const g = SW.g = +swr.value, a = Math.abs(g);
+    swo('g').textContent = N(g, 2);
+    swo('r').textContent = g >= 0.999 ? '∞' : N((1 + g) / (1 - g), 2);
+    swo('t').textContent = N(1 + g, 2);
+    const s = a >= 0.999 ? Infinity : (1 + a) / (1 - a);
+    swo('s').textContent = s === Infinity ? '∞' : N(s, 2);
+    swo('db').textContent = s === Infinity ? '∞' : N(20 * Math.log10(s), 2) + ' dB';
+    swo('zm').innerHTML = a < 0.005 ? L('ما فيه (ثابتة)', 'none (flat)') : g > 0 ? '0' : '−λ₁/4';
+    if (swc) swc.drawDyn();
+  }
+  swr.addEventListener('input', swUpd);
+  $$('[data-g]', sw).forEach(b => b.addEventListener('click', () => { swr.value = b.dataset.g; swUpd(); }));
+  player($('[data-play]', sw), sw, dt => { SW.t = (SW.t + dt * 0.3) % 1; if (swc) swc.drawDyn(); }, true);
+  swUpd();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
