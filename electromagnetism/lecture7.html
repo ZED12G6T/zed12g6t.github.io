@@ -40,6 +40,16 @@
       <li><span lang="ar">عند الحد: $\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$ و $\tau=\dfrac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$. موصل مثالي ← $\Gamma=-1$ وموجة واقفة. ونسبة الموجة الواقفة $s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$.</span><span lang="en">At the boundary: $\Gamma=\dfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$, $\tau=\dfrac{2\eta_2}{\eta_2+\eta_1}=1+\Gamma$. Perfect conductor → $\Gamma=-1$ and a standing wave. Standing wave ratio $s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$.</span></li>
     </ol>
   </div>
+  <div class="callout key" id="exam-notes"><strong><span lang="ar">🎯 ملاحظات الدكتور للاختبار</span><span lang="en">🎯 The professor's exam notes</span></strong>
+    <ul class="checks">
+      <li><span lang="ar"><b>الاستقطاب:</b> اقرأ $\Delta\phi$ بطريقة الدكتور (ما فيه زاوية = صفر، الإشارة ما تفرق، الزاوية الكبيرة تنقص منها 360 أو تقسمها على $\pi$). <a href="#phase-read">التفاصيل</a></span><span lang="en"><b>Polarization:</b> read $\Delta\phi$ the professor's way (no angle = zero, sign doesn't matter, reduce a large angle by 360° or divide it by $\pi$). <a href="#phase-read">Details</a></span></li>
+      <li><span lang="ar"><b>تحويل الفيزر:</b> لا تستخدم الكيرل، حوّل حقيقي مع حقيقي وتخيلي مع تخيلي. <a href="#ex7b">مثال 10.7 (b)</a></span><span lang="en"><b>Phasor conversion:</b> no curl; match real with real and imaginary with imaginary. <a href="#ex7b">Example 10.7 (b)</a></span></li>
+      <li><span lang="ar"><b>اتجاه متجه بوينتنج</b> = اتجاه المتغير اللي جنب $\beta$. <a href="#p-dir">القاعدة</a></span><span lang="en"><b>Poynting vector direction</b> = the variable next to $\beta$. <a href="#p-dir">The rule</a></span></li>
+      <li><span lang="ar"><b>القدرة:</b> استخدم بس المعادلات اللي فيها الزمن ($\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$ ثم المتوسط على $T$). <a href="#p-time">مثال السبورة</a></span><span lang="en"><b>Power:</b> use only the time-domain equations ($\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$, then average over $T$). <a href="#p-time">Board example</a></span></li>
+      <li><span lang="ar"><b>مثال 10.8 جاي في الاختبار</b> بأرقام ثانية. <a href="#ex8">المثال</a> و<a href="#practice">تمارين و و ز</a></span><span lang="en"><b>Example 10.8 is on the exam</b> with different numbers. <a href="#ex8">The example</a> and <a href="#practice">exercises F and G</a></span></li>
+      <li><span lang="ar"><b>الشابتر 6 منه سؤالين</b> في الاختبار. <a href="lecture6-1.html">المحاضرة 6</a></span><span lang="en"><b>Two questions come from chapter 6.</b> <a href="lecture6-1.html">Lecture 6</a></span></li>
+    </ul>
+  </div>
 </section>
 
 <!-- ================= 01 الاستقطاب ================= -->
@@ -66,6 +76,39 @@
     <tr><td><span lang="ar">بيضاوي</span><span lang="en">Elliptical</span></td><td>$E_{ox}\ne E_{oy}$</td><td>$\Delta\phi=\pm(2n+1)\tfrac{\pi}{2}$</td></tr>
   </table></div>
   <p class="sub"><span lang="ar">$n=0,1,2,\dots$</span><span lang="en">$n=0,1,2,\dots$</span></p>
+
+  <div class="callout key" id="phase-read"><strong><span lang="ar">🎯 كيف تقرأ $\Delta\phi$ في الاختبار (من الدكتور)</span><span lang="en">🎯 Reading $\Delta\phi$ on the exam (from the professor)</span></strong>
+    <ol class="recipe">
+      <li><b><span lang="ar">ما جاب زاوية؟</span><span lang="en">No angle given?</span></b><span class="why"><span lang="ar">يعني الطور صفر. فلو المركّبتين ما فيهم زاوية: $\Delta\phi=0$، وهذا من عائلة $n\pi$ ($n=0$) ← <b>خطي</b>.</span><span lang="en">The phase is zero. If neither component has an angle: $\Delta\phi=0$, which is in the $n\pi$ family ($n=0$) → <b>linear</b>.</span></span></li>
+      <li><b><span lang="ar">الإشارة ما تفرق</span><span lang="en">The sign doesn't matter</span></b><span class="why"><span lang="ar">$+\pi$ أو $-\pi$، $+\pi/2$ أو $-\pi/2$: نفس النوع. خذ $|\Delta\phi|$.</span><span lang="en">$+\pi$ or $-\pi$, $+\pi/2$ or $-\pi/2$: same type. Use $|\Delta\phi|$.</span></span></li>
+      <li><b><span lang="ar">زاوية كبيرة؟</span><span lang="en">A large angle?</span></b><span class="why"><span lang="ar">نقّص منها $360^\circ$ ($2\pi$) لين تصير صغيرة. أو <b>اقسمها على $\pi$</b>: لو طلع عدد صحيح ← $n\pi$ ← خطي.</span><span lang="en">Subtract $360^\circ$ ($2\pi$) until it is small. Or <b>divide by $\pi$</b>: a whole number → $n\pi$ → linear.</span></span></li>
+      <li><b><span lang="ar">قانون الخطي</span><span lang="en">The linear rule</span></b><span class="why">$|\Delta\phi|=n\pi,\ \ n=0,1,2,3,\dots$</span></li>
+      <li><b><span lang="ar">قانون $\pi/2$</span><span lang="en">The $\pi/2$ rule</span></b><span class="why"><span lang="ar">$|\Delta\phi|=(2n+1)\dfrac{\pi}{2}$: يعني $\dfrac{\pi}{2},\dfrac{3\pi}{2},\dfrac{5\pi}{2},\dots$ (اقسم على $\pi/2$، لو طلع عدد <b>فردي</b> فهي من هالعائلة). وبعدها: $E_{ox}=E_{oy}$ ← دائري، $E_{ox}\ne E_{oy}$ ← بيضاوي.</span><span lang="en">$|\Delta\phi|=(2n+1)\dfrac{\pi}{2}$: that is $\dfrac{\pi}{2},\dfrac{3\pi}{2},\dfrac{5\pi}{2},\dots$ (divide by $\pi/2$; an <b>odd</b> result means this family). Then $E_{ox}=E_{oy}$ → circular, $E_{ox}\ne E_{oy}$ → elliptical.</span></span></li>
+      <li><b><span lang="ar">نفس الكلام للدائري والبيضاوي</span><span lang="en">Same for circular and elliptical</span></b><span class="why"><span lang="ar">الإشارة ما تفرق، والزاوية الكبيرة تنقص منها 360 بنفس الطريقة.</span><span lang="en">Sign doesn't matter, and a large angle is reduced by 360° the same way.</span></span></li>
+      <li><b><span lang="ar">اترك المجاهيل والتحويل</span><span lang="en">Skip the unknowns and the conversion</span></b><span class="why"><span lang="ar">لو السعة مجهولة أو ما فيه أرقام، ما تحتاج تطلّعها: سؤال الاستقطاب يبي <b>الطور</b> بس (وتقارن السعات لو معطاة). ولو المركّبتين نفس الدالة (الاثنين $\sin$ أو الاثنين $\cos$) ما تحتاج تحوّل، اطرح الزوايا على طول.</span><span lang="en">If an amplitude is unknown or no numbers are given, you don't need to find it: a polarization question only wants the <b>phase</b> (and compares amplitudes if given). If both components use the same function (both $\sin$ or both $\cos$), no conversion is needed; just subtract the angles.</span></span></li>
+    </ol>
+  </div>
+  <div class="tbl-wrap"><table class="tbl">
+    <tr><th><span lang="ar">المعطى</span><span lang="en">Given</span></th><th><span lang="ar">التبسيط</span><span lang="en">Simplify</span></th><th><span lang="ar">النوع</span><span lang="en">Type</span></th></tr>
+    <tr><td><span lang="ar">ما فيه زوايا</span><span lang="en">no angles</span></td><td>$\Delta\phi=0=0\cdot\pi$</td><td><span lang="ar">خطي</span><span lang="en">linear</span></td></tr>
+    <tr><td>$\Delta\phi=-\pi$</td><td>$|\Delta\phi|=\pi=1\cdot\pi$</td><td><span lang="ar">خطي</span><span lang="en">linear</span></td></tr>
+    <tr><td>$\Delta\phi=6\pi$</td><td>$6\pi/\pi=6$ <span lang="ar">صحيح</span><span lang="en">whole</span></td><td><span lang="ar">خطي</span><span lang="en">linear</span></td></tr>
+    <tr><td>$\Delta\phi=-\pi/2$</td><td>$|\Delta\phi|=\pi/2$</td><td><span lang="ar">دائري/بيضاوي</span><span lang="en">circ./ellip.</span></td></tr>
+    <tr><td>$\Delta\phi=5\pi/2$</td><td>$5\pi/2-2\pi=\pi/2$</td><td><span lang="ar">دائري/بيضاوي</span><span lang="en">circ./ellip.</span></td></tr>
+    <tr><td>$\Delta\phi=450^\circ$</td><td>$450^\circ-360^\circ=90^\circ$</td><td><span lang="ar">دائري/بيضاوي</span><span lang="en">circ./ellip.</span></td></tr>
+  </table></div>
+  <h3><span lang="ar">مثال السبورة</span><span lang="en">The board example</span></h3>
+  <div class="m">\[\begin{aligned}\X{\mathbf E}=\ &E_{ox}\sin(\omega t-\beta z)\,\mathbf a_x\\&+30\sin\!\left(\omega t-\beta z+\tfrac{\pi}{2}\right)\mathbf a_y\end{aligned}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">الاثنين $\sin$ ← ما نحوّل</span><span lang="en">Both are $\sin$ → no conversion</span></h4>
+      <p class="why"><span lang="ar">$\phi_x=0$ (ما فيه زاوية) و $\phi_y=\pi/2$.</span><span lang="en">$\phi_x=0$ (no angle) and $\phi_y=\pi/2$.</span></p>
+      <div class="m">\[\Delta\phi=\frac{\pi}{2}-0=\frac{\pi}{2}=(2\cdot0+1)\frac{\pi}{2}\]</div>
+    </li>
+    <li class="step final">
+      <p class="sanity"><span lang="ar">من عائلة $(2n+1)\pi/2$. لو $E_{ox}=30$ ← <b>دائري</b>، ولو $E_{ox}\ne30$ ← <b>بيضاوي</b>.</span><span lang="en">In the $(2n+1)\pi/2$ family. If $E_{ox}=30$ → <b>circular</b>; if $E_{ox}\ne30$ → <b>elliptical</b>.</span></p>
+    </li>
+  </ol>
 
   <h3><span lang="ar">1) الاستقطاب الخطي</span><span lang="en">1) Linear polarization</span></h3>
   <p><span lang="ar">الموجة خطية إذا كان لها <b>مركّبة وحدة</b>، أو مركّباتها المستعرضة <b>في نفس الطور</b> ($\Delta\phi=0$) أو بعكسه ($\Delta\phi=\pi$). كذا النسبة $E_y/E_x$ تبقى <b>ثابتة طول الوقت</b>، فرأس $\X{\mathbf E}$ يروح ويرجع على نفس الخط. تولّده هوائيات بسيطة زي الـ dipole، أو الليزر.</span><span lang="en">A wave is linear if it has <b>one component</b>, or its transverse components are <b>in phase</b> ($\Delta\phi=0$) or opposite ($\Delta\phi=\pi$). Then $E_y/E_x$ stays <b>constant at all times</b>, so the tip of $\X{\mathbf E}$ swings back and forth on one line. Generated by simple antennas such as dipoles, or by lasers.</span></p>
@@ -172,7 +215,37 @@
     <p><span lang="ar">السلايد كاتب السطر الثاني $\tfrac13E_x(0,t)=\sin\omega t$، والصح $\tfrac13E_{\color{red}y}(0,t)$ زي ما فوق.</span><span lang="en">The slide writes the second line as $\tfrac13E_x(0,t)=\sin\omega t$; it should be $\tfrac13E_{\color{red}y}(0,t)$ as above.</span></p>
   </div>
 
-  <h3><span lang="ar">(b) المجال المغناطيسي</span><span lang="en">(b) The magnetic field</span></h3>
+  <h3 id="ex7b"><span lang="ar">(b) المجال المغناطيسي: طريقة الدكتور (بدون كيرل)</span><span lang="en">(b) The magnetic field: the professor's way (no curl)</span></h3>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">المعطى فيزر</span><span lang="en">The given field is a phasor</span></h4>
+      <p class="why"><span lang="ar">حوّله للزمن مباشرة. وسعة $\Y{\mathbf H}$ هي $H_o=E_o/|\eta|$.</span><span lang="en">Convert it straight to the time domain. The amplitude of $\Y{\mathbf H}$ is $H_o=E_o/|\eta|$.</span></p>
+      <div class="m">\[\Y{\mathbf H_s}=H_oe^{-j\beta z}\,\mathbf a_x-2H_oe^{-j\beta z}\,\mathbf a_y\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">أويلر</span><span lang="en">Euler</span></h4>
+      <div class="m">\[e^{-j\beta z}=\cos\beta z-j\sin\beta z\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نضرب في $e^{j\omega t}$</span><span lang="en">Multiply by $e^{j\omega t}$</span></h4>
+      <p class="why"><span lang="ar">الأُسّين يتجمعون، وبعدين أويلر مرة ثانية.</span><span lang="en">The exponents add, then apply Euler again.</span></p>
+      <div class="m">\[\begin{aligned}&e^{-j\beta z}e^{j\omega t}=e^{j(\omega t-\beta z)}\\&=\cos(\omega t-\beta z)\\&\quad+j\sin(\omega t-\beta z)\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">حقيقي مع حقيقي</span><span lang="en">Real with real</span></h4>
+      <p class="why"><span lang="ar">$\Y{\mathbf H}(z,t)=\mathrm{Re}[\Y{\mathbf H_s}e^{j\omega t}]$: ناخذ الجزء الحقيقي بس، والتخيلي ($j\sin$) يروح.</span><span lang="en">$\Y{\mathbf H}(z,t)=\mathrm{Re}[\Y{\mathbf H_s}e^{j\omega t}]$: keep the real part; the imaginary part ($j\sin$) drops.</span></p>
+      <div class="m">\[\begin{aligned}\Y{\mathbf H}(z,t)=\ &H_o\cos(\omega t-\beta z)\,\mathbf a_x\\&-2H_o\cos(\omega t-\beta z)\,\mathbf a_y\end{aligned}\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قارن الطورين</span><span lang="en">Compare the phases</span></h4>
+      <p class="why"><span lang="ar">الاثنين $\cos(\omega t-\beta z)$ وما فيه زاوية ← $\Delta\phi=0=n\pi$. (السالب في $-2H_o$ سعة واتجاه، ولو حسبته طور يصير $\pi$، وبرضو $n\pi$.)</span><span lang="en">Both are $\cos(\omega t-\beta z)$ with no angle → $\Delta\phi=0=n\pi$. (The minus in $-2H_o$ is amplitude/direction; read as a phase it is $\pi$, still $n\pi$.)</span></p>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="(b)"><span lang="ar">خطي (linearly polarized)</span><span lang="en">Linearly polarized</span></div>
+      <p class="sanity"><span lang="ar">$\X{\mathbf E}$ و $\Y{\mathbf H}$ لنفس الموجة لهم نفس العلاقة بين الأطوار، فلو $\Y{\mathbf H}$ خطي فـ $\X{\mathbf E}$ خطي.</span><span lang="en">$\X{\mathbf E}$ and $\Y{\mathbf H}$ of the same wave share the same phase relation, so if $\Y{\mathbf H}$ is linear, so is $\X{\mathbf E}$.</span></p>
+    </li>
+  </ol>
+  <details class="tv"><summary><span lang="ar">طريقة السلايد بالكيرل (مو مطلوبة، للاطلاع)</span><span lang="en">The slide's curl method (not required, for reference)</span></summary>
   <ol class="solve">
     <li class="step read">
       <h4><span lang="ar">المركّبتين في نفس الطور</span><span lang="en">The components are in phase</span></h4>
@@ -206,6 +279,7 @@
   <div class="callout warn"><strong><span lang="ar">⚠️ فرق إشارة عن السلايد 9 و 10</span><span lang="en">⚠️ Sign differs from slides 9 and 10</span></strong>
     <p><span lang="ar">السلايد كاتب $\X{\mathbf E_s}=+2\eta H_o e^{-j\beta z}\mathbf a_x-\eta H_o e^{-j\beta z}\mathbf a_y$. لو تحسب $-\partial H_y/\partial z$ بدقة تطلع مركّبة $x$ <b>سالبة</b> (الحل اللي فوق). <b>الجواب النهائي ما يتغير</b>: خطي في الحالتين، لأن النسبة ثابتة. في الاختبار المهم تقول "المركّبتين في نفس الطور ← خطي".</span><span lang="en">The slide writes $\X{\mathbf E_s}=+2\eta H_o e^{-j\beta z}\mathbf a_x-\eta H_o e^{-j\beta z}\mathbf a_y$. Computing $-\partial H_y/\partial z$ carefully gives a <b>negative</b> $x$-part (the solution above). <b>The answer doesn't change</b>: linear either way, since the ratio is fixed. On the exam the key line is "components in phase → linear".</span></p>
   </div>
+  </details>
 </section>
 
 <!-- ================= 02 متجه بوينتنج ================= -->
@@ -227,6 +301,16 @@
   <div class="m big">\[\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}\qquad(\text{W/m}^2)\]</div>
   <p><span lang="ar">$\mathcal P$ عمودي على $\X{\mathbf E}$ وعلى $\Y{\mathbf H}$، فهو على <b>اتجاه الانتشار</b> نفسه:</span><span lang="en">$\mathcal P$ is normal to both $\X{\mathbf E}$ and $\Y{\mathbf H}$, so it lies along the <b>direction of propagation</b>:</span></p>
   <div class="m">\[\mathbf a_k=\mathbf a_E\times\mathbf a_H\]</div>
+  <div class="callout key" id="p-dir"><strong><span lang="ar">🎯 اتجاه $\mathcal P$ بسرعة (من الدكتور)</span><span lang="en">🎯 Direction of $\mathcal P$ fast (from the professor)</span></strong>
+    <p><span lang="ar">اتجاه متجه بوينتنج = <b>المتغير اللي جنب $\beta$</b>، وإشارته عكس إشارة $\omega t$ في الطور:</span><span lang="en">The Poynting vector points along <b>the variable next to $\beta$</b>, with sign opposite to $\omega t$'s in the phase:</span></p>
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th><span lang="ar">الطور</span><span lang="en">Phase</span></th><th><span lang="ar">اتجاه $\mathcal P$</span><span lang="en">Direction of $\mathcal P$</span></th></tr>
+      <tr><td>$\omega t-\beta z$</td><td>$+\mathbf a_z$</td></tr>
+      <tr><td>$\omega t+\beta z$</td><td>$-\mathbf a_z$</td></tr>
+      <tr><td>$\omega t-0.8x$</td><td>$+\mathbf a_x$</td></tr>
+      <tr><td>$\omega t+3y$</td><td>$-\mathbf a_y$</td></tr>
+    </table></div>
+  </div>
 
   <h3><span lang="ar">$\mathcal P$ اللحظي لموجة عامة (السلايد 13)</span><span lang="en">Instantaneous $\mathcal P$ for a general wave (slide 13)</span></h3>
   <ol class="solve">
@@ -258,6 +342,34 @@
   <p><span lang="ar">والقدرة الكلية اللي تعبر سطح $S$ (بالواط):</span><span lang="en">And the total power crossing a surface $S$ (in watts):</span></p>
   <div class="m big">\[P_{ave}=\int_S\mathcal P_{ave}\cdot d\mathbf S\]</div>
 
+  <div class="callout key" id="p-time"><strong><span lang="ar">🎯 في الاختبار: القدرة بمعادلات الزمن بس (من الدكتور)</span><span lang="en">🎯 On the exam: power with time-domain equations only (from the professor)</span></strong>
+    <p><span lang="ar">لا تشتغل بالفيزر ($\tfrac12\mathrm{Re}(\X{\mathbf E_s}\times\Y{\mathbf H_s^*})$). اشتغل بالمعادلات اللي فيها $t$: اضرب $\X{\mathbf E}\times\Y{\mathbf H}$، وبعدين خذ المتوسط على دورة.</span><span lang="en">Don't use the phasor form ($\tfrac12\mathrm{Re}(\X{\mathbf E_s}\times\Y{\mathbf H_s^*})$). Work with the equations that contain $t$: multiply $\X{\mathbf E}\times\Y{\mathbf H}$, then average over one cycle.</span></p>
+    <div class="m">\[\begin{gathered}\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}\\ \mathcal P_{avg}=\frac1T\int_0^T\mathcal P\,dt\\ P=\int_S\mathcal P_{avg}\cdot d\mathbf S\end{gathered}\]</div>
+  </div>
+  <h3><span lang="ar">مثال السبورة: وسط بدون فقد، $|\eta|=5\ \Omega$</span><span lang="en">Board example: lossless medium, $|\eta|=5\ \Omega$</span></h3>
+  <div class="m">\[\begin{aligned}\X{\mathbf E}&=20\cos(\omega t-\beta z)\,\mathbf a_x\ \ \text{V/m}\\ \Y{\mathbf H}&=4\cos(\omega t-\beta z)\,\mathbf a_y\ \ \text{A/m}\end{aligned}\]</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">نضرب ضرب اتجاهي</span><span lang="en">Cross product</span></h4>
+      <p class="why"><span lang="ar">$20\times4=80$، و $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ (نفس المتغير اللي جنب $\beta$ ✓).</span><span lang="en">$20\times4=80$, and $\mathbf a_x\times\mathbf a_y=\mathbf a_z$ (the variable next to $\beta$ ✓).</span></p>
+      <div class="m">\[\mathcal P=80\cos^2(\omega t-\beta z)\,\mathbf a_z\ \ \text{W/m}^2\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قانون $\cos^2$</span><span lang="en">The $\cos^2$ identity</span></h4>
+      <p class="why">$\cos^2\theta=\tfrac12(1+\cos2\theta)$</p>
+      <div class="m">\[\mathcal P=\frac{80}{2}\big[1+\cos(2\omega t-2\beta z)\big]\mathbf a_z\]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">المتوسط على دورة</span><span lang="en">Average over a cycle</span></h4>
+      <p class="why"><span lang="ar">تكامل الـ 1 على $T$ يعطي $T$، وتكامل الـ $\cos$ على دورة كاملة صفر.</span><span lang="en">The integral of 1 over $T$ gives $T$; the integral of $\cos$ over a full cycle is zero.</span></p>
+      <div class="m">\[\begin{aligned}\mathcal P_{avg}&=\frac{40}{T}\int_0^T\big[1+\cos(2\omega t\\&\qquad\quad-2\beta z)\big]dt\\&=\frac{40}{T}(T+0)\end{aligned}\]</div>
+    </li>
+    <li class="step final">
+      <div class="result" data-label="𝒫avg">$\mathcal P_{avg}=40\,\mathbf a_z\ \text{W/m}^2$</div>
+      <p class="sanity"><span lang="ar">تأكد: $\dfrac{E_o^2}{2|\eta|}=\dfrac{400}{10}=40$ ✓. والقاعدة السريعة: $\mathcal P_{avg}=\tfrac12E_oH_o=\tfrac12(20)(4)$ لما $\X{\mathbf E}$ و $\Y{\mathbf H}$ في نفس الطور.</span><span lang="en">Check: $\dfrac{E_o^2}{2|\eta|}=\dfrac{400}{10}=40$ ✓. Shortcut: $\mathcal P_{avg}=\tfrac12E_oH_o=\tfrac12(20)(4)$ when $\X{\mathbf E}$ and $\Y{\mathbf H}$ are in phase.</span></p>
+    </li>
+  </ol>
+
   <div class="wlab" id="pv-lab">
     <div class="lab-controls">
       <div class="field"><label><span lang="ar">زاوية الممانعة</span><span lang="en">Impedance angle</span> <span class="ltr">θ<sub>η</sub></span> · <span class="rv ltr" data-o="th">0°</span></label><input type="range" min="0" max="45" step="1" value="0" aria-label="theta eta in degrees"></div>
@@ -287,7 +399,10 @@
 <!-- ================= مثال 10.8 ================= -->
 <section class="card" id="ex8" data-nav="مثال 10.8|Ex 10.8">
   <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 10.8</span><span lang="en">Example 10.8</span></span><h2><span lang="ar">أوجد $\varepsilon_r$ و $\eta$ والقدرة المتوسطة</span><span lang="en">Find $\varepsilon_r$, $\eta$ and the average power</span></h2></div>
-  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.8</span></div>
+  <div class="tags"><span class="tag"><span lang="ar">مثال المحاضرة</span><span lang="en">Lecture example</span></span><span class="tag ltr">Sadiku 10.8</span><span class="tag"><span lang="ar">🎯 جاي في الاختبار</span><span lang="en">🎯 On the exam</span></span></div>
+  <div class="callout key"><strong><span lang="ar">🎯 الدكتور: هذا المثال جاي في الاختبار بس بأرقام ثانية</span><span lang="en">🎯 The professor: this example is on the exam with different numbers</span></strong>
+    <p><span lang="ar">احفظ الخطوات مو الأرقام: $\beta$ ← $\sqrt{\varepsilon_r}=\beta c/\omega$ ← $\eta=120\pi/\sqrt{\varepsilon_r}$ ← $\mathcal P_{avg}=E_o^2/2\eta$ والاتجاه من المتغير اللي جنب $\beta$. جرّب نسخة بأرقام ثانية في <a href="#practice">تمرين و و ز</a>.</span><span lang="en">Learn the steps, not the numbers: $\beta$ → $\sqrt{\varepsilon_r}=\beta c/\omega$ → $\eta=120\pi/\sqrt{\varepsilon_r}$ → $\mathcal P_{avg}=E_o^2/2\eta$, direction from the variable next to $\beta$. Try a version with other numbers in <a href="#practice">exercises F and G</a>.</span></p>
+  </div>
   <p><span lang="ar">في وسط غير مغناطيسي ($\mu=\mu_0$):</span><span lang="en">In a nonmagnetic medium ($\mu=\mu_0$):</span></p>
   <div class="m big">\[\X{\mathbf E}=4\sin(2\pi\times10^7t-0.8x)\,\mathbf a_z\ \ \text{V/m}\]</div>
   <p><span lang="ar">أوجد (a) $\varepsilon_r$ و $\eta$، (b) القدرة المتوسطة اللي تشيلها الموجة.</span><span lang="en">Find (a) $\varepsilon_r$ and $\eta$, (b) the time-average power carried by the wave.</span></p>
@@ -687,8 +802,8 @@
 <section class="card" id="method" data-num="✔" data-nav="الطريقة|Method">
   <h2><span lang="ar">طريقة حل أي مسألة في هالمحاضرة</span><span lang="en">How to solve any problem in this lecture</span></h2>
   <ol class="recipe">
-    <li><b><span lang="ar">سؤال استقطاب</span><span lang="en">Polarization question</span></b><span class="why"><span lang="ar">حوّل كل الحدود لـ cos (أو اقرأ cos/sin = فرق $90^\circ$). فرق الطور $0$ أو $\pi$ ← خطي. $\pm90^\circ$ وسعات متساوية ← دائري، مختلفة ← بيضاوي. وللإثبات: ثبّت $z=0$، ربّع واجمع. ولو معطى $\Y{\mathbf H}$: نفس الطور في مركّباته = نفس الطور في $\X{\mathbf E}$.</span><span lang="en">Turn every term into cos (or read cos/sin = $90^\circ$ apart). Phase difference $0$ or $\pi$ → linear. $\pm90^\circ$ with equal amplitudes → circular, unequal → elliptical. To prove it: set $z=0$, square and add. Given $\Y{\mathbf H}$: in-phase components there mean in-phase components in $\X{\mathbf E}$.</span></span></li>
-    <li><b><span lang="ar">سؤال قدرة</span><span lang="en">Power question</span></b><span class="why"><span lang="ar">طلّع $\eta$ (و $\theta_\eta$)، بعدين $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. القدرة الكلية = $\mathcal P_{ave}\times$ المساحة. ولو حدين متعامدين: $E_o^2=E_{ox}^2+E_{oy}^2$.</span><span lang="en">Find $\eta$ (and $\theta_\eta$), then $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. Total power = $\mathcal P_{ave}\times$ area. Two perpendicular terms: $E_o^2=E_{ox}^2+E_{oy}^2$.</span></span></li>
+    <li><b><span lang="ar">سؤال استقطاب</span><span lang="en">Polarization question</span></b><span class="why"><span lang="ar">نفس الدالة؟ اطرح الزوايا على طول (cos مع sin = فرق $90^\circ$). ما فيه زاوية = صفر، الإشارة ما تفرق، والكبيرة نقّص منها 360. $n\pi$ ← خطي. $\pm90^\circ$ وسعات متساوية ← دائري، مختلفة ← بيضاوي. وللإثبات: ثبّت $z=0$، ربّع واجمع. ولو معطى $\Y{\mathbf H}$: نفس الطور في مركّباته = نفس الطور في $\X{\mathbf E}$.</span><span lang="en">Same function? Subtract the angles directly (cos with sin = $90^\circ$ apart). No angle = zero, sign doesn't matter, reduce a large angle by 360°. $n\pi$ → linear. $\pm90^\circ$ with equal amplitudes → circular, unequal → elliptical. To prove it: set $z=0$, square and add. Given $\Y{\mathbf H}$: in-phase components there mean in-phase components in $\X{\mathbf E}$.</span></span></li>
+    <li><b><span lang="ar">سؤال قدرة</span><span lang="en">Power question</span></b><span class="why"><span lang="ar">اشتغل بمعادلات الزمن: $\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$ ثم المتوسط على $T$ (اتجاهه = المتغير اللي جنب $\beta$). وللتأكد: $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. القدرة الكلية = $\mathcal P_{ave}\times$ المساحة. ولو حدين متعامدين: $E_o^2=E_{ox}^2+E_{oy}^2$.</span><span lang="en">Use the time-domain equations: $\mathcal P=\X{\mathbf E}\times\Y{\mathbf H}$, then average over $T$ (direction = the variable next to $\beta$). To check: $\mathcal P_{ave}=\dfrac{E_o^2}{2|\eta|}e^{-2\alpha z}\cos\theta_\eta\,\mathbf a_k$. Total power = $\mathcal P_{ave}\times$ area. Two perpendicular terms: $E_o^2=E_{ox}^2+E_{oy}^2$.</span></span></li>
     <li><b><span lang="ar">سؤال انعكاس</span><span lang="en">Reflection question</span></b><span class="why"><span lang="ar">احسب $\eta_1,\eta_2,\beta_1,\beta_2$ ← $\Gamma$ و $\tau=1+\Gamma$ ← $E_{ro}=\Gamma E_{io}$ و $E_{to}=\tau E_{io}$. المنعكسة: نفس $\omega$ و $\beta_1$ بس $+\beta z$. النافذة: $\beta_2$. وكل $\Y{\mathbf H}$ من $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ وسعته $E/\eta$ للوسط حقه.</span><span lang="en">Compute $\eta_1,\eta_2,\beta_1,\beta_2$ → $\Gamma$, $\tau=1+\Gamma$ → $E_{ro}=\Gamma E_{io}$, $E_{to}=\tau E_{io}$. Reflected: same $\omega$ and $\beta_1$ but $+\beta z$. Transmitted: $\beta_2$. Each $\Y{\mathbf H}$ from $\mathbf a_H=\mathbf a_k\times\mathbf a_E$ with amplitude $E/\eta$ of its own medium.</span></span></li>
     <li><b><span lang="ar">سؤال موجة واقفة</span><span lang="en">Standing wave question</span></b><span class="why"><span lang="ar">$s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$. إشارة $\Gamma$ تقول وين القمم: موجبة ← قمة عند الحد و كل $\lambda_1/2$. سالبة ← قاع عند الحد.</span><span lang="en">$s=\dfrac{1+|\Gamma|}{1-|\Gamma|}$. The sign of $\Gamma$ tells you where the maxima are: positive → a maximum at the boundary and every $\lambda_1/2$; negative → a minimum at the boundary.</span></span></li>
   </ol>
@@ -762,12 +877,49 @@
       <li class="step final"><div class="result"><span lang="ar">$\Delta\phi=90^\circ$ ← دائري</span><span lang="en">$\Delta\phi=90^\circ$ → circular</span></div></li>
     </ol>
   </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين و · نسخة من مثال 10.8: $\varepsilon_r$</span><span lang="en">Exercise F · Example 10.8 variant: $\varepsilon_r$</span></b><span class="lvl"><span lang="ar">🎯 اختبار</span><span lang="en">🎯 exam</span></span></div>
+    <p><span lang="ar">وسط غير مغناطيسي: $\mathbf E=6\sin(2\pi\times10^8t-4x)\,\mathbf a_z$ V/m. أوجد $\varepsilon_r$.</span><span lang="en">Nonmagnetic medium: $\mathbf E=6\sin(2\pi\times10^8t-4x)\,\mathbf a_z$ V/m. Find $\varepsilon_r$.</span></p>
+    <div class="check" data-answer="36/pi^2"></div>
+    <details class="hint"><p>$\sqrt{\varepsilon_r}=\beta c/\omega$</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">اقرأ</span><span lang="en">Read</span></h4><div class="m">\[\beta=4,\qquad \omega=2\pi\times10^8\]</div></li>
+      <li class="step"><h4><span lang="ar">الجذر</span><span lang="en">The root</span></h4><div class="m">\[\sqrt{\varepsilon_r}=\frac{4(3\times10^8)}{2\pi\times10^8}=\frac{6}{\pi}\]</div></li>
+      <li class="step final"><div class="result">$\varepsilon_r=\dfrac{36}{\pi^2}\approx3.65$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ز · نسخة من مثال 10.8: القدرة</span><span lang="en">Exercise G · Example 10.8 variant: power</span></b><span class="lvl"><span lang="ar">🎯 اختبار</span><span lang="en">🎯 exam</span></span></div>
+    <p><span lang="ar">بنفس التمرين و، أوجد $|\mathcal P_{avg}|$ بـ mW/m². ووش اتجاهه؟</span><span lang="en">With Exercise F, find $|\mathcal P_{avg}|$ in mW/m². Which direction?</span></p>
+    <div class="check" data-answer="900/pi^2"></div>
+    <details class="hint"><p><span lang="ar">$\eta=120\pi\cdot\pi/6$، و $\sin^2$ متوسطها $\tfrac12$.</span><span lang="en">$\eta=120\pi\cdot\pi/6$, and $\sin^2$ averages to $\tfrac12$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الممانعة</span><span lang="en">Impedance</span></h4><div class="m">\[\eta=\frac{120\pi}{6/\pi}=20\pi^2\approx197.4\ \Omega\]</div></li>
+      <li class="step"><h4><span lang="ar">بمعادلة الزمن</span><span lang="en">Time-domain</span></h4><div class="m">\[\mathcal P=\frac{36}{20\pi^2}\sin^2(\omega t-4x)\,\mathbf a_x\]</div></li>
+      <li class="step"><h4><span lang="ar">المتوسط</span><span lang="en">Average</span></h4><div class="m">\[\mathcal P_{avg}=\frac{36}{2\times20\pi^2}=\frac{0.9}{\pi^2}\ \text{W/m}^2\]</div></li>
+      <li class="step final"><div class="result">$\mathcal P_{avg}\approx91.2\,\mathbf a_x\ \text{mW/m}^2$</div><p class="sanity"><span lang="ar">الاتجاه $+\mathbf a_x$ لأن المتغير اللي جنب $\beta$ هو $x$.</span><span lang="en">Direction $+\mathbf a_x$ because the variable next to $\beta$ is $x$.</span></p></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ح · زاوية كبيرة</span><span lang="en">Exercise H · a large angle</span></b><span class="lvl"><span lang="ar">🎯 اختبار</span><span lang="en">🎯 exam</span></span></div>
+    <p><span lang="ar">$\mathbf E=4\cos(\omega t-\beta z)\,\mathbf a_x$ $+\,4\cos(\omega t-\beta z-450^\circ)\,\mathbf a_y$. بسّط $|\Delta\phi|$ بالدرجات (بين 0 و 180)، ووش النوع؟</span><span lang="en">$\mathbf E=4\cos(\omega t-\beta z)\,\mathbf a_x$ $+\,4\cos(\omega t-\beta z-450^\circ)\,\mathbf a_y$. Reduce $|\Delta\phi|$ in degrees (0 to 180). What type?</span></p>
+    <div class="check" data-answer="90"></div>
+    <details class="hint"><p><span lang="ar">الإشارة ما تفرق، ونقّص 360.</span><span lang="en">Ignore the sign and subtract 360.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الإشارة ما تفرق</span><span lang="en">Drop the sign</span></h4><div class="m">\[|\Delta\phi|=450^\circ\]</div></li>
+      <li class="step"><h4><span lang="ar">نقّص 360</span><span lang="en">Subtract 360</span></h4><div class="m">\[450^\circ-360^\circ=90^\circ=\frac{\pi}{2}\]</div></li>
+      <li class="step final"><div class="result"><span lang="ar">$90^\circ$ و $E_{ox}=E_{oy}=4$ ← دائري</span><span lang="en">$90^\circ$ and $E_{ox}=E_{oy}=4$ → circular</span></div></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ================= اختبار ================= -->
 <section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
   <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2>
-  <p class="sub"><span lang="ar">8 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">8 questions; click an answer for instant feedback</span></p>
+  <p class="sub"><span lang="ar">9 أسئلة، اضغط الجواب وتشوف التصحيح فوراً</span><span lang="en">9 questions; click an answer for instant feedback</span></p>
   <div class="quiz">
     <div class="q" data-answer="2">
       <p><span lang="ar">موجة مركّبتيها بسعات متساوية وفرق طور $0$. استقطابها:</span><span lang="en">A wave with equal amplitudes and zero phase difference is:</span></p>
@@ -808,6 +960,11 @@
       <p><span lang="ar">المسافة بين قمتين متتاليتين لـ $|\X{E_1}|$:</span><span lang="en">The distance between two successive maxima of $|\X{E_1}|$:</span></p>
       <button>$\lambda_1/4$</button><button>$\lambda_1$</button><button>$2\lambda_1$</button><button>$\lambda_1/2$</button>
       <p class="q-why"><span lang="ar">$z_{max}=-n\lambda_1/2$، فكل قمة بعد الثانية بـ $\lambda_1/2$.</span><span lang="en">$z_{max}=-n\lambda_1/2$, so maxima are $\lambda_1/2$ apart.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">موجة طورها $(\omega t+5y)$. اتجاه متجه بوينتنج:</span><span lang="en">A wave with phase $(\omega t+5y)$. The Poynting vector points along:</span></p>
+      <button>$+\mathbf a_y$</button><button>$+\mathbf a_z$</button><button>$-\mathbf a_y$</button><button>$-\mathbf a_x$</button>
+      <p class="q-why"><span lang="ar">المتغير اللي جنب $\beta$ هو $y$، والإشارة $+$ مع $\omega t$ ← رايحة لـ $-y$.</span><span lang="en">The variable next to $\beta$ is $y$, and $+$ with $\omega t$ → heading to $-y$.</span></p>
     </div>
   </div>
 </section>
