@@ -3,41 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحليل دوائر كهربائية 2 · فهرس المادة</title>
-<meta name="description" content="فهرس ملخصات محاضرات تحليل الدوائر الكهربائية 2.">
+<title>تحليل الدوائر 2 · فهرس المادة</title>
+<meta name="description" content="فهرس شرح محاضرات تحليل الدوائر الكهربائية 2: دوائر التيار المتردد والفيزورات والقدرة.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@500&family=STIX+Two+Text:ital@1&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../site.css">
-<script src="../site.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="c2-index.css?v=1">
 <link rel="stylesheet" href="../fonts.css">
+<script src="c2-index.js?v=1"></script>
 </head>
 <body>
-<header class="top"><div class="col">
-  <div class="bar">
-    <a class="brand" href="../">ملخصات المحاضرات <small>· Circuits II</small></a>
-    <div class="ctrls"><select id="lecture-select" aria-label="اختر المحاضرة" onchange="if (this.value) location.href = this.value"></select><button class="icon-btn" id="theme-btn" type="button" aria-label="الوضع الليلي" title="المظهر">☾</button></div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="page"><div class="wrap">
+  <header class="top">
+    <a class="brand" href="../">تحليل الدوائر 2<span class="en-name">Electric Circuits II</span></a>
+    <a class="home" href="../">الرئيسية</a>
+  </header>
+  <main>
+  <div class="hero" id="hero">
+    <span class="en-name">AC CIRCUIT ANALYSIS</span>
+    <h1>تحليل الدوائر 2</h1>
+    <p>دوائر التيار المتردد من أول الموجة الجيبية إلى تصحيح معامل القدرة. اضغط على أي محاضرة يفتح شرحها.</p>
+    <div class="obj-name"><b>الفيزور الدوّار يرسم موجته</b><span class="en-name">ROTATING PHASOR · v(t) = Re{V e^jωt}</span></div>
+    <div class="legend">
+      <span><i style="background:var(--v)"></i>الجهد <span class="en-name">v(t)</span></span>
+      <span><i style="background:var(--i)"></i>التيار <span class="en-name">i(t)</span></span>
+      <span><i style="background:var(--p)"></i>القدرة <span class="en-name">p(t) = v·i</span></span>
+    </div>
+    <div class="dial">
+      <div class="dial-h"><b>حرّك زاوية الحمل وشوف القدرة</b><span>المساحة الحمراء قدرة ترجع للمصدر</span></div>
+      <input id="theta" type="range" min="-90" max="90" step="0.5" value="36.9" aria-label="زاوية الحمل θ بالدرجات">
+      <div class="ends"><span>سعوي ←</span><span>مقاومي</span><span>→ حثّي</span></div>
+      <div class="reads">
+        <div class="read"><small>زاوية الحمل <span class="en-name">θ</span></small><span class="en-name" id="o-th">+36.9°</span></div>
+        <div class="read"><small>معامل القدرة <span class="en-name">cos θ</span></small><span class="en-name" id="o-pf">0.80</span></div>
+        <div class="read"><small>القدرة المفيدة <span class="en-name">P/S</span></small><span class="en-name" id="o-p">80%</span></div>
+      </div>
+      <span id="o-kind" data-k="l">حثّي: التيار متأخر عن الجهد</span>
+    </div>
+    <div class="stats"><span><b>11</b> محاضرة</span><span><b>11</b> فيديو شرح</span><span>لوحة قوانين لكل محاضرة</span><span>عربي وإنجليزي</span></div>
   </div>
-  <nav class="tabs" aria-label="المواد"><a class="tab" href="../">الرئيسية</a><a class="tab" href="https://zed12g6t.github.io/marsad/">المرصد</a><a class="tab" href="../vectors/">المتجهات</a><a class="tab" href="../electromagnetism/">الكهرومغناطيسية</a><a class="tab on" href="../circuits2/" aria-current="page">الدوائر 2</a><a class="tab" href="../ethics/">أخلاقيات المهنة</a><a class="tab" href="../economics/">الاقتصاد الهندسي</a><a class="tab" href="../report-writing/">كتابة التقارير</a></nav>
-</div></header>
-<main class="col">
-  <div class="eyebrow"><span class="en-name">Circuits II</span> · فهرس المادة</div>
-  <h1>تحليل دوائر كهربائية 2</h1>
-  <p class="lead">دوائر التيار المتردد (AC). المقرر 11 محاضرة، وتنضاف هنا وحدة وحدة.</p>
-  <div class="sec-h"><span class="num">01</span><h2>المحاضرات</h2></div>
-  <div class="lect-list">
-    <a class="lect" href="lecture1.html"><span class="num">01</span><div class="t"><b>الإشارات الجيبية والطور</b><small>Sinusoids &amp; Phase · Ch 9.2</small></div></a>
-    <a class="lect" href="lecture2.html"><span class="num">02</span><div class="t"><b>الأعداد المركبة والفيزورات</b><small>Complex Numbers &amp; Phasors · Ch 9.3</small></div></a>
-    <a class="lect" href="lecture3.html"><span class="num">03</span><div class="t"><b>جمع الموجات وعلاقات R و L و C</b><small>Sinusoid Sums &amp; Phasor Relationships · Ch 9.3–9.4</small></div></a>
-    <a class="lect" href="lecture4.html"><span class="num">04</span><div class="t"><b>المعاوقة والمسامحة</b><small>Impedance &amp; Admittance · Ch 9.5</small></div></a>
-    <a class="lect" href="lecture5.html"><span class="num">05</span><div class="t"><b>قوانين كيرشوف وتوصيل المعاوقات</b><small>Kirchhoff's Laws &amp; Impedance Combinations · Ch 9.6–9.7</small></div></a>
-    <a class="lect" href="lecture6.html"><span class="num">06</span><div class="t"><b>تحليل العقد والحلقات</b><small>Nodal &amp; Mesh Analysis · Ch 10.2–10.3</small></div></a>
-    <a class="lect" href="lecture7.html"><span class="num">07</span><div class="t"><b>مكافئ ثيفنن ونورتن</b><small>Thevenin &amp; Norton Equivalents · Ch 10.6</small></div></a>
-    <a class="lect" href="lecture8.html"><span class="num">08</span><div class="t"><b>القدرة اللحظية والمتوسطة</b><small>Instantaneous &amp; Average Power · Ch 11.1–11.2</small></div></a>
-    <a class="lect" href="lecture9.html"><span class="num">09</span><div class="t"><b>نقل أقصى قدرة والقيمة الفعالة</b><small>Maximum Power Transfer &amp; RMS Value · Ch 11.3–11.4</small></div></a>
-    <a class="lect" href="lecture10.html"><span class="num">10</span><div class="t"><b>القدرة الظاهرية ومعامل القدرة والقدرة المركبة</b><small>Apparent Power, Power Factor &amp; Complex Power · Ch 11.5–11.6</small></div></a>
-    <a class="lect" href="lecture11.html"><span class="num">11</span><div class="t"><b>حفظ القدرة وتصحيح معامل القدرة</b><small>Conservation of AC Power &amp; Power Factor Correction · Ch 11.7–11.8</small></div><span class="tag">جديد</span></a>
-  </div>
-</main>
-<script src="nav.js"></script>
+
+  <nav aria-label="المحاضرات">
+    <div class="ch"><h2>الموجات الجيبية والفيزورات</h2><span class="en-name">CH 9 · SINUSOIDS &amp; PHASORS</span></div>
+    <div class="list">
+      <a class="lec" href="lecture1.html"><span class="n">01</span><span class="t"><b>الإشارات الجيبية والطور</b><span class="en-name">Sinusoids &amp; Phase</span></span><span class="sec en-name">9.2</span></a>
+      <a class="lec" href="lecture2.html"><span class="n">02</span><span class="t"><b>الأعداد المركبة والفيزورات</b><span class="en-name">Complex Numbers &amp; Phasors</span></span><span class="sec en-name">9.3</span></a>
+      <a class="lec" href="lecture3.html"><span class="n">03</span><span class="t"><b>جمع الموجات وعلاقات R و L و C</b><span class="en-name">Sinusoid Sums &amp; Phasor Relationships</span></span><span class="sec en-name">9.3–9.4</span></a>
+      <a class="lec" href="lecture4.html"><span class="n">04</span><span class="t"><b>المعاوقة والمسامحة</b><span class="en-name">Impedance &amp; Admittance</span></span><span class="sec en-name">9.5</span></a>
+      <a class="lec" href="lecture5.html"><span class="n">05</span><span class="t"><b>قوانين كيرشوف وتوصيل المعاوقات</b><span class="en-name">Kirchhoff's Laws &amp; Impedance Combinations</span></span><span class="sec en-name">9.6–9.7</span></a>
+    </div>
+    <div class="ch"><h2>تحليل الحالة المستقرة</h2><span class="en-name">CH 10 · SINUSOIDAL STEADY-STATE</span></div>
+    <div class="list">
+      <a class="lec" href="lecture6.html"><span class="n">06</span><span class="t"><b>تحليل العقد والحلقات</b><span class="en-name">Nodal &amp; Mesh Analysis</span></span><span class="sec en-name">10.2–10.3</span></a>
+      <a class="lec" href="lecture7.html"><span class="n">07</span><span class="t"><b>مكافئ ثيفنن ونورتن</b><span class="en-name">Thevenin &amp; Norton Equivalents</span></span><span class="sec en-name">10.6</span></a>
+    </div>
+    <div class="ch"><h2>تحليل القدرة في التيار المتردد</h2><span class="en-name">CH 11 · AC POWER ANALYSIS</span></div>
+    <div class="list">
+      <a class="lec" href="lecture8.html"><span class="n">08</span><span class="t"><b>القدرة اللحظية والمتوسطة</b><span class="en-name">Instantaneous &amp; Average Power</span></span><span class="sec en-name">11.1–11.2</span></a>
+      <a class="lec" href="lecture9.html"><span class="n">09</span><span class="t"><b>نقل أقصى قدرة والقيمة الفعالة</b><span class="en-name">Maximum Power Transfer &amp; RMS Value</span></span><span class="sec en-name">11.3–11.4</span></a>
+      <a class="lec" href="lecture10.html"><span class="n">10</span><span class="t"><b>القدرة الظاهرية ومعامل القدرة والقدرة المركبة</b><span class="en-name">Apparent Power, Power Factor &amp; Complex Power</span></span><span class="sec en-name">11.5–11.6</span></a>
+      <a class="lec" href="lecture11.html"><span class="n">11</span><span class="t"><b>حفظ القدرة وتصحيح معامل القدرة</b><span class="en-name">Conservation of AC Power &amp; PF Correction</span></span><span class="sec en-name">11.7–11.8</span></a>
+    </div>
+  </nav>
+  </main>
+</div></div>
 </body>
 </html>
