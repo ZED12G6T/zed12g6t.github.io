@@ -30,7 +30,7 @@ a { color: inherit; text-decoration: none; }
 .home:hover { color: var(--ink); border-color: var(--acc); }
 
 /* ================= العنوان (الرسمة جنبه على اليسار) ================= */
-.hero { max-width: 500px; min-height: min(78vh, 640px); padding-block: 20px 34px; display: flex; flex-direction: column; justify-content: center; }
+.hero { max-width: 500px; min-height: min(68vh, 560px); padding-block: 20px 34px; display: flex; flex-direction: column; justify-content: center; }
 .hero > .en-name { color: var(--acc); font-size: .74rem; letter-spacing: .22em; }
 .hero h1 { margin: 6px 0 8px; font-weight: 400; font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1.25; text-wrap: balance; }
 .hero p { margin: 0; color: var(--dim); font-size: 1.08rem; max-width: 42ch; }
@@ -41,21 +41,6 @@ a { color: inherit; text-decoration: none; }
 .legend span { display: inline-flex; align-items: center; gap: 7px; }
 .legend i { display: inline-block; width: 20px; height: 3px; border-radius: 2px; }
 .legend .en-name { font-size: .74rem; color: var(--ink); }
-
-/* ================= لوحة الزاوية θ ================= */
-.dial { margin-top: 18px; background: var(--card); border: 1px solid var(--edge); border-radius: 16px; padding: 12px 16px 14px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.dial-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: .92rem; color: var(--dim); }
-.dial-h b { font-weight: 400; color: var(--ink); }
-.dial input { width: 100%; margin: 10px 0 4px; accent-color: var(--p); direction: ltr; cursor: pointer; }
-.ends { direction: ltr; display: flex; justify-content: space-between; font-size: .76rem; color: var(--dim); }
-.reads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
-.read { border: 1px solid var(--edge); border-radius: 10px; padding: 6px 10px; display: grid; gap: 2px; }
-.read small { font-size: .74rem; color: var(--dim); white-space: nowrap; }
-.read small .en-name { font-size: .7rem; }
-.read > .en-name { font-size: 1.05rem; color: var(--p); font-variant-numeric: tabular-nums; }
-#o-kind { display: block; margin-top: 10px; font-size: .95rem; color: var(--ink); }
-#o-kind::before { content: ''; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 8px; background: var(--dim); vertical-align: middle; }
-#o-kind[data-k="l"]::before { background: var(--v); } #o-kind[data-k="c"]::before { background: var(--i); } #o-kind[data-k="r"]::before { background: var(--p); }
 
 /* ================= أرقام سريعة ================= */
 .stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }

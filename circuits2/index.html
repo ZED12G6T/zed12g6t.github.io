@@ -7,9 +7,9 @@
 <meta name="description" content="فهرس شرح محاضرات تحليل الدوائر الكهربائية 2: دوائر التيار المتردد والفيزورات والقدرة.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="c2-index.css?v=1">
+<link rel="stylesheet" href="c2-index.css?v=2">
 <link rel="stylesheet" href="../fonts.css">
-<script src="c2-index.js?v=1"></script>
+<script src="c2-index.js?v=2"></script>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -23,23 +23,8 @@
     <span class="en-name">AC CIRCUIT ANALYSIS</span>
     <h1>تحليل الدوائر 2</h1>
     <p>دوائر التيار المتردد من أول الموجة الجيبية إلى تصحيح معامل القدرة. اضغط على أي محاضرة يفتح شرحها.</p>
-    <div class="obj-name"><b>الفيزور الدوّار يرسم موجته</b><span class="en-name">ROTATING PHASOR · v(t) = Re{V e^jωt}</span></div>
-    <div class="legend">
-      <span><i style="background:var(--v)"></i>الجهد <span class="en-name">v(t)</span></span>
-      <span><i style="background:var(--i)"></i>التيار <span class="en-name">i(t)</span></span>
-      <span><i style="background:var(--p)"></i>القدرة <span class="en-name">p(t) = v·i</span></span>
-    </div>
-    <div class="dial">
-      <div class="dial-h"><b>حرّك زاوية الحمل وشوف القدرة</b><span>المساحة الحمراء قدرة ترجع للمصدر</span></div>
-      <input id="theta" type="range" min="-90" max="90" step="0.5" value="36.9" aria-label="زاوية الحمل θ بالدرجات">
-      <div class="ends"><span>سعوي ←</span><span>مقاومي</span><span>→ حثّي</span></div>
-      <div class="reads">
-        <div class="read"><small>زاوية الحمل <span class="en-name">θ</span></small><span class="en-name" id="o-th">+36.9°</span></div>
-        <div class="read"><small>معامل القدرة <span class="en-name">cos θ</span></small><span class="en-name" id="o-pf">0.80</span></div>
-        <div class="read"><small>القدرة المفيدة <span class="en-name">P/S</span></small><span class="en-name" id="o-p">80%</span></div>
-      </div>
-      <span id="o-kind" data-k="l">حثّي: التيار متأخر عن الجهد</span>
-    </div>
+    <div class="obj-name" id="obj"></div>
+    <div class="legend" id="legend"></div>
     <div class="stats"><span><b>11</b> محاضرة</span><span><b>11</b> فيديو شرح</span><span>لوحة قوانين لكل محاضرة</span><span>عربي وإنجليزي</span></div>
   </div>
 
