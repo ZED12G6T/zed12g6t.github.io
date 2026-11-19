@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-ar-only data-topic="Tutorial 3" data-title-en="Tutorial 3 - Line Integrals">
+<html lang="ar" dir="rtl" data-ar-only data-topic="Tutorial 3" data-title-en="Tutorial 3 - Line Integrals, Change of Variables, Polar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,9 @@
 
 <!-- ================= البطل ================= -->
 <section class="hero" id="top">
-  <p class="eyebrow">تمارين · المحاضرات 9 و 10</p>
+  <p class="eyebrow">تمارين · المحاضرات 8 و 9 و 10</p>
   <h1><span>حل Tutorial 3 <span class="ltr">Line Integrals</span></span> <span class="h1-math ltr">$\int_C P\,dx + Q\,dy$</span></h1>
-  <p class="lead">سؤالين من التكامل الخطي محلولين خطوة بخطوة: الأول نحسبه على ثلاث مسارات، والثاني نثبت أنه ما يعتمد على المسار ونحسبه بدالة الجهد. جرّب تحل أول، وبعدين قارن.</p>
+  <p class="lead">أربع أسئلة محلولة خطوة بخطوة: س1 تكامل خطي على ثلاث مسارات، س2 نثبت أنه ما يعتمد على المسار، س3 تكامل ثنائي بتغيير المتغيرات، و س4 حجم مخروط بالإحداثيات القطبية. جرّب تحل أول، وبعدين قارن.</p>
   <div class="xyz-bar">
     <span class="x">المسار (أ) خط</span><span class="y">المسار (ب) قطع مكافئ</span><span class="z">المسار (ج) متقطع</span>
     <small>← كلهم من $(0,1)$ إلى $(1,2)$</small>
@@ -27,8 +27,8 @@
     <div class="tldr-title">⚡ الأجوبة النهائية</div>
     <ol>
       <li>س1: (أ) $\tfrac53$، (ب) $2$، (ج) $\tfrac83$. الأجوبة اختلفت لأن الحقل مو conservative.</li>
-      <li>س2: $\partial P/\partial y = \partial Q/\partial x = 12xy - 3y^2$، إذن التكامل ما يعتمد على المسار.</li>
-      <li>دالة الجهد $f = 3x^2y^2 - xy^3$، والتكامل $= f(3,4) - f(1,2) = 240 - 4 = 236$.</li>
+      <li>س2: $\partial P/\partial y = \partial Q/\partial x$، فما يعتمد على المسار: $f = 3x^2y^2 - xy^3$ والتكامل $= 240 - 4 = 236$.</li>
+      <li>س3: $u = x + 2y,\ v = x - y$ تعطي $|J| = \tfrac13$ والجواب $\tfrac15$. س4: حجم المخروط بالقطبي $= \pi$.</li>
     </ol>
   </div>
 </section>
@@ -65,7 +65,7 @@
     </li>
     <li class="step">
       <h4>جهّز $dx$ و $dy$</h4>
-      <div class="m">\[ x = t \Rightarrow dx = dt \qquad y = t + 1 \Rightarrow dy = dt \]</div>
+      <div class="m">\[ \begin{gathered} x = t \Rightarrow dx = dt \\ y = t + 1 \Rightarrow dy = dt \end{gathered} \]</div>
     </li>
     <li class="step">
       <h4>عوّض في $P$ و $Q$</h4>
@@ -91,7 +91,7 @@
     </li>
     <li class="step">
       <h4>الجزء الثاني: $Q\,dy$</h4>
-      <div class="m">\[ \begin{aligned} Q &= (t^2 + 1)^2 + t = t^4 + 2t^2 + t + 1 \\ Q \cdot 2t &= 2t^5 + 4t^3 + 2t^2 + 2t \end{aligned} \]</div>
+      <div class="m">\[ \begin{aligned} Q &= (t^2 + 1)^2 + t \\ &= t^4 + 2t^2 + t + 1 \\ Q \cdot 2t &= 2t^5 + 4t^3 + 2t^2 + 2t \end{aligned} \]</div>
       <p class="why">⚠ لا تنسى تضرب في $2t$ اللي جاية من $dy$.</p>
     </li>
     <li class="step">
@@ -108,15 +108,15 @@
     </li>
     <li class="step">
       <h4>$C_1$: من $(0,1)$ إلى $(1,1)$ أفقي</h4>
-      <div class="m">\[ x = t,\ y = 1,\ 0 \le t \le 1 \quad\Rightarrow\quad dx = dt,\ dy = 0 \]</div>
+      <div class="m">\[ \begin{gathered} x = t,\ y = 1,\ 0 \le t \le 1 \\ \Rightarrow\ dx = dt,\ dy = 0 \end{gathered} \]</div>
       <p class="why">$y$ ثابت، فـ $dy = 0$ ويختفي جزء $Q$ كله.</p>
       <div class="m">\[ \int_0^1 (t^2 - 1)\,dt = \tfrac13 - 1 = -\tfrac23 \]</div>
     </li>
     <li class="step">
       <h4>$C_2$: من $(1,1)$ إلى $(1,2)$ عمودي</h4>
-      <div class="m">\[ x = 1,\ y = t,\ 1 \le t \le 2 \quad\Rightarrow\quad dx = 0,\ dy = dt \]</div>
+      <div class="m">\[ \begin{gathered} x = 1,\ y = t,\ 1 \le t \le 2 \\ \Rightarrow\ dx = 0,\ dy = dt \end{gathered} \]</div>
       <p class="why">$x$ ثابت، فـ $dx = 0$ ويختفي جزء $P$. وانتبه: $t$ من $1$ إلى $2$.</p>
-      <div class="m">\[ \begin{aligned} \int_1^2 (t^2 + 1)\,dt &= \Big(\tfrac83 + 2\Big) - \Big(\tfrac13 + 1\Big) \\ &= \tfrac{14}{3} - \tfrac43 = \tfrac{10}{3} \end{aligned} \]</div>
+      <div class="m">\[ \begin{aligned} &\int_1^2 (t^2 + 1)\,dt \\ &= \Big(\tfrac83 + 2\Big) - \Big(\tfrac13 + 1\Big) \\ &= \tfrac{14}{3} - \tfrac43 = \tfrac{10}{3} \end{aligned} \]</div>
     </li>
     <li class="step">
       <h4>اجمع القطعتين</h4>
@@ -140,7 +140,7 @@
     </li>
     <li class="step">
       <h4>الاختبار السريع</h4>
-      <div class="m">\[ \frac{\partial P}{\partial y} = 12xy - 3y^2 \qquad \frac{\partial Q}{\partial x} = 12xy - 3y^2 \]</div>
+      <div class="m">\[ \begin{gathered} \frac{\partial P}{\partial y} = 12xy - 3y^2 \\ \frac{\partial Q}{\partial x} = 12xy - 3y^2 \end{gathered} \]</div>
       <p class="why">متساويين ✓ إذن الحقل conservative والتكامل ما يعتمد على المسار.</p>
     </li>
     <li class="step">
@@ -150,17 +150,204 @@
     </li>
     <li class="step">
       <h4>اشتق على $y$ وساوِ بـ $Q$</h4>
-      <div class="m">\[ \begin{gathered} \frac{\partial f}{\partial y} = 6x^2y - 3xy^2 + g'(y) = 6x^2y - 3xy^2 \\ \Rightarrow g'(y) = 0 \Rightarrow g(y) = c \end{gathered} \]</div>
+      <div class="m">\[ \begin{gathered} \frac{\partial f}{\partial y} = 6x^2y - 3xy^2 + g'(y) \\ = 6x^2y - 3xy^2 \\ \Rightarrow g'(y) = 0 \Rightarrow g(y) = c \end{gathered} \]</div>
       <div class="m">\[ f(x,y) = 3x^2y^2 - xy^3 \]</div>
     </li>
     <li class="step">
       <h4>عوّض النهاية ناقص البداية</h4>
-      <div class="m">\[ \begin{aligned} f(3,4) &= 3(9)(16) - 3(64) = 432 - 192 = 240 \\ f(1,2) &= 3(1)(4) - 1(8) = 12 - 8 = 4 \end{aligned} \]</div>
-      <div class="m">\[ \int_C = f(B) - f(A) = 240 - 4 = 236 \]</div>
+      <div class="m">\[ \begin{aligned} f(3,4) &= 3(9)(16) - 3(64) \\ &= 432 - 192 = 240 \\ f(1,2) &= 3(1)(4) - 1(8) \\ &= 12 - 8 = 4 \end{aligned} \]</div>
+      <div class="m">\[ \begin{aligned} \int_C &= f(B) - f(A) \\ &= 240 - 4 = 236 \end{aligned} \]</div>
     </li>
     <li class="step final">
       <div class="result">$236$</div>
       <p class="sanity">تأكد: $\partial f/\partial x = 6xy^2 - y^3 = P$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= س3 ================= -->
+<section class="card" id="q3" data-num="3" data-nav="س3|Q3">
+  <div class="ex-head"><span class="ex-badge">س3</span><h2>تكامل ثنائي بتغيير المتغيرات</h2></div>
+  <div class="tags"><span class="tag">Change of variables</span><span class="tag">Jacobian</span><span class="tag"><a href="lecture8.html">المحاضرة 8</a></span></div>
+  <p>Use the change of variables to evaluate</p>
+  <div class="m big">\[ \iint_R (x - y)(x + 2y)^2\,dA \]</div>
+  <p>على المنطقة $R = \{(x,y):\ x \ge 0,\ y \le 0,\ x - y \le 1\}$، باستخدام المتغيرات الجديدة:</p>
+  <div class="m">\[ \Z{u = x + 2y} \qquad \Z{v = x - y} \]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 320 270" role="img" aria-label="المنطقة R في مستوى xy: مثلث رؤوسه (0,0) و (1,0) و (0,-1)" style="max-width:330px">
+    <path class="ax" style="stroke-width:2" d="M40 70 H300 M90 20 V262"/>
+    <text class="lbl" x="304.0" y="75.0">x</text>
+    <text class="lbl" x="86.0" y="14.0">y</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M90 70 L240 70 L90 220Z"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4.5" d="M90 70 L240 70"/>
+    <path class="sk" style="--c:var(--cy);stroke-width:4.5" d="M90 70 L90 220"/>
+    <path class="sk" style="--c:var(--cz);stroke-width:4.5" d="M240 70 L90 220"/>
+    <circle cx="90" cy="70" r="5" class="fi" style="--c:var(--ink)"/><circle cx="240" cy="70" r="5" class="fi" style="--c:var(--ink)"/><circle cx="90" cy="220" r="5" class="fi" style="--c:var(--ink)"/>
+    <text class="lbl" x="42.0" y="60.0">(0,0)</text>
+    <text class="lbl" x="222.0" y="56.0">(1,0)</text>
+    <text class="lbl" x="36.0" y="240.0">(0,−1)</text>
+    <text class="lbl" x="150.0" y="60.0" text-anchor="middle" style="fill:var(--cx);font-size:13px">y = 0</text>
+    <text class="lbl" x="98.0" y="150.0" style="fill:var(--cy);font-size:13px">x = 0</text>
+    <text class="lbl" x="180.0" y="160.0" style="fill:var(--cz);font-size:13px">x − y = 1</text>
+    <text class="lbl" x="124.0" y="112.0" style="fill:var(--cz);font-size:20px">R</text>
+    </svg>
+    <figcaption>المنطقة الأصلية: مثلث بين الخطوط $y = 0$ و $x = 0$ و $x - y = 1$، رؤوسه $(0,0)$ و $(1,0)$ و $(0,-1)$.</figcaption>
+  </figure>
+  <div class="callout key"><strong>🔑 خطة الحل (4 خطوات):</strong> (1) نطلّع $x$ و $y$ بدلالة $u$ و $v$. (2) نحسب الجاكوبيان $J$ ومنه $dA$. (3) نحوّل حدود المنطقة إلى مستوى $uv$. (4) نعوّض الدالة ونكامل.</div>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <div class="map"><span class="x">f = (x − y)(x + 2y)²</span><span class="z">u = x + 2y</span><span class="z">v = x − y</span><span class="y">R: x ≥ 0, y ≤ 0, x − y ≤ 1</span></div>
+      <p class="why">لاحظ إن الدالة نفسها مكتوبة من $x - y$ و $x + 2y$، يعني بتصير بسيطة جداً بالمتغيرات الجديدة.</p>
+    </li>
+    <li class="step">
+      <h4>(1) طلّع $y$: اطرح المعادلتين</h4>
+      <div class="m">\[ \begin{aligned} u &= x + 2y \quad \cdots (1) \\ v &= x - y \quad\ \ \cdots (2) \end{aligned} \]</div>
+      <div class="m">\[ \begin{gathered} (1) - (2):\quad u - v = 3y \\ \Rightarrow\quad \X{y = \frac{u - v}{3}} \end{gathered} \]</div>
+      <p class="why">الـ $x$ يروح مع $x$، و $2y - (-y) = 3y$.</p>
+    </li>
+    <li class="step">
+      <h4>(1) طلّع $x$: الأولى + 2 × الثانية</h4>
+      <div class="m">\[ \begin{array}{r} u = x + 2y \\ 2v = 2x - 2y \\ \hline u + 2v = 3x \end{array} \quad\Rightarrow\quad \X{x = \frac{u + 2v}{3}} \]</div>
+      <p class="why">ضربنا الثانية في 2 عشان $+2y$ و $-2y$ يروحون مع بعض.</p>
+    </li>
+    <li class="step">
+      <h4>(2) المشتقات الجزئية الأربع</h4>
+      <div class="m">\[ \begin{gathered} x = \tfrac13 u + \tfrac23 v \\ \frac{\partial x}{\partial u} = \tfrac13,\qquad \frac{\partial x}{\partial v} = \tfrac23 \\[10pt] y = \tfrac13 u - \tfrac13 v \\ \frac{\partial y}{\partial u} = \tfrac13,\qquad \frac{\partial y}{\partial v} = -\tfrac13 \end{gathered} \]</div>
+    </li>
+    <li class="step">
+      <h4>(2) الجاكوبيان (محدد 2×2)</h4>
+      <div class="m">\[ \begin{aligned} J(u,v) &= \frac{\partial(x,y)}{\partial(u,v)} \\ &= \begin{vmatrix} \dfrac{\partial x}{\partial u} & \dfrac{\partial x}{\partial v} \\[6pt] \dfrac{\partial y}{\partial u} & \dfrac{\partial y}{\partial v} \end{vmatrix} \\ &= \begin{vmatrix} \tfrac13 & \tfrac23 \\[4pt] \tfrac13 & -\tfrac13 \end{vmatrix} \\ &= \Big(\tfrac13\Big)\Big(-\tfrac13\Big) - \Big(\tfrac23\Big)\Big(\tfrac13\Big) \\ &= -\tfrac19 - \tfrac29 \\ &= -\tfrac39 = -\tfrac13 \end{aligned} \]</div>
+      <p class="why">المحدد = (القطر الرئيسي) ناقص (القطر الثاني)، مثل السهم المتقاطع اللي رسمه الدكتور.</p>
+    </li>
+    <li class="step">
+      <h4>(2) عنصر المساحة $dA$</h4>
+      <div class="m">\[ \begin{aligned} dA = dx\,dy &= |J|\,du\,dv \\ &= \Big|-\tfrac13\Big|\,du\,dv \\ &= \Y{\tfrac13\,du\,dv} \end{aligned} \]</div>
+      <p class="why">ناخذ <b>القيمة المطلقة</b>، لأن المساحة ما تكون سالبة.</p>
+    </li>
+    <li class="step">
+      <h4>(3) حوّل حدود المنطقة واحد واحد</h4>
+      <div class="m">\[ \begin{gathered} y = 0:\ \ u = x,\ v = x \\ \Rightarrow\ \X{u = v} \\[8pt] x = 0:\ \ u = 2y,\ v = -y \\ \Rightarrow\ \Y{u = -2v} \\[8pt] x - y = 1:\ \ \Z{v = 1} \end{gathered} \]</div>
+      <p class="why">في السطر الثاني: من $v = -y$ نطلع $y = -v$، فـ $u = 2y = -2v$.</p>
+    </li>
+    <li class="step">
+      <h4>(3) تأكد من الرؤوس</h4>
+      <p class="why">عوّض كل رأس في $u = x + 2y$ و $v = x - y$:</p>
+      <div class="m">\[ \begin{aligned} (0,0) &\mapsto (0,\ 0) \\ (1,0) &\mapsto (1+0,\,1-0) = (1,1) \\ (0,-1) &\mapsto (0-2,\,0+1) = (-2,1) \end{aligned} \]</div>
+      <figure class="fig">
+    <svg viewBox="0 0 350 240" role="img" aria-label="المنطقة الجديدة في مستوى uv: مثلث رؤوسه (0,0) و (1,1) و (-2,1) مع شريحة أفقية من u = -2v إلى u = v" style="max-width:360px">
+    <path class="ax" style="stroke-width:2" d="M24 200 H330 M220 230 V24"/>
+    <text class="lbl" x="334.0" y="205.0">u</text>
+    <text class="lbl" x="216.0" y="18.0">v</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M220 200 L310 70 L40 70Z"/>
+    <rect x="121.0" y="124.6" width="148.5" height="3.9" class="fi" style="--c:var(--cz);opacity:.7"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4.5" d="M220 200 L310 70"/>
+    <path class="sk" style="--c:var(--cy);stroke-width:4.5" d="M220 200 L40 70"/>
+    <path class="sk" style="--c:var(--cz);stroke-width:4.5" d="M40 70 L310 70"/>
+    <circle cx="220" cy="200" r="5" class="fi" style="--c:var(--ink)"/><circle cx="310" cy="70" r="5" class="fi" style="--c:var(--ink)"/><circle cx="40" cy="70" r="5" class="fi" style="--c:var(--ink)"/>
+    <text class="lbl" x="226.0" y="220.0">(0,0)</text>
+    <text class="lbl" x="296.0" y="58.0">(1,1)</text>
+    <text class="lbl" x="18.0" y="58.0">(−2,1)</text>
+    <path class="ax" d="M40 196 V204"/>
+    <text class="tick" x="40.0" y="218.0" text-anchor="middle">−2</text>
+    <path class="ax" d="M310 196 V204"/>
+    <text class="tick" x="310.0" y="218.0" text-anchor="middle">1</text>
+    <text class="lbl" x="283.8" y="141.5" style="fill:var(--cx);font-size:13px">u = v</text>
+    <text class="lbl" x="103.5" y="155.5" text-anchor="end" style="fill:var(--cy);font-size:13px">u = −2v</text>
+    <text class="lbl" x="175.0" y="60.0" text-anchor="middle" style="fill:var(--cz);font-size:13px">v = 1</text>
+    </svg>
+        <figcaption>المنطقة الجديدة في مستوى $uv$: مثلث رؤوسه $(0,0)$ و $(1,1)$ و $(-2,1)$. نفس ألوان الأضلاع في الرسمة الأولى.</figcaption>
+      </figure>
+      <p class="why">الشريحة الأفقية: $v$ من $0$ إلى $1$، وعند كل $v$ يمشي $u$ من الضلع الأيسر $u = -2v$ إلى الأيمن $u = v$:</p>
+      <div class="m">\[ 0 \le v \le 1,\qquad -2v \le u \le v \]</div>
+    </li>
+    <li class="step">
+      <h4>(4) عوّض الدالة</h4>
+      <div class="m">\[ \begin{gathered} f(x,y) = (\underbrace{x - y}_{v})(\underbrace{x + 2y}_{u})^2 \\ = v\,u^2 = f(u,v) \end{gathered} \]</div>
+    </li>
+    <li class="step">
+      <h4>(4) ركّب التكامل</h4>
+      <div class="m">\[ \begin{aligned} &\iint_R (x - y)(x + 2y)^2\,dA \\ &= \tfrac13 \int_0^1\!\!\int_{-2v}^{v} v\,u^2\,du\,dv \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>التكامل الداخلي (على $u$)</h4>
+      <div class="m">\[ \begin{aligned} &\int_{-2v}^{v} v\,u^2\,du = v\Big[\frac{u^3}{3}\Big]_{-2v}^{v} \\ &= v\Big(\frac{v^3}{3} - \frac{(-2v)^3}{3}\Big) \\ &= v\Big(\frac{v^3}{3} + \frac{8v^3}{3}\Big) \\ &= \frac{v\,(v^3 + 8v^3)}{3} \end{aligned} \]</div>
+      <p class="why">⚠ $(-2v)^3 = -8v^3$، والسالب قبله يقلبه موجب: $-(-8v^3) = +8v^3$.</p>
+    </li>
+    <li class="step">
+      <h4>التكامل الخارجي (على $v$)</h4>
+      <div class="m">\[ \begin{aligned} &\tfrac13 \int_0^1 \frac{v^4 + 8v^4}{3}\,dv \\ &= \tfrac19 \int_0^1 9v^4\,dv \\ &= \tfrac99 \int_0^1 v^4\,dv \\ &= \frac{v^5}{5}\Big|_0^1 = \tfrac15 \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\dfrac15$</div>
+      <p class="sanity">تأكد من $|J|$: مساحة مثلث $uv$ = $\tfrac12 \times 3 \times 1 = \tfrac32$، ضرب $\tfrac13$ = $\tfrac12$ = مساحة مثلث $xy$ ✓</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= س4 ================= -->
+<section class="card" id="q4" data-num="4" data-nav="س4|Q4">
+  <div class="ex-head"><span class="ex-badge">س4</span><h2>حجم المخروط بالإحداثيات القطبية</h2></div>
+  <div class="tags"><span class="tag">Polar</span><span class="tag">Volume</span><span class="tag">r dr dθ</span></div>
+  <p>Use the polar coordinates to find the volume inside the cone</p>
+  <div class="m big">\[ z = 3\sqrt{x^2 + y^2},\qquad 0 \le z \le 3 \]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 340 275" role="img" aria-label="مخروط رأسه عند الأصل يفتح لفوق إلى المستوى z = 3 حيث نصف القطر 1، والعمود بين المخروط والسقف طوله 3 - 3r" style="max-width:350px">
+    <path class="ax" d="M170 262 V14"/>
+    <text class="lbl" x="176.0" y="18.0">z</text>
+    <path class="sk dash" style="--c:var(--ink-3);stroke-width:1.6" d="M270.0 232.0 L269.7 234.0 L268.8 236.1 L267.2 238.1 L265.1 240.0 L262.4 241.9 L259.1 243.8 L255.3 245.6 L250.9 247.3 L246.0 248.9 L240.7 250.4 L234.9 251.8 L228.8 253.0 L222.2 254.2 L215.4 255.2 L208.3 256.0 L200.9 256.7 L193.3 257.3 L185.6 257.7 L177.8 257.9 L170.0 258.0 L162.2 257.9 L154.4 257.7 L146.7 257.3 L139.1 256.7 L131.7 256.0 L124.6 255.2 L117.8 254.2 L111.2 253.0 L105.1 251.8 L99.3 250.4 L94.0 248.9 L89.1 247.3 L84.7 245.6 L80.9 243.8 L77.6 241.9 L74.9 240.0 L72.8 238.1 L71.2 236.1 L70.3 234.0 L70.0 232.0 L70.3 230.0 L71.2 227.9 L72.8 225.9 L74.9 224.0 L77.6 222.1 L80.9 220.2 L84.7 218.4 L89.1 216.7 L94.0 215.1 L99.3 213.6 L105.1 212.2 L111.2 211.0 L117.8 209.8 L124.6 208.8 L131.7 208.0 L139.1 207.3 L146.7 206.7 L154.4 206.3 L162.2 206.1 L170.0 206.0 L177.8 206.1 L185.6 206.3 L193.3 206.7 L200.9 207.3 L208.3 208.0 L215.4 208.8 L222.2 209.8 L228.8 211.0 L234.9 212.2 L240.7 213.6 L246.0 215.1 L250.9 216.7 L255.3 218.4 L259.1 220.2 L262.4 222.1 L265.1 224.0 L267.2 225.9 L268.8 227.9 L269.7 230.0 L270.0 232.0Z"/>
+    <path class="fi" style="--c:var(--cz);opacity:.12" d="M270.0 232.0 L269.7 234.0 L268.8 236.1 L267.2 238.1 L265.1 240.0 L262.4 241.9 L259.1 243.8 L255.3 245.6 L250.9 247.3 L246.0 248.9 L240.7 250.4 L234.9 251.8 L228.8 253.0 L222.2 254.2 L215.4 255.2 L208.3 256.0 L200.9 256.7 L193.3 257.3 L185.6 257.7 L177.8 257.9 L170.0 258.0 L162.2 257.9 L154.4 257.7 L146.7 257.3 L139.1 256.7 L131.7 256.0 L124.6 255.2 L117.8 254.2 L111.2 253.0 L105.1 251.8 L99.3 250.4 L94.0 248.9 L89.1 247.3 L84.7 245.6 L80.9 243.8 L77.6 241.9 L74.9 240.0 L72.8 238.1 L71.2 236.1 L70.3 234.0 L70.0 232.0 L70.3 230.0 L71.2 227.9 L72.8 225.9 L74.9 224.0 L77.6 222.1 L80.9 220.2 L84.7 218.4 L89.1 216.7 L94.0 215.1 L99.3 213.6 L105.1 212.2 L111.2 211.0 L117.8 209.8 L124.6 208.8 L131.7 208.0 L139.1 207.3 L146.7 206.7 L154.4 206.3 L162.2 206.1 L170.0 206.0 L177.8 206.1 L185.6 206.3 L193.3 206.7 L200.9 207.3 L208.3 208.0 L215.4 208.8 L222.2 209.8 L228.8 211.0 L234.9 212.2 L240.7 213.6 L246.0 215.1 L250.9 216.7 L255.3 218.4 L259.1 220.2 L262.4 222.1 L265.1 224.0 L267.2 225.9 L268.8 227.9 L269.7 230.0 L270.0 232.0Z"/>
+    <path class="fi" style="--c:var(--cx);opacity:.16" d="M170.0 232.0 L270.0 62.0 L269.9 63.0 L269.7 64.0 L269.3 65.1 L268.8 66.1 L268.1 67.1 L267.2 68.1 L266.2 69.1 L265.1 70.0 L263.8 71.0 L262.4 71.9 L260.8 72.9 L259.1 73.8 L257.2 74.7 L255.3 75.6 L253.1 76.4 L250.9 77.3 L248.5 78.1 L246.0 78.9 L243.4 79.6 L240.7 80.4 L237.9 81.1 L234.9 81.8 L231.9 82.4 L228.8 83.0 L225.6 83.6 L222.2 84.2 L218.9 84.7 L215.4 85.2 L211.9 85.6 L208.3 86.0 L204.6 86.4 L200.9 86.7 L197.1 87.0 L193.3 87.3 L189.5 87.5 L185.6 87.7 L181.8 87.8 L177.8 87.9 L173.9 88.0 L170.0 88.0 L166.1 88.0 L162.2 87.9 L158.2 87.8 L154.4 87.7 L150.5 87.5 L146.7 87.3 L142.9 87.0 L139.1 86.7 L135.4 86.4 L131.7 86.0 L128.1 85.6 L124.6 85.2 L121.1 84.7 L117.8 84.2 L114.4 83.6 L111.2 83.0 L108.1 82.4 L105.1 81.8 L102.1 81.1 L99.3 80.4 L96.6 79.6 L94.0 78.9 L91.5 78.1 L89.1 77.3 L86.9 76.4 L84.7 75.6 L82.8 74.7 L80.9 73.8 L79.2 72.9 L77.6 71.9 L76.2 71.0 L74.9 70.0 L73.8 69.1 L72.8 68.1 L71.9 67.1 L71.2 66.1 L70.7 65.1 L70.3 64.0 L70.1 63.0 L70.0 62.0Z"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:3.5" d="M70 62 L170 232 L270 62"/>
+    <path class="fi" style="--c:var(--cy);opacity:.2" d="M270.0 62.0 L269.7 64.0 L268.8 66.1 L267.2 68.1 L265.1 70.0 L262.4 71.9 L259.1 73.8 L255.3 75.6 L250.9 77.3 L246.0 78.9 L240.7 80.4 L234.9 81.8 L228.8 83.0 L222.2 84.2 L215.4 85.2 L208.3 86.0 L200.9 86.7 L193.3 87.3 L185.6 87.7 L177.8 87.9 L170.0 88.0 L162.2 87.9 L154.4 87.7 L146.7 87.3 L139.1 86.7 L131.7 86.0 L124.6 85.2 L117.8 84.2 L111.2 83.0 L105.1 81.8 L99.3 80.4 L94.0 78.9 L89.1 77.3 L84.7 75.6 L80.9 73.8 L77.6 71.9 L74.9 70.0 L72.8 68.1 L71.2 66.1 L70.3 64.0 L70.0 62.0 L70.3 60.0 L71.2 57.9 L72.8 55.9 L74.9 54.0 L77.6 52.1 L80.9 50.2 L84.7 48.4 L89.1 46.7 L94.0 45.1 L99.3 43.6 L105.1 42.2 L111.2 41.0 L117.8 39.8 L124.6 38.8 L131.7 38.0 L139.1 37.3 L146.7 36.7 L154.4 36.3 L162.2 36.1 L170.0 36.0 L177.8 36.1 L185.6 36.3 L193.3 36.7 L200.9 37.3 L208.3 38.0 L215.4 38.8 L222.2 39.8 L228.8 41.0 L234.9 42.2 L240.7 43.6 L246.0 45.1 L250.9 46.7 L255.3 48.4 L259.1 50.2 L262.4 52.1 L265.1 54.0 L267.2 55.9 L268.8 57.9 L269.7 60.0 L270.0 62.0Z"/>
+    <path class="sk" style="--c:var(--cy);stroke-width:3.5" d="M270.0 62.0 L269.7 64.0 L268.8 66.1 L267.2 68.1 L265.1 70.0 L262.4 71.9 L259.1 73.8 L255.3 75.6 L250.9 77.3 L246.0 78.9 L240.7 80.4 L234.9 81.8 L228.8 83.0 L222.2 84.2 L215.4 85.2 L208.3 86.0 L200.9 86.7 L193.3 87.3 L185.6 87.7 L177.8 87.9 L170.0 88.0 L162.2 87.9 L154.4 87.7 L146.7 87.3 L139.1 86.7 L131.7 86.0 L124.6 85.2 L117.8 84.2 L111.2 83.0 L105.1 81.8 L99.3 80.4 L94.0 78.9 L89.1 77.3 L84.7 75.6 L80.9 73.8 L77.6 71.9 L74.9 70.0 L72.8 68.1 L71.2 66.1 L70.3 64.0 L70.0 62.0 L70.3 60.0 L71.2 57.9 L72.8 55.9 L74.9 54.0 L77.6 52.1 L80.9 50.2 L84.7 48.4 L89.1 46.7 L94.0 45.1 L99.3 43.6 L105.1 42.2 L111.2 41.0 L117.8 39.8 L124.6 38.8 L131.7 38.0 L139.1 37.3 L146.7 36.7 L154.4 36.3 L162.2 36.1 L170.0 36.0 L177.8 36.1 L185.6 36.3 L193.3 36.7 L200.9 37.3 L208.3 38.0 L215.4 38.8 L222.2 39.8 L228.8 41.0 L234.9 42.2 L240.7 43.6 L246.0 45.1 L250.9 46.7 L255.3 48.4 L259.1 50.2 L262.4 52.1 L265.1 54.0 L267.2 55.9 L268.8 57.9 L269.7 60.0 L270.0 62.0Z"/>
+    <path class="sk dash" style="--c:var(--ink-3);stroke-width:1.4" d="M230.0 232 V130.0"/>
+    <path class="sk" style="--c:var(--cz);stroke-width:7;opacity:.9" d="M230.0 130.0 V62"/>
+    <path class="sk" style="--c:var(--ink-2);stroke-width:1.6" d="M170 232 L230.0 232"/>
+    <text class="lbl" x="200.0" y="248.0" text-anchor="middle" style="font-size:13px">r</text>
+    <text class="lbl" x="242.0" y="100.0" style="fill:var(--cz);font-size:13px">3 − 3r</text>
+    <text class="lbl" x="278.0" y="56.0" style="fill:var(--cy);font-size:14px">z = 3</text>
+    <text class="lbl" x="228.0" y="166.0" style="fill:var(--cx);font-size:13px">z = 3√(x²+y²)</text>
+    <text class="tick" x="66.0" y="92.0" text-anchor="end">r = 1</text>
+    <text class="lbl" x="106.0" y="240.0" style="fill:var(--cz);font-size:17px">R</text>
+    </svg>
+    <figcaption>المخروط رأسه عند الأصل ويفتح لفوق. الحجم المطلوب بين سطح المخروط (تحت) والسقف $z = 3$ (فوق). ظله على الأرض قرص.</figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4>اقرأ السؤال</h4>
+      <div class="map"><span class="x">تحت: z = 3√(x²+y²)</span><span class="y">فوق: z = 3</span><span class="z">R = الظل</span></div>
+      <p class="why">$\sqrt{x^2 + y^2}$ هي المسافة عن المحور $z$، يعني $r$. فالسؤال يصرخ "استخدم القطبي".</p>
+    </li>
+    <li class="step">
+      <h4>وين يلتقي المخروط بالسقف؟ (حدود الظل)</h4>
+      <div class="m">\[ \begin{gathered} z = 3:\quad 3 = 3\sqrt{x^2 + y^2} \\ \Rightarrow\ 1 = \sqrt{x^2 + y^2} \\ \Rightarrow\ \Z{x^2 + y^2 = 1} \end{gathered} \]</div>
+      <p class="why">يعني الظل $R$ قرص نصف قطره $1$.</p>
+    </li>
+    <li class="step">
+      <h4>الحجم = (فوق − تحت) على الظل</h4>
+      <div class="m">\[ \begin{aligned} V &= \iint_R f(x,y)\,dA \\ &= \iint_R \big(\Y{3} - \X{z}\big)\,dA \\ &= \iint_R \Big(3 - 3\sqrt{x^2 + y^2}\Big)\,dA \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>بدّل للقطبي</h4>
+      <div class="m">\[ \begin{gathered} x = r\cos\theta,\qquad y = r\sin\theta \\ x^2 + y^2 = r^2 \\ dA = dx\,dy = \Z{r\,dr\,d\theta} \\ r: 0 \to 1,\qquad \theta: 0 \to 2\pi \end{gathered} \]</div>
+      <p class="why">⚠ لا تنسى الـ $r$ في $dA$. هذي هي الجاكوبيان حق القطبي.</p>
+    </li>
+    <li class="step">
+      <h4>ركّب التكامل وطلّع الـ 3</h4>
+      <div class="m">\[ \begin{aligned} V &= \int_0^{2\pi}\!\!\int_0^1 (3 - 3r)\,\Z{r}\,dr\,d\theta \\ &= 3\int_0^{2\pi}\!\!\int_0^1 (r - r^2)\,dr\,d\theta \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>التكامل الداخلي (على $r$)</h4>
+      <div class="m">\[ \begin{aligned} &\int_0^1 (r - r^2)\,dr \\ &= \Big[\frac{r^2}{2} - \frac{r^3}{3}\Big]_0^1 \\ &= \tfrac12 - \tfrac13 = \tfrac{3 - 2}{6} = \tfrac16 \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4>التكامل الخارجي (على $\theta$)</h4>
+      <div class="m">\[ \begin{aligned} V &= 3\int_0^{2\pi} \tfrac16\,d\theta = \tfrac12 \int_0^{2\pi} d\theta \\ &= \tfrac12\,\theta\,\Big|_0^{2\pi} \\ &= \tfrac12 \cdot 2\pi = \pi \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$V = \pi$</div>
+      <p class="sanity">تأكد بقانون المخروط: $\tfrac13\pi r^2 h = \tfrac13\pi(1)^2(3) = \pi$ ✓</p>
     </li>
   </ol>
 </section>
@@ -189,9 +376,33 @@
     <div class="check" data-answer="28"></div>
     <details class="hint"><p>$\partial P/\partial y = 2x + 2y = \partial Q/\partial x$. كامل $P$ على $x$.</p></details>
     <ol class="solve" data-start="solution">
-      <li class="step"><h4>دالة الجهد</h4><div class="m">\[ f = x^2y + xy^2 + g(y),\quad g'(y) = 0 \]</div></li>
-      <li class="step"><h4>النهاية ناقص البداية</h4><div class="m">\[ f(2,3) - f(1,1) = (12 + 18) - (1 + 1) = 28 \]</div></li>
+      <li class="step"><h4>دالة الجهد</h4><div class="m">\[ \begin{gathered} f = x^2y + xy^2 + g(y) \\ g'(y) = 0 \end{gathered} \]</div></li>
+      <li class="step"><h4>النهاية ناقص البداية</h4><div class="m">\[ \begin{aligned} &f(2,3) - f(1,1) \\ &= (12 + 18) - (1 + 1) = 28 \end{aligned} \]</div></li>
       <li class="step final"><div class="result">$28$</div></li>
+    </ol>
+  </div>
+  <div class="prob">
+    <div class="prob-top"><b>تمرين ج</b><span class="lvl">مثل س3</span></div>
+    <p>باستخدام $u = x + y$ و $v = x - y$، احسب التكامل على المربع اللي رؤوسه $(0,0)$ و $(1,1)$ و $(2,0)$ و $(1,-1)$:</p>
+    <div class="m">\[ \iint_R (x + y)(x - y)^2\,dA \]</div>
+    <div class="check" data-answer="8/3"></div>
+    <details class="hint"><p>$x = \tfrac{u+v}{2}$ و $y = \tfrac{u-v}{2}$، فـ $|J| = \tfrac12$. والمربع يصير $0 \le u \le 2$ و $0 \le v \le 2$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>الجاكوبيان</h4><div class="m">\[ \begin{gathered} J = \begin{vmatrix} \tfrac12 & \tfrac12 \\ \tfrac12 & -\tfrac12 \end{vmatrix} \\ = -\tfrac14 - \tfrac14 = -\tfrac12 \\ dA = \tfrac12\,du\,dv \end{gathered} \]</div></li>
+      <li class="step"><h4>كامل</h4><div class="m">\[ \begin{aligned} &\tfrac12\int_0^2\!\!\int_0^2 u\,v^2\,du\,dv \\ &= \tfrac12 \cdot 2 \cdot \tfrac83 = \tfrac83 \end{aligned} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac83$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b>تمرين د</b><span class="lvl">مثل س4</span></div>
+    <p>بالإحداثيات القطبية، أوجد الحجم داخل المخروط $z = 2\sqrt{x^2 + y^2}$ و $0 \le z \le 4$.</p>
+    <div class="check" data-answer="16pi/3"></div>
+    <details class="hint"><p>$4 = 2r$ يعطي $r = 2$. والحجم $\int_0^{2\pi}\!\int_0^2 (4 - 2r)\,r\,dr\,d\theta$.</p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4>التكامل الداخلي</h4><div class="m">\[ \begin{aligned} \int_0^2 (4r - 2r^2)\,dr &= 8 - \tfrac{16}{3} \\ &= \tfrac83 \end{aligned} \]</div></li>
+      <li class="step"><h4>ضرب $2\pi$</h4><div class="m">\[ V = 2\pi \cdot \tfrac83 = \tfrac{16\pi}{3} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac{16\pi}{3}$</div><p class="sanity">$\tfrac13\pi(2)^2(4) = \tfrac{16\pi}{3}$ ✓</p></li>
     </ol>
   </div>
 </section>
@@ -210,6 +421,15 @@
   </div>
   <div class="mk"><div class="mk-title">ترتيب الطرح</div>
     <div class="pair"><div class="no"><div class="mm">$f(A) - f(B) = -236$</div>البداية ناقص النهاية.</div><div class="yes"><div class="mm">$f(B) - f(A) = 236$</div>النهاية ناقص البداية.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">نسيان $|J|$ في س3</div>
+    <div class="pair"><div class="no"><div class="mm">$\int\!\!\int v\,u^2\,du\,dv = \tfrac35$</div>بدّلت $dA$ بـ $du\,dv$ على طول.</div><div class="yes"><div class="mm">$dA = \tfrac13\,du\,dv$</div>اضرب في $|J|$ دايماً.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">إشارة $(-2v)^3$</div>
+    <div class="pair"><div class="no"><div class="mm">$\tfrac{v^3}{3} - \tfrac{8v^3}{3}$</div>نسيت إن السالب في السالب موجب.</div><div class="yes"><div class="mm">$\tfrac{v^3}{3} + \tfrac{8v^3}{3}$</div>$-\big(-8v^3\big) = +8v^3$.</div></div>
+  </div>
+  <div class="mk"><div class="mk-title">نسيان $r$ في القطبي (س4)</div>
+    <div class="pair"><div class="no"><div class="mm">$\int\!\!\int (3 - 3r)\,dr\,d\theta = 3\pi$</div>كتبت $dA = dr\,d\theta$.</div><div class="yes"><div class="mm">$dA = r\,dr\,d\theta$</div>والجواب $\pi$.</div></div>
   </div>
 </section>
 
@@ -232,6 +452,16 @@
       <button>$f(A) - f(B)$</button><button>$f(A) + f(B)$</button><button>$f(B) \cdot f(A)$</button><button>$f(B) - f(A)$</button>
       <p class="q-why">مثل التكامل العادي: قيمة النهاية ناقص قيمة البداية.</p>
     </div>
+    <div class="q" data-answer="2">
+      <p>مع $u = x + 2y$ و $v = x - y$، كم يساوي $|J|$؟</p>
+      <button>$3$</button><button>$\tfrac13$</button><button>$-\tfrac13$</button><button>$1$</button>
+      <p class="q-why">$J = -\tfrac19 - \tfrac29 = -\tfrac13$، والقيمة المطلقة $\tfrac13$.</p>
+    </div>
+    <div class="q" data-answer="3">
+      <p>في الإحداثيات القطبية، $dA$ يساوي:</p>
+      <button>$dr\,d\theta$</button><button>$r^2\,dr\,d\theta$</button><button>$r\,dr\,d\theta$</button><button>$\theta\,dr\,d\theta$</button>
+      <p class="q-why">جاكوبيان القطبي هو $r$.</p>
+    </div>
   </div>
 </section>
 
@@ -243,6 +473,8 @@
     <div class="flash"><div>المسار المتقطع؟</div><div>$\int_C = \int_{C_1} + \int_{C_2}$، كل قطعة لحالها.</div></div>
     <div class="flash"><div>شرط عدم الاعتماد على المسار؟</div><div>$\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$</div></div>
     <div class="flash"><div>كيف ألقى دالة الجهد؟</div><div>$f = \int P\,dx + g(y)$، ثم $f_y = Q$ يعطيك $g(y)$.</div></div>
+    <div class="flash"><div>خطوات تغيير المتغيرات؟</div><div>طلّع $x, y$ بدلالة $u, v$ ← $J$ و $dA = |J|\,du\,dv$ ← حوّل الحدود ← عوّض وكامل.</div></div>
+    <div class="flash"><div>حجم بين سطحين بالقطبي؟</div><div>$V = \int\!\!\int (\text{فوق} - \text{تحت})\,r\,dr\,d\theta$ على الظل.</div></div>
   </div>
 </section>
 

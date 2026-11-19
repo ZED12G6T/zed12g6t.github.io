@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-topic="Green's Theorem" data-title-en="Lecture 11 Summary - Green's Theorem">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص المحاضرة 11 - Green's Theorem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Readex+Pro:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../lecture.css">
+<script src="../lecture.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="../fonts.css">
+</head>
+<body>
+<main class="wrap">
+
+<!-- ================= البطل ================= -->
+<section class="hero" id="top">
+  <p class="eyebrow"><span lang="ar">المحاضرة 11 · Vector Calculus</span><span lang="en">LECTURE 11 · VECTOR CALCULUS</span></p>
+  <h1><span><span lang="ar">نظرية قرين <span class="ltr">Green's Theorem</span></span><span lang="en">Green's Theorem</span></span> <span class="h1-math ltr">$\displaystyle\oint_C \mathbf f\cdot d\mathbf r = \iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA$</span></h1>
+  <p class="lead"><span lang="ar">في <a href="lecture10.html">المحاضرة 10</a> حسبنا $\int_C P\,dx + Q\,dy$ قطعة قطعة بدلالة $t$. إذا كان المنحنى <b>مقفول</b>، نظرية قرين تخليك تبدّل التكامل الخطي كله بتكامل ثنائي واحد على المنطقة اللي داخله، مثل <a href="lecture6.html">المحاضرة 6</a>.</span><span lang="en">In <a href="lecture10.html">lecture 10</a> we computed $\int_C P\,dx + Q\,dy$ piece by piece in terms of $t$. If the curve is <b>closed</b>, Green's theorem lets you replace the whole line integral with one double integral over the region inside it, just like <a href="lecture6.html">lecture 6</a>.</span></p>
+  <div class="xyz-bar">
+    <span class="x">C (closed curve)</span><span class="y">f = P i + Q j</span><span class="z">R, ∂Q/∂x − ∂P/∂y</span>
+    <small><span lang="ar">← الأزرق = المنحنى المقفول، الأخضر = المجال، البرتقالي = المنطقة اللي داخله والتكامل الثنائي</span><span lang="en">← blue = the closed curve, green = the field, orange = the region inside it and the double integral</span></small>
+  </div>
+  <div class="tldr">
+    <div class="tldr-title"><span lang="ar">⚡ الزبدة في 30 ثانية</span><span lang="en">⚡ The whole lecture in 30 seconds</span></div>
+    <ol>
+      <li><span lang="ar">منحنى مقفول $C$ حول منطقة $R$، ماشي <b>عكس عقارب الساعة</b> (المنطقة على يسارك): $\oint_C P\,dx + Q\,dy = \iint_R \big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\big)\,dA$.</span><span lang="en">A closed curve $C$ around a region $R$, traversed <b>counterclockwise</b> (the region on your left): $\oint_C P\,dx + Q\,dy = \iint_R \big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\big)\,dA$.</span></li>
+      <li><span lang="ar">الطريقة: طلّع $P$ و $Q$، اشتق $\frac{\partial P}{\partial y}$ و $\frac{\partial Q}{\partial x}$، اطرح ($Q$ أول)، وارسم $R$ وكامل.</span><span lang="en">The method: read off $P$ and $Q$, find $\frac{\partial P}{\partial y}$ and $\frac{\partial Q}{\partial x}$, subtract ($Q$ first), then draw $R$ and integrate.</span></li>
+      <li><span lang="ar">الشرط: $P$ و $Q$ لازم يكونون معرّفين وناعمين في <b>كل</b> نقطة داخل $R$. لو فيه نقطة قسمة على صفر (ثقب)، النظرية ما تنطبق على طول.</span><span lang="en">The condition: $P$ and $Q$ must be defined and smooth at <b>every</b> point inside $R$. If there is a division-by-zero point (a hole), the theorem does not apply as it is.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= النظرية ================= -->
+<section class="card" id="theorem" data-num="01" data-nav="النظرية|Theorem">
+  <h2><span lang="ar">نص النظرية مثل ما كتبها الدكتور</span><span lang="en">The theorem as the professor wrote it</span></h2>
+  <p class="sub"><span lang="ar">نقرأها جزء جزء</span><span lang="en">We read it one part at a time</span></p>
+  <div class="callout key"><span lang="ar"><strong>Green's Theorem:</strong> خلّ $R$ منطقة في $\mathbb R^2$ حدودها منحنى مقفول بسيط $C$ (piecewise smooth). وخلّ $\mathbf f(x,y) = P(x,y)\,\mathbf i + Q(x,y)\,\mathbf j$ مجال متجه ناعم على $R$ وعلى $C$. إذن:</span><span lang="en"><strong>Green's Theorem:</strong> Let $R$ be a region in $\mathbb R^2$ whose boundary is a simple closed curve $C$ which is piecewise smooth. Let $\mathbf f(x,y) = P(x,y)\,\mathbf i + Q(x,y)\,\mathbf j$ be a smooth vector field on both $R$ and $C$. Then:</span></div>
+  <div class="m big">\[ \X{\oint_C} \Y{\mathbf f}\cdot d\mathbf r = \Z{\iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA} \]</div>
+  <p><span lang="ar">حيث $C$ نمشي عليه بحيث تكون $R$ دايماً على <b>يسارك</b>.</span><span lang="en">where $C$ is traversed so that $R$ is always on the <b>left</b> side of $C$.</span></p>
+  <figure class="fig">
+    <svg viewBox="0 0 360 250" role="img" aria-label="منطقة R حدودها منحنى مقفول C ماشي عكس عقارب الساعة والمنطقة على اليسار" style="max-width:380px">
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M306.3 122.0 L307.6 117.6 L308.3 113.1 L308.5 108.5 L308.1 104.0 L307.0 99.5 L305.4 95.1 L303.2 90.7 L300.5 86.5 L297.3 82.5 L293.7 78.6 L289.6 74.9 L285.2 71.5 L280.4 68.2 L275.4 65.2 L270.2 62.4 L264.7 59.8 L259.1 57.5 L253.3 55.3 L247.5 53.3 L241.5 51.6 L235.5 50.0 L229.4 48.6 L223.3 47.4 L217.2 46.4 L211.0 45.5 L204.8 44.8 L198.6 44.3 L192.4 44.0 L186.2 43.9 L180.0 44.0 L173.8 44.3 L167.7 44.8 L161.7 45.6 L155.8 46.6 L149.9 47.8 L144.3 49.3 L138.8 51.0 L133.4 52.9 L128.4 55.0 L123.5 57.3 L118.9 59.8 L114.6 62.5 L110.6 65.3 L106.8 68.2 L103.3 71.3 L100.0 74.4 L97.0 77.6 L94.3 80.8 L91.7 84.1 L89.3 87.4 L87.1 90.7 L84.9 94.0 L82.9 97.4 L81.0 100.7 L79.1 104.1 L77.2 107.6 L75.4 111.0 L73.6 114.6 L71.9 118.3 L70.3 122.0 L68.7 125.9 L67.3 129.8 L66.0 133.9 L65.0 138.2 L64.3 142.5 L63.8 147.0 L63.8 151.5 L64.1 156.1 L65.0 160.7 L66.3 165.4 L68.2 170.0 L70.7 174.5 L73.7 178.9 L77.4 183.1 L81.6 187.1 L86.4 190.7 L91.7 194.1 L97.4 197.1 L103.7 199.7 L110.2 201.9 L117.1 203.6 L124.2 204.9 L131.4 205.7 L138.7 206.1 L146.0 206.0 L153.2 205.5 L160.2 204.6 L167.1 203.3 L173.7 201.8 L180.0 200.0 L186.0 198.0 L191.7 195.8 L197.1 193.5 L202.2 191.1 L207.0 188.7 L211.6 186.3 L216.0 183.9 L220.2 181.6 L224.2 179.4 L228.2 177.2 L232.2 175.1 L236.2 173.1 L240.2 171.1 L244.3 169.2 L248.5 167.3 L252.7 165.3 L257.1 163.3 L261.6 161.2 L266.1 159.0 L270.7 156.6 L275.2 154.1 L279.7 151.3 L284.1 148.4 L288.3 145.3 L292.2 141.9 L295.9 138.3 L299.1 134.5 L302.0 130.5 L304.4 126.3 L306.3 122.0Z"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M306.3 122.0 L307.6 117.6 L308.3 113.1 L308.5 108.5 L308.1 104.0 L307.0 99.5 L305.4 95.1 L303.2 90.7 L300.5 86.5 L297.3 82.5 L293.7 78.6 L289.6 74.9 L285.2 71.5 L280.4 68.2 L275.4 65.2 L270.2 62.4 L264.7 59.8 L259.1 57.5 L253.3 55.3 L247.5 53.3 L241.5 51.6 L235.5 50.0 L229.4 48.6 L223.3 47.4 L217.2 46.4 L211.0 45.5 L204.8 44.8 L198.6 44.3 L192.4 44.0 L186.2 43.9 L180.0 44.0 L173.8 44.3 L167.7 44.8 L161.7 45.6 L155.8 46.6 L149.9 47.8 L144.3 49.3 L138.8 51.0 L133.4 52.9 L128.4 55.0 L123.5 57.3 L118.9 59.8 L114.6 62.5 L110.6 65.3 L106.8 68.2 L103.3 71.3 L100.0 74.4 L97.0 77.6 L94.3 80.8 L91.7 84.1 L89.3 87.4 L87.1 90.7 L84.9 94.0 L82.9 97.4 L81.0 100.7 L79.1 104.1 L77.2 107.6 L75.4 111.0 L73.6 114.6 L71.9 118.3 L70.3 122.0 L68.7 125.9 L67.3 129.8 L66.0 133.9 L65.0 138.2 L64.3 142.5 L63.8 147.0 L63.8 151.5 L64.1 156.1 L65.0 160.7 L66.3 165.4 L68.2 170.0 L70.7 174.5 L73.7 178.9 L77.4 183.1 L81.6 187.1 L86.4 190.7 L91.7 194.1 L97.4 197.1 L103.7 199.7 L110.2 201.9 L117.1 203.6 L124.2 204.9 L131.4 205.7 L138.7 206.1 L146.0 206.0 L153.2 205.5 L160.2 204.6 L167.1 203.3 L173.7 201.8 L180.0 200.0 L186.0 198.0 L191.7 195.8 L197.1 193.5 L202.2 191.1 L207.0 188.7 L211.6 186.3 L216.0 183.9 L220.2 181.6 L224.2 179.4 L228.2 177.2 L232.2 175.1 L236.2 173.1 L240.2 171.1 L244.3 169.2 L248.5 167.3 L252.7 165.3 L257.1 163.3 L261.6 161.2 L266.1 159.0 L270.7 156.6 L275.2 154.1 L279.7 151.3 L284.1 148.4 L288.3 145.3 L292.2 141.9 L295.9 138.3 L299.1 134.5 L302.0 130.5 L304.4 126.3 L306.3 122.0Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M277.0 65.5 L298.3 70.9 L288.6 84.1Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M83.5 95.7 L88.5 74.4 L101.9 83.7Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M201.2 192.0 L185.3 207.2 L179.2 192.1Z"/>
+    <text class="lbl" x="174.0" y="132.0" style="fill:var(--cz);font-size:30px">R</text>
+    <text class="lbl" x="300.0" y="38.0" style="fill:var(--cx);font-size:22px">C</text>
+    <text lang="ar" class="lbl" x="180.0" y="236.0" text-anchor="middle" style="fill:var(--cx);font-size:14px">عكس عقارب الساعة ↺</text><text lang="en" class="lbl" x="180.0" y="236.0" text-anchor="middle" style="fill:var(--cx);font-size:14px">counterclockwise ↺</text>
+    <path class="sk dash" style="--c:var(--cz);stroke-width:2" d="M180.0 192.0 V156.0"/>
+    <text lang="ar" class="lbl" x="188.0" y="150.0" style="fill:var(--cz);font-size:13px">يسارك</text><text lang="en" class="lbl" x="188.0" y="150.0" style="fill:var(--cz);font-size:13px">your left</text>
+    </svg>
+    <figcaption><span lang="ar">امشِ على الحد الأزرق عكس عقارب الساعة: المنطقة البرتقالية تبقى دايماً على يسارك.</span><span lang="en">Walk along the blue boundary counterclockwise: the orange region always stays on your left.</span></figcaption>
+  </figure>
+  <h3><span lang="ar">وش معنى كل كلمة؟</span><span lang="en">What does each word mean?</span></h3>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top">simple closed curve</div><div class="t-name"><span lang="ar">منحنى مقفول بسيط</span><span lang="en">Simple closed curve</span></div><div class="t-desc"><span lang="ar">يبدأ وينتهي عند نفس النقطة، وما يقطع نفسه. الدائرة على التكامل $\oint$ معناها "مقفول".</span><span lang="en">It starts and ends at the same point and does not cross itself. The circle on the integral sign $\oint$ means "closed".</span></div></div>
+    <div class="tile"><div class="t-top">piecewise smooth</div><div class="t-name"><span lang="ar">ناعم على قطع</span><span lang="en">Smooth in pieces</span></div><div class="t-desc"><span lang="ar">مسموح يكون من كم قطعة (مثل مثلث أو خط وقوس)، مثل المسار المتقطع في المحاضرة 10.</span><span lang="en">It may be made of a few pieces (like a triangle, or a line plus an arc), like the piecewise path in lecture 10.</span></div></div>
+    <div class="tile"><div class="t-top">smooth on R and C</div><div class="t-name"><span lang="ar">المجال ناعم في كل مكان</span><span lang="en">The field is smooth everywhere</span></div><div class="t-desc"><span lang="ar">$P$ و $Q$ ومشتقاتهم موجودة ومتصلة في كل نقطة داخل $R$ وعلى $C$. ما فيه قسمة على صفر. (مثال 2 يوضح ليش هذا مهم.)</span><span lang="en">$P$, $Q$ and their derivatives exist and are continuous at every point inside $R$ and on $C$. No division by zero. (Example 2 shows why this matters.)</span></div></div>
+    <div class="tile hl"><div class="t-top">R on the left</div><div class="t-name"><span lang="ar">عكس عقارب الساعة</span><span lang="en">Counterclockwise</span></div><div class="t-desc"><span lang="ar">للمنطقة العادية (بدون ثقب) هذا يعني نلف عكس عقارب الساعة. لو لفّيت مع عقارب الساعة، الإشارة تنقلب.</span><span lang="en">For an ordinary region (no hole) this means going counterclockwise. If you go clockwise, the sign flips.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= الطريقة ================= -->
+<section class="card" id="method" data-num="02" data-nav="الطريقة|Method">
+  <h2><span lang="ar">الطريقة: أربع خطوات</span><span lang="en">The method: four steps</span></h2>
+  <p class="sub"><span lang="ar">نفس ترتيب الدكتور في كل الأمثلة</span><span lang="en">The same order the professor uses in every example</span></p>
+  <ol class="recipe">
+    <li><span lang="ar"><b>طلّع $P$ و $Q$:</b> $P$ هو اللي جنب $dx$، و $Q$ اللي جنب $dy$.</span><span lang="en"><b>Read off $P$ and $Q$:</b> $P$ is the one next to $dx$, and $Q$ is the one next to $dy$.</span></li>
+    <li><span lang="ar"><b>اشتق متقاطع:</b> $\frac{\partial P}{\partial y}$ ($P$ على $y$) و $\frac{\partial Q}{\partial x}$ ($Q$ على $x$).</span><span lang="en"><b>Differentiate crosswise:</b> $\frac{\partial P}{\partial y}$ ($P$ with respect to $y$) and $\frac{\partial Q}{\partial x}$ ($Q$ with respect to $x$).</span></li>
+    <li><span lang="ar"><b>اطرح:</b> $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$. انتبه، $Q$ أول.</span><span lang="en"><b>Subtract:</b> $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$. Careful, $Q$ comes first.</span></li>
+    <li><span lang="ar"><b>ارسم $R$ وكامل:</b> حط الحدود (Type I أو Type II من المحاضرة 6) واحسب التكامل الثنائي.</span><span lang="en"><b>Draw $R$ and integrate:</b> set the limits (Type I or Type II from lecture 6) and evaluate the double integral.</span></li>
+  </ol>
+  <div class="grid-2">
+    <div class="tile"><div class="t-top"><span lang="ar">بدون قرين</span><span lang="en">Without Green</span></div><div class="t-name"><span lang="ar">تكامل خطي لكل قطعة</span><span lang="en">A line integral for each piece</span></div><div class="t-math">$\int_{C_1} + \int_{C_2} + \int_{C_3}$</div><div class="t-desc"><span lang="ar">كل قطعة تحتاج $x(t), y(t), dx, dy$ وحدودها. ثلاث مرات شغل.</span><span lang="en">Each piece needs its own $x(t), y(t), dx, dy$ and limits. Three times the work.</span></div></div>
+    <div class="tile hl"><div class="t-top"><span lang="ar">مع قرين</span><span lang="en">With Green</span></div><div class="t-name"><span lang="ar">تكامل ثنائي واحد</span><span lang="en">One double integral</span></div><div class="t-math">$\iint_R \big(Q_x - P_y\big)\,dA$</div><div class="t-desc"><span lang="ar">مشتقتين وطرح وتكامل واحد. وأحياناً الفرق يطلع صفر أو رقم ثابت فيخلص السؤال بسطر.</span><span lang="en">Two derivatives, one subtraction, one integral. Sometimes the difference is zero or a constant and the question is done in one line.</span></div></div>
+  </div>
+  <div class="callout warn"><span lang="ar"><strong>⚠ انتبه:</strong> قرين للمنحنى <b>المقفول</b> بس. لو المسار من نقطة إلى نقطة ثانية (مو راجع لنفس البداية) ارجع لطريقة المحاضرة 10.</span><span lang="en"><strong>⚠ Careful:</strong> Green is for a <b>closed</b> curve only. If the path goes from one point to a different point (not back to the start), go back to the lecture 10 method.</span></div>
+</section>
+
+<!-- ================= مثال 1 ================= -->
+<section class="card" id="ex1" data-nav="مثال 1|Ex 1">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 1</span><span lang="en">Example 1</span></span><h2><span lang="ar">الفرق يطلع صفر</span><span lang="en">The difference comes out zero</span></h2></div>
+  <div class="tags"><span class="tag">Green</span><span class="tag">Type I</span></div>
+  <div class="m big">\[ \text{Evaluate}\quad \oint_C (x^2 + y^2)\,dx + 2xy\,dy \]</div>
+  <p><span lang="ar">حيث $C$ حدود المنطقة (عكس عقارب الساعة):</span><span lang="en">where $C$ is the boundary (traversed counterclockwise) of the region:</span></p>
+  <div class="m">\[ R = \{(x,y):\ 0 \le x \le 1,\ \ 2x^2 \le y \le 2x\} \]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 330 290" role="img" aria-label="المنطقة بين y = 2x فوق و y = 2x² تحت من x = 0 إلى x = 1 مع الحد عكس عقارب الساعة" style="max-width:340px">
+    <path class="ax" style="stroke-width:2" d="M50 250 H300 M70 266 V20"/>
+    <text class="lbl" x="304.0" y="255.0">x</text>
+    <text class="lbl" x="66.0" y="13.0">y</text>
+    <path class="ax" d="M270 246 V254"/>
+    <text class="tick" x="270.0" y="268.0" text-anchor="middle">1</text>
+    <path class="ax" d="M66 150 H74"/>
+    <text class="tick" x="60.0" y="154.0" text-anchor="end">1</text>
+    <path class="ax" d="M66 50 H74"/>
+    <text class="tick" x="60.0" y="54.0" text-anchor="end">2</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M70.0 250.0 L75.0 249.9 L80.0 249.5 L85.0 248.9 L90.0 248.0 L95.0 246.9 L100.0 245.5 L105.0 243.9 L110.0 242.0 L115.0 239.9 L120.0 237.5 L125.0 234.9 L130.0 232.0 L135.0 228.9 L140.0 225.5 L145.0 221.9 L150.0 218.0 L155.0 213.9 L160.0 209.5 L165.0 204.9 L170.0 200.0 L175.0 194.9 L180.0 189.5 L185.0 183.9 L190.0 178.0 L195.0 171.9 L200.0 165.5 L205.0 158.9 L210.0 152.0 L215.0 144.9 L220.0 137.5 L225.0 129.9 L230.0 122.0 L235.0 113.9 L240.0 105.5 L245.0 96.9 L250.0 88.0 L255.0 78.9 L260.0 69.5 L265.0 59.9 L270.0 50.0 L265.0 55.0 L260.0 60.0 L255.0 65.0 L250.0 70.0 L245.0 75.0 L240.0 80.0 L235.0 85.0 L230.0 90.0 L225.0 95.0 L220.0 100.0 L215.0 105.0 L210.0 110.0 L205.0 115.0 L200.0 120.0 L195.0 125.0 L190.0 130.0 L185.0 135.0 L180.0 140.0 L175.0 145.0 L170.0 150.0 L165.0 155.0 L160.0 160.0 L155.0 165.0 L150.0 170.0 L145.0 175.0 L140.0 180.0 L135.0 185.0 L130.0 190.0 L125.0 195.0 L120.0 200.0 L115.0 205.0 L110.0 210.0 L105.0 215.0 L100.0 220.0 L95.0 225.0 L90.0 230.0 L85.0 235.0 L80.0 240.0 L75.0 245.0 L70.0 250.0Z"/>
+    <rect x="166.0" y="150.0" width="8.0" height="50.0" class="fi" style="--c:var(--cz);opacity:.7"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M70.0 250.0 L75.0 249.9 L80.0 249.5 L85.0 248.9 L90.0 248.0 L95.0 246.9 L100.0 245.5 L105.0 243.9 L110.0 242.0 L115.0 239.9 L120.0 237.5 L125.0 234.9 L130.0 232.0 L135.0 228.9 L140.0 225.5 L145.0 221.9 L150.0 218.0 L155.0 213.9 L160.0 209.5 L165.0 204.9 L170.0 200.0 L175.0 194.9 L180.0 189.5 L185.0 183.9 L190.0 178.0 L195.0 171.9 L200.0 165.5 L205.0 158.9 L210.0 152.0 L215.0 144.9 L220.0 137.5 L225.0 129.9 L230.0 122.0 L235.0 113.9 L240.0 105.5 L245.0 96.9 L250.0 88.0 L255.0 78.9 L260.0 69.5 L265.0 59.9 L270.0 50.0"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M270.0 50.0 L265.0 55.0 L260.0 60.0 L255.0 65.0 L250.0 70.0 L245.0 75.0 L240.0 80.0 L235.0 85.0 L230.0 90.0 L225.0 95.0 L220.0 100.0 L215.0 105.0 L210.0 110.0 L205.0 115.0 L200.0 120.0 L195.0 125.0 L190.0 130.0 L185.0 135.0 L180.0 140.0 L175.0 145.0 L170.0 150.0 L165.0 155.0 L160.0 160.0 L155.0 165.0 L150.0 170.0 L145.0 175.0 L140.0 180.0 L135.0 185.0 L130.0 190.0 L125.0 195.0 L120.0 200.0 L115.0 205.0 L110.0 210.0 L105.0 215.0 L100.0 220.0 L95.0 225.0 L90.0 230.0 L85.0 235.0 L80.0 240.0 L75.0 245.0 L70.0 250.0"/>
+    <path class="fi" style="--c:var(--cx)" d="M205.9 157.9 L200.2 177.8 L188.1 168.4Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M153.2 166.8 L161.4 147.8 L172.2 158.6Z"/>
+    <path class="sk dash" style="--c:var(--ink-3);stroke-width:1.4" d="M270 50 V250"/>
+    <circle cx="70" cy="250" r="5" class="fi" style="--c:var(--ink)"/><circle cx="270" cy="50" r="5" class="fi" style="--c:var(--ink)"/>
+    <text class="lbl" x="78.0" y="270.0">(0,0)</text>
+    <text class="lbl" x="240.0" y="36.0">(1,2)</text>
+    <text class="lbl" x="92.0" y="140.0" style="fill:var(--cx);font-size:14px">y = 2x</text>
+    <text class="lbl" x="222.0" y="190.0" style="fill:var(--cx);font-size:14px">y = 2x²</text>
+    <text class="lbl" x="206.0" y="130.0" style="fill:var(--cz);font-size:18px">R</text>
+    </svg>
+    <figcaption><span lang="ar">المنطقة بين الخط $y = 2x$ (فوق) والقطع $y = 2x^2$ (تحت)، يلتقون عند $(0,0)$ و $(1,2)$.</span><span lang="en">The region between the line $y = 2x$ (top) and the parabola $y = 2x^2$ (bottom); they meet at $(0,0)$ and $(1,2)$.</span></figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4><p class="why"><span lang="ar">المنحنى مقفول والسؤال قال "by using Green's theorem"، فنحوّله لتكامل ثنائي.</span><span lang="en">The curve is closed and the question says "by using Green's theorem", so we turn it into a double integral.</span></p>
+      <div class="map"><span class="y">P = x² + y²</span><span class="y">Q = 2xy</span><span class="z">R: 2x² ≤ y ≤ 2x</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اكتب النظرية</span><span lang="en">Write the theorem</span></h4>
+      <div class="m">\[ \oint_C \mathbf f\cdot d\mathbf r = \iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA \]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اشتق متقاطع</span><span lang="en">Differentiate crosswise</span></h4>
+      <div class="m">\[ \begin{aligned} \frac{\partial P}{\partial y} &= \frac{\partial}{\partial y}\big(x^2 + y^2\big) \\ &= 0 + 2y = \Y{2y} \\[6pt] \frac{\partial Q}{\partial x} &= \frac{\partial}{\partial x}\big(2xy\big) = \Y{2y} \end{aligned} \]</div>
+      <p class="why"><span lang="ar">لما نشتق على $y$، الـ $x^2$ ثابت فيصير صفر. ولما نشتق $2xy$ على $x$، الـ $y$ ثابت.</span><span lang="en">When we differentiate with respect to $y$, $x^2$ is a constant so it becomes zero. When we differentiate $2xy$ with respect to $x$, $y$ is a constant.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اطرح وكامل</span><span lang="en">Subtract and integrate</span></h4>
+      <div class="m">\[ \begin{aligned} &\oint_C (x^2 + y^2)\,dx + 2xy\,dy \\ &= \iint_R (2y - 2y)\,dA \\ &= \iint_R (0)\,dA = 0 \end{aligned} \]</div>
+      <p class="why"><span lang="ar">ما احتجنا حتى نحط الحدود: تكامل الصفر صفر مهما كانت المنطقة.</span><span lang="en">We did not even need the limits: the integral of zero is zero whatever the region.</span></p>
+    </li>
+    <li class="step final">
+      <div class="result">$0$</div>
+      <p class="sanity"><span lang="ar">تأكد من المحاضرة 10: نفس هالتكامل طلع $\tfrac{13}{3}$ على القطع ونفسه $\tfrac{13}{3}$ على الخط. اللفة المقفولة = رايح على القطع وراجع على الخط $= \tfrac{13}{3} - \tfrac{13}{3} = 0$ ✓</span><span lang="en">Check with lecture 10: this same integral gave $\tfrac{13}{3}$ along the parabola and $\tfrac{13}{3}$ along the line. The closed loop = out along the parabola and back along the line $= \tfrac{13}{3} - \tfrac{13}{3} = 0$ ✓</span></p>
+    </li>
+  </ol>
+  <div class="callout good"><span lang="ar"><strong>💡 الفكرة:</strong> لما $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$ (نفس شرط عدم الاعتماد على المسار في Tutorial 3)، أي لفة مقفولة تعطي صفر.</span><span lang="en"><strong>💡 The idea:</strong> when $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$ (the same path-independence test as in Tutorial 3), any closed loop gives zero.</span></div>
+</section>
+
+<!-- ================= مثال 2 ================= -->
+<section class="card" id="ex2" data-nav="مثال 2|Ex 2">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 2</span><span lang="en">Example 2</span></span><h2><span lang="ar">متى النظرية ما تنطبق؟ (الثقب)</span><span lang="en">When does the theorem not apply? (The hole)</span></h2></div>
+  <div class="tags"><span class="tag">Polar</span><span class="tag"><span lang="ar">شرط النعومة</span><span lang="en">smoothness condition</span></span></div>
+  <div class="m big">\[ \begin{gathered} P(x,y) = \frac{-y}{x^2 + y^2} \\[4pt] Q(x,y) = \frac{x}{x^2 + y^2} \end{gathered} \]</div>
+  <p><span lang="ar">و $R = \{(x,y):\ 0 \le x^2 + y^2 \le 1\}$، والحد $C:\ x^2 + y^2 = 1$ عكس عقارب الساعة.</span><span lang="en">and $R = \{(x,y):\ 0 \le x^2 + y^2 \le 1\}$, with boundary $C:\ x^2 + y^2 = 1$ traversed counterclockwise.</span></p>
+  <figure class="fig">
+    <svg viewBox="0 0 300 262" role="img" aria-label="قرص نصف قطره 1 حول الأصل، والأصل (0,0) مؤشر عليه أن المجال غير معرّف فيه" style="max-width:320px">
+    <path class="ax" d="M30 132 H272 M150 252 V14"/>
+    <text class="lbl" x="276.0" y="136.0">x</text>
+    <text class="lbl" x="146.0" y="10.0">y</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M248.0 132.0 L247.9 126.9 L247.5 121.8 L246.8 116.7 L245.9 111.6 L244.7 106.6 L243.2 101.7 L241.5 96.9 L239.5 92.1 L237.3 87.5 L234.9 83.0 L232.2 78.6 L229.3 74.4 L226.2 70.3 L222.8 66.4 L219.3 62.7 L215.6 59.2 L211.7 55.8 L207.6 52.7 L203.4 49.8 L199.0 47.1 L194.5 44.7 L189.9 42.5 L185.1 40.5 L180.3 38.8 L175.4 37.3 L170.4 36.1 L165.3 35.2 L160.2 34.5 L155.1 34.1 L150.0 34.0 L144.9 34.1 L139.8 34.5 L134.7 35.2 L129.6 36.1 L124.6 37.3 L119.7 38.8 L114.9 40.5 L110.1 42.5 L105.5 44.7 L101.0 47.1 L96.6 49.8 L92.4 52.7 L88.3 55.8 L84.4 59.2 L80.7 62.7 L77.2 66.4 L73.8 70.3 L70.7 74.4 L67.8 78.6 L65.1 83.0 L62.7 87.5 L60.5 92.1 L58.5 96.9 L56.8 101.7 L55.3 106.6 L54.1 111.6 L53.2 116.7 L52.5 121.8 L52.1 126.9 L52.0 132.0 L52.1 137.1 L52.5 142.2 L53.2 147.3 L54.1 152.4 L55.3 157.4 L56.8 162.3 L58.5 167.1 L60.5 171.9 L62.7 176.5 L65.1 181.0 L67.8 185.4 L70.7 189.6 L73.8 193.7 L77.2 197.6 L80.7 201.3 L84.4 204.8 L88.3 208.2 L92.4 211.3 L96.6 214.2 L101.0 216.9 L105.5 219.3 L110.1 221.5 L114.9 223.5 L119.7 225.2 L124.6 226.7 L129.6 227.9 L134.7 228.8 L139.8 229.5 L144.9 229.9 L150.0 230.0 L155.1 229.9 L160.2 229.5 L165.3 228.8 L170.4 227.9 L175.4 226.7 L180.3 225.2 L185.1 223.5 L189.9 221.5 L194.5 219.3 L199.0 216.9 L203.4 214.2 L207.6 211.3 L211.7 208.2 L215.6 204.8 L219.3 201.3 L222.8 197.6 L226.2 193.7 L229.3 189.6 L232.2 185.4 L234.9 181.0 L237.3 176.5 L239.5 171.9 L241.5 167.1 L243.2 162.3 L244.7 157.4 L245.9 152.4 L246.8 147.3 L247.5 142.2 L247.9 137.1 L248.0 132.0Z"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M248.0 132.0 L247.9 126.9 L247.5 121.8 L246.8 116.7 L245.9 111.6 L244.7 106.6 L243.2 101.7 L241.5 96.9 L239.5 92.1 L237.3 87.5 L234.9 83.0 L232.2 78.6 L229.3 74.4 L226.2 70.3 L222.8 66.4 L219.3 62.7 L215.6 59.2 L211.7 55.8 L207.6 52.7 L203.4 49.8 L199.0 47.1 L194.5 44.7 L189.9 42.5 L185.1 40.5 L180.3 38.8 L175.4 37.3 L170.4 36.1 L165.3 35.2 L160.2 34.5 L155.1 34.1 L150.0 34.0 L144.9 34.1 L139.8 34.5 L134.7 35.2 L129.6 36.1 L124.6 37.3 L119.7 38.8 L114.9 40.5 L110.1 42.5 L105.5 44.7 L101.0 47.1 L96.6 49.8 L92.4 52.7 L88.3 55.8 L84.4 59.2 L80.7 62.7 L77.2 66.4 L73.8 70.3 L70.7 74.4 L67.8 78.6 L65.1 83.0 L62.7 87.5 L60.5 92.1 L58.5 96.9 L56.8 101.7 L55.3 106.6 L54.1 111.6 L53.2 116.7 L52.5 121.8 L52.1 126.9 L52.0 132.0 L52.1 137.1 L52.5 142.2 L53.2 147.3 L54.1 152.4 L55.3 157.4 L56.8 162.3 L58.5 167.1 L60.5 171.9 L62.7 176.5 L65.1 181.0 L67.8 185.4 L70.7 189.6 L73.8 193.7 L77.2 197.6 L80.7 201.3 L84.4 204.8 L88.3 208.2 L92.4 211.3 L96.6 214.2 L101.0 216.9 L105.5 219.3 L110.1 221.5 L114.9 223.5 L119.7 225.2 L124.6 226.7 L129.6 227.9 L134.7 228.8 L139.8 229.5 L144.9 229.9 L150.0 230.0 L155.1 229.9 L160.2 229.5 L165.3 228.8 L170.4 227.9 L175.4 226.7 L180.3 225.2 L185.1 223.5 L189.9 221.5 L194.5 219.3 L199.0 216.9 L203.4 214.2 L207.6 211.3 L211.7 208.2 L215.6 204.8 L219.3 201.3 L222.8 197.6 L226.2 193.7 L229.3 189.6 L232.2 185.4 L234.9 181.0 L237.3 176.5 L239.5 171.9 L241.5 167.1 L243.2 162.3 L244.7 157.4 L245.9 152.4 L246.8 147.3 L247.5 142.2 L247.9 137.1 L248.0 132.0Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M212.5 55.9 L231.5 64.1 L220.7 74.9Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M52.9 115.9 L50.4 95.4 L65.2 99.4Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M184.6 224.2 L168.1 236.6 L164.1 221.7Z"/>
+    <circle cx="150" cy="132" r="8" style="fill:var(--surface);stroke:var(--bad);stroke-width:2.6"/>
+    <path class="sk" style="--c:var(--bad);stroke-width:2.4" d="M146 128 L154 136 M154 128 L146 136"/>
+    <text class="lbl" x="162.0" y="156.0" style="fill:var(--bad);font-size:13px">(0,0)</text>
+    <text lang="ar" class="lbl" x="162.0" y="174.0" style="fill:var(--bad);font-size:13px">غير معرّفة</text><text lang="en" class="lbl" x="162.0" y="174.0" style="fill:var(--bad);font-size:13px">undefined</text>
+    <text class="lbl" x="232.0" y="44.0" style="fill:var(--cx);font-size:20px">C</text>
+    <text class="tick" x="251.0" y="128.0">1</text>
+    <text class="lbl" x="98.0" y="92.0" style="fill:var(--cz);font-size:20px">R</text>
+    </svg>
+    <figcaption><span lang="ar">القرص كامل، بس عند المركز $(0,0)$ المقام $x^2 + y^2 = 0$، فـ $P$ و $Q$ مو معرّفين هناك.</span><span lang="en">The full disk, but at the centre $(0,0)$ the denominator $x^2 + y^2 = 0$, so $P$ and $Q$ are not defined there.</span></figcaption>
+  </figure>
+
+  <h3><span lang="ar">(أ) نحسبه مباشرة على الدائرة</span><span lang="en">(a) Compute it directly on the circle</span></h3>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">بالإحداثيات القطبية</span><span lang="en">In polar coordinates</span></h4>
+      <div class="m">\[ \begin{gathered} x = r\cos\theta,\qquad y = r\sin\theta \\ x^2 + y^2 = r^2,\qquad 0 \le \theta \le 2\pi \\[4pt] dx = -r\sin\theta\,d\theta \\ dy = r\cos\theta\,d\theta \end{gathered} \]</div>
+      <p class="why"><span lang="ar">على الدائرة $r$ ثابت، فالمتغير الوحيد $\theta$.</span><span lang="en">On the circle $r$ is constant, so the only variable is $\theta$.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">عوّض في $P\,dx$ و $Q\,dy$</span><span lang="en">Substitute into $P\,dx$ and $Q\,dy$</span></h4>
+      <div class="m">\[ \begin{aligned} P\,dx &= \frac{-r\sin\theta}{r^2}\cdot\big(-r\sin\theta\big)\,d\theta \\ &= \frac{r^2\sin^2\theta}{r^2}\,d\theta \\[6pt] Q\,dy &= \frac{r\cos\theta}{r^2}\cdot\big(r\cos\theta\big)\,d\theta \\ &= \frac{r^2\cos^2\theta}{r^2}\,d\theta \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اجمع وكامل</span><span lang="en">Add and integrate</span></h4>
+      <div class="m">\[ \begin{aligned} &\oint_C \mathbf f\cdot d\mathbf r \\ &= \int_0^{2\pi} \frac{r^2\big(\sin^2\theta + \cos^2\theta\big)}{r^2}\,d\theta \\ &= \int_0^{2\pi} d\theta = \theta\,\Big|_0^{2\pi} = \X{2\pi} \end{aligned} \]</div>
+      <p class="why"><span lang="ar">$\sin^2\theta + \cos^2\theta = 1$، والـ $r^2$ تروح مع $r^2$. يعني الجواب $2\pi$ لأي دائرة حول المركز مهما كان نصف قطرها.</span><span lang="en">$\sin^2\theta + \cos^2\theta = 1$, and $r^2$ cancels with $r^2$. So the answer is $2\pi$ for any circle around the centre, whatever its radius.</span></p>
+    </li>
+  </ol>
+
+  <h3><span lang="ar">(ب) بنظرية قرين</span><span lang="en">(b) By Green's theorem</span></h3>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">$\frac{\partial Q}{\partial x}$ بقاعدة القسمة</span><span lang="en">$\frac{\partial Q}{\partial x}$ by the quotient rule</span></h4>
+      <div class="m">\[ \begin{aligned} \frac{\partial Q}{\partial x} &= \frac{(1)(x^2 + y^2) - x\,(2x)}{(x^2 + y^2)^2} \\ &= \frac{y^2 - x^2}{(x^2 + y^2)^2} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">$\frac{\partial P}{\partial y}$ بقاعدة القسمة</span><span lang="en">$\frac{\partial P}{\partial y}$ by the quotient rule</span></h4>
+      <div class="m">\[ \begin{aligned} \frac{\partial P}{\partial y} &= \frac{(-1)(x^2 + y^2) - (-y)(2y)}{(x^2 + y^2)^2} \\ &= \frac{-x^2 - y^2 + 2y^2}{(x^2 + y^2)^2} \\ &= \frac{y^2 - x^2}{(x^2 + y^2)^2} \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اطرح</span><span lang="en">Subtract</span></h4>
+      <div class="m">\[ \begin{gathered} \frac{\partial Q}{\partial x} = \frac{y^2 - x^2}{(x^2 + y^2)^2} = \frac{\partial P}{\partial y} \\ \Downarrow \\ \iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA \\ = \iint_R 0\,dA = \Z{0} \end{gathered} \]</div>
+    </li>
+  </ol>
+  <div class="callout warn"><span lang="ar"><strong>🤔 $2\pi \ne 0$! يعني النظرية غلط؟</strong> لا. النقطة $(0,0)$ داخل $R$ بس $P$ و $Q$ مو معرّفين فيها (قسمة على صفر)، فالمجال مو ناعم على <b>كل</b> $R$. يعني $R$ فيها "ثقب" عند المركز، وشرط النظرية ما تحقق، فما نقدر نطبقها.</span><span lang="en"><strong>🤔 $2\pi \ne 0$! So is the theorem wrong?</strong> No. The point $(0,0)$ is inside $R$, but $P$ and $Q$ are not defined there (division by zero), so the field is not smooth on <b>all</b> of $R$. $R$ has a "hole" at the centre, the theorem's condition fails, and we cannot apply it.</span></div>
+
+  <h3><span lang="ar">(ج) الحل: نشيل الثقب (الحلقة)</span><span lang="en">(c) The fix: cut out the hole (the annulus)</span></h3>
+  <p><span lang="ar">نغيّر المنطقة لحلقة ما فيها المركز:</span><span lang="en">We change the region to an annulus that does not contain the centre:</span></p>
+  <div class="m">\[ \begin{gathered} R = \Big\{(x,y):\ \tfrac14 \le x^2 + y^2 \le 1\Big\} \\ C = C_1 \cup C_2 \end{gathered} \]</div>
+  <figure class="fig">
+    <svg viewBox="0 0 300 262" role="img" aria-label="حلقة بين دائرتين نصف قطرهما نص وواحد، الخارجية عكس عقارب الساعة والداخلية مع عقارب الساعة" style="max-width:320px">
+    <path class="ax" d="M30 132 H272 M150 252 V14"/>
+    <text class="lbl" x="276.0" y="136.0">x</text>
+    <text class="lbl" x="146.0" y="10.0">y</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" fill-rule="evenodd" d="M248.0 132.0 L247.9 126.9 L247.5 121.8 L246.8 116.7 L245.9 111.6 L244.7 106.6 L243.2 101.7 L241.5 96.9 L239.5 92.1 L237.3 87.5 L234.9 83.0 L232.2 78.6 L229.3 74.4 L226.2 70.3 L222.8 66.4 L219.3 62.7 L215.6 59.2 L211.7 55.8 L207.6 52.7 L203.4 49.8 L199.0 47.1 L194.5 44.7 L189.9 42.5 L185.1 40.5 L180.3 38.8 L175.4 37.3 L170.4 36.1 L165.3 35.2 L160.2 34.5 L155.1 34.1 L150.0 34.0 L144.9 34.1 L139.8 34.5 L134.7 35.2 L129.6 36.1 L124.6 37.3 L119.7 38.8 L114.9 40.5 L110.1 42.5 L105.5 44.7 L101.0 47.1 L96.6 49.8 L92.4 52.7 L88.3 55.8 L84.4 59.2 L80.7 62.7 L77.2 66.4 L73.8 70.3 L70.7 74.4 L67.8 78.6 L65.1 83.0 L62.7 87.5 L60.5 92.1 L58.5 96.9 L56.8 101.7 L55.3 106.6 L54.1 111.6 L53.2 116.7 L52.5 121.8 L52.1 126.9 L52.0 132.0 L52.1 137.1 L52.5 142.2 L53.2 147.3 L54.1 152.4 L55.3 157.4 L56.8 162.3 L58.5 167.1 L60.5 171.9 L62.7 176.5 L65.1 181.0 L67.8 185.4 L70.7 189.6 L73.8 193.7 L77.2 197.6 L80.7 201.3 L84.4 204.8 L88.3 208.2 L92.4 211.3 L96.6 214.2 L101.0 216.9 L105.5 219.3 L110.1 221.5 L114.9 223.5 L119.7 225.2 L124.6 226.7 L129.6 227.9 L134.7 228.8 L139.8 229.5 L144.9 229.9 L150.0 230.0 L155.1 229.9 L160.2 229.5 L165.3 228.8 L170.4 227.9 L175.4 226.7 L180.3 225.2 L185.1 223.5 L189.9 221.5 L194.5 219.3 L199.0 216.9 L203.4 214.2 L207.6 211.3 L211.7 208.2 L215.6 204.8 L219.3 201.3 L222.8 197.6 L226.2 193.7 L229.3 189.6 L232.2 185.4 L234.9 181.0 L237.3 176.5 L239.5 171.9 L241.5 167.1 L243.2 162.3 L244.7 157.4 L245.9 152.4 L246.8 147.3 L247.5 142.2 L247.9 137.1 L248.0 132.0Z M200.0 132.0 L199.9 129.4 L199.7 126.8 L199.4 124.2 L198.9 121.6 L198.3 119.1 L197.6 116.5 L196.7 114.1 L195.7 111.7 L194.6 109.3 L193.3 107.0 L191.9 104.8 L190.5 102.6 L188.9 100.5 L187.2 98.5 L185.4 96.6 L183.5 94.8 L181.5 93.1 L179.4 91.5 L177.2 90.1 L175.0 88.7 L172.7 87.4 L170.3 86.3 L167.9 85.3 L165.5 84.4 L162.9 83.7 L160.4 83.1 L157.8 82.6 L155.2 82.3 L152.6 82.1 L150.0 82.0 L147.4 82.1 L144.8 82.3 L142.2 82.6 L139.6 83.1 L137.1 83.7 L134.5 84.4 L132.1 85.3 L129.7 86.3 L127.3 87.4 L125.0 88.7 L122.8 90.1 L120.6 91.5 L118.5 93.1 L116.5 94.8 L114.6 96.6 L112.8 98.5 L111.1 100.5 L109.5 102.6 L108.1 104.8 L106.7 107.0 L105.4 109.3 L104.3 111.7 L103.3 114.1 L102.4 116.5 L101.7 119.1 L101.1 121.6 L100.6 124.2 L100.3 126.8 L100.1 129.4 L100.0 132.0 L100.1 134.6 L100.3 137.2 L100.6 139.8 L101.1 142.4 L101.7 144.9 L102.4 147.5 L103.3 149.9 L104.3 152.3 L105.4 154.7 L106.7 157.0 L108.1 159.2 L109.5 161.4 L111.1 163.5 L112.8 165.5 L114.6 167.4 L116.5 169.2 L118.5 170.9 L120.6 172.5 L122.8 173.9 L125.0 175.3 L127.3 176.6 L129.7 177.7 L132.1 178.7 L134.5 179.6 L137.1 180.3 L139.6 180.9 L142.2 181.4 L144.8 181.7 L147.4 181.9 L150.0 182.0 L152.6 181.9 L155.2 181.7 L157.8 181.4 L160.4 180.9 L162.9 180.3 L165.5 179.6 L167.9 178.7 L170.3 177.7 L172.7 176.6 L175.0 175.3 L177.2 173.9 L179.4 172.5 L181.5 170.9 L183.5 169.2 L185.4 167.4 L187.2 165.5 L188.9 163.5 L190.5 161.4 L191.9 159.2 L193.3 157.0 L194.6 154.7 L195.7 152.3 L196.7 149.9 L197.6 147.5 L198.3 144.9 L198.9 142.4 L199.4 139.8 L199.7 137.2 L199.9 134.6 L200.0 132.0Z"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M248.0 132.0 L247.9 126.9 L247.5 121.8 L246.8 116.7 L245.9 111.6 L244.7 106.6 L243.2 101.7 L241.5 96.9 L239.5 92.1 L237.3 87.5 L234.9 83.0 L232.2 78.6 L229.3 74.4 L226.2 70.3 L222.8 66.4 L219.3 62.7 L215.6 59.2 L211.7 55.8 L207.6 52.7 L203.4 49.8 L199.0 47.1 L194.5 44.7 L189.9 42.5 L185.1 40.5 L180.3 38.8 L175.4 37.3 L170.4 36.1 L165.3 35.2 L160.2 34.5 L155.1 34.1 L150.0 34.0 L144.9 34.1 L139.8 34.5 L134.7 35.2 L129.6 36.1 L124.6 37.3 L119.7 38.8 L114.9 40.5 L110.1 42.5 L105.5 44.7 L101.0 47.1 L96.6 49.8 L92.4 52.7 L88.3 55.8 L84.4 59.2 L80.7 62.7 L77.2 66.4 L73.8 70.3 L70.7 74.4 L67.8 78.6 L65.1 83.0 L62.7 87.5 L60.5 92.1 L58.5 96.9 L56.8 101.7 L55.3 106.6 L54.1 111.6 L53.2 116.7 L52.5 121.8 L52.1 126.9 L52.0 132.0 L52.1 137.1 L52.5 142.2 L53.2 147.3 L54.1 152.4 L55.3 157.4 L56.8 162.3 L58.5 167.1 L60.5 171.9 L62.7 176.5 L65.1 181.0 L67.8 185.4 L70.7 189.6 L73.8 193.7 L77.2 197.6 L80.7 201.3 L84.4 204.8 L88.3 208.2 L92.4 211.3 L96.6 214.2 L101.0 216.9 L105.5 219.3 L110.1 221.5 L114.9 223.5 L119.7 225.2 L124.6 226.7 L129.6 227.9 L134.7 228.8 L139.8 229.5 L144.9 229.9 L150.0 230.0 L155.1 229.9 L160.2 229.5 L165.3 228.8 L170.4 227.9 L175.4 226.7 L180.3 225.2 L185.1 223.5 L189.9 221.5 L194.5 219.3 L199.0 216.9 L203.4 214.2 L207.6 211.3 L211.7 208.2 L215.6 204.8 L219.3 201.3 L222.8 197.6 L226.2 193.7 L229.3 189.6 L232.2 185.4 L234.9 181.0 L237.3 176.5 L239.5 171.9 L241.5 167.1 L243.2 162.3 L244.7 157.4 L245.9 152.4 L246.8 147.3 L247.5 142.2 L247.9 137.1 L248.0 132.0Z"/>
+    <path class="sk" style="--c:var(--accent);stroke-width:4" d="M200.0 132.0 L199.9 134.6 L199.7 137.2 L199.4 139.8 L198.9 142.4 L198.3 144.9 L197.6 147.5 L196.7 149.9 L195.7 152.3 L194.6 154.7 L193.3 157.0 L191.9 159.2 L190.5 161.4 L188.9 163.5 L187.2 165.5 L185.4 167.4 L183.5 169.2 L181.5 170.9 L179.4 172.5 L177.2 173.9 L175.0 175.3 L172.7 176.6 L170.3 177.7 L167.9 178.7 L165.5 179.6 L162.9 180.3 L160.4 180.9 L157.8 181.4 L155.2 181.7 L152.6 181.9 L150.0 182.0 L147.4 181.9 L144.8 181.7 L142.2 181.4 L139.6 180.9 L137.1 180.3 L134.5 179.6 L132.1 178.7 L129.7 177.7 L127.3 176.6 L125.0 175.3 L122.8 173.9 L120.6 172.5 L118.5 170.9 L116.5 169.2 L114.6 167.4 L112.8 165.5 L111.1 163.5 L109.5 161.4 L108.1 159.2 L106.7 157.0 L105.4 154.7 L104.3 152.3 L103.3 149.9 L102.4 147.5 L101.7 144.9 L101.1 142.4 L100.6 139.8 L100.3 137.2 L100.1 134.6 L100.0 132.0 L100.1 129.4 L100.3 126.8 L100.6 124.2 L101.1 121.6 L101.7 119.1 L102.4 116.5 L103.3 114.1 L104.3 111.7 L105.4 109.3 L106.7 107.0 L108.1 104.8 L109.5 102.6 L111.1 100.5 L112.8 98.5 L114.6 96.6 L116.5 94.8 L118.5 93.1 L120.6 91.5 L122.8 90.1 L125.0 88.7 L127.3 87.4 L129.7 86.3 L132.1 85.3 L134.5 84.4 L137.1 83.7 L139.6 83.1 L142.2 82.6 L144.8 82.3 L147.4 82.1 L150.0 82.0 L152.6 82.1 L155.2 82.3 L157.8 82.6 L160.4 83.1 L162.9 83.7 L165.5 84.4 L167.9 85.3 L170.3 86.3 L172.7 87.4 L175.0 88.7 L177.2 90.1 L179.4 91.5 L181.5 93.1 L183.5 94.8 L185.4 96.6 L187.2 98.5 L188.9 100.5 L190.5 102.6 L191.9 104.8 L193.3 107.0 L194.6 109.3 L195.7 111.7 L196.7 114.1 L197.6 116.5 L198.3 119.1 L198.9 121.6 L199.4 124.2 L199.7 126.8 L199.9 129.4 L200.0 132.0Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M212.5 55.9 L231.5 64.1 L220.7 74.9Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M52.9 115.9 L50.4 95.4 L65.2 99.4Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M184.6 224.2 L168.1 236.6 L164.1 221.7Z"/>
+    <path class="fi" style="--c:var(--accent)" d="M141.6 182.0 L158.4 175.3 L158.4 188.7Z"/>
+    <path class="fi" style="--c:var(--accent)" d="M158.4 82.0 L141.6 88.7 L141.6 75.3Z"/>
+    <circle cx="150" cy="132" r="3.5" class="fi" style="--c:var(--ink-3)"/>
+    <text class="lbl" x="232.0" y="44.0" style="fill:var(--cx);font-size:18px">C₁</text>
+    <text class="lbl" x="186.0" y="92.0" style="fill:var(--accent);font-size:16px">C₂</text>
+    <text class="tick" x="251.0" y="128.0">1</text>
+    <text class="tick" x="203.0" y="128.0" style="font-size:12px">½</text>
+    <text class="lbl" x="84.0" y="72.0" style="fill:var(--cz);font-size:20px">R</text>
+    </svg>
+    <figcaption><span lang="ar">$C_1$ الدائرة الكبيرة عكس عقارب الساعة، و $C_2$ الدائرة الصغيرة ($r = \tfrac12$) <b>مع</b> عقارب الساعة، عشان الحلقة تبقى على يسارك في الثنتين.</span><span lang="en">$C_1$ is the big circle counterclockwise, and $C_2$ the small circle ($r = \tfrac12$) <b>clockwise</b>, so the annulus stays on your left on both.</span></figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step">
+      <h4><span lang="ar">التكامل على الحدين</span><span lang="en">The integral on both boundaries</span></h4>
+      <div class="m">\[ \begin{aligned} \oint_{C_1} &= 2\pi \quad (\circlearrowleft) \\ \oint_{C_2} &= -2\pi \quad (\circlearrowright) \\ \oint_C \mathbf f\cdot d\mathbf r &= 2\pi + (-2\pi) \\ &= 0 \end{aligned} \]</div>
+      <p class="why"><span lang="ar">من (أ): أي دائرة حول المركز تعطي $2\pi$. ولما نلف بالعكس الإشارة تنقلب، فـ $C_2$ تعطي $-2\pi$.</span><span lang="en">From (a): any circle around the centre gives $2\pi$. Going the other way flips the sign, so $C_2$ gives $-2\pi$.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">قارن مع التكامل الثنائي</span><span lang="en">Compare with the double integral</span></h4>
+      <div class="m">\[ \begin{aligned} &\oint_C \mathbf f\cdot d\mathbf r = 0 \\ &\iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA = 0 \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result"><span lang="ar">قرين تنطبق على الحلقة ✓</span><span lang="en">Green holds for the annulus ✓</span></div>
+      <p class="sanity"><span lang="ar">الحين المركز برا $R$، فالمجال ناعم على كل الحلقة، والطرفين متساويين.</span><span lang="en">Now the centre is outside $R$, so the field is smooth on the whole annulus, and both sides agree.</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= مثال 3 ================= -->
+<section class="card" id="ex3" data-nav="مثال 3|Ex 3">
+  <div class="ex-head"><span class="ex-badge"><span lang="ar">مثال 3</span><span lang="en">Example 3</span></span><h2><span lang="ar">بين $y = x^2$ و $y^2 = x$</span><span lang="en">Between $y = x^2$ and $y^2 = x$</span></h2></div>
+  <div class="tags"><span class="tag">Green</span><span class="tag">Type I</span></div>
+  <div class="m big">\[ \begin{gathered} \text{Evaluate} \\ \oint_C (2xy - x^2)\,dx + (x + y^2)\,dy \end{gathered} \]</div>
+  <p><span lang="ar">حيث $C$ المنحنى المقفول للمنطقة المحصورة بين $y = x^2$ و $y^2 = x$، عكس عقارب الساعة.</span><span lang="en">where $C$ is the closed curve of the region bounded by $y = x^2$ and $y^2 = x$, traversed counterclockwise.</span></p>
+  <figure class="fig">
+    <svg viewBox="0 0 330 290" role="img" aria-label="المنطقة بين y = x² تحت و y = جذر x فوق من (0,0) إلى (1,1)" style="max-width:340px">
+    <path class="ax" style="stroke-width:2" d="M40 255 H305 M60 272 V20"/>
+    <text class="lbl" x="309.0" y="260.0">x</text>
+    <text class="lbl" x="56.0" y="13.0">y</text>
+    <path class="ax" d="M270 251 V259"/>
+    <text class="tick" x="270.0" y="273.0" text-anchor="middle">1</text>
+    <path class="ax" d="M56 45 H64"/>
+    <text class="tick" x="50.0" y="49.0" text-anchor="end">1</text>
+    <path class="fi" style="--c:var(--cz);opacity:.16" d="M60.0 255.0 L63.5 254.9 L67.0 254.8 L70.5 254.5 L74.0 254.1 L77.5 253.5 L81.0 252.9 L84.5 252.1 L88.0 251.3 L91.5 250.3 L95.0 249.2 L98.5 247.9 L102.0 246.6 L105.5 245.1 L109.0 243.6 L112.5 241.9 L116.0 240.1 L119.5 238.1 L123.0 236.1 L126.5 233.9 L130.0 231.7 L133.5 229.3 L137.0 226.8 L140.5 224.1 L144.0 221.4 L147.5 218.5 L151.0 215.6 L154.5 212.5 L158.0 209.3 L161.5 205.9 L165.0 202.5 L168.5 198.9 L172.0 195.3 L175.5 191.5 L179.0 187.6 L182.5 183.5 L186.0 179.4 L189.5 175.1 L193.0 170.8 L196.5 166.3 L200.0 161.7 L203.5 156.9 L207.0 152.1 L210.5 147.1 L214.0 142.1 L217.5 136.9 L221.0 131.6 L224.5 126.1 L228.0 120.6 L231.5 114.9 L235.0 109.2 L238.5 103.3 L242.0 97.3 L245.5 91.1 L249.0 84.9 L252.5 78.5 L256.0 72.1 L259.5 65.5 L263.0 58.8 L266.5 51.9 L270.0 45.0 L266.5 46.8 L263.0 48.5 L259.5 50.3 L256.0 52.1 L252.5 53.9 L249.0 55.8 L245.5 57.6 L242.0 59.5 L238.5 61.4 L235.0 63.3 L231.5 65.2 L228.0 67.2 L224.5 69.1 L221.0 71.1 L217.5 73.1 L214.0 75.2 L210.5 77.2 L207.0 79.3 L203.5 81.4 L200.0 83.5 L196.5 85.7 L193.0 87.9 L189.5 90.1 L186.0 92.3 L182.5 94.6 L179.0 96.9 L175.5 99.3 L172.0 101.6 L168.5 104.1 L165.0 106.5 L161.5 109.0 L158.0 111.5 L154.5 114.1 L151.0 116.8 L147.5 119.4 L144.0 122.2 L140.5 125.0 L137.0 127.8 L133.5 130.8 L130.0 133.8 L126.5 136.8 L123.0 140.0 L119.5 143.2 L116.0 146.6 L112.5 150.0 L109.0 153.6 L105.5 157.3 L102.0 161.1 L98.5 165.1 L95.0 169.3 L91.5 173.7 L88.0 178.3 L84.5 183.3 L81.0 188.6 L77.5 194.4 L74.0 200.8 L70.5 208.0 L67.0 216.7 L63.5 227.9 L60.0 255.0Z"/>
+    <rect x="144.0" y="118.9" width="8.4" height="102.5" class="fi" style="--c:var(--cz);opacity:.7"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M60.0 255.0 L63.5 254.9 L67.0 254.8 L70.5 254.5 L74.0 254.1 L77.5 253.5 L81.0 252.9 L84.5 252.1 L88.0 251.3 L91.5 250.3 L95.0 249.2 L98.5 247.9 L102.0 246.6 L105.5 245.1 L109.0 243.6 L112.5 241.9 L116.0 240.1 L119.5 238.1 L123.0 236.1 L126.5 233.9 L130.0 231.7 L133.5 229.3 L137.0 226.8 L140.5 224.1 L144.0 221.4 L147.5 218.5 L151.0 215.6 L154.5 212.5 L158.0 209.3 L161.5 205.9 L165.0 202.5 L168.5 198.9 L172.0 195.3 L175.5 191.5 L179.0 187.6 L182.5 183.5 L186.0 179.4 L189.5 175.1 L193.0 170.8 L196.5 166.3 L200.0 161.7 L203.5 156.9 L207.0 152.1 L210.5 147.1 L214.0 142.1 L217.5 136.9 L221.0 131.6 L224.5 126.1 L228.0 120.6 L231.5 114.9 L235.0 109.2 L238.5 103.3 L242.0 97.3 L245.5 91.1 L249.0 84.9 L252.5 78.5 L256.0 72.1 L259.5 65.5 L263.0 58.8 L266.5 51.9 L270.0 45.0"/>
+    <path class="sk" style="--c:var(--cx);stroke-width:4" d="M270.0 45.0 L266.5 46.8 L263.0 48.5 L259.5 50.3 L256.0 52.1 L252.5 53.9 L249.0 55.8 L245.5 57.6 L242.0 59.5 L238.5 61.4 L235.0 63.3 L231.5 65.2 L228.0 67.2 L224.5 69.1 L221.0 71.1 L217.5 73.1 L214.0 75.2 L210.5 77.2 L207.0 79.3 L203.5 81.4 L200.0 83.5 L196.5 85.7 L193.0 87.9 L189.5 90.1 L186.0 92.3 L182.5 94.6 L179.0 96.9 L175.5 99.3 L172.0 101.6 L168.5 104.1 L165.0 106.5 L161.5 109.0 L158.0 111.5 L154.5 114.1 L151.0 116.8 L147.5 119.4 L144.0 122.2 L140.5 125.0 L137.0 127.8 L133.5 130.8 L130.0 133.8 L126.5 136.8 L123.0 140.0 L119.5 143.2 L116.0 146.6 L112.5 150.0 L109.0 153.6 L105.5 157.3 L102.0 161.1 L98.5 165.1 L95.0 169.3 L91.5 173.7 L88.0 178.3 L84.5 183.3 L81.0 188.6 L77.5 194.4 L74.0 200.8 L70.5 208.0 L67.0 216.7 L63.5 227.9 L60.0 255.0"/>
+    <path class="fi" style="--c:var(--cx)" d="M205.8 154.0 L200.4 174.0 L188.1 164.7Z"/>
+    <path class="fi" style="--c:var(--cx)" d="M115.9 146.5 L124.9 127.8 L135.3 139.2Z"/>
+    <circle cx="60" cy="255" r="5" class="fi" style="--c:var(--ink)"/><circle cx="270" cy="45" r="5" class="fi" style="--c:var(--ink)"/>
+    <text class="lbl" x="66.0" y="275.0">(0,0)</text>
+    <text class="lbl" x="240.0" y="31.0">(1,1)</text>
+    <text class="lbl" x="82.0" y="92.0" style="fill:var(--cx);font-size:13px">y² = x  (y = √x)</text>
+    <text class="lbl" x="212.0" y="176.0" style="fill:var(--cx);font-size:14px">y = x²</text>
+    <text class="lbl" x="190.2" y="129.0" style="fill:var(--cz);font-size:18px">R</text>
+    </svg>
+    <figcaption><span lang="ar">الشريحة العمودية تبدأ من $y = x^2$ (تحت) وتنتهي عند $y = \sqrt x$ (فوق).</span><span lang="en">The vertical strip starts at $y = x^2$ (bottom) and ends at $y = \sqrt x$ (top).</span></figcaption>
+  </figure>
+  <ol class="solve">
+    <li class="step read">
+      <h4><span lang="ar">اقرأ السؤال</span><span lang="en">Read the question</span></h4>
+      <div class="map"><span class="y">P = 2xy − x²</span><span class="y">Q = x + y²</span><span class="z">R: x² ≤ y ≤ √x</span></div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">اشتق متقاطع</span><span lang="en">Differentiate crosswise</span></h4>
+      <div class="m">\[ \frac{\partial P}{\partial y} = \Y{2x},\qquad \frac{\partial Q}{\partial x} = \Y{1} \]</div>
+      <div class="m">\[ \begin{aligned} &\iint_R \Big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\Big)\,dA \\ &= \iint_R \Z{(1 - 2x)}\,dA \end{aligned} \]</div>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">نقاط التقاطع والحدود</span><span lang="en">Intersection points and limits</span></h4>
+      <div class="m">\[ \begin{gathered} y = x^2,\qquad x = y^2 \\ \Rightarrow\ x = (x^2)^2 = x^4 \\ \Rightarrow\ x(x^3 - 1) = 0 \\ \Rightarrow\ x = 0,\ \ x = 1 \\[6pt] 0 \le x \le 1,\qquad x^2 \le y \le \sqrt x \end{gathered} \]</div>
+      <p class="why"><span lang="ar">أي منحنى فوق؟ جرّب $x = \tfrac14$: $\sqrt x = \tfrac12$ و $x^2 = \tfrac1{16}$، فـ $\sqrt x$ فوق.</span><span lang="en">Which curve is on top? Try $x = \tfrac14$: $\sqrt x = \tfrac12$ and $x^2 = \tfrac1{16}$, so $\sqrt x$ is on top.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">التكامل الداخلي (على $y$)</span><span lang="en">Inner integral (in $y$)</span></h4>
+      <div class="m">\[ \begin{aligned} &\int_0^1\!\!\int_{x^2}^{\sqrt x} (1 - 2x)\,dy\,dx \\ &= \int_0^1 \Big[\,y - 2xy\,\Big]_{x^2}^{\sqrt x}\,dx \\ &= \int_0^1 \left(x^{1/2} - 2x^{3/2}\right. \\ &\qquad\quad \left. -\ x^2 + 2x^3\right)dx \end{aligned} \]</div>
+      <p class="why"><span lang="ar">$(1 - 2x)$ ما فيها $y$، فتكاملها على $y$ يعطي $y - 2xy$. عوّض $\sqrt x$ ناقص $x^2$: $2x\sqrt x = 2x^{3/2}$ و $2x\cdot x^2 = 2x^3$.</span><span lang="en">$(1 - 2x)$ has no $y$, so integrating in $y$ gives $y - 2xy$. Plug in $\sqrt x$ minus $x^2$: $2x\sqrt x = 2x^{3/2}$ and $2x\cdot x^2 = 2x^3$.</span></p>
+    </li>
+    <li class="step">
+      <h4><span lang="ar">التكامل الخارجي (على $x$)</span><span lang="en">Outer integral (in $x$)</span></h4>
+      <div class="m">\[ \begin{aligned} &= \left[\tfrac23 x^{3/2} - \tfrac45 x^{5/2}\right. \\ &\qquad \left. -\ \tfrac13 x^3 + \tfrac12 x^4\right]_0^1 \\ &= \tfrac23 - \tfrac45 - \tfrac13 + \tfrac12 \\ &= \tfrac{20 - 24 - 10 + 15}{30} = \tfrac{1}{30} \end{aligned} \]</div>
+    </li>
+    <li class="step final">
+      <div class="result">$\dfrac{1}{30}$</div>
+      <p class="sanity"><span lang="ar">مساحة المنطقة $\int_0^1(\sqrt x - x^2)\,dx = \tfrac13$، و $(1 - 2x)$ موجبة بالنص اليسار وسالبة باليمين، فجواب صغير موجب منطقي ✓</span><span lang="en">The region's area is $\int_0^1(\sqrt x - x^2)\,dx = \tfrac13$, and $(1 - 2x)$ is positive on the left half and negative on the right, so a small positive answer makes sense ✓</span></p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= تمارين ================= -->
+<section class="card" id="practice" data-num="✏" data-nav="✏ تمارين|✏ Practice">
+  <h2><span lang="ar">دورك: حل بقرين</span><span lang="en">Your turn: solve with Green</span></h2><p class="sub"><span lang="ar">اكتب الكسر هكذا: 1/3، و $\pi$ هكذا: 8pi</span><span lang="en">Type a fraction like 1/3, and $\pi$ like 8pi</span></p>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين أ</span><span lang="en">Problem A</span></b><span class="lvl"><span lang="ar">سهل</span><span lang="en">Easy</span></span></div>
+    <p><span lang="ar">$C$ الدائرة $x^2 + y^2 = 4$ عكس عقارب الساعة:</span><span lang="en">$C$ is the circle $x^2 + y^2 = 4$ counterclockwise:</span></p>
+    <div class="m">\[ \oint_C -y\,dx + x\,dy \]</div>
+    <div class="check" data-answer="8pi"></div>
+    <details class="hint"><p><span lang="ar">$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 - (-1) = 2$. يعني الجواب $2 \times$ مساحة القرص.</span><span lang="en">$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 - (-1) = 2$. So the answer is $2 \times$ the area of the disk.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الفرق</span><span lang="en">The difference</span></h4><div class="m">\[ \begin{gathered} P = -y,\qquad Q = x \\ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 1 + 1 = 2 \end{gathered} \]</div></li>
+      <li class="step"><h4><span lang="ar">المساحة</span><span lang="en">The area</span></h4><div class="m">\[ \iint_R 2\,dA = 2\cdot\pi(2)^2 = 8\pi \]</div></li>
+      <li class="step final"><div class="result">$8\pi$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ب</span><span lang="en">Problem B</span></b><span class="lvl"><span lang="ar">متوسط</span><span lang="en">Medium</span></span></div>
+    <p><span lang="ar">$C$ حدود المثلث $(0,0) \to (1,0) \to (1,1) \to (0,0)$:</span><span lang="en">$C$ is the boundary of the triangle $(0,0) \to (1,0) \to (1,1) \to (0,0)$:</span></p>
+    <div class="m">\[ \oint_C xy\,dx + x^2\,dy \]</div>
+    <div class="check" data-answer="1/3"></div>
+    <details class="hint"><p><span lang="ar">$\frac{\partial Q}{\partial x} = 2x$ و $\frac{\partial P}{\partial y} = x$. المثلث: $0 \le x \le 1$ و $0 \le y \le x$.</span><span lang="en">$\frac{\partial Q}{\partial x} = 2x$ and $\frac{\partial P}{\partial y} = x$. The triangle: $0 \le x \le 1$ and $0 \le y \le x$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">الفرق</span><span lang="en">The difference</span></h4><div class="m">\[ \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 2x - x = x \]</div></li>
+      <li class="step"><h4><span lang="ar">كامل</span><span lang="en">Integrate</span></h4><div class="m">\[ \begin{aligned} \int_0^1\!\!\int_0^{x} x\,dy\,dx &= \int_0^1 x^2\,dx \\ &= \tfrac13 \end{aligned} \]</div></li>
+      <li class="step final"><div class="result">$\tfrac13$</div></li>
+    </ol>
+  </div>
+
+  <div class="prob">
+    <div class="prob-top"><b><span lang="ar">تمرين ج</span><span lang="en">Problem C</span></b><span class="lvl"><span lang="ar">ربط مع Tutorial 3</span><span lang="en">Link to Tutorial 3</span></span></div>
+    <p><span lang="ar">في <a href="tutorial3.html#q1">Tutorial 3 س1</a> طلع (ج) $= \tfrac83$ و (أ) $= \tfrac53$. امشِ على (ج) وارجع على (أ) بالعكس، فصارت لفة مقفولة حول مثلث رؤوسه $(0,1), (1,1), (1,2)$. احسبها بقرين:</span><span lang="en">In <a href="tutorial3.html#q1">Tutorial 3 Q1</a>, path (c) gave $\tfrac83$ and path (a) gave $\tfrac53$. Go along (c) and back along (a) reversed, and you get a closed loop around the triangle with corners $(0,1), (1,1), (1,2)$. Compute it with Green:</span></p>
+    <div class="m">\[ \oint_C (x^2 - y)\,dx + (y^2 + x)\,dy \]</div>
+    <div class="check" data-answer="1"></div>
+    <details class="hint"><p><span lang="ar">الفرق $= 1 - (-1) = 2$، ومساحة المثلث $\tfrac12$.</span><span lang="en">The difference is $1 - (-1) = 2$, and the triangle's area is $\tfrac12$.</span></p></details>
+    <ol class="solve" data-start="solution">
+      <li class="step"><h4><span lang="ar">بقرين</span><span lang="en">By Green</span></h4><div class="m">\[ \iint_R 2\,dA = 2\cdot\tfrac12 = 1 \]</div></li>
+      <li class="step final"><div class="result">$1$</div><p class="sanity"><span lang="ar">ونفسه $\tfrac83 - \tfrac53 = 1$ ✓ هذا بالضبط ليش أجوبة المسارات اختلفت.</span><span lang="en">And indeed $\tfrac83 - \tfrac53 = 1$ ✓ This is exactly why the path answers differed.</span></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= أخطاء ================= -->
+<section class="card mistakes" id="mistakes" data-num="⚠" data-nav="⚠ أخطاء|⚠ Mistakes">
+  <h2><span lang="ar">أخطاء شائعة</span><span lang="en">Common mistakes</span></h2><p class="sub"><span lang="ar">كل خطأ جنبه التصحيح</span><span lang="en">Each mistake next to its fix</span></p>
+  <div class="mk"><div class="mk-title"><span lang="ar">ترتيب الطرح</span><span lang="en">Order of subtraction</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\frac{\partial P}{\partial y} - \frac{\partial Q}{\partial x}$</div><span lang="ar">بدأت بـ $P$، فطلعت الإشارة بالعكس.</span><span lang="en">You started with $P$, so the sign came out reversed.</span></div><div class="yes"><div class="mm">$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$</div><span lang="ar">$Q$ أول دايماً.</span><span lang="en">$Q$ always comes first.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">الاشتقاق مو متقاطع</span><span lang="en">Not differentiating crosswise</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\frac{\partial P}{\partial x},\ \frac{\partial Q}{\partial y}$</div><span lang="ar">اشتقيت كل واحد على متغيّره.</span><span lang="en">You differentiated each one with respect to its own variable.</span></div><div class="yes"><div class="mm">$\frac{\partial P}{\partial y},\ \frac{\partial Q}{\partial x}$</div><span lang="ar">$P$ على $y$، و $Q$ على $x$.</span><span lang="en">$P$ with respect to $y$, and $Q$ with respect to $x$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">نسيان الثقب</span><span lang="en">Forgetting the hole</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\oint_C = 0$</div><span lang="ar">طبّقت قرين و $P, Q$ فيهم $\frac{1}{x^2 + y^2}$ والمركز داخل المنطقة.</span><span lang="en">You applied Green while $P, Q$ contain $\frac{1}{x^2 + y^2}$ and the centre is inside the region.</span></div><div class="yes"><div class="mm">$\oint_C = 2\pi$</div><span lang="ar">تأكد أول إن المجال معرّف في كل نقطة داخل $R$.</span><span lang="en">First check that the field is defined at every point inside $R$.</span></div></div>
+  </div>
+  <div class="mk"><div class="mk-title"><span lang="ar">أي منحنى فوق؟</span><span lang="en">Which curve is on top?</span></div>
+    <div class="pair"><div class="no"><div class="mm">$\int_{\sqrt x}^{x^2}$</div><span lang="ar">قلبت الحدود فطلع $-\tfrac1{30}$.</span><span lang="en">You flipped the limits and got $-\tfrac1{30}$.</span></div><div class="yes"><div class="mm">$\int_{x^2}^{\sqrt x}$</div><span lang="ar">جرّب رقم بين 0 و 1 وشوف مين أكبر.</span><span lang="en">Try a number between 0 and 1 and see which is bigger.</span></div></div>
+  </div>
+</section>
+
+<!-- ================= اختبار ================= -->
+<section class="card" id="quiz" data-num="📝" data-nav="📝 اختبار|📝 Quiz">
+  <h2><span lang="ar">اختبر نفسك</span><span lang="en">Test yourself</span></h2><p class="sub"><span lang="ar">اضغط على الجواب اللي تشوفه صح</span><span lang="en">Tap the answer you think is right</span></p>
+  <div class="quiz">
+    <div class="q" data-answer="2">
+      <p><span lang="ar">في نظرية قرين، اللي داخل التكامل الثنائي هو:</span><span lang="en">In Green's theorem, what goes inside the double integral is:</span></p>
+      <button>$\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y}$</button><button>$\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}$</button><button>$\frac{\partial P}{\partial y} - \frac{\partial Q}{\partial x}$</button><button>$P\,Q$</button>
+      <p class="q-why"><span lang="ar">$Q$ على $x$ ناقص $P$ على $y$.</span><span lang="en">$Q$ with respect to $x$ minus $P$ with respect to $y$.</span></p>
+    </div>
+    <div class="q" data-answer="4">
+      <p><span lang="ar">"$R$ دايماً على يسار $C$" معناها للمنطقة العادية:</span><span lang="en">"$R$ is always on the left of $C$" means, for an ordinary region:</span></p>
+      <button><span lang="ar">مع عقارب الساعة</span><span lang="en">clockwise</span></button><button><span lang="ar">أي اتجاه</span><span lang="en">any direction</span></button><button><span lang="ar">من تحت لفوق</span><span lang="en">bottom to top</span></button><button><span lang="ar">عكس عقارب الساعة</span><span lang="en">counterclockwise</span></button>
+      <p class="q-why"><span lang="ar">لما تلف عكس عقارب الساعة، الداخل يكون على يسارك.</span><span lang="en">Going counterclockwise, the inside is on your left.</span></p>
+    </div>
+    <div class="q" data-answer="1">
+      <p><span lang="ar">ليش قرين ما انطبق في مثال 2 على القرص كامل؟</span><span lang="en">Why did Green not apply in example 2 on the full disk?</span></p>
+      <button><span lang="ar">$P, Q$ مو معرّفين عند $(0,0)$</span><span lang="en">$P, Q$ are not defined at $(0,0)$</span></button><button><span lang="ar">الدائرة مو مقفولة</span><span lang="en">the circle is not closed</span></button><button><span lang="ar">لفّينا بالعكس</span><span lang="en">we went the wrong way</span></button><button><span lang="ar">الفرق مو صفر</span><span lang="en">the difference is not zero</span></button>
+      <p class="q-why"><span lang="ar">المقام $x^2 + y^2$ يصير صفر في المركز، والمركز داخل المنطقة.</span><span lang="en">The denominator $x^2 + y^2$ is zero at the centre, and the centre is inside the region.</span></p>
+    </div>
+    <div class="q" data-answer="3">
+      <p><span lang="ar">$\oint_C 3y\,dx + 5x\,dy$ حول منطقة مساحتها $4$ (عكس عقارب الساعة) يساوي:</span><span lang="en">$\oint_C 3y\,dx + 5x\,dy$ around a region of area $4$ (counterclockwise) equals:</span></p>
+      <button>$32$</button><button>$-8$</button><button>$8$</button><button>$2$</button>
+      <p class="q-why"><span lang="ar">الفرق $5 - 3 = 2$، و $2 \times 4 = 8$.</span><span lang="en">The difference is $5 - 3 = 2$, and $2 \times 4 = 8$.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= بطاقات ================= -->
+<section class="card" id="cards" data-num="🃏" data-nav="🃏 بطاقات|🃏 Cards">
+  <h2><span lang="ar">اللي لازم تحفظه</span><span lang="en">What to remember</span></h2><p class="sub"><span lang="ar">اضغط على البطاقة تنقلب</span><span lang="en">Tap a card to flip it</span></p>
+  <div class="cards">
+    <div class="flash"><div><span lang="ar">نظرية قرين؟</span><span lang="en">Green's theorem?</span></div><div>$\oint_C P\,dx + Q\,dy = \iint_R \big(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\big)\,dA$</div></div>
+    <div class="flash"><div><span lang="ar">اتجاه $C$؟</span><span lang="en">Direction of $C$?</span></div><div><span lang="ar">$R$ على يسارك: عكس عقارب الساعة (والدائرة الداخلية للحلقة مع عقارب الساعة).</span><span lang="en">$R$ on your left: counterclockwise (and the inner circle of an annulus clockwise).</span></div></div>
+    <div class="flash"><div><span lang="ar">شرط النظرية؟</span><span lang="en">The theorem's condition?</span></div><div><span lang="ar">$C$ مقفول، و $P, Q$ ناعمين في كل نقطة داخل $R$ (ما فيه ثقب).</span><span lang="en">$C$ is closed, and $P, Q$ are smooth at every point inside $R$ (no hole).</span></div></div>
+    <div class="flash"><div><span lang="ar">لو $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$؟</span><span lang="en">If $\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}$?</span></div><div><span lang="ar">أي لفة مقفولة تعطي $0$ (بشرط ما فيه ثقب).</span><span lang="en">Any closed loop gives $0$ (provided there is no hole).</span></div></div>
+  </div>
+</section>
+
+</main>
+<script src="nav.js"></script>
+</body>
+</html>
